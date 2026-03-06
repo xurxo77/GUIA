@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galicia - Guía para amigos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF8F5;
+      --bg-warm: #F5F2ED;
+      --bg-card: #FFFFFF;
+      --fg: #2D3128;
+      --fg-soft: #4A4F44;
+      --fg-muted: #7A8072;
+      --accent: #5A6B52;
+      --accent-soft: #8A9A82;
+      --atlantic: #5B7B8A;
+      --gold: #A68A5B;
+      --border: #E5E2DC;
+      --border-soft: #EDE9E3;
+      --shadow: rgba(45, 49, 40, 0.04);
+      --shadow-hover: rgba(45, 49, 40, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-display { font-family: 'Crimson Pro', Georgia, serif; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
+
+    .carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 1.5rem;
+      padding: 0.25rem 1.5rem 1.5rem;
+      margin: 0 -1.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-card {
+      flex: 0 0 85%;
+      max-width: 340px;
+      min-width: 280px;
+      scroll-snap-align: start;
+    }
+
+    .place-card {
+      cursor: pointer;
+      transition: box-shadow 0.4s ease, transform 0.3s ease;
+    }
+    .place-card:hover { box-shadow: 0 8px 32px var(--shadow-hover); }
+    .place-card:active { transform: scale(0.995); }
+    .place-card .expand-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .place-card.expanded .expand-content { max-height: 1200px; }
+    .place-card .expand-icon { transition: transform 0.35s ease, background-color 0.2s ease; }
+    .place-card.expanded .expand-icon { transform: rotate(180deg); background-color: var(--accent); }
+    .place-card.expanded .expand-icon svg { stroke: white; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in { opacity: 0; }
+    .animate-in.visible { animation: fadeUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+    .delay-4 { animation-delay: 0.32s; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--fg);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-input:hover { border-color: var(--border-soft); }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(90, 107, 82, 0.1);
+    }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A8072' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover { background: #4A5A42; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .card-shadow { box-shadow: 0 1px 3px var(--shadow), 0 4px 12px var(--shadow); }
+    .card-shadow-hover:hover { box-shadow: 0 2px 6px var(--shadow), 0 8px 24px var(--shadow-hover); }
+    .number-badge { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+    .itinerary-card { position: relative; padding-left: 2rem; }
+    .itinerary-card::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 2.5rem;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .itinerary-card:last-child::before { display: none; }
+    .itinerary-number {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1.125rem;
+      height: 1.125rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGACIÓN -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/95 backdrop-blur-sm border-b border-[var(--border-soft)]">
+    <div class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#inicio" class="font-display text-xl font-medium text-[var(--fg)] tracking-tight">Galicia</a>
+      <button id="menuBtn" class="p-2 -mr-2 rounded-lg hover:bg-[var(--bg-warm)] transition-colors" aria-label="Menú" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden bg-[var(--bg)] border-t border-[var(--border-soft)]">
+      <div class="max-w-xl mx-auto px-6 py-3 space-y-1">
+        <a href="#introduccion" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Introducción</a>
+        <a href="#recomendaciones" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Recomendaciones</a>
+        <a href="#lugares" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Lugares imprescindibles</a>
+        <a href="#generador" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Generador de itinerarios</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="inicio" class="pt-28 pb-20 px-6">
+    <div class="max-w-xl mx-auto">
+      <p class="text-[var(--fg-muted)] text-sm mb-8 animate-in visible">Guía creada por Xurxo y Raquel</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-medium leading-[1.15] tracking-tight mb-6 animate-in visible delay-1">Galicia</h1>
+      <p class="font-display text-xl sm:text-2xl text-[var(--fg-soft)] leading-relaxed animate-in visible delay-2">
+        Guía para amigos que quieren descubrirla con calma
+      </p>
+    </div>
+  </header>
+
+  <!-- ÍNDICE -->
+  <section class="pb-20 px-6">
+    <div class="max-w-xl mx-auto">
+      <nav class="space-y-3 animate-in visible delay-3">
+        <a href="#introduccion" class="group flex items-center gap-5 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-soft)] card-shadow card-shadow-hover transition-all">
+          <span class="number-badge w-8 h-8 rounded-lg bg-[var(--accent)] text-white text-sm font-medium flex items-center justify-center">1</span>
+          <span class="font-medium group-hover:text-[var(--accent)] transition-colors">Introducción</span>
+        </a>
+        <a href="#recomendaciones" class="group flex items-center gap-5 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-soft)] card-shadow card-shadow-hover transition-all">
+          <span class="number-badge w-8 h-8 rounded-lg bg-[var(--atlantic)] text-white text-sm font-medium flex items-center justify-center">2</span>
+          <span class="font-medium group-hover:text-[var(--atlantic)] transition-colors">Recomendaciones y advertencias varias</span>
+        </a>
+        <a href="#lugares" class="group flex items-center gap-5 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-soft)] card-shadow card-shadow-hover transition-all">
+          <span class="number-badge w-8 h-8 rounded-lg bg-[var(--gold)] text-white text-sm font-medium flex items-center justify-center">3</span>
+          <span class="font-medium group-hover:text-[var(--gold)] transition-colors">Lugares imprescindibles de Galicia</span>
+        </a>
+        <a href="#generador" class="group flex items-center gap-5 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-soft)] card-shadow card-shadow-hover transition-all">
+          <span class="number-badge w-8 h-8 rounded-lg bg-[var(--fg-soft)] text-white text-sm font-medium flex items-center justify-center">4</span>
+          <span class="font-medium group-hover:text-[var(--fg-soft)] transition-colors">Generador de itinerarios</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- INTRODUCCIÓN -->
+  <section id="introduccion" class="py-20 px-6 bg-[var(--bg-warm)]">
+    <div class="max-w-xl mx-auto">
+      <div class="animate-in">
+        <p class="number-badge text-[var(--accent)] text-sm font-medium mb-4">01</p>
+        <h2 class="font-display text-3xl font-medium tracking-tight mb-10">Introducción</h2>
+      </div>
+      <div class="space-y-6 text-[var(--fg-soft)] animate-in">
+        <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
+        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
+        <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
+      </div>
+      <blockquote class="mt-12 pt-8 border-t border-[var(--border)] animate-in">
+        <p class="font-display text-2xl italic text-[var(--fg)] leading-relaxed mb-4">"Se algún día volvo, será polo mar e pola memoria dos lugares pequenos."</p>
+        <cite class="text-[var(--fg-muted)] text-sm not-italic">— Álvaro Cunqueiro</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section id="recomendaciones" class="py-20 px-6">
+    <div class="max-w-xl mx-auto">
+      <div class="animate-in mb-10">
+        <p class="number-badge text-[var(--atlantic)] text-sm font-medium mb-4">02</p>
+        <h2 class="font-display text-3xl font-medium tracking-tight mb-3">Recomendaciones y advertencias varias</h2>
+        <p class="text-[var(--fg-muted)] text-sm">Cosas que nadie te dice, pero te alegrará saber</p>
+      </div>
+      <div class="carousel mt-8" role="region" aria-label="Carrusel de recomendaciones">
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Por las noches refresca</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">En Galicia la chaqueta es como el paraguas: imprescindible. Lleva siempre algo de abrigo, aunque el día haya sido caluroso.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">En verano también llueve</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Y no suele ser un chaparrón corto. El paraguas o la capa impermeable deben ser tus compañeros de viaje.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Prueba el pan de verdad</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Busca pan artesano y olvida el industrial. El pan de Galicia es otro mundo: hogaza, maíz, centeno… cada uno con su historia.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Cuidado con las mareas</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">No aparques cerca del mar para evitar sorpresas con la pleamar. Consulta las tablas de mareas si vas a conducir por zonas costeras.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Playas de ría vs. mar abierto</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Las playas de ría son para ir con calma, ideales para familias. Las de mar abierto exigen respeto: ojo con el oleaje y las corrientes.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Pocos chiringuitos, mucho horizonte</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Galicia es mar, viento y paisaje. No esperes encontrar servicios en todas las playas. Lleva lo que necesites.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Hablan gallego, no raro</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo, aunque las respuestas puedan empezar con: "Depende… mira… bueno…"</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">No te fíes solo del GPS</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">En pueblos pequeños puede llevarte por caminos que no existen. Pregunta a los vecinos si tienes dudas.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Prepárate para un festín</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad gallega se demuestra en la mesa. Ven con hambre.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Autovías y peajes</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">Autovías: pocas. Peajes: hay algunos. Planifica las distancias y ten algo de efectivo o tarjeta.</p>
+        </article>
+        <article class="carousel-card bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
+          <h3 class="font-display text-lg font-medium mb-3">Respeta el entorno</h3>
+          <p class="text-[var(--fg-soft)] text-sm leading-relaxed">La naturaleza forma parte de la identidad gallega. Como dice el refrán: "A terra non se vende, se coida".</p>
+        </article>
+      </div>
+      <p class="text-center text-[var(--fg-muted)] text-xs mt-6">Desliza para ver más</p>
+    </div>
+  </section>
+
+  <!-- LUGARES IMPRESCINDIBLES -->
+  <section id="lugares" class="py-20 px-6 bg-[var(--bg-warm)]">
+    <div class="max-w-xl mx-auto">
+      <div class="animate-in mb-12">
+        <p class="number-badge text-[var(--gold)] text-sm font-medium mb-4">03</p>
+        <h2 class="font-display text-3xl font-medium tracking-tight mb-4">Imprescindibles de Galicia</h2>
+        <p class="text-[var(--fg-soft)] leading-relaxed">Si nunca has estado en Galicia, estos lugares son los que tienes que ver sí o sí, porque forman parte de la esencia del viaje y de la identidad gallega.</p>
+      </div>
+      <div class="space-y-4" id="placesContainer"></div>
+    </div>
+  </section>
+
+  <!-- GENERADOR DE ITINERARIOS -->
+  <section id="generador" class="py-20 px-6">
+    <div class="max-w-xl mx-auto">
+      <div class="animate-in mb-10">
+        <p class="number-badge text-[var(--fg-soft)] text-sm font-medium mb-4">04</p>
+        <h2 class="font-display text-3xl font-medium tracking-tight mb-3">Generador de itinerarios</h2>
+        <p class="text-[var(--fg-soft)]">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas. Te sugeriremos un itinerario a medida.</p>
+      </div>
+      <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow animate-in">
+        <form id="itineraryForm" class="space-y-5">
+          <div>
+            <label for="horas" class="block text-sm font-medium text-[var(--fg)] mb-2">Horas disponibles</label>
+            <select id="horas" class="form-input form-select" required>
+              <option value="">Selecciona una opción</option>
+              <option value="3">3 horas - Una escapada rápida</option>
+              <option value="5">5 horas - Media jornada</option>
+              <option value="8">8 horas - Día completo</option>
+              <option value="12">12 horas - Día largo</option>
+            </select>
+          </div>
+          <div>
+            <label for="tipo" class="block text-sm font-medium text-[var(--fg)] mb-2">Tipo de plan</label>
+            <select id="tipo" class="form-input form-select" required>
+              <option value="">Selecciona una opción</option>
+              <option value="ciudad">Ciudad - Cultura, historia y monumentos</option>
+              <option value="naturaleza">Naturaleza - Paisajes, playas y bosques</option>
+              <option value="mixto">Mixto - Un poco de todo</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-primary mt-2">Generar itinerario</button>
+        </form>
+      </div>
+      <div id="itineraryResult" class="mt-8 hidden"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-16 px-6 border-t border-[var(--border-soft)]">
+    <div class="max-w-xl mx-auto text-center">
+      <p class="font-display text-2xl italic text-[var(--fg)] mb-4">Bo viaxe</p>
+      <p class="text-[var(--fg-muted)] text-sm leading-relaxed">Guía creada con cariño por Xurxo y Raquel<br>exclusivamente para amigos</p>
+    </div>
+  </footer>
+
+  <script>
+    /* DATOS DE LUGARES */
+    const lugares = [
+      {
+        id: 1,
+        nombre: "Catedral de Santiago de Compostela",
+        categoria: "imprescindible",
+        tipo: "ciudad",
+        horas: 3,
+        imagen: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=300&fit=crop&q=80",
+        descripcion: "El símbolo más reconocible de Galicia",
+        textoCompleto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse, mirar con calma y sentir el ambiente de la ciudad, observando el paso de la gente y de los peregrinos que llegan al final del viaje.</p><p>Si es la primera vez que visitas Galicia, merece la pena verla sin prisas. Se recomienda reservar con antelación la entrada para el restaurado Pórtico de la Gloria o para subir a las cubiertas de la catedral y disfrutar de las vistas de la ciudad.</p>`,
+        consejo: "Reserva con tiempo en la web oficial, especialmente en temporada alta.",
+        destacado: true
+      },
+      {
+        id: 2,
+        nombre: "Illas Cíes",
+        categoria: "imprescindible",
+        tipo: "naturaleza",
+        horas: 6,
+        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80",
+        descripcion: "Las islas de los dioses en la ría de Vigo",
+        textoCompleto: `<p>Un archipiélago de ensueño en la ría de Vigo con playas de arena blanca y aguas cristalinas. The Guardian llamó a la playa de Rodas "la mejor del mundo".</p><p>Las Cíes forman parte del Parque Nacional de las Islas Atlánticas y son un paraíso de naturaleza virgen donde el tiempo se detiene.</p>`,
+        consejo: "Reserva el barco con antelación en verano. Hay límite diario de visitantes.",
+        destacado: true
+      },
+      {
+        id: 3,
+        nombre: "Faro de Finisterre",
+        categoria: "imprescindible",
+        tipo: "naturaleza",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=300&fit=crop&q=80",
+        descripcion: "El fin del mundo para los romanos",
+        textoCompleto: `<p>Para los romanos, este era el fin del mundo conocido. El faro y el farallón ofrecen postales inolvidables, especialmente al atardecer.</p><p>Es el punto más occidental de España y el lugar donde muchos peregrinos queman sus botas al llegar.</p>`,
+        consejo: "Ve al atardecer y continúa hasta la playa de Langosteira.",
+        destacado: true
+      },
+      {
+        id: 4,
+        nombre: "Costa da Morte",
+        categoria: "atlantica",
+        tipo: "naturaleza",
+        horas: 5,
+        imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80",
+        descripcion: "Faros, naufragios y paisajes salvajes",
+        textoCompleto: `<p>Una costa salvaje y misteriosa donde el Atlántico golpea con fuerza. Faros solitarios, playas salvajes y la huella de miles de naufragios.</p><p>Recorre los faros de Vilán, Touriñán y la legendaria playa de Trece.</p>`,
+        consejo: "Lleva ropa de abrigo, el viento sopla fuerte todo el año."
+      },
+      {
+        id: 5,
+        nombre: "Fragas do Eume",
+        categoria: "verde",
+        tipo: "naturaleza",
+        horas: 4,
+        imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80",
+        descripcion: "Bosque atlántico millonario",
+        textoCompleto: `<p>Uno de los mejores ejemplos de bosque atlántico templado de Europa. Un ecosistema único que ha sobrevivido millones de años.</p><p>Sigue los senderos junto al río Eume y descubre los monasterios ocultos entre la vegetación.</p>`,
+        consejo: "Ideal para una mañana tranquila. No olvides la cámara."
+      },
+      {
+        id: 6,
+        nombre: "Baiona",
+        categoria: "atlantica",
+        tipo: "mixto",
+        horas: 4,
+        imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80",
+        descripcion: "La primera ciudad que supo del Nuevo Mundo",
+        textoCompleto: `<p>La Pinta llegó aquí en 1493 con la noticia del descubrimiento de América. Su casco histórico y la fortaleza de Santa María merecen una visita.</p><p>Pasea por el paseo marítimo y disfruta de las vistas a las islas Cíes.</p>`,
+        consejo: "Come en el puerto y prueba el marisco de la ría."
+      },
+      {
+        id: 7,
+        nombre: "Pico Sacro",
+        categoria: "magica",
+        tipo: "naturaleza",
+        horas: 3,
+        imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80",
+        descripcion: "Montaña legendaria del Camino",
+        textoCompleto: `<p>Un pico cónico visible desde kilómetros a la redonda, envuelto en leyendas jacobeas y misterios.</p><p>Desde la cima se ve Santiago en días despejados. La cueva bajo la cima tiene su propia leyenda de dragones.</p>`,
+        consejo: "Sube al atardecer para las mejores vistas."
+      },
+      {
+        id: 8,
+        nombre: "Mercado de Abastos (Santiago)",
+        categoria: "social",
+        tipo: "ciudad",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80",
+        descripcion: "El mercado más vivo de Galicia",
+        textoCompleto: `<p>Donde los santiagueses compran desde hace más de un siglo. Pescado fresco, marisco, pan artesano, queso y todo lo que hace falta para una comida memorable.</p><p>Sube al segundo piso para comer lo que acabas de comprar, cocinado al momento.</p>`,
+        consejo: "Ve por la mañana, cuando el mercado está en plena actividad."
+      },
+      {
+        id: 9,
+        nombre: "Praia das Catedrais",
+        categoria: "secreta",
+        tipo: "naturaleza",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80",
+        descripcion: "Arcos naturales escondidos",
+        textoCompleto: `<p>Una playa de ensueño con enormes arcos de piedra que solo se revelan con marea baja. Un paisaje casi irreal.</p><p>Es uno de los lugares más fotografiados de Galicia, pero con razón.</p>`,
+        consejo: "Consulta las mareas antes de ir. Solo se puede acceder con marea baja."
+      },
+      {
+        id: 10,
+        nombre: "Combarro",
+        categoria: "atlantica",
+        tipo: "mixto",
+        horas: 3,
+        imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80",
+        descripcion: "El pueblo de los hórreos sobre el mar",
+        textoCompleto: `<p>Un pueblo pesquero donde los hórreos se asoman al mar como testigos de otros tiempos. Uno de los conjuntos de arquitectura popular más bonitos de Galicia.</p><p>Pasea por sus calles estrechas y siéntate a tomar algo en el puerto.</p>`,
+        consejo: "Ve al atardecer para la mejor luz sobre los hórreos."
+      },
+      {
+        id: 11,
+        nombre: "Muralla de Lugo",
+        categoria: "imprescindible",
+        tipo: "ciudad",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=300&fit=crop&q=80",
+        descripcion: "La única muralla romana completa del mundo",
+        textoCompleto: `<p>Patrimonio de la Humanidad y la mejor conservada de todo el Imperio Romano. Puedes caminar por lo alto de los 2 km de muralla.</p><p>La ciudad de Lugo merece una visita tranquila, con su catedral y sus tabernas.</p>`,
+        consejo: "Camina la muralla al atardecer y termina en el casco histórico."
+      },
+      {
+        id: 12,
+        nombre: "Cascada do Toxa",
+        categoria: "secreta",
+        tipo: "naturaleza",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80",
+        descripcion: "El salto de agua más espectacular",
+        textoCompleto: `<p>Una cascada de más de 30 metros en pleno bosque gallego. El sonido del agua y la vegetación crean un ambiente casi mágico.</p><p>Cerca del monasterio de Carboeiro, merece la pena visitar ambos en el mismo día.</p>`,
+        consejo: "Después de lluvias es cuando más impresiona."
+      },
+      {
+        id: 13,
+        nombre: "Vigo y sus tabernas",
+        categoria: "social",
+        tipo: "ciudad",
+        horas: 4,
+        imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80",
+        descripcion: "La mariscada y el vermute obligados",
+        textoCompleto: `<p>Vigo es la ciudad más grande de Galicia y tiene una vida propia que merece descubrirse. Sus tabernas del casco viejo son legendarias.</p><p>Pide ostras en la calle Pescadería y un vermute en cualquiera de las tabernas tradicionales.</p>`,
+        consejo: "Es una ciudad para perderse sin mapa y dejarse sorprender."
+      },
+      {
+        id: 14,
+        nombre: "Castro de Santa Trega",
+        categoria: "magica",
+        tipo: "mixto",
+        horas: 2,
+        imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80",
+        descripcion: "Petróglifos y vistas al Miño",
+        textoCompleto: `<p>Un castro galaico en la frontera con Portugal, con vistas espectaculares a la desembocadura del Miño. Los petroglifos siguen contando historias de hace miles de años.</p><p>Uno de los mejores lugares para entender la Galicia prerromana.</p>`,
+        consejo: "Combina con una visita a A Guarda y su puerto pesquero."
+      },
+      {
+        id: 15,
+        nombre: "Serra do Xistral",
+        categoria: "verde",
+        tipo: "naturaleza",
+        horas: 4,
+        imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80",
+        descripcion: "Brañas, cabalos salvajes e néboa",
+        textoCompleto: `<p>Una sierra misteriosa donde los caballos salvajes pastan entre brañas y la niebla lo cubre todo. Paisajes de otro mundo.</p><p>El faro de Meixón está en el medio de la nada, vigilando el horizonte.</p>`,
+        consejo: "Lleva ropa de abrigo, aunque sea verano. La niebla aparece sin aviso."
+      }
+    ];
+
+    /* INICIALIZACIÓN */
+    document.addEventListener('DOMContentLoaded', function() {
+      initMobileMenu();
+      initPlaceCards();
+      initScrollAnimations();
+      initSmoothScroll();
+      renderPlaces();
+      initItineraryGenerator();
+    });
+
+    function initMobileMenu() {
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (!menuBtn || !mobileMenu) return;
+      menuBtn.addEventListener('click', function() {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isHidden));
+      });
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.add('hidden');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    function initPlaceCards() {
+      document.addEventListener('click', function(e) {
+        const card = e.target.closest('.place-card');
+        if (!card || e.target.tagName === 'A') return;
+        const isExpanded = card.classList.contains('expanded');
+        document.querySelectorAll('.place-card.expanded').forEach(function(c) { c.classList.remove('expanded'); });
+        if (!isExpanded) {
+          card.classList.add('expanded');
+          setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+        }
+      });
+      document.querySelectorAll('.place-card').forEach(function(card) {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+        });
+      });
+    }
+
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.animate-in').forEach(function(el) { observer.observe(el); });
+    }
+
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            const offset = 90;
+            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: position, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    function renderPlaces() {
+      const container = document.getElementById('placesContainer');
+      if (!container) return;
+      const imprescindibles = lugares.filter(function(l) { return l.categoria === 'imprescindible'; });
+      let html = '';
+      imprescindibles.forEach(function(lugar) {
+        html += `
+          <article class="place-card bg-[var(--bg-card)] rounded-2xl overflow-hidden border border-[var(--border-soft)] card-shadow" data-id="${lugar.id}">
+            <div class="relative">
+              <img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-full h-44 object-cover" loading="lazy">
+            </div>
+            <div class="p-5">
+              <div class="flex items-start justify-between gap-4 mb-1">
+                <div>
+                  <h3 class="font-display text-xl font-medium">${lugar.nombre}</h3>
+                  <p class="text-[var(--fg-muted)] text-sm mt-1">${lugar.descripcion}</p>
+                </div>
+                <button class="expand-icon w-9 h-9 rounded-full bg-[var(--bg-warm)] flex items-center justify-center flex-shrink-0 transition-all" aria-label="Expandir información">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--fg-soft)" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+              </div>
+              <div class="expand-content">
+                <div class="pt-5 mt-5 border-t border-[var(--border-soft)] space-y-4 text-[var(--fg-soft)]">
+                  ${lugar.textoCompleto}
+                  ${lugar.consejo ? `<div class="bg-[var(--gold)]/10 rounded-xl p-4 mt-4"><p class="text-sm"><strong class="text-[var(--gold)]">Consejo:</strong> ${lugar.consejo}</p></div>` : ''}
+                </div>
+              </div>
+            </div>
+          </article>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function initItineraryGenerator() {
+      const form = document.getElementById('itineraryForm');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const horas = parseInt(document.getElementById('horas').value, 10);
+        const tipo = document.getElementById('tipo').value;
+        const itinerario = generarItinerario(horas, tipo);
+        mostrarItinerario(itinerario, horas, tipo);
+      });
+    }
+
+    function generarItinerario(horasDisponibles, tipoPreferido) {
+      let candidatos = lugares.slice();
+      candidatos.sort(function(a, b) {
+        let scoreA = 0, scoreB = 0;
+        if (tipoPreferido === 'mixto') { scoreA += 10; scoreB += 10; }
+        else {
+          if (a.tipo === tipoPreferido) scoreA += 15;
+          if (a.tipo === 'mixto') scoreA += 5;
+          if (b.tipo === tipoPreferido) scoreB += 15;
+          if (b.tipo === 'mixto') scoreB += 5;
+        }
+        if (a.destacado) scoreA += 10;
+        if (b.destacado) scoreB += 10;
+        return scoreB - scoreA;
+      });
+      let seleccionados = [], horasUsadas = 0;
+      for (let i = 0; i < candidatos.length; i++) {
+        const lugar = candidatos[i];
+        if (horasUsadas + lugar.horas <= horasDisponibles) {
+          seleccionados.push(lugar);
+          horasUsadas += lugar.horas;
+        }
+        if (horasUsadas >= horasDisponibles * 0.85) break;
+      }
+      if (seleccionados.length === 0 && candidatos.length > 0) seleccionados.push(candidatos[0]);
+      return seleccionados;
+    }
+
+    function mostrarItinerario(lugaresSeleccionados, horas, tipo) {
+      const container = document.getElementById('itineraryResult');
+      if (!container) return;
+      container.classList.remove('hidden');
+      const tipoNombres = { 'ciudad': 'Cultura y ciudad', 'naturaleza': 'Naturaleza y paisajes', 'mixto': 'Experiencia mixta' };
+      let horasTotal = 0;
+      lugaresSeleccionados.forEach(function(l) { horasTotal += l.horas; });
+      let html = `
+        <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow animate-in visible">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <h3 class="font-display text-xl font-medium mb-1">Tu itinerario sugerido</h3>
+              <p class="text-[var(--fg-muted)] text-sm">${horasTotal} horas de experiencias</p>
+            </div>
+            <button onclick="cerrarItinerario()" class="p-2 -mr-2 rounded-lg hover:bg-[var(--bg-warm)] transition-colors" aria-label="Cerrar itinerario">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 text-xs bg-[var(--accent)]/10 text-[var(--accent)] rounded-full">${tipoNombres[tipo]}</span>
+          </div>
+          <div class="space-y-5">`;
+      lugaresSeleccionados.forEach(function(lugar, index) {
+        html += `
+          <div class="itinerary-card">
+            <span class="itinerary-number">${index + 1}</span>
+            <div class="bg-[var(--bg-warm)] rounded-xl p-4">
+              <div class="flex items-start gap-3">
+                <img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-16 h-16 rounded-lg object-cover flex-shrink-0">
+                <div class="min-w-0">
+                  <h4 class="font-medium text-[var(--fg)] text-sm">${lugar.nombre}</h4>
+                  <p class="text-[var(--fg-muted)] text-xs mt-1 line-clamp-2">${lugar.descripcion}</p>
+                  <p class="text-[var(--accent)] text-xs mt-2 font-medium">${lugar.horas} horas</p>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      });
+      html += `
+          </div>
+          <div class="mt-6 pt-5 border-t border-[var(--border-soft)]">
+            <p class="text-[var(--fg-muted)] text-xs leading-relaxed">Este itinerario es una sugerencia basada en tus preferencias. Los tiempos son estimados y no incluyen desplazamientos. Adáptalo a tu ritmo y deja espacio para la improvisación.</p>
+          </div>
+        </div>`;
+      container.innerHTML = html;
+      setTimeout(function() { container.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    function cerrarItinerario() {
+      const container = document.getElementById('itineraryResult');
+      if (container) container.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
