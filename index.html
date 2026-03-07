@@ -24,11 +24,14 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y mandatory; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; scroll-snap-type: none; }
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     body {
@@ -36,23 +39,11 @@
       background: var(--bg-paper);
       color: var(--fg-ink);
       line-height: 1.7;
-      font-size: 20px;
+      font-size: 22px;
       min-height: 100vh;
     }
 
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
-
-    /* Secciones con snap */
-    section {
-      min-height: 100vh;
-      padding: 60px 24px;
-      max-width: 680px;
-      margin: 0 auto;
-      scroll-snap-align: start;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
 
     /* Navegación flotante */
     .nav-floating {
@@ -91,38 +82,32 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      padding: 20px;
+      padding: 24px;
     }
     .hero-title {
-      font-size: clamp(3.5rem, 14vw, 5rem);
+      font-size: clamp(3.5rem, 14vw, 5.5rem);
       font-weight: 700;
       color: var(--accent-sea);
       line-height: 1;
       margin-bottom: 16px;
     }
     .hero-subtitle {
-      font-size: clamp(1.2rem, 5vw, 1.5rem);
+      font-size: clamp(1.3rem, 5vw, 1.7rem);
       color: var(--fg-muted);
       font-style: italic;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
-    .hero-authors { margin-top: 24px; }
-    .hero-authors-label {
-      font-size: 1.1rem;
-      color: var(--accent-green);
-      font-family: 'Cormorant Garamond', serif;
-      margin-bottom: 16px;
-    }
+    .hero-authors { margin-top: 28px; }
     .authors-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
     .author-avatar {
-      width: 64px;
-      height: 64px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       border: 3px solid var(--border-aged);
       background: var(--bg-cream);
@@ -130,7 +115,7 @@
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 600;
       color: var(--fg-muted);
       overflow: hidden;
@@ -140,14 +125,25 @@
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .author-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--accent-sea);
     }
     .author-separator {
       color: var(--accent-gold);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+    }
+
+    /* Secciones */
+    section {
+      min-height: 100vh;
+      padding: 70px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
     /* Divisor decorativo */
@@ -155,7 +151,9 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 20px;
+      padding: 16px 24px;
+      max-width: 680px;
+      margin: 0 auto;
     }
     .decorative-divider::before, .decorative-divider::after {
       content: '';
@@ -168,21 +166,21 @@
     /* Títulos numerados */
     .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
     .section-number {
-      width: 46px;
-      height: 46px;
+      width: 50px;
+      height: 50px;
       border: 3px solid var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       color: var(--accent-sea);
       flex-shrink: 0;
       background: var(--bg-paper);
     }
-    .section-title { font-size: clamp(1.6rem, 6vw, 2rem); color: var(--accent-sea); margin: 0; }
+    .section-title { font-size: clamp(1.7rem, 6vw, 2.2rem); color: var(--accent-sea); margin: 0; }
 
     /* Índice */
     .index-list { list-style: none; }
@@ -190,23 +188,23 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 12px 0;
+      padding: 14px 0;
       text-decoration: none;
       color: var(--fg-ink);
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       transition: all 0.25s ease;
     }
     .index-item:hover, .index-item:focus { color: var(--accent-sea); transform: translateX(6px); outline: none; }
     .index-number {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border: 2px solid var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--accent-sea);
       transition: all 0.25s ease;
@@ -214,32 +212,32 @@
     }
     .index-item:hover .index-number, .index-item:focus .index-number { background: var(--accent-sea); color: white; }
     
-    .index-sublist { list-style: none; margin-left: 50px; margin-top: 4px; }
+    .index-sublist { list-style: none; margin-left: 54px; margin-top: 4px; }
     .index-subitem {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 8px 0;
+      padding: 10px 0;
       text-decoration: none;
       color: var(--fg-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
       transition: all 0.25s ease;
     }
     .index-subitem:hover, .index-subitem:focus { color: var(--accent-sea); outline: none; }
-    .index-subitem-icon { font-size: 0.9rem; }
+    .index-subitem-icon { font-size: 1rem; }
 
     /* Prosa */
-    .prose p { margin-bottom: 18px; text-align: justify; font-size: 1.05rem; }
+    .prose p { margin-bottom: 20px; text-align: justify; font-size: 1.1rem; }
 
     /* Cita */
     .quote {
       position: relative;
-      padding: 22px 22px 22px 30px;
-      margin: 28px 0;
+      padding: 24px 24px 24px 32px;
+      margin: 30px 0;
       background: linear-gradient(90deg, rgba(26, 74, 94, 0.05), transparent);
       border-left: 3px solid var(--accent-sea);
       font-style: italic;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
     .quote::before {
       content: '"';
@@ -252,7 +250,17 @@
       opacity: 0.2;
       line-height: 1;
     }
-    .quote-author { display: block; margin-top: 14px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.95rem; }
+    .quote-author { display: block; margin-top: 16px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 1rem; }
+
+    /* Recomendaciones - autor */
+    .rec-author-label {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      margin-bottom: 14px;
+      margin-top: 28px;
+    }
+    .rec-author-label:first-of-type { margin-top: 0; }
 
     /* Carrusel recomendaciones */
     .carousel {
@@ -279,7 +287,7 @@
       background: var(--bg-card);
       border: 2px solid var(--border-aged);
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
       height: 100%;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -287,21 +295,32 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 20px var(--shadow-warm);
     }
-    .rec-icon {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-    }
     .rec-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--fg-ink);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rec-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
     }
     .rec-text {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--fg-muted);
       line-height: 1.5;
+    }
+
+    .carousel-hint {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      margin-top: 10px;
     }
 
     /* TARJETAS DE LUGARES */
@@ -310,7 +329,7 @@
       border: 3px solid var(--border-card);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       box-shadow: 0 4px 16px var(--shadow-warm);
       position: relative;
       transition: box-shadow 0.3s ease;
@@ -324,19 +343,19 @@
       background: linear-gradient(90deg, var(--accent-sea), var(--accent-gold), var(--accent-sea));
       z-index: 1;
     }
-    .place-image { position: relative; height: 200px; overflow: hidden; background: var(--bg-cream); }
+    .place-image { position: relative; height: 210px; overflow: hidden; background: var(--bg-cream); }
     .place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .place-number-badge {
       position: absolute;
       top: 14px; right: 14px;
-      width: 44px; height: 44px;
+      width: 48px; height: 48px;
       background: var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: white;
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
@@ -345,20 +364,20 @@
     .place-title-overlay {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 30px 16px 12px;
+      padding: 32px 16px 14px;
       background: linear-gradient(to top, rgba(0,0,0,0.72), transparent);
       z-index: 1;
     }
     .place-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
       color: white;
       text-shadow: 0 1px 4px rgba(0,0,0,0.5);
       margin: 0;
     }
     .place-header {
-      padding: 14px 16px;
+      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -368,34 +387,34 @@
     }
     .place-header:hover { background: rgba(184, 134, 11, 0.06); }
     .place-header:focus { outline: none; background: rgba(184, 134, 11, 0.1); }
-    .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--accent-sea); }
-    .place-toggle-icon { width: 20px; height: 20px; transition: transform 0.3s ease; color: var(--fg-muted); }
+    .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); }
+    .place-toggle-icon { width: 22px; height: 22px; transition: transform 0.3s ease; color: var(--fg-muted); }
     .place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
     .place-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
     .place-card.expanded .place-content { max-height: 1000px; }
-    .place-content-inner { padding: 18px; border-top: 1px solid rgba(139, 115, 85, 0.25); }
-    .place-content p { margin-bottom: 14px; text-align: justify; font-size: 1rem; }
+    .place-content-inner { padding: 20px; border-top: 1px solid rgba(139, 115, 85, 0.25); }
+    .place-content p { margin-bottom: 16px; text-align: justify; font-size: 1.05rem; }
     .place-content p:last-child { margin-bottom: 0; }
 
-    .place-info { margin-top: 18px; padding-top: 14px; border-top: 2px dashed var(--border-aged); }
-    .info-block { margin-bottom: 14px; }
-    .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-green); }
-    .info-content { padding-left: 24px; font-size: 0.95rem; color: var(--fg-muted); }
+    .place-info { margin-top: 20px; padding-top: 16px; border-top: 2px dashed var(--border-aged); }
+    .info-block { margin-bottom: 16px; }
+    .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-green); }
+    .info-content { padding-left: 26px; font-size: 1rem; color: var(--fg-muted); }
     .info-content ul { list-style: none; }
-    .info-content li { position: relative; padding-left: 14px; margin-bottom: 6px; }
-    .info-content li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); }
+    .info-content li { position: relative; padding-left: 16px; margin-bottom: 8px; }
+    .info-content li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); }
 
     /* Footer */
     .footer {
       min-height: auto;
-      padding: 50px 24px;
+      padding: 56px 24px;
       border-top: 1px solid var(--border-aged);
     }
-    .footer-text { font-size: 1rem; color: var(--fg-muted); margin-bottom: 24px; }
-    .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1.05rem; }
+    .footer-text { font-size: 1.05rem; color: var(--fg-muted); margin-bottom: 26px; }
+    .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1.1rem; }
     .footer-signature strong { font-style: normal; font-weight: 600; color: var(--accent-sea); }
-    .footer-icon { margin-top: 28px; opacity: 0.3; }
+    .footer-icon { margin-top: 30px; opacity: 0.3; }
 
     /* Animaciones */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -408,40 +427,40 @@
       background: var(--bg-card);
       border: 3px solid var(--border-card);
       border-radius: 10px;
-      padding: 22px;
-      margin-top: 20px;
+      padding: 24px;
+      margin-top: 22px;
       box-shadow: 0 4px 16px var(--shadow-warm);
     }
-    .form-label { display: block; font-size: 0.95rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 8px; }
+    .form-label { display: block; font-size: 1rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 10px; }
     .form-select {
       width: 100%;
-      padding: 12px 14px;
+      padding: 14px 16px;
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
       border-radius: 8px;
       font-family: inherit;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--fg-ink);
       cursor: pointer;
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a4d3a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
+      background-position: right 14px center;
     }
     .form-select:focus { border-color: var(--accent-sea); outline: none; }
     .btn-generate {
       width: 100%;
-      padding: 14px;
+      padding: 16px;
       background: var(--accent-sea);
       color: white;
       border: none;
       border-radius: 8px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s ease;
-      margin-top: 6px;
+      margin-top: 8px;
     }
     .btn-generate:hover { background: #143a4a; }
 
@@ -449,59 +468,65 @@
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
       border-radius: 10px;
-      padding: 18px;
-      margin-top: 18px;
+      padding: 20px;
+      margin-top: 20px;
     }
-    .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-    .itinerary-title { font-size: 1.15rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
-    .itinerary-hours { font-size: 0.9rem; color: var(--fg-muted); }
+    .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .itinerary-title { font-size: 1.2rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
+    .itinerary-hours { font-size: 0.95rem; color: var(--fg-muted); }
     .itinerary-badge {
       display: inline-block;
-      padding: 4px 12px;
-      font-size: 0.8rem;
+      padding: 5px 14px;
+      font-size: 0.85rem;
       background: rgba(26, 74, 94, 0.08);
       color: var(--accent-sea);
       border-radius: 20px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .itinerary-place {
       display: flex;
-      gap: 12px;
-      padding: 12px;
+      gap: 14px;
+      padding: 14px;
       background: var(--bg-card);
       border-radius: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       border-left: 3px solid var(--accent-gold);
     }
     .itinerary-place:last-child { margin-bottom: 0; }
     .itinerary-place-num {
-      width: 26px; height: 26px;
+      width: 28px; height: 28px;
       background: var(--accent-sea);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 700;
       flex-shrink: 0;
     }
     .itinerary-place img {
-      width: 50px; height: 50px;
+      width: 54px; height: 54px;
       border-radius: 6px;
       object-fit: cover;
       flex-shrink: 0;
     }
-    .itinerary-place-name { font-weight: 600; font-size: 0.95rem; }
-    .itinerary-place-time { font-size: 0.8rem; color: var(--fg-muted); }
+    .itinerary-place-name { font-weight: 600; font-size: 1rem; }
+    .itinerary-place-time { font-size: 0.85rem; color: var(--fg-muted); }
 
-    .carousel-hint {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--fg-muted);
-      font-style: italic;
-      margin-top: 8px;
+    /* Categoría lugar */
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-cream);
+      border-radius: 10px;
+      margin-bottom: 18px;
+      border: 1px solid var(--border-aged);
     }
+    .category-icon { font-size: 1.3rem; }
+    .category-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--fg-ink); }
   </style>
 </head>
 <body>
@@ -517,7 +542,7 @@
 
   <!-- Hero -->
   <header id="hero" class="hero">
-    <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:18px" class="fade-in visible">
+    <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:20px" class="fade-in visible">
       <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
       <circle cx="32" cy="32" r="20"/>
       <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
@@ -592,71 +617,69 @@
       <span class="section-number">2</span>
       <h2 class="section-title">Recomendaciones y advertencias</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">(Cosas que nadie te dice, pero te alegrará saber)</p>
+    <p class="fade-in delay-1" style="font-size:1rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">(Cosas que nadie te dice, pero te alegrará saber)</p>
 
-    <div class="carousel" role="region" aria-label="Recomendaciones">
+    <!-- Recomendaciones de Xurxo -->
+    <p class="rec-author-label fade-in">Lo que dice Xurxo:</p>
+    <div class="carousel" role="region" aria-label="Recomendaciones de Xurxo">
       <article class="carousel-card rec-card">
-        <div class="rec-icon">☀️</div>
-        <h3 class="rec-title">Por las noches refresca</h3>
+        <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
         <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🌧️</div>
-        <h3 class="rec-title">En verano también llueve</h3>
+        <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
         <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🍞</div>
-        <h3 class="rec-title">Prueba el pan de verdad</h3>
+        <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
         <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🌊</div>
-        <h3 class="rec-title">Cuidado con las mareas</h3>
+        <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
         <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🏖️</div>
-        <h3 class="rec-title">Las playas de ría son para ir con calma</h3>
+        <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
         <p class="rec-text">Ideales para disfrutar con tranquilidad.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">⚠️</div>
-        <h3 class="rec-title">Las playas de mar abierto exigen respeto</h3>
+        <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
         <p class="rec-text">Ojo con el oleaje y las corrientes.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🌅</div>
-        <h3 class="rec-title">Pocos chiringuitos, mucho horizonte</h3>
+        <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
         <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">💬</div>
-        <h3 class="rec-title">La gente no habla raro, habla gallego</h3>
+        <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
         <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">📍</div>
-        <h3 class="rec-title">No te fíes solo del GPS</h3>
+        <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
         <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🍽️</div>
-        <h3 class="rec-title">Prepárate para un festín</h3>
+        <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
         <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🛣️</div>
-        <h3 class="rec-title">Autovías: pocas. Peajes: hay algunos</h3>
+        <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
         <p class="rec-text">Planifica las distancias.</p>
       </article>
       <article class="carousel-card rec-card">
-        <div class="rec-icon">🌿</div>
-        <h3 class="rec-title">Respeta el entorno</h3>
+        <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
         <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad.</p>
       </article>
     </div>
     <p class="carousel-hint">Desliza para ver más</p>
+
+    <!-- Recomendaciones de Raquel -->
+    <p class="rec-author-label fade-in">Lo que dice Raquel:</p>
+    <div class="carousel" role="region" aria-label="Recomendaciones de Raquel">
+      <article class="carousel-card rec-card" style="display:flex;align-items:center;justify-content:center;min-height:180px">
+        <p style="text-align:center;color:var(--fg-muted);font-style:italic;">Todavía por poner</p>
+      </article>
+    </div>
   </section>
 
   <div class="decorative-divider">
@@ -669,7 +692,7 @@
       <span class="section-number">3</span>
       <h2 class="section-title">Imprescindibles</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:1rem;color:var(--fg-muted);margin-bottom:20px">Una selección de rincones que ponen en valor la identidad gallega.</p>
+    <p class="fade-in delay-1" style="font-size:1.05rem;color:var(--fg-muted);margin-bottom:22px">Una selección de rincones que ponen en valor la identidad gallega.</p>
     
     <div id="placesContainer"></div>
   </section>
@@ -684,7 +707,7 @@
       <span class="section-number">4</span>
       <h2 class="section-title">Generador de itinerarios</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:18px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
+    <p class="fade-in delay-1" style="font-size:1rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
 
     <div class="generator-box fade-in">
       <form id="itineraryForm" class="space-y-4">
@@ -717,7 +740,7 @@
   <footer class="footer">
     <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
     <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
-    <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
+    <svg class="footer-icon" width="30" height="30" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
       <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
       <circle cx="16" cy="16" r="4"/>
     </svg>
@@ -775,7 +798,7 @@
             navDots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === entry.target.id));
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.4 });
       sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
       navDots.forEach(dot => {
         dot.addEventListener('click', () => {
@@ -806,7 +829,7 @@
         const catLugares = lugares.filter(l => l.categoria === cat.id);
         if (catLugares.length === 0) return;
         
-        html += `<div id="cat-${cat.id}" style="scroll-snap-align:start;min-height:100vh;padding-top:20px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:var(--bg-cream);border-radius:8px;border:1px solid var(--border-aged);"><span style="font-size:1.2rem">${cat.emoji}</span><span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--fg-ink)">${cat.nombre}</span></div>`;
+        html += `<div id="cat-${cat.id}" style="padding-top:10px;margin-bottom:10px;"><div class="category-header"><span class="category-icon">${cat.emoji}</span><span class="category-name">${cat.nombre}</span></div>`;
         
         catLugares.forEach(lugar => {
           globalIndex++;
@@ -894,7 +917,7 @@
       lista.forEach((l, i) => {
         html += `<div class="itinerary-place"><span class="itinerary-place-num">${i+1}</span><img src="${l.imagen}" alt="${l.nombre}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'"><div><div class="itinerary-place-name">${l.nombre}</div><div class="itinerary-place-time">${l.horas}h</div></div></div>`;
       });
-      html += `<p style="margin-top:12px;font-size:0.85rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
+      html += `<p style="margin-top:14px;font-size:0.9rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
       container.innerHTML = html;
       setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
