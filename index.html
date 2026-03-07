@@ -44,10 +44,150 @@
       line-height: 1.7;
       font-size: 18px;
       min-height: 100vh;
-      padding-bottom: 70px;
     }
 
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
+
+    /* ============================================
+       SPLASH SCREEN
+       ============================================ */
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .splash-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-content {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .splash-icon {
+      margin-bottom: 24px;
+    }
+
+    .splash-title {
+      font-size: clamp(3rem, 12vw, 4rem);
+      font-weight: 700;
+      color: var(--accent-sea);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .splash-subtitle {
+      font-size: 1.1rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+
+    .splash-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .splash-input-wrapper {
+      position: relative;
+    }
+
+    .splash-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--bg-paper);
+      border: 2px solid var(--border-aged);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1.1rem;
+      color: var(--fg-ink);
+      text-align: center;
+      letter-spacing: 0.1em;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .splash-input:focus {
+      outline: none;
+      border-color: var(--accent-sea);
+      box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.1);
+    }
+    .splash-input::placeholder {
+      color: var(--fg-muted);
+      letter-spacing: normal;
+    }
+    .splash-input.error {
+      border-color: #c45a3f;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .splash-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-sea);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .splash-btn:hover { background: #143a4a; }
+    .splash-btn:active { transform: scale(0.98); }
+
+    .splash-error {
+      color: #c45a3f;
+      font-size: 0.9rem;
+      min-height: 1.4em;
+      margin-top: -8px;
+    }
+
+    .splash-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-aged);
+    }
+    .splash-footer-text {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .splash-footer-note {
+      font-size: 0.75rem;
+      color: var(--fg-muted);
+      opacity: 0.7;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* ============================================
+       CONTENIDO PRINCIPAL (oculto hasta login)
+       ============================================ */
+    .main-content {
+      display: none;
+      padding-bottom: 70px;
+    }
+    .main-content.visible {
+      display: block;
+    }
 
     /* Hero */
     .hero {
@@ -236,16 +376,11 @@
     .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
 
     /* Recomendaciones - autor */
-    .rec-author-section {
-      margin-top: 24px;
-    }
+    .rec-author-section { margin-top: 24px; }
     .rec-author-section:first-of-type { margin-top: 0; }
 
     /* Carrusel centrado con flechas */
-    .carousel-wrapper {
-      position: relative;
-      width: 100%;
-    }
+    .carousel-wrapper { position: relative; width: 100%; }
     .carousel {
       display: flex;
       overflow-x: auto;
@@ -281,30 +416,13 @@
       transition: all 0.2s ease;
       box-shadow: 0 2px 8px var(--shadow-warm);
     }
-    .carousel-btn:hover {
-      background: var(--bg-cream);
-      border-color: var(--accent-sea);
-    }
-    .carousel-btn:focus {
-      outline: none;
-      border-color: var(--accent-sea);
-      box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.15);
-    }
+    .carousel-btn:hover { background: var(--bg-cream); border-color: var(--accent-sea); }
+    .carousel-btn:focus { outline: none; border-color: var(--accent-sea); box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.15); }
     .carousel-btn-prev { left: -8px; }
     .carousel-btn-next { right: -8px; }
-    .carousel-btn svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent-sea);
-    }
-    .carousel-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-    .carousel-btn:disabled:hover {
-      background: var(--bg-paper);
-      border-color: var(--border-aged);
-    }
+    .carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
+    .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .carousel-btn:disabled:hover { background: var(--bg-paper); border-color: var(--border-aged); }
 
     /* Tarjeta de autor */
     .rec-author-card {
@@ -329,11 +447,7 @@
       color: var(--accent-sea);
       margin-bottom: 4px;
     }
-    .rec-author-subtitle {
-      font-size: 0.85rem;
-      color: var(--fg-muted);
-      font-style: italic;
-    }
+    .rec-author-subtitle { font-size: 0.85rem; color: var(--fg-muted); font-style: italic; }
     
     .rec-card {
       background: var(--bg-card);
@@ -496,7 +610,7 @@
       font-size: 1.05rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background-color 0.2s ease;
       margin-top: 6px;
     }
     .btn-generate:hover { background: #143a4a; }
@@ -595,333 +709,422 @@
       flex: 1;
       max-width: 80px;
     }
-    .menu-item:hover,
-    .menu-item.active {
-      color: var(--accent-sea);
-    }
-    .menu-item svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-    }
-    .menu-item span {
-      font-size: 0.65rem;
-      font-weight: 500;
-      text-align: center;
-      line-height: 1.2;
-    }
-    .menu-item.active svg {
-      stroke: var(--accent-sea);
-    }
+    .menu-item:hover, .menu-item.active { color: var(--accent-sea); }
+    .menu-item svg { width: 22px; height: 22px; stroke: currentColor; }
+    .menu-item span { font-size: 0.65rem; font-weight: 500; text-align: center; line-height: 1.2; }
+    .menu-item.active svg { stroke: var(--accent-sea); }
   </style>
 </head>
 <body>
-  <!-- Hero -->
-  <header id="hero" class="hero">
-    <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible">
-      <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
-      <circle cx="32" cy="32" r="20"/>
-      <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
-      <circle cx="32" cy="32" r="4"/>
-    </svg>
-    <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
-    <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
-    <div class="hero-authors fade-in visible delay-2">
-      <div class="authors-column">
-        <div class="author-row">
-          <div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div>
-          <span class="author-name">Xurxo</span>
-        </div>
-        <div class="author-row">
-          <div class="author-avatar"><img src="raquel.jpg" alt="Raquel" onerror="this.parentElement.innerHTML='<span>R</span>'"></div>
-          <span class="author-name">Raquel</span>
-        </div>
+
+  <!-- ============================================
+       SPLASH SCREEN
+       ============================================ -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-content">
+      <div class="splash-icon">
+        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5">
+          <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+          <circle cx="32" cy="32" r="4"/>
+        </svg>
       </div>
-    </div>
-  </header>
+      <h1 class="splash-title">Galicia</h1>
+      <p class="splash-subtitle">Guía para amigos</p>
 
-  <!-- Índice -->
-  <section id="indice">
-    <div class="section-header fade-in">
-      <h2 class="section-title">Índice</h2>
-    </div>
-    <nav class="fade-in delay-1">
-      <ul class="index-list">
-        <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
-        <li><a href="#recomendaciones" class="index-item"><span class="index-number">2</span>Recomendaciones y advertencias</a></li>
-        <li>
-          <a href="#lugares" class="index-item"><span class="index-number">3</span>Lugares de Galicia</a>
-          <ul class="index-sublist">
-            <li><a href="#cat-imprescindibles" class="index-subitem"><span class="index-subitem-icon">⭐</span>Imprescindibles</a></li>
-            <li><a href="#cat-magica" class="index-subitem"><span class="index-subitem-icon">🌌</span>Galicia mágica</a></li>
-            <li><a href="#cat-atlantica" class="index-subitem"><span class="index-subitem-icon">🌊</span>Galicia atlántica</a></li>
-            <li><a href="#cat-verde" class="index-subitem"><span class="index-subitem-icon">🌿</span>Galicia verde interior</a></li>
-            <li><a href="#cat-humana" class="index-subitem"><span class="index-subitem-icon">🍷</span>Galicia humana</a></li>
-            <li><a href="#cat-segreda" class="index-subitem"><span class="index-subitem-icon">🌙</span>Galicia "segreda"</a></li>
-          </ul>
-        </li>
-        <li><a href="#generador" class="index-item"><span class="index-number">4</span>Generador de itinerarios</a></li>
-      </ul>
-    </nav>
-  </section>
-
-  <div class="decorative-divider">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg>
-  </div>
-
-  <!-- Introducción -->
-  <section id="introduccion">
-    <div class="section-header fade-in">
-      <span class="section-number">1</span>
-      <h2 class="section-title">Introducción</h2>
-    </div>
-    <div class="prose fade-in delay-1">
-      <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
-      <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
-      <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
-      <blockquote class="quote">
-        Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.
-        <cite class="quote-author">— Álvaro Cunqueiro</cite>
-      </blockquote>
-    </div>
-  </section>
-
-  <div class="decorative-divider">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg>
-  </div>
-
-  <!-- Recomendaciones -->
-  <section id="recomendaciones">
-    <div class="section-header fade-in">
-      <span class="section-number">2</span>
-      <h2 class="section-title">Recomendaciones y advertencias</h2>
-    </div>
-    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice, pero te alegrará saber.</p>
-
-    <!-- Recomendaciones de Xurxo -->
-    <div class="rec-author-section fade-in">
-      <div class="carousel-wrapper">
-        <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="carousel" id="carousel-xurxo">
-          <article class="carousel-card">
-            <div class="rec-author-card">
-              <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
-              <span class="rec-author-name">Xurxo</span>
-              <span class="rec-author-subtitle">Sus recomendaciones</span>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
-              <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
-              <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
-              <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
-              <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
-              <p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
-              <p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
-              <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
-              <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
-              <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
-              <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
-              <p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p>
-            </div>
-          </article>
-          <article class="carousel-card">
-            <div class="rec-card">
-              <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
-              <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p>
-            </div>
-          </article>
+      <form class="splash-form" id="splashForm" onsubmit="return false;">
+        <div class="splash-input-wrapper">
+          <input 
+            type="password" 
+            class="splash-input" 
+            id="passwordInput" 
+            placeholder="Introduce la contraseña"
+            autocomplete="off"
+          >
         </div>
-        <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Recomendaciones de Raquel -->
-    <div class="rec-author-section fade-in">
-      <div class="carousel-wrapper">
-        <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="carousel" id="carousel-raquel">
-          <article class="carousel-card">
-            <div class="rec-author-card">
-              <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
-              <span class="rec-author-name">Raquel</span>
-              <span class="rec-author-subtitle">Todavía por poner</span>
-            </div>
-          </article>
-        </div>
-        <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <div class="decorative-divider">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-  </div>
-
-  <!-- Lugares -->
-  <section id="lugares">
-    <div class="section-header fade-in">
-      <span class="section-number">3</span>
-      <h2 class="section-title">Lugares de Galicia</h2>
-    </div>
-    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:18px">Una selección de rincones que ponen en valor la identidad gallega.</p>
-    
-    <div id="placesContainer"></div>
-  </section>
-
-  <div class="decorative-divider">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-  </div>
-
-  <!-- Generador -->
-  <section id="generador">
-    <div class="section-header fade-in">
-      <span class="section-number">4</span>
-      <h2 class="section-title">Generador de itinerarios</h2>
-    </div>
-    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
-
-    <div class="generator-box fade-in">
-      <form id="itineraryForm" class="space-y-4">
-        <div>
-          <label class="form-label">Horas disponibles</label>
-          <select id="horas" class="form-select" required>
-            <option value="">Selecciona</option>
-            <option value="3">3 horas — Escapada rápida</option>
-            <option value="5">5 horas — Media jornada</option>
-            <option value="8">8 horas — Día completo</option>
-            <option value="12">12 horas — Día largo</option>
-          </select>
-        </div>
-        <div>
-          <label class="form-label">Tipo de experiencia</label>
-          <select id="tipo" class="form-select" required>
-            <option value="">Selecciona</option>
-            <option value="ciudad">Ciudad — Cultura y monumentos</option>
-            <option value="naturaleza">Naturaleza — Paisajes y playas</option>
-            <option value="mixto">Mixto — Un poco de todo</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-generate">Generar itinerario</button>
+        <p class="splash-error" id="splashError"></p>
+        <button type="submit" class="splash-btn">Entrar</button>
       </form>
-    </div>
-    <div id="itineraryResult" class="hidden"></div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
-    <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
-    <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
-      <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
-      <circle cx="16" cy="16" r="4"/>
-    </svg>
-  </footer>
-
-  <!-- MENÚ INFERIOR -->
-  <nav class="bottom-menu" aria-label="Navegación principal">
-    <div class="menu-container">
-      <a href="#hero" class="menu-item active" data-section="hero">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <span>Portada</span>
-      </a>
-      <a href="#indice" class="menu-item" data-section="indice">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-          <line x1="8" y1="6" x2="21" y2="6"/>
-          <line x1="8" y1="12" x2="21" y2="12"/>
-          <line x1="8" y1="18" x2="21" y2="18"/>
-          <line x1="3" y1="6" x2="3.01" y2="6"/>
-          <line x1="3" y1="12" x2="3.01" y2="12"/>
-          <line x1="3" y1="18" x2="3.01" y2="18"/>
-        </svg>
-        <span>Índice</span>
-      </a>
-      <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-          <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/>
-          <path d="M12 12v10"/>
-        </svg>
-        <span>Recomendaciones</span>
-      </a>
-      <a href="#lugares" class="menu-item" data-section="lugares">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-        <span>Lugares</span>
-      </a>
-      <a href="#generador" class="menu-item" data-section="generador">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/>
-          <polyline points="12 6 12 12 16 14"/>
-        </svg>
-        <span>Itinerario</span>
-      </a>
+      <div class="splash-footer">
+        <p class="splash-footer-text">
+          Esta guía ha sido creada con cariño, exclusivamente para amigos.
+        </p>
+        <p class="splash-footer-note">
+          La contraseña se actualiza cada año.
+        </p>
+      </div>
     </div>
-  </nav>
+  </div>
+
+  <!-- ============================================
+       CONTENIDO PRINCIPAL
+       ============================================ -->
+  <div class="main-content" id="mainContent">
+
+    <!-- Hero -->
+    <header id="hero" class="hero">
+      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible">
+        <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+        <circle cx="32" cy="32" r="20"/>
+        <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+        <circle cx="32" cy="32" r="4"/>
+      </svg>
+      <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
+      <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
+      <div class="hero-authors fade-in visible delay-2">
+        <div class="authors-column">
+          <div class="author-row">
+            <div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div>
+            <span class="author-name">Xurxo</span>
+          </div>
+          <div class="author-row">
+            <div class="author-avatar"><img src="raquel.jpg" alt="Raquel" onerror="this.parentElement.innerHTML='<span>R</span>'"></div>
+            <span class="author-name">Raquel</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Índice -->
+    <section id="indice">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Índice</h2>
+      </div>
+      <nav class="fade-in delay-1">
+        <ul class="index-list">
+          <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
+          <li><a href="#recomendaciones" class="index-item"><span class="index-number">2</span>Recomendaciones y advertencias</a></li>
+          <li>
+            <a href="#lugares" class="index-item"><span class="index-number">3</span>Lugares de Galicia</a>
+            <ul class="index-sublist">
+              <li><a href="#cat-imprescindibles" class="index-subitem"><span class="index-subitem-icon">⭐</span>Imprescindibles</a></li>
+              <li><a href="#cat-magica" class="index-subitem"><span class="index-subitem-icon">🌌</span>Galicia mágica</a></li>
+              <li><a href="#cat-atlantica" class="index-subitem"><span class="index-subitem-icon">🌊</span>Galicia atlántica</a></li>
+              <li><a href="#cat-verde" class="index-subitem"><span class="index-subitem-icon">🌿</span>Galicia verde interior</a></li>
+              <li><a href="#cat-humana" class="index-subitem"><span class="index-subitem-icon">🍷</span>Galicia humana</a></li>
+              <li><a href="#cat-segreda" class="index-subitem"><span class="index-subitem-icon">🌙</span>Galicia "segreda"</a></li>
+            </ul>
+          </li>
+          <li><a href="#generador" class="index-item"><span class="index-number">4</span>Generador de itinerarios</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <div class="decorative-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg>
+    </div>
+
+    <!-- Introducción -->
+    <section id="introduccion">
+      <div class="section-header fade-in">
+        <span class="section-number">1</span>
+        <h2 class="section-title">Introducción</h2>
+      </div>
+      <div class="prose fade-in delay-1">
+        <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
+        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
+        <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
+        <blockquote class="quote">
+          Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.
+          <cite class="quote-author">— Álvaro Cunqueiro</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <div class="decorative-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg>
+    </div>
+
+    <!-- Recomendaciones -->
+    <section id="recomendaciones">
+      <div class="section-header fade-in">
+        <span class="section-number">2</span>
+        <h2 class="section-title">Recomendaciones y advertencias</h2>
+      </div>
+      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice, pero te alegrará saber.</p>
+
+      <!-- Recomendaciones de Xurxo -->
+      <div class="rec-author-section fade-in">
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="carousel" id="carousel-xurxo">
+            <article class="carousel-card">
+              <div class="rec-author-card">
+                <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
+                <span class="rec-author-name">Xurxo</span>
+                <span class="rec-author-subtitle">Sus recomendaciones</span>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
+                <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
+                <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
+                <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
+                <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
+                <p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
+                <p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
+                <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
+                <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
+                <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
+                <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
+                <p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p>
+              </div>
+            </article>
+            <article class="carousel-card">
+              <div class="rec-card">
+                <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
+                <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p>
+              </div>
+            </article>
+          </div>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Recomendaciones de Raquel -->
+      <div class="rec-author-section fade-in">
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="carousel" id="carousel-raquel">
+            <article class="carousel-card">
+              <div class="rec-author-card">
+                <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
+                <span class="rec-author-name">Raquel</span>
+                <span class="rec-author-subtitle">Todavía por poner</span>
+              </div>
+            </article>
+          </div>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="decorative-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+
+    <!-- Lugares -->
+    <section id="lugares">
+      <div class="section-header fade-in">
+        <span class="section-number">3</span>
+        <h2 class="section-title">Lugares de Galicia</h2>
+      </div>
+      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:18px">Una selección de rincones que ponen en valor la identidad gallega.</p>
+      <div id="placesContainer"></div>
+    </section>
+
+    <div class="decorative-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </div>
+
+    <!-- Generador -->
+    <section id="generador">
+      <div class="section-header fade-in">
+        <span class="section-number">4</span>
+        <h2 class="section-title">Generador de itinerarios</h2>
+      </div>
+      <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
+      <div class="generator-box fade-in">
+        <form id="itineraryForm" class="space-y-4">
+          <div>
+            <label class="form-label">Horas disponibles</label>
+            <select id="horas" class="form-select" required>
+              <option value="">Selecciona</option>
+              <option value="3">3 horas — Escapada rápida</option>
+              <option value="5">5 horas — Media jornada</option>
+              <option value="8">8 horas — Día completo</option>
+              <option value="12">12 horas — Día largo</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Tipo de experiencia</label>
+            <select id="tipo" class="form-select" required>
+              <option value="">Selecciona</option>
+              <option value="ciudad">Ciudad — Cultura y monumentos</option>
+              <option value="naturaleza">Naturaleza — Paisajes y playas</option>
+              <option value="mixto">Mixto — Un poco de todo</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-generate">Generar itinerario</button>
+        </form>
+      </div>
+      <div id="itineraryResult" class="hidden"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
+      <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
+      <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
+        <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
+        <circle cx="16" cy="16" r="4"/>
+      </svg>
+    </footer>
+
+    <!-- MENÚ INFERIOR -->
+    <nav class="bottom-menu" aria-label="Navegación principal">
+      <div class="menu-container">
+        <a href="#hero" class="menu-item active" data-section="hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Portada</span>
+        </a>
+        <a href="#indice" class="menu-item" data-section="indice">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+          <span>Índice</span>
+        </a>
+        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+            <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/>
+            <path d="M12 12v10"/>
+          </svg>
+          <span>Recomendaciones</span>
+        </a>
+        <a href="#lugares" class="menu-item" data-section="lugares">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span>Lugares</span>
+        </a>
+        <a href="#generador" class="menu-item" data-section="generador">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>Itinerario</span>
+        </a>
+      </div>
+    </nav>
+
+  </div><!-- Fin main-content -->
 
   <script>
+    /* ============================================
+       SPLASH SCREEN - CONTROL DE ACCESO
+       ============================================ */
+    const CORRECT_PASSWORD = 'Caamaño';
+    
+    document.getElementById('splashForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = document.getElementById('passwordInput');
+      const error = document.getElementById('splashError');
+      const value = input.value.trim();
+      
+      if (value === CORRECT_PASSWORD) {
+        // Correcto - mostrar contenido
+        document.getElementById('splashScreen').classList.add('hidden');
+        document.getElementById('mainContent').classList.add('visible');
+        // Guardar en sessionStorage para no pedir de nuevo en esta sesión
+        sessionStorage.setItem('galicia_authenticated', 'true');
+        // Inicializar el resto
+        initApp();
+      } else {
+        // Error - mostrar mensaje y animar
+        input.classList.add('error');
+        error.textContent = 'Contraseña incorrecta';
+        setTimeout(function() { input.classList.remove('error'); }, 400);
+        input.value = '';
+        input.focus();
+      }
+    });
+
+    // Verificar si ya está autenticado en esta sesión
+    document.addEventListener('DOMContentLoaded', function() {
+      if (sessionStorage.getItem('galicia_authenticated') === 'true') {
+        // Ya autenticado - mostrar contenido directamente
+        document.getElementById('splashScreen').classList.add('hidden');
+        document.getElementById('mainContent').classList.add('visible');
+        initApp();
+      } else {
+        // No autenticado - focus en el input
+        setTimeout(function() {
+          document.getElementById('passwordInput').focus();
+        }, 100);
+      }
+    });
+
+    /* ============================================
+       INICIALIZACIÓN DE LA APP
+       ============================================ */
+    function initApp() {
+      initAnimations();
+      initIndexLinks();
+      renderPlaces();
+      initGenerator();
+      initCarousels();
+      initBottomMenu();
+    }
+
     /* Carrusel con flechas */
     function carouselNext(id) {
       const carousel = document.getElementById(id);
@@ -966,7 +1169,6 @@
       const menuItems = document.querySelectorAll('.menu-item');
       const sections = ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'];
       
-      // Observer para actualizar menú activo
       const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -983,15 +1185,12 @@
         if (el) sectionObserver.observe(el);
       });
       
-      // Click en items del menú
       menuItems.forEach(item => {
         item.addEventListener('click', (e) => {
           e.preventDefault();
           const targetId = item.getAttribute('href').substring(1);
           const target = document.getElementById(targetId);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
     }
@@ -1023,15 +1222,6 @@
       { id: "humana", nombre: "Galicia humana", emoji: "🍷" },
       { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙" }
     ];
-
-    document.addEventListener('DOMContentLoaded', function() {
-      initAnimations();
-      initIndexLinks();
-      renderPlaces();
-      initGenerator();
-      initCarousels();
-      initBottomMenu();
-    });
 
     function initAnimations() {
       const observer = new IntersectionObserver((entries) => {
