@@ -4,23 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Galicia - Guía para amigos</title>
-  
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ffffff">
-  
-  <!-- iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Galicia">
   <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-  
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
-  
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -38,6 +29,12 @@
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
+      --cat-ourense: #8B4513;
+      --cat-lugo: #2E6B4D;
+      --cat-artabra: #1E5B8C;
+      --cat-morte: #3D4A5C;
+      --cat-santiago: #9A7B0A;
+      --cat-riabaxa: #1E6B8A;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,827 +45,280 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
-    body {
-      font-family: 'Crimson Pro', Georgia, serif;
-      background: var(--bg-paper);
-      color: var(--fg-ink);
-      line-height: 1.7;
-      font-size: 18px;
-      min-height: 100vh;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    body { font-family: 'Crimson Pro', Georgia, serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
 
-    /* BANNER DE INSTALACIÓN */
-    .install-banner {
-      position: fixed;
-      bottom: 80px;
-      left: 16px;
-      right: 16px;
-      background: var(--accent-sea);
-      color: white;
-      padding: 14px 16px;
-      border-radius: 14px;
-      display: none;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      z-index: 9998;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    }
+    .install-banner { position: fixed; bottom: 80px; left: 16px; right: 16px; background: var(--accent-sea); color: white; padding: 14px 16px; border-radius: 14px; display: none; align-items: center; justify-content: space-between; gap: 12px; z-index: 9998; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
     .install-banner.visible { display: flex; }
     .install-banner-text { font-size: 0.9rem; }
     .install-banner-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
-    .install-banner-btn {
-      background: white;
-      color: var(--accent-sea);
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .install-banner-close {
-      background: none;
-      border: none;
-      color: white;
-      opacity: 0.7;
-      cursor: pointer;
-      padding: 4px;
-      font-size: 1.2rem;
-    }
+    .install-banner-btn { background: white; color: var(--accent-sea); border: none; padding: 10px 18px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .install-banner-close { background: none; border: none; color: white; opacity: 0.7; cursor: pointer; padding: 4px; font-size: 1.2rem; }
 
-    /* SPLASH SCREEN */
-    .splash-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
+    .splash-screen { position: fixed; inset: 0; z-index: 9999; background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); transition: opacity 0.5s ease, visibility 0.5s ease; }
     .splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
     .splash-content { width: 100%; max-width: 400px; text-align: center; }
     .splash-icon { margin-bottom: 24px; }
     .splash-title { font-size: clamp(3rem, 12vw, 4rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 8px; }
     .splash-subtitle { font-size: 1.1rem; color: var(--fg-muted); font-style: italic; margin-bottom: 36px; }
-
     .splash-form { display: flex; flex-direction: column; gap: 16px; }
-    .splash-input {
-      width: 100%;
-      padding: 16px 20px;
-      background: var(--bg-paper);
-      border: 2px solid var(--border-aged);
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 1.1rem;
-      color: var(--fg-ink);
-      text-align: center;
-      letter-spacing: 0.1em;
-      transition: border-color 0.2s ease;
-    }
+    .splash-input { width: 100%; padding: 16px 20px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 12px; font-family: inherit; font-size: 1.1rem; color: var(--fg-ink); text-align: center; letter-spacing: 0.1em; transition: border-color 0.2s ease; }
     .splash-input:focus { outline: none; border-color: var(--accent-sea); }
     .splash-input::placeholder { color: var(--fg-muted); letter-spacing: normal; }
     .splash-input.error { border-color: #c45a3f; animation: shake 0.4s ease; }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
-    }
-
-    .splash-btn {
-      width: 100%;
-      padding: 16px;
-      background: var(--accent-sea);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+    .splash-btn { width: 100%; padding: 16px; background: var(--accent-sea); color: white; border: none; border-radius: 12px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
     .splash-btn:hover { background: #143a4a; }
-
     .splash-error { color: #c45a3f; font-size: 0.9rem; min-height: 1.4em; margin-top: -8px; }
-
     .splash-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-aged); }
     .splash-footer-text { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
     .splash-footer-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.7; margin-top: 12px; font-style: italic; }
 
-    /* CONTENIDO PRINCIPAL */
     .main-content { display: none; padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
     .main-content.visible { display: block; }
 
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      padding-top: calc(20px + env(safe-area-inset-top));
-      scroll-snap-align: start;
-    }
+    .hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); scroll-snap-align: start; }
     .hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
     .hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; }
     .hero-authors { margin-top: 24px; width: 100%; }
     .authors-column { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .author-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
-    .author-avatar {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      border: 3px solid var(--border-aged);
-      background: var(--bg-cream);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: var(--fg-muted);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
+    .author-avatar { width: 72px; height: 72px; border-radius: 50%; border: 3px solid var(--border-aged); background: var(--bg-cream); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--fg-muted); overflow: hidden; flex-shrink: 0; }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--accent-sea); }
 
-    /* Secciones */
-    section {
-      min-height: 100vh;
-      min-height: 100dvh;
-      padding: 60px 20px;
-      max-width: 680px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
+    section { min-height: 100vh; min-height: 100dvh; padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; scroll-snap-align: start; scroll-snap-stop: always; }
+    section#lugares { min-height: auto; padding-bottom: 100px; }
 
-    .decorative-divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 20px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .decorative-divider::before, .decorative-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border-aged), transparent);
-    }
+    .decorative-divider { display: flex; align-items: center; gap: 16px; padding: 12px 20px; max-width: 680px; margin: 0 auto; }
+    .decorative-divider::before, .decorative-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-aged), transparent); }
     .decorative-divider svg { width: 18px; height: 18px; color: var(--accent-gold); flex-shrink: 0; }
 
     .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-    .section-number {
-      width: 44px; height: 44px;
-      border: 3px solid var(--accent-sea);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent-sea);
-      flex-shrink: 0;
-      background: var(--bg-paper);
-    }
+    .section-number { width: 44px; height: 44px; border: 3px solid var(--accent-sea); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--accent-sea); flex-shrink: 0; background: var(--bg-paper); }
     .section-title { font-size: clamp(1.5rem, 5vw, 1.9rem); color: var(--accent-sea); margin: 0; }
 
     .prose p { margin-bottom: 16px; text-align: justify; }
 
-    /* Cita */
-    .quote {
-      position: relative;
-      padding: 20px 20px 20px 28px;
-      margin: 24px 0;
-      background: linear-gradient(90deg, rgba(26, 74, 94, 0.05), transparent);
-      border-left: 3px solid var(--accent-sea);
-      font-style: italic;
-    }
-    .quote::before {
-      content: '"';
-      position: absolute;
-      top: 6px; left: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      color: var(--accent-sea);
-      opacity: 0.2;
-      line-height: 1;
-    }
+    .quote { position: relative; padding: 20px 20px 20px 28px; margin: 24px 0; background: linear-gradient(90deg, rgba(26, 74, 94, 0.05), transparent); border-left: 3px solid var(--accent-sea); font-style: italic; }
+    .quote::before { content: '"'; position: absolute; top: 6px; left: 8px; font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--accent-sea); opacity: 0.2; line-height: 1; }
     .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
 
-    /* Recomendaciones */
     .rec-author-section { margin-top: 24px; }
     .rec-author-section:first-of-type { margin-top: 0; }
-
     .carousel-wrapper { position: relative; width: 100%; }
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      gap: 0;
-    }
+    .carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0; }
     .carousel::-webkit-scrollbar { display: none; }
     .carousel-card { flex: 0 0 100%; width: 100%; scroll-snap-align: center; padding: 0 4px; }
-    
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px; height: 40px;
-      background: var(--bg-paper);
-      border: 2px solid var(--border-aged);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px var(--shadow-warm);
-    }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.2s ease; box-shadow: 0 2px 8px var(--shadow-warm); }
     .carousel-btn:hover { background: var(--bg-cream); border-color: var(--accent-sea); }
     .carousel-btn-prev { left: -8px; }
     .carousel-btn-next { right: -8px; }
     .carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
     .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    .rec-author-card {
-      background: var(--bg-cream);
-      border: 2px solid var(--border-aged);
-      border-radius: 14px;
-      padding: 28px 20px;
-      text-align: center;
-    }
+    .rec-author-card { background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 14px; padding: 28px 20px; text-align: center; }
     .rec-author-avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--border-aged); object-fit: cover; margin: 0 auto 16px; }
     .rec-author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
     .rec-author-subtitle { font-size: 0.85rem; color: var(--fg-muted); font-style: italic; }
-    
-    .rec-card {
-      background: var(--bg-card);
-      border: 2px solid var(--border-aged);
-      border-radius: 14px;
-      padding: 22px 20px;
-      min-height: 140px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+    .rec-card { background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 14px; padding: 22px 20px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
     .rec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
     /* TARJETAS LUGARES */
-    .place-card {
-      background: var(--bg-card);
-      border: 3px solid var(--border-card);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 16px var(--shadow-warm);
-      position: relative;
-      transition: box-shadow 0.3s ease;
-    }
+    .place-card { background: var(--bg-card); border: 3px solid var(--border-card); border-radius: 10px; overflow: hidden; margin-bottom: 18px; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; transition: box-shadow 0.3s ease; }
     .place-card:hover { box-shadow: 0 6px 22px var(--shadow-warm); }
-    .place-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-sea), var(--accent-gold), var(--accent-sea));
-      z-index: 1;
-    }
-    .place-image { position: relative; height: 190px; overflow: hidden; background: var(--bg-cream); }
+
+    .place-card.cat-ourense::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-ourense); z-index: 1; }
+    .place-card.cat-lugo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-lugo); z-index: 1; }
+    .place-card.cat-artabra::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-artabra); z-index: 1; }
+    .place-card.cat-morte::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-morte); z-index: 1; }
+    .place-card.cat-santiago::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-santiago); z-index: 1; }
+    .place-card.cat-riabaxa::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--cat-riabaxa); z-index: 1; }
+
+    .place-card.cat-ourense .place-number-badge { background: var(--cat-ourense); }
+    .place-card.cat-lugo .place-number-badge { background: var(--cat-lugo); }
+    .place-card.cat-artabra .place-number-badge { background: var(--cat-artabra); }
+    .place-card.cat-morte .place-number-badge { background: var(--cat-morte); }
+    .place-card.cat-santiago .place-number-badge { background: var(--cat-santiago); }
+    .place-card.cat-riabaxa .place-number-badge { background: var(--cat-riabaxa); }
+
+    .place-image { position: relative; height: 200px; overflow: hidden; background: var(--bg-cream); }
     .place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .place-number-badge {
-      position: absolute;
-      top: 12px; right: 12px;
-      width: 44px; height: 44px;
-      background: var(--accent-sea);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      z-index: 2;
-    }
-    .place-title-overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px 14px 12px;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-      z-index: 1;
-    }
-    .place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5); margin: 0; }
-    .place-header {
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      user-select: none;
-      border-top: 1px solid rgba(139, 115, 85, 0.25);
-    }
+    .place-number-badge { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; color: white; box-shadow: 0 2px 8px rgba(0,0,0,0.25); z-index: 2; }
+    .place-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 14px 12px; background: linear-gradient(to top, rgba(0,0,0,0.75), transparent); z-index: 1; }
+    .place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5); margin: 0; }
+    .place-header { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; border-top: 1px solid rgba(139, 115, 85, 0.25); }
     .place-header:hover { background: rgba(184, 134, 11, 0.06); }
     .place-header:focus { outline: none; background: rgba(184, 134, 11, 0.1); }
     .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-sea); }
     .place-toggle-icon { width: 20px; height: 20px; transition: transform 0.3s ease; color: var(--fg-muted); }
     .place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
-    .place-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .place-card.expanded .place-content { max-height: 900px; }
+    .place-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+    .place-card.expanded .place-content { max-height: 3000px; }
     .place-content-inner { padding: 16px; border-top: 1px solid rgba(139, 115, 85, 0.25); }
-    .place-content p { margin-bottom: 14px; text-align: justify; }
-    .place-content p:last-child { margin-bottom: 0; }
 
-    .place-info { margin-top: 16px; padding-top: 14px; border-top: 2px dashed var(--border-aged); }
-    .info-block { margin-bottom: 14px; }
+    .info-block { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px dashed var(--border-aged); }
+    .info-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-green); }
-    .info-content { padding-left: 24px; font-size: 0.9rem; color: var(--fg-muted); }
-    .info-content ul { list-style: none; }
-    .info-content li { position: relative; padding-left: 14px; margin-bottom: 6px; }
-    .info-content li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); }
+    .info-icon { font-size: 1rem; }
+    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-green); }
+    .info-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; }
+    .info-list { list-style: none; padding: 0; }
+    .info-list li { position: relative; padding-left: 16px; margin-bottom: 6px; font-size: 0.95rem; color: var(--fg-muted); }
+    .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-    /* Footer */
-    .footer {
-      min-height: auto;
-      padding: 50px 20px calc(80px + env(safe-area-inset-bottom));
-      border-top: 1px solid var(--border-aged);
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
+    .favorito-persona { margin-bottom: 8px; }
+    .favorito-nombre { font-weight: 600; color: var(--fg-ink); font-size: 0.9rem; }
+    .favorito-texto { color: var(--fg-muted); font-size: 0.95rem; }
+
+    .footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
     .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 22px; }
     .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1rem; }
     .footer-signature strong { font-style: normal; font-weight: 600; color: var(--accent-sea); }
-    .footer-icon { margin-top: 26px; opacity: 0.3; }
 
-    /* Animaciones */
     .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
 
-    /* Generador */
-    .generator-box {
-      background: var(--bg-card);
-      border: 3px solid var(--border-card);
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 18px;
-      box-shadow: 0 4px 16px var(--shadow-warm);
-    }
+    .generator-box { background: var(--bg-card); border: 3px solid var(--border-card); border-radius: 10px; padding: 20px; margin-top: 18px; box-shadow: 0 4px 16px var(--shadow-warm); }
 
-    /* Geolocalización */
-    .geo-section {
-      background: linear-gradient(90deg, rgba(61, 90, 71, 0.08), transparent);
-      border: 2px solid var(--accent-green);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 16px;
-    }
+    .geo-section { background: linear-gradient(90deg, rgba(61, 90, 71, 0.08), transparent); border: 2px solid var(--accent-green); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
     .geo-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .geo-info { flex: 1; }
     .geo-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-green); }
     .geo-status { font-size: 0.8rem; color: var(--fg-muted); margin-top: 2px; }
     .geo-status.active { color: var(--accent-green); }
-    .geo-btn {
-      padding: 8px 14px;
-      background: var(--accent-green);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+    .geo-btn { padding: 8px 14px; background: var(--accent-green); color: white; border: none; border-radius: 6px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
     .geo-btn:hover { background: #2d4537; }
     .geo-btn:disabled { background: var(--fg-muted); cursor: wait; }
 
-    /* Selector de lugares */
-    .places-selector {
-      max-height: 400px;
-      overflow-y: auto;
-      border: 2px solid var(--border-aged);
-      border-radius: 10px;
-      margin-bottom: 16px;
-    }
-    .place-select-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border-aged);
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
+    .places-selector { max-height: 350px; overflow-y: auto; border: 2px solid var(--border-aged); border-radius: 10px; margin-bottom: 16px; }
+    .place-select-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border-aged); cursor: pointer; transition: background 0.2s ease; }
     .place-select-item:last-child { border-bottom: none; }
     .place-select-item:hover { background: var(--bg-cream); }
     .place-select-item.selected { background: rgba(26, 74, 94, 0.08); }
-    
-    .place-checkbox {
-      width: 22px;
-      height: 22px;
-      border: 2px solid var(--accent-sea);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-    }
-    .place-select-item.selected .place-checkbox {
-      background: var(--accent-sea);
-    }
-    .place-checkbox svg {
-      width: 14px;
-      height: 14px;
-      stroke: white;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
+    .place-checkbox { width: 22px; height: 22px; border: 2px solid var(--accent-sea); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease; }
+    .place-select-item.selected .place-checkbox { background: var(--accent-sea); }
+    .place-checkbox svg { width: 14px; height: 14px; stroke: white; opacity: 0; transition: opacity 0.2s ease; }
     .place-select-item.selected .place-checkbox svg { opacity: 1; }
-    
-    .place-select-num {
-      width: 28px;
-      height: 28px;
-      background: var(--accent-sea);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
-    }
+    .place-select-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 700; color: white; flex-shrink: 0; }
     .place-select-info { flex: 1; min-width: 0; }
     .place-select-name { font-weight: 600; font-size: 0.95rem; }
     .place-select-time { font-size: 0.8rem; color: var(--fg-muted); }
 
-    .selection-counter {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 14px;
-      background: var(--bg-cream);
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
+    .selection-counter { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: var(--bg-cream); border-radius: 8px; margin-bottom: 12px; }
     .selection-label { font-size: 0.9rem; color: var(--fg-muted); }
     .selection-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); }
 
-    .btn-generate {
-      width: 100%;
-      padding: 14px;
-      background: var(--accent-sea);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .btn-generate { width: 100%; padding: 14px; background: var(--accent-sea); color: white; border: none; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; cursor: pointer; }
     .btn-generate:hover { background: #143a4a; }
     .btn-generate:disabled { background: var(--fg-muted); cursor: not-allowed; }
-
-    .btn-clear {
-      width: 100%;
-      padding: 10px;
-      background: transparent;
-      color: var(--fg-muted);
-      border: 2px solid var(--border-aged);
-      border-radius: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
-    }
+    .btn-clear { width: 100%; padding: 10px; background: transparent; color: var(--fg-muted); border: 2px solid var(--border-aged); border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin-top: 8px; }
     .btn-clear:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
-    .itinerary-result {
-      background: var(--bg-cream);
-      border: 2px solid var(--border-aged);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 16px;
-    }
+    .itinerary-result { background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 10px; padding: 16px; margin-top: 16px; }
     .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
     .itinerary-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 2px; }
     .itinerary-hours { font-size: 0.85rem; color: var(--fg-muted); }
-    
-    /* Resumen del viaje */
-    .trip-summary {
-      background: var(--accent-sea);
-      color: white;
-      padding: 14px 16px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+    .trip-summary { background: var(--accent-sea); color: white; padding: 14px 16px; border-radius: 10px; margin-bottom: 16px; display: flex; justify-content: space-around; align-items: center; }
     .trip-summary-item { text-align: center; }
     .trip-summary-item:first-child { border-right: 1px solid rgba(255,255,255,0.2); padding-right: 20px; }
     .trip-summary-item:last-child { padding-left: 20px; }
     .trip-summary-value { font-size: 1.4rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
     .trip-summary-label { font-size: 0.75rem; opacity: 0.85; margin-top: 2px; }
-
-    .itinerary-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      font-size: 0.8rem;
-      background: rgba(26, 74, 94, 0.08);
-      color: var(--accent-sea);
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }
-    
-    .itinerary-place {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      background: var(--bg-card);
-      border-radius: 8px;
-      margin-bottom: 10px;
-      border-left: 3px solid var(--accent-gold);
-    }
+    .itinerary-badge { display: inline-block; padding: 4px 12px; font-size: 0.8rem; background: rgba(26, 74, 94, 0.08); color: var(--accent-sea); border-radius: 20px; margin-bottom: 12px; }
+    .itinerary-place { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-card); border-radius: 8px; margin-bottom: 10px; border-left: 3px solid var(--accent-gold); }
     .itinerary-place:last-child { margin-bottom: 0; }
-    .itinerary-place-num {
-      width: 28px; height: 28px;
-      background: var(--accent-green);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
+    .itinerary-place-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: white; }
     .itinerary-place img { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
     .itinerary-place-info { flex: 1; min-width: 0; }
     .itinerary-place-name { font-weight: 600; font-size: 0.9rem; }
     .itinerary-place-time { font-size: 0.8rem; color: var(--fg-muted); }
     .itinerary-place-actions { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
-    
-    .btn-small {
-      padding: 5px 10px;
-      background: var(--accent-sea);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
+    .btn-small { padding: 5px 10px; background: var(--accent-sea); color: white; border: none; border-radius: 5px; font-size: 0.7rem; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
     .btn-small:hover { background: #143a4a; }
     .btn-small.secondary { background: var(--accent-gold); }
     .btn-small.secondary:hover { background: #9a7209; }
-
-    .route-btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      background: var(--accent-gold);
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-top: 14px;
-    }
+    .route-btn { display: block; width: 100%; padding: 12px; background: var(--accent-gold); color: white; text-align: center; text-decoration: none; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1rem; margin-top: 14px; }
     .route-btn:hover { background: #9a7209; }
 
-    /* Trayecto entre lugares */
-    .journey-info {
-      background: rgba(184, 134, 11, 0.1);
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin: 8px 0;
-      font-size: 0.8rem;
-      color: var(--fg-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .journey-icon { color: var(--accent-gold); }
+    /* ZONA / COMARCA */
+    .zona-section { margin: 50px 0 30px 0; padding-top: 20px; border-top: 1px solid var(--border-aged); }
+    .zona-section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
 
-    /* Categoría */
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: var(--bg-cream);
-      border-radius: 10px;
-      margin-bottom: 14px;
-      border: 1px solid var(--border-aged);
-    }
-    .category-icon { font-size: 1.15rem; }
-    .category-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--fg-ink); }
+    .zona-header { display: flex; align-items: stretch; margin: 0 -20px 24px -20px; padding: 20px; position: relative; overflow: hidden; }
+    
+    .zona-header.ourense { background: linear-gradient(135deg, var(--cat-ourense) 0%, #6B3410 100%); }
+    .zona-header.lugo { background: linear-gradient(135deg, var(--cat-lugo) 0%, #1E4A35 100%); }
+    .zona-header.artabra { background: linear-gradient(135deg, var(--cat-artabra) 0%, #154066 100%); }
+    .zona-header.morte { background: linear-gradient(135deg, var(--cat-morte) 0%, #2A3544 100%); }
+    .zona-header.santiago { background: linear-gradient(135deg, var(--cat-santiago) 0%, #705A08 100%); }
+    .zona-header.riabaxa { background: linear-gradient(135deg, var(--cat-riabaxa) 0%, #165070 100%); }
 
-    /* MENÚ INFERIOR */
-    .bottom-menu {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--bg-paper);
-      border-top: 1px solid var(--border-aged);
-      z-index: 1000;
-      box-shadow: 0 -4px 20px var(--shadow-warm);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-    .menu-container {
-      max-width: 680px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      padding: 8px 10px 12px;
-    }
-    .menu-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 8px;
-      text-decoration: none;
-      color: var(--fg-muted);
-      transition: color 0.2s ease;
-      flex: 1;
-      max-width: 80px;
-    }
+    .zona-emoji { font-size: 3rem; line-height: 1; margin-right: 16px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    .zona-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .zona-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 6vw, 2.2rem); font-weight: 700; color: white; line-height: 1.1; margin: 0 0 4px 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .zona-subtitulo { font-size: 0.85rem; color: rgba(255,255,255,0.8); font-style: italic; }
+    .zona-contador { background: rgba(255,255,255,0.2); color: white; padding: 8px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; align-self: center; margin-left: auto; white-space: nowrap; backdrop-filter: blur(4px); }
+    .zona-header::after { content: ''; position: absolute; bottom: 0; left: 20px; right: 20px; height: 2px; background: rgba(255,255,255,0.3); }
+
+    .bottom-menu { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-paper); border-top: 1px solid var(--border-aged); z-index: 1000; box-shadow: 0 -4px 20px var(--shadow-warm); padding-bottom: env(safe-area-inset-bottom); }
+    .menu-container { max-width: 680px; margin: 0 auto; display: flex; justify-content: space-around; padding: 8px 10px 12px; }
+    .menu-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px; text-decoration: none; color: var(--fg-muted); transition: color 0.2s ease; flex: 1; max-width: 80px; }
     .menu-item:hover, .menu-item.active { color: var(--accent-sea); }
     .menu-item svg { width: 22px; height: 22px; stroke: currentColor; }
-    .menu-item span { font-size: 0.65rem; font-weight: 500; text-align: center; line-height: 1.2; }
+    .menu-item span { font-size: 0.6rem; font-weight: 500; text-align: center; line-height: 1.2; }
     .menu-item.active svg { stroke: var(--accent-sea); }
 
-    /* MAPA */
     .map-section { min-height: auto; padding-top: 20px; }
-    .map-container {
-      height: 350px;
-      border-radius: 12px;
-      border: 3px solid var(--border-card);
-      overflow: hidden;
-      margin-top: 12px;
-      background: var(--bg-cream);
-    }
-    
-    .map-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 12px;
-    }
-    .filter-btn {
-      padding: 6px 12px;
-      background: var(--bg-card);
-      border: 2px solid var(--border-aged);
-      border-radius: 20px;
-      font-size: 0.8rem;
-      color: var(--fg-muted);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
+    .map-container { height: 320px; border-radius: 12px; border: 3px solid var(--border-card); overflow: hidden; margin-top: 12px; background: var(--bg-cream); }
+    .map-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .filter-btn { padding: 6px 12px; background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 20px; font-size: 0.7rem; color: var(--fg-muted); cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
     .filter-btn:hover { border-color: var(--accent-sea); }
-    .filter-btn.active { background: var(--accent-sea); color: white; border-color: var(--accent-sea); }
-    
-    .custom-marker {
-      background: var(--accent-sea);
-      border: 3px solid white;
-      border-radius: 50%;
-      width: 32px; height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      color: white;
-      font-size: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      transition: all 0.2s ease;
-    }
-    .custom-marker.highlighted { background: var(--accent-green); transform: scale(1.2); }
+    .filter-btn.active { color: white; border-color: transparent; }
+    .filter-btn.active.ourense { background: var(--cat-ourense); }
+    .filter-btn.active.lugo { background: var(--cat-lugo); }
+    .filter-btn.active.artabra { background: var(--cat-artabra); }
+    .filter-btn.active.morte { background: var(--cat-morte); }
+    .filter-btn.active.santiago { background: var(--cat-santiago); }
+    .filter-btn.active.riabaxa { background: var(--cat-riabaxa); }
+    .filter-btn.active[data-filter="all"] { background: var(--accent-sea); }
+
+    .custom-marker { border: 3px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: white; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: all 0.2s ease; }
+    .custom-marker.highlighted { transform: scale(1.2); }
     .custom-marker.dimmed { opacity: 0.3; }
-    
-    /* Marcador de ubicación del usuario */
-    .user-location-marker {
-      background: var(--accent-red);
-      border: 3px solid white;
-      border-radius: 50%;
-      width: 16px; height: 16px;
-      box-shadow: 0 0 0 8px rgba(196, 90, 63, 0.2);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); }
-      70% { box-shadow: 0 0 0 15px rgba(196, 90, 63, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); }
-    }
-    
+    .custom-marker.ourense { background: var(--cat-ourense); }
+    .custom-marker.lugo { background: var(--cat-lugo); }
+    .custom-marker.artabra { background: var(--cat-artabra); }
+    .custom-marker.morte { background: var(--cat-morte); }
+    .custom-marker.santiago { background: var(--cat-santiago); }
+    .custom-marker.riabaxa { background: var(--cat-riabaxa); }
+
+    .user-location-marker { background: var(--accent-red); border: 3px solid white; border-radius: 50%; width: 16px; height: 16px; box-shadow: 0 0 0 8px rgba(196, 90, 63, 0.2); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(196, 90, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } }
     .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 4px 16px var(--shadow-warm); }
     .leaflet-popup-content { margin: 14px 16px; font-family: 'Crimson Pro', Georgia, serif; font-size: 15px; line-height: 1.5; }
-    
-    .popup-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--accent-sea); margin-bottom: 8px; }
-    .popup-desc { color: var(--fg-muted); font-size: 14px; margin-bottom: 12px; }
-    .popup-btn {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background: var(--accent-sea);
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 8px;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 15px;
-    }
+    .popup-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .popup-btn { display: block; width: 100%; padding: 10px; background: var(--accent-sea); color: white; text-align: center; text-decoration: none; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 15px; }
     .popup-btn:hover { background: #143a4a; }
-
-    .map-legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 12px;
-      padding: 10px 12px;
-      background: var(--bg-cream);
-      border-radius: 8px;
-      border: 1px solid var(--border-aged);
-      font-size: 0.8rem;
-      color: var(--fg-muted);
-    }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
-    .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .legend-dot.sea { background: var(--accent-sea); }
-    .legend-dot.green { background: var(--accent-green); }
-    .legend-dot.red { background: var(--accent-red); }
+    .map-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding: 10px 12px; background: var(--bg-cream); border-radius: 8px; border: 1px solid var(--border-aged); font-size: 0.65rem; color: var(--fg-muted); }
+    .legend-item { display: flex; align-items: center; gap: 4px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
   </style>
 </head>
 <body>
 
-  <!-- BANNER DE INSTALACIÓN -->
   <div class="install-banner" id="installBanner">
-    <div class="install-banner-text">
-      <strong>Instalar Galicia</strong>
-      <span>Añade la guía a tu pantalla de inicio</span>
-    </div>
+    <div class="install-banner-text"><strong>Instalar Galicia</strong><span>Añade la guía a tu pantalla de inicio</span></div>
     <button class="install-banner-btn" id="installBtn">Instalar</button>
     <button class="install-banner-close" id="installClose">&times;</button>
   </div>
 
-  <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <div class="splash-icon">
-        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5">
-          <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
-          <circle cx="32" cy="32" r="20"/>
-          <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
-          <circle cx="32" cy="32" r="4"/>
-        </svg>
-      </div>
+      <div class="splash-icon"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg></div>
       <h1 class="splash-title">Galicia</h1>
       <p class="splash-subtitle">Guía para amigos</p>
       <form class="splash-form" id="splashForm" onsubmit="return false;">
@@ -883,28 +333,15 @@
     </div>
   </div>
 
-  <!-- CONTENIDO PRINCIPAL -->
   <div class="main-content" id="mainContent">
-
     <header id="hero" class="hero">
-      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible">
-        <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
-        <circle cx="32" cy="32" r="20"/>
-        <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
-        <circle cx="32" cy="32" r="4"/>
-      </svg>
+      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
       <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
       <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
       <div class="hero-authors fade-in visible delay-2">
         <div class="authors-column">
-          <div class="author-row">
-            <div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div>
-            <span class="author-name">Xurxo</span>
-          </div>
-          <div class="author-row">
-            <div class="author-avatar"><img src="raquel.jpg" alt="Raquel" onerror="this.parentElement.innerHTML='<span>R</span>'"></div>
-            <span class="author-name">Raquel</span>
-          </div>
+          <div class="author-row"><div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div><span class="author-name">Xurxo</span></div>
+          <div class="author-row"><div class="author-avatar"><img src="raquel.jpg" alt="Raquel" onerror="this.parentElement.innerHTML='<span>R</span>'"></div><span class="author-name">Raquel</span></div>
         </div>
       </div>
     </header>
@@ -914,8 +351,8 @@
     <section id="introduccion">
       <div class="section-header fade-in"><span class="section-number">1</span><h2 class="section-title">Introducción</h2></div>
       <div class="prose fade-in delay-1">
-        <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
-        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo.</p>
+        <p>Si esta guía ha llegado a tus manos, considéralo un privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
+        <p>Aquí encontrarás una selección de lugares que ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo.</p>
         <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo.</p>
         <blockquote class="quote">Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.<cite class="quote-author">— Álvaro Cunqueiro</cite></blockquote>
       </div>
@@ -924,30 +361,26 @@
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
 
     <section id="recomendaciones">
-      <div class="section-header fade-in"><span class="section-number">2</span><h2 class="section-title">Recomendaciones y advertencias</h2></div>
-      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice, pero te alegrará saber.</p>
-
+      <div class="section-header fade-in"><span class="section-number">2</span><h2 class="section-title">Recomendaciones</h2></div>
+      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice.</p>
       <div class="rec-author-section fade-in">
         <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
           <div class="carousel" id="carousel-xurxo">
-            <article class="carousel-card"><div class="rec-author-card"><img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Xurxo</span><span class="rec-author-subtitle">Sus recomendaciones</span></div></article>
+            <article class="carousel-card"><div class="rec-author-card"><img src="xurxo.jpg" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Xurxo</span><span class="rec-author-subtitle">Sus recomendaciones</span></div></article>
             <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3><p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3><p class="rec-text">El paraguas es tu compañero.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">💬</span>La gente habla gallego</h3><p class="rec-text">Un "boas" o "grazas" ayuda mucho.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p></div></article>
           </div>
-          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
-
       <div class="rec-author-section fade-in">
         <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
           <div class="carousel" id="carousel-raquel">
-            <article class="carousel-card"><div class="rec-author-card"><img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Raquel</span><span class="rec-author-subtitle">Todavía por poner</span></div></article>
+            <article class="carousel-card"><div class="rec-author-card"><img src="raquel.jpg" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Raquel</span><span class="rec-author-subtitle">Todavía por poner</span></div></article>
           </div>
-          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
     </section>
@@ -956,7 +389,7 @@
 
     <section id="lugares">
       <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
-      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:18px">Una selección de rincones que ponen en valor la identidad gallega.</p>
+      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:10px">Cada zona tiene su color. Despliega las tarjetas para ver toda la información.</p>
       <div id="placesContainer"></div>
     </section>
 
@@ -965,564 +398,211 @@
     <section id="generador">
       <div class="section-header fade-in"><span class="section-number">4</span><h2 class="section-title">Generador de itinerarios</h2></div>
       
-      <!-- MAPA -->
       <div class="map-section fade-in">
-        <p style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;">Mapa con todos los lugares. Filtra por categoría para explorar visualmente.</p>
-        <div class="map-filters">
-          <button class="filter-btn active" onclick="filterMap('all')" data-filter="all">Todos</button>
-          <button class="filter-btn" onclick="filterMap('imprescindibles')" data-filter="imprescindibles">⭐ Imprescindibles</button>
-          <button class="filter-btn" onclick="filterMap('magica')" data-filter="magica">🌌 Mágica</button>
-          <button class="filter-btn" onclick="filterMap('atlantica')" data-filter="atlantica">🌊 Atlántica</button>
-          <button class="filter-btn" onclick="filterMap('verde')" data-filter="verde">🌿 Verde</button>
-          <button class="filter-btn" onclick="filterMap('humana')" data-filter="humana">🍷 Humana</button>
-          <button class="filter-btn" onclick="filterMap('segreda')" data-filter="segreda">🌙 Segreda</button>
-        </div>
+        <p style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;">Mapa con todos los lugares por color.</p>
+        <div class="map-filters" id="mapFilters"></div>
         <div id="map" class="map-container"></div>
-        <div class="map-legend">
-          <div class="legend-item"><span class="legend-dot sea"></span>Lugares</div>
-          <div class="legend-item"><span class="legend-dot green"></span>En itinerario</div>
-          <div class="legend-item"><span class="legend-dot red"></span>Tu ubicación</div>
-        </div>
+        <div class="map-legend" id="mapLegend"></div>
       </div>
 
       <div class="generator-box fade-in" style="margin-top:20px">
-        <!-- Geolocalización -->
         <div class="geo-section">
           <div class="geo-header">
             <div class="geo-info">
               <div class="geo-title">Tu ubicación</div>
-              <div class="geo-status" id="geoStatus">Actívala para rutas desde tu posición</div>
+              <div class="geo-status" id="geoStatus">Actívala para calcular rutas</div>
             </div>
             <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
           </div>
         </div>
-        
-        <p style="font-size:0.9rem;color:var(--fg-muted);margin-bottom:12px;">Selecciona los lugares que quieres visitar:</p>
-        
-        <!-- Lista de lugares seleccionables -->
+        <p style="font-size:0.9rem;color:var(--fg-muted);margin-bottom:12px;">Selecciona los lugares:</p>
         <div class="places-selector" id="placesSelector"></div>
-        
-        <!-- Contador de selección -->
-        <div class="selection-counter">
-          <span class="selection-label">Lugares seleccionados:</span>
-          <span class="selection-value" id="selectionCount">0 lugares · 0h</span>
-        </div>
-        
+        <div class="selection-counter"><span class="selection-label">Seleccionados:</span><span class="selection-value" id="selectionCount">0 · 0h</span></div>
         <button type="button" class="btn-generate" id="generateBtn" onclick="generateItinerary()" disabled>Generar itinerario</button>
-        <button type="button" class="btn-clear" onclick="clearSelection()">Limpiar selección</button>
+        <button type="button" class="btn-clear" onclick="clearSelection()">Limpiar</button>
       </div>
       <div id="itineraryResult" class="hidden"></div>
     </section>
 
     <footer class="footer">
       <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
-      <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
-      <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1"><path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/><circle cx="16" cy="16" r="4"/></svg>
+      <div class="footer-signature">Escrito por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
     </footer>
 
-    <!-- MENÚ INFERIOR -->
-    <nav class="bottom-menu" aria-label="Navegación principal">
+    <nav class="bottom-menu">
       <div class="menu-container">
-        <a href="#hero" class="menu-item active" data-section="hero">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          <span>Portada</span>
-        </a>
-        <a href="#introduccion" class="menu-item" data-section="introduccion">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          <span>Introducción</span>
-        </a>
-        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/><path d="M12 12v10"/></svg>
-          <span>Recomendaciones</span>
-        </a>
-        <a href="#lugares" class="menu-item" data-section="lugares">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <span>Lugares</span>
-        </a>
-        <a href="#generador" class="menu-item" data-section="generador">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Itinerario</span>
-        </a>
+        <a href="#hero" class="menu-item active" data-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Portada</span></a>
+        <a href="#introduccion" class="menu-item" data-section="introduccion"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span>Intro</span></a>
+        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/><path d="M12 12v10"/></svg><span>Consejos</span></a>
+        <a href="#lugares" class="menu-item" data-section="lugares"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Lugares</span></a>
+        <a href="#generador" class="menu-item" data-section="generador"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Ruta</span></a>
       </div>
     </nav>
-
   </div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
-    /* SERVICE WORKER */
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('sw.js').catch(function() {});
-      });
-    }
-
-    /* BANNER DE INSTALACIÓN PWA */
-    var deferredPrompt = null;
-    var installBanner = document.getElementById('installBanner');
-    var installBtn = document.getElementById('installBtn');
-    var installClose = document.getElementById('installClose');
-
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (!localStorage.getItem('installBannerClosed')) {
-        installBanner.classList.add('visible');
-      }
-    });
-
-    installBtn.addEventListener('click', async function() {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      var result = await deferredPrompt.userChoice;
-      if (result.outcome === 'accepted') {
-        installBanner.classList.remove('visible');
-      }
-      deferredPrompt = null;
-    });
-
-    installClose.addEventListener('click', function() {
-      installBanner.classList.remove('visible');
-      localStorage.setItem('installBannerClosed', 'true');
-    });
-
-    /* SPLASH SCREEN */
-    var CORRECT_PASSWORD = 'Caamaño';
+    if ('serviceWorker' in navigator) { window.addEventListener('load', function() { navigator.serviceWorker.register('sw.js').catch(function() {}); }); }
     
+    var deferredPrompt = null, installBanner = document.getElementById('installBanner');
+    window.addEventListener('beforeinstallprompt', function(e) { e.preventDefault(); deferredPrompt = e; if (!localStorage.getItem('installBannerClosed')) installBanner.classList.add('visible'); });
+    document.getElementById('installBtn').addEventListener('click', async function() { if (!deferredPrompt) return; deferredPrompt.prompt(); if ((await deferredPrompt.userChoice).outcome === 'accepted') installBanner.classList.remove('visible'); deferredPrompt = null; });
+    document.getElementById('installClose').addEventListener('click', function() { installBanner.classList.remove('visible'); localStorage.setItem('installBannerClosed', 'true'); });
+
+    var CORRECT_PASSWORD = 'Caamaño';
     document.getElementById('splashForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      var input = document.getElementById('passwordInput');
-      var error = document.getElementById('splashError');
+      var input = document.getElementById('passwordInput'), error = document.getElementById('splashError');
       if (input.value.trim() === CORRECT_PASSWORD) {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
         localStorage.setItem('galicia_auth', 'true');
         initApp();
-      } else {
-        input.classList.add('error');
-        error.textContent = 'Contraseña incorrecta';
-        setTimeout(function() { input.classList.remove('error'); }, 400);
-        input.value = '';
-        input.focus();
-      }
+      } else { input.classList.add('error'); error.textContent = 'Contraseña incorrecta'; setTimeout(function() { input.classList.remove('error'); }, 400); input.value = ''; input.focus(); }
     });
-
     document.addEventListener('DOMContentLoaded', function() {
-      if (localStorage.getItem('galicia_auth') === 'true') {
-        document.getElementById('splashScreen').classList.add('hidden');
-        document.getElementById('mainContent').classList.add('visible');
-        initApp();
-      } else {
-        setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
-      }
+      if (localStorage.getItem('galicia_auth') === 'true') { document.getElementById('splashScreen').classList.add('hidden'); document.getElementById('mainContent').classList.add('visible'); initApp(); }
+      else setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
     });
 
-    /* APP */
-    var map = null;
-    var markers = {};
-    var userLocation = null;
-    var userMarker = null;
-    var selectedPlaces = [];
+    var map = null, markers = {}, userLocation = null, userMarker = null, selectedPlaces = [];
+    
+    function initApp() { initAnimations(); renderPlaces(); renderPlacesSelector(); initCarousels(); initBottomMenu(); initMap(); checkSavedLocation(); renderMapFilters(); renderMapLegend(); }
 
-    function initApp() {
-      initAnimations();
-      renderPlaces();
-      renderPlacesSelector();
-      initCarousels();
-      initBottomMenu();
-      initMap();
-      checkSavedLocation();
-    }
-
-    /* GEOLOCALIZACIÓN */
-    function checkSavedLocation() {
-      var savedLat = localStorage.getItem('galicia_lat');
-      var savedLng = localStorage.getItem('galicia_lng');
-      if (savedLat && savedLng) {
-        userLocation = { lat: parseFloat(savedLat), lng: parseFloat(savedLng) };
-        showUserOnMap(userLocation);
-        updateGeoUI(true);
-      }
-    }
-
-    function toggleGeolocation() {
-      if (userLocation) {
-        userLocation = null;
-        if (userMarker) {
-          map.removeLayer(userMarker);
-          userMarker = null;
-        }
-        localStorage.removeItem('galicia_lat');
-        localStorage.removeItem('galicia_lng');
-        updateGeoUI(false);
-      } else {
-        requestLocation();
-      }
-    }
-
+    function checkSavedLocation() { var lat = localStorage.getItem('galicia_lat'), lng = localStorage.getItem('galicia_lng'); if (lat && lng) { userLocation = { lat: parseFloat(lat), lng: parseFloat(lng) }; showUserOnMap(userLocation); updateGeoUI(true); } }
+    function toggleGeolocation() { if (userLocation) { userLocation = null; if (userMarker) { map.removeLayer(userMarker); userMarker = null; } localStorage.removeItem('galicia_lat'); localStorage.removeItem('galicia_lng'); updateGeoUI(false); } else requestLocation(); }
     function requestLocation() {
-      var btn = document.getElementById('geoBtn');
-      var status = document.getElementById('geoStatus');
-      
-      btn.disabled = true;
-      btn.textContent = 'Buscando...';
-      status.textContent = 'Localizando tu posición...';
-
-      if (!navigator.geolocation) {
-        status.textContent = 'Geolocalización no soportada';
-        btn.disabled = false;
-        btn.textContent = 'Activar';
-        return;
-      }
-
+      var btn = document.getElementById('geoBtn'), status = document.getElementById('geoStatus');
+      btn.disabled = true; btn.textContent = 'Buscando...'; status.textContent = 'Localizando...';
+      if (!navigator.geolocation) { status.textContent = 'No soportado'; btn.disabled = false; btn.textContent = 'Activar'; return; }
       navigator.geolocation.getCurrentPosition(
-        function(position) {
-          userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          localStorage.setItem('galicia_lat', userLocation.lat);
-          localStorage.setItem('galicia_lng', userLocation.lng);
-          showUserOnMap(userLocation);
-          updateGeoUI(true);
-          map.setView([userLocation.lat, userLocation.lng], 10);
-        },
-        function(error) {
-          var msg = 'Error al obtener ubicación';
-          if (error.code === 1) msg = 'Permiso denegado';
-          else if (error.code === 2) msg = 'Ubicación no disponible';
-          else if (error.code === 3) msg = 'Tiempo agotado';
-          status.textContent = msg;
-          btn.disabled = false;
-          btn.textContent = 'Reintentar';
-        },
+        function(p) { userLocation = { lat: p.coords.latitude, lng: p.coords.longitude }; localStorage.setItem('galicia_lat', userLocation.lat); localStorage.setItem('galicia_lng', userLocation.lng); showUserOnMap(userLocation); updateGeoUI(true); map.setView([userLocation.lat, userLocation.lng], 10); },
+        function(err) { status.textContent = err.code === 1 ? 'Permiso denegado' : 'Error'; btn.disabled = false; btn.textContent = 'Reintentar'; },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
       );
     }
+    function showUserOnMap(loc) { if (!map) return; if (userMarker) map.removeLayer(userMarker); userMarker = L.marker([loc.lat, loc.lng], { icon: L.divIcon({ className: 'user-location-marker', iconSize: [16, 16], iconAnchor: [8, 8] }) }).addTo(map); }
+    function updateGeoUI(active) { var btn = document.getElementById('geoBtn'), status = document.getElementById('geoStatus'); if (active) { btn.textContent = 'Desactivar'; btn.disabled = false; btn.style.background = 'var(--accent-red)'; status.textContent = 'Ubicación activada'; status.classList.add('active'); } else { btn.textContent = 'Activar'; btn.disabled = false; btn.style.background = ''; status.textContent = 'Actívala para rutas'; status.classList.remove('active'); } }
 
-    function showUserOnMap(loc) {
-      if (!map) return;
-      if (userMarker) map.removeLayer(userMarker);
-
-      var userIcon = L.divIcon({
-        className: 'user-location-marker',
-        iconSize: [16, 16],
-        iconAnchor: [8, 8]
-      });
-
-      userMarker = L.marker([loc.lat, loc.lng], { icon: userIcon }).addTo(map);
-      userMarker.bindPopup('<div class="popup-title">Tu ubicación</div>');
+    function renderMapFilters() {
+      var c = document.getElementById('mapFilters');
+      var html = '<button class="filter-btn active" onclick="filterMap(\'all\')" data-filter="all">Todos</button>';
+      categorias.forEach(function(cat) { html += '<button class="filter-btn ' + cat.id + '" onclick="filterMap(\'' + cat.id + '\')" data-filter="' + cat.id + '">' + cat.emoji + ' ' + cat.nombreCorto + '</button>'; });
+      c.innerHTML = html;
     }
 
-    function updateGeoUI(active) {
-      var btn = document.getElementById('geoBtn');
-      var status = document.getElementById('geoStatus');
-      
-      if (active) {
-        btn.textContent = 'Desactivar';
-        btn.disabled = false;
-        btn.style.background = 'var(--accent-red)';
-        status.textContent = 'Ubicación activada';
-        status.classList.add('active');
-      } else {
-        btn.textContent = 'Activar';
-        btn.disabled = false;
-        btn.style.background = '';
-        status.textContent = 'Actívala para rutas desde tu posición';
-        status.classList.remove('active');
-      }
-    }
-
-    /* SELECTOR DE LUGARES */
-    function renderPlacesSelector() {
-      var container = document.getElementById('placesSelector');
-      if (!container) return;
-      
+    function renderMapLegend() {
+      var c = document.getElementById('mapLegend');
       var html = '';
-      lugares.forEach(function(lugar, index) {
-        var num = index + 1;
-        html += '<div class="place-select-item" data-id="' + lugar.id + '" onclick="togglePlaceSelection(' + lugar.id + ')">';
-        html += '<div class="place-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>';
-        html += '<span class="place-select-num">' + num + '</span>';
-        html += '<div class="place-select-info">';
-        html += '<div class="place-select-name">' + lugar.nombre + '</div>';
-        html += '<div class="place-select-time">' + lugar.horas + 'h de visita</div>';
-        html += '</div></div>';
-      });
-      
-      container.innerHTML = html;
+      categorias.forEach(function(cat) { html += '<div class="legend-item"><span class="legend-dot" style="background:var(--cat-' + cat.id + ')"></span>' + cat.nombreCorto + '</div>'; });
+      c.innerHTML = html;
     }
 
-    function togglePlaceSelection(id) {
-      var item = document.querySelector('.place-select-item[data-id="' + id + '"]');
-      if (!item) return;
-      
-      var idx = selectedPlaces.indexOf(id);
-      if (idx > -1) {
-        selectedPlaces.splice(idx, 1);
-        item.classList.remove('selected');
-      } else {
-        selectedPlaces.push(id);
-        item.classList.add('selected');
-      }
-      
-      updateSelectionCounter();
+    function renderPlacesSelector() {
+      var c = document.getElementById('placesSelector');
+      c.innerHTML = lugares.map(function(l, i) {
+        return '<div class="place-select-item" data-id="' + l.id + '" onclick="togglePlaceSelection(' + l.id + ')"><div class="place-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="place-select-num ' + l.categoria + '">' + (i+1) + '</span><div class="place-select-info"><div class="place-select-name">' + l.nombre + '</div><div class="place-select-time">' + l.horas + 'h</div></div></div>';
+      }).join('');
     }
+    function togglePlaceSelection(id) { var item = document.querySelector('.place-select-item[data-id="' + id + '"]'), idx = selectedPlaces.indexOf(id); if (idx > -1) { selectedPlaces.splice(idx, 1); item.classList.remove('selected'); } else { selectedPlaces.push(id); item.classList.add('selected'); } updateSelectionCounter(); }
+    function updateSelectionCounter() { var h = selectedPlaces.reduce(function(s, id) { var l = lugares.find(function(x) { return x.id === id; }); return s + (l ? l.horas : 0); }, 0); document.getElementById('selectionCount').textContent = selectedPlaces.length + ' · ' + h + 'h'; document.getElementById('generateBtn').disabled = selectedPlaces.length === 0; }
+    function clearSelection() { selectedPlaces = []; document.querySelectorAll('.place-select-item.selected').forEach(function(x) { x.classList.remove('selected'); }); updateSelectionCounter(); document.getElementById('itineraryResult').classList.add('hidden'); resetMap(); }
 
-    function updateSelectionCounter() {
-      var countEl = document.getElementById('selectionCount');
-      var btn = document.getElementById('generateBtn');
-      
-      var totalHours = 0;
-      selectedPlaces.forEach(function(id) {
-        var lugar = lugares.find(function(l) { return l.id === id; });
-        if (lugar) totalHours += lugar.horas;
-      });
-      
-      var count = selectedPlaces.length;
-      countEl.textContent = count + ' lugar' + (count !== 1 ? 'es' : '') + ' · ' + totalHours + 'h';
-      btn.disabled = count === 0;
-    }
-
-    function clearSelection() {
-      selectedPlaces = [];
-      document.querySelectorAll('.place-select-item.selected').forEach(function(item) {
-        item.classList.remove('selected');
-      });
-      updateSelectionCounter();
-      document.getElementById('itineraryResult').classList.add('hidden');
-      resetMap();
-    }
-
-    /* MAPA */
     function initMap() {
-      map = L.map('map', {
-        center: [42.6, -8.4],
-        zoom: 8,
-        scrollWheelZoom: false
-      });
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap',
-        maxZoom: 18
-      }).addTo(map);
-
-      lugares.forEach(function(lugar, index) {
-        if (!lugar.lat || !lugar.lng) return;
-        
-        var customIcon = L.divIcon({
-          className: 'custom-marker',
-          html: '<span>' + (index + 1) + '</span>',
-          iconSize: [32, 32],
-          iconAnchor: [16, 16]
-        });
-
-        var marker = L.marker([lugar.lat, lugar.lng], { icon: customIcon }).addTo(map);
-        marker.bindPopup('<div class="popup-title">' + lugar.nombre + '</div><div class="popup-desc">' + lugar.descripcion + '</div><a href="' + getNavUrl(lugar.lat, lugar.lng) + '" class="popup-btn" target="_blank">Ir en coche</a>');
-        markers[lugar.id] = marker;
+      map = L.map('map', { center: [42.6, -8.4], zoom: 8, scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OSM', maxZoom: 18 }).addTo(map);
+      lugares.forEach(function(l, i) {
+        if (!l.lat || !l.lng) return;
+        var m = L.marker([l.lat, l.lng], { icon: L.divIcon({ className: 'custom-marker ' + l.categoria, html: '<span>' + (i+1) + '</span>', iconSize: [32, 32], iconAnchor: [16, 16] }) }).addTo(map);
+        m.bindPopup('<div class="popup-title">' + l.nombre + '</div><a href="https://www.google.com/maps/dir/?api=1&destination=' + l.lat + ',' + l.lng + '" class="popup-btn" target="_blank">Ir en coche</a>');
+        markers[l.id] = m;
       });
     }
-
-    function filterMap(categoria) {
-      document.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.classList.toggle('active', btn.dataset.filter === categoria);
-      });
-
-      lugares.forEach(function(lugar) {
-        var marker = markers[lugar.id];
-        if (!marker) return;
-        var element = marker.getElement();
-        if (!element) return;
-        
-        if (categoria === 'all' || lugar.categoria === categoria) {
-          element.classList.remove('dimmed');
-          marker.setOpacity(1);
-        } else {
-          element.classList.add('dimmed');
-          marker.setOpacity(0.3);
-        }
-      });
+    function filterMap(cat) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter === cat); });
+      lugares.forEach(function(l) { var m = markers[l.id]; if (!m) return; var el = m.getElement(); if (!el) return; if (cat === 'all' || l.categoria === cat) { el.classList.remove('dimmed'); m.setOpacity(1); } else { el.classList.add('dimmed'); m.setOpacity(0.3); } });
+    }
+    function highlightItinerary(ids) {
+      lugares.forEach(function(l) { var m = markers[l.id]; if (!m) return; var el = m.getElement(); if (el) el.classList.remove('highlighted', 'dimmed'); m.setOpacity(1); });
+      ids.forEach(function(id) { var m = markers[id]; if (!m) return; var el = m.getElement(); if (el) el.classList.add('highlighted'); });
+      if (ids.length > 0) { var b = []; if (userLocation) b.push([userLocation.lat, userLocation.lng]); ids.forEach(function(id) { var l = lugares.find(function(x) { return x.id === id; }); if (l && l.lat && l.lng) b.push([l.lat, l.lng]); }); if (b.length) map.fitBounds(b, { padding: [50, 50] }); }
     }
 
-    function highlightItinerary(itineraryIds) {
-      lugares.forEach(function(lugar) {
-        var marker = markers[lugar.id];
-        if (!marker) return;
-        var element = marker.getElement();
-        if (element) element.classList.remove('highlighted', 'dimmed');
-        marker.setOpacity(1);
-      });
-
-      itineraryIds.forEach(function(id) {
-        var marker = markers[id];
-        if (!marker) return;
-        var element = marker.getElement();
-        if (element) element.classList.add('highlighted');
-      });
-
-      if (itineraryIds.length > 0) {
-        var bounds = [];
-        if (userLocation) bounds.push([userLocation.lat, userLocation.lng]);
-        itineraryIds.forEach(function(id) {
-          var lugar = lugares.find(function(l) { return l.id === id; });
-          if (lugar && lugar.lat && lugar.lng) bounds.push([lugar.lat, lugar.lng]);
-        });
-        if (bounds.length > 0) map.fitBounds(bounds, { padding: [50, 50] });
-      }
-    }
-
-    function focusPlaceOnMap(id) {
-      var lugar = lugares.find(function(l) { return l.id === id; });
-      if (lugar && lugar.lat && lugar.lng && map) {
-        map.setView([lugar.lat, lugar.lng], 14);
-        var marker = markers[id];
-        if (marker) marker.openPopup();
-      }
-    }
-
-    function getNavUrl(lat, lng) {
-      return 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng + '&travelmode=driving';
-    }
-
-    function getRouteUrl(places, fromUser) {
-      if (!places || places.length === 0) return '#';
-      var url = 'https://www.google.com/maps/dir/?api=1';
-      if (fromUser && userLocation) url += '&origin=' + userLocation.lat + ',' + userLocation.lng;
-      places.forEach(function(p) { url += '&destination=' + p.lat + ',' + p.lng; });
-      url += '&travelmode=driving';
-      return url;
-    }
-
-    /* CÁLCULO DE RUTAS */
     async function calculateRoute(places, fromUser) {
-      var allPoints = [];
-      if (fromUser && userLocation) allPoints.push({ lat: userLocation.lat, lng: userLocation.lng });
-      allPoints = allPoints.concat(places);
-      
-      if (allPoints.length < 2) return { distance: 0, duration: 0, segments: [] };
-      
-      var coords = allPoints.map(function(p) { return p.lng + ',' + p.lat; }).join(';');
-      var url = 'https://router.project-osrm.org/route/v1/driving/' + coords + '?overview=false&annotations=true';
-      
-      try {
-        var response = await fetch(url);
-        var data = await response.json();
-        if (data.code === 'Ok' && data.routes && data.routes[0]) {
-          return { distance: data.routes[0].distance, duration: data.routes[0].duration, segments: data.routes[0].legs || [] };
-        }
-      } catch (e) {}
-      
-      var totalDist = 0;
-      for (var i = 1; i < allPoints.length; i++) {
-        totalDist += haversineDistance(allPoints[i-1].lat, allPoints[i-1].lng, allPoints[i].lat, allPoints[i].lng);
-      }
-      return { distance: totalDist * 1000, duration: totalDist / 50 * 3600, segments: [] };
+      var pts = []; if (fromUser && userLocation) pts.push({ lat: userLocation.lat, lng: userLocation.lng }); pts = pts.concat(places);
+      if (pts.length < 2) return { distance: 0, duration: 0, segments: [] };
+      try { var r = await fetch('https://router.project-osrm.org/route/v1/driving/' + pts.map(function(p) { return p.lng + ',' + p.lat; }).join(';') + '?overview=false'); var d = await r.json(); if (d.code === 'Ok') return { distance: d.routes[0].distance, duration: d.routes[0].duration, segments: d.routes[0].legs || [] }; } catch(e) {}
+      var td = 0; for (var i = 1; i < pts.length; i++) td += haversine(pts[i-1].lat, pts[i-1].lng, pts[i].lat, pts[i].lng);
+      return { distance: td * 1000, duration: td / 50 * 3600, segments: [] };
     }
+    function haversine(lat1, lon1, lat2, lon2) { var R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180; return R * 2 * Math.atan2(Math.sqrt(Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2)), Math.sqrt(1 - Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2))); }
+    function formatDuration(s) { var h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60); return h > 0 ? h + 'h ' + m + 'min' : m + ' min'; }
+    function formatDistance(m) { return m >= 1000 ? (m / 1000).toFixed(1) + ' km' : Math.round(m) + ' m'; }
 
-    function haversineDistance(lat1, lon1, lat2, lon2) {
-      var R = 6371;
-      var dLat = (lat2 - lat1) * Math.PI / 180;
-      var dLon = (lon2 - lon1) * Math.PI / 180;
-      var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
-      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    }
-
-    function formatDuration(seconds) {
-      var hours = Math.floor(seconds / 3600);
-      var minutes = Math.round((seconds % 3600) / 60);
-      if (hours > 0) return hours + 'h ' + minutes + 'min';
-      return minutes + ' minutos';
-    }
-
-    function formatDistance(meters) {
-      if (meters >= 1000) return (meters / 1000).toFixed(1) + ' km';
-      return Math.round(meters) + ' m';
-    }
-
-    /* CARRUSEL */
-    function carouselNext(id) {
-      var c = document.getElementById(id);
-      if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
-    }
-
-    function carouselPrev(id) {
-      var c = document.getElementById(id);
-      if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
-    }
-
-    function updateCarouselButtons(id) {
-      var c = document.getElementById(id);
-      if (!c) return;
-      var w = c.parentElement;
-      var sl = c.scrollLeft;
-      var max = c.scrollWidth - c.clientWidth;
-      var prev = w.querySelector('.carousel-btn-prev');
-      var next = w.querySelector('.carousel-btn-next');
-      if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex';
-      if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex';
-    }
-
-    function initCarousels() {
-      ['carousel-xurxo', 'carousel-raquel'].forEach(function(id) {
-        var c = document.getElementById(id);
-        if (c) {
-          c.addEventListener('scroll', function() { updateCarouselButtons(id); });
-          setTimeout(function() { updateCarouselButtons(id); }, 100);
-        }
-      });
-    }
-
+    function carouselNext(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
+    function carouselPrev(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
+    function updateCarouselButtons(id) { var c = document.getElementById(id); if (!c) return; var w = c.parentElement, sl = c.scrollLeft, max = c.scrollWidth - c.clientWidth; var prev = w.querySelector('.carousel-btn-prev'), next = w.querySelector('.carousel-btn-next'); if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex'; if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex'; }
+    function initCarousels() { ['carousel-xurxo', 'carousel-raquel'].forEach(function(id) { var c = document.getElementById(id); if (c) { c.addEventListener('scroll', function() { updateCarouselButtons(id); }); setTimeout(function() { updateCarouselButtons(id); }, 100); } }); }
     function initBottomMenu() {
-      var items = document.querySelectorAll('.menu-item');
-      var sections = ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'];
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === e.target.id); });
-        });
-      }, { threshold: 0.5 });
-      sections.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
-      items.forEach(function(i) {
-        i.addEventListener('click', function(e) {
-          e.preventDefault();
-          var target = document.getElementById(i.getAttribute('href').substring(1));
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
+      var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id); }); }); }, { threshold: 0.5 });
+      ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+      items.forEach(function(i) { i.addEventListener('click', function(e) { e.preventDefault(); var t = document.getElementById(i.getAttribute('href').substring(1)); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
     }
+    function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    function initAnimations() {
-      var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
-    }
+    // CATEGORÍAS
+    var categorias = [
+      { id: "ourense", nombre: "Provincia de Ourense", nombreCorto: "Ourense", subtitulo: "Interior termal y monumental", emoji: "🏔️" },
+      { id: "lugo", nombre: "Lugo y Mariña Lucense", nombreCorto: "Lugo", subtitulo: "Muralla y costa salvaje", emoji: "🌲" },
+      { id: "artabra", nombre: "Costa Ártabra", nombreCorto: "Ártabra", subtitulo: "Faro del norte", emoji: "🌊" },
+      { id: "morte", nombre: "Costa da Morte", nombreCorto: "Morte", subtitulo: "El fin del mundo", emoji: "💀" },
+      { id: "santiago", nombre: "Santiago de Compostela", nombreCorto: "Santiago", subtitulo: "Fin del Camino", emoji: "⛪" },
+      { id: "riabaxa", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Playas, marisco y islas", emoji: "🌅" }
+    ];
 
     // LUGARES
     var lugares = [
-      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", lat: 42.8806, lng: -8.5447, texto: "<p>La catedral es el símbolo más reconocible de Galicia.</p>", tips: ["Reserva antes.", "Ve al atardecer."] },
-      { id: 2, nombre: "Illas Cíes", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", lat: 42.2244, lng: -8.9031, texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."] },
-      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", lat: 42.8652, lng: -9.2606, texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."] },
-      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", lat: 43.0100, lng: -7.5567, texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."] },
-      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", lat: 42.7842, lng: -8.4953, texto: "<p>Envuelto en leyendas.</p>", tips: ["Sube al atardecer."] },
-      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", lat: 41.8833, lng: -8.8667, texto: "<p>Castro con vistas al Miño.</p>", tips: ["Combina con A Guarda."] },
-      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", lat: 43.1597, lng: -9.1894, texto: "<p>Costa salvaje atlántica.</p>", tips: ["Lleva abrigo."] },
-      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", lat: 42.1167, lng: -8.8500, texto: "<p>La Pinta llegó en 1493.</p>", tips: ["Come en el puerto."] },
-      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", lat: 42.4500, lng: -8.9333, texto: "<p>Pueblo con hórreos al mar.</p>", tips: ["Ve al atardecer."] },
-      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", lat: 43.4333, lng: -8.0333, texto: "<p>Bosque atlántico único en Europa.</p>", tips: ["Por la mañana."] },
-      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", lat: 43.4000, lng: -7.7667, texto: "<p>Caballos salvajes.</p>", tips: ["Lleva abrigo."] },
-      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", lat: 42.8794, lng: -8.5442, texto: "<p>Donde compran los santiagueses.</p>", tips: ["Ve por la mañana."] },
-      { id: 13, nombre: "Vigo", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", lat: 42.2406, lng: -8.7207, texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
-      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", lat: 43.5333, lng: -7.1833, texto: "<p>Arcos con marea baja.</p>", tips: ["Consulta mareas."] },
-      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", lat: 42.7833, lng: -8.2667, texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
-    ];
+      // OURENSE
+      { id: 1, nombre: "Ribeira Sacra", categoria: "ourense", horas: 5, imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=300&fit=crop", lat: 42.4167, lng: -7.7500, porQueVenir: "Los cañones del Sil y Miño forman uno de los paisajes más espectaculares de Galicia.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán por el Sil", "Mirador de Peña do Castelo", "Monasterio de Santa Cristina"], favoritoXurxo: "El tramo entre Paradela y Sober.", favoritoRaquel: "Monasterio de San Pedro de Rocas.", comer: "Adegas en Monforte de Lemos.", tomar: "Mencía de Ribeira Sacra.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
+      { id: 2, nombre: "Termas de Outariz", categoria: "ourense", horas: 3, imagen: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=300&fit=crop", lat: 42.3500, lng: -7.8667, porQueVenir: "Aguas termales naturales junto al río Miño.", momentoPerfecto: "Fuera de temporada.", imprescindibles: ["Baño en piscinas naturales", "Sendero del Miño", "Puente románico"], favoritoXurxo: "La piscina inferior.", favoritoRaquel: "El paseo del río al atardecer.", comer: "Tabernas en Ourense.", tomar: "Ribeiro frío.", secreto: "Gratuitas si vas por tu cuenta.", masTiempo: "Casco histórico de Ourense.", advertencias: "No confundir con balneario privado." },
+      { id: 3, nombre: "Cascada do Toxa", categoria: "ourense", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop", lat: 42.7833, lng: -8.2667, porQueVenir: "Una de las cascadas más altas de Galicia.", momentoPerfecto: "Después de lluvias.", imprescindibles: ["Mirador inferior", "Ruta circular", "Sonido del agua"], favoritoXurxo: "El primer puente de madera.", favoritoRaquel: "El segundo salto río arriba.", comer: "En Bandeiros.", tomar: "Agua de manantial.", secreto: "Segundo salto río arriba.", masTiempo: "Serra do Candán.", advertencias: "Sendero resbaladizo." },
+      { id: 4, nombre: "Allariz", categoria: "ourense", horas: 3, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop", lat: 42.1900, lng: -7.8000, porQueVenir: "Uno de los pueblos más bonitos de Galicia.", momentoPerfecto: "Cualquier tarde.", imprescindibles: ["Barrio judío", "Puente medieval", "Parque do Rexadio"], favoritoXurxo: "El paseo del río.", favoritoRaquel: "Las tiendas de artesanía.", comer: "Tabernas cerca de la plaza.", tomar: "Vino tinto.", secreto: "Molino convertido en restaurante.", masTiempo: "Pozas del Arnoia.", advertencias: "Fines de semana se llena." },
 
-    var categorias = [
-      { id: "imprescindibles", nombre: "Imprescindibles", emoji: "⭐" },
-      { id: "magica", nombre: "Galicia mágica", emoji: "🌌" },
-      { id: "atlantica", nombre: "Galicia atlántica", emoji: "🌊" },
-      { id: "verde", nombre: "Galicia verde interior", emoji: "🌿" },
-      { id: "humana", nombre: "Galicia humana", emoji: "🍷" },
-      { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙" }
+      // LUGO Y MARIÑA
+      { id: 5, nombre: "Lugo", categoria: "lugo", horas: 4, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop", lat: 43.0097, lng: -7.5567, porQueVenir: "La única muralla romana del mundo completamente conservada. Ciudad tranquila, comida excelente y termas bajo la ciudad.", momentoPerfecto: "Cualquier época. En verano las noches son agradables.", imprescindibles: ["Muralla romana (pasear al atardecer)", "Catedral de Santa María", "Termas romanas de las Miñotelanelas"], favoritoXurxo: "Caminar sobre la muralla al atardecer.", favoritoRaquel: "Pulpo en la Plaza del Campo.", comer: "Pulpería A Monxa, O Camiño do Inglés.", tomar: "Cerveza artesanal gallega.", secreto: "Las termas romanas bajo el Hotel Balneario.", masTiempo: "Museo Provincial.", advertencias: "Mucho tráfico en el centro." },
+      { id: 6, nombre: "Praia das Catedrais", categoria: "lugo", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop", lat: 43.5333, lng: -7.1833, porQueVenir: "Arcos naturales esculpidos por el mar.", momentoPerfecto: "Marea baja.", imprescindibles: ["Pasar bajo los arcos", "Cuevas laterales", "Fotos desde acantilado"], favoritoXurxo: "El arco central.", favoritoRaquel: "La cueva secreta al final.", comer: "Pulpo de O'Pulpeira.", tomar: "Cerveza fría.", playas: ["Praia das Catedrais", "Praia dos Cubos", "Praia de Esteiro"], secreto: "Cueva secreta con marea muy baja.", masTiempo: "Playas vecinas.", advertencias: "Reserva obligatoria en verano." },
+      { id: 7, nombre: "Ribadeo", categoria: "lugo", horas: 3, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop", lat: 43.5333, lng: -7.0333, porQueVenir: "Villa marinera con encanto.", momentoPerfecto: "Fin de tarde.", imprescindibles: ["Paseo marítimo", "Torre de los Moreno", "Mirador del Ferrocarril"], favoritoXurxo: "La zona del puerto.", favoritoRaquel: "Las calles del casco viejo.", comer: "Marisco en O'Pulpeira.", tomar: "Sidra asturiana.", playas: ["Praia das Catedrais", "Praia de Augas Santas"], secreto: "Faro de la Isla Pancha.", masTiempo: "Mondoñedo.", advertencias: "Aparcar difícil." },
+      { id: 8, nombre: "Foz", categoria: "lugo", horas: 3, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop", lat: 43.5500, lng: -7.2500, porQueVenir: "Desembocadura del Masma.", momentoPerfecto: "Atardecer.", imprescindibles: ["Playa de Altar", "Paseo marítimo", "Ría al atardecer"], favoritoXurxo: "Playa de A Rapadoira.", favoritoRaquel: "El sendero al monte.", comer: "O'Pazo.", tomar: "Vino en terraza.", playas: ["Praia de Altar", "Praia A Rapadoira"], secreto: "Sendero al monte.", masTiempo: "Barreiros.", advertencias: "Restaurantes cierran en invierno." },
+
+      // COSTA ÁRTABRA
+      { id: 9, nombre: "Estaca de Bares", categoria: "artabra", horas: 2, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop", lat: 43.7833, lng: -7.9000, porQueVenir: "Punto más al norte de España.", momentoPerfecto: "Amanecer o atardecer.", imprescindibles: ["Llegar al faro", "Marcador de aguas", "Acantilados"], favoritoXurxo: "La sensación de fin del mundo.", favoritoRaquel: "El puerto pesquero escondido.", comer: "Mejor llevar comida.", tomar: "Lo que lleves.", playas: ["Porto de Bares"], secreto: "Puerto pesquero escondido al norte.", masTiempo: "Mañón.", advertencias: "Mucho viento." },
+      { id: 10, nombre: "Orteigueira", categoria: "artabra", horas: 3, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop", lat: 43.6833, lng: -7.7833, porQueVenir: "Faro emblemático y acantilados.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Acantilados", "Aves marinas"], favoritoXurxo: "Sendero a las calas.", favoritoRaquel: "Pozas naturales al este.", comer: "Tabernas del pueblo.", tomar: "Cerveza fría.", playas: ["Praia de Picón", "Praia de Covas"], secreto: "Pozas naturales al este del faro.", masTiempo: "Puerto de Espasante.", advertencias: "Mucho viento." },
+      { id: 11, nombre: "Viveiro", categoria: "artabra", horas: 3, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop", lat: 43.6500, lng: -7.6000, porQueVenir: "Villa histórica con muralla medieval.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Puente de la Misericordia", "Santa María", "Puerto"], favoritoXurxo: "Calle de los vinos.", favoritoRaquel: "Terrazas de la plaza.", comer: "O'Portiño.", tomar: "Sidra escanciada.", playas: ["Praia de Covas", "Praia de Area"], secreto: "Playas de Covas y Area.", masTiempo: "Xunqueira de Viveiro.", advertencias: "Agosto imposible aparcar." },
+      { id: 12, nombre: "Ferrol", categoria: "artabra", horas: 4, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop", lat: 43.4847, lng: -8.2328, porQueVenir: "Ciudad ilustrada con patrimonio naval.", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo de San Felipe", "Ría de Ferrol", "Centro histórico"], favoritoXurxo: "El castillo de San Felipe.", favoritoRaquel: "Paseo por la ría.", comer: "Pulpo en Plaza de Armas.", tomar: "Estrella Galicia.", playas: ["Praia de Doniños", "Praia de San Xurxo"], secreto: "Playa de Doniños.", masTiempo: "Castillo de San Felipe.", advertencias: "Tráfico denso." },
+      { id: 13, nombre: "O Fuciño do Porco", categoria: "artabra", horas: 3, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop", lat: 43.7567, lng: -7.8700, porQueVenir: "Acantilados y faro con vistas.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Acantilados", "Sendero circular"], favoritoXurxo: "Las vistas desde el faro.", favoritoRaquel: "El sendero por los acantilados.", comer: "En Viveiro.", tomar: "Cerveza.", playas: ["Praia de Covas"], secreto: "Playa escondida bajo los acantilados.", masTiempo: "Viveiro.", advertencias: "Sendero con desnivel." },
+      { id: 14, nombre: "Torre de Hércules", categoria: "artabra", horas: 2, imagen: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=300&fit=crop", lat: 43.3860, lng: -8.4065, porQueVenir: "El faro romano más antiguo del mundo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Subir a la cima", "Entorno", "Escultura de Breogán"], favoritoXurxo: "Paseo hacia los Molinos.", favoritoRaquel: "Escaleras con inscripciones.", comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", playas: ["Praia do Orzán", "Praia de Riazor"], secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
+      { id: 15, nombre: "Paseo Marítimo", categoria: "artabra", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop", lat: 43.3700, lng: -8.4000, porQueVenir: "13 kilómetros junto al mar.", momentoPerfecto: "Atardecer.", imprescindibles: ["Playa de Riazor", "Playa del Orzán", "Miradores"], favoritoXurxo: "Tramo Riazor-Matadero.", favoritoRaquel: "Playa de San Amaro.", comer: "Plaza de María Pita.", tomar: "Tapería.", playas: ["Praia de Riazor", "Praia do Orzán", "Praia de San Amaro"], secreto: "San Amaro más tranquila.", masTiempo: "Ciudad Vieja.", advertencias: "Lleva chaqueta." },
+      { id: 16, nombre: "Playa de Riazor", categoria: "artabra", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop", lat: 43.3667, lng: -8.4167, porQueVenir: "Playa urbana con toda la energía.", momentoPerfecto: "Mañana o atardecer.", imprescindibles: ["Baño en marea alta", "Paseo al Orzán", "Sur en invierno"], favoritoXurxo: "Chiringuitos de verano.", favoritoRaquel: "Bares con música de noche.", comer: "Tapas del paseo.", tomar: "Caña en terraza.", playas: ["Praia de Riazor", "Praia do Orzán"], secreto: "Bares nocturnos.", masTiempo: "Paseo al Obelisco.", advertencias: "Llena en agosto." },
+
+      // COSTA DA MORTE
+      { id: 17, nombre: "Faro de Finisterre", categoria: "morte", horas: 2, imagen: "finisterre.jpg", lat: 42.8652, lng: -9.2606, porQueVenir: "Para los romanos, el fin del mundo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Llegar al faro", "Señal km 0", "Rito botas"], favoritoXurxo: "Sentarse en las rocas.", favoritoRaquel: "El silencio del atardecer.", comer: "Pulpo en el pueblo.", tomar: "Albariño al atardecer.", playas: ["Praia de Langosteira", "Praia do Rostro"], secreto: "Playa de Langosteira casi vacía.", masTiempo: "Museo Costa da Morte.", advertencias: "Viento siempre." },
+      { id: 18, nombre: "Muxía", categoria: "morte", horas: 3, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop", lat: 43.1500, lng: -9.0333, porQueVenir: "Santuario de la Virgen de la Barca.", momentoPerfecto: "Marea baja.", imprescindibles: ["Santuario", "Piedra de Atalar", "Piedra dos Cadris"], favoritoXurxo: "Sonido del mar.", favoritoRaquel: "Ruta a Cabo Touriñán.", comer: "Tabernas pequeñas.", tomar: "Queimada.", playas: ["Praia de Lires", "Praia de Nemiña"], secreto: "Ruta a Lires.", masTiempo: "Cabo Touriñán.", advertencias: "No acercarse al mar con oleaje." },
+      { id: 19, nombre: "Camariñas", categoria: "morte", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop", lat: 43.1167, lng: -9.0333, porQueVenir: "Tierra del encaje de palillo.", momentoPerfecto: "Mañana.", imprescindibles: ["Museo do Encaixe", "Puerto", "Playa Area Grande"], favoritoXurxo: "Encajeras en la puerta.", favoritoRaquel: "Cabo Vilán de noche.", comer: "O'Fogón.", tomar: "Ribeiro.", playas: ["Praia de Area Grande", "Praia de Lingunde"], secreto: "Cementerio de los Ingleses.", masTiempo: "Cabo Vilán.", advertencias: "Domingos cerrado." },
+
+      // SANTIAGO
+      { id: 20, nombre: "Parque de la Alameda", categoria: "santiago", horas: 1, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop", lat: 42.8800, lng: -8.5450, porQueVenir: "El mejor mirador de la catedral.", momentoPerfecto: "Atardecer luz dorada.", imprescindibles: ["Banco de la Alameda", "Paseo Herradura", "Roble centenario"], favoritoXurxo: "Vistas entre los árboles.", favoritoRaquel: "Jardines de la Universidad.", comer: "Mercado de Abastos.", tomar: "Café en Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Tranquilo." },
+      { id: 21, nombre: "Mercado de Abastos", categoria: "santiago", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop", lat: 42.8794, lng: -8.5442, porQueVenir: "Donde compran los santiagueses.", momentoPerfecto: "Mañana antes de las 12.", imprescindibles: ["Marisco vivo", "Queso de Arzúa", "Pulpo en O Beiro"], favoritoXurxo: "Comer fuera.", favoritoRaquel: "Segundo piso menos turístico.", comer: "Pulpo.", tomar: "Vino de la casa.", secreto: "Segundo piso.", masTiempo: "Cocinar.", advertencias: "Domingos cerrado." },
+      { id: 22, nombre: "Bonaval", categoria: "santiago", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop", lat: 42.8820, lng: -8.5380, porQueVenir: "Antiguo convento con parque y vistas.", momentoPerfecto: "Tarde tranquila.", imprescindibles: ["Museo de Rosalía", "Parque", "Vistas"], favoritoXurxo: "Banco mirando al horizonte.", favoritoRaquel: "Paseo hacia Vista Alegre.", comer: "Zona de San Pedro.", tomar: "Café.", secreto: "Sendero Vista Alegre.", masTiempo: "Ruta conventos.", advertencias: "Lunes cerrado." },
+
+      // RÍAS BAIXAS
+      { id: 23, nombre: "Illas Cíes", categoria: "riabaxa", horas: 6, imagen: "ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Playas de arena blanca y aguas cristalinas.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Subir al faro", "Monte Faro"], favoritoXurxo: "La laguna interior.", favoritoRaquel: "Playa de Figueiras.", comer: "Lleva comida.", tomar: "Agua.", playas: ["Praia de Rodas", "Praia de Figueiras"], secreto: "Playa de Figueiras.", masTiempo: "Camping.", advertencias: "Reserva barco obligatoria." },
+      { id: 24, nombre: "Combarro", categoria: "riabaxa", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop", lat: 42.4500, lng: -8.9333, porQueVenir: "El pueblo de los hórreos.", momentoPerfecto: "Atardecer.", imprescindibles: ["Paseo hórreos", "Puerto", "Casco antiguo"], favoritoXurxo: "Hórreos sobre el agua.", favoritoRaquel: "Mirador detrás de la iglesia.", comer: "Tabernas con marisco.", tomar: "Albariño.", playas: ["Praia de Combarro", "Praia de Chancelas"], secreto: "Mirador de la iglesia.", masTiempo: "Barco por la ría.", advertencias: "Coches en verano." },
+      { id: 25, nombre: "Cambados", categoria: "riabaxa", horas: 3, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop", lat: 42.5167, lng: -8.8167, porQueVenir: "Capital del Albariño.", momentoPerfecto: "Primera hora.", imprescindibles: ["Pazo de Bazán", "Ruinas Santa Mariña", "Plaza Fefiñáns"], favoritoXurxo: "Bodegas abiertas.", favoritoRaquel: "Playa de A Toxa.", comer: "Marisco con albariño.", tomar: "Visita bodega.", playas: ["Praia da Toxa", "Praia de A Toxa"], secreto: "Playa de A Toxa.", masTiempo: "Festa do Albariño.", advertencias: "Bares cierran fuera de temporada." },
+      { id: 26, nombre: "O Grove", categoria: "riabaxa", horas: 4, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop", lat: 42.4933, lng: -8.8611, porQueVenir: "Península entre rías.", momentoPerfecto: "Mañana.", imprescindibles: ["Playa de A Lanzada", "Paseo marítimo", "Ostras en el puerto"], favoritoXurxo: "Playa de A Lanzada al amanecer.", favoritoRaquel: "Paseo en barco.", comer: "Ostras frescas.", tomar: "Albariño.", playas: ["Praia de A Lanzada", "Praia de Mexilloeira", "Praia de Area da Cruz"], secreto: "Playa de Area da Cruz.", masTiempo: "Isla de Ons.", advertencias: "Mucho tráfico en verano." },
+      { id: 27, nombre: "Cabo Home", categoria: "riabaxa", horas: 3, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop", lat: 42.2667, lng: -8.9000, porQueVenir: "Faro con farallones y vistas a Cíes.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro de Cabo Home", "Farallones", "Vistas a Cíes"], favoritoXurxo: "Los farallones sobre el mar.", favoritoRaquel: "Sendero por los acantilados.", comer: "En Cangas o Vigo.", tomar: "Albariño.", playas: ["Praia de Melide", "Praia de Barra"], secreto: "Playa de Melide desde el faro.", masTiempo: "Cangas.", advertencias: "Viento fuerte." },
+      { id: 28, nombre: "Cangas", categoria: "riabaxa", horas: 3, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop", lat: 42.2647, lng: -8.7811, porQueVenir: "Villa pesquera con playas.", momentoPerfecto: "Tarde.", imprescindibles: ["Paseo marítimo", "Puerto", "Playa de Rodeira"], favoritoXurxo: "Puerto pesquero.", favoritoRaquel: "Playa de Rodeira.", comer: "Marisco fresco.", tomar: "Albariño.", playas: ["Praia de Rodeira", "Praia de Liméns"], secreto: "Playa de Liméns.", masTiempo: "Cabo Home.", advertencias: "Tráfico en verano." },
+      { id: 29, nombre: "Pontevedra", categoria: "riabaxa", horas: 3, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop", lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear"], favoritoXurxo: "Terrazas de la plaza.", favoritoRaquel: "Convento de San Francisco.", comer: "Tabernas calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
+      { id: 30, nombre: "Vigo", categoria: "riabaxa", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop", lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Pescadería", "Playa de Samil"], favoritoXurxo: "Raciones en el Berbés.", favoritoRaquel: "Playa del Vao.", comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", playas: ["Praia de Samil", "Praia do Vao"], secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." }
     ];
 
     function renderPlaces() {
@@ -1532,10 +612,31 @@
       categorias.forEach(function(cat) {
         var arr = lugares.filter(function(l) { return l.categoria === cat.id; });
         if (!arr.length) return;
-        html += '<div id="cat-' + cat.id + '"><div class="category-header"><span class="category-icon">' + cat.emoji + '</span><span class="category-name">' + cat.nombre + '</span></div>';
+        
+        html += '<div class="zona-section">';
+        html += '<div class="zona-header ' + cat.id + '">';
+        html += '<span class="zona-emoji">' + cat.emoji + '</span>';
+        html += '<div class="zona-info">';
+        html += '<h3 class="zona-nombre">' + cat.nombre + '</h3>';
+        html += '<span class="zona-subtitulo">' + cat.subtitulo + '</span>';
+        html += '</div>';
+        html += '<span class="zona-contador">' + arr.length + ' lugar' + (arr.length > 1 ? 'es' : '') + '</span>';
+        html += '</div>';
+
         arr.forEach(function(l) {
           gi++;
-          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><span class="info-title">Consejos</span><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div>' : '') + '</div></div></article>';
+          html += '<article class="place-card cat-' + l.categoria + '" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')"><span class="place-header-title">Desplegar información</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">';
+          html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
+          html += renderInfoBlock('🕐', 'EL MOMENTO PERFECTO', l.momentoPerfecto);
+          if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
+          html += renderFavoritos(l);
+          html += renderInfoBlock('🍽️', 'DÓNDE COMER', l.comer);
+          html += renderInfoBlock('🍷', 'PARA TOMAR', l.tomar);
+          if (l.playas) html += renderListBlock('🏖️', 'PLAYAS', l.playas);
+          html += renderInfoBlock('🔮', 'UN SECRETO', l.secreto);
+          html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
+          html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
+          html += '</div></div></article>';
         });
         html += '</div>';
       });
@@ -1543,97 +644,43 @@
       initAnimations();
     }
 
-    function togglePlace(id) {
-      var card = document.getElementById(id);
-      if (!card) return;
-      var exp = card.classList.contains('expanded');
-      document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); });
-      if (!exp) card.classList.add('expanded');
+    function renderInfoBlock(icon, title, text) { if (!text) return ''; return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><p class="info-text">' + text + '</p></div>'; }
+    function renderListBlock(icon, title, items) { if (!items || !items.length) return ''; return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>'; }
+    function renderFavoritos(l) {
+      var html = '<div class="info-block"><div class="info-header"><span class="info-icon">❤️</span><span class="info-title">FAVORITOS</span></div>';
+      if (l.favoritoXurxo) html += '<div class="favorito-persona"><span class="favorito-nombre">Xurxo:</span> <span class="favorito-texto">' + l.favoritoXurxo + '</span></div>';
+      if (l.favoritoRaquel) html += '<div class="favorito-persona"><span class="favorito-nombre">Raquel:</span> <span class="favorito-texto">' + l.favoritoRaquel + '</span></div>';
+      html += '</div>';
+      return html;
     }
 
-    /* GENERAR ITINERARIO */
+    function togglePlace(id) { var card = document.getElementById(id); if (!card) return; var exp = card.classList.contains('expanded'); document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); if (!exp) card.classList.add('expanded'); }
+
     async function generateItinerary() {
       if (selectedPlaces.length === 0) return;
-      
-      var btn = document.getElementById('generateBtn');
-      btn.textContent = 'Calculando ruta...';
-      btn.disabled = true;
-      
-      // Ordenar por número
-      selectedPlaces.sort(function(a, b) {
-        var idxA = lugares.findIndex(function(l) { return l.id === a; });
-        var idxB = lugares.findIndex(function(l) { return l.id === b; });
-        return idxA - idxB;
-      });
-      
-      var selectedLugares = selectedPlaces.map(function(id) {
-        return lugares.find(function(l) { return l.id === id; });
-      });
-      
-      var route = await calculateRoute(selectedLugares, userLocation !== null);
-      
-      showIti(selectedLugares, route);
-      highlightItinerary(selectedPlaces);
-      
-      btn.textContent = 'Generar itinerario';
-      btn.disabled = false;
+      var btn = document.getElementById('generateBtn'); btn.textContent = 'Calculando...'; btn.disabled = true;
+      selectedPlaces.sort(function(a, b) { return lugares.findIndex(function(l) { return l.id === a; }) - lugares.findIndex(function(l) { return l.id === b; }); });
+      var sel = selectedPlaces.map(function(id) { return lugares.find(function(l) { return l.id === id; }); });
+      var route = await calculateRoute(sel, userLocation !== null);
+      showIti(sel, route); highlightItinerary(selectedPlaces);
+      btn.textContent = 'Generar itinerario'; btn.disabled = false;
     }
 
     async function showIti(lista, route) {
-      var ct = document.getElementById('itineraryResult');
-      if (!ct) return;
-      ct.classList.remove('hidden');
-      
-      var totalHours = lista.reduce(function(sum, l) { return sum + l.horas; }, 0);
-      
-      var h = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + totalHours + 'h de visitas</div></div><button onclick="closeItinerary()" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
-      
-      var fromText = userLocation ? 'Desde tu ubicación' : 'Distancia total';
-      h += '<div class="trip-summary">';
-      h += '<div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + fromText + '</div></div>';
-      h += '<div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">Tiempo en coche</div></div>';
-      h += '</div>';
-      
-      h += '<span class="itinerary-badge">Lugares en orden numérico</span>';
-      
-      if (userLocation && lista.length > 0) {
-        var firstPlace = lista[0];
-        var distToFirst = haversineDistance(userLocation.lat, userLocation.lng, firstPlace.lat, firstPlace.lng);
-        h += '<div class="journey-info"><span class="journey-icon">📍</span> ' + formatDistance(distToFirst * 1000) + ' desde tu ubicación</div>';
-      }
-      
+      var ct = document.getElementById('itineraryResult'); ct.classList.remove('hidden');
+      var h = lista.reduce(function(s, l) { return s + l.horas; }, 0);
+      var html = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + h + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
+      html += '<div class="trip-summary"><div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + (userLocation ? 'Desde ti' : 'Total') + '</div></div><div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">En coche</div></div></div>';
+      html += '<span class="itinerary-badge">Ordenado por número</span>';
       lista.forEach(function(l, i) {
         var idx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
-        h += '<div class="itinerary-place"><span class="itinerary-place-num">' + idx + '</span><img src="' + l.imagen + '" alt="' + l.nombre + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="focusPlaceOnMap(' + l.id + ')">Mapa</button><a href="' + getNavUrl(l.lat, l.lng) + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
-        
-        if (i < lista.length - 1 && route.segments && route.segments[i + (userLocation ? 1 : 0)]) {
-          var seg = route.segments[i + (userLocation ? 1 : 0)];
-          h += '<div class="journey-info"><span class="journey-icon">→</span> ' + formatDistance(seg.distance) + ' · ' + formatDuration(seg.duration) + '</div>';
-        }
+        html += '<div class="itinerary-place"><span class="itinerary-place-num" style="background:var(--cat-' + l.categoria + ')">' + idx + '</span><img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button><a href="https://www.google.com/maps/dir/?api=1&destination=' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
       });
-      
-      h += '<a href="' + getRouteUrl(lista, userLocation !== null) + '" target="_blank" class="route-btn">Ver ruta en Google Maps</a></div>';
-      
-      ct.innerHTML = h;
-      setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+      html += '<a href="https://www.google.com/maps/dir/?api=1' + (userLocation ? '&origin=' + userLocation.lat + ',' + userLocation.lng : '') + lista.map(function(p) { return '&destination=' + p.lat + ',' + p.lng; }).join('') + '&travelmode=driving" target="_blank" class="route-btn">Ver en Google Maps</a></div>';
+      ct.innerHTML = html; setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth' }); }, 100);
     }
 
-    function closeItinerary() {
-      document.getElementById('itineraryResult').classList.add('hidden');
-      resetMap();
-    }
-
-    function resetMap() {
-      lugares.forEach(function(lugar) {
-        var marker = markers[lugar.id];
-        if (!marker) return;
-        var element = marker.getElement();
-        if (element) element.classList.remove('highlighted', 'dimmed');
-        marker.setOpacity(1);
-      });
-      if (map) map.setView([42.6, -8.4], 8);
-      filterMap('all');
-    }
+    function resetMap() { lugares.forEach(function(l) { var m = markers[l.id]; if (!m) return; var e = m.getElement(); if (e) e.classList.remove('highlighted', 'dimmed'); m.setOpacity(1); }); if (map) map.setView([42.6, -8.4], 8); filterMap('all'); }
   </script>
 </body>
 </html>
