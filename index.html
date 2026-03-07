@@ -27,7 +27,7 @@
     html { 
       scroll-behavior: smooth; 
       -webkit-text-size-adjust: 100%; 
-      scroll-snap-type: y mandatory;
+      scroll-snap-type: y proximity;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -76,21 +76,7 @@
     .nav-dot.active, .nav-dot:hover { background: var(--accent-sea); transform: scale(1.15); }
     .nav-dot:focus { outline: none; box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.25); }
 
-    /* Secciones con snap */
-    section {
-      min-height: 100vh;
-      min-height: 100dvh;
-      padding: 60px 20px;
-      max-width: 680px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-    }
-
-    /* Hero */
+    /* Hero - SIN scroll-snap-stop */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
@@ -102,6 +88,7 @@
       position: relative;
       overflow: hidden;
       padding: 20px;
+      scroll-snap-align: start;
     }
     .hero-title {
       font-size: clamp(3.5rem, 14vw, 5.5rem);
@@ -118,7 +105,6 @@
     }
     .hero-authors { margin-top: 24px; width: 100%; }
     
-    /* Autores en columna - uno arriba del otro */
     .authors-column {
       display: flex;
       flex-direction: column;
@@ -155,6 +141,20 @@
       font-size: 1.4rem;
       font-weight: 600;
       color: var(--accent-sea);
+    }
+
+    /* Secciones con snap */
+    section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 60px 20px;
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     /* Divisor decorativo */
@@ -262,29 +262,19 @@
     }
     .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
 
-    /* Recomendaciones - autor con foto */
-    .rec-author-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      margin-top: 24px;
+    /* Recomendaciones - autor */
+    .rec-author-section {
+      margin-top: 28px;
     }
-    .rec-author-header:first-of-type { margin-top: 0; }
-    .rec-author-photo {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--border-aged);
-      object-fit: cover;
-    }
+    .rec-author-section:first-of-type { margin-top: 0; }
     .rec-author-label {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--fg-muted);
       font-style: italic;
+      margin-bottom: 10px;
     }
 
-    /* Carrusel recomendaciones */
+    /* Carrusel recomendaciones - ahora incluye la foto */
     .carousel {
       display: flex;
       gap: 12px;
@@ -303,6 +293,40 @@
       max-width: 300px;
       min-width: 240px;
       scroll-snap-align: start;
+    }
+    
+    /* Tarjeta de autor en carrusel */
+    .rec-author-card {
+      background: var(--bg-cream);
+      border: 2px solid var(--border-aged);
+      border-radius: 12px;
+      padding: 24px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .rec-author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--border-aged);
+      object-fit: cover;
+      margin-bottom: 14px;
+    }
+    .rec-author-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent-sea);
+      margin-bottom: 4px;
+    }
+    .rec-author-role {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      font-style: italic;
     }
     
     .rec-card {
@@ -639,72 +663,79 @@
     </div>
     <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">(Cosas que nadie te dice, pero te alegrará saber)</p>
 
-    <!-- Recomendaciones de Xurxo -->
-    <div class="rec-author-header fade-in">
-      <img src="xurxo.jpg" alt="Xurxo" class="rec-author-photo" onerror="this.style.display='none'">
-      <span class="rec-author-label">Lo que dice Xurxo:</span>
-    </div>
-    <div class="carousel" role="region" aria-label="Recomendaciones de Xurxo">
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
-        <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
-        <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
-        <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
-        <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
-        <p class="rec-text">Ideales para disfrutar con tranquilidad.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
-        <p class="rec-text">Ojo con el oleaje y las corrientes.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
-        <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
-        <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
-        <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
-        <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
-        <p class="rec-text">Planifica las distancias.</p>
-      </article>
-      <article class="carousel-card rec-card">
-        <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
-        <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad.</p>
-      </article>
+    <!-- Recomendaciones de Xurxo - con foto en el carrusel -->
+    <div class="rec-author-section fade-in">
+      <p class="rec-author-label">Recomendaciones de Xurxo:</p>
+      <div class="carousel" role="region" aria-label="Recomendaciones de Xurxo">
+        <!-- Primero la foto de Xurxo -->
+        <article class="carousel-card rec-author-card">
+          <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
+          <span class="rec-author-name">Xurxo</span>
+          <span class="rec-author-role">Desliza para ver</span>
+        </article>
+        <!-- Luego las tarjetas -->
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
+          <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
+          <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
+          <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
+          <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
+          <p class="rec-text">Ideales para disfrutar con tranquilidad.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
+          <p class="rec-text">Ojo con el oleaje y las corrientes.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
+          <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
+          <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
+          <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
+          <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
+          <p class="rec-text">Planifica las distancias.</p>
+        </article>
+        <article class="carousel-card rec-card">
+          <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
+          <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad.</p>
+        </article>
+      </div>
     </div>
     <p class="carousel-hint">Desliza para ver más</p>
 
     <!-- Recomendaciones de Raquel -->
-    <div class="rec-author-header fade-in">
-      <img src="raquel.jpg" alt="Raquel" class="rec-author-photo" onerror="this.style.display='none'">
-      <span class="rec-author-label">Lo que dice Raquel:</span>
-    </div>
-    <div class="carousel" role="region" aria-label="Recomendaciones de Raquel">
-      <article class="carousel-card rec-card" style="display:flex;align-items:center;justify-content:center;min-height:140px">
-        <p style="text-align:center;color:var(--fg-muted);font-style:italic;padding:20px;">Todavía por poner</p>
-      </article>
+    <div class="rec-author-section fade-in">
+      <p class="rec-author-label">Recomendaciones de Raquel:</p>
+      <div class="carousel" role="region" aria-label="Recomendaciones de Raquel">
+        <article class="carousel-card rec-author-card">
+          <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
+          <span class="rec-author-name">Raquel</span>
+          <span class="rec-author-role">Todavía por poner</span>
+        </article>
+      </div>
     </div>
   </section>
 
