@@ -56,6 +56,59 @@
 
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
 
+    /* BANNER DE INSTALACIÓN */
+    .install-banner {
+      position: fixed;
+      bottom: 80px;
+      left: 16px;
+      right: 16px;
+      background: var(--accent-sea);
+      color: white;
+      padding: 14px 16px;
+      border-radius: 14px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 9998;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      animation: slideUp 0.3s ease;
+    }
+    .install-banner.visible { display: flex; }
+    
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .install-banner-text { font-size: 0.9rem; }
+    .install-banner-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+    
+    .install-banner-btn {
+      background: white;
+      color: var(--accent-sea);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .install-banner-close {
+      background: none;
+      border: none;
+      color: white;
+      opacity: 0.7;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .install-banner-close:hover { opacity: 1; }
+
     /* SPLASH SCREEN */
     .splash-screen {
       position: fixed;
@@ -632,6 +685,16 @@
 </head>
 <body>
 
+  <!-- BANNER DE INSTALACIÓN -->
+  <div class="install-banner" id="installBanner">
+    <div class="install-banner-text">
+      <strong>Instalar Galicia</strong>
+      <span>Añade la guía a tu pantalla de inicio</span>
+    </div>
+    <button class="install-banner-btn" id="installBtn">Instalar</button>
+    <button class="install-banner-close" id="installClose">&times;</button>
+  </div>
+
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
@@ -810,6 +873,39 @@
       });
     }
 
+    /* BANNER DE INSTALACIÓN PWA */
+    let deferredPrompt = null;
+    const installBanner = document.getElementById('installBanner');
+    const installBtn = document.getElementById('installBtn');
+    const installClose = document.getElementById('installClose');
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Mostrar banner si no se ha cerrado antes
+      if (!localStorage.getItem('installBannerClosed')) {
+        installBanner.classList.add('visible');
+      }
+    });
+
+    installBtn.addEventListener('click', async function() {
+      if (!deferredPrompt) return;
+      
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      if (outcome === 'accepted') {
+        installBanner.classList.remove('visible');
+      }
+      deferredPrompt = null;
+    });
+
+    installClose.addEventListener('click', function() {
+      installBanner.classList.remove('visible');
+      localStorage.setItem('installBannerClosed', 'true');
+    });
+
     /* SPLASH SCREEN */
     const CORRECT_PASSWORD = 'Caamaño';
     
@@ -852,30 +948,30 @@
     }
 
     function carouselNext(id) {
-      const c = document.getElementById(id);
+      var c = document.getElementById(id);
       if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
     }
 
     function carouselPrev(id) {
-      const c = document.getElementById(id);
+      var c = document.getElementById(id);
       if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
     }
 
     function updateCarouselButtons(id) {
-      const c = document.getElementById(id);
+      var c = document.getElementById(id);
       if (!c) return;
-      const w = c.parentElement;
-      const sl = c.scrollLeft;
-      const max = c.scrollWidth - c.clientWidth;
-      const prev = w.querySelector('.carousel-btn-prev');
-      const next = w.querySelector('.carousel-btn-next');
+      var w = c.parentElement;
+      var sl = c.scrollLeft;
+      var max = c.scrollWidth - c.clientWidth;
+      var prev = w.querySelector('.carousel-btn-prev');
+      var next = w.querySelector('.carousel-btn-next');
       if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex';
       if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex';
     }
 
     function initCarousels() {
       ['carousel-xurxo', 'carousel-raquel'].forEach(function(id) {
-        const c = document.getElementById(id);
+        var c = document.getElementById(id);
         if (c) {
           c.addEventListener('scroll', function() { updateCarouselButtons(id); });
           setTimeout(function() { updateCarouselButtons(id); }, 100);
@@ -884,8 +980,8 @@
     }
 
     function initBottomMenu() {
-      const items = document.querySelectorAll('.menu-item');
-      const obs = new IntersectionObserver(function(entries) {
+      var items = document.querySelectorAll('.menu-item');
+      var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
           if (e.isIntersecting) {
             items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === e.target.id); });
@@ -893,7 +989,7 @@
         });
       }, { threshold: 0.5 });
       ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) {
-        const el = document.getElementById(id);
+        var el = document.getElementById(id);
         if (el) obs.observe(el);
       });
       items.forEach(function(i) {
@@ -905,7 +1001,7 @@
       });
     }
 
-    const lugares = [
+    var lugares = [
       { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: "<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos.</p>", tips: ["Reserva antes.", "Ve al atardecer."], destacado: true },
       { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."], destacado: true },
       { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."], destacado: true },
@@ -923,7 +1019,7 @@
       { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
     ];
 
-    const categorias = [
+    var categorias = [
       { id: "imprescindibles", nombre: "Imprescindibles", emoji: "⭐" },
       { id: "magica", nombre: "Galicia mágica", emoji: "🌌" },
       { id: "atlantica", nombre: "Galicia atlántica", emoji: "🌊" },
