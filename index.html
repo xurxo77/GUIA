@@ -2,8 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Galicia - Guía para amigos</title>
+  
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Galicia">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -23,18 +37,11 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { 
-      scroll-behavior: smooth; 
-      -webkit-text-size-adjust: 100%; 
-      scroll-snap-type: y proximity;
-    }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y proximity; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; scroll-snap-type: none; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
     body {
@@ -44,13 +51,12 @@
       line-height: 1.7;
       font-size: 18px;
       min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
     }
 
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
 
-    /* ============================================
-       SPLASH SCREEN
-       ============================================ */
+    /* SPLASH SCREEN */
     .splash-screen {
       position: fixed;
       inset: 0;
@@ -61,24 +67,14 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-    .splash-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+    .splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-    .splash-content {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .splash-icon {
-      margin-bottom: 24px;
-    }
-
+    .splash-content { width: 100%; max-width: 400px; text-align: center; }
+    .splash-icon { margin-bottom: 24px; }
     .splash-title {
       font-size: clamp(3rem, 12vw, 4rem);
       font-weight: 700;
@@ -86,7 +82,6 @@
       line-height: 1;
       margin-bottom: 8px;
     }
-
     .splash-subtitle {
       font-size: 1.1rem;
       color: var(--fg-muted);
@@ -94,16 +89,7 @@
       margin-bottom: 36px;
     }
 
-    .splash-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .splash-input-wrapper {
-      position: relative;
-    }
-
+    .splash-form { display: flex; flex-direction: column; gap: 16px; }
     .splash-input {
       width: 100%;
       padding: 16px 20px;
@@ -122,14 +108,8 @@
       border-color: var(--accent-sea);
       box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.1);
     }
-    .splash-input::placeholder {
-      color: var(--fg-muted);
-      letter-spacing: normal;
-    }
-    .splash-input.error {
-      border-color: #c45a3f;
-      animation: shake 0.4s ease;
-    }
+    .splash-input::placeholder { color: var(--fg-muted); letter-spacing: normal; }
+    .splash-input.error { border-color: #c45a3f; animation: shake 0.4s ease; }
 
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
@@ -148,46 +128,19 @@
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.15s ease;
+      transition: background-color 0.2s ease;
     }
     .splash-btn:hover { background: #143a4a; }
-    .splash-btn:active { transform: scale(0.98); }
 
-    .splash-error {
-      color: #c45a3f;
-      font-size: 0.9rem;
-      min-height: 1.4em;
-      margin-top: -8px;
-    }
+    .splash-error { color: #c45a3f; font-size: 0.9rem; min-height: 1.4em; margin-top: -8px; }
 
-    .splash-footer {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-aged);
-    }
-    .splash-footer-text {
-      font-size: 0.85rem;
-      color: var(--fg-muted);
-      line-height: 1.6;
-    }
-    .splash-footer-note {
-      font-size: 0.75rem;
-      color: var(--fg-muted);
-      opacity: 0.7;
-      margin-top: 12px;
-      font-style: italic;
-    }
+    .splash-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-aged); }
+    .splash-footer-text { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
+    .splash-footer-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.7; margin-top: 12px; font-style: italic; }
 
-    /* ============================================
-       CONTENIDO PRINCIPAL (oculto hasta login)
-       ============================================ */
-    .main-content {
-      display: none;
-      padding-bottom: 70px;
-    }
-    .main-content.visible {
-      display: block;
-    }
+    /* CONTENIDO PRINCIPAL */
+    .main-content { display: none; padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+    .main-content.visible { display: block; }
 
     /* Hero */
     .hero {
@@ -198,9 +151,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
-      overflow: hidden;
       padding: 20px;
+      padding-top: calc(20px + env(safe-area-inset-top));
       scroll-snap-align: start;
     }
     .hero-title {
@@ -218,18 +170,8 @@
     }
     .hero-authors { margin-top: 24px; width: 100%; }
     
-    .authors-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-    .author-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
+    .authors-column { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .author-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
     .author-avatar {
       width: 72px;
       height: 72px;
@@ -249,14 +191,9 @@
     }
     .author-avatar:hover { transform: scale(1.06); }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .author-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--accent-sea);
-    }
+    .author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--accent-sea); }
 
-    /* Secciones con snap */
+    /* Secciones */
     section {
       min-height: 100vh;
       min-height: 100dvh;
@@ -270,7 +207,6 @@
       scroll-snap-stop: always;
     }
 
-    /* Divisor decorativo */
     .decorative-divider {
       display: flex;
       align-items: center;
@@ -287,7 +223,6 @@
     }
     .decorative-divider svg { width: 18px; height: 18px; color: var(--accent-gold); flex-shrink: 0; }
 
-    /* Títulos numerados */
     .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .section-number {
       width: 44px;
@@ -350,7 +285,6 @@
     .index-subitem:hover, .index-subitem:focus { color: var(--accent-sea); outline: none; }
     .index-subitem-icon { font-size: 0.9rem; }
 
-    /* Prosa */
     .prose p { margin-bottom: 16px; text-align: justify; }
 
     /* Cita */
@@ -375,11 +309,10 @@
     }
     .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
 
-    /* Recomendaciones - autor */
+    /* Recomendaciones */
     .rec-author-section { margin-top: 24px; }
     .rec-author-section:first-of-type { margin-top: 0; }
 
-    /* Carrusel centrado con flechas */
     .carousel-wrapper { position: relative; width: 100%; }
     .carousel {
       display: flex;
@@ -391,14 +324,8 @@
       gap: 0;
     }
     .carousel::-webkit-scrollbar { display: none; }
-    .carousel-card {
-      flex: 0 0 100%;
-      width: 100%;
-      scroll-snap-align: center;
-      padding: 0 4px;
-    }
+    .carousel-card { flex: 0 0 100%; width: 100%; scroll-snap-align: center; padding: 0 4px; }
     
-    /* Botones de navegación */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -417,14 +344,12 @@
       box-shadow: 0 2px 8px var(--shadow-warm);
     }
     .carousel-btn:hover { background: var(--bg-cream); border-color: var(--accent-sea); }
-    .carousel-btn:focus { outline: none; border-color: var(--accent-sea); box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.15); }
+    .carousel-btn:focus { outline: none; border-color: var(--accent-sea); }
     .carousel-btn-prev { left: -8px; }
     .carousel-btn-next { right: -8px; }
     .carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
     .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-    .carousel-btn:disabled:hover { background: var(--bg-paper); border-color: var(--border-aged); }
 
-    /* Tarjeta de autor */
     .rec-author-card {
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
@@ -440,13 +365,7 @@
       object-fit: cover;
       margin: 0 auto 16px;
     }
-    .rec-author-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent-sea);
-      margin-bottom: 4px;
-    }
+    .rec-author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
     .rec-author-subtitle { font-size: 0.85rem; color: var(--fg-muted); font-style: italic; }
     
     .rec-card {
@@ -472,7 +391,7 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* TARJETAS DE LUGARES */
+    /* TARJETAS LUGARES */
     .place-card {
       background: var(--bg-card);
       border: 3px solid var(--border-card);
@@ -557,7 +476,7 @@
     /* Footer */
     .footer {
       min-height: auto;
-      padding: 50px 20px 80px;
+      padding: 50px 20px calc(80px + env(safe-area-inset-bottom));
       border-top: 1px solid var(--border-aged);
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -656,16 +575,11 @@
       font-weight: 700;
       flex-shrink: 0;
     }
-    .itinerary-place img {
-      width: 48px; height: 48px;
-      border-radius: 6px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
+    .itinerary-place img { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
     .itinerary-place-name { font-weight: 600; font-size: 0.9rem; }
     .itinerary-place-time { font-size: 0.8rem; color: var(--fg-muted); }
 
-    /* Categoría lugar */
+    /* Categoría */
     .category-header {
       display: flex;
       align-items: center;
@@ -689,6 +603,7 @@
       border-top: 1px solid var(--border-aged);
       z-index: 1000;
       box-shadow: 0 -4px 20px var(--shadow-warm);
+      padding-bottom: env(safe-area-inset-bottom);
     }
     .menu-container {
       max-width: 680px;
@@ -717,9 +632,7 @@
 </head>
 <body>
 
-  <!-- ============================================
-       SPLASH SCREEN
-       ============================================ -->
+  <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
       <div class="splash-icon">
@@ -734,36 +647,23 @@
       <p class="splash-subtitle">Guía para amigos</p>
 
       <form class="splash-form" id="splashForm" onsubmit="return false;">
-        <div class="splash-input-wrapper">
-          <input 
-            type="password" 
-            class="splash-input" 
-            id="passwordInput" 
-            placeholder="Introduce la contraseña"
-            autocomplete="off"
-          >
+        <div>
+          <input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off">
         </div>
         <p class="splash-error" id="splashError"></p>
         <button type="submit" class="splash-btn">Entrar</button>
       </form>
 
       <div class="splash-footer">
-        <p class="splash-footer-text">
-          Esta guía ha sido creada con cariño, exclusivamente para amigos.
-        </p>
-        <p class="splash-footer-note">
-          La contraseña se actualiza cada año.
-        </p>
+        <p class="splash-footer-text">Esta guía ha sido creada con cariño, exclusivamente para amigos.</p>
+        <p class="splash-footer-note">La contraseña se actualiza cada año.</p>
       </div>
     </div>
   </div>
 
-  <!-- ============================================
-       CONTENIDO PRINCIPAL
-       ============================================ -->
+  <!-- CONTENIDO PRINCIPAL -->
   <div class="main-content" id="mainContent">
 
-    <!-- Hero -->
     <header id="hero" class="hero">
       <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible">
         <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
@@ -787,11 +687,8 @@
       </div>
     </header>
 
-    <!-- Índice -->
     <section id="indice">
-      <div class="section-header fade-in">
-        <h2 class="section-title">Índice</h2>
-      </div>
+      <div class="section-header fade-in"><h2 class="section-title">Índice</h2></div>
       <nav class="fade-in delay-1">
         <ul class="index-list">
           <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
@@ -812,284 +709,120 @@
       </nav>
     </section>
 
-    <div class="decorative-divider">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg>
-    </div>
+    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg></div>
 
-    <!-- Introducción -->
     <section id="introduccion">
-      <div class="section-header fade-in">
-        <span class="section-number">1</span>
-        <h2 class="section-title">Introducción</h2>
-      </div>
+      <div class="section-header fade-in"><span class="section-number">1</span><h2 class="section-title">Introducción</h2></div>
       <div class="prose fade-in delay-1">
         <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
         <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
         <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
-        <blockquote class="quote">
-          Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.
-          <cite class="quote-author">— Álvaro Cunqueiro</cite>
-        </blockquote>
+        <blockquote class="quote">Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.<cite class="quote-author">— Álvaro Cunqueiro</cite></blockquote>
       </div>
     </section>
 
-    <div class="decorative-divider">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg>
-    </div>
+    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
 
-    <!-- Recomendaciones -->
     <section id="recomendaciones">
-      <div class="section-header fade-in">
-        <span class="section-number">2</span>
-        <h2 class="section-title">Recomendaciones y advertencias</h2>
-      </div>
+      <div class="section-header fade-in"><span class="section-number">2</span><h2 class="section-title">Recomendaciones y advertencias</h2></div>
       <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice, pero te alegrará saber.</p>
 
-      <!-- Recomendaciones de Xurxo -->
       <div class="rec-author-section fade-in">
         <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
           <div class="carousel" id="carousel-xurxo">
-            <article class="carousel-card">
-              <div class="rec-author-card">
-                <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
-                <span class="rec-author-name">Xurxo</span>
-                <span class="rec-author-subtitle">Sus recomendaciones</span>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
-                <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
-                <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
-                <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
-                <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
-                <p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
-                <p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
-                <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
-                <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
-                <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
-                <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
-                <p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p>
-              </div>
-            </article>
-            <article class="carousel-card">
-              <div class="rec-card">
-                <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
-                <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p>
-              </div>
-            </article>
+            <article class="carousel-card"><div class="rec-author-card"><img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Xurxo</span><span class="rec-author-subtitle">Sus recomendaciones</span></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3><p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3><p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3><p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3><p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3><p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3><p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3><p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3><p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3><p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3><p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3><p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p></div></article>
           </div>
-          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
 
-      <!-- Recomendaciones de Raquel -->
       <div class="rec-author-section fade-in">
         <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-          </button>
+          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
           <div class="carousel" id="carousel-raquel">
-            <article class="carousel-card">
-              <div class="rec-author-card">
-                <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
-                <span class="rec-author-name">Raquel</span>
-                <span class="rec-author-subtitle">Todavía por poner</span>
-              </div>
-            </article>
+            <article class="carousel-card"><div class="rec-author-card"><img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Raquel</span><span class="rec-author-subtitle">Todavía por poner</span></div></article>
           </div>
-          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-          </button>
+          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
     </section>
 
-    <div class="decorative-divider">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    </div>
+    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
 
-    <!-- Lugares -->
     <section id="lugares">
-      <div class="section-header fade-in">
-        <span class="section-number">3</span>
-        <h2 class="section-title">Lugares de Galicia</h2>
-      </div>
+      <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
       <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:18px">Una selección de rincones que ponen en valor la identidad gallega.</p>
       <div id="placesContainer"></div>
     </section>
 
-    <div class="decorative-divider">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-    </div>
+    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
 
-    <!-- Generador -->
     <section id="generador">
-      <div class="section-header fade-in">
-        <span class="section-number">4</span>
-        <h2 class="section-title">Generador de itinerarios</h2>
-      </div>
+      <div class="section-header fade-in"><span class="section-number">4</span><h2 class="section-title">Generador de itinerarios</h2></div>
       <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
       <div class="generator-box fade-in">
         <form id="itineraryForm" class="space-y-4">
-          <div>
-            <label class="form-label">Horas disponibles</label>
-            <select id="horas" class="form-select" required>
-              <option value="">Selecciona</option>
-              <option value="3">3 horas — Escapada rápida</option>
-              <option value="5">5 horas — Media jornada</option>
-              <option value="8">8 horas — Día completo</option>
-              <option value="12">12 horas — Día largo</option>
-            </select>
-          </div>
-          <div>
-            <label class="form-label">Tipo de experiencia</label>
-            <select id="tipo" class="form-select" required>
-              <option value="">Selecciona</option>
-              <option value="ciudad">Ciudad — Cultura y monumentos</option>
-              <option value="naturaleza">Naturaleza — Paisajes y playas</option>
-              <option value="mixto">Mixto — Un poco de todo</option>
-            </select>
-          </div>
+          <div><label class="form-label">Horas disponibles</label><select id="horas" class="form-select" required><option value="">Selecciona</option><option value="3">3 horas — Escapada rápida</option><option value="5">5 horas — Media jornada</option><option value="8">8 horas — Día completo</option><option value="12">12 horas — Día largo</option></select></div>
+          <div><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza">Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
           <button type="submit" class="btn-generate">Generar itinerario</button>
         </form>
       </div>
       <div id="itineraryResult" class="hidden"></div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
       <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
       <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
-      <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
-        <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
-        <circle cx="16" cy="16" r="4"/>
-      </svg>
+      <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1"><path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/><circle cx="16" cy="16" r="4"/></svg>
     </footer>
 
     <!-- MENÚ INFERIOR -->
     <nav class="bottom-menu" aria-label="Navegación principal">
       <div class="menu-container">
-        <a href="#hero" class="menu-item active" data-section="hero">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9 22 9 12 15 12 15 22"/>
-          </svg>
-          <span>Portada</span>
-        </a>
-        <a href="#indice" class="menu-item" data-section="indice">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <line x1="8" y1="6" x2="21" y2="6"/>
-            <line x1="8" y1="12" x2="21" y2="12"/>
-            <line x1="8" y1="18" x2="21" y2="18"/>
-            <line x1="3" y1="6" x2="3.01" y2="6"/>
-            <line x1="3" y1="12" x2="3.01" y2="12"/>
-            <line x1="3" y1="18" x2="3.01" y2="18"/>
-          </svg>
-          <span>Índice</span>
-        </a>
-        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/>
-            <path d="M12 12v10"/>
-          </svg>
-          <span>Recomendaciones</span>
-        </a>
-        <a href="#lugares" class="menu-item" data-section="lugares">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-          <span>Lugares</span>
-        </a>
-        <a href="#generador" class="menu-item" data-section="generador">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <span>Itinerario</span>
-        </a>
+        <a href="#hero" class="menu-item active" data-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Portada</span></a>
+        <a href="#indice" class="menu-item" data-section="indice"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>Índice</span></a>
+        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/><path d="M12 12v10"/></svg><span>Recomendaciones</span></a>
+        <a href="#lugares" class="menu-item" data-section="lugares"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Lugares</span></a>
+        <a href="#generador" class="menu-item" data-section="generador"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Itinerario</span></a>
       </div>
     </nav>
 
-  </div><!-- Fin main-content -->
+  </div>
 
   <script>
-    /* ============================================
-       SPLASH SCREEN - CONTROL DE ACCESO
-       ============================================ */
+    /* SERVICE WORKER */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js').catch(function() {});
+      });
+    }
+
+    /* SPLASH SCREEN */
     const CORRECT_PASSWORD = 'Caamaño';
     
     document.getElementById('splashForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const input = document.getElementById('passwordInput');
       const error = document.getElementById('splashError');
-      const value = input.value.trim();
-      
-      if (value === CORRECT_PASSWORD) {
-        // Correcto - mostrar contenido
+      if (input.value.trim() === CORRECT_PASSWORD) {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
-        // Guardar en sessionStorage para no pedir de nuevo en esta sesión
-        sessionStorage.setItem('galicia_authenticated', 'true');
-        // Inicializar el resto
+        localStorage.setItem('galicia_auth', 'true');
         initApp();
       } else {
-        // Error - mostrar mensaje y animar
         input.classList.add('error');
         error.textContent = 'Contraseña incorrecta';
         setTimeout(function() { input.classList.remove('error'); }, 400);
@@ -1098,24 +831,17 @@
       }
     });
 
-    // Verificar si ya está autenticado en esta sesión
     document.addEventListener('DOMContentLoaded', function() {
-      if (sessionStorage.getItem('galicia_authenticated') === 'true') {
-        // Ya autenticado - mostrar contenido directamente
+      if (localStorage.getItem('galicia_auth') === 'true') {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
         initApp();
       } else {
-        // No autenticado - focus en el input
-        setTimeout(function() {
-          document.getElementById('passwordInput').focus();
-        }, 100);
+        setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
       }
     });
 
-    /* ============================================
-       INICIALIZACIÓN DE LA APP
-       ============================================ */
+    /* APP */
     function initApp() {
       initAnimations();
       initIndexLinks();
@@ -1125,93 +851,76 @@
       initBottomMenu();
     }
 
-    /* Carrusel con flechas */
     function carouselNext(id) {
-      const carousel = document.getElementById(id);
-      if (!carousel) return;
-      const cardWidth = carousel.querySelector('.carousel-card').offsetWidth;
-      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      const c = document.getElementById(id);
+      if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
     }
 
     function carouselPrev(id) {
-      const carousel = document.getElementById(id);
-      if (!carousel) return;
-      const cardWidth = carousel.querySelector('.carousel-card').offsetWidth;
-      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      const c = document.getElementById(id);
+      if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
     }
 
     function updateCarouselButtons(id) {
-      const carousel = document.getElementById(id);
-      if (!carousel) return;
-      const wrapper = carousel.parentElement;
-      const prevBtn = wrapper.querySelector('.carousel-btn-prev');
-      const nextBtn = wrapper.querySelector('.carousel-btn-next');
-      const scrollLeft = carousel.scrollLeft;
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      
-      if (prevBtn) prevBtn.style.display = scrollLeft <= 5 ? 'none' : 'flex';
-      if (nextBtn) nextBtn.style.display = scrollLeft >= maxScroll - 5 ? 'none' : 'flex';
+      const c = document.getElementById(id);
+      if (!c) return;
+      const w = c.parentElement;
+      const sl = c.scrollLeft;
+      const max = c.scrollWidth - c.clientWidth;
+      const prev = w.querySelector('.carousel-btn-prev');
+      const next = w.querySelector('.carousel-btn-next');
+      if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex';
+      if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex';
     }
 
     function initCarousels() {
-      const carousels = ['carousel-xurxo', 'carousel-raquel'];
-      carousels.forEach(id => {
-        const carousel = document.getElementById(id);
-        if (carousel) {
-          carousel.addEventListener('scroll', () => updateCarouselButtons(id));
-          setTimeout(() => updateCarouselButtons(id), 100);
+      ['carousel-xurxo', 'carousel-raquel'].forEach(function(id) {
+        const c = document.getElementById(id);
+        if (c) {
+          c.addEventListener('scroll', function() { updateCarouselButtons(id); });
+          setTimeout(function() { updateCarouselButtons(id); }, 100);
         }
       });
     }
 
-    /* Menú inferior */
     function initBottomMenu() {
-      const menuItems = document.querySelectorAll('.menu-item');
-      const sections = ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'];
-      
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            menuItems.forEach(item => {
-              item.classList.toggle('active', item.dataset.section === sectionId);
-            });
+      const items = document.querySelectorAll('.menu-item');
+      const obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === e.target.id); });
           }
         });
       }, { threshold: 0.5 });
-      
-      sections.forEach(id => {
+      ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) {
         const el = document.getElementById(id);
-        if (el) sectionObserver.observe(el);
+        if (el) obs.observe(el);
       });
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
+      items.forEach(function(i) {
+        i.addEventListener('click', function(e) {
           e.preventDefault();
-          const targetId = item.getAttribute('href').substring(1);
-          const target = document.getElementById(targetId);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          var t = document.getElementById(i.getAttribute('href').substring(1));
+          if (t) t.scrollIntoView({ behavior: 'smooth' });
         });
       });
     }
 
-    /* Lugares */
     const lugares = [
-      { id: 1, nombre: "Catedral de Santiago de Compostela", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse, mirar con calma y sentir el ambiente de la ciudad.</p><p>Se recomienda reservar con antelación la entrada para el Pórtico de la Gloria o para subir a las cubiertas.</p>`, tips: ["Reserva antes para el Pórtico y cubiertas.", "Visita temprano o al atardecer.", "La misa del peregrino incluye el botafumeiro."], destacado: true },
-      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: `<p>Un archipiélago de ensueño con playas de arena blanca y aguas cristalinas. The Guardian llamó a Rodas "la mejor playa del mundo".</p>`, tips: ["Reserva el barco con antelación.", "Lleva comida y agua.", "Hay límite diario de visitantes."], destacado: true },
-      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", texto: `<p>Para los romanos, este era el fin del mundo conocido. El faro ofrece postales inolvidables al atardecer.</p>`, tips: ["Ve al atardecer.", "Combina con la playa de Langosteira."], destacado: true },
-      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", texto: `<p>La única muralla romana completa del mundo. Puedes caminar por lo alto de los 2 km.</p>`, tips: ["Camina al atardecer.", "Termina en el casco histórico."], destacado: true },
-      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", texto: `<p>Un pico cónico envuelto en leyendas jacobeas y misterios.</p>`, tips: ["Sube al atardecer."] },
-      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", texto: `<p>Un castro galaico con vistas al Miño.</p>`, tips: ["Combina con A Guarda."] },
-      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", texto: `<p>Una costa salvaje donde el Atlántico golpea con fuerza.</p>`, tips: ["Lleva abrigo."] },
-      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", texto: `<p>La Pinta llegó aquí en 1493.</p>`, tips: ["Come en el puerto."] },
-      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", texto: `<p>Un pueblo con hórreos asomados al mar.</p>`, tips: ["Ve al atardecer."] },
-      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", texto: `<p>Bosque atlántico templado único en Europa.</p>`, tips: ["Ideal por la mañana."] },
-      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", texto: `<p>Caballos salvajes entre niebla.</p>`, tips: ["Lleva abrigo."] },
-      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", texto: `<p>Donde los santiagueses compran desde hace un siglo.</p>`, tips: ["Ve por la mañana."] },
-      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", texto: `<p>Tabernas legendarias del casco viejo.</p>`, tips: ["Pide ostras en Pescadería."] },
-      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", texto: `<p>Arcos de piedra que se revelan con marea baja.</p>`, tips: ["Consulta las mareas."] },
-      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", texto: `<p>Cascada de 30 metros en el bosque.</p>`, tips: ["Después de lluvias."] }
+      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: "<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos.</p>", tips: ["Reserva antes.", "Ve al atardecer."], destacado: true },
+      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."], destacado: true },
+      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."], destacado: true },
+      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."], destacado: true },
+      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", texto: "<p>Envuelto en leyendas.</p>", tips: ["Sube al atardecer."] },
+      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", texto: "<p>Castro con vistas al Miño.</p>", tips: ["Combina con A Guarda."] },
+      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", texto: "<p>Costa salvaje atlántica.</p>", tips: ["Lleva abrigo."] },
+      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", texto: "<p>La Pinta llegó en 1493.</p>", tips: ["Come en el puerto."] },
+      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", texto: "<p>Pueblo con hórreos al mar.</p>", tips: ["Ve al atardecer."] },
+      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", texto: "<p>Bosque atlántico único en Europa.</p>", tips: ["Por la mañana."] },
+      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", texto: "<p>Caballos salvajes.</p>", tips: ["Lleva abrigo."] },
+      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", texto: "<p>Donde compran los santiagueses.</p>", tips: ["Ve por la mañana."] },
+      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
+      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", texto: "<p>Arcos con marea baja.</p>", tips: ["Consulta mareas."] },
+      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
     ];
 
     const categorias = [
@@ -1224,124 +933,89 @@
     ];
 
     function initAnimations() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1, rootMargin: '-10px' });
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
     }
 
     function initIndexLinks() {
-      document.querySelectorAll('.index-item, .index-subitem').forEach(link => {
-        link.addEventListener('click', (e) => {
+      document.querySelectorAll('.index-item, .index-subitem').forEach(function(l) {
+        l.addEventListener('click', function(e) {
           e.preventDefault();
-          const href = link.getAttribute('href');
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          var t = document.querySelector(l.getAttribute('href'));
+          if (t) t.scrollIntoView({ behavior: 'smooth' });
         });
       });
     }
 
     function renderPlaces() {
-      const container = document.getElementById('placesContainer');
-      if (!container) return;
-      let html = '';
-      let globalIndex = 0;
-      
-      categorias.forEach(cat => {
-        const catLugares = lugares.filter(l => l.categoria === cat.id);
-        if (catLugares.length === 0) return;
-        
-        html += `<div id="cat-${cat.id}" style="padding-top:8px;margin-bottom:8px;"><div class="category-header"><span class="category-icon">${cat.emoji}</span><span class="category-name">${cat.nombre}</span></div>`;
-        
-        catLugares.forEach(lugar => {
-          globalIndex++;
-          html += `
-          <article class="place-card" id="place-${lugar.id}">
-            <div class="place-image">
-              <img src="${lugar.imagen}" alt="${lugar.nombre}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'">
-              <span class="place-number-badge">${globalIndex}</span>
-              <div class="place-title-overlay"><h3 class="place-title">${lugar.nombre}</h3></div>
-            </div>
-            <div class="place-header" onclick="togglePlace('place-${lugar.id}')" role="button" tabindex="0" aria-expanded="false">
-              <span class="place-header-title">${lugar.descripcion}</span>
-              <svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="place-content">
-              <div class="place-content-inner">
-                ${lugar.texto}
-                ${lugar.tips ? `<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>${lugar.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></div></div>` : ''}
-              </div>
-            </div>
-          </article>`;
+      var c = document.getElementById('placesContainer');
+      if (!c) return;
+      var html = '', gi = 0;
+      categorias.forEach(function(cat) {
+        var arr = lugares.filter(function(l) { return l.categoria === cat.id; });
+        if (!arr.length) return;
+        html += '<div id="cat-' + cat.id + '" style="padding-top:8px;margin-bottom:8px;"><div class="category-header"><span class="category-icon">' + cat.emoji + '</span><span class="category-name">' + cat.nombre + '</span></div>';
+        arr.forEach(function(l) {
+          gi++;
+          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')" role="button" tabindex="0"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div></div>' : '') + '</div></div></article>';
         });
-        html += `</div>`;
+        html += '</div>';
       });
-      container.innerHTML = html;
+      c.innerHTML = html;
       initAnimations();
     }
 
     function togglePlace(id) {
-      const card = document.getElementById(id);
+      var card = document.getElementById(id);
       if (!card) return;
-      const isExpanded = card.classList.contains('expanded');
-      document.querySelectorAll('.place-card.expanded').forEach(c => c.classList.remove('expanded'));
-      if (!isExpanded) card.classList.add('expanded');
+      var exp = card.classList.contains('expanded');
+      document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); });
+      if (!exp) card.classList.add('expanded');
     }
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
-        const header = e.target.closest('.place-header');
-        if (header) { e.preventDefault(); header.click(); }
+        var h = e.target.closest('.place-header');
+        if (h) { e.preventDefault(); h.click(); }
       }
     });
 
     function initGenerator() {
-      const form = document.getElementById('itineraryForm');
-      if (!form) return;
-      form.addEventListener('submit', (e) => {
+      var f = document.getElementById('itineraryForm');
+      if (!f) return;
+      f.addEventListener('submit', function(e) {
         e.preventDefault();
-        const horas = parseInt(document.getElementById('horas').value, 10);
-        const tipo = document.getElementById('tipo').value;
-        generateItinerary(horas, tipo);
+        var h = parseInt(document.getElementById('horas').value, 10);
+        var t = document.getElementById('tipo').value;
+        genIti(h, t);
       });
     }
 
-    function generateItinerary(horas, tipo) {
-      let candidatos = lugares.slice();
-      candidatos.sort((a, b) => {
-        let sA = 0, sB = 0;
+    function genIti(horas, tipo) {
+      var c = lugares.slice();
+      c.sort(function(a, b) {
+        var sA = 0, sB = 0;
         if (tipo === 'mixto') { sA += 10; sB += 10; }
-        else {
-          if (a.tipo === tipo) sA += 15;
-          if (a.tipo === 'mixto') sA += 5;
-          if (b.tipo === tipo) sB += 15;
-          if (b.tipo === 'mixto') sB += 5;
-        }
-        if (a.destacado) sA += 10;
-        if (b.destacado) sB += 10;
+        else { if (a.tipo === tipo) sA += 15; if (a.tipo === 'mixto') sA += 5; if (b.tipo === tipo) sB += 15; if (b.tipo === 'mixto') sB += 5; }
+        if (a.destacado) sA += 10; if (b.destacado) sB += 10;
         return sB - sA;
       });
-      let seleccionados = [], h = 0;
-      for (let i = 0; i < candidatos.length; i++) {
-        if (h + candidatos[i].horas <= horas) { seleccionados.push(candidatos[i]); h += candidatos[i].horas; }
-        if (h >= horas * 0.85) break;
-      }
-      if (seleccionados.length === 0) seleccionados.push(candidatos[0]);
-      showItinerary(seleccionados, h, tipo);
+      var sel = [], h = 0;
+      for (var i = 0; i < c.length; i++) { if (h + c[i].horas <= horas) { sel.push(c[i]); h += c[i].horas; } if (h >= horas * 0.85) break; }
+      if (!sel.length) sel.push(c[0]);
+      showIti(sel, h, tipo);
     }
 
-    function showItinerary(lista, hTotal, tipo) {
-      const container = document.getElementById('itineraryResult');
-      if (!container) return;
-      container.classList.remove('hidden');
-      const tipoN = { 'ciudad': 'Cultura y ciudad', 'naturaleza': 'Naturaleza', 'mixto': 'Experiencia mixta' };
-      let html = `<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">${hTotal}h de experiencias</div></div><button onclick="document.getElementById('itineraryResult').classList.add('hidden')" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><span class="itinerary-badge">${tipoN[tipo]}</span>`;
-      lista.forEach((l, i) => {
-        html += `<div class="itinerary-place"><span class="itinerary-place-num">${i+1}</span><img src="${l.imagen}" alt="${l.nombre}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'"><div><div class="itinerary-place-name">${l.nombre}</div><div class="itinerary-place-time">${l.horas}h</div></div></div>`;
-      });
-      html += `<p style="margin-top:12px;font-size:0.85rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
-      container.innerHTML = html;
-      setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    function showIti(lista, hT, tipo) {
+      var ct = document.getElementById('itineraryResult');
+      if (!ct) return;
+      ct.classList.remove('hidden');
+      var tN = { 'ciudad': 'Cultura', 'naturaleza': 'Naturaleza', 'mixto': 'Mixto' };
+      var h = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + hT + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><span class="itinerary-badge">' + tN[tipo] + '</span>';
+      lista.forEach(function(l, i) { h += '<div class="itinerary-place"><span class="itinerary-place-num">' + (i+1) + '</span><img src="' + l.imagen + '" alt="' + l.nombre + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><div><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div></div></div>'; });
+      h += '<p style="margin-top:12px;font-size:0.85rem;color:var(--fg-muted);font-style:italic;">Sin desplazamientos.</p></div>';
+      ct.innerHTML = h;
+      setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     }
   </script>
 </body>
