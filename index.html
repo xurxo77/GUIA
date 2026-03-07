@@ -4,34 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galicia - Guía para amigos</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #FEFEFE;
-      --bg-intro: #F8F6F1;
-      --bg-reco: #E8F0ED;
-      --bg-lugares: #FAFAFA;
-      --bg-generador: #F0F4F2;
-      --bg-card: #FFFFFF;
-      --fg: #1A1D16;
-      --fg-soft: #3D4238;
-      --fg-muted: #6B7366;
-      --accent: #4A7C59;
-      --atlantic: #2E6171;
-      --atlantic-light: #3A8496;
-      --gold: #9A7B4F;
-      --terracotta: #A65D3F;
-      --lavender: #6B5B7A;
-      --slate: #4A5568;
-      --border: #D8D4CC;
-      --border-light: #EBE8E2;
+      --bg-paper: #f4ede4;
+      --bg-cream: #e8dfd3;
+      --bg-card: #ded4c4;
+      --fg-ink: #2c2416;
+      --fg-muted: #5a4d3a;
+      --accent-sea: #1a4a5e;
+      --accent-gold: #b8860b;
+      --accent-green: #3d5a47;
+      --accent-wine: #7a3e3e;
+      --border-aged: #c9b89d;
+      --border-card: #8b7355;
+      --shadow-warm: rgba(44, 36, 22, 0.15);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -42,698 +35,700 @@
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--bg-base);
-      color: var(--fg);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--bg-paper);
+      color: var(--fg-ink);
+      line-height: 1.65;
+      font-size: 18px;
+      min-height: 100vh;
     }
 
-    .font-display { font-family: 'Crimson Pro', Georgia, serif; }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
 
-    /* APARTADO - HEADER */
-    .apartado-header {
-      padding: 1.25rem 1.5rem;
-      border-radius: 16px 16px 0 0;
+    /* Navegación flotante */
+    .nav-floating {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--bg-paper);
+      padding: 10px;
+      border-radius: 24px;
+      box-shadow: 0 4px 20px var(--shadow-warm);
+      border: 1px solid var(--border-aged);
+    }
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--accent-sea);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .nav-dot.active, .nav-dot:hover { background: var(--accent-sea); transform: scale(1.15); }
+    .nav-dot:focus { outline: none; box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.25); }
+
+    /* Secciones */
+    section { padding: 48px 20px; max-width: 640px; margin: 0 auto; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       position: relative;
+      overflow: hidden;
+      padding: 20px;
     }
-    .apartado-numero {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      margin-bottom: 0.5rem;
+    .hero-title {
+      font-size: clamp(3rem, 12vw, 4.5rem);
+      font-weight: 700;
+      color: var(--accent-sea);
+      line-height: 1;
+      margin-bottom: 12px;
     }
-    .apartado-titulo {
-      font-size: 1.875rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin: 0;
-    }
-    .apartado-subtitulo {
-      font-size: 0.9375rem;
+    .hero-subtitle {
+      font-size: clamp(1rem, 4vw, 1.25rem);
       color: var(--fg-muted);
-      margin-top: 0.5rem;
-      margin-bottom: 0;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .hero-authors { margin-top: 20px; }
+    .hero-authors-label {
+      font-size: 0.95rem;
+      color: var(--accent-green);
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 14px;
+    }
+    .authors-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--border-aged);
+      background: var(--bg-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--fg-muted);
+      overflow: hidden;
+    }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .author-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent-sea);
+    }
+    .author-separator {
+      color: var(--accent-gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
     }
 
-    /* Colores por apartado */
-    .apartado-intro {
-      background: linear-gradient(135deg, #F8F6F1 0%, #F2EDE4 100%);
-      border-left: 4px solid var(--accent);
+    /* Divisor decorativo */
+    .decorative-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 32px 20px;
+      max-width: 640px;
+      margin: 0 auto;
     }
-    .apartado-intro .apartado-numero { color: var(--accent); }
-
-    .apartado-reco {
-      background: linear-gradient(135deg, #E8F0ED 0%, #D9E5E0 100%);
-      border-left: 4px solid var(--atlantic);
+    .decorative-divider::before, .decorative-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-aged), transparent);
     }
-    .apartado-reco .apartado-numero { color: var(--atlantic); }
+    .decorative-divider svg { width: 20px; height: 20px; color: var(--accent-gold); flex-shrink: 0; }
 
-    .apartado-lugares {
-      background: linear-gradient(135deg, #F5F3EE 0%, #EBE6DC 100%);
-      border-left: 4px solid var(--gold);
+    /* Títulos numerados */
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .section-number {
+      width: 42px;
+      height: 42px;
+      border: 3px solid var(--accent-sea);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--accent-sea);
+      flex-shrink: 0;
+      background: var(--bg-paper);
     }
-    .apartado-lugares .apartado-numero { color: var(--gold); }
+    .section-title { font-size: clamp(1.5rem, 5vw, 1.9rem); color: var(--accent-sea); margin: 0; }
 
-    .apartado-generador {
-      background: linear-gradient(135deg, #F0F4F2 0%, #E4EBE7 100%);
-      border-left: 4px solid var(--slate);
+    /* Índice */
+    .index-list { list-style: none; }
+    .index-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      text-decoration: none;
+      color: var(--fg-ink);
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
     }
-    .apartado-generador .apartado-numero { color: var(--slate); }
+    .index-item:hover, .index-item:focus { color: var(--accent-sea); transform: translateX(6px); outline: none; }
+    .index-number {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--accent-sea);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-sea);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+    .index-item:hover .index-number, .index-item:focus .index-number { background: var(--accent-sea); color: white; }
 
-    /* SUBAPARTADO - HEADER */
-    .subapartado-header {
+    /* Prosa */
+    .prose p { margin-bottom: 16px; text-align: justify; font-size: 1rem; }
+
+    /* Cita */
+    .quote {
+      position: relative;
+      padding: 20px 20px 20px 28px;
+      margin: 24px 0;
+      background: linear-gradient(90deg, rgba(26, 74, 94, 0.06), transparent);
+      border-left: 3px solid var(--accent-sea);
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--accent-sea);
+      opacity: 0.2;
+      line-height: 1;
+    }
+    .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
+
+    /* Recomendaciones */
+    .rec-list { display: flex; flex-direction: column; gap: 3px; }
+    .rec-item {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      background: var(--bg-card);
-      border-radius: 12px;
-      border: 1px solid var(--border-light);
-      margin-bottom: 1rem;
+      gap: 14px;
+      padding: 12px 16px;
+      border-left: 3px solid var(--accent-gold);
+      background: linear-gradient(90deg, rgba(184, 134, 11, 0.04), transparent);
+      transition: background 0.25s ease;
+    }
+    .rec-item:hover { background: linear-gradient(90deg, rgba(184, 134, 11, 0.08), transparent); }
+    .rec-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      opacity: 0.7;
+      min-width: 20px;
+    }
+    .rec-content { flex: 1; }
+    .rec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 3px; }
+    .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.45; }
+
+    /* Subapartado */
+    .subapartado-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg-cream);
+      border-radius: 10px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-aged);
     }
     .subapartado-icono {
-      width: 2.75rem;
-      height: 2.75rem;
-      border-radius: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.375rem;
+      font-size: 0.9rem;
     }
-    .subapartado-texto h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin: 0 0 0.25rem 0;
-      letter-spacing: -0.01em;
-    }
-    .subapartado-texto p {
-      font-size: 0.8125rem;
-      color: var(--fg-muted);
-      margin: 0;
-    }
+    .subapartado-texto h3 { font-size: 0.95rem; font-weight: 600; margin: 0; color: var(--fg-ink); }
+    .subapartado-texto p { font-size: 0.7rem; color: var(--fg-muted); margin: 0; }
+    .sub-imprescindibles .subapartado-icono { background: rgba(184, 134, 11, 0.15); }
+    .sub-magica .subapartado-icono { background: rgba(122, 62, 62, 0.15); }
+    .sub-atlantica .subapartado-icono { background: rgba(26, 74, 94, 0.15); }
+    .sub-verde .subapartado-icono { background: rgba(61, 90, 71, 0.15); }
+    .sub-humana .subapartado-icono { background: rgba(139, 90, 43, 0.15); }
+    .sub-segreda .subapartado-icono { background: rgba(90, 90, 90, 0.15); }
 
-    /* Colores subapartados */
-    .sub-imprescindibles .subapartado-icono { background: rgba(154, 123, 79, 0.12); }
-    .sub-magica .subapartado-icono { background: rgba(107, 91, 122, 0.12); }
-    .sub-atlantica .subapartado-icono { background: rgba(46, 97, 113, 0.12); }
-    .sub-verde .subapartado-icono { background: rgba(74, 124, 89, 0.12); }
-    .sub-humana .subapartado-icono { background: rgba(166, 93, 63, 0.12); }
-    .sub-segreda .subapartado-icono { background: rgba(74, 85, 104, 0.12); }
-
-    /* CAROUSEL MEJORADO */
-    .carousel {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 1.5rem;
-      padding: 1rem 1.5rem;
-      margin: 0 -1.5rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .carousel::-webkit-scrollbar { display: none; }
-    .carousel-card {
-      flex: 0 0 85%;
-      max-width: 340px;
-      min-width: 280px;
-      scroll-snap-align: start;
-    }
-
-    /* TARJETAS DE RECOMENDACIÓN - REDISEÑADAS */
-    .reco-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid var(--border-light);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      height: 100%;
-    }
-    .reco-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .reco-icono-grande {
-      width: 3.25rem;
-      height: 3.25rem;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 1.625rem;
-    }
-
-    .reco-titulo {
-      font-size: 1.0625rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 0.625rem;
-      color: var(--fg);
-    }
-
-    .reco-descripcion {
-      font-size: 0.875rem;
-      color: var(--fg-muted);
-      line-height: 1.6;
-    }
-
-    /* Colores tarjetas recomendación */
-    .reco-clima .reco-icono-grande { background: linear-gradient(135deg, #E3F0F4 0%, #D0E4EB 100%); }
-    .reco-clima .reco-titulo { color: #2E6171; }
-    .reco-mar .reco-icono-grande { background: linear-gradient(135deg, #E5F2F0 0%, #CFE8E3 100%); }
-    .reco-mar .reco-titulo { color: #2E7168; }
-    .reco-comida .reco-icono-grande { background: linear-gradient(135deg, #F5EFE5 0%, #EBE0D0 100%); }
-    .reco-comida .reco-titulo { color: #8B6914; }
-    .reco-cultura .reco-icono-grande { background: linear-gradient(135deg, #F0E8F0 0%, #E4D6E4 100%); }
-    .reco-cultura .reco-titulo { color: #6B4D7A; }
-    .reco-practico .reco-icono-grande { background: linear-gradient(135deg, #ECF0E8 0%, #DDE5D6 100%); }
-    .reco-practico .reco-titulo { color: #4A7C59; }
-
-    /* Place cards */
+    /* TARJETAS DE LUGARES */
     .place-card {
-      cursor: pointer;
+      background: var(--bg-card);
+      border: 3px solid var(--border-card);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px var(--shadow-warm), inset 0 1px 0 rgba(255,255,255,0.3);
+      position: relative;
       transition: box-shadow 0.3s ease;
-      background: var(--bg-card);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
     }
-    .place-card:hover { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); }
-    .place-card .expand-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .place-card.expanded .expand-content { max-height: 1200px; }
-    .place-card .expand-icon {
-      transition: transform 0.3s ease, background-color 0.2s ease;
-    }
-    .place-card.expanded .expand-icon {
-      transform: rotate(180deg);
-      background-color: var(--accent);
-    }
-    .place-card.expanded .expand-icon svg { stroke: white; }
-
-    /* Category badges */
-    .category-badge {
-      display: inline-flex;
-      padding: 0.1875rem 0.5rem;
-      border-radius: 5px;
-      font-size: 0.625rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .category-imprescindibles { background: rgba(154, 123, 79, 0.15); color: #9A7B4F; }
-    .category-magica { background: rgba(107, 91, 122, 0.15); color: #6B5B7A; }
-    .category-atlantica { background: rgba(46, 97, 113, 0.15); color: #2E6171; }
-    .category-verde { background: rgba(74, 124, 89, 0.15); color: #4A7C59; }
-    .category-humana { background: rgba(166, 93, 63, 0.15); color: #A65D3F; }
-    .category-segreda { background: rgba(74, 85, 104, 0.15); color: #4A5568; }
-
-    /* Animations */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-in { opacity: 0; }
-    .animate-in.visible { animation: fadeUp 0.5s ease forwards; }
-
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 0.875rem 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 1rem;
-      color: var(--fg);
-      transition: border-color 0.2s ease;
-    }
-    .form-input:focus {
-      border-color: var(--accent);
-    }
-    .form-select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7366' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .btn-primary {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.15s ease;
-    }
-    .btn-primary:hover { background: #3D6A4A; }
-    .btn-primary:active { transform: scale(0.98); }
-
-    /* Itinerary */
-    .itinerary-card { position: relative; padding-left: 2rem; }
-    .itinerary-card::before {
+    .place-card:hover { box-shadow: 0 6px 24px var(--shadow-warm), inset 0 1px 0 rgba(255,255,255,0.3); }
+    .place-card::before {
       content: '';
       position: absolute;
-      left: 0.5rem;
-      top: 2.5rem;
-      bottom: 0;
-      width: 1px;
-      background: var(--border);
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-sea), var(--accent-gold), var(--accent-sea));
+      z-index: 1;
     }
-    .itinerary-card:last-child::before { display: none; }
-    .itinerary-number {
+    .place-image { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
+    .place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .place-number-badge {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 1.125rem;
-      height: 1.125rem;
-      background: var(--accent);
-      color: white;
+      top: 12px; right: 12px;
+      width: 40px; height: 40px;
+      background: var(--accent-sea);
       border-radius: 50%;
-      font-size: 0.625rem;
-      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      z-index: 2;
     }
+    .place-title-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 14px 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      z-index: 1;
+    }
+    .place-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      margin: 0;
+    }
+    .place-header {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
+      border-top: 1px solid rgba(139, 115, 85, 0.3);
+    }
+    .place-header:hover { background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent); }
+    .place-header:focus { outline: none; background: linear-gradient(180deg, rgba(184, 134, 11, 0.15), transparent); }
+    .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-sea); }
+    .place-toggle { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--fg-muted); transition: color 0.25s ease; }
+    .place-header:hover .place-toggle { color: var(--accent-gold); }
+    .place-toggle-icon { width: 18px; height: 18px; transition: transform 0.3s ease; }
+    .place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
+    .place-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .place-card.expanded .place-content { max-height: 1200px; }
+    .place-content-inner { padding: 18px; border-top: 1px solid rgba(139, 115, 85, 0.3); }
+    .place-content p { margin-bottom: 14px; text-align: justify; font-size: 0.95rem; }
+    .place-content p:last-child { margin-bottom: 0; }
+
+    .place-info { margin-top: 18px; padding-top: 14px; border-top: 2px dashed var(--border-card); }
+    .info-block { margin-bottom: 14px; }
+    .info-block:last-child { margin-bottom: 0; }
+    .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .info-icon { width: 16px; height: 16px; }
+    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .info-content { padding-left: 24px; font-size: 0.9rem; color: var(--fg-muted); }
+    .info-content ul { list-style: none; }
+    .info-content li { position: relative; padding-left: 14px; margin-bottom: 6px; }
+    .info-content li:last-child { margin-bottom: 0; }
+    .info-content li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; }
+    .info-tips .info-header { color: var(--accent-green); }
+    .info-tips .info-content li::before { background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); width: 6px; height: 6px; top: 6px; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 48px 20px;
+      border-top: 1px solid var(--border-aged);
+      margin-top: 32px;
+    }
+    .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 24px; }
+    .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1rem; }
+    .footer-signature strong { font-style: normal; font-weight: 600; color: var(--accent-sea); }
+    .footer-icon { margin-top: 28px; opacity: 0.35; }
+
+    /* Animaciones */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* Generador */
+    .generator-box {
+      background: var(--bg-card);
+      border: 3px solid var(--border-card);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 16px var(--shadow-warm);
+    }
+    .form-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 6px; }
+    .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg-cream);
+      border: 2px solid var(--border-aged);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--fg-ink);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235a4d3a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+    .form-select:focus { border-color: var(--accent-sea); outline: none; }
+    .btn-generate {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent-sea);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      margin-top: 4px;
+    }
+    .btn-generate:hover { background: #143a4a; }
+
+    .itinerary-result {
+      background: var(--bg-cream);
+      border: 2px solid var(--border-aged);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .itinerary-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 2px; }
+    .itinerary-hours { font-size: 0.85rem; color: var(--fg-muted); }
+    .itinerary-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      background: rgba(26, 74, 94, 0.1);
+      color: var(--accent-sea);
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .itinerary-place {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      background: var(--bg-card);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 3px solid var(--accent-gold);
+    }
+    .itinerary-place:last-child { margin-bottom: 0; }
+    .itinerary-place-num {
+      width: 22px; height: 22px;
+      background: var(--accent-sea);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .itinerary-place img {
+      width: 44px; height: 44px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .itinerary-place-name { font-weight: 600; font-size: 0.9rem; }
+    .itinerary-place-time { font-size: 0.75rem; color: var(--fg-muted); }
   </style>
 </head>
 <body>
-
-  <!-- NAVEGACIÓN -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg-base)]/95 backdrop-blur-sm border-b border-[var(--border-light)]">
-    <div class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#inicio" class="font-display text-xl font-semibold text-[var(--fg)] tracking-tight">Galicia</a>
-      <button id="menuBtn" class="p-2 -mr-2 rounded-lg hover:bg-black/5 transition-colors" aria-label="Menú" aria-expanded="false">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <line x1="4" y1="6" x2="20" y2="6"/>
-          <line x1="4" y1="12" x2="20" y2="12"/>
-          <line x1="4" y1="18" x2="20" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div id="mobileMenu" class="hidden bg-[var(--bg-base)] border-t border-[var(--border-light)]">
-      <div class="max-w-xl mx-auto px-6 py-3 space-y-1">
-        <a href="#introduccion" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Introducción</a>
-        <a href="#recomendaciones" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Recomendaciones</a>
-        <a href="#lugares" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Lugares</a>
-        <a href="#generador" class="block py-2.5 text-[var(--fg-soft)] hover:text-[var(--fg)] transition-colors">Generador de itinerarios</a>
-      </div>
-    </div>
+  <!-- Navegación flotante -->
+  <nav class="nav-floating" aria-label="Navegación">
+    <button class="nav-dot active" data-section="hero" aria-label="Inicio"></button>
+    <button class="nav-dot" data-section="indice" aria-label="Índice"></button>
+    <button class="nav-dot" data-section="introduccion" aria-label="Introducción"></button>
+    <button class="nav-dot" data-section="recomendaciones" aria-label="Recomendaciones"></button>
+    <button class="nav-dot" data-section="lugares" aria-label="Lugares"></button>
+    <button class="nav-dot" data-section="generador" aria-label="Generador"></button>
   </nav>
 
-  <!-- HERO -->
-  <header id="inicio" class="pt-28 pb-12 px-6">
-    <div class="max-w-xl mx-auto">
-      <p class="text-[var(--fg-muted)] text-sm mb-4 animate-in visible">Guía creada por Xurxo y Raquel</p>
-      <h1 class="font-display text-5xl sm:text-6xl font-semibold leading-[1.1] tracking-tight mb-4 animate-in visible delay-1">Galicia</h1>
-      <p class="font-display text-xl text-[var(--fg-soft)] leading-relaxed animate-in visible delay-2">
-        Guía para amigos que quieren descubrirla con calma
-      </p>
+  <!-- Hero -->
+  <header id="hero" class="hero">
+    <svg class="fade-in" width="50" height="50" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px">
+      <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+      <circle cx="32" cy="32" r="20"/>
+      <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+      <circle cx="32" cy="32" r="4"/>
+    </svg>
+    <h1 class="hero-title fade-in delay-1">Galicia</h1>
+    <p class="hero-subtitle fade-in delay-2">Guía para amigos que quieren descubrirla con calma</p>
+    <div class="hero-authors fade-in delay-3">
+      <p class="hero-authors-label">Creada con cariño por</p>
+      <div class="authors-row">
+        <div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div>
+        <span class="author-name">Xurxo</span>
+        <span class="author-separator">y</span>
+        <div class="author-avatar"><img src="raquel.jpg" alt="Raquel" onerror="this.parentElement.innerHTML='<span>R</span>'"></div>
+        <span class="author-name">Raquel</span>
+      </div>
     </div>
   </header>
 
-  <!-- ÍNDICE -->
-  <section class="pb-12 px-6">
-    <div class="max-w-xl mx-auto">
-      <nav class="space-y-2 animate-in visible delay-3">
-        <a href="#introduccion" class="group flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-light)] hover:border-[var(--accent)]/30 transition-all">
-          <span class="w-7 h-7 rounded-lg bg-[var(--accent)] text-white text-xs font-bold flex items-center justify-center">1</span>
-          <span class="font-medium text-[var(--fg-soft)] group-hover:text-[var(--fg)] transition-colors">Introducción</span>
-        </a>
-        <a href="#recomendaciones" class="group flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-light)] hover:border-[var(--atlantic)]/30 transition-all">
-          <span class="w-7 h-7 rounded-lg bg-[var(--atlantic)] text-white text-xs font-bold flex items-center justify-center">2</span>
-          <span class="font-medium text-[var(--fg-soft)] group-hover:text-[var(--fg)] transition-colors">Recomendaciones y advertencias varias</span>
-        </a>
-        <a href="#recomendaciones" class="group flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-light)] hover:border-[var(--gold)]/30 transition-all">
-          <span class="w-7 h-7 rounded-lg bg-[var(--gold)] text-white text-xs font-bold flex items-center justify-center">3</span>
-          <span class="font-medium text-[var(--fg-soft)] group-hover:text-[var(--fg)] transition-colors">Lugares</span>
-        </a>
-        <a href="#generador" class="group flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-light)] hover:border-[var(--slate)]/30 transition-all">
-          <span class="w-7 h-7 rounded-lg bg-[var(--slate)] text-white text-xs font-bold flex items-center justify-center">4</span>
-          <span class="font-medium text-[var(--fg-soft)] group-hover:text-[var(--fg)] transition-colors">Generador de itinerarios</span>
-        </a>
-      </nav>
+  <!-- Índice -->
+  <section id="indice">
+    <div class="section-header fade-in">
+      <span class="section-number">1</span>
+      <h2 class="section-title">Índice</h2>
+    </div>
+    <nav>
+      <ul class="index-list">
+        <li><a href="#introduccion" class="index-item fade-in delay-1"><span class="index-number">2</span>Introducción</a></li>
+        <li><a href="#recomendaciones" class="index-item fade-in delay-2"><span class="index-number">3</span>Recomendaciones y advertencias varias</a></li>
+        <li><a href="#lugares" class="index-item fade-in delay-3"><span class="index-number">4</span>Lugares imprescindibles de Galicia</a></li>
+        <li><a href="#generador" class="index-item fade-in delay-3"><span class="index-number">5</span>Generador de itinerarios</a></li>
+      </ul>
+    </nav>
+  </section>
+
+  <div class="decorative-divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg>
+  </div>
+
+  <!-- Introducción -->
+  <section id="introduccion">
+    <div class="section-header fade-in">
+      <span class="section-number">2</span>
+      <h2 class="section-title">Introducción</h2>
+    </div>
+    <div class="prose fade-in delay-1">
+      <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
+      <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
+      <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
+      <blockquote class="quote">
+        Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.
+        <cite class="quote-author">— Álvaro Cunqueiro</cite>
+      </blockquote>
     </div>
   </section>
 
-  <!-- INTRODUCCIÓN -->
-  <section id="introduccion" class="px-6 pb-8">
-    <div class="max-w-xl mx-auto">
-      <div class="apartado-header apartado-intro animate-in">
-        <p class="apartado-numero">Apartado 01</p>
-        <h2 class="apartado-titulo">Introducción</h2>
-      </div>
-      
-      <div class="bg-[var(--bg-card)] rounded-b-2xl p-6 border border-t-0 border-[var(--border-light)] animate-in">
-        <div class="space-y-4 text-[var(--fg-soft)]">
-          <p class="text-[1.0625rem]">Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
-          <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo.</p>
-          <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo.</p>
+  <div class="decorative-divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg>
+  </div>
+
+  <!-- Recomendaciones -->
+  <section id="recomendaciones">
+    <div class="section-header fade-in">
+      <span class="section-number">3</span>
+      <h2 class="section-title">Recomendaciones y advertencias varias</h2>
+    </div>
+    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">(Cosas que nadie te dice, pero te alegrará saber)</p>
+    
+    <div class="rec-list">
+      <div class="rec-item fade-in"><span class="rec-number">1</span><div class="rec-content"><div class="rec-title">Por las noches refresca.</div><div class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">2</span><div class="rec-content"><div class="rec-title">En verano también llueve.</div><div class="rec-text">Y no suele ser un chaparrón corto.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">3</span><div class="rec-content"><div class="rec-title">Prueba el pan de verdad.</div><div class="rec-text">Busca pan artesano y olvida el industrial. El pan de Galicia es otro mundo.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">4</span><div class="rec-content"><div class="rec-title">Cuidado con las mareas.</div><div class="rec-text">No aparques cerca del mar para evitar sorpresas con la pleamar.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">5</span><div class="rec-content"><div class="rec-title">Las playas de ría son para ir con calma.</div><div class="rec-text">Ideales para disfrutar con tranquilidad.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">6</span><div class="rec-content"><div class="rec-title">Las playas de mar abierto no son un parque acuático.</div><div class="rec-text">Ojo con el oleaje y las corrientes.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">7</span><div class="rec-content"><div class="rec-title">Aquí hay pocos chiringuitos y mucho horizonte.</div><div class="rec-text">Galicia es mar, viento y paisaje.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">8</span><div class="rec-content"><div class="rec-title">La gente no habla raro, habla gallego.</div><div class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo, aunque las respuestas puedan empezar con un clásico: "Depende… mira… bueno…".</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">9</span><div class="rec-content"><div class="rec-title">No te fíes solo del GPS.</div><div class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">10</span><div class="rec-content"><div class="rec-title">Si te invitan a comer, prepárate para un buen festín.</div><div class="rec-text">La hospitalidad gallega se demuestra en la mesa.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">11</span><div class="rec-content"><div class="rec-title">Autovías: pocas. Peajes: hay algunos.</div><div class="rec-text">Planifica las distancias.</div></div></div>
+      <div class="rec-item fade-in"><span class="rec-number">12</span><div class="rec-content"><div class="rec-title">Respeta el entorno.</div><div class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</div></div></div>
+    </div>
+  </section>
+
+  <div class="decorative-divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+  </div>
+
+  <!-- Lugares -->
+  <section id="lugares">
+    <div class="section-header fade-in">
+      <span class="section-number">4</span>
+      <h2 class="section-title">Lugares imprescindibles de Galicia</h2>
+    </div>
+    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:20px">Si nunca has estado en Galicia, estos lugares son los que tienes que ver sí o sí.</p>
+    
+    <div id="placesContainer"></div>
+  </section>
+
+  <div class="decorative-divider">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+  </div>
+
+  <!-- Generador -->
+  <section id="generador">
+    <div class="section-header fade-in">
+      <span class="section-number">5</span>
+      <h2 class="section-title">Generador de itinerarios</h2>
+    </div>
+    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas.</p>
+
+    <div class="generator-box fade-in">
+      <form id="itineraryForm" class="space-y-4">
+        <div>
+          <label class="form-label">Horas disponibles</label>
+          <select id="horas" class="form-select" required>
+            <option value="">Selecciona</option>
+            <option value="3">3 horas — Escapada rápida</option>
+            <option value="5">5 horas — Media jornada</option>
+            <option value="8">8 horas — Día completo</option>
+            <option value="12">12 horas — Día largo</option>
+          </select>
         </div>
-
-        <blockquote class="mt-6 pt-5 border-t border-[var(--border-light)]">
-          <p class="font-display text-xl italic text-[var(--fg)] leading-relaxed">"Se algún día volvo, será polo mar e pola memoria dos lugares pequenos."</p>
-          <cite class="text-[var(--fg-muted)] text-sm not-italic mt-2 block">— Álvaro Cunqueiro</cite>
-        </blockquote>
-      </div>
+        <div>
+          <label class="form-label">Tipo de experiencia</label>
+          <select id="tipo" class="form-select" required>
+            <option value="">Selecciona</option>
+            <option value="ciudad">Ciudad — Cultura y monumentos</option>
+            <option value="naturaleza">Naturaleza — Paisajes y playas</option>
+            <option value="mixto">Mixto — Un poco de todo</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-generate">Generar itinerario</button>
+      </form>
     </div>
+    <div id="itineraryResult" class="hidden"></div>
   </section>
 
-  <!-- RECOMENDACIONES Y ADVERTENCIAS -->
-  <section id="recomendaciones" class="px-6 pb-8">
-    <div class="max-w-xl mx-auto">
-      <div class="apartado-header apartado-reco animate-in">
-        <p class="apartado-numero">Apartado 02</p>
-        <h2 class="apartado-titulo">Recomendaciones y advertencias varias</h2>
-        <p class="apartado-subtitulo">Cosas que nadie te dice, pero te alegrará saber</p>
-      </div>
-
-      <div class="carousel" role="region" aria-label="Carrusel de recomendaciones">
-        
-        <!-- Clima -->
-        <article class="carousel-card reco-card reco-clima">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E6171" stroke-width="1.5">
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Por las noches refresca</h3>
-          <p class="reco-descripcion">En Galicia la chaqueta es como el paraguas: imprescindible. Lleva siempre algo de abrigo.</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-clima">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E6171" stroke-width="1.5">
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
-              <path d="M16 14v6M8 14v6M12 16v6"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">En verano también llueve</h3>
-          <p class="reco-descripcion">Y no suele ser un chaparrón corto. El paraguas debe ser tu compañero de viaje.</p>
-        </article>
-
-        <!-- Mar -->
-        <article class="carousel-card reco-card reco-mar">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E7168" stroke-width="1.5">
-              <path d="M2 12h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h4"/>
-              <path d="M22 12h-2a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-4"/>
-              <path d="M2 12a10 10 0 1 1 20 0"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Cuidado con las mareas</h3>
-          <p class="reco-descripcion">No aparques cerca del mar. Consulta las tablas de mareas en zonas costeras.</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-mar">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E7168" stroke-width="1.5">
-              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Playas de ría vs. mar abierto</h3>
-          <p class="reco-descripcion">Las de ría son tranquilas. Las de mar abierto exigen respeto: ojo con las corrientes.</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-mar">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2E7168" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Pocos chiringuitos, mucho horizonte</h3>
-          <p class="reco-descripcion">Galicia es mar y paisaje. No esperes servicios en todas las playas.</p>
-        </article>
-
-        <!-- Comida -->
-        <article class="carousel-card reco-card reco-comida">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5">
-              <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4Z"/>
-              <path d="M12 12v10"/>
-              <path d="M8 22h8"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Prueba el pan de verdad</h3>
-          <p class="reco-descripcion">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno...</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-comida">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.5">
-              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-              <line x1="6" y1="1" x2="6" y2="4"/>
-              <line x1="10" y1="1" x2="10" y2="4"/>
-              <line x1="14" y1="1" x2="14" y2="4"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Prepárate para un festín</h3>
-          <p class="reco-descripcion">Si te invitan a comer, llegarás al final sin poder más. Ven con hambre.</p>
-        </article>
-
-        <!-- Cultura -->
-        <article class="carousel-card reco-card reco-cultura">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6B4D7A" stroke-width="1.5">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Hablan gallego, no raro</h3>
-          <p class="reco-descripcion">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo a los vecinos.</p>
-        </article>
-
-        <!-- Práctico -->
-        <article class="carousel-card reco-card reco-practico">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A7C59" stroke-width="1.5">
-              <polygon points="3 11 22 2 13 21 11 13 3 11"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">No te fíes solo del GPS</h3>
-          <p class="reco-descripcion">En pueblos pequeños puede llevarte por caminos que no existen.</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-practico">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A7C59" stroke-width="1.5">
-              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8A2 2 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-              <circle cx="7" cy="17" r="2"/>
-              <circle cx="17" cy="17" r="2"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Autovías y peajes</h3>
-          <p class="reco-descripcion">Autovías: pocas. Peajes: hay algunos. Planifica las distancias.</p>
-        </article>
-
-        <article class="carousel-card reco-card reco-practico">
-          <div class="reco-icono-grande">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4A7C59" stroke-width="1.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="reco-titulo">Respeta el entorno</h3>
-          <p class="reco-descripcion">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p>
-        </article>
-
-      </div>
-
-      <p class="text-center text-[var(--fg-muted)] text-xs mt-2 px-6">Desliza para ver más</p>
-    </div>
-  </section>
-
-  <!-- LUGARES -->
-  <section id="lugares" class="px-6 pb-8">
-    <div class="max-w-xl mx-auto">
-      <div class="apartado-header apartado-lugares animate-in">
-        <p class="apartado-numero">Apartado 03</p>
-        <h2 class="apartado-titulo">Lugares</h2>
-        <p class="apartado-subtitulo">Una selección de rincones que ponen en valor la identidad gallega</p>
-      </div>
-      
-      <div id="placesContainer" class="bg-[var(--bg-card)] rounded-b-2xl p-5 border border-t-0 border-[var(--border-light)]"></div>
-    </div>
-  </section>
-
-  <!-- GENERADOR DE ITINERARIOS -->
-  <section id="generador" class="px-6 pb-16">
-    <div class="max-w-xl mx-auto">
-      <div class="apartado-header apartado-generador animate-in">
-        <p class="apartado-numero">Apartado 04</p>
-        <h2 class="apartado-titulo">Generador de itinerarios</h2>
-        <p class="apartado-subtitulo">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas</p>
-      </div>
-
-      <div class="bg-[var(--bg-card)] rounded-b-2xl p-6 border border-t-0 border-[var(--border-light)] animate-in">
-        <form id="itineraryForm" class="space-y-4">
-          <div>
-            <label for="horas" class="block text-sm font-semibold text-[var(--fg)] mb-2">Horas disponibles</label>
-            <select id="horas" class="form-input form-select" required>
-              <option value="">Selecciona una opción</option>
-              <option value="3">3 horas - Una escapada rápida</option>
-              <option value="5">5 horas - Media jornada</option>
-              <option value="8">8 horas - Día completo</option>
-              <option value="12">12 horas - Día largo</option>
-            </select>
-          </div>
-          <div>
-            <label for="tipo" class="block text-sm font-semibold text-[var(--fg)] mb-2">Tipo de plan</label>
-            <select id="tipo" class="form-input form-select" required>
-              <option value="">Selecciona una opción</option>
-              <option value="ciudad">Ciudad - Cultura, historia y monumentos</option>
-              <option value="naturaleza">Naturaleza - Paisajes, playas y bosques</option>
-              <option value="mixto">Mixto - Un poco de todo</option>
-            </select>
-          </div>
-          <button type="submit" class="btn-primary mt-2">Generar itinerario</button>
-        </form>
-      </div>
-      <div id="itineraryResult" class="mt-6 hidden"></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 px-6 border-t border-[var(--border-light)]">
-    <div class="max-w-xl mx-auto text-center">
-      <p class="font-display text-xl italic text-[var(--fg)] mb-2">Bo viaxe</p>
-      <p class="text-[var(--fg-muted)] text-sm">Guía creada por Xurxo y Raquel</p>
-    </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-text">Guía creada con cariño para quienes buscan descubrir Galicia despacio.</p>
+    <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
+    <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
+      <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
+      <circle cx="16" cy="16" r="4"/>
+    </svg>
   </footer>
 
   <script>
-    /* DATOS DE LUGARES */
     const lugares = [
-      // IMPRESCINDIBLES
-      { id: 1, nombre: "Catedral de Santiago de Compostela", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo más reconocible de Galicia", textoCompleto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse y sentir el ambiente.</p>`, consejo: "Reserva con tiempo en la web oficial.", destacado: true },
-      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses en la ría de Vigo", textoCompleto: `<p>Un archipiélago de ensueño con playas de arena blanca y aguas cristalinas. The Guardian llamó a Rodas "la mejor playa del mundo".</p>`, consejo: "Reserva el barco con antelación.", destacado: true },
-      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo para los romanos", textoCompleto: `<p>Para los romanos, este era el fin del mundo conocido. El faro ofrece postales inolvidables al atardecer.</p>`, consejo: "Ve al atardecer.", destacado: true },
-      { id: 11, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "La única muralla romana completa del mundo", textoCompleto: `<p>Patrimonio de la Humanidad. Puedes caminar por lo alto de los 2 km de muralla.</p>`, consejo: "Camina al atardecer.", destacado: true },
-
-      // MÁGICA
-      { id: 7, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria del Camino", textoCompleto: `<p>Un pico cónico envuelto en leyendas jacobeas y misterios.</p>`, consejo: "Sube al atardecer." },
-      { id: 14, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos y vistas al Miño", textoCompleto: `<p>Un castro galaico en la frontera con Portugal, con petroglifos milenarios.</p>`, consejo: "Combina con A Guarda." },
-      { id: 16, nombre: "Santuario de la Virgen de la Barca", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Donde la piedra y el mar se encuentran", textoCompleto: `<p>En Muxía, donde la tradición cuenta que la Virgen llegó en barca de piedra.</p>`, consejo: "Ve con marea alta." },
-
-      // ATLÁNTICA
-      { id: 4, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros, naufragios y paisajes salvajes", textoCompleto: `<p>Una costa salvaje donde el Atlántico golpea con fuerza.</p>`, consejo: "Lleva ropa de abrigo." },
-      { id: 6, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "La primera ciudad que supo del Nuevo Mundo", textoCompleto: `<p>La Pinta llegó aquí en 1493 con la noticia del descubrimiento de América.</p>`, consejo: "Come en el puerto." },
-      { id: 10, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "El pueblo de los hórreos sobre el mar", textoCompleto: `<p>Un pueblo pesquero donde los hórreos se asoman al mar.</p>`, consejo: "Ve al atardecer." },
-
-      // VERDE
-      { id: 5, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque atlántico millonario", textoCompleto: `<p>Uno de los mejores ejemplos de bosque atlántico templado de Europa.</p>`, consejo: "Ideal por la mañana." },
-      { id: 15, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Brañas, cabalos salvajes e néboa", textoCompleto: `<p>Una sierra misteriosa donde los caballos salvajes pastan entre niebla.</p>`, consejo: "Lleva abrigo." },
-      { id: 18, nombre: "Cañón do Sil", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Viñedos colgados sobre el cañón", textoCompleto: `<p>El río Sil ha esculpido un cañón con viñedos en bancales imposibles.</p>`, consejo: "Reserva un catamarán." },
-
-      // HUMANA
-      { id: 8, nombre: "Mercado de Abastos (Santiago)", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "El mercado más vivo de Galicia", textoCompleto: `<p>Donde los santiagueses compran desde hace más de un siglo.</p>`, consejo: "Ve por la mañana." },
-      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "La mariscada y el vermute obligados", textoCompleto: `<p>Sus tabernas del casco viejo son legendarias.</p>`, consejo: "Pide ostras en la calle Pescadería." },
-      { id: 20, nombre: "Betanzos y sus tortillas", categoria: "humana", tipo: "ciudad", horas: 3, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "La capital de la tortilla española", textoCompleto: `<p>Un pueblo medieval donde la tortilla de patatas es religión.</p>`, consejo: "Pide en varios bares." },
-
-      // SEGREDA
-      { id: 9, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos naturales escondidos", textoCompleto: `<p>Una playa con enormes arcos de piedra que solo se revelan con marea baja.</p>`, consejo: "Consulta las mareas." },
-      { id: 12, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "El salto de agua más espectacular", textoCompleto: `<p>Una cascada de más de 30 metros en pleno bosque gallego.</p>`, consejo: "Después de lluvias impresiona más." },
-      { id: 22, nombre: "Fervenza do Ézaro", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "La única cascada que cae al mar", textoCompleto: `<p>El río Xallas salta 40 metros hasta el Atlántico.</p>`, consejo: "Quédate para la iluminación nocturna." }
+      { id: 1, nombre: "Catedral de Santiago de Compostela", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse, mirar con calma y sentir el ambiente de la ciudad.</p><p>Se recomienda reservar con antelación la entrada para el Pórtico de la Gloria o para subir a las cubiertas.</p>`, tips: ["Reserva antes para el Pórtico y cubiertas.", "Visita temprano o al atardecer.", "La misa del peregrino incluye el botafumeiro."], destacado: true },
+      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: `<p>Un archipiélago de ensueño con playas de arena blanca y aguas cristalinas. The Guardian llamó a Rodas "la mejor playa del mundo".</p>`, tips: ["Reserva el barco con antelación.", "Lleva comida y agua.", "Hay límite diario de visitantes."], destacado: true },
+      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", texto: `<p>Para los romanos, este era el fin del mundo conocido. El faro ofrece postales inolvidables al atardecer.</p>`, tips: ["Ve al atardecer.", "Combina con la playa de Langosteira."], destacado: true },
+      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", texto: `<p>La única muralla romana completa del mundo. Puedes caminar por lo alto de los 2 km.</p>`, tips: ["Camina al atardecer.", "Termina en el casco histórico."], destacado: true },
+      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", texto: `<p>Un pico cónico envuelto en leyendas jacobeas y misterios.</p>`, tips: ["Sube al atardecer."] },
+      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", texto: `<p>Un castro galaico con vistas al Miño.</p>`, tips: ["Combina con A Guarda."] },
+      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", texto: `<p>Una costa salvaje donde el Atlántico golpea con fuerza.</p>`, tips: ["Lleva abrigo."] },
+      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", texto: `<p>La Pinta llegó aquí en 1493.</p>`, tips: ["Come en el puerto."] },
+      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", texto: `<p>Un pueblo con hórreos asomados al mar.</p>`, tips: ["Ve al atardecer."] },
+      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", texto: `<p>Bosque atlántico templado único en Europa.</p>`, tips: ["Ideal por la mañana."] },
+      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", texto: `<p>Caballos salvajes entre niebla.</p>`, tips: ["Lleva abrigo."] },
+      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", texto: `<p>Donde los santiagueses compran desde hace un siglo.</p>`, tips: ["Ve por la mañana."] },
+      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", texto: `<p>Tabernas legendarias del casco viejo.</p>`, tips: ["Pide ostras en Pescadería."] },
+      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", texto: `<p>Arcos de piedra que se revelan con marea baja.</p>`, tips: ["Consulta las mareas."] },
+      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", texto: `<p>Cascada de 30 metros en el bosque.</p>`, tips: ["Después de lluvias."] }
     ];
 
     const categorias = [
-      { id: "imprescindibles", nombre: "Imprescindibles", emoji: "⭐", descripcion: "Los lugares que no puedes perderte" },
-      { id: "magica", nombre: "Galicia mágica", emoji: "🌌", descripcion: "Leyendas, misterios y espiritualidad" },
-      { id: "atlantica", nombre: "Galicia atlántica", emoji: "🌊", descripcion: "Mar, faros y costa salvaje" },
-      { id: "verde", nombre: "Galicia verde interior", emoji: "🌿", descripcion: "Bosques, ríos y paisajes de interior" },
-      { id: "humana", nombre: "Galicia humana", emoji: "🍷", descripcion: "Pueblos, mercados y vida local" },
-      { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙", descripcion: "Rincones que no aparecen en las guías" }
+      { id: "imprescindibles", nombre: "Imprescindibles", emoji: "⭐" },
+      { id: "magica", nombre: "Galicia mágica", emoji: "🌌" },
+      { id: "atlantica", nombre: "Galicia atlántica", emoji: "🌊" },
+      { id: "verde", nombre: "Galicia verde interior", emoji: "🌿" },
+      { id: "humana", nombre: "Galicia humana", emoji: "🍷" },
+      { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙" }
     ];
 
-    /* INICIALIZACIÓN */
     document.addEventListener('DOMContentLoaded', function() {
-      initMobileMenu();
-      initPlaceCards();
-      initScrollAnimations();
-      initSmoothScroll();
+      initAnimations();
+      initNavigation();
+      initIndexLinks();
       renderPlaces();
-      initItineraryGenerator();
+      initGenerator();
     });
 
-    function initMobileMenu() {
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (!menuBtn || !mobileMenu) return;
-      menuBtn.addEventListener('click', function() {
-        const isHidden = mobileMenu.classList.toggle('hidden');
-        menuBtn.setAttribute('aria-expanded', String(!isHidden));
-      });
-      mobileMenu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.add('hidden');
-          menuBtn.setAttribute('aria-expanded', 'false');
-        });
-      });
+    function initAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.1, rootMargin: '-20px' });
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     }
 
-    function initPlaceCards() {
-      document.addEventListener('click', function(e) {
-        const card = e.target.closest('.place-card');
-        if (!card || e.target.tagName === 'A') return;
-        const isExpanded = card.classList.contains('expanded');
-        document.querySelectorAll('.place-card.expanded').forEach(function(c) { c.classList.remove('expanded'); });
-        if (!isExpanded) {
-          card.classList.add('expanded');
-          setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
-        }
-      });
-    }
-
-    function initScrollAnimations() {
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
+    function initNavigation() {
+      const sections = ['hero', 'indice', 'introduccion', 'recomendaciones', 'lugares', 'generador'];
+      const navDots = document.querySelectorAll('.nav-dot');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+            navDots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === entry.target.id));
           }
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-      document.querySelectorAll('.animate-in').forEach(function(el) { observer.observe(el); });
+      }, { threshold: 0.4 });
+      sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
+      navDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const target = document.getElementById(dot.dataset.section);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
     }
 
-    function initSmoothScroll() {
-      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href === '#') return;
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            const offset = 90;
-            const position = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: position, behavior: 'smooth' });
-          }
+    function initIndexLinks() {
+      document.querySelectorAll('.index-item').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
     }
@@ -741,149 +736,105 @@
     function renderPlaces() {
       const container = document.getElementById('placesContainer');
       if (!container) return;
-      
       let html = '';
+      let globalIndex = 0;
       
-      categorias.forEach(function(categoria) {
-        const lugaresCategoria = lugares.filter(function(l) { return l.categoria === categoria.id; });
-        if (lugaresCategoria.length === 0) return;
+      categorias.forEach(cat => {
+        const catLugares = lugares.filter(l => l.categoria === cat.id);
+        if (catLugares.length === 0) return;
         
-        html += `
-          <div class="mb-6 animate-in">
-            <div class="subapartado-header sub-${categoria.id}">
-              <div class="subapartado-icono">${categoria.emoji}</div>
-              <div class="subapartado-texto">
-                <h3>${categoria.nombre}</h3>
-                <p>${categoria.descripcion}</p>
+        html += `<div class="subapartado-header sub-${cat.id} fade-in"><div class="subapartado-icono">${cat.emoji}</div><div class="subapartado-texto"><h3>${cat.nombre}</h3></div></div>`;
+        
+        catLugares.forEach(lugar => {
+          globalIndex++;
+          html += `
+          <article class="place-card fade-in" id="place-${lugar.id}">
+            <div class="place-image">
+              <img src="${lugar.imagen}" alt="${lugar.nombre}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'">
+              <span class="place-number-badge">${globalIndex}</span>
+              <div class="place-title-overlay"><h3 class="place-title">${lugar.nombre}</h3></div>
+            </div>
+            <div class="place-header" onclick="togglePlace('place-${lugar.id}')" role="button" tabindex="0" aria-expanded="false">
+              <span class="place-header-title">${lugar.descripcion}</span>
+              <div class="place-toggle">
+                <svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
               </div>
             </div>
-            <div class="space-y-3">
-        `;
-        
-        lugaresCategoria.forEach(function(lugar) {
-          html += `
-            <article class="place-card" data-id="${lugar.id}">
-              <img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-full h-36 object-cover" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'">
-              <div class="p-4">
-                <div class="flex items-start justify-between gap-3 mb-1">
-                  <div>
-                    <h4 class="font-semibold text-[var(--fg)]">${lugar.nombre}</h4>
-                    <p class="text-[var(--fg-muted)] text-sm">${lugar.descripcion}</p>
-                  </div>
-                  <button class="expand-icon w-7 h-7 rounded-full bg-[var(--bg-generador)] flex items-center justify-center flex-shrink-0 transition-all" aria-label="Expandir">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                  </button>
-                </div>
-                <div class="flex items-center gap-2 mt-2">
-                  <span class="category-badge category-${categoria.id}">${lugar.tipo}</span>
-                  <span class="text-[var(--fg-muted)] text-xs">${lugar.horas}h</span>
-                </div>
-                <div class="expand-content">
-                  <div class="pt-3 mt-3 border-t border-[var(--border-light)] text-sm text-[var(--fg-soft)]">
-                    ${lugar.textoCompleto}
-                    ${lugar.consejo ? `<p class="mt-2 text-xs text-[var(--gold)]"><strong>Consejo:</strong> ${lugar.consejo}</p>` : ''}
-                  </div>
-                </div>
+            <div class="place-content">
+              <div class="place-content-inner">
+                ${lugar.texto}
+                ${lugar.tips ? `<div class="place-info"><div class="info-block info-tips"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>${lugar.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></div></div>` : ''}
               </div>
-            </article>
-          `;
+            </div>
+          </article>`;
         });
-        
-        html += `</div></div>`;
       });
-      
       container.innerHTML = html;
-      initPlaceCards();
-      initScrollAnimations();
+      initAnimations();
     }
 
-    function initItineraryGenerator() {
+    function togglePlace(id) {
+      const card = document.getElementById(id);
+      if (!card) return;
+      const isExpanded = card.classList.contains('expanded');
+      document.querySelectorAll('.place-card.expanded').forEach(c => c.classList.remove('expanded'));
+      if (!isExpanded) card.classList.add('expanded');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const header = e.target.closest('.place-header');
+        if (header) { e.preventDefault(); header.click(); }
+      }
+    });
+
+    function initGenerator() {
       const form = document.getElementById('itineraryForm');
       if (!form) return;
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         const horas = parseInt(document.getElementById('horas').value, 10);
         const tipo = document.getElementById('tipo').value;
-        const itinerario = generarItinerario(horas, tipo);
-        mostrarItinerario(itinerario, horas, tipo);
+        generateItinerary(horas, tipo);
       });
     }
 
-    function generarItinerario(horasDisponibles, tipoPreferido) {
+    function generateItinerary(horas, tipo) {
       let candidatos = lugares.slice();
-      candidatos.sort(function(a, b) {
-        let scoreA = 0, scoreB = 0;
-        if (tipoPreferido === 'mixto') { scoreA += 10; scoreB += 10; }
+      candidatos.sort((a, b) => {
+        let sA = 0, sB = 0;
+        if (tipo === 'mixto') { sA += 10; sB += 10; }
         else {
-          if (a.tipo === tipoPreferido) scoreA += 15;
-          if (a.tipo === 'mixto') scoreA += 5;
-          if (b.tipo === tipoPreferido) scoreB += 15;
-          if (b.tipo === 'mixto') scoreB += 5;
+          if (a.tipo === tipo) sA += 15;
+          if (a.tipo === 'mixto') sA += 5;
+          if (b.tipo === tipo) sB += 15;
+          if (b.tipo === 'mixto') sB += 5;
         }
-        if (a.destacado) scoreA += 10;
-        if (b.destacado) scoreB += 10;
-        return scoreB - scoreA;
+        if (a.destacado) sA += 10;
+        if (b.destacado) sB += 10;
+        return sB - sA;
       });
-      let seleccionados = [], horasUsadas = 0;
+      let seleccionados = [], h = 0;
       for (let i = 0; i < candidatos.length; i++) {
-        const lugar = candidatos[i];
-        if (horasUsadas + lugar.horas <= horasDisponibles) {
-          seleccionados.push(lugar);
-          horasUsadas += lugar.horas;
-        }
-        if (horasUsadas >= horasDisponibles * 0.85) break;
+        if (h + candidatos[i].horas <= horas) { seleccionados.push(candidatos[i]); h += candidatos[i].horas; }
+        if (h >= horas * 0.85) break;
       }
-      if (seleccionados.length === 0 && candidatos.length > 0) seleccionados.push(candidatos[0]);
-      return seleccionados;
+      if (seleccionados.length === 0) seleccionados.push(candidatos[0]);
+      showItinerary(seleccionados, h, tipo);
     }
 
-    function mostrarItinerario(lugaresSeleccionados, horas, tipo) {
+    function showItinerary(lista, hTotal, tipo) {
       const container = document.getElementById('itineraryResult');
       if (!container) return;
       container.classList.remove('hidden');
-      const tipoNombres = { 'ciudad': 'Cultura y ciudad', 'naturaleza': 'Naturaleza y paisajes', 'mixto': 'Experiencia mixta' };
-      let horasTotal = 0;
-      lugaresSeleccionados.forEach(function(l) { horasTotal += l.horas; });
-      
-      let html = `
-        <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-light)] animate-in visible">
-          <div class="flex items-start justify-between mb-5">
-            <div>
-              <h3 class="font-semibold text-lg mb-1">Tu itinerario sugerido</h3>
-              <p class="text-[var(--fg-muted)] text-sm">${horasTotal} horas de experiencias</p>
-            </div>
-            <button onclick="cerrarItinerario()" class="p-1.5 rounded-lg hover:bg-black/5 transition-colors" aria-label="Cerrar">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-          <span class="inline-block px-3 py-1 text-xs bg-[var(--accent)]/10 text-[var(--accent)] rounded-full mb-5">${tipoNombres[tipo]}</span>
-          <div class="space-y-4">`;
-      
-      lugaresSeleccionados.forEach(function(lugar, index) {
-        html += `
-          <div class="itinerary-card">
-            <span class="itinerary-number">${index + 1}</span>
-            <div class="bg-[var(--bg-generador)] rounded-xl p-3">
-              <div class="flex gap-3">
-                <img src="${lugar.imagen}" alt="${lugar.nombre}" class="w-12 h-12 rounded-lg object-cover flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'">
-                <div>
-                  <h4 class="font-medium text-sm">${lugar.nombre}</h4>
-                  <p class="text-[var(--fg-muted)] text-xs mt-0.5">${lugar.horas}h</p>
-                </div>
-              </div>
-            </div>
-          </div>`;
+      const tipoN = { 'ciudad': 'Cultura y ciudad', 'naturaleza': 'Naturaleza', 'mixto': 'Experiencia mixta' };
+      let html = `<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">${hTotal}h de experiencias</div></div><button onclick="document.getElementById('itineraryResult').classList.add('hidden')" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><span class="itinerary-badge">${tipoN[tipo]}</span>`;
+      lista.forEach((l, i) => {
+        html += `<div class="itinerary-place"><span class="itinerary-place-num">${i+1}</span><img src="${l.imagen}" alt="${l.nombre}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'"><div><div class="itinerary-place-name">${l.nombre}</div><div class="itinerary-place-time">${l.horas}h</div></div></div>`;
       });
-      
-      html += `</div><p class="mt-5 pt-4 border-t border-[var(--border-light)] text-xs text-[var(--fg-muted)]">Tiempos estimados sin desplazamientos. Adáptalo a tu ritmo.</p></div>`;
-      
+      html += `<p style="margin-top:12px;font-size:0.75rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
       container.innerHTML = html;
-      setTimeout(function() { container.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
-    }
-
-    function cerrarItinerario() {
-      const container = document.getElementById('itineraryResult');
-      if (container) container.classList.add('hidden');
+      setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
   </script>
 </body>
