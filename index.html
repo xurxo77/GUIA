@@ -34,6 +34,7 @@
       --accent-sea: #1a4a5e;
       --accent-gold: #b8860b;
       --accent-green: #3d5a47;
+      --accent-red: #c45a3f;
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
@@ -75,18 +76,10 @@
       gap: 12px;
       z-index: 9998;
       box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-      animation: slideUp 0.3s ease;
     }
     .install-banner.visible { display: flex; }
-    
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    
     .install-banner-text { font-size: 0.9rem; }
     .install-banner-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
-    
     .install-banner-btn {
       background: white;
       color: var(--accent-sea);
@@ -99,7 +92,6 @@
       cursor: pointer;
       white-space: nowrap;
     }
-    
     .install-banner-close {
       background: none;
       border: none;
@@ -108,7 +100,6 @@
       cursor: pointer;
       padding: 4px;
       font-size: 1.2rem;
-      line-height: 1;
     }
 
     /* SPLASH SCREEN */
@@ -130,19 +121,8 @@
 
     .splash-content { width: 100%; max-width: 400px; text-align: center; }
     .splash-icon { margin-bottom: 24px; }
-    .splash-title {
-      font-size: clamp(3rem, 12vw, 4rem);
-      font-weight: 700;
-      color: var(--accent-sea);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .splash-subtitle {
-      font-size: 1.1rem;
-      color: var(--fg-muted);
-      font-style: italic;
-      margin-bottom: 36px;
-    }
+    .splash-title { font-size: clamp(3rem, 12vw, 4rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 8px; }
+    .splash-subtitle { font-size: 1.1rem; color: var(--fg-muted); font-style: italic; margin-bottom: 36px; }
 
     .splash-form { display: flex; flex-direction: column; gap: 16px; }
     .splash-input {
@@ -205,26 +185,13 @@
       padding-top: calc(20px + env(safe-area-inset-top));
       scroll-snap-align: start;
     }
-    .hero-title {
-      font-size: clamp(3.5rem, 14vw, 5.5rem);
-      font-weight: 700;
-      color: var(--accent-sea);
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-    .hero-subtitle {
-      font-size: clamp(1.2rem, 5vw, 1.6rem);
-      color: var(--fg-muted);
-      font-style: italic;
-      margin-bottom: 28px;
-    }
+    .hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
+    .hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; }
     .hero-authors { margin-top: 24px; width: 100%; }
-    
     .authors-column { display: flex; flex-direction: column; align-items: center; gap: 20px; }
     .author-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
     .author-avatar {
-      width: 72px;
-      height: 72px;
+      width: 72px; height: 72px;
       border-radius: 50%;
       border: 3px solid var(--border-aged);
       background: var(--bg-cream);
@@ -273,8 +240,7 @@
 
     .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .section-number {
-      width: 44px;
-      height: 44px;
+      width: 44px; height: 44px;
       border: 3px solid var(--accent-sea);
       border-radius: 50%;
       display: flex;
@@ -303,8 +269,7 @@
     .quote::before {
       content: '"';
       position: absolute;
-      top: 6px;
-      left: 8px;
+      top: 6px; left: 8px;
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem;
       color: var(--accent-sea);
@@ -334,8 +299,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       background: var(--bg-paper);
       border: 2px solid var(--border-aged);
       border-radius: 50%;
@@ -360,14 +324,7 @@
       padding: 28px 20px;
       text-align: center;
     }
-    .rec-author-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 3px solid var(--border-aged);
-      object-fit: cover;
-      margin: 0 auto 16px;
-    }
+    .rec-author-avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--border-aged); object-fit: cover; margin: 0 auto 16px; }
     .rec-author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
     .rec-author-subtitle { font-size: 0.85rem; color: var(--fg-muted); font-style: italic; }
     
@@ -381,16 +338,7 @@
       flex-direction: column;
       justify-content: center;
     }
-    .rec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--fg-ink);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .rec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
@@ -439,14 +387,7 @@
       background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
       z-index: 1;
     }
-    .place-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
-      font-weight: 600;
-      color: white;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-      margin: 0;
-    }
+    .place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 600; color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.5); margin: 0; }
     .place-header {
       padding: 14px 16px;
       display: flex;
@@ -504,23 +445,109 @@
       margin-top: 18px;
       box-shadow: 0 4px 16px var(--shadow-warm);
     }
-    .form-label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 8px; }
-    .form-select {
-      width: 100%;
+
+    /* Geolocalización */
+    .geo-section {
+      background: linear-gradient(90deg, rgba(61, 90, 71, 0.08), transparent);
+      border: 2px solid var(--accent-green);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .geo-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .geo-info { flex: 1; }
+    .geo-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-green); }
+    .geo-status { font-size: 0.8rem; color: var(--fg-muted); margin-top: 2px; }
+    .geo-status.active { color: var(--accent-green); }
+    .geo-btn {
+      padding: 8px 14px;
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .geo-btn:hover { background: #2d4537; }
+    .geo-btn:disabled { background: var(--fg-muted); cursor: wait; }
+
+    /* Selector de lugares */
+    .places-selector {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 2px solid var(--border-aged);
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    .place-select-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-aged);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .place-select-item:last-child { border-bottom: none; }
+    .place-select-item:hover { background: var(--bg-cream); }
+    .place-select-item.selected { background: rgba(26, 74, 94, 0.08); }
+    
+    .place-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--accent-sea);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+    .place-select-item.selected .place-checkbox {
+      background: var(--accent-sea);
+    }
+    .place-checkbox svg {
+      width: 14px;
+      height: 14px;
+      stroke: white;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .place-select-item.selected .place-checkbox svg { opacity: 1; }
+    
+    .place-select-num {
+      width: 28px;
+      height: 28px;
+      background: var(--accent-sea);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .place-select-info { flex: 1; min-width: 0; }
+    .place-select-name { font-weight: 600; font-size: 0.95rem; }
+    .place-select-time { font-size: 0.8rem; color: var(--fg-muted); }
+
+    .selection-counter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 12px 14px;
       background: var(--bg-cream);
-      border: 2px solid var(--border-aged);
       border-radius: 8px;
-      font-family: inherit;
-      font-size: 1rem;
-      color: var(--fg-ink);
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235a4d3a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
+      margin-bottom: 12px;
     }
-    .form-select:focus { border-color: var(--accent-sea); outline: none; }
+    .selection-label { font-size: 0.9rem; color: var(--fg-muted); }
+    .selection-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); }
+
     .btn-generate {
       width: 100%;
       padding: 14px;
@@ -532,9 +559,24 @@
       font-size: 1.05rem;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 6px;
     }
     .btn-generate:hover { background: #143a4a; }
+    .btn-generate:disabled { background: var(--fg-muted); cursor: not-allowed; }
+
+    .btn-clear {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      color: var(--fg-muted);
+      border: 2px solid var(--border-aged);
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-clear:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
     .itinerary-result {
       background: var(--bg-cream);
@@ -546,6 +588,24 @@
     .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
     .itinerary-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 2px; }
     .itinerary-hours { font-size: 0.85rem; color: var(--fg-muted); }
+    
+    /* Resumen del viaje */
+    .trip-summary {
+      background: var(--accent-sea);
+      color: white;
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .trip-summary-item { text-align: center; }
+    .trip-summary-item:first-child { border-right: 1px solid rgba(255,255,255,0.2); padding-right: 20px; }
+    .trip-summary-item:last-child { padding-left: 20px; }
+    .trip-summary-value { font-size: 1.4rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
+    .trip-summary-label { font-size: 0.75rem; opacity: 0.85; margin-top: 2px; }
+
     .itinerary-badge {
       display: inline-block;
       padding: 4px 12px;
@@ -555,8 +615,10 @@
       border-radius: 20px;
       margin-bottom: 12px;
     }
+    
     .itinerary-place {
       display: flex;
+      align-items: center;
       gap: 12px;
       padding: 12px;
       background: var(--bg-card);
@@ -566,20 +628,70 @@
     }
     .itinerary-place:last-child { margin-bottom: 0; }
     .itinerary-place-num {
-      width: 24px; height: 24px;
-      background: var(--accent-sea);
+      width: 28px; height: 28px;
+      background: var(--accent-green);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
       flex-shrink: 0;
     }
-    .itinerary-place img { width: 48px; height: 48px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+    .itinerary-place img { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+    .itinerary-place-info { flex: 1; min-width: 0; }
     .itinerary-place-name { font-weight: 600; font-size: 0.9rem; }
     .itinerary-place-time { font-size: 0.8rem; color: var(--fg-muted); }
+    .itinerary-place-actions { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    
+    .btn-small {
+      padding: 5px 10px;
+      background: var(--accent-sea);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-small:hover { background: #143a4a; }
+    .btn-small.secondary { background: var(--accent-gold); }
+    .btn-small.secondary:hover { background: #9a7209; }
+
+    .route-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--accent-gold);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 14px;
+    }
+    .route-btn:hover { background: #9a7209; }
+
+    /* Trayecto entre lugares */
+    .journey-info {
+      background: rgba(184, 134, 11, 0.1);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .journey-icon { color: var(--accent-gold); }
 
     /* Categoría */
     .category-header {
@@ -632,26 +744,41 @@
     .menu-item.active svg { stroke: var(--accent-sea); }
 
     /* MAPA */
-    .map-section {
-      min-height: auto;
-      padding-top: 20px;
-    }
+    .map-section { min-height: auto; padding-top: 20px; }
     .map-container {
-      height: 400px;
+      height: 350px;
       border-radius: 12px;
       border: 3px solid var(--border-card);
       overflow: hidden;
-      margin-top: 16px;
+      margin-top: 12px;
       background: var(--bg-cream);
     }
     
-    /* Estilos para markers de Leaflet */
+    .map-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .filter-btn {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border: 2px solid var(--border-aged);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--accent-sea); }
+    .filter-btn.active { background: var(--accent-sea); color: white; border-color: var(--accent-sea); }
+    
     .custom-marker {
       background: var(--accent-sea);
       border: 3px solid white;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -660,31 +787,31 @@
       color: white;
       font-size: 14px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: all 0.2s ease;
+    }
+    .custom-marker.highlighted { background: var(--accent-green); transform: scale(1.2); }
+    .custom-marker.dimmed { opacity: 0.3; }
+    
+    /* Marcador de ubicación del usuario */
+    .user-location-marker {
+      background: var(--accent-red);
+      border: 3px solid white;
+      border-radius: 50%;
+      width: 16px; height: 16px;
+      box-shadow: 0 0 0 8px rgba(196, 90, 63, 0.2);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(196, 90, 63, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); }
     }
     
-    .leaflet-popup-content-wrapper {
-      border-radius: 12px;
-      box-shadow: 0 4px 16px var(--shadow-warm);
-    }
-    .leaflet-popup-content {
-      margin: 14px 16px;
-      font-family: 'Crimson Pro', Georgia, serif;
-      font-size: 15px;
-      line-height: 1.5;
-    }
+    .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: 0 4px 16px var(--shadow-warm); }
+    .leaflet-popup-content { margin: 14px 16px; font-family: 'Crimson Pro', Georgia, serif; font-size: 15px; line-height: 1.5; }
     
-    .popup-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--accent-sea);
-      margin-bottom: 8px;
-    }
-    .popup-desc {
-      color: var(--fg-muted);
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+    .popup-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--accent-sea); margin-bottom: 8px; }
+    .popup-desc { color: var(--fg-muted); font-size: 14px; margin-bottom: 12px; }
     .popup-btn {
       display: block;
       width: 100%;
@@ -697,33 +824,26 @@
       font-family: 'Cormorant Garamond', serif;
       font-weight: 600;
       font-size: 15px;
-      transition: background 0.2s ease;
     }
     .popup-btn:hover { background: #143a4a; }
 
     .map-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-      padding: 12px;
+      gap: 12px;
+      margin-top: 12px;
+      padding: 10px 12px;
       background: var(--bg-cream);
       border-radius: 8px;
       border: 1px solid var(--border-aged);
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
       font-size: 0.8rem;
       color: var(--fg-muted);
     }
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-sea);
-    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .legend-dot.sea { background: var(--accent-sea); }
+    .legend-dot.green { background: var(--accent-green); }
+    .legend-dot.red { background: var(--accent-red); }
   </style>
 </head>
 <body>
@@ -751,15 +871,11 @@
       </div>
       <h1 class="splash-title">Galicia</h1>
       <p class="splash-subtitle">Guía para amigos</p>
-
       <form class="splash-form" id="splashForm" onsubmit="return false;">
-        <div>
-          <input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off">
-        </div>
+        <div><input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off"></div>
         <p class="splash-error" id="splashError"></p>
         <button type="submit" class="splash-btn">Entrar</button>
       </form>
-
       <div class="splash-footer">
         <p class="splash-footer-text">Esta guía ha sido creada con cariño, exclusivamente para amigos.</p>
         <p class="splash-footer-note">La contraseña se actualiza cada año.</p>
@@ -799,8 +915,8 @@
       <div class="section-header fade-in"><span class="section-number">1</span><h2 class="section-title">Introducción</h2></div>
       <div class="prose fade-in delay-1">
         <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
-        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
-        <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
+        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo.</p>
+        <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo.</p>
         <blockquote class="quote">Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.<cite class="quote-author">— Álvaro Cunqueiro</cite></blockquote>
       </div>
     </section>
@@ -817,17 +933,9 @@
           <div class="carousel" id="carousel-xurxo">
             <article class="carousel-card"><div class="rec-author-card"><img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Xurxo</span><span class="rec-author-subtitle">Sus recomendaciones</span></div></article>
             <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3><p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3><p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3><p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3><p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3><p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3><p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3><p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3><p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3><p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3><p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3><p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3><p class="rec-text">El paraguas es tu compañero.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar.</p></div></article>
+            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">💬</span>La gente habla gallego</h3><p class="rec-text">Un "boas" o "grazas" ayuda mucho.</p></div></article>
           </div>
           <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
@@ -859,19 +967,49 @@
       
       <!-- MAPA -->
       <div class="map-section fade-in">
-        <p style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:8px">Mapa con todos los lugares. Pulsa en un marcador para ir.</p>
+        <p style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;">Mapa con todos los lugares. Filtra por categoría para explorar visualmente.</p>
+        <div class="map-filters">
+          <button class="filter-btn active" onclick="filterMap('all')" data-filter="all">Todos</button>
+          <button class="filter-btn" onclick="filterMap('imprescindibles')" data-filter="imprescindibles">⭐ Imprescindibles</button>
+          <button class="filter-btn" onclick="filterMap('magica')" data-filter="magica">🌌 Mágica</button>
+          <button class="filter-btn" onclick="filterMap('atlantica')" data-filter="atlantica">🌊 Atlántica</button>
+          <button class="filter-btn" onclick="filterMap('verde')" data-filter="verde">🌿 Verde</button>
+          <button class="filter-btn" onclick="filterMap('humana')" data-filter="humana">🍷 Humana</button>
+          <button class="filter-btn" onclick="filterMap('segreda')" data-filter="segreda">🌙 Segreda</button>
+        </div>
         <div id="map" class="map-container"></div>
         <div class="map-legend">
-          <div class="legend-item"><span class="legend-dot"></span>Lugar marcado</div>
+          <div class="legend-item"><span class="legend-dot sea"></span>Lugares</div>
+          <div class="legend-item"><span class="legend-dot green"></span>En itinerario</div>
+          <div class="legend-item"><span class="legend-dot red"></span>Tu ubicación</div>
         </div>
       </div>
 
-      <div class="generator-box fade-in" style="margin-top:24px">
-        <form id="itineraryForm">
-          <div><label class="form-label">Horas disponibles</label><select id="horas" class="form-select" required><option value="">Selecciona</option><option value="3">3 horas — Escapada rápida</option><option value="5">5 horas — Media jornada</option><option value="8">8 horas — Día completo</option><option value="12">12 horas — Día largo</option></select></div>
-          <div style="margin-top:12px"><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza">Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
-          <button type="submit" class="btn-generate">Generar itinerario</button>
-        </form>
+      <div class="generator-box fade-in" style="margin-top:20px">
+        <!-- Geolocalización -->
+        <div class="geo-section">
+          <div class="geo-header">
+            <div class="geo-info">
+              <div class="geo-title">Tu ubicación</div>
+              <div class="geo-status" id="geoStatus">Actívala para rutas desde tu posición</div>
+            </div>
+            <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
+          </div>
+        </div>
+        
+        <p style="font-size:0.9rem;color:var(--fg-muted);margin-bottom:12px;">Selecciona los lugares que quieres visitar:</p>
+        
+        <!-- Lista de lugares seleccionables -->
+        <div class="places-selector" id="placesSelector"></div>
+        
+        <!-- Contador de selección -->
+        <div class="selection-counter">
+          <span class="selection-label">Lugares seleccionados:</span>
+          <span class="selection-value" id="selectionCount">0 lugares · 0h</span>
+        </div>
+        
+        <button type="button" class="btn-generate" id="generateBtn" onclick="generateItinerary()" disabled>Generar itinerario</button>
+        <button type="button" class="btn-clear" onclick="clearSelection()">Limpiar selección</button>
       </div>
       <div id="itineraryResult" class="hidden"></div>
     </section>
@@ -890,7 +1028,7 @@
           <span>Portada</span>
         </a>
         <a href="#introduccion" class="menu-item" data-section="introduccion">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span>Introducción</span>
         </a>
         <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
@@ -983,37 +1121,197 @@
 
     /* APP */
     var map = null;
-    var markers = [];
+    var markers = {};
+    var userLocation = null;
+    var userMarker = null;
+    var selectedPlaces = [];
 
     function initApp() {
       initAnimations();
       renderPlaces();
-      initGenerator();
+      renderPlacesSelector();
       initCarousels();
       initBottomMenu();
       initMap();
+      checkSavedLocation();
     }
 
-    /* MAPA CON LEAFLET */
+    /* GEOLOCALIZACIÓN */
+    function checkSavedLocation() {
+      var savedLat = localStorage.getItem('galicia_lat');
+      var savedLng = localStorage.getItem('galicia_lng');
+      if (savedLat && savedLng) {
+        userLocation = { lat: parseFloat(savedLat), lng: parseFloat(savedLng) };
+        showUserOnMap(userLocation);
+        updateGeoUI(true);
+      }
+    }
+
+    function toggleGeolocation() {
+      if (userLocation) {
+        userLocation = null;
+        if (userMarker) {
+          map.removeLayer(userMarker);
+          userMarker = null;
+        }
+        localStorage.removeItem('galicia_lat');
+        localStorage.removeItem('galicia_lng');
+        updateGeoUI(false);
+      } else {
+        requestLocation();
+      }
+    }
+
+    function requestLocation() {
+      var btn = document.getElementById('geoBtn');
+      var status = document.getElementById('geoStatus');
+      
+      btn.disabled = true;
+      btn.textContent = 'Buscando...';
+      status.textContent = 'Localizando tu posición...';
+
+      if (!navigator.geolocation) {
+        status.textContent = 'Geolocalización no soportada';
+        btn.disabled = false;
+        btn.textContent = 'Activar';
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          localStorage.setItem('galicia_lat', userLocation.lat);
+          localStorage.setItem('galicia_lng', userLocation.lng);
+          showUserOnMap(userLocation);
+          updateGeoUI(true);
+          map.setView([userLocation.lat, userLocation.lng], 10);
+        },
+        function(error) {
+          var msg = 'Error al obtener ubicación';
+          if (error.code === 1) msg = 'Permiso denegado';
+          else if (error.code === 2) msg = 'Ubicación no disponible';
+          else if (error.code === 3) msg = 'Tiempo agotado';
+          status.textContent = msg;
+          btn.disabled = false;
+          btn.textContent = 'Reintentar';
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      );
+    }
+
+    function showUserOnMap(loc) {
+      if (!map) return;
+      if (userMarker) map.removeLayer(userMarker);
+
+      var userIcon = L.divIcon({
+        className: 'user-location-marker',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+
+      userMarker = L.marker([loc.lat, loc.lng], { icon: userIcon }).addTo(map);
+      userMarker.bindPopup('<div class="popup-title">Tu ubicación</div>');
+    }
+
+    function updateGeoUI(active) {
+      var btn = document.getElementById('geoBtn');
+      var status = document.getElementById('geoStatus');
+      
+      if (active) {
+        btn.textContent = 'Desactivar';
+        btn.disabled = false;
+        btn.style.background = 'var(--accent-red)';
+        status.textContent = 'Ubicación activada';
+        status.classList.add('active');
+      } else {
+        btn.textContent = 'Activar';
+        btn.disabled = false;
+        btn.style.background = '';
+        status.textContent = 'Actívala para rutas desde tu posición';
+        status.classList.remove('active');
+      }
+    }
+
+    /* SELECTOR DE LUGARES */
+    function renderPlacesSelector() {
+      var container = document.getElementById('placesSelector');
+      if (!container) return;
+      
+      var html = '';
+      lugares.forEach(function(lugar, index) {
+        var num = index + 1;
+        html += '<div class="place-select-item" data-id="' + lugar.id + '" onclick="togglePlaceSelection(' + lugar.id + ')">';
+        html += '<div class="place-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>';
+        html += '<span class="place-select-num">' + num + '</span>';
+        html += '<div class="place-select-info">';
+        html += '<div class="place-select-name">' + lugar.nombre + '</div>';
+        html += '<div class="place-select-time">' + lugar.horas + 'h de visita</div>';
+        html += '</div></div>';
+      });
+      
+      container.innerHTML = html;
+    }
+
+    function togglePlaceSelection(id) {
+      var item = document.querySelector('.place-select-item[data-id="' + id + '"]');
+      if (!item) return;
+      
+      var idx = selectedPlaces.indexOf(id);
+      if (idx > -1) {
+        selectedPlaces.splice(idx, 1);
+        item.classList.remove('selected');
+      } else {
+        selectedPlaces.push(id);
+        item.classList.add('selected');
+      }
+      
+      updateSelectionCounter();
+    }
+
+    function updateSelectionCounter() {
+      var countEl = document.getElementById('selectionCount');
+      var btn = document.getElementById('generateBtn');
+      
+      var totalHours = 0;
+      selectedPlaces.forEach(function(id) {
+        var lugar = lugares.find(function(l) { return l.id === id; });
+        if (lugar) totalHours += lugar.horas;
+      });
+      
+      var count = selectedPlaces.length;
+      countEl.textContent = count + ' lugar' + (count !== 1 ? 'es' : '') + ' · ' + totalHours + 'h';
+      btn.disabled = count === 0;
+    }
+
+    function clearSelection() {
+      selectedPlaces = [];
+      document.querySelectorAll('.place-select-item.selected').forEach(function(item) {
+        item.classList.remove('selected');
+      });
+      updateSelectionCounter();
+      document.getElementById('itineraryResult').classList.add('hidden');
+      resetMap();
+    }
+
+    /* MAPA */
     function initMap() {
-      // Crear mapa centrado en Galicia
       map = L.map('map', {
-        center: [42.8, -8.5],
+        center: [42.6, -8.4],
         zoom: 8,
         scrollWheelZoom: false
       });
 
-      // Capa de OpenStreetMap
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap',
         maxZoom: 18
       }).addTo(map);
 
-      // Añadir marcadores desde el array de lugares
       lugares.forEach(function(lugar, index) {
         if (!lugar.lat || !lugar.lng) return;
         
-        // Crear icono personalizado
         var customIcon = L.divIcon({
           className: 'custom-marker',
           html: '<span>' + (index + 1) + '</span>',
@@ -1021,35 +1319,129 @@
           iconAnchor: [16, 16]
         });
 
-        // Crear marcador
         var marker = L.marker([lugar.lat, lugar.lng], { icon: customIcon }).addTo(map);
-        
-        // Popup con información y botón de navegación
-        var popupContent = 
-          '<div class="popup-title">' + lugar.nombre + '</div>' +
-          '<div class="popup-desc">' + lugar.descripcion + '</div>' +
-          '<a href="' + getNavUrl(lugar.lat, lugar.lng, lugar.nombre) + '" class="popup-btn" target="_blank">Ir en coche</a>';
-        
-        marker.bindPopup(popupContent);
-        markers.push(marker);
+        marker.bindPopup('<div class="popup-title">' + lugar.nombre + '</div><div class="popup-desc">' + lugar.descripcion + '</div><a href="' + getNavUrl(lugar.lat, lugar.lng) + '" class="popup-btn" target="_blank">Ir en coche</a>');
+        markers[lugar.id] = marker;
       });
     }
 
-    // URL para navegación GPS (funciona en Android e iOS)
-    function getNavUrl(lat, lng, name) {
-      // Codificar nombre para URL
-      var encodedName = encodeURIComponent(name);
-      // Google Maps funciona en ambos sistemas
-      return 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng + '&travelmode=driving';
+    function filterMap(categoria) {
+      document.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.filter === categoria);
+      });
+
+      lugares.forEach(function(lugar) {
+        var marker = markers[lugar.id];
+        if (!marker) return;
+        var element = marker.getElement();
+        if (!element) return;
+        
+        if (categoria === 'all' || lugar.categoria === categoria) {
+          element.classList.remove('dimmed');
+          marker.setOpacity(1);
+        } else {
+          element.classList.add('dimmed');
+          marker.setOpacity(0.3);
+        }
+      });
     }
 
-    // Centrar mapa en un lugar específico
-    function focusPlace(lat, lng) {
-      if (map) {
-        map.setView([lat, lng], 14);
+    function highlightItinerary(itineraryIds) {
+      lugares.forEach(function(lugar) {
+        var marker = markers[lugar.id];
+        if (!marker) return;
+        var element = marker.getElement();
+        if (element) element.classList.remove('highlighted', 'dimmed');
+        marker.setOpacity(1);
+      });
+
+      itineraryIds.forEach(function(id) {
+        var marker = markers[id];
+        if (!marker) return;
+        var element = marker.getElement();
+        if (element) element.classList.add('highlighted');
+      });
+
+      if (itineraryIds.length > 0) {
+        var bounds = [];
+        if (userLocation) bounds.push([userLocation.lat, userLocation.lng]);
+        itineraryIds.forEach(function(id) {
+          var lugar = lugares.find(function(l) { return l.id === id; });
+          if (lugar && lugar.lat && lugar.lng) bounds.push([lugar.lat, lugar.lng]);
+        });
+        if (bounds.length > 0) map.fitBounds(bounds, { padding: [50, 50] });
       }
     }
 
+    function focusPlaceOnMap(id) {
+      var lugar = lugares.find(function(l) { return l.id === id; });
+      if (lugar && lugar.lat && lugar.lng && map) {
+        map.setView([lugar.lat, lugar.lng], 14);
+        var marker = markers[id];
+        if (marker) marker.openPopup();
+      }
+    }
+
+    function getNavUrl(lat, lng) {
+      return 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng + '&travelmode=driving';
+    }
+
+    function getRouteUrl(places, fromUser) {
+      if (!places || places.length === 0) return '#';
+      var url = 'https://www.google.com/maps/dir/?api=1';
+      if (fromUser && userLocation) url += '&origin=' + userLocation.lat + ',' + userLocation.lng;
+      places.forEach(function(p) { url += '&destination=' + p.lat + ',' + p.lng; });
+      url += '&travelmode=driving';
+      return url;
+    }
+
+    /* CÁLCULO DE RUTAS */
+    async function calculateRoute(places, fromUser) {
+      var allPoints = [];
+      if (fromUser && userLocation) allPoints.push({ lat: userLocation.lat, lng: userLocation.lng });
+      allPoints = allPoints.concat(places);
+      
+      if (allPoints.length < 2) return { distance: 0, duration: 0, segments: [] };
+      
+      var coords = allPoints.map(function(p) { return p.lng + ',' + p.lat; }).join(';');
+      var url = 'https://router.project-osrm.org/route/v1/driving/' + coords + '?overview=false&annotations=true';
+      
+      try {
+        var response = await fetch(url);
+        var data = await response.json();
+        if (data.code === 'Ok' && data.routes && data.routes[0]) {
+          return { distance: data.routes[0].distance, duration: data.routes[0].duration, segments: data.routes[0].legs || [] };
+        }
+      } catch (e) {}
+      
+      var totalDist = 0;
+      for (var i = 1; i < allPoints.length; i++) {
+        totalDist += haversineDistance(allPoints[i-1].lat, allPoints[i-1].lng, allPoints[i].lat, allPoints[i].lng);
+      }
+      return { distance: totalDist * 1000, duration: totalDist / 50 * 3600, segments: [] };
+    }
+
+    function haversineDistance(lat1, lon1, lat2, lon2) {
+      var R = 6371;
+      var dLat = (lat2 - lat1) * Math.PI / 180;
+      var dLon = (lon2 - lon1) * Math.PI / 180;
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function formatDuration(seconds) {
+      var hours = Math.floor(seconds / 3600);
+      var minutes = Math.round((seconds % 3600) / 60);
+      if (hours > 0) return hours + 'h ' + minutes + 'min';
+      return minutes + ' minutos';
+    }
+
+    function formatDistance(meters) {
+      if (meters >= 1000) return (meters / 1000).toFixed(1) + ' km';
+      return Math.round(meters) + ' m';
+    }
+
+    /* CARRUSEL */
     function carouselNext(id) {
       var c = document.getElementById(id);
       if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' });
@@ -1085,43 +1477,32 @@
     function initBottomMenu() {
       var items = document.querySelectorAll('.menu-item');
       var sections = ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'];
-      
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === e.target.id); });
-          }
+          if (e.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === e.target.id); });
         });
       }, { threshold: 0.5 });
-      
-      sections.forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) obs.observe(el);
-      });
-      
+      sections.forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
       items.forEach(function(i) {
         i.addEventListener('click', function(e) {
           e.preventDefault();
-          var targetId = i.getAttribute('href').substring(1);
-          var target = document.getElementById(targetId);
+          var target = document.getElementById(i.getAttribute('href').substring(1));
           if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
     }
 
     function initAnimations() {
-      var obs = new IntersectionObserver(function(e) { 
-        e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); 
-      }, { threshold: 0.1 });
+      var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
       document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
     }
 
-    // LUGARES CON COORDENADAS
+    // LUGARES
     var lugares = [
-      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", lat: 42.8806, lng: -8.5447, texto: "<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos.</p>", tips: ["Reserva antes.", "Ve al atardecer."], destacado: true },
-      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", lat: 42.2244, lng: -8.9031, texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."], destacado: true },
-      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", lat: 42.8652, lng: -9.2606, texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."], destacado: true },
-      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", lat: 43.0100, lng: -7.5567, texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."], destacado: true },
+      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", lat: 42.8806, lng: -8.5447, texto: "<p>La catedral es el símbolo más reconocible de Galicia.</p>", tips: ["Reserva antes.", "Ve al atardecer."] },
+      { id: 2, nombre: "Illas Cíes", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", lat: 42.2244, lng: -8.9031, texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."] },
+      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", lat: 42.8652, lng: -9.2606, texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."] },
+      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", lat: 43.0100, lng: -7.5567, texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."] },
       { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", lat: 42.7842, lng: -8.4953, texto: "<p>Envuelto en leyendas.</p>", tips: ["Sube al atardecer."] },
       { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", lat: 41.8833, lng: -8.8667, texto: "<p>Castro con vistas al Miño.</p>", tips: ["Combina con A Guarda."] },
       { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", lat: 43.1597, lng: -9.1894, texto: "<p>Costa salvaje atlántica.</p>", tips: ["Lleva abrigo."] },
@@ -1130,7 +1511,7 @@
       { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", lat: 43.4333, lng: -8.0333, texto: "<p>Bosque atlántico único en Europa.</p>", tips: ["Por la mañana."] },
       { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", lat: 43.4000, lng: -7.7667, texto: "<p>Caballos salvajes.</p>", tips: ["Lleva abrigo."] },
       { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", lat: 42.8794, lng: -8.5442, texto: "<p>Donde compran los santiagueses.</p>", tips: ["Ve por la mañana."] },
-      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", lat: 42.2406, lng: -8.7207, texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
+      { id: 13, nombre: "Vigo", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", lat: 42.2406, lng: -8.7207, texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
       { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", lat: 43.5333, lng: -7.1833, texto: "<p>Arcos con marea baja.</p>", tips: ["Consulta mareas."] },
       { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", lat: 42.7833, lng: -8.2667, texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
     ];
@@ -1151,10 +1532,10 @@
       categorias.forEach(function(cat) {
         var arr = lugares.filter(function(l) { return l.categoria === cat.id; });
         if (!arr.length) return;
-        html += '<div id="cat-' + cat.id + '" style="padding-top:8px;margin-bottom:8px;"><div class="category-header"><span class="category-icon">' + cat.emoji + '</span><span class="category-name">' + cat.nombre + '</span></div>';
+        html += '<div id="cat-' + cat.id + '"><div class="category-header"><span class="category-icon">' + cat.emoji + '</span><span class="category-name">' + cat.nombre + '</span></div>';
         arr.forEach(function(l) {
           gi++;
-          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')" role="button" tabindex="0"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div></div>' : '') + (l.lat && l.lng ? '<div style="margin-top:12px"><a href="' + getNavUrl(l.lat, l.lng, l.nombre) + '" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--accent-sea);color:white;border-radius:6px;text-decoration:none;font-size:0.9rem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Ir en coche</a></div>' : '') + '</div></div></article>';
+          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><span class="info-title">Consejos</span><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div>' : '') + '</div></div></article>';
         });
         html += '</div>';
       });
@@ -1170,49 +1551,88 @@
       if (!exp) card.classList.add('expanded');
     }
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        var h = e.target.closest('.place-header');
-        if (h) { e.preventDefault(); h.click(); }
-      }
-    });
-
-    function initGenerator() {
-      var f = document.getElementById('itineraryForm');
-      if (!f) return;
-      f.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var h = parseInt(document.getElementById('horas').value, 10);
-        var t = document.getElementById('tipo').value;
-        genIti(h, t);
+    /* GENERAR ITINERARIO */
+    async function generateItinerary() {
+      if (selectedPlaces.length === 0) return;
+      
+      var btn = document.getElementById('generateBtn');
+      btn.textContent = 'Calculando ruta...';
+      btn.disabled = true;
+      
+      // Ordenar por número
+      selectedPlaces.sort(function(a, b) {
+        var idxA = lugares.findIndex(function(l) { return l.id === a; });
+        var idxB = lugares.findIndex(function(l) { return l.id === b; });
+        return idxA - idxB;
       });
+      
+      var selectedLugares = selectedPlaces.map(function(id) {
+        return lugares.find(function(l) { return l.id === id; });
+      });
+      
+      var route = await calculateRoute(selectedLugares, userLocation !== null);
+      
+      showIti(selectedLugares, route);
+      highlightItinerary(selectedPlaces);
+      
+      btn.textContent = 'Generar itinerario';
+      btn.disabled = false;
     }
 
-    function genIti(horas, tipo) {
-      var c = lugares.slice();
-      c.sort(function(a, b) {
-        var sA = 0, sB = 0;
-        if (tipo === 'mixto') { sA += 10; sB += 10; }
-        else { if (a.tipo === tipo) sA += 15; if (a.tipo === 'mixto') sA += 5; if (b.tipo === tipo) sB += 15; if (b.tipo === 'mixto') sB += 5; }
-        if (a.destacado) sA += 10; if (b.destacado) sB += 10;
-        return sB - sA;
-      });
-      var sel = [], h = 0;
-      for (var i = 0; i < c.length; i++) { if (h + c[i].horas <= horas) { sel.push(c[i]); h += c[i].horas; } if (h >= horas * 0.85) break; }
-      if (!sel.length) sel.push(c[0]);
-      showIti(sel, h, tipo);
-    }
-
-    function showIti(lista, hT, tipo) {
+    async function showIti(lista, route) {
       var ct = document.getElementById('itineraryResult');
       if (!ct) return;
       ct.classList.remove('hidden');
-      var tN = { 'ciudad': 'Cultura', 'naturaleza': 'Naturaleza', 'mixto': 'Mixto' };
-      var h = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + hT + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><span class="itinerary-badge">' + tN[tipo] + '</span>';
-      lista.forEach(function(l, i) { h += '<div class="itinerary-place"><span class="itinerary-place-num">' + (i+1) + '</span><img src="' + l.imagen + '" alt="' + l.nombre + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><div><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div></div></div>'; });
-      h += '<p style="margin-top:12px;font-size:0.85rem;color:var(--fg-muted);font-style:italic;">Sin desplazamientos.</p></div>';
+      
+      var totalHours = lista.reduce(function(sum, l) { return sum + l.horas; }, 0);
+      
+      var h = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + totalHours + 'h de visitas</div></div><button onclick="closeItinerary()" style="background:none;border:none;cursor:pointer;padding:4px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
+      
+      var fromText = userLocation ? 'Desde tu ubicación' : 'Distancia total';
+      h += '<div class="trip-summary">';
+      h += '<div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + fromText + '</div></div>';
+      h += '<div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">Tiempo en coche</div></div>';
+      h += '</div>';
+      
+      h += '<span class="itinerary-badge">Lugares en orden numérico</span>';
+      
+      if (userLocation && lista.length > 0) {
+        var firstPlace = lista[0];
+        var distToFirst = haversineDistance(userLocation.lat, userLocation.lng, firstPlace.lat, firstPlace.lng);
+        h += '<div class="journey-info"><span class="journey-icon">📍</span> ' + formatDistance(distToFirst * 1000) + ' desde tu ubicación</div>';
+      }
+      
+      lista.forEach(function(l, i) {
+        var idx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
+        h += '<div class="itinerary-place"><span class="itinerary-place-num">' + idx + '</span><img src="' + l.imagen + '" alt="' + l.nombre + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="focusPlaceOnMap(' + l.id + ')">Mapa</button><a href="' + getNavUrl(l.lat, l.lng) + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
+        
+        if (i < lista.length - 1 && route.segments && route.segments[i + (userLocation ? 1 : 0)]) {
+          var seg = route.segments[i + (userLocation ? 1 : 0)];
+          h += '<div class="journey-info"><span class="journey-icon">→</span> ' + formatDistance(seg.distance) + ' · ' + formatDuration(seg.duration) + '</div>';
+        }
+      });
+      
+      h += '<a href="' + getRouteUrl(lista, userLocation !== null) + '" target="_blank" class="route-btn">Ver ruta en Google Maps</a></div>';
+      
       ct.innerHTML = h;
       setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
+    function closeItinerary() {
+      document.getElementById('itineraryResult').classList.add('hidden');
+      resetMap();
+    }
+
+    function resetMap() {
+      lugares.forEach(function(lugar) {
+        var marker = markers[lugar.id];
+        if (!marker) return;
+        var element = marker.getElement();
+        if (element) element.classList.remove('highlighted', 'dimmed');
+        marker.setOpacity(1);
+      });
+      if (map) map.setView([42.6, -8.4], 8);
+      filterMap('all');
     }
   </script>
 </body>
