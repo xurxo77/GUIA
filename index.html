@@ -18,6 +18,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
   
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -107,7 +110,6 @@
       font-size: 1.2rem;
       line-height: 1;
     }
-    .install-banner-close:hover { opacity: 1; }
 
     /* SPLASH SCREEN */
     .splash-screen {
@@ -154,13 +156,9 @@
       color: var(--fg-ink);
       text-align: center;
       letter-spacing: 0.1em;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease;
     }
-    .splash-input:focus {
-      outline: none;
-      border-color: var(--accent-sea);
-      box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.1);
-    }
+    .splash-input:focus { outline: none; border-color: var(--accent-sea); }
     .splash-input::placeholder { color: var(--fg-muted); letter-spacing: normal; }
     .splash-input.error { border-color: #c45a3f; animation: shake 0.4s ease; }
 
@@ -181,7 +179,6 @@
       font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s ease;
     }
     .splash-btn:hover { background: #143a4a; }
 
@@ -239,10 +236,8 @@
       font-weight: 600;
       color: var(--fg-muted);
       overflow: hidden;
-      transition: transform 0.3s ease;
       flex-shrink: 0;
     }
-    .author-avatar:hover { transform: scale(1.06); }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--accent-sea); }
 
@@ -353,7 +348,6 @@
       box-shadow: 0 2px 8px var(--shadow-warm);
     }
     .carousel-btn:hover { background: var(--bg-cream); border-color: var(--accent-sea); }
-    .carousel-btn:focus { outline: none; border-color: var(--accent-sea); }
     .carousel-btn-prev { left: -8px; }
     .carousel-btn-next { right: -8px; }
     .carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
@@ -538,7 +532,6 @@
       font-size: 1.05rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s ease;
       margin-top: 6px;
     }
     .btn-generate:hover { background: #143a4a; }
@@ -637,6 +630,100 @@
     .menu-item svg { width: 22px; height: 22px; stroke: currentColor; }
     .menu-item span { font-size: 0.65rem; font-weight: 500; text-align: center; line-height: 1.2; }
     .menu-item.active svg { stroke: var(--accent-sea); }
+
+    /* MAPA */
+    .map-section {
+      min-height: auto;
+      padding-top: 20px;
+    }
+    .map-container {
+      height: 400px;
+      border-radius: 12px;
+      border: 3px solid var(--border-card);
+      overflow: hidden;
+      margin-top: 16px;
+      background: var(--bg-cream);
+    }
+    
+    /* Estilos para markers de Leaflet */
+    .custom-marker {
+      background: var(--accent-sea);
+      border: 3px solid white;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    
+    .leaflet-popup-content-wrapper {
+      border-radius: 12px;
+      box-shadow: 0 4px 16px var(--shadow-warm);
+    }
+    .leaflet-popup-content {
+      margin: 14px 16px;
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .popup-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent-sea);
+      margin-bottom: 8px;
+    }
+    .popup-desc {
+      color: var(--fg-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .popup-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: var(--accent-sea);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s ease;
+    }
+    .popup-btn:hover { background: #143a4a; }
+
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 12px;
+      background: var(--bg-cream);
+      border-radius: 8px;
+      border: 1px solid var(--border-aged);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-sea);
+    }
   </style>
 </head>
 <body>
@@ -769,11 +856,20 @@
 
     <section id="generador">
       <div class="section-header fade-in"><span class="section-number">4</span><h2 class="section-title">Generador de itinerarios</h2></div>
-      <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
-      <div class="generator-box fade-in">
-        <form id="itineraryForm" class="space-y-4">
+      
+      <!-- MAPA -->
+      <div class="map-section fade-in">
+        <p style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:8px">Mapa con todos los lugares. Pulsa en un marcador para ir.</p>
+        <div id="map" class="map-container"></div>
+        <div class="map-legend">
+          <div class="legend-item"><span class="legend-dot"></span>Lugar marcado</div>
+        </div>
+      </div>
+
+      <div class="generator-box fade-in" style="margin-top:24px">
+        <form id="itineraryForm">
           <div><label class="form-label">Horas disponibles</label><select id="horas" class="form-select" required><option value="">Selecciona</option><option value="3">3 horas — Escapada rápida</option><option value="5">5 horas — Media jornada</option><option value="8">8 horas — Día completo</option><option value="12">12 horas — Día largo</option></select></div>
-          <div><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza": Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
+          <div style="margin-top:12px"><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza">Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
           <button type="submit" class="btn-generate">Generar itinerario</button>
         </form>
       </div>
@@ -813,6 +909,9 @@
     </nav>
 
   </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <script>
     /* SERVICE WORKER */
@@ -883,12 +982,72 @@
     });
 
     /* APP */
+    var map = null;
+    var markers = [];
+
     function initApp() {
       initAnimations();
       renderPlaces();
       initGenerator();
       initCarousels();
       initBottomMenu();
+      initMap();
+    }
+
+    /* MAPA CON LEAFLET */
+    function initMap() {
+      // Crear mapa centrado en Galicia
+      map = L.map('map', {
+        center: [42.8, -8.5],
+        zoom: 8,
+        scrollWheelZoom: false
+      });
+
+      // Capa de OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap',
+        maxZoom: 18
+      }).addTo(map);
+
+      // Añadir marcadores desde el array de lugares
+      lugares.forEach(function(lugar, index) {
+        if (!lugar.lat || !lugar.lng) return;
+        
+        // Crear icono personalizado
+        var customIcon = L.divIcon({
+          className: 'custom-marker',
+          html: '<span>' + (index + 1) + '</span>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 16]
+        });
+
+        // Crear marcador
+        var marker = L.marker([lugar.lat, lugar.lng], { icon: customIcon }).addTo(map);
+        
+        // Popup con información y botón de navegación
+        var popupContent = 
+          '<div class="popup-title">' + lugar.nombre + '</div>' +
+          '<div class="popup-desc">' + lugar.descripcion + '</div>' +
+          '<a href="' + getNavUrl(lugar.lat, lugar.lng, lugar.nombre) + '" class="popup-btn" target="_blank">Ir en coche</a>';
+        
+        marker.bindPopup(popupContent);
+        markers.push(marker);
+      });
+    }
+
+    // URL para navegación GPS (funciona en Android e iOS)
+    function getNavUrl(lat, lng, name) {
+      // Codificar nombre para URL
+      var encodedName = encodeURIComponent(name);
+      // Google Maps funciona en ambos sistemas
+      return 'https://www.google.com/maps/dir/?api=1&destination=' + lat + ',' + lng + '&travelmode=driving';
+    }
+
+    // Centrar mapa en un lugar específico
+    function focusPlace(lat, lng) {
+      if (map) {
+        map.setView([lat, lng], 14);
+      }
     }
 
     function carouselNext(id) {
@@ -957,22 +1116,23 @@
       document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
     }
 
+    // LUGARES CON COORDENADAS
     var lugares = [
-      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: "<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos.</p>", tips: ["Reserva antes.", "Ve al atardecer."], destacado: true },
-      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."], destacado: true },
-      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."], destacado: true },
-      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."], destacado: true },
-      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", texto: "<p>Envuelto en leyendas.</p>", tips: ["Sube al atardecer."] },
-      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", texto: "<p>Castro con vistas al Miño.</p>", tips: ["Combina con A Guarda."] },
-      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", texto: "<p>Costa salvaje atlántica.</p>", tips: ["Lleva abrigo."] },
-      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", texto: "<p>La Pinta llegó en 1493.</p>", tips: ["Come en el puerto."] },
-      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", texto: "<p>Pueblo con hórreos al mar.</p>", tips: ["Ve al atardecer."] },
-      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", texto: "<p>Bosque atlántico único en Europa.</p>", tips: ["Por la mañana."] },
-      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", texto: "<p>Caballos salvajes.</p>", tips: ["Lleva abrigo."] },
-      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", texto: "<p>Donde compran los santiagueses.</p>", tips: ["Ve por la mañana."] },
-      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
-      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", texto: "<p>Arcos con marea baja.</p>", tips: ["Consulta mareas."] },
-      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
+      { id: 1, nombre: "Catedral de Santiago", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", lat: 42.8806, lng: -8.5447, texto: "<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos.</p>", tips: ["Reserva antes.", "Ve al atardecer."], destacado: true },
+      { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", lat: 42.2244, lng: -8.9031, texto: "<p>Playas de arena blanca y aguas cristalinas.</p>", tips: ["Reserva el barco."], destacado: true },
+      { id: 3, nombre: "Faro de Finisterre", categoria: "imprescindibles", tipo: "naturaleza", horas: 2, imagen: "finisterre.jpg", descripcion: "El fin del mundo", lat: 42.8652, lng: -9.2606, texto: "<p>Para los romanos, el fin del mundo conocido.</p>", tips: ["Ve al atardecer."], destacado: true },
+      { id: 4, nombre: "Muralla de Lugo", categoria: "imprescindibles", tipo: "ciudad", horas: 2, imagen: "muralla.jpg", descripcion: "Muralla romana única", lat: 43.0100, lng: -7.5567, texto: "<p>La única completa del mundo.</p>", tips: ["Camina al atardecer."], destacado: true },
+      { id: 5, nombre: "Pico Sacro", categoria: "magica", tipo: "naturaleza", horas: 3, imagen: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&h=300&fit=crop&q=80", descripcion: "Montaña legendaria", lat: 42.7842, lng: -8.4953, texto: "<p>Envuelto en leyendas.</p>", tips: ["Sube al atardecer."] },
+      { id: 6, nombre: "Castro de Santa Trega", categoria: "magica", tipo: "mixto", horas: 2, imagen: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=300&fit=crop&q=80", descripcion: "Petróglifos milenarios", lat: 41.8833, lng: -8.8667, texto: "<p>Castro con vistas al Miño.</p>", tips: ["Combina con A Guarda."] },
+      { id: 7, nombre: "Costa da Morte", categoria: "atlantica", tipo: "naturaleza", horas: 5, imagen: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&h=300&fit=crop&q=80", descripcion: "Faros y naufragios", lat: 43.1597, lng: -9.1894, texto: "<p>Costa salvaje atlántica.</p>", tips: ["Lleva abrigo."] },
+      { id: 8, nombre: "Baiona", categoria: "atlantica", tipo: "mixto", horas: 4, imagen: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&h=300&fit=crop&q=80", descripcion: "Primera del Nuevo Mundo", lat: 42.1167, lng: -8.8500, texto: "<p>La Pinta llegó en 1493.</p>", tips: ["Come en el puerto."] },
+      { id: 9, nombre: "Combarro", categoria: "atlantica", tipo: "mixto", horas: 3, imagen: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=300&fit=crop&q=80", descripcion: "Hórreos sobre el mar", lat: 42.4500, lng: -8.9333, texto: "<p>Pueblo con hórreos al mar.</p>", tips: ["Ve al atardecer."] },
+      { id: 10, nombre: "Fragas do Eume", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=300&fit=crop&q=80", descripcion: "Bosque millonario", lat: 43.4333, lng: -8.0333, texto: "<p>Bosque atlántico único en Europa.</p>", tips: ["Por la mañana."] },
+      { id: 11, nombre: "Serra do Xistral", categoria: "verde", tipo: "naturaleza", horas: 4, imagen: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&h=300&fit=crop&q=80", descripcion: "Cabalos e néboa", lat: 43.4000, lng: -7.7667, texto: "<p>Caballos salvajes.</p>", tips: ["Lleva abrigo."] },
+      { id: 12, nombre: "Mercado de Abastos", categoria: "humana", tipo: "ciudad", horas: 2, imagen: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=300&fit=crop&q=80", descripcion: "Mercado vibrante", lat: 42.8794, lng: -8.5442, texto: "<p>Donde compran los santiagueses.</p>", tips: ["Ve por la mañana."] },
+      { id: 13, nombre: "Vigo y sus tabernas", categoria: "humana", tipo: "ciudad", horas: 4, imagen: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=300&fit=crop&q=80", descripcion: "Mariscada obligada", lat: 42.2406, lng: -8.7207, texto: "<p>Tabernas legendarias.</p>", tips: ["Ostras en Pescadería."] },
+      { id: 14, nombre: "Praia das Catedrais", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80", descripcion: "Arcos escondidos", lat: 43.5333, lng: -7.1833, texto: "<p>Arcos con marea baja.</p>", tips: ["Consulta mareas."] },
+      { id: 15, nombre: "Cascada do Toxa", categoria: "segreda", tipo: "naturaleza", horas: 2, imagen: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?w=600&h=300&fit=crop&q=80", descripcion: "Salto espectacular", lat: 42.7833, lng: -8.2667, texto: "<p>30 metros en el bosque.</p>", tips: ["Tras lluvias."] }
     ];
 
     var categorias = [
@@ -994,7 +1154,7 @@
         html += '<div id="cat-' + cat.id + '" style="padding-top:8px;margin-bottom:8px;"><div class="category-header"><span class="category-icon">' + cat.emoji + '</span><span class="category-name">' + cat.nombre + '</span></div>';
         arr.forEach(function(l) {
           gi++;
-          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')" role="button" tabindex="0"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div></div>' : '') + '</div></div></article>';
+          html += '<article class="place-card" id="place-' + l.id + '"><div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div><div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')" role="button" tabindex="0"><span class="place-header-title">' + l.descripcion + '</span><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="place-content"><div class="place-content-inner">' + l.texto + (l.tips ? '<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>' + l.tips.map(function(t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div></div>' : '') + (l.lat && l.lng ? '<div style="margin-top:12px"><a href="' + getNavUrl(l.lat, l.lng, l.nombre) + '" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--accent-sea);color:white;border-radius:6px;text-decoration:none;font-size:0.9rem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Ir en coche</a></div>' : '') + '</div></div></article>';
         });
         html += '</div>';
       });
