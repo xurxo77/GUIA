@@ -17,7 +17,6 @@
       --accent-sea: #1a4a5e;
       --accent-gold: #b8860b;
       --accent-green: #3d5a47;
-      --accent-wine: #7a3e3e;
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
@@ -45,36 +44,10 @@
       line-height: 1.7;
       font-size: 18px;
       min-height: 100vh;
+      padding-bottom: 70px;
     }
 
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
-
-    /* Navegación flotante */
-    .nav-floating {
-      position: fixed;
-      bottom: 20px;
-      right: 16px;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: var(--bg-paper);
-      padding: 10px;
-      border-radius: 24px;
-      box-shadow: 0 4px 20px var(--shadow-warm);
-      border: 1px solid var(--border-aged);
-    }
-    .nav-dot {
-      width: 12px;
-      height: 12px;
-      border: 2px solid var(--accent-sea);
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .nav-dot.active, .nav-dot:hover { background: var(--accent-sea); transform: scale(1.15); }
-    .nav-dot:focus { outline: none; box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.25); }
 
     /* Hero */
     .hero {
@@ -264,15 +237,9 @@
 
     /* Recomendaciones - autor */
     .rec-author-section {
-      margin-top: 28px;
+      margin-top: 24px;
     }
     .rec-author-section:first-of-type { margin-top: 0; }
-    .rec-author-label {
-      font-size: 0.9rem;
-      color: var(--fg-muted);
-      font-style: italic;
-      margin-bottom: 14px;
-    }
 
     /* Carrusel centrado con flechas */
     .carousel-wrapper {
@@ -476,7 +443,7 @@
     /* Footer */
     .footer {
       min-height: auto;
-      padding: 50px 20px;
+      padding: 50px 20px 80px;
       border-top: 1px solid var(--border-aged);
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -597,19 +564,58 @@
     }
     .category-icon { font-size: 1.15rem; }
     .category-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--fg-ink); }
+
+    /* MENÚ INFERIOR */
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-paper);
+      border-top: 1px solid var(--border-aged);
+      z-index: 1000;
+      box-shadow: 0 -4px 20px var(--shadow-warm);
+    }
+    .menu-container {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 10px 12px;
+    }
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 8px;
+      text-decoration: none;
+      color: var(--fg-muted);
+      transition: color 0.2s ease;
+      flex: 1;
+      max-width: 80px;
+    }
+    .menu-item:hover,
+    .menu-item.active {
+      color: var(--accent-sea);
+    }
+    .menu-item svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+    }
+    .menu-item span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+    }
+    .menu-item.active svg {
+      stroke: var(--accent-sea);
+    }
   </style>
 </head>
 <body>
-  <!-- Navegación flotante -->
-  <nav class="nav-floating" aria-label="Navegación">
-    <button class="nav-dot active" data-section="hero" aria-label="Inicio"></button>
-    <button class="nav-dot" data-section="indice" aria-label="Índice"></button>
-    <button class="nav-dot" data-section="introduccion" aria-label="Introducción"></button>
-    <button class="nav-dot" data-section="recomendaciones" aria-label="Recomendaciones"></button>
-    <button class="nav-dot" data-section="lugares" aria-label="Imprescindibles"></button>
-    <button class="nav-dot" data-section="generador" aria-label="Generador"></button>
-  </nav>
-
   <!-- Hero -->
   <header id="hero" class="hero">
     <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible">
@@ -644,7 +650,7 @@
         <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
         <li><a href="#recomendaciones" class="index-item"><span class="index-number">2</span>Recomendaciones y advertencias</a></li>
         <li>
-          <a href="#lugares" class="index-item"><span class="index-number">3</span>Imprescindibles</a>
+          <a href="#lugares" class="index-item"><span class="index-number">3</span>Lugares de Galicia</a>
           <ul class="index-sublist">
             <li><a href="#cat-imprescindibles" class="index-subitem"><span class="index-subitem-icon">⭐</span>Imprescindibles</a></li>
             <li><a href="#cat-magica" class="index-subitem"><span class="index-subitem-icon">🌌</span>Galicia mágica</a></li>
@@ -690,17 +696,15 @@
       <span class="section-number">2</span>
       <h2 class="section-title">Recomendaciones y advertencias</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:18px">(Cosas que nadie te dice, pero te alegrará saber)</p>
+    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">Cosas que nadie te dice, pero te alegrará saber.</p>
 
     <!-- Recomendaciones de Xurxo -->
     <div class="rec-author-section fade-in">
-      <p class="rec-author-label">Lo que dice Xurxo:</p>
       <div class="carousel-wrapper">
         <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="carousel" id="carousel-xurxo">
-          <!-- Tarjeta de Xurxo -->
           <article class="carousel-card">
             <div class="rec-author-card">
               <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
@@ -708,7 +712,6 @@
               <span class="rec-author-subtitle">Sus recomendaciones</span>
             </div>
           </article>
-          <!-- Recomendaciones -->
           <article class="carousel-card">
             <div class="rec-card">
               <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
@@ -790,7 +793,6 @@
 
     <!-- Recomendaciones de Raquel -->
     <div class="rec-author-section fade-in">
-      <p class="rec-author-label">Lo que dice Raquel:</p>
       <div class="carousel-wrapper">
         <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -819,7 +821,7 @@
   <section id="lugares">
     <div class="section-header fade-in">
       <span class="section-number">3</span>
-      <h2 class="section-title">Imprescindibles</h2>
+      <h2 class="section-title">Lugares de Galicia</h2>
     </div>
     <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:18px">Una selección de rincones que ponen en valor la identidad gallega.</p>
     
@@ -875,6 +877,50 @@
     </svg>
   </footer>
 
+  <!-- MENÚ INFERIOR -->
+  <nav class="bottom-menu" aria-label="Navegación principal">
+    <div class="menu-container">
+      <a href="#hero" class="menu-item active" data-section="hero">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Portada</span>
+      </a>
+      <a href="#indice" class="menu-item" data-section="indice">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <line x1="8" y1="6" x2="21" y2="6"/>
+          <line x1="8" y1="12" x2="21" y2="12"/>
+          <line x1="8" y1="18" x2="21" y2="18"/>
+          <line x1="3" y1="6" x2="3.01" y2="6"/>
+          <line x1="3" y1="12" x2="3.01" y2="12"/>
+          <line x1="3" y1="18" x2="3.01" y2="18"/>
+        </svg>
+        <span>Índice</span>
+      </a>
+      <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/>
+          <path d="M12 12v10"/>
+        </svg>
+        <span>Recomendaciones</span>
+      </a>
+      <a href="#lugares" class="menu-item" data-section="lugares">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>Lugares</span>
+      </a>
+      <a href="#generador" class="menu-item" data-section="generador">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>Itinerario</span>
+      </a>
+    </div>
+  </nav>
+
   <script>
     /* Carrusel con flechas */
     function carouselNext(id) {
@@ -915,6 +961,41 @@
       });
     }
 
+    /* Menú inferior */
+    function initBottomMenu() {
+      const menuItems = document.querySelectorAll('.menu-item');
+      const sections = ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'];
+      
+      // Observer para actualizar menú activo
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            menuItems.forEach(item => {
+              item.classList.toggle('active', item.dataset.section === sectionId);
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
+      
+      // Click en items del menú
+      menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = item.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
     /* Lugares */
     const lugares = [
       { id: 1, nombre: "Catedral de Santiago de Compostela", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse, mirar con calma y sentir el ambiente de la ciudad.</p><p>Se recomienda reservar con antelación la entrada para el Pórtico de la Gloria o para subir a las cubiertas.</p>`, tips: ["Reserva antes para el Pórtico y cubiertas.", "Visita temprano o al atardecer.", "La misa del peregrino incluye el botafumeiro."], destacado: true },
@@ -945,11 +1026,11 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       initAnimations();
-      initNavigation();
       initIndexLinks();
       renderPlaces();
       initGenerator();
       initCarousels();
+      initBottomMenu();
     });
 
     function initAnimations() {
@@ -957,25 +1038,6 @@
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
       }, { threshold: 0.1, rootMargin: '-10px' });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    }
-
-    function initNavigation() {
-      const sections = ['hero', 'indice', 'introduccion', 'recomendaciones', 'lugares', 'generador'];
-      const navDots = document.querySelectorAll('.nav-dot');
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navDots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === entry.target.id));
-          }
-        });
-      }, { threshold: 0.5 });
-      sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
-      navDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const target = document.getElementById(dot.dataset.section);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
     }
 
     function initIndexLinks() {
