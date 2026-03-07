@@ -294,50 +294,6 @@
     }
     .section-title { font-size: clamp(1.5rem, 5vw, 1.9rem); color: var(--accent-sea); margin: 0; }
 
-    /* Índice */
-    .index-list { list-style: none; }
-    .index-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      text-decoration: none;
-      color: var(--fg-ink);
-      font-size: 1.05rem;
-      transition: all 0.25s ease;
-    }
-    .index-item:hover, .index-item:focus { color: var(--accent-sea); transform: translateX(5px); outline: none; }
-    .index-number {
-      width: 36px;
-      height: 36px;
-      border: 2px solid var(--accent-sea);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--accent-sea);
-      transition: all 0.25s ease;
-      flex-shrink: 0;
-    }
-    .index-item:hover .index-number, .index-item:focus .index-number { background: var(--accent-sea); color: white; }
-    
-    .index-sublist { list-style: none; margin-left: 48px; margin-top: 2px; }
-    .index-subitem {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 0;
-      text-decoration: none;
-      color: var(--fg-muted);
-      font-size: 0.95rem;
-      transition: all 0.25s ease;
-    }
-    .index-subitem:hover, .index-subitem:focus { color: var(--accent-sea); outline: none; }
-    .index-subitem-icon { font-size: 0.9rem; }
-
     .prose p { margin-bottom: 16px; text-align: justify; }
 
     /* Cita */
@@ -750,28 +706,6 @@
       </div>
     </header>
 
-    <section id="indice">
-      <div class="section-header fade-in"><h2 class="section-title">Índice</h2></div>
-      <nav class="fade-in delay-1">
-        <ul class="index-list">
-          <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
-          <li><a href="#recomendaciones" class="index-item"><span class="index-number">2</span>Recomendaciones y advertencias</a></li>
-          <li>
-            <a href="#lugares" class="index-item"><span class="index-number">3</span>Lugares de Galicia</a>
-            <ul class="index-sublist">
-              <li><a href="#cat-imprescindibles" class="index-subitem"><span class="index-subitem-icon">⭐</span>Imprescindibles</a></li>
-              <li><a href="#cat-magica" class="index-subitem"><span class="index-subitem-icon">🌌</span>Galicia mágica</a></li>
-              <li><a href="#cat-atlantica" class="index-subitem"><span class="index-subitem-icon">🌊</span>Galicia atlántica</a></li>
-              <li><a href="#cat-verde" class="index-subitem"><span class="index-subitem-icon">🌿</span>Galicia verde interior</a></li>
-              <li><a href="#cat-humana" class="index-subitem"><span class="index-subitem-icon">🍷</span>Galicia humana</a></li>
-              <li><a href="#cat-segreda" class="index-subitem"><span class="index-subitem-icon">🌙</span>Galicia "segreda"</a></li>
-            </ul>
-          </li>
-          <li><a href="#generador" class="index-item"><span class="index-number">4</span>Generador de itinerarios</a></li>
-        </ul>
-      </nav>
-    </section>
-
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg></div>
 
     <section id="introduccion">
@@ -839,7 +773,7 @@
       <div class="generator-box fade-in">
         <form id="itineraryForm" class="space-y-4">
           <div><label class="form-label">Horas disponibles</label><select id="horas" class="form-select" required><option value="">Selecciona</option><option value="3">3 horas — Escapada rápida</option><option value="5">5 horas — Media jornada</option><option value="8">8 horas — Día completo</option><option value="12">12 horas — Día largo</option></select></div>
-          <div><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza">Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
+          <div><label class="form-label">Tipo de experiencia</label><select id="tipo" class="form-select" required><option value="">Selecciona</option><option value="ciudad">Ciudad — Cultura y monumentos</option><option value="naturaleza": Naturaleza — Paisajes y playas</option><option value="mixto">Mixto — Un poco de todo</option></select></div>
           <button type="submit" class="btn-generate">Generar itinerario</button>
         </form>
       </div>
@@ -855,11 +789,26 @@
     <!-- MENÚ INFERIOR -->
     <nav class="bottom-menu" aria-label="Navegación principal">
       <div class="menu-container">
-        <a href="#hero" class="menu-item active" data-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Portada</span></a>
-        <a href="#indice" class="menu-item" data-section="indice"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><span>Índice</span></a>
-        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/><path d="M12 12v10"/></svg><span>Recomendaciones</span></a>
-        <a href="#lugares" class="menu-item" data-section="lugares"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Lugares</span></a>
-        <a href="#generador" class="menu-item" data-section="generador"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Itinerario</span></a>
+        <a href="#hero" class="menu-item active" data-section="hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Portada</span>
+        </a>
+        <a href="#introduccion" class="menu-item" data-section="introduccion">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span>Introducción</span>
+        </a>
+        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4z"/><path d="M12 12v10"/></svg>
+          <span>Recomendaciones</span>
+        </a>
+        <a href="#lugares" class="menu-item" data-section="lugares">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Lugares</span>
+        </a>
+        <a href="#generador" class="menu-item" data-section="generador">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Itinerario</span>
+        </a>
       </div>
     </nav>
 
@@ -874,16 +823,14 @@
     }
 
     /* BANNER DE INSTALACIÓN PWA */
-    let deferredPrompt = null;
-    const installBanner = document.getElementById('installBanner');
-    const installBtn = document.getElementById('installBtn');
-    const installClose = document.getElementById('installClose');
+    var deferredPrompt = null;
+    var installBanner = document.getElementById('installBanner');
+    var installBtn = document.getElementById('installBtn');
+    var installClose = document.getElementById('installClose');
 
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredPrompt = e;
-      
-      // Mostrar banner si no se ha cerrado antes
       if (!localStorage.getItem('installBannerClosed')) {
         installBanner.classList.add('visible');
       }
@@ -891,11 +838,9 @@
 
     installBtn.addEventListener('click', async function() {
       if (!deferredPrompt) return;
-      
       deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      
-      if (outcome === 'accepted') {
+      var result = await deferredPrompt.userChoice;
+      if (result.outcome === 'accepted') {
         installBanner.classList.remove('visible');
       }
       deferredPrompt = null;
@@ -907,12 +852,12 @@
     });
 
     /* SPLASH SCREEN */
-    const CORRECT_PASSWORD = 'Caamaño';
+    var CORRECT_PASSWORD = 'Caamaño';
     
     document.getElementById('splashForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const input = document.getElementById('passwordInput');
-      const error = document.getElementById('splashError');
+      var input = document.getElementById('passwordInput');
+      var error = document.getElementById('splashError');
       if (input.value.trim() === CORRECT_PASSWORD) {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
@@ -940,7 +885,6 @@
     /* APP */
     function initApp() {
       initAnimations();
-      initIndexLinks();
       renderPlaces();
       initGenerator();
       initCarousels();
@@ -981,6 +925,8 @@
 
     function initBottomMenu() {
       var items = document.querySelectorAll('.menu-item');
+      var sections = ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'];
+      
       var obs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
           if (e.isIntersecting) {
@@ -988,17 +934,27 @@
           }
         });
       }, { threshold: 0.5 });
-      ['hero', 'indice', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) {
+      
+      sections.forEach(function(id) {
         var el = document.getElementById(id);
         if (el) obs.observe(el);
       });
+      
       items.forEach(function(i) {
         i.addEventListener('click', function(e) {
           e.preventDefault();
-          var t = document.getElementById(i.getAttribute('href').substring(1));
-          if (t) t.scrollIntoView({ behavior: 'smooth' });
+          var targetId = i.getAttribute('href').substring(1);
+          var target = document.getElementById(targetId);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
+    }
+
+    function initAnimations() {
+      var obs = new IntersectionObserver(function(e) { 
+        e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); 
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
     }
 
     var lugares = [
@@ -1027,21 +983,6 @@
       { id: "humana", nombre: "Galicia humana", emoji: "🍷" },
       { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙" }
     ];
-
-    function initAnimations() {
-      var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
-    }
-
-    function initIndexLinks() {
-      document.querySelectorAll('.index-item, .index-subitem').forEach(function(l) {
-        l.addEventListener('click', function(e) {
-          e.preventDefault();
-          var t = document.querySelector(l.getAttribute('href'));
-          if (t) t.scrollIntoView({ behavior: 'smooth' });
-        });
-      });
-    }
 
     function renderPlaces() {
       var c = document.getElementById('placesContainer');
