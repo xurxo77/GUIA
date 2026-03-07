@@ -76,7 +76,7 @@
     .nav-dot.active, .nav-dot:hover { background: var(--accent-sea); transform: scale(1.15); }
     .nav-dot:focus { outline: none; box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.25); }
 
-    /* Hero - SIN scroll-snap-stop */
+    /* Hero */
     .hero {
       min-height: 100vh;
       min-height: 100dvh;
@@ -271,59 +271,98 @@
       font-size: 0.9rem;
       color: var(--fg-muted);
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
-    /* Carrusel recomendaciones - ahora incluye la foto */
+    /* Carrusel centrado con flechas */
+    .carousel-wrapper {
+      position: relative;
+      width: 100%;
+    }
     .carousel {
       display: flex;
-      gap: 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      padding: 6px 0 12px;
-      margin: 0 -20px;
-      padding-left: 20px;
-      padding-right: 20px;
+      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      gap: 0;
     }
     .carousel::-webkit-scrollbar { display: none; }
     .carousel-card {
-      flex: 0 0 82%;
-      max-width: 300px;
-      min-width: 240px;
-      scroll-snap-align: start;
+      flex: 0 0 100%;
+      width: 100%;
+      scroll-snap-align: center;
+      padding: 0 4px;
     }
     
-    /* Tarjeta de autor en carrusel */
+    /* Botones de navegación */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: var(--bg-paper);
+      border: 2px solid var(--border-aged);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px var(--shadow-warm);
+    }
+    .carousel-btn:hover {
+      background: var(--bg-cream);
+      border-color: var(--accent-sea);
+    }
+    .carousel-btn:focus {
+      outline: none;
+      border-color: var(--accent-sea);
+      box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.15);
+    }
+    .carousel-btn-prev { left: -8px; }
+    .carousel-btn-next { right: -8px; }
+    .carousel-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-sea);
+    }
+    .carousel-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .carousel-btn:disabled:hover {
+      background: var(--bg-paper);
+      border-color: var(--border-aged);
+    }
+
+    /* Tarjeta de autor */
     .rec-author-card {
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
-      border-radius: 12px;
-      padding: 24px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      border-radius: 14px;
+      padding: 28px 20px;
       text-align: center;
     }
     .rec-author-avatar {
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       border: 3px solid var(--border-aged);
       object-fit: cover;
-      margin-bottom: 14px;
+      margin: 0 auto 16px;
     }
     .rec-author-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--accent-sea);
       margin-bottom: 4px;
     }
-    .rec-author-role {
+    .rec-author-subtitle {
       font-size: 0.85rem;
       color: var(--fg-muted);
       font-style: italic;
@@ -332,35 +371,25 @@
     .rec-card {
       background: var(--bg-card);
       border: 2px solid var(--border-aged);
-      border-radius: 12px;
-      padding: 18px;
-      height: 100%;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .rec-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px var(--shadow-warm);
+      border-radius: 14px;
+      padding: 22px 20px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .rec-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
       color: var(--fg-ink);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
-    .rec-icon { font-size: 1.2rem; flex-shrink: 0; }
-    .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.5; }
-
-    .carousel-hint {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--fg-muted);
-      font-style: italic;
-      margin-top: 8px;
-    }
+    .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
     /* TARJETAS DE LUGARES */
     .place-card {
@@ -661,80 +690,123 @@
       <span class="section-number">2</span>
       <h2 class="section-title">Recomendaciones y advertencias</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">(Cosas que nadie te dice, pero te alegrará saber)</p>
+    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:18px">(Cosas que nadie te dice, pero te alegrará saber)</p>
 
-    <!-- Recomendaciones de Xurxo - con foto en el carrusel -->
+    <!-- Recomendaciones de Xurxo -->
     <div class="rec-author-section fade-in">
-      <p class="rec-author-label">Recomendaciones de Xurxo:</p>
-      <div class="carousel" role="region" aria-label="Recomendaciones de Xurxo">
-        <!-- Primero la foto de Xurxo -->
-        <article class="carousel-card rec-author-card">
-          <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
-          <span class="rec-author-name">Xurxo</span>
-          <span class="rec-author-role">Desliza para ver</span>
-        </article>
-        <!-- Luego las tarjetas -->
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
-          <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
-          <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
-          <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
-          <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
-          <p class="rec-text">Ideales para disfrutar con tranquilidad.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
-          <p class="rec-text">Ojo con el oleaje y las corrientes.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
-          <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
-          <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
-          <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
-          <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
-          <p class="rec-text">Planifica las distancias.</p>
-        </article>
-        <article class="carousel-card rec-card">
-          <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
-          <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad.</p>
-        </article>
+      <p class="rec-author-label">Lo que dice Xurxo:</p>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" aria-label="Anterior" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel" id="carousel-xurxo">
+          <!-- Tarjeta de Xurxo -->
+          <article class="carousel-card">
+            <div class="rec-author-card">
+              <img src="xurxo.jpg" alt="Xurxo" class="rec-author-avatar" onerror="this.style.display='none'">
+              <span class="rec-author-name">Xurxo</span>
+              <span class="rec-author-subtitle">Sus recomendaciones</span>
+            </div>
+          </article>
+          <!-- Recomendaciones -->
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3>
+              <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🌧️</span>En verano también llueve</h3>
+              <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🍞</span>Prueba el pan de verdad</h3>
+              <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3>
+              <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🏖️</span>Las playas de ría son para ir con calma</h3>
+              <p class="rec-text">Ideales para disfrutar con tranquilidad, especialmente con niños.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">⚠️</span>Las playas de mar abierto exigen respeto</h3>
+              <p class="rec-text">Ojo con el oleaje y las corrientes. La bandera roja es sagrada.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🌅</span>Pocos chiringuitos, mucho horizonte</h3>
+              <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">💬</span>La gente no habla raro, habla gallego</h3>
+              <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">📍</span>No te fíes solo del GPS</h3>
+              <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🍽️</span>Prepárate para un festín</h3>
+              <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más. La hospitalidad es sagrada.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🛣️</span>Autovías: pocas. Peajes: hay algunos</h3>
+              <p class="rec-text">Planifica las distancias. Trae algo de efectivo o tarjeta.</p>
+            </div>
+          </article>
+          <article class="carousel-card">
+            <div class="rec-card">
+              <h3 class="rec-title"><span class="rec-icon">🌿</span>Respeta el entorno</h3>
+              <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</p>
+            </div>
+          </article>
+        </div>
+        <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
     </div>
-    <p class="carousel-hint">Desliza para ver más</p>
 
     <!-- Recomendaciones de Raquel -->
     <div class="rec-author-section fade-in">
-      <p class="rec-author-label">Recomendaciones de Raquel:</p>
-      <div class="carousel" role="region" aria-label="Recomendaciones de Raquel">
-        <article class="carousel-card rec-author-card">
-          <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
-          <span class="rec-author-name">Raquel</span>
-          <span class="rec-author-role">Todavía por poner</span>
-        </article>
+      <p class="rec-author-label">Lo que dice Raquel:</p>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-raquel')" aria-label="Anterior" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel" id="carousel-raquel">
+          <article class="carousel-card">
+            <div class="rec-author-card">
+              <img src="raquel.jpg" alt="Raquel" class="rec-author-avatar" onerror="this.style.display='none'">
+              <span class="rec-author-name">Raquel</span>
+              <span class="rec-author-subtitle">Todavía por poner</span>
+            </div>
+          </article>
+        </div>
+        <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-raquel')" aria-label="Siguiente" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -804,6 +876,46 @@
   </footer>
 
   <script>
+    /* Carrusel con flechas */
+    function carouselNext(id) {
+      const carousel = document.getElementById(id);
+      if (!carousel) return;
+      const cardWidth = carousel.querySelector('.carousel-card').offsetWidth;
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+
+    function carouselPrev(id) {
+      const carousel = document.getElementById(id);
+      if (!carousel) return;
+      const cardWidth = carousel.querySelector('.carousel-card').offsetWidth;
+      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+
+    function updateCarouselButtons(id) {
+      const carousel = document.getElementById(id);
+      if (!carousel) return;
+      const wrapper = carousel.parentElement;
+      const prevBtn = wrapper.querySelector('.carousel-btn-prev');
+      const nextBtn = wrapper.querySelector('.carousel-btn-next');
+      const scrollLeft = carousel.scrollLeft;
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      
+      if (prevBtn) prevBtn.style.display = scrollLeft <= 5 ? 'none' : 'flex';
+      if (nextBtn) nextBtn.style.display = scrollLeft >= maxScroll - 5 ? 'none' : 'flex';
+    }
+
+    function initCarousels() {
+      const carousels = ['carousel-xurxo', 'carousel-raquel'];
+      carousels.forEach(id => {
+        const carousel = document.getElementById(id);
+        if (carousel) {
+          carousel.addEventListener('scroll', () => updateCarouselButtons(id));
+          setTimeout(() => updateCarouselButtons(id), 100);
+        }
+      });
+    }
+
+    /* Lugares */
     const lugares = [
       { id: 1, nombre: "Catedral de Santiago de Compostela", categoria: "imprescindibles", tipo: "ciudad", horas: 3, imagen: "Santiago.jpg", descripcion: "El símbolo de Galicia", texto: `<p>La catedral es el símbolo más reconocible de Galicia y el final de muchos caminos que llegan desde Europa.</p><p>Más que un monumento, es un lugar de encuentro. La plaza que la rodea invita a detenerse, mirar con calma y sentir el ambiente de la ciudad.</p><p>Se recomienda reservar con antelación la entrada para el Pórtico de la Gloria o para subir a las cubiertas.</p>`, tips: ["Reserva antes para el Pórtico y cubiertas.", "Visita temprano o al atardecer.", "La misa del peregrino incluye el botafumeiro."], destacado: true },
       { id: 2, nombre: "Illas Cíes e Ons", categoria: "imprescindibles", tipo: "naturaleza", horas: 6, imagen: "ciesyons.jpg", descripcion: "Las islas de los dioses", texto: `<p>Un archipiélago de ensueño con playas de arena blanca y aguas cristalinas. The Guardian llamó a Rodas "la mejor playa del mundo".</p>`, tips: ["Reserva el barco con antelación.", "Lleva comida y agua.", "Hay límite diario de visitantes."], destacado: true },
@@ -837,6 +949,7 @@
       initIndexLinks();
       renderPlaces();
       initGenerator();
+      initCarousels();
     });
 
     function initAnimations() {
