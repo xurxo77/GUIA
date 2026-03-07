@@ -19,7 +19,11 @@
       --accent: #5A6B52;
       --accent-soft: #8A9A82;
       --atlantic: #5B7B8A;
+      --atlantic-deep: #3D5A66;
       --gold: #A68A5B;
+      --gold-soft: #C4A878;
+      --granite: #8A8580;
+      --moss: #6B7B5A;
       --border: #E5E2DC;
       --border-soft: #EDE9E3;
       --shadow: rgba(45, 49, 40, 0.04);
@@ -47,12 +51,43 @@
 
     .font-display { font-family: 'Crimson Pro', Georgia, serif; }
 
+    /* Textura sutil de fondo - inspirada en piedra gallega */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--fg-muted); }
 
-    /* Carousel mejorado */
+    /* Separador decorativo gallego */
+    .galician-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 2rem 0;
+    }
+    .galician-divider::before,
+    .galician-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+    .galician-divider-icon {
+      width: 24px;
+      height: 24px;
+      opacity: 0.4;
+    }
+
+    /* Carousel */
     .carousel {
       display: flex;
       gap: 1rem;
@@ -72,7 +107,7 @@
       scroll-snap-align: start;
     }
 
-    /* Recomendación card estilos */
+    /* Recomendación card */
     .reco-card {
       position: relative;
       overflow: hidden;
@@ -96,7 +131,6 @@
       transform: scale(1.05);
     }
 
-    /* Colores por categoría de recomendación */
     .reco-clima .reco-icon { background: rgba(91, 123, 138, 0.12); }
     .reco-clima .reco-icon svg { stroke: #5B7B8A; }
     .reco-comida .reco-icon { background: rgba(166, 138, 91, 0.12); }
@@ -108,6 +142,7 @@
     .reco-practico .reco-icon { background: rgba(90, 107, 82, 0.12); }
     .reco-practico .reco-icon svg { stroke: #5A6B52; }
 
+    /* Place cards */
     .place-card {
       cursor: pointer;
       transition: box-shadow 0.4s ease, transform 0.3s ease;
@@ -124,6 +159,7 @@
     .place-card.expanded .expand-icon { transform: rotate(180deg); background-color: var(--accent); }
     .place-card.expanded .expand-icon svg { stroke: white; }
 
+    /* Animations */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
@@ -210,6 +246,7 @@
       justify-content: center;
     }
 
+    /* Category badges */
     .category-badge {
       display: inline-flex;
       align-items: center;
@@ -228,16 +265,19 @@
     .category-humana { background: rgba(180, 100, 80, 0.12); color: #B46450; }
     .category-segreda { background: rgba(80, 80, 90, 0.12); color: #5A5A62; }
 
+    /* Section header mejorado */
     .section-header {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-soft);
     }
     .section-icon {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 8px;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -255,6 +295,51 @@
     .section-humana .section-icon svg { stroke: #B46450; }
     .section-segreda .section-icon { background: rgba(80, 80, 90, 0.15); }
     .section-segreda .section-icon svg { stroke: #5A5A62; }
+
+    /* Título de apartado principal */
+    .apartado-titulo {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Título de subapartado */
+    .subapartado-titulo {
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    /* Línea decorativa atlántica */
+    .atlantic-line {
+      height: 2px;
+      background: linear-gradient(90deg, var(--atlantic), var(--atlantic-deep), var(--atlantic));
+      opacity: 0.3;
+      margin: 1.5rem 0;
+    }
+
+    /* Decoración de ola sutil */
+    .wave-decoration {
+      position: relative;
+      overflow: hidden;
+    }
+    .wave-decoration::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--atlantic) 25%, 
+        var(--moss) 50%, 
+        var(--atlantic) 75%, 
+        transparent 100%
+      );
+      opacity: 0.2;
+    }
   </style>
 </head>
 <body>
@@ -262,7 +347,12 @@
   <!-- NAVEGACIÓN -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--bg)]/95 backdrop-blur-sm border-b border-[var(--border-soft)]">
     <div class="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#inicio" class="font-display text-xl font-medium text-[var(--fg)] tracking-tight">Galicia</a>
+      <a href="#inicio" class="font-display text-xl font-medium text-[var(--fg)] tracking-tight flex items-center gap-2">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--atlantic)" stroke-width="1.5" class="opacity-60">
+          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+        </svg>
+        Galicia
+      </a>
       <button id="menuBtn" class="p-2 -mr-2 rounded-lg hover:bg-[var(--bg-warm)] transition-colors" aria-label="Menú" aria-expanded="false">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
           <line x1="4" y1="6" x2="20" y2="6"/>
@@ -282,18 +372,21 @@
   </nav>
 
   <!-- HERO -->
-  <header id="inicio" class="pt-28 pb-20 px-6">
+  <header id="inicio" class="pt-28 pb-16 px-6 relative">
     <div class="max-w-xl mx-auto">
-      <p class="text-[var(--fg-muted)] text-sm mb-8 animate-in visible">Guía creada por Xurxo y Raquel</p>
-      <h1 class="font-display text-4xl sm:text-5xl font-medium leading-[1.15] tracking-tight mb-6 animate-in visible delay-1">Galicia</h1>
+      <p class="text-[var(--fg-muted)] text-sm mb-6 animate-in visible">Guía creada por Xurxo y Raquel</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-medium leading-[1.15] tracking-tight mb-4 animate-in visible delay-1">Galicia</h1>
       <p class="font-display text-xl sm:text-2xl text-[var(--fg-soft)] leading-relaxed animate-in visible delay-2">
         Guía para amigos que quieren descubrirla con calma
       </p>
+      
+      <!-- Línea decorativa -->
+      <div class="atlantic-line animate-in visible delay-3"></div>
     </div>
   </header>
 
   <!-- ÍNDICE -->
-  <section class="pb-20 px-6">
+  <section class="pb-16 px-6">
     <div class="max-w-xl mx-auto">
       <nav class="space-y-3 animate-in visible delay-3">
         <a href="#introduccion" class="group flex items-center gap-5 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border-soft)] card-shadow card-shadow-hover transition-all">
@@ -317,49 +410,53 @@
   </section>
 
   <!-- INTRODUCCIÓN -->
-  <section id="introduccion" class="py-20 px-6 bg-[var(--bg-warm)]">
+  <section id="introduccion" class="py-16 px-6 bg-[var(--bg-warm)] relative">
     <div class="max-w-xl mx-auto">
       <div class="animate-in">
-        <p class="number-badge text-[var(--accent)] text-sm font-medium mb-4">01</p>
-        <h2 class="font-display text-3xl font-medium tracking-tight mb-10">Introducción</h2>
+        <p class="number-badge text-[var(--accent)] text-sm font-medium mb-3">01</p>
+        <h2 class="font-display apartado-titulo text-[var(--fg)]">Introducción</h2>
       </div>
-      <div class="space-y-6 text-[var(--fg-soft)] animate-in">
-        <p>Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
-        <p>Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.</p>
-        <p>Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.</p>
+      
+      <div class="mt-8 space-y-5 animate-in">
+        <p class="text-[var(--fg-soft)] text-[1.0625rem]">
+          Si esta guía ha llegado a tus manos, considéralo un pequeño privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.
+        </p>
+        <p class="text-[var(--fg-soft)]">
+          Aquí encontrarás una selección de lugares que, en nuestra opinión, ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo. No es una lista de los sitios más famosos ni un recorrido por los circuitos turísticos habituales, sino una invitación a descubrir rincones que nos parecen más interesantes… y, si puede ser, disfrutarlos sin prisas.
+        </p>
+        <p class="text-[var(--fg-soft)]">
+          Usa la guía como quieras: elige las fichas que te llamen la atención y deja que el viaje vaya saliendo solo, porque Galicia también se disfruta respetando su identidad y dejando un poco de espacio para la sorpresa.
+        </p>
       </div>
-      <blockquote class="mt-12 pt-8 border-t border-[var(--border)] animate-in">
-        <p class="font-display text-2xl italic text-[var(--fg)] leading-relaxed mb-4">"Se algún día volvo, será polo mar e pola memoria dos lugares pequenos."</p>
-        <cite class="text-[var(--fg-muted)] text-sm not-italic">— Álvaro Cunqueiro</cite>
+
+      <blockquote class="mt-10 pt-6 border-t border-[var(--border)] animate-in relative">
+        <svg class="absolute -top-3 left-0 w-8 h-8 text-[var(--atlantic)] opacity-20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="font-display text-xl italic text-[var(--fg)] leading-relaxed mb-3 pl-6">
+          Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.
+        </p>
+        <cite class="text-[var(--fg-muted)] text-sm not-italic pl-6 block">— Álvaro Cunqueiro</cite>
       </blockquote>
     </div>
   </section>
 
   <!-- RECOMENDACIONES Y ADVERTENCIAS -->
-  <section id="recomendaciones" class="py-20 px-6">
+  <section id="recomendaciones" class="py-16 px-6">
     <div class="max-w-xl mx-auto">
-      <div class="animate-in mb-12">
-        <p class="number-badge text-[var(--atlantic)] text-sm font-medium mb-4">02</p>
-        <h2 class="font-display text-3xl font-medium tracking-tight mb-3">Recomendaciones y advertencias varias</h2>
-        <p class="text-[var(--fg-muted)]">Cosas que nadie te dice, pero te alegrará saber</p>
+      <div class="animate-in mb-10">
+        <p class="number-badge text-[var(--atlantic)] text-sm font-medium mb-3">02</p>
+        <h2 class="font-display apartado-titulo text-[var(--fg)]">Recomendaciones y advertencias varias</h2>
+        <p class="text-[var(--fg-muted)] mt-2">Cosas que nadie te dice, pero te alegrará saber</p>
       </div>
 
-      <!-- Carrusel de recomendaciones mejorado -->
       <div class="carousel" role="region" aria-label="Carrusel de recomendaciones">
         
         <!-- Clima -->
         <article class="carousel-card reco-card reco-clima bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v2"/>
-              <path d="M12 20v2"/>
-              <path d="m4.93 4.93 1.41 1.41"/>
-              <path d="m17.66 17.66 1.41 1.41"/>
-              <path d="M2 12h2"/>
-              <path d="M20 12h2"/>
-              <path d="m6.34 17.66-1.41 1.41"/>
-              <path d="m19.07 4.93-1.41 1.41"/>
-              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/><circle cx="12" cy="12" r="4"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Por las noches refresca</h3>
@@ -369,10 +466,7 @@
         <article class="carousel-card reco-card reco-clima bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/>
-              <path d="M16 14v6"/>
-              <path d="M8 14v6"/>
-              <path d="M12 16v6"/>
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">En verano también llueve</h3>
@@ -383,9 +477,7 @@
         <article class="carousel-card reco-card reco-mar bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 12h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h4"/>
-              <path d="M22 12h-2a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-4"/>
-              <path d="M2 12a10 10 0 1 1 20 0"/>
+              <path d="M2 12h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h4"/><path d="M22 12h-2a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-4"/><path d="M2 12a10 10 0 1 1 20 0"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Cuidado con las mareas</h3>
@@ -405,9 +497,7 @@
         <article class="carousel-card reco-card reco-mar bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
-              <path d="M2 12h20"/>
+              <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Pocos chiringuitos, mucho horizonte</h3>
@@ -418,9 +508,7 @@
         <article class="carousel-card reco-card reco-comida bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4Z"/>
-              <path d="M12 12v10"/>
-              <path d="M8 22h8"/>
+              <path d="M12 2a4 4 0 0 0-4 4c0 2 2 4 4 6 2-2 4-4 4-6a4 4 0 0 0-4-4Z"/><path d="M12 12v10"/><path d="M8 22h8"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Prueba el pan de verdad</h3>
@@ -430,11 +518,7 @@
         <article class="carousel-card reco-card reco-comida bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-              <line x1="6" y1="1" x2="6" y2="4"/>
-              <line x1="10" y1="1" x2="10" y2="4"/>
-              <line x1="14" y1="1" x2="14" y2="4"/>
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Prepárate para un festín</h3>
@@ -466,9 +550,7 @@
         <article class="carousel-card reco-card reco-practico bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow flex-shrink-0">
           <div class="reco-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8A2 2 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
-              <circle cx="7" cy="17" r="2"/>
-              <circle cx="17" cy="17" r="2"/>
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8A2 2 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
             </svg>
           </div>
           <h3 class="font-display text-lg font-medium text-[var(--fg)] mb-2">Autovías y peajes</h3>
@@ -492,12 +574,12 @@
   </section>
 
   <!-- LUGARES -->
-  <section id="lugares" class="py-20 px-6 bg-[var(--bg-warm)]">
+  <section id="lugares" class="py-16 px-6 bg-[var(--bg-warm)] relative">
     <div class="max-w-xl mx-auto">
-      <div class="animate-in mb-12">
-        <p class="number-badge text-[var(--gold)] text-sm font-medium mb-4">03</p>
-        <h2 class="font-display text-3xl font-medium tracking-tight mb-4">Lugares</h2>
-        <p class="text-[var(--fg-soft)] leading-relaxed">Una selección de rincones que ponen en valor la identidad gallega. Cada uno con su propia forma de entender el tiempo.</p>
+      <div class="animate-in mb-10">
+        <p class="number-badge text-[var(--gold)] text-sm font-medium mb-3">03</p>
+        <h2 class="font-display apartado-titulo text-[var(--fg)]">Lugares</h2>
+        <p class="text-[var(--fg-soft)] mt-2 leading-relaxed">Una selección de rincones que ponen en valor la identidad gallega. Cada uno con su propia forma de entender el tiempo.</p>
       </div>
       
       <div id="placesContainer"></div>
@@ -505,12 +587,12 @@
   </section>
 
   <!-- GENERADOR DE ITINERARIOS -->
-  <section id="generador" class="py-20 px-6">
+  <section id="generador" class="py-16 px-6">
     <div class="max-w-xl mx-auto">
       <div class="animate-in mb-10">
-        <p class="number-badge text-[var(--fg-soft)] text-sm font-medium mb-4">04</p>
-        <h2 class="font-display text-3xl font-medium tracking-tight mb-3">Generador de itinerarios</h2>
-        <p class="text-[var(--fg-soft)]">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas. Te sugeriremos un itinerario a medida.</p>
+        <p class="number-badge text-[var(--fg-soft)] text-sm font-medium mb-3">04</p>
+        <h2 class="font-display apartado-titulo text-[var(--fg)]">Generador de itinerarios</h2>
+        <p class="text-[var(--fg-soft)] mt-2">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas. Te sugeriremos un itinerario a medida.</p>
       </div>
       <div class="bg-[var(--bg-card)] rounded-2xl p-6 border border-[var(--border-soft)] card-shadow animate-in">
         <form id="itineraryForm" class="space-y-5">
@@ -541,10 +623,16 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-16 px-6 border-t border-[var(--border-soft)]">
+  <footer class="py-12 px-6 border-t border-[var(--border-soft)] bg-[var(--bg-warm)] relative">
     <div class="max-w-xl mx-auto text-center">
-      <p class="font-display text-2xl italic text-[var(--fg)] mb-4">Bo viaxe</p>
+      <div class="atlantic-line mb-8"></div>
+      <p class="font-display text-2xl italic text-[var(--fg)] mb-3">Bo viaxe</p>
       <p class="text-[var(--fg-muted)] text-sm leading-relaxed">Guía creada con cariño por Xurxo y Raquel<br>exclusivamente para amigos</p>
+      <div class="mt-6 flex justify-center">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--atlantic)" stroke-width="1" class="opacity-30">
+          <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+        </svg>
+      </div>
     </div>
   </footer>
 
@@ -568,11 +656,11 @@
       },
       {
         id: 2,
-        nombre: "Illas Cíes",
+        nombre: "Illas Cíes e Ons",
         categoria: "imprescindibles",
         tipo: "naturaleza",
         horas: 6,
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80",
+        imagen: "ciesyons.jpg",
         descripcion: "Las islas de los dioses en la ría de Vigo",
         textoCompleto: `<p>Un archipiélago de ensueño en la ría de Vigo con playas de arena blanca y aguas cristalinas. The Guardian llamó a la playa de Rodas "la mejor del mundo".</p><p>Las Cíes forman parte del Parque Nacional de las Islas Atlánticas y son un paraíso de naturaleza virgen donde el tiempo se detiene.</p>`,
         consejo: "Reserva el barco con antelación en verano. Hay límite diario de visitantes.",
@@ -584,7 +672,7 @@
         categoria: "imprescindibles",
         tipo: "naturaleza",
         horas: 2,
-        imagen: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&h=300&fit=crop&q=80",
+        imagen: "finisterre.jpg",
         descripcion: "El fin del mundo para los romanos",
         textoCompleto: `<p>Para los romanos, este era el fin del mundo conocido. El faro y el farallón ofrecen postales inolvidables, especialmente al atardecer.</p><p>Es el punto más occidental de España y el lugar donde muchos peregrinos queman sus botas al llegar.</p>`,
         consejo: "Ve al atardecer y continúa hasta la playa de Langosteira.",
@@ -596,7 +684,7 @@
         categoria: "imprescindibles",
         tipo: "ciudad",
         horas: 2,
-        imagen: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=300&fit=crop&q=80",
+        imagen: "muralla.jpg",
         descripcion: "La única muralla romana completa del mundo",
         textoCompleto: `<p>Patrimonio de la Humanidad y la mejor conservada de todo el Imperio Romano. Puedes caminar por lo alto de los 2 km de muralla.</p><p>La ciudad de Lugo merece una visita tranquila, con su catedral y sus tabernas.</p>`,
         consejo: "Camina la muralla al atardecer y termina en el casco histórico.",
@@ -671,17 +759,6 @@
         descripcion: "El pueblo de los hórreos sobre el mar",
         textoCompleto: `<p>Un pueblo pesquero donde los hórreos se asoman al mar como testigos de otros tiempos. Uno de los conjuntos de arquitectura popular más bonitos de Galicia.</p><p>Pasea por sus calles estrechas y siéntate a tomar algo en el puerto.</p>`,
         consejo: "Ve al atardecer para la mejor luz sobre los hórreos."
-      },
-      {
-        id: 17,
-        nombre: "Cíes y Ons",
-        categoria: "atlantica",
-        tipo: "naturaleza",
-        horas: 8,
-        imagen: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80",
-        descripcion: "Las joyas del Parque Nacional",
-        textoCompleto: `<p>El archipiélago de las Islas Atlánticas protege algunos de los ecosistemas más valiosos de Europa. Cíes al este, Ons al oeste: dos mundos distintos unidos por el mar.</p><p>Cada isla tiene su propia personalidad y merece un día completo.</p>`,
-        consejo: "Reserva barco con antelación. El límite de visitantes protege el entorno."
       },
 
       // 🌿 GALICIA VERDE INTERIOR
@@ -827,12 +904,12 @@
        CONFIGURACIÓN DE CATEGORÍAS
        ============================================ */
     const categorias = [
-      { id: "imprescindibles", nombre: "Imprescindibles", descripcion: "Los lugares que no puedes perderte" },
-      { id: "magica", nombre: "Galicia mágica", descripcion: "Leyendas, misterios y espiritualidad" },
-      { id: "atlantica", nombre: "Galicia atlántica", descripcion: "Mar, faros y costa salvaje" },
-      { id: "verde", nombre: "Galicia verde interior", descripcion: "Bosques, ríos y paisajes de interior" },
-      { id: "humana", nombre: "Galicia humana", descripcion: "Pueblos, mercados y vida local" },
-      { id: "segreda", nombre: "Galicia \"segreda\"", descripcion: "Rincones que no aparecen en las guías" }
+      { id: "imprescindibles", nombre: "Imprescindibles", emoji: "⭐", descripcion: "Los lugares que no puedes perderte" },
+      { id: "magica", nombre: "Galicia mágica", emoji: "🌌", descripcion: "Leyendas, misterios y espiritualidad" },
+      { id: "atlantica", nombre: "Galicia atlántica", emoji: "🌊", descripcion: "Mar, faros y costa salvaje" },
+      { id: "verde", nombre: "Galicia verde interior", emoji: "🌿", descripcion: "Bosques, ríos y paisajes de interior" },
+      { id: "humana", nombre: "Galicia humana", emoji: "🍷", descripcion: "Pueblos, mercados y vida local" },
+      { id: "segreda", nombre: "Galicia \"segreda\"", emoji: "🌙", descripcion: "Rincones que no aparecen en las guías" }
     ];
 
     /* ============================================
@@ -928,15 +1005,15 @@
         if (lugaresCategoria.length === 0) return;
         
         html += `
-          <div class="mb-12 animate-in">
+          <div class="mb-10 animate-in">
             <div class="section-header section-${categoria.id}">
               <div class="section-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
                   ${getCategoryIcon(categoria.id)}
                 </svg>
               </div>
               <div>
-                <h3 class="font-display text-xl font-medium">${categoria.nombre}</h3>
+                <h3 class="font-display subapartado-titulo text-[var(--fg)]">${categoria.nombre}</h3>
                 <p class="text-[var(--fg-muted)] text-xs mt-0.5">${categoria.descripcion}</p>
               </div>
             </div>
