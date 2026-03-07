@@ -9,51 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-paper: #f4ede4;
-      --bg-cream: #e8dfd3;
-      --bg-card: #ded4c4;
+      --bg-paper: #ffffff;
+      --bg-cream: #faf8f5;
+      --bg-card: #f5f3ee;
       --fg-ink: #2c2416;
       --fg-muted: #5a4d3a;
       --accent-sea: #1a4a5e;
       --accent-gold: #b8860b;
       --accent-green: #3d5a47;
       --accent-wine: #7a3e3e;
-      --border-aged: #c9b89d;
+      --border-aged: #e0d8c8;
       --border-card: #8b7355;
-      --shadow-warm: rgba(44, 36, 22, 0.15);
+      --shadow-warm: rgba(44, 36, 22, 0.1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y mandatory; }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      html { scroll-behavior: auto; scroll-snap-type: none; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
 
     body {
       font-family: 'Crimson Pro', Georgia, serif;
       background: var(--bg-paper);
       color: var(--fg-ink);
-      line-height: 1.65;
-      font-size: 18px;
+      line-height: 1.7;
+      font-size: 20px;
       min-height: 100vh;
     }
 
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
     h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
+
+    /* Secciones con snap */
+    section {
+      min-height: 100vh;
+      padding: 60px 24px;
+      max-width: 680px;
+      margin: 0 auto;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     /* Navegación flotante */
     .nav-floating {
@@ -82,9 +81,6 @@
     .nav-dot.active, .nav-dot:hover { background: var(--accent-sea); transform: scale(1.15); }
     .nav-dot:focus { outline: none; box-shadow: 0 0 0 3px rgba(26, 74, 94, 0.25); }
 
-    /* Secciones */
-    section { padding: 48px 20px; max-width: 640px; margin: 0 auto; }
-
     /* Hero */
     .hero {
       min-height: 100vh;
@@ -98,58 +94,60 @@
       padding: 20px;
     }
     .hero-title {
-      font-size: clamp(3rem, 12vw, 4.5rem);
+      font-size: clamp(3.5rem, 14vw, 5rem);
       font-weight: 700;
       color: var(--accent-sea);
       line-height: 1;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
     .hero-subtitle {
-      font-size: clamp(1rem, 4vw, 1.25rem);
+      font-size: clamp(1.2rem, 5vw, 1.5rem);
       color: var(--fg-muted);
       font-style: italic;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
-    .hero-authors { margin-top: 20px; }
+    .hero-authors { margin-top: 24px; }
     .hero-authors-label {
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       color: var(--accent-green);
       font-family: 'Cormorant Garamond', serif;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .authors-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
     .author-avatar {
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
-      border: 2px solid var(--border-aged);
+      border: 3px solid var(--border-aged);
       background: var(--bg-cream);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       font-weight: 600;
       color: var(--fg-muted);
       overflow: hidden;
+      transition: transform 0.3s ease;
     }
+    .author-avatar:hover { transform: scale(1.08); }
     .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .author-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: var(--accent-sea);
     }
     .author-separator {
       color: var(--accent-gold);
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
     }
 
     /* Divisor decorativo */
@@ -157,9 +155,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 32px 20px;
-      max-width: 640px;
-      margin: 0 auto;
+      padding: 20px;
     }
     .decorative-divider::before, .decorative-divider::after {
       content: '';
@@ -172,21 +168,21 @@
     /* Títulos numerados */
     .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
     .section-number {
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border: 3px solid var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent-sea);
       flex-shrink: 0;
       background: var(--bg-paper);
     }
-    .section-title { font-size: clamp(1.5rem, 5vw, 1.9rem); color: var(--accent-sea); margin: 0; }
+    .section-title { font-size: clamp(1.6rem, 6vw, 2rem); color: var(--accent-sea); margin: 0; }
 
     /* Índice */
     .index-list { list-style: none; }
@@ -197,105 +193,116 @@
       padding: 12px 0;
       text-decoration: none;
       color: var(--fg-ink);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       transition: all 0.25s ease;
     }
     .index-item:hover, .index-item:focus { color: var(--accent-sea); transform: translateX(6px); outline: none; }
     .index-number {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       border: 2px solid var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--accent-sea);
       transition: all 0.25s ease;
       flex-shrink: 0;
     }
     .index-item:hover .index-number, .index-item:focus .index-number { background: var(--accent-sea); color: white; }
+    
+    .index-sublist { list-style: none; margin-left: 50px; margin-top: 4px; }
+    .index-subitem {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      text-decoration: none;
+      color: var(--fg-muted);
+      font-size: 1rem;
+      transition: all 0.25s ease;
+    }
+    .index-subitem:hover, .index-subitem:focus { color: var(--accent-sea); outline: none; }
+    .index-subitem-icon { font-size: 0.9rem; }
 
     /* Prosa */
-    .prose p { margin-bottom: 16px; text-align: justify; font-size: 1rem; }
+    .prose p { margin-bottom: 18px; text-align: justify; font-size: 1.05rem; }
 
     /* Cita */
     .quote {
       position: relative;
-      padding: 20px 20px 20px 28px;
-      margin: 24px 0;
-      background: linear-gradient(90deg, rgba(26, 74, 94, 0.06), transparent);
+      padding: 22px 22px 22px 30px;
+      margin: 28px 0;
+      background: linear-gradient(90deg, rgba(26, 74, 94, 0.05), transparent);
       border-left: 3px solid var(--accent-sea);
       font-style: italic;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
     }
     .quote::before {
       content: '"';
       position: absolute;
       top: 8px;
-      left: 8px;
+      left: 10px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: var(--accent-sea);
       opacity: 0.2;
       line-height: 1;
     }
-    .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
+    .quote-author { display: block; margin-top: 14px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.95rem; }
 
-    /* Recomendaciones */
-    .rec-list { display: flex; flex-direction: column; gap: 3px; }
-    .rec-item {
+    /* Carrusel recomendaciones */
+    .carousel {
       display: flex;
-      align-items: flex-start;
       gap: 14px;
-      padding: 12px 16px;
-      border-left: 3px solid var(--accent-gold);
-      background: linear-gradient(90deg, rgba(184, 134, 11, 0.04), transparent);
-      transition: background 0.25s ease;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 0 16px;
+      margin: 0 -24px;
+      padding-left: 24px;
+      padding-right: 24px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
-    .rec-item:hover { background: linear-gradient(90deg, rgba(184, 134, 11, 0.08), transparent); }
-    .rec-number {
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel-card {
+      flex: 0 0 85%;
+      max-width: 320px;
+      min-width: 260px;
+      scroll-snap-align: start;
+    }
+    
+    .rec-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-aged);
+      border-radius: 12px;
+      padding: 20px;
+      height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .rec-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-warm);
+    }
+    .rec-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .rec-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      opacity: 0.7;
-      min-width: 20px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--fg-ink);
+      margin-bottom: 8px;
     }
-    .rec-content { flex: 1; }
-    .rec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 3px; }
-    .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.45; }
-
-    /* Subapartado */
-    .subapartado-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 14px;
-      background: var(--bg-cream);
-      border-radius: 10px;
-      margin-bottom: 16px;
-      border: 1px solid var(--border-aged);
+    .rec-text {
+      font-size: 1rem;
+      color: var(--fg-muted);
+      line-height: 1.5;
     }
-    .subapartado-icono {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-    }
-    .subapartado-texto h3 { font-size: 0.95rem; font-weight: 600; margin: 0; color: var(--fg-ink); }
-    .subapartado-texto p { font-size: 0.7rem; color: var(--fg-muted); margin: 0; }
-    .sub-imprescindibles .subapartado-icono { background: rgba(184, 134, 11, 0.15); }
-    .sub-magica .subapartado-icono { background: rgba(122, 62, 62, 0.15); }
-    .sub-atlantica .subapartado-icono { background: rgba(26, 74, 94, 0.15); }
-    .sub-verde .subapartado-icono { background: rgba(61, 90, 71, 0.15); }
-    .sub-humana .subapartado-icono { background: rgba(139, 90, 43, 0.15); }
-    .sub-segreda .subapartado-icono { background: rgba(90, 90, 90, 0.15); }
 
     /* TARJETAS DE LUGARES */
     .place-card {
@@ -304,11 +311,11 @@
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 20px;
-      box-shadow: 0 4px 16px var(--shadow-warm), inset 0 1px 0 rgba(255,255,255,0.3);
+      box-shadow: 0 4px 16px var(--shadow-warm);
       position: relative;
       transition: box-shadow 0.3s ease;
     }
-    .place-card:hover { box-shadow: 0 6px 24px var(--shadow-warm), inset 0 1px 0 rgba(255,255,255,0.3); }
+    .place-card:hover { box-shadow: 0 6px 24px var(--shadow-warm); }
     .place-card::before {
       content: '';
       position: absolute;
@@ -317,134 +324,124 @@
       background: linear-gradient(90deg, var(--accent-sea), var(--accent-gold), var(--accent-sea));
       z-index: 1;
     }
-    .place-image { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
+    .place-image { position: relative; height: 200px; overflow: hidden; background: var(--bg-cream); }
     .place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .place-number-badge {
       position: absolute;
-      top: 12px; right: 12px;
-      width: 40px; height: 40px;
+      top: 14px; right: 14px;
+      width: 44px; height: 44px;
       background: var(--accent-sea);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
       z-index: 2;
     }
     .place-title-overlay {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 28px 14px 10px;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      padding: 30px 16px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72), transparent);
       z-index: 1;
     }
     .place-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: white;
       text-shadow: 0 1px 4px rgba(0,0,0,0.5);
       margin: 0;
     }
     .place-header {
-      padding: 12px 14px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       user-select: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
-      border-top: 1px solid rgba(139, 115, 85, 0.3);
+      border-top: 1px solid rgba(139, 115, 85, 0.25);
     }
-    .place-header:hover { background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent); }
-    .place-header:focus { outline: none; background: linear-gradient(180deg, rgba(184, 134, 11, 0.15), transparent); }
-    .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-sea); }
-    .place-toggle { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--fg-muted); transition: color 0.25s ease; }
-    .place-header:hover .place-toggle { color: var(--accent-gold); }
-    .place-toggle-icon { width: 18px; height: 18px; transition: transform 0.3s ease; }
+    .place-header:hover { background: rgba(184, 134, 11, 0.06); }
+    .place-header:focus { outline: none; background: rgba(184, 134, 11, 0.1); }
+    .place-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--accent-sea); }
+    .place-toggle-icon { width: 20px; height: 20px; transition: transform 0.3s ease; color: var(--fg-muted); }
     .place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
     .place-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-    .place-card.expanded .place-content { max-height: 1200px; }
-    .place-content-inner { padding: 18px; border-top: 1px solid rgba(139, 115, 85, 0.3); }
-    .place-content p { margin-bottom: 14px; text-align: justify; font-size: 0.95rem; }
+    .place-card.expanded .place-content { max-height: 1000px; }
+    .place-content-inner { padding: 18px; border-top: 1px solid rgba(139, 115, 85, 0.25); }
+    .place-content p { margin-bottom: 14px; text-align: justify; font-size: 1rem; }
     .place-content p:last-child { margin-bottom: 0; }
 
-    .place-info { margin-top: 18px; padding-top: 14px; border-top: 2px dashed var(--border-card); }
+    .place-info { margin-top: 18px; padding-top: 14px; border-top: 2px dashed var(--border-aged); }
     .info-block { margin-bottom: 14px; }
-    .info-block:last-child { margin-bottom: 0; }
     .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .info-icon { width: 16px; height: 16px; }
-    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-    .info-content { padding-left: 24px; font-size: 0.9rem; color: var(--fg-muted); }
+    .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-green); }
+    .info-content { padding-left: 24px; font-size: 0.95rem; color: var(--fg-muted); }
     .info-content ul { list-style: none; }
     .info-content li { position: relative; padding-left: 14px; margin-bottom: 6px; }
-    .info-content li:last-child { margin-bottom: 0; }
-    .info-content li::before { content: ''; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; }
-    .info-tips .info-header { color: var(--accent-green); }
-    .info-tips .info-content li::before { background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); width: 6px; height: 6px; top: 6px; }
+    .info-content li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; background: var(--accent-green); border-radius: 2px; transform: rotate(45deg); }
 
     /* Footer */
     .footer {
-      text-align: center;
-      padding: 48px 20px;
+      min-height: auto;
+      padding: 50px 24px;
       border-top: 1px solid var(--border-aged);
-      margin-top: 32px;
     }
-    .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 24px; }
-    .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1rem; }
+    .footer-text { font-size: 1rem; color: var(--fg-muted); margin-bottom: 24px; }
+    .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1.05rem; }
     .footer-signature strong { font-style: normal; font-weight: 600; color: var(--accent-sea); }
-    .footer-icon { margin-top: 28px; opacity: 0.35; }
+    .footer-icon { margin-top: 28px; opacity: 0.3; }
 
     /* Animaciones */
     .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .delay-1 { transition-delay: 0.1s; }
     .delay-2 { transition-delay: 0.2s; }
-    .delay-3 { transition-delay: 0.3s; }
 
     /* Generador */
     .generator-box {
       background: var(--bg-card);
       border: 3px solid var(--border-card);
       border-radius: 10px;
-      padding: 20px;
+      padding: 22px;
       margin-top: 20px;
       box-shadow: 0 4px 16px var(--shadow-warm);
     }
-    .form-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 6px; }
+    .form-label { display: block; font-size: 0.95rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 8px; }
     .form-select {
       width: 100%;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: var(--fg-ink);
       cursor: pointer;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%235a4d3a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a4d3a' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 10px center;
+      background-position: right 12px center;
     }
     .form-select:focus { border-color: var(--accent-sea); outline: none; }
     .btn-generate {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       background: var(--accent-sea);
       color: white;
       border: none;
       border-radius: 8px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s ease;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .btn-generate:hover { background: #143a4a; }
 
@@ -452,51 +449,59 @@
       background: var(--bg-cream);
       border: 2px solid var(--border-aged);
       border-radius: 10px;
-      padding: 16px;
-      margin-top: 16px;
+      padding: 18px;
+      margin-top: 18px;
     }
-    .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .itinerary-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 2px; }
-    .itinerary-hours { font-size: 0.85rem; color: var(--fg-muted); }
+    .itinerary-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .itinerary-title { font-size: 1.15rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
+    .itinerary-hours { font-size: 0.9rem; color: var(--fg-muted); }
     .itinerary-badge {
       display: inline-block;
-      padding: 3px 10px;
-      font-size: 0.75rem;
-      background: rgba(26, 74, 94, 0.1);
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      background: rgba(26, 74, 94, 0.08);
       color: var(--accent-sea);
       border-radius: 20px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .itinerary-place {
       display: flex;
-      gap: 10px;
-      padding: 10px;
+      gap: 12px;
+      padding: 12px;
       background: var(--bg-card);
       border-radius: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       border-left: 3px solid var(--accent-gold);
     }
     .itinerary-place:last-child { margin-bottom: 0; }
     .itinerary-place-num {
-      width: 22px; height: 22px;
+      width: 26px; height: 26px;
       background: var(--accent-sea);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
       flex-shrink: 0;
     }
     .itinerary-place img {
-      width: 44px; height: 44px;
+      width: 50px; height: 50px;
       border-radius: 6px;
       object-fit: cover;
       flex-shrink: 0;
     }
-    .itinerary-place-name { font-weight: 600; font-size: 0.9rem; }
-    .itinerary-place-time { font-size: 0.75rem; color: var(--fg-muted); }
+    .itinerary-place-name { font-weight: 600; font-size: 0.95rem; }
+    .itinerary-place-time { font-size: 0.8rem; color: var(--fg-muted); }
+
+    .carousel-hint {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      font-style: italic;
+      margin-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -506,22 +511,21 @@
     <button class="nav-dot" data-section="indice" aria-label="Índice"></button>
     <button class="nav-dot" data-section="introduccion" aria-label="Introducción"></button>
     <button class="nav-dot" data-section="recomendaciones" aria-label="Recomendaciones"></button>
-    <button class="nav-dot" data-section="lugares" aria-label="Lugares"></button>
+    <button class="nav-dot" data-section="lugares" aria-label="Imprescindibles"></button>
     <button class="nav-dot" data-section="generador" aria-label="Generador"></button>
   </nav>
 
   <!-- Hero -->
   <header id="hero" class="hero">
-    <svg class="fade-in" width="50" height="50" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px">
+    <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:18px" class="fade-in visible">
       <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
       <circle cx="32" cy="32" r="20"/>
       <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
       <circle cx="32" cy="32" r="4"/>
     </svg>
-    <h1 class="hero-title fade-in delay-1">Galicia</h1>
-    <p class="hero-subtitle fade-in delay-2">Guía para amigos que quieren descubrirla con calma</p>
-    <div class="hero-authors fade-in delay-3">
-      <p class="hero-authors-label">Creada con cariño por</p>
+    <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
+    <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
+    <div class="hero-authors fade-in visible delay-2">
       <div class="authors-row">
         <div class="author-avatar"><img src="xurxo.jpg" alt="Xurxo" onerror="this.parentElement.innerHTML='<span>X</span>'"></div>
         <span class="author-name">Xurxo</span>
@@ -535,15 +539,24 @@
   <!-- Índice -->
   <section id="indice">
     <div class="section-header fade-in">
-      <span class="section-number">1</span>
       <h2 class="section-title">Índice</h2>
     </div>
-    <nav>
+    <nav class="fade-in delay-1">
       <ul class="index-list">
-        <li><a href="#introduccion" class="index-item fade-in delay-1"><span class="index-number">2</span>Introducción</a></li>
-        <li><a href="#recomendaciones" class="index-item fade-in delay-2"><span class="index-number">3</span>Recomendaciones y advertencias varias</a></li>
-        <li><a href="#lugares" class="index-item fade-in delay-3"><span class="index-number">4</span>Lugares imprescindibles de Galicia</a></li>
-        <li><a href="#generador" class="index-item fade-in delay-3"><span class="index-number">5</span>Generador de itinerarios</a></li>
+        <li><a href="#introduccion" class="index-item"><span class="index-number">1</span>Introducción</a></li>
+        <li><a href="#recomendaciones" class="index-item"><span class="index-number">2</span>Recomendaciones y advertencias</a></li>
+        <li>
+          <a href="#lugares" class="index-item"><span class="index-number">3</span>Imprescindibles</a>
+          <ul class="index-sublist">
+            <li><a href="#cat-imprescindibles" class="index-subitem"><span class="index-subitem-icon">⭐</span>Imprescindibles</a></li>
+            <li><a href="#cat-magica" class="index-subitem"><span class="index-subitem-icon">🌌</span>Galicia mágica</a></li>
+            <li><a href="#cat-atlantica" class="index-subitem"><span class="index-subitem-icon">🌊</span>Galicia atlántica</a></li>
+            <li><a href="#cat-verde" class="index-subitem"><span class="index-subitem-icon">🌿</span>Galicia verde interior</a></li>
+            <li><a href="#cat-humana" class="index-subitem"><span class="index-subitem-icon">🍷</span>Galicia humana</a></li>
+            <li><a href="#cat-segreda" class="index-subitem"><span class="index-subitem-icon">🌙</span>Galicia "segreda"</a></li>
+          </ul>
+        </li>
+        <li><a href="#generador" class="index-item"><span class="index-number">4</span>Generador de itinerarios</a></li>
       </ul>
     </nav>
   </section>
@@ -555,7 +568,7 @@
   <!-- Introducción -->
   <section id="introduccion">
     <div class="section-header fade-in">
-      <span class="section-number">2</span>
+      <span class="section-number">1</span>
       <h2 class="section-title">Introducción</h2>
     </div>
     <div class="prose fade-in delay-1">
@@ -576,25 +589,74 @@
   <!-- Recomendaciones -->
   <section id="recomendaciones">
     <div class="section-header fade-in">
-      <span class="section-number">3</span>
-      <h2 class="section-title">Recomendaciones y advertencias varias</h2>
+      <span class="section-number">2</span>
+      <h2 class="section-title">Recomendaciones y advertencias</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:20px">(Cosas que nadie te dice, pero te alegrará saber)</p>
-    
-    <div class="rec-list">
-      <div class="rec-item fade-in"><span class="rec-number">1</span><div class="rec-content"><div class="rec-title">Por las noches refresca.</div><div class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">2</span><div class="rec-content"><div class="rec-title">En verano también llueve.</div><div class="rec-text">Y no suele ser un chaparrón corto.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">3</span><div class="rec-content"><div class="rec-title">Prueba el pan de verdad.</div><div class="rec-text">Busca pan artesano y olvida el industrial. El pan de Galicia es otro mundo.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">4</span><div class="rec-content"><div class="rec-title">Cuidado con las mareas.</div><div class="rec-text">No aparques cerca del mar para evitar sorpresas con la pleamar.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">5</span><div class="rec-content"><div class="rec-title">Las playas de ría son para ir con calma.</div><div class="rec-text">Ideales para disfrutar con tranquilidad.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">6</span><div class="rec-content"><div class="rec-title">Las playas de mar abierto no son un parque acuático.</div><div class="rec-text">Ojo con el oleaje y las corrientes.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">7</span><div class="rec-content"><div class="rec-title">Aquí hay pocos chiringuitos y mucho horizonte.</div><div class="rec-text">Galicia es mar, viento y paisaje.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">8</span><div class="rec-content"><div class="rec-title">La gente no habla raro, habla gallego.</div><div class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo, aunque las respuestas puedan empezar con un clásico: "Depende… mira… bueno…".</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">9</span><div class="rec-content"><div class="rec-title">No te fíes solo del GPS.</div><div class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">10</span><div class="rec-content"><div class="rec-title">Si te invitan a comer, prepárate para un buen festín.</div><div class="rec-text">La hospitalidad gallega se demuestra en la mesa.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">11</span><div class="rec-content"><div class="rec-title">Autovías: pocas. Peajes: hay algunos.</div><div class="rec-text">Planifica las distancias.</div></div></div>
-      <div class="rec-item fade-in"><span class="rec-number">12</span><div class="rec-content"><div class="rec-title">Respeta el entorno.</div><div class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad gallega.</div></div></div>
+    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">(Cosas que nadie te dice, pero te alegrará saber)</p>
+
+    <div class="carousel" role="region" aria-label="Recomendaciones">
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">☀️</div>
+        <h3 class="rec-title">Por las noches refresca</h3>
+        <p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🌧️</div>
+        <h3 class="rec-title">En verano también llueve</h3>
+        <p class="rec-text">Y no suele ser un chaparrón corto. El paraguas es tu compañero.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🍞</div>
+        <h3 class="rec-title">Prueba el pan de verdad</h3>
+        <p class="rec-text">Busca pan artesano. El pan de Galicia es otro mundo: hogaza, maíz, centeno…</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🌊</div>
+        <h3 class="rec-title">Cuidado con las mareas</h3>
+        <p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🏖️</div>
+        <h3 class="rec-title">Las playas de ría son para ir con calma</h3>
+        <p class="rec-text">Ideales para disfrutar con tranquilidad.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">⚠️</div>
+        <h3 class="rec-title">Las playas de mar abierto exigen respeto</h3>
+        <p class="rec-text">Ojo con el oleaje y las corrientes.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🌅</div>
+        <h3 class="rec-title">Pocos chiringuitos, mucho horizonte</h3>
+        <p class="rec-text">Galicia es mar, viento y paisaje. No esperes servicios en todas las playas.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">💬</div>
+        <h3 class="rec-title">La gente no habla raro, habla gallego</h3>
+        <p class="rec-text">Un "boas" o "grazas" ayuda mucho. Pregunta sin miedo.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">📍</div>
+        <h3 class="rec-title">No te fíes solo del GPS</h3>
+        <p class="rec-text">En pueblos pequeños puede llevarte por caminos que no existen.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🍽️</div>
+        <h3 class="rec-title">Prepárate para un festín</h3>
+        <p class="rec-text">Si te invitan a comer, llegarás al final sin poder más.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🛣️</div>
+        <h3 class="rec-title">Autovías: pocas. Peajes: hay algunos</h3>
+        <p class="rec-text">Planifica las distancias.</p>
+      </article>
+      <article class="carousel-card rec-card">
+        <div class="rec-icon">🌿</div>
+        <h3 class="rec-title">Respeta el entorno</h3>
+        <p class="rec-text">"A terra non se vende, se coida". La naturaleza es identidad.</p>
+      </article>
     </div>
+    <p class="carousel-hint">Desliza para ver más</p>
   </section>
 
   <div class="decorative-divider">
@@ -604,10 +666,10 @@
   <!-- Lugares -->
   <section id="lugares">
     <div class="section-header fade-in">
-      <span class="section-number">4</span>
-      <h2 class="section-title">Lugares imprescindibles de Galicia</h2>
+      <span class="section-number">3</span>
+      <h2 class="section-title">Imprescindibles</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:20px">Si nunca has estado en Galicia, estos lugares son los que tienes que ver sí o sí.</p>
+    <p class="fade-in delay-1" style="font-size:1rem;color:var(--fg-muted);margin-bottom:20px">Una selección de rincones que ponen en valor la identidad gallega.</p>
     
     <div id="placesContainer"></div>
   </section>
@@ -619,10 +681,10 @@
   <!-- Generador -->
   <section id="generador">
     <div class="section-header fade-in">
-      <span class="section-number">5</span>
+      <span class="section-number">4</span>
       <h2 class="section-title">Generador de itinerarios</h2>
     </div>
-    <p class="fade-in delay-1" style="font-size:0.9rem;color:var(--fg-muted);font-style:italic;margin-bottom:16px">Cuéntanos cuánto tiempo tienes y qué tipo de experiencia buscas.</p>
+    <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);font-style:italic;margin-bottom:18px">Cuéntanos cuánto tiempo tienes y qué buscas.</p>
 
     <div class="generator-box fade-in">
       <form id="itineraryForm" class="space-y-4">
@@ -653,7 +715,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p class="footer-text">Guía creada con cariño para quienes buscan descubrir Galicia despacio.</p>
+    <p class="footer-text">Guía para quienes buscan descubrir Galicia despacio.</p>
     <div class="footer-signature">Escrito y recopilado por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
     <svg class="footer-icon" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="var(--accent-sea)" stroke-width="1">
       <path d="M16 4 Q24 8 28 16 Q24 24 16 28 Q8 24 4 16 Q8 8 16 4"/>
@@ -700,7 +762,7 @@
     function initAnimations() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1, rootMargin: '-20px' });
+      }, { threshold: 0.1, rootMargin: '-10px' });
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     }
 
@@ -713,7 +775,7 @@
             navDots.forEach(dot => dot.classList.toggle('active', dot.dataset.section === entry.target.id));
           }
         });
-      }, { threshold: 0.4 });
+      }, { threshold: 0.5 });
       sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObserver.observe(el); });
       navDots.forEach(dot => {
         dot.addEventListener('click', () => {
@@ -724,10 +786,11 @@
     }
 
     function initIndexLinks() {
-      document.querySelectorAll('.index-item').forEach(link => {
+      document.querySelectorAll('.index-item, .index-subitem').forEach(link => {
         link.addEventListener('click', (e) => {
           e.preventDefault();
-          const target = document.querySelector(link.getAttribute('href'));
+          const href = link.getAttribute('href');
+          const target = document.querySelector(href);
           if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
       });
@@ -743,12 +806,12 @@
         const catLugares = lugares.filter(l => l.categoria === cat.id);
         if (catLugares.length === 0) return;
         
-        html += `<div class="subapartado-header sub-${cat.id} fade-in"><div class="subapartado-icono">${cat.emoji}</div><div class="subapartado-texto"><h3>${cat.nombre}</h3></div></div>`;
+        html += `<div id="cat-${cat.id}" style="scroll-snap-align:start;min-height:100vh;padding-top:20px;"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:var(--bg-cream);border-radius:8px;border:1px solid var(--border-aged);"><span style="font-size:1.2rem">${cat.emoji}</span><span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--fg-ink)">${cat.nombre}</span></div>`;
         
         catLugares.forEach(lugar => {
           globalIndex++;
           html += `
-          <article class="place-card fade-in" id="place-${lugar.id}">
+          <article class="place-card" id="place-${lugar.id}">
             <div class="place-image">
               <img src="${lugar.imagen}" alt="${lugar.nombre}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'">
               <span class="place-number-badge">${globalIndex}</span>
@@ -756,18 +819,17 @@
             </div>
             <div class="place-header" onclick="togglePlace('place-${lugar.id}')" role="button" tabindex="0" aria-expanded="false">
               <span class="place-header-title">${lugar.descripcion}</span>
-              <div class="place-toggle">
-                <svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </div>
+              <svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </div>
             <div class="place-content">
               <div class="place-content-inner">
                 ${lugar.texto}
-                ${lugar.tips ? `<div class="place-info"><div class="info-block info-tips"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>${lugar.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></div></div>` : ''}
+                ${lugar.tips ? `<div class="place-info"><div class="info-block"><div class="info-header"><span class="info-title">Consejos</span></div><div class="info-content"><ul>${lugar.tips.map(t => `<li>${t}</li>`).join('')}</ul></div></div></div>` : ''}
               </div>
             </div>
           </article>`;
         });
+        html += `</div>`;
       });
       container.innerHTML = html;
       initAnimations();
@@ -832,7 +894,7 @@
       lista.forEach((l, i) => {
         html += `<div class="itinerary-place"><span class="itinerary-place-num">${i+1}</span><img src="${l.imagen}" alt="${l.nombre}" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop&q=80'"><div><div class="itinerary-place-name">${l.nombre}</div><div class="itinerary-place-time">${l.horas}h</div></div></div>`;
       });
-      html += `<p style="margin-top:12px;font-size:0.75rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
+      html += `<p style="margin-top:12px;font-size:0.85rem;color:var(--fg-muted);font-style:italic;">Tiempos estimados sin desplazamientos.</p></div>`;
       container.innerHTML = html;
       setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     }
