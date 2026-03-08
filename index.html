@@ -152,31 +152,10 @@
     .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 18px; gap: 14px; }
     .bloque-subtitulo { font-size: 0.82rem; color: var(--fg-muted); font-style: italic; flex: 1; min-width: 0; line-height: 1.3; }
     
-    .bloque-map-mini { 
-      width: 100px; 
-      height: 70px; 
-      flex-shrink: 0; 
-      border-radius: 8px; 
-      overflow: hidden;
-      background: rgba(0,0,0,0.03);
-      border: 1px solid var(--border-aged);
-    }
-    .bloque-map-mini img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: contain;
-      display: block;
-    }
+    .bloque-map-mini { width: 100px; height: 70px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.03); border: 1px solid var(--border-aged); }
+    .bloque-map-mini img { width: 100%; height: 100%; object-fit: contain; display: block; }
     
-    .bloque-contador { 
-      background: rgba(0,0,0,0.04); 
-      color: var(--fg-muted); 
-      padding: 6px 12px; 
-      border-radius: 16px; 
-      font-size: 0.8rem; 
-      font-weight: 600; 
-      white-space: nowrap; 
-    }
+    .bloque-contador { background: rgba(0,0,0,0.04); color: var(--fg-muted); padding: 6px 12px; border-radius: 16px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
     
     .bloque-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; background: var(--bg-cream); }
     .bloque-card.expanded .bloque-content { max-height: 10000px; }
@@ -235,20 +214,23 @@
     .info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
     .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-    /* CARRUSEL DE IMÁGENES - SIMPLIFICADO */
+    /* CARRUSEL - SIMPLIFICADO Y ROBUSTO */
     .place-carousel-section { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border-card); }
     .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; }
-    .place-carousel-wrapper { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); }
-    .place-carousel-track { display: flex; transition: transform 0.4s ease; }
+    
+    .place-carousel-wrapper { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); touch-action: pan-y; }
+    
+    .place-carousel-track { display: flex; transition: transform 0.35s ease-out; will-change: transform; }
+    
     .place-carousel-slide { min-width: 100%; flex-shrink: 0; }
-    .place-carousel-slide img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .place-carousel-slide img { width: 100%; height: 200px; object-fit: cover; display: block; pointer-events: none; }
     
     .place-carousel-btn { 
       position: absolute; 
       top: 50%; 
       transform: translateY(-50%); 
-      width: 36px; 
-      height: 36px; 
+      width: 40px; 
+      height: 40px; 
       background: rgba(255,255,255,0.95); 
       border: none; 
       border-radius: 50%; 
@@ -257,36 +239,39 @@
       justify-content: center; 
       cursor: pointer; 
       z-index: 5; 
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
-    .place-carousel-btn:hover { background: white; }
-    .place-carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
+    .place-carousel-btn:active { transform: translateY(-50%) scale(0.95); }
+    .place-carousel-btn svg { width: 20px; height: 20px; stroke: var(--accent-sea); pointer-events: none; }
     .place-carousel-btn-prev { left: 10px; }
     .place-carousel-btn-next { right: 10px; }
     
     .place-carousel-dots { 
       position: absolute; 
       bottom: 12px; 
-      left: 50%; 
-      transform: translateX(-50%); 
+      left: 0; 
+      right: 0;
       display: flex; 
       gap: 8px; 
       z-index: 5; 
+      justify-content: center;
+      pointer-events: none;
     }
     .place-carousel-dot { 
       width: 10px; 
       height: 10px; 
       border-radius: 50%; 
       background: rgba(255,255,255,0.5); 
-      border: none; 
-      cursor: pointer; 
+      border: none;
       padding: 0;
-      transition: all 0.3s ease; 
+      cursor: pointer;
+      transition: all 0.25s ease;
+      pointer-events: auto;
+      touch-action: manipulation;
     }
-    .place-carousel-dot.active { 
-      background: white; 
-      transform: scale(1.3); 
-    }
+    .place-carousel-dot.active { background: white; transform: scale(1.3); }
 
     .footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
     .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 22px; }
@@ -301,7 +286,6 @@
     /* GENERADOR */
     .generator-box { background: var(--bg-card); border: 3px solid var(--border-card); border-radius: 10px; padding: 20px; margin-top: 18px; box-shadow: 0 4px 16px var(--shadow-warm); }
 
-    /* SECCIÓN FAVORITOS */
     .favorites-section { margin-bottom: 20px; }
     .favorites-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
     .favorites-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-red); display: flex; align-items: center; gap: 8px; }
@@ -362,7 +346,6 @@
     .trip-summary-item:last-child { padding-left: 16px; }
     .trip-summary-value { font-size: 1.2rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; }
     .trip-summary-label { font-size: 0.7rem; opacity: 0.85; margin-top: 2px; }
-    .itinerary-badge { display: inline-block; padding: 3px 10px; font-size: 0.75rem; background: rgba(26, 74, 94, 0.08); color: var(--accent-sea); border-radius: 16px; margin-bottom: 10px; }
     .itinerary-place { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--bg-card); border-radius: 8px; margin-bottom: 8px; border-left: 3px solid var(--accent-gold); }
     .itinerary-place:last-child { margin-bottom: 0; }
     .itinerary-place-num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; color: white; }
@@ -575,6 +558,9 @@
     var map = null, markers = {}, userLocation = null, userMarker = null, selectedPlaces = [];
     var favorites = [];
     
+    // Estado global de carruseles
+    var carouselsState = {};
+    
     function initApp() { 
       loadFavorites();
       initAnimations(); 
@@ -718,48 +704,76 @@
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
     // ============================================
-    // CARRUSEL DE IMÁGENES - CÓDIGO SIMPLIFICADO
+    // CARRUSEL DE IMÁGENES - ROBUSTO PARA MÓVIL
     // ============================================
     
-    // Función global para mover el carrusel
-    window.carouselMove = function(placeId, direction) {
-      var track = document.getElementById('carousel-' + placeId);
-      if (!track) return;
-      
-      var current = parseInt(track.dataset.current || '0');
-      var total = parseInt(track.dataset.total || '1');
-      
-      current = current + direction;
-      if (current < 0) current = total - 1;
-      if (current >= total) current = 0;
-      
-      track.dataset.current = current;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
-      
-      // Actualizar dots
-      var dots = document.querySelectorAll('#dots-' + placeId + ' .place-carousel-dot');
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].classList.toggle('active', i === current);
-      }
-    };
+    function initPlaceCarousel(placeId, totalImages) {
+      carouselsState[placeId] = { current: 0, total: totalImages };
+    }
     
-    // Función para ir a una slide específica
-    window.carouselGoTo = function(placeId, index) {
-      var track = document.getElementById('carousel-' + placeId);
-      if (!track) return;
+    function moveCarousel(placeId, direction) {
+      var state = carouselsState[placeId];
+      if (!state) return;
       
-      var total = parseInt(track.dataset.total || '1');
-      if (index < 0) index = 0;
-      if (index >= total) index = total - 1;
+      state.current = state.current + direction;
+      if (state.current < 0) state.current = state.total - 1;
+      if (state.current >= state.total) state.current = 0;
       
-      track.dataset.current = index;
-      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      updateCarousel(placeId);
+    }
+    
+    function goToSlide(placeId, index) {
+      var state = carouselsState[placeId];
+      if (!state) return;
+      state.current = index;
+      updateCarousel(placeId);
+    }
+    
+    function updateCarousel(placeId) {
+      var state = carouselsState[placeId];
+      if (!state) return;
       
-      var dots = document.querySelectorAll('#dots-' + placeId + ' .place-carousel-dot');
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].classList.toggle('active', i === index);
+      var track = document.querySelector('[data-carousel-id="' + placeId + '"]');
+      if (track) {
+        track.style.transform = 'translateX(-' + (state.current * 100) + '%)';
       }
-    };
+      
+      var dots = document.querySelectorAll('[data-dots-id="' + placeId + '"] .place-carousel-dot');
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === state.current);
+      });
+    }
+    
+    // Event delegation para botones de carrusel
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('.carousel-prev-btn');
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+        var placeId = parseInt(btn.getAttribute('data-place-id'));
+        moveCarousel(placeId, -1);
+        return;
+      }
+      
+      btn = e.target.closest('.carousel-next-btn');
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+        var placeId = parseInt(btn.getAttribute('data-place-id'));
+        moveCarousel(placeId, 1);
+        return;
+      }
+      
+      var dot = e.target.closest('.place-carousel-dot');
+      if (dot) {
+        e.preventDefault();
+        e.stopPropagation();
+        var placeId = parseInt(dot.getAttribute('data-place-id'));
+        var index = parseInt(dot.getAttribute('data-index'));
+        goToSlide(placeId, index);
+        return;
+      }
+    }, true);
 
     // BLOQUES
     var bloques = [
@@ -772,7 +786,7 @@
       { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
     ];
 
-    // LUGARES - 5 IMÁGENES POR LUGAR
+    // LUGARES - 5 IMÁGENES
     var lugares = [
       { 
         id: 1, nombre: "Vigo", bloque: "riasbaixas", horas: 4, 
@@ -948,25 +962,22 @@
           html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
           html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
           
-          // CARRUSEL - Código simplificado
+          // CARRUSEL
           if (hasCarousel) {
             var numImages = l.imagenesCarousel.length;
             html += '<div class="place-carousel-section">';
             html += '<div class="place-carousel-title">Fotos (' + numImages + ')</div>';
             html += '<div class="place-carousel-wrapper">';
-            // Track con data attributes
-            html += '<div class="place-carousel-track" id="carousel-' + l.id + '" data-current="0" data-total="' + numImages + '">';
+            html += '<div class="place-carousel-track" data-carousel-id="' + l.id + '">';
             l.imagenesCarousel.forEach(function(img) {
               html += '<div class="place-carousel-slide"><img src="' + img + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"></div>';
             });
             html += '</div>';
-            // Botones
-            html += '<button class="place-carousel-btn place-carousel-btn-prev" onclick="event.stopPropagation(); carouselMove(' + l.id + ', -1)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>';
-            html += '<button class="place-carousel-btn place-carousel-btn-next" onclick="event.stopPropagation(); carouselMove(' + l.id + ', 1)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>';
-            // Dots
-            html += '<div class="place-carousel-dots" id="dots-' + l.id + '">';
+            html += '<button class="place-carousel-btn place-carousel-btn-prev carousel-prev-btn" data-place-id="' + l.id + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>';
+            html += '<button class="place-carousel-btn place-carousel-btn-next carousel-next-btn" data-place-id="' + l.id + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>';
+            html += '<div class="place-carousel-dots" data-dots-id="' + l.id + '">';
             for (var d = 0; d < numImages; d++) {
-              html += '<button class="place-carousel-dot ' + (d === 0 ? 'active' : '') + '" onclick="event.stopPropagation(); carouselGoTo(' + l.id + ', ' + d + ')"></button>';
+              html += '<button class="place-carousel-dot ' + (d === 0 ? 'active' : '') + '" data-place-id="' + l.id + '" data-index="' + d + '"></button>';
             }
             html += '</div>';
             html += '</div>';
@@ -981,6 +992,13 @@
 
       c.innerHTML = html;
       initAnimations();
+      
+      // Inicializar estados de carrusel
+      lugares.forEach(function(l) {
+        if (l.imagenesCarousel && l.imagenesCarousel.length > 1) {
+          initPlaceCarousel(l.id, l.imagenesCarousel.length);
+        }
+      });
     }
 
     function toggleBloque(id) {
