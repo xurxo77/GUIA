@@ -126,10 +126,10 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* BLOQUES */
+    /* BLOQUES - Nuevo diseño */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px var(--shadow-warm); position: relative; }
     
-    .bloque-header { display: flex; align-items: stretch; padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; }
+    .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
     
     .bloque-header.riasbaixas { background: linear-gradient(135deg, var(--bloque-riasbaixas) 0%, #165570 100%); }
     .bloque-header.morte { background: linear-gradient(135deg, var(--bloque-morte) 0%, #2A3544 100%); }
@@ -139,23 +139,49 @@
     .bloque-header.ribeira { background: linear-gradient(135deg, var(--bloque-ribeira) 0%, #6B3410 100%); }
     .bloque-header.ancares { background: linear-gradient(135deg, var(--bloque-ancares) 0%, #1E4A35 100%); }
     
-    .bloque-header-left { display: flex; align-items: center; padding: 24px 20px; flex: 1; min-width: 0; }
-    .bloque-emoji { font-size: 3.5rem; margin-right: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); flex-shrink: 0; }
+    /* Fila principal: Emoji + Nombre + Flecha */
+    .bloque-header-main { display: flex; align-items: center; padding: 20px; padding-right: 16px; }
+    .bloque-emoji { font-size: 2.8rem; margin-right: 16px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); flex-shrink: 0; }
     .bloque-info { flex: 1; min-width: 0; }
-    .bloque-numero { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px; }
-    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 700; color: white; line-height: 1.15; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    .bloque-subtitulo { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-style: italic; margin-top: 4px; }
+    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4.5vw, 1.8rem); font-weight: 700; color: white; line-height: 1.2; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    
+    /* Flecha desplegable */
+    .bloque-arrow { width: 40px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+    .bloque-arrow svg { width: 20px; height: 20px; stroke: white; transition: transform 0.3s ease; }
+    .bloque-card.expanded .bloque-arrow { background: rgba(255,255,255,0.25); }
+    .bloque-card.expanded .bloque-arrow svg { transform: rotate(180deg); }
+    
+    /* Segunda fila: Subtítulo + Mini mapa + Contador */
+    .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 16px; gap: 12px; }
+    .bloque-subtitulo { font-size: 0.85rem; color: rgba(255,255,255,0.8); font-style: italic; flex: 1; }
     
     /* Mini mapa en header */
-    .bloque-map-mini { width: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 8px; position: relative; }
-    .bloque-map-mini::before { content: ''; position: absolute; left: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(255,255,255,0.15); }
-    .bloque-map-mini img { width: 80px; height: 80px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.1); padding: 4px; }
+    .bloque-map-mini { 
+      width: 70px; 
+      height: 50px; 
+      flex-shrink: 0; 
+      border-radius: 6px; 
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .bloque-map-mini img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block;
+    }
     
-    .bloque-contador { position: absolute; bottom: 12px; left: 20px; background: rgba(255,255,255,0.15); color: white; padding: 8px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; backdrop-filter: blur(4px); }
-    
-    .bloque-toggle-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .bloque-toggle-icon svg { width: 16px; height: 16px; stroke: white; transition: transform 0.3s ease; }
-    .bloque-card.expanded .bloque-toggle-icon svg { transform: rotate(180deg); }
+    .bloque-contador { 
+      background: rgba(255,255,255,0.15); 
+      color: white; 
+      padding: 6px 12px; 
+      border-radius: 16px; 
+      font-size: 0.8rem; 
+      font-weight: 600; 
+      white-space: nowrap; 
+      backdrop-filter: blur(4px); 
+    }
     
     .bloque-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; background: var(--bg-cream); }
     .bloque-card.expanded .bloque-content { max-height: 10000px; }
@@ -643,15 +669,15 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // BLOQUES
+    // BLOQUES - Sin "Bloque X", con mini mapa opcional
     var bloques = [
-      { id: "riasbaixas", numero: "Bloque 1", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅" },
-      { id: "morte", numero: "Bloque 2", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀" },
-      { id: "artabro", numero: "Bloque 3", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊", hasMap: true, mapFile: "golfoartabro.svg" },
-      { id: "riasaltas", numero: "Bloque 4", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️" },
-      { id: "santiago", numero: "Bloque 5", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪" },
-      { id: "ribeira", numero: "Bloque 6", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️" },
-      { id: "ancares", numero: "Bloque 7", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲" }
+      { id: "riasbaixas", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅" },
+      { id: "morte", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀" },
+      { id: "artabro", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊", hasMap: true, mapFile: "golfoartabro.svg" },
+      { id: "riasaltas", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️" },
+      { id: "santiago", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪" },
+      { id: "ribeira", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️" },
+      { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲" }
     ];
 
     var lugares = [
@@ -678,29 +704,35 @@
 
         html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
         
-        // Header con mini-mapa si existe
+        // Header
         html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
-        html += '<div class="bloque-header-left">';
+        
+        // Fila principal
+        html += '<div class="bloque-header-main">';
         html += '<span class="bloque-emoji">' + bloque.emoji + '</span>';
         html += '<div class="bloque-info">';
-        html += '<div class="bloque-numero">' + bloque.numero + '</div>';
         html += '<h3 class="bloque-nombre">' + bloque.nombre + '</h3>';
-        html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
-        html += '</div></div>';
+        html += '</div>';
         
-        // Mini mapa en header (solo si tiene)
+        // Flecha desplegable
+        html += '<div class="bloque-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
+        html += '</div>';
+        
+        // Fila meta: subtitulo + mini mapa + contador
+        html += '<div class="bloque-header-meta">';
+        html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
+        
+        // Mini mapa (solo si tiene)
         if (bloque.hasMap) {
-          html += '<div class="bloque-map-mini">';
-          html += '<img src="' + bloque.mapFile + '" alt="Mapa" onerror="this.style.display=\'none\'">';
-          html += '</div>';
+          html += '<div class="bloque-map-mini"><img src="' + bloque.mapFile + '" alt="Mapa" onerror="this.parentElement.style.display=\'none\'"></div>';
         }
+        
+        html += '<span class="bloque-contador">' + arr.length + ' lugares</span>';
+        html += '</div>';
         
         html += '</div>';
         
-        // Contador y toggle
-        html += '<span class="bloque-contador">' + arr.length + ' lugares</span>';
-        html += '<div class="bloque-toggle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
-        
+        // Content
         html += '<div class="bloque-content"><div class="bloque-content-inner">';
 
         arr.forEach(function(l) {
