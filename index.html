@@ -29,13 +29,11 @@
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
-      --bloque-riasbaixas: #4a9ec4;
-      --bloque-morte: #6b7a8c;
-      --bloque-artabro: #4a8ec4;
-      --bloque-riasaltas: #4ab49a;
-      --bloque-santiago: #c4a84a;
-      --bloque-ribeira: #c47a4a;
-      --bloque-ancares: #4a9a7a;
+      /* Colores por provincia */
+      --bloque-acoruna: #3a7ca5;
+      --bloque-lugo: #4a8c5a;
+      --bloque-ourense: #c47a3a;
+      --bloque-pontevedra: #2a8a8a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,18 +124,15 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* BLOQUES */
+    /* BLOQUES - PROVINCIAS */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
     
     .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
     
-    .bloque-header.riasbaixas { background: linear-gradient(135deg, rgba(74, 158, 196, 0.25) 0%, rgba(74, 158, 196, 0.15) 100%); }
-    .bloque-header.morte { background: linear-gradient(135deg, rgba(107, 122, 140, 0.25) 0%, rgba(107, 122, 140, 0.15) 100%); }
-    .bloque-header.artabro { background: linear-gradient(135deg, rgba(74, 142, 196, 0.25) 0%, rgba(74, 142, 196, 0.15) 100%); }
-    .bloque-header.riasaltas { background: linear-gradient(135deg, rgba(74, 180, 154, 0.25) 0%, rgba(74, 180, 154, 0.15) 100%); }
-    .bloque-header.santiago { background: linear-gradient(135deg, rgba(196, 168, 74, 0.25) 0%, rgba(196, 168, 74, 0.15) 100%); }
-    .bloque-header.ribeira { background: linear-gradient(135deg, rgba(196, 122, 74, 0.25) 0%, rgba(196, 122, 74, 0.15) 100%); }
-    .bloque-header.ancares { background: linear-gradient(135deg, rgba(74, 154, 122, 0.25) 0%, rgba(74, 154, 122, 0.15) 100%); }
+    .bloque-header.acoruna { background: linear-gradient(135deg, rgba(58, 124, 165, 0.25) 0%, rgba(58, 124, 165, 0.15) 100%); }
+    .bloque-header.lugo { background: linear-gradient(135deg, rgba(74, 140, 90, 0.25) 0%, rgba(74, 140, 90, 0.15) 100%); }
+    .bloque-header.ourense { background: linear-gradient(135deg, rgba(196, 122, 58, 0.25) 0%, rgba(196, 122, 58, 0.15) 100%); }
+    .bloque-header.pontevedra { background: linear-gradient(135deg, rgba(42, 138, 138, 0.25) 0%, rgba(42, 138, 138, 0.15) 100%); }
     
     .bloque-header-main { display: flex; align-items: center; padding: 20px; padding-right: 16px; }
     .bloque-emoji { font-size: 2.8rem; margin-right: 16px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); flex-shrink: 0; }
@@ -164,20 +159,14 @@
     /* TARJETAS LUGARES */
     .place-card { background: var(--bg-card); border: 2px solid var(--border-card); border-radius: 10px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 3px 12px var(--shadow-warm); position: relative; transition: box-shadow 0.3s ease; }
     .place-card:hover { box-shadow: 0 5px 18px var(--shadow-warm); }
-    .place-card.riasbaixas::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-riasbaixas); z-index: 1; }
-    .place-card.morte::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-morte); z-index: 1; }
-    .place-card.artabro::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-artabro); z-index: 1; }
-    .place-card.riasaltas::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-riasaltas); z-index: 1; }
-    .place-card.santiago::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-santiago); z-index: 1; }
-    .place-card.ribeira::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-ribeira); z-index: 1; }
-    .place-card.ancares::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-ancares); z-index: 1; }
-    .place-card.riasbaixas .place-number-badge { background: var(--bloque-riasbaixas); }
-    .place-card.morte .place-number-badge { background: var(--bloque-morte); }
-    .place-card.artabro .place-number-badge { background: var(--bloque-artabro); }
-    .place-card.riasaltas .place-number-badge { background: var(--bloque-riasaltas); }
-    .place-card.santiago .place-number-badge { background: var(--bloque-santiago); }
-    .place-card.ribeira .place-number-badge { background: var(--bloque-ribeira); }
-    .place-card.ancares .place-number-badge { background: var(--bloque-ancares); }
+    .place-card.acoruna::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-acoruna); z-index: 1; }
+    .place-card.lugo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-lugo); z-index: 1; }
+    .place-card.ourense::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-ourense); z-index: 1; }
+    .place-card.pontevedra::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-pontevedra); z-index: 1; }
+    .place-card.acoruna .place-number-badge { background: var(--bloque-acoruna); }
+    .place-card.lugo .place-number-badge { background: var(--bloque-lugo); }
+    .place-card.ourense .place-number-badge { background: var(--bloque-ourense); }
+    .place-card.pontevedra .place-number-badge { background: var(--bloque-pontevedra); }
 
     /* IMAGEN DE PORTADA */
     .place-image { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
@@ -214,59 +203,16 @@
     .info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
     .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-    /* ============================================
-       CARRUSEL DE IMÁGENES - CORREGIDO
-       ============================================ */
+    /* CARRUSEL */
+    .place-carousel-section { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border-card); }
+    .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; }
     
-    .place-carousel-section { 
-      margin-top: 16px; 
-      padding-top: 16px; 
-      border-top: 2px solid var(--border-card); 
-    }
+    .place-carousel-wrapper { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); width: 100%; }
+    .place-carousel-viewport { overflow: hidden; width: 100%; }
+    .place-carousel-track { display: flex; width: 100%; }
+    .place-carousel-slide { flex: 0 0 100%; width: 100%; min-width: 100%; }
+    .place-carousel-slide img { width: 100%; height: 200px; object-fit: cover; display: block; }
     
-    .place-carousel-title { 
-      font-family: 'Cormorant Garamond', serif; 
-      font-size: 0.85rem; 
-      font-weight: 600; 
-      color: var(--fg-ink); 
-      margin-bottom: 10px; 
-    }
-    
-    .place-carousel-wrapper { 
-      position: relative; 
-      border-radius: 10px; 
-      overflow: hidden; 
-      background: var(--bg-cream);
-      /* Importante: evita que el contenido se desborde */
-      width: 100%;
-    }
-    
-    /* Contenedor del track - overflow hidden aquí */
-    .place-carousel-viewport {
-      overflow: hidden;
-      width: 100%;
-    }
-    
-    .place-carousel-track { 
-      display: flex;
-      width: 100%;
-    }
-    
-    .place-carousel-slide { 
-      /* Cada slide ocupa exactamente el 100% del contenedor */
-      flex: 0 0 100%;
-      width: 100%;
-      min-width: 100%;
-    }
-    
-    .place-carousel-slide img { 
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-    
-    /* Botones del carrusel */
     .place-carousel-btn { 
       position: absolute; 
       top: 50%; 
@@ -283,52 +229,15 @@
       z-index: 5; 
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
     }
-    
-    .place-carousel-btn:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-    
-    .place-carousel-btn svg { 
-      width: 18px; 
-      height: 18px; 
-      stroke: var(--accent-sea);
-      pointer-events: none;
-    }
-    
+    .place-carousel-btn:active { transform: translateY(-50%) scale(0.95); }
+    .place-carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); pointer-events: none; }
     .place-carousel-btn-prev { left: 8px; }
     .place-carousel-btn-next { right: 8px; }
     
-    /* Dots */
-    .place-carousel-dots { 
-      position: absolute; 
-      bottom: 10px; 
-      left: 0;
-      right: 0;
-      display: flex; 
-      gap: 8px; 
-      z-index: 5; 
-      justify-content: center;
-      padding: 0 10px;
-    }
-    
-    .place-carousel-dot { 
-      width: 10px; 
-      height: 10px; 
-      border-radius: 50%; 
-      background: rgba(255,255,255,0.5); 
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      touch-action: manipulation;
-    }
-    
-    .place-carousel-dot.active { 
-      background: white;
-      transform: scale(1.3);
-    }
+    .place-carousel-dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; gap: 8px; z-index: 5; justify-content: center; padding: 0 10px; }
+    .place-carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; padding: 0; cursor: pointer; transition: all 0.25s ease; touch-action: manipulation; }
+    .place-carousel-dot.active { background: white; transform: scale(1.3); }
 
     .footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
     .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 22px; }
@@ -432,25 +341,19 @@
     .filter-btn { padding: 5px 10px; background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 16px; font-size: 0.65rem; color: var(--fg-muted); cursor: pointer; transition: all 0.2s ease; font-family: inherit; }
     .filter-btn:hover { border-color: var(--accent-sea); }
     .filter-btn.active { color: white; border-color: transparent; }
-    .filter-btn.active.riasbaixas { background: var(--bloque-riasbaixas); }
-    .filter-btn.active.morte { background: var(--bloque-morte); }
-    .filter-btn.active.artabro { background: var(--bloque-artabro); }
-    .filter-btn.active.riasaltas { background: var(--bloque-riasaltas); }
-    .filter-btn.active.santiago { background: var(--bloque-santiago); }
-    .filter-btn.active.ribeira { background: var(--bloque-ribeira); }
-    .filter-btn.active.ancares { background: var(--bloque-ancares); }
+    .filter-btn.active.acoruna { background: var(--bloque-acoruna); }
+    .filter-btn.active.lugo { background: var(--bloque-lugo); }
+    .filter-btn.active.ourense { background: var(--bloque-ourense); }
+    .filter-btn.active.pontevedra { background: var(--bloque-pontevedra); }
     .filter-btn.active[data-filter="all"] { background: var(--accent-sea); }
 
     .custom-marker { border: 3px solid white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: white; font-size: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; }
     .custom-marker.highlighted { transform: scale(1.2); }
     .custom-marker.dimmed { opacity: 0.3; }
-    .custom-marker.riasbaixas { background: var(--bloque-riasbaixas); }
-    .custom-marker.morte { background: var(--bloque-morte); }
-    .custom-marker.artabro { background: var(--bloque-artabro); }
-    .custom-marker.riasaltas { background: var(--bloque-riasaltas); }
-    .custom-marker.santiago { background: var(--bloque-santiago); }
-    .custom-marker.ribeira { background: var(--bloque-ribeira); }
-    .custom-marker.ancares { background: var(--bloque-ancares); }
+    .custom-marker.acoruna { background: var(--bloque-acoruna); }
+    .custom-marker.lugo { background: var(--bloque-lugo); }
+    .custom-marker.ourense { background: var(--bloque-ourense); }
+    .custom-marker.pontevedra { background: var(--bloque-pontevedra); }
     .user-location-marker { background: var(--accent-red); border: 3px solid white; border-radius: 50%; width: 14px; height: 14px; box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); animation: pulse 2s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } }
     .leaflet-popup-content-wrapper { border-radius: 10px; box-shadow: 0 4px 12px var(--shadow-warm); }
@@ -508,7 +411,7 @@
       <div class="prose fade-in delay-1">
         <p>Si esta guía ha llegado a tus manos, considéralo un privilegio: has sido elegido para descubrir Galicia con calma, respeto y cariño.</p>
         <p>Aquí encontrarás una selección de lugares que ponen en valor la identidad gallega, su paisaje, su historia y su forma especial de entender el tiempo.</p>
-        <p>Los lugares están organizados en bloques territoriales. Pincha en cada bloque para descubrir sus lugares. Marca tus favoritos para tenerlos a mano.</p>
+        <p>Los lugares están organizados por provincias. Pincha en cada provincia para descubrir sus lugares. Marca tus favoritos para tenerlos a mano.</p>
         <blockquote class="quote">Se algún día volvo, será polo mar e pola memoria dos lugares pequenos.<cite class="quote-author">— Álvaro Cunqueiro</cite></blockquote>
       </div>
     </section>
@@ -535,7 +438,7 @@
 
     <section id="lugares">
       <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
-      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:16px;">7 bloques territoriales. Pincha para ver lugares. Marca favoritos con el corazón.</p>
+      <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:16px;">4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.</p>
       <div id="placesContainer"></div>
     </section>
 
@@ -667,8 +570,20 @@
     function showUserOnMap(loc) { if (!map) return; if (userMarker) map.removeLayer(userMarker); userMarker = L.marker([loc.lat, loc.lng], { icon: L.divIcon({ className: 'user-location-marker', iconSize: [14, 14], iconAnchor: [7, 7] }) }).addTo(map); }
     function updateGeoUI(active) { var btn = document.getElementById('geoBtn'), status = document.getElementById('geoStatus'); if (active) { btn.textContent = 'Desactivar'; btn.disabled = false; btn.style.background = 'var(--accent-red)'; status.textContent = 'Ubicación activada'; status.classList.add('active'); } else { btn.textContent = 'Activar'; btn.disabled = false; btn.style.background = ''; status.textContent = 'Actívala para rutas'; status.classList.remove('active'); } }
 
-    function renderMapFilters() { var c = document.getElementById('mapFilters'); var html = '<button class="filter-btn active" onclick="filterMap(\'all\')" data-filter="all">Todos</button>'; bloques.forEach(function(b) { html += '<button class="filter-btn ' + b.id + '" onclick="filterMap(\'' + b.id + '\')" data-filter="' + b.id + '">' + b.emoji + ' ' + b.nombreCorto + '</button>'; }); c.innerHTML = html; }
-    function renderMapLegend() { var c = document.getElementById('mapLegend'); var html = ''; bloques.forEach(function(b) { html += '<div class="legend-item"><span class="legend-dot" style="background:var(--bloque-' + b.id + ')"></span>' + b.nombreCorto + '</div>'; }); c.innerHTML = html; }
+    function renderMapFilters() {
+      var c = document.getElementById('mapFilters');
+      var html = '<button class="filter-btn active" onclick="filterMap(\'all\')" data-filter="all">Todos</button>';
+      bloques.forEach(function(b) { html += '<button class="filter-btn ' + b.id + '" onclick="filterMap(\'' + b.id + '\')" data-filter="' + b.id + '">' + b.emoji + ' ' + b.nombreCorto + '</button>'; });
+      c.innerHTML = html;
+    }
+
+    function renderMapLegend() {
+      var c = document.getElementById('mapLegend');
+      var html = '';
+      bloques.forEach(function(b) { html += '<div class="legend-item"><span class="legend-dot" style="background:var(--bloque-' + b.id + ')"></span>' + b.nombreCorto + '</div>'; });
+      c.innerHTML = html;
+    }
+
     function renderPlacesSelector() {
       var c = document.getElementById('placesSelector');
       var html = '';
@@ -721,103 +636,46 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // ============================================
-    // CARRUSEL - SIMPLIFICADO Y ROBUSTO
-    // ============================================
-    
-    function initPlaceCarousel(placeId, totalImages) {
-      carouselsState[placeId] = { current: 0, total: totalImages };
-    }
-    
-    function moveCarousel(placeId, direction) {
-      var state = carouselsState[placeId];
-      if (!state) return;
-      
-      state.current += direction;
-      if (state.current < 0) state.current = state.total - 1;
-      if (state.current >= state.total) state.current = 0;
-      
-      updateCarouselView(placeId);
-    }
-    
-    function goToSlide(placeId, index) {
-      var state = carouselsState[placeId];
-      if (!state) return;
-      state.current = index;
-      updateCarouselView(placeId);
-    }
-    
-    function updateCarouselView(placeId) {
-      var state = carouselsState[placeId];
-      if (!state) return;
-      
-      var track = document.querySelector('[data-carousel="' + placeId + '"]');
-      if (track) {
-        var offset = state.current * -100;
-        track.style.transform = 'translateX(' + offset + '%)';
-      }
-      
-      var dots = document.querySelectorAll('[data-dots="' + placeId + '"] .place-carousel-dot');
-      dots.forEach(function(dot, i) {
-        if (i === state.current) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    }
-    
-    // Delegación de eventos para carrusel
+    // CARRUSEL
+    function initPlaceCarousel(placeId, totalImages) { carouselsState[placeId] = { current: 0, total: totalImages }; }
+    function moveCarousel(placeId, direction) { var state = carouselsState[placeId]; if (!state) return; state.current += direction; if (state.current < 0) state.current = state.total - 1; if (state.current >= state.total) state.current = 0; updateCarouselView(placeId); }
+    function goToSlide(placeId, index) { var state = carouselsState[placeId]; if (!state) return; state.current = index; updateCarouselView(placeId); }
+    function updateCarouselView(placeId) { var state = carouselsState[placeId]; if (!state) return; var track = document.querySelector('[data-carousel="' + placeId + '"]'); if (track) { var offset = state.current * -100; track.style.transform = 'translateX(' + offset + '%)'; } var dots = document.querySelectorAll('[data-dots="' + placeId + '"] .place-carousel-dot'); dots.forEach(function(dot, i) { dot.classList.toggle('active', i === state.current); }); }
     document.addEventListener('click', function(e) {
-      // Botón anterior
       var prevBtn = e.target.closest('.place-carousel-btn-prev');
-      if (prevBtn) {
-        var placeId = parseInt(prevBtn.getAttribute('data-place'));
-        moveCarousel(placeId, -1);
-        return;
-      }
-      
-      // Botón siguiente
+      if (prevBtn) { var placeId = parseInt(prevBtn.getAttribute('data-place')); moveCarousel(placeId, -1); return; }
       var nextBtn = e.target.closest('.place-carousel-btn-next');
-      if (nextBtn) {
-        var placeId = parseInt(nextBtn.getAttribute('data-place'));
-        moveCarousel(placeId, 1);
-        return;
-      }
-      
-      // Dots
+      if (nextBtn) { var placeId = parseInt(nextBtn.getAttribute('data-place')); moveCarousel(placeId, 1); return; }
       var dot = e.target.closest('.place-carousel-dot');
-      if (dot) {
-        var placeId = parseInt(dot.getAttribute('data-place'));
-        var index = parseInt(dot.getAttribute('data-index'));
-        goToSlide(placeId, index);
-        return;
-      }
+      if (dot) { var placeId = parseInt(dot.getAttribute('data-place')); var index = parseInt(dot.getAttribute('data-index')); goToSlide(placeId, index); return; }
     });
 
-    // BLOQUES
+    // ============================================
+    // BLOQUES - PROVINCIAS
+    // ============================================
     var bloques = [
-      { id: "riasbaixas", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅", hasMap: true, mapFile: "riasbaixas.svg" },
-      { id: "morte", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀", hasMap: true, mapFile: "costadamorte.svg" },
-      { id: "artabro", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊", hasMap: true, mapFile: "golfoartabro.svg" },
-      { id: "riasaltas", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️", hasMap: true, mapFile: "riasaltas.svg" },
-      { id: "santiago", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪", hasMap: true, mapFile: "santiago.svg" },
-      { id: "ribeira", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️", hasMap: true, mapFile: "ribeirasacra.svg" },
-      { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
+      { id: "acoruna", nombre: "A Coruña", nombreCorto: "A Coruña", subtitulo: "Costa da Morte, Ártabro, Santiago...", emoji: "🌊", hasMap: true, mapFile: "acoruna.svg" },
+      { id: "lugo", nombre: "Lugo", nombreCorto: "Lugo", subtitulo: "Rías Altas, Os Ancares...", emoji: "🌲", hasMap: true, mapFile: "lugo.svg" },
+      { id: "ourense", nombre: "Ourense", nombreCorto: "Ourense", subtitulo: "Ribeira Sacra, Cañón del Sil...", emoji: "🏔️", hasMap: true, mapFile: "ourense.svg" },
+      { id: "pontevedra", nombre: "Pontevedra", nombreCorto: "Pontevedra", subtitulo: "Rías Baixas, Cíes, Ons...", emoji: "🌅", hasMap: true, mapFile: "pontevedra.svg" }
     ];
 
-    // LUGARES - 5 IMÁGENES
+    // LUGARES - REUBICADOS POR PROVINCIA
     var lugares = [
-      { id: 1, nombre: "Vigo", bloque: "riasbaixas", horas: 4, imagen: "img/vigo.jpg", imagenesCarousel: ["ima/vigo1.jpg", "ima/vigo2.jpg", "ima/vigo3.jpg", "ima/vigo4.jpg", "ima/vigo5.jpg"], lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", playas: ["Praia de Samil", "Praia do Vao"], secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." },
-      { id: 2, nombre: "Pontevedra", bloque: "riasbaixas", horas: 3, imagen: "img/pontevedra.jpg", imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg", "ima/pontevedra3.jpg", "ima/pontevedra4.jpg", "ima/pontevedra5.jpg"], lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón. Perderse es el plan.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
-      { id: 3, nombre: "Cíes y Ons", bloque: "riasbaixas", horas: 6, imagen: "ciesyons.jpg", imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg", "ima/ciesyons3.jpg", "ima/ciesyons4.jpg", "ima/ciesyons5.jpg"], lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos. Playas de arena blanca y aguas cristalinas. Paraíso natural.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas (Cíes)", "Monte Faro (Cíes)", "Playa de Melide (Ons)"], comer: "Lleva comida.", tomar: "Agua.", playas: ["Praia de Rodas", "Praia de Figueiras", "Praia de Melide"], secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria de barco. Aforo limitado." },
-      { id: 4, nombre: "Fisterra", bloque: "morte", horas: 3, imagen: "img/fisterra.jpg", imagenesCarousel: ["ima/fisterra1.jpg", "ima/fisterra2.jpg", "ima/fisterra3.jpg", "ima/fisterra4.jpg", "ima/fisterra5.jpg"], lat: 42.8652, lng: -9.2606, porQueVenir: "Para los romanos, el fin del mundo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Señal km 0", "Playa de Langosteira"], comer: "Pulpo.", tomar: "Albariño.", playas: ["Praia de Langosteira", "Praia do Rostro"], secreto: "Playa de Langosteira.", masTiempo: "Museo.", advertencias: "Viento siempre." },
-      { id: 5, nombre: "Muxía", bloque: "morte", horas: 3, imagen: "img/muxia.jpg", imagenesCarousel: ["ima/muxia1.jpg", "ima/muxia2.jpg", "ima/muxia3.jpg", "ima/muxia4.jpg", "ima/muxia5.jpg"], lat: 43.1500, lng: -9.0333, porQueVenir: "Santuario de la Virgen de la Barca y mar bravío.", momentoPerfecto: "Marea baja.", imprescindibles: ["Santuario", "Piedra de Atalar", "Piedra dos Cadris"], comer: "Tabernas pequeñas.", tomar: "Queimada.", playas: ["Praia de Lires", "Praia de Nemiña"], secreto: "Ruta a Lires.", masTiempo: "Cabo Touriñán.", advertencias: "No acercarse al mar con oleaje." },
-      { id: 6, nombre: "A Coruña", bloque: "artabro", horas: 4, imagen: "img/acoruna.jpg", imagenesCarousel: ["ima/acoruna1.jpg", "ima/acoruna2.jpg", "ima/acoruna3.jpg", "ima/acoruna4.jpg", "ima/acoruna5.jpg"], lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", playas: ["Praia de Riazor", "Praia do Orzán"], secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
-      { id: 7, nombre: "Ribadeo", bloque: "riasaltas", horas: 3, imagen: "img/ribadeo.jpg", imagenesCarousel: ["ima/ribadeo1.jpg", "ima/ribadeo2.jpg", "ima/ribadeo3.jpg", "ima/ribadeo4.jpg", "ima/ribadeo5.jpg"], lat: 43.5333, lng: -7.0333, porQueVenir: "Villa marinera con encanto.", momentoPerfecto: "Fin de tarde.", imprescindibles: ["Paseo marítimo", "Torre de los Moreno", "Praia das Catedrais"], comer: "Marisco en O'Pulpeira.", tomar: "Sidra.", playas: ["Praia das Catedrais", "Praia de Augas Santas"], secreto: "Faro de la Isla Pancha.", masTiempo: "Mondoñedo.", advertencias: "Aparcar difícil." },
-      { id: 8, nombre: "Santiago de Compostela", bloque: "santiago", horas: 5, imagen: "img/santiago.jpg", imagenesCarousel: ["ima/santiago1.jpg", "ima/santiago2.jpg", "ima/santiago3.jpg", "ima/santiago4.jpg", "ima/santiago5.jpg"], lat: 42.8800, lng: -8.5450, porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], comer: "Pulpo en el Mercado.", tomar: "Café en Plaza de Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Muchos turistas." },
-      { id: 9, nombre: "Cañón del Sil", bloque: "ribeira", horas: 5, imagen: "img/sil.jpg", imagenesCarousel: ["ima/sil1.jpg", "ima/sil2.jpg", "ima/sil3.jpg", "ima/sil4.jpg", "ima/sil5.jpg"], lat: 42.4167, lng: -7.7500, porQueVenir: "Los cañones más espectaculares de Galicia.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
-      { id: 10, nombre: "Os Ancares", bloque: "ancares", horas: 4, imagen: "img/ancares.jpg", imagenesCarousel: ["ima/ancares1.jpg", "ima/ancares2.jpg", "ima/ancares3.jpg", "ima/ancares4.jpg", "ima/ancares5.jpg"], lat: 42.7833, lng: -7.2000, porQueVenir: "Montaña, pallozas, sosiego. Galicia más salvaje.", momentoPerfecto: "Cualquier momento tranquilo.", imprescindibles: ["Pallozas", "Ruta de senderismo", "Vistas"], comer: "Cocina tradicional.", tomar: "Agua del manantial.", secreto: "Cascada secreta.", masTiempo: "Ruta completa.", advertencias: "Carreteras de montaña." }
+      // A CORUÑA
+      { id: 1, nombre: "A Coruña", bloque: "acoruna", horas: 4, imagen: "img/acoruna.jpg", imagenesCarousel: ["ima/acoruna1.jpg", "ima/acoruna2.jpg", "ima/acoruna3.jpg", "ima/acoruna4.jpg", "ima/acoruna5.jpg"], lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", playas: ["Praia de Riazor", "Praia do Orzán"], secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
+      { id: 2, nombre: "Fisterra", bloque: "acoruna", horas: 3, imagen: "img/fisterra.jpg", imagenesCarousel: ["ima/fisterra1.jpg", "ima/fisterra2.jpg", "ima/fisterra3.jpg", "ima/fisterra4.jpg", "ima/fisterra5.jpg"], lat: 42.8652, lng: -9.2606, porQueVenir: "Para los romanos, el fin del mundo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Señal km 0", "Playa de Langosteira"], comer: "Pulpo.", tomar: "Albariño.", playas: ["Praia de Langosteira", "Praia do Rostro"], secreto: "Playa de Langosteira.", masTiempo: "Museo.", advertencias: "Viento siempre." },
+      { id: 3, nombre: "Muxía", bloque: "acoruna", horas: 3, imagen: "img/muxia.jpg", imagenesCarousel: ["ima/muxia1.jpg", "ima/muxia2.jpg", "ima/muxia3.jpg", "ima/muxia4.jpg", "ima/muxia5.jpg"], lat: 43.1500, lng: -9.0333, porQueVenir: "Santuario de la Virgen de la Barca y mar bravío.", momentoPerfecto: "Marea baja.", imprescindibles: ["Santuario", "Piedra de Atalar", "Piedra dos Cadris"], comer: "Tabernas pequeñas.", tomar: "Queimada.", playas: ["Praia de Lires", "Praia de Nemiña"], secreto: "Ruta a Lires.", masTiempo: "Cabo Touriñán.", advertencias: "No acercarse al mar con oleaje." },
+      { id: 4, nombre: "Santiago de Compostela", bloque: "acoruna", horas: 5, imagen: "img/santiago.jpg", imagenesCarousel: ["ima/santiago1.jpg", "ima/santiago2.jpg", "ima/santiago3.jpg", "ima/santiago4.jpg", "ima/santiago5.jpg"], lat: 42.8800, lng: -8.5450, porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], comer: "Pulpo en el Mercado.", tomar: "Café en Plaza de Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Muchos turistas." },
+      // LUGO
+      { id: 5, nombre: "Ribadeo", bloque: "lugo", horas: 3, imagen: "img/ribadeo.jpg", imagenesCarousel: ["ima/ribadeo1.jpg", "ima/ribadeo2.jpg", "ima/ribadeo3.jpg", "ima/ribadeo4.jpg", "ima/ribadeo5.jpg"], lat: 43.5333, lng: -7.0333, porQueVenir: "Villa marinera con encanto.", momentoPerfecto: "Fin de tarde.", imprescindibles: ["Paseo marítimo", "Torre de los Moreno", "Praia das Catedrais"], comer: "Marisco en O'Pulpeira.", tomar: "Sidra.", playas: ["Praia das Catedrais", "Praia de Augas Santas"], secreto: "Faro de la Isla Pancha.", masTiempo: "Mondoñedo.", advertencias: "Aparcar difícil." },
+      { id: 6, nombre: "Os Ancares", bloque: "lugo", horas: 4, imagen: "img/ancares.jpg", imagenesCarousel: ["ima/ancares1.jpg", "ima/ancares2.jpg", "ima/ancares3.jpg", "ima/ancares4.jpg", "ima/ancares5.jpg"], lat: 42.7833, lng: -7.2000, porQueVenir: "Montaña, pallozas, sosiego. Galicia más salvaje.", momentoPerfecto: "Cualquier momento tranquilo.", imprescindibles: ["Pallozas", "Ruta de senderismo", "Vistas"], comer: "Cocina tradicional.", tomar: "Agua del manantial.", secreto: "Cascada secreta.", masTiempo: "Ruta completa.", advertencias: "Carreteras de montaña." },
+      // OURENSE
+      { id: 7, nombre: "Cañón del Sil", bloque: "ourense", horas: 5, imagen: "img/sil.jpg", imagenesCarousel: ["ima/sil1.jpg", "ima/sil2.jpg", "ima/sil3.jpg", "ima/sil4.jpg", "ima/sil5.jpg"], lat: 42.4167, lng: -7.7500, porQueVenir: "Los cañones más espectaculares de Galicia.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
+      // PONTEVEDRA
+      { id: 8, nombre: "Vigo", bloque: "pontevedra", horas: 4, imagen: "img/vigo.jpg", imagenesCarousel: ["ima/vigo1.jpg", "ima/vigo2.jpg", "ima/vigo3.jpg", "ima/vigo4.jpg", "ima/vigo5.jpg"], lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", playas: ["Praia de Samil", "Praia do Vao"], secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." },
+      { id: 9, nombre: "Pontevedra", bloque: "pontevedra", horas: 3, imagen: "img/pontevedra.jpg", imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg", "ima/pontevedra3.jpg", "ima/pontevedra4.jpg", "ima/pontevedra5.jpg"], lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón. Perderse es el plan.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
+      { id: 10, nombre: "Cíes y Ons", bloque: "pontevedra", horas: 6, imagen: "ciesyons.jpg", imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg", "ima/ciesyons3.jpg", "ima/ciesyons4.jpg", "ima/ciesyons5.jpg"], lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos. Playas de arena blanca y aguas cristalinas. Paraíso natural.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas (Cíes)", "Monte Faro (Cíes)", "Playa de Melide (Ons)"], comer: "Lleva comida.", tomar: "Agua.", playas: ["Praia de Rodas", "Praia de Figueiras", "Praia de Melide"], secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria de barco. Aforo limitado." }
     ];
 
     function renderPlaces() {
@@ -852,14 +710,12 @@
           
           html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
           
-          // IMAGEN DE PORTADA
           html += '<div class="place-image">';
           html += '<img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
           html += '<span class="place-number-badge">' + gi + '</span>';
           html += '<div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div>';
           html += '</div>';
           
-          // Header
           html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
           html += '<div class="place-header-left">';
           html += '<span class="place-header-title">Desplegar</span>';
@@ -869,7 +725,6 @@
           html += '<svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
           html += '</div>';
           
-          // Content
           html += '<div class="place-content"><div class="place-content-inner">';
           html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
           html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
@@ -881,7 +736,6 @@
           html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
           html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
           
-          // CARRUSEL
           if (hasCarousel) {
             var numImages = l.imagenesCarousel.length;
             html += '<div class="place-carousel-section">';
@@ -911,7 +765,6 @@
       c.innerHTML = html;
       initAnimations();
       
-      // Inicializar carruseles
       lugares.forEach(function(l) {
         if (l.imagenesCarousel && l.imagenesCarousel.length > 1) {
           initPlaceCarousel(l.id, l.imagenesCarousel.length);
@@ -920,10 +773,8 @@
     }
 
     function toggleBloque(id) { var card = document.getElementById(id); if (!card) return; var exp = card.classList.contains('expanded'); document.querySelectorAll('.bloque-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); if (!exp) card.classList.add('expanded'); }
-
     function renderInfoBlock(icon, title, text) { if (!text) return ''; return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><p class="info-text">' + text + '</p></div>'; }
     function renderListBlock(icon, title, items) { if (!items || !items.length) return ''; return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>'; }
-
     function togglePlace(id) { var card = document.getElementById(id); if (!card) return; var exp = card.classList.contains('expanded'); document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); if (!exp) card.classList.add('expanded'); }
 
     async function generateItinerary() {
