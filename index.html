@@ -29,13 +29,14 @@
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
-      --bloque-riasbaixas: #1E6B8A;
-      --bloque-morte: #3D4A5C;
-      --bloque-artabro: #1E5B8C;
-      --bloque-riasaltas: #2E8B7A;
-      --bloque-santiago: #9A7B0A;
-      --bloque-ribeira: #8B4513;
-      --bloque-ancares: #2E6B4D;
+      /* Colores suavizados para bloques */
+      --bloque-riasbaixas: #4a9ec4;
+      --bloque-morte: #6b7a8c;
+      --bloque-artabro: #4a8ec4;
+      --bloque-riasaltas: #4ab49a;
+      --bloque-santiago: #c4a84a;
+      --bloque-ribeira: #c47a4a;
+      --bloque-ancares: #4a9a7a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,62 +127,61 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* BLOQUES - Diseño con mini mapas */
-    .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px var(--shadow-warm); position: relative; }
+    /* BLOQUES - Diseño suavizado */
+    .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
     
     .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
     
-    .bloque-header.riasbaixas { background: linear-gradient(135deg, var(--bloque-riasbaixas) 0%, #165570 100%); }
-    .bloque-header.morte { background: linear-gradient(135deg, var(--bloque-morte) 0%, #2A3544 100%); }
-    .bloque-header.artabro { background: linear-gradient(135deg, var(--bloque-artabro) 0%, #154066 100%); }
-    .bloque-header.riasaltas { background: linear-gradient(135deg, var(--bloque-riasaltas) 0%, #1E6B5A 100%); }
-    .bloque-header.santiago { background: linear-gradient(135deg, var(--bloque-santiago) 0%, #705A08 100%); }
-    .bloque-header.ribeira { background: linear-gradient(135deg, var(--bloque-ribeira) 0%, #6B3410 100%); }
-    .bloque-header.ancares { background: linear-gradient(135deg, var(--bloque-ancares) 0%, #1E4A35 100%); }
+    /* Fondos suavizados con transparencia */
+    .bloque-header.riasbaixas { background: linear-gradient(135deg, rgba(74, 158, 196, 0.25) 0%, rgba(74, 158, 196, 0.15) 100%); }
+    .bloque-header.morte { background: linear-gradient(135deg, rgba(107, 122, 140, 0.25) 0%, rgba(107, 122, 140, 0.15) 100%); }
+    .bloque-header.artabro { background: linear-gradient(135deg, rgba(74, 142, 196, 0.25) 0%, rgba(74, 142, 196, 0.15) 100%); }
+    .bloque-header.riasaltas { background: linear-gradient(135deg, rgba(74, 180, 154, 0.25) 0%, rgba(74, 180, 154, 0.15) 100%); }
+    .bloque-header.santiago { background: linear-gradient(135deg, rgba(196, 168, 74, 0.25) 0%, rgba(196, 168, 74, 0.15) 100%); }
+    .bloque-header.ribeira { background: linear-gradient(135deg, rgba(196, 122, 74, 0.25) 0%, rgba(196, 122, 74, 0.15) 100%); }
+    .bloque-header.ancares { background: linear-gradient(135deg, rgba(74, 154, 122, 0.25) 0%, rgba(74, 154, 122, 0.15) 100%); }
     
-    /* Fila principal: Emoji + Nombre + Flecha */
+    /* Fila principal */
     .bloque-header-main { display: flex; align-items: center; padding: 20px; padding-right: 16px; }
-    .bloque-emoji { font-size: 2.8rem; margin-right: 16px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); flex-shrink: 0; }
+    .bloque-emoji { font-size: 2.8rem; margin-right: 16px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); flex-shrink: 0; }
     .bloque-info { flex: 1; min-width: 0; }
-    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4.5vw, 1.8rem); font-weight: 700; color: white; line-height: 1.2; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4.5vw, 1.8rem); font-weight: 700; color: var(--fg-ink); line-height: 1.2; margin: 0; }
     
-    /* Flecha desplegable */
-    .bloque-arrow { width: 40px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; backdrop-filter: blur(4px); }
-    .bloque-arrow svg { width: 20px; height: 20px; stroke: white; transition: transform 0.3s ease; }
-    .bloque-card.expanded .bloque-arrow { background: rgba(255,255,255,0.25); }
+    /* Flecha desplegable suavizada */
+    .bloque-arrow { width: 40px; height: 40px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
+    .bloque-arrow svg { width: 20px; height: 20px; stroke: var(--fg-muted); transition: transform 0.3s ease; }
+    .bloque-card.expanded .bloque-arrow { background: rgba(0,0,0,0.08); }
     .bloque-card.expanded .bloque-arrow svg { transform: rotate(180deg); }
     
-    /* Segunda fila: Subtítulo + Mini mapa + Contador */
+    /* Segunda fila */
     .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 18px; gap: 14px; }
-    .bloque-subtitulo { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-style: italic; flex: 1; min-width: 0; line-height: 1.3; }
+    .bloque-subtitulo { font-size: 0.82rem; color: var(--fg-muted); font-style: italic; flex: 1; min-width: 0; line-height: 1.3; }
     
-    /* Mini mapa en header - AMPLIADO */
+    /* Mini mapa en header */
     .bloque-map-mini { 
       width: 100px; 
       height: 70px; 
       flex-shrink: 0; 
       border-radius: 8px; 
       overflow: hidden;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.03);
+      border: 1px solid var(--border-aged);
     }
     .bloque-map-mini img { 
       width: 100%; 
       height: 100%; 
       object-fit: contain;
-      background: rgba(255,255,255,0.05);
       display: block;
     }
     
     .bloque-contador { 
-      background: rgba(255,255,255,0.15); 
-      color: white; 
+      background: rgba(0,0,0,0.04); 
+      color: var(--fg-muted); 
       padding: 6px 12px; 
       border-radius: 16px; 
       font-size: 0.8rem; 
       font-weight: 600; 
       white-space: nowrap; 
-      backdrop-filter: blur(4px); 
     }
     
     .bloque-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; background: var(--bg-cream); }
@@ -206,7 +206,7 @@
     .place-card.ribeira .place-number-badge { background: var(--bloque-ribeira); }
     .place-card.ancares .place-number-badge { background: var(--bloque-ancares); }
 
-    /* IMAGEN DE PORTADA (ESTÁTICA) */
+    /* IMAGEN DE PORTADA */
     .place-image { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
     .place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .place-number-badge { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.25); z-index: 6; }
@@ -241,7 +241,7 @@
     .info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
     .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-    /* CARRUSEL DE IMÁGENES (AL FINAL) */
+    /* CARRUSEL DE IMÁGENES */
     .place-carousel-section { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border-card); }
     .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
     .place-carousel-container { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); }
@@ -728,7 +728,7 @@
       { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
     ];
 
-    // LUGARES - imagen (portada) + imagenesCarousel (carrusel al final)
+    // LUGARES
     var lugares = [
       { 
         id: 1, nombre: "Vigo", bloque: "riasbaixas", horas: 4, 
@@ -752,15 +752,15 @@
         secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." 
       },
       { 
-        id: 3, nombre: "Illas Cíes", bloque: "riasbaixas", horas: 6, 
-        imagen: "img/cies.jpg",
-        imagenesCarousel: ["ima/cies1.jpg", "ima/cies2.jpg"],
+        id: 3, nombre: "Cíes y Ons", bloque: "riasbaixas", horas: 6, 
+        imagen: "ciesyons.jpg",
+        imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg"],
         lat: 42.2244, lng: -8.9031, 
-        porQueVenir: "Playas de arena blanca y aguas cristalinas. Paraíso natural.", momentoPerfecto: "Junio o septiembre.", 
-        imprescindibles: ["Playa de Rodas", "Subir al faro", "Monte Faro"], 
+        porQueVenir: "Dos archipiélagos protegidos. Playas de arena blanca y aguas cristalinas. Paraíso natural.", momentoPerfecto: "Junio o septiembre.", 
+        imprescindibles: ["Playa de Rodas (Cíes)", "Monte Faro (Cíes)", "Playa de Melide (Ons)"], 
         comer: "Lleva comida.", tomar: "Agua.", 
-        playas: ["Praia de Rodas", "Praia de Figueiras"], secreto: "Playa de Figueiras.", 
-        masTiempo: "Camping.", advertencias: "Reserva barco obligatoria." 
+        playas: ["Praia de Rodas", "Praia de Figueiras", "Praia de Melide"], secreto: "Playa de Figueiras.", 
+        masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria de barco. Aforo limitado." 
       },
       { 
         id: 4, nombre: "Fisterra", bloque: "morte", horas: 3, 
@@ -849,7 +849,7 @@
 
         html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
         
-        // Header
+        // Header suavizado
         html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
         html += '<div class="bloque-header-main">';
         html += '<span class="bloque-emoji">' + bloque.emoji + '</span>';
@@ -877,7 +877,7 @@
           
           html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
           
-          // IMAGEN DE PORTADA (ESTÁTICA)
+          // IMAGEN DE PORTADA
           html += '<div class="place-image">';
           html += '<img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
           html += '<span class="place-number-badge">' + gi + '</span>';
@@ -907,7 +907,7 @@
           html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
           html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
           
-          // CARRUSEL DE IMÁGENES (AL FINAL)
+          // CARRUSEL
           if (hasCarousel) {
             html += '<div class="place-carousel-section">';
             html += '<div class="place-carousel-title">Fotos</div>';
@@ -937,7 +937,6 @@
       c.innerHTML = html;
       initAnimations();
       
-      // Inicializar carruseles
       lugares.forEach(function(l) {
         if (l.imagenesCarousel && l.imagenesCarousel.length > 1) {
           initPlaceCarousel(l.id, l.imagenesCarousel.length);
@@ -990,4 +989,4 @@
     function resetMap() { lugares.forEach(function(l) { var m = markers[l.id]; if (!m) return; var e = m.getElement(); if (e) e.classList.remove('highlighted', 'dimmed'); m.setOpacity(1); }); if (map) map.setView([42.6, -8.4], 8); filterMap('all'); }
   </script>
 </body>
-</html>0
+</html>
