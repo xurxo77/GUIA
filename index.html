@@ -152,15 +152,15 @@
     .bloque-card.expanded .bloque-arrow svg { transform: rotate(180deg); }
     
     /* Segunda fila: Subtítulo + Mini mapa + Contador */
-    .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 16px; gap: 12px; }
-    .bloque-subtitulo { font-size: 0.85rem; color: rgba(255,255,255,0.8); font-style: italic; flex: 1; }
+    .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 18px; gap: 14px; }
+    .bloque-subtitulo { font-size: 0.82rem; color: rgba(255,255,255,0.75); font-style: italic; flex: 1; min-width: 0; line-height: 1.3; }
     
-    /* Mini mapa en header */
+    /* Mini mapa en header - AMPLIADO */
     .bloque-map-mini { 
-      width: 70px; 
-      height: 50px; 
+      width: 100px; 
+      height: 70px; 
       flex-shrink: 0; 
-      border-radius: 6px; 
+      border-radius: 8px; 
       overflow: hidden;
       background: rgba(255,255,255,0.1);
       border: 1px solid rgba(255,255,255,0.2);
@@ -168,7 +168,8 @@
     .bloque-map-mini img { 
       width: 100%; 
       height: 100%; 
-      object-fit: cover; 
+      object-fit: contain;
+      background: rgba(255,255,255,0.05);
       display: block;
     }
     
