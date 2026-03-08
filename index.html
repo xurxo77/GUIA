@@ -74,7 +74,7 @@
     @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
     .splash-btn { width: 100%; padding: 16px; background: var(--accent-sea); color: white; border: none; border-radius: 12px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
     .splash-btn:hover { background: #143a4a; }
-    .splash-error { color: #c45a3f; font-size: 0.9rem; min-height: 1.4em; margin-top: -8px; }
+    .splash-error { color: #c45a3f; font-size: 0.9rem; min-height: 1.4em; }
     .splash-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-aged); }
     .splash-footer-text { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
     .splash-footer-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.7; margin-top: 12px; font-style: italic; }
@@ -130,9 +130,7 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* ============================================
-       BLOQUES - PROVINCIAS (NUEVO DISEÑO)
-       ============================================ */
+    /* BLOQUES - PROVINCIAS */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
     
     .bloque-header { 
@@ -149,7 +147,6 @@
     .bloque-header.ourense { background: linear-gradient(135deg, rgba(196, 122, 58, 0.25) 0%, rgba(196, 122, 58, 0.15) 100%); }
     .bloque-header.pontevedra { background: linear-gradient(135deg, rgba(42, 138, 138, 0.25) 0%, rgba(42, 138, 138, 0.15) 100%); }
     
-    /* Mapa a la izquierda (ancla visual) */
     .bloque-map-sidebar {
       width: 80px;
       flex-shrink: 0;
@@ -176,7 +173,6 @@
       display: block; 
     }
     
-    /* Contenido central */
     .bloque-body {
       flex: 1;
       display: flex;
@@ -220,7 +216,6 @@
       text-overflow: ellipsis;
     }
     
-    /* Lado derecho: contador + flecha */
     .bloque-actions {
       display: flex;
       flex-direction: column;
@@ -326,8 +321,8 @@
     .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; }
     .place-carousel-wrapper { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); width: 100%; }
     .place-carousel-viewport { overflow: hidden; width: 100%; }
-    .place-carousel-track { display: flex; width: 100%; }
-    .place-carousel-slide { flex: 0 0 100%; width: 100%; min-width: 100%; }
+    .place-carousel-track { display: flex; width: 100%; transition: transform 0.35s ease-out; }
+    .place-carousel-slide { min-width: 100%; flex-shrink: 0; }
     .place-carousel-slide img { width: 100%; height: 200px; object-fit: cover; display: block; }
     .place-carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; background: rgba(255,255,255,0.95); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,0.2); touch-action: manipulation; }
     .place-carousel-btn:active { transform: translateY(-50%) scale(0.95); }
@@ -504,7 +499,7 @@
       <div class="splash-icon"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg></div>
       <h1 class="splash-title">Galicia</h1>
       <p class="splash-subtitle">Guía para amigos</p>
-      <form class="splash-form" id="splashForm" onsubmit="return false;">
+      <form class="splash-form" id="splashForm">
         <div><input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off"></div>
         <p class="splash-error" id="splashError"></p>
         <button type="submit" class="splash-btn">Entrar</button>
@@ -635,20 +630,37 @@
     document.getElementById('installBtn').addEventListener('click', async function() { if (!deferredPrompt) return; deferredPrompt.prompt(); if ((await deferredPrompt.userChoice).outcome === 'accepted') installBanner.classList.remove('visible'); deferredPrompt = null; });
     document.getElementById('installClose').addEventListener('click', function() { installBanner.classList.remove('visible'); localStorage.setItem('installBannerClosed', 'true'); });
 
+    // CONTRASEÑA - CORREGIDO
     var CORRECT_PASSWORD = 'Caamaño';
+    
     document.getElementById('splashForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      var input = document.getElementById('passwordInput'), error = document.getElementById('splashError');
-      if (input.value.trim() === CORRECT_PASSWORD) {
+      var input = document.getElementById('passwordInput');
+      var error = document.getElementById('splashError');
+      var value = input.value;
+      
+      if (value === CORRECT_PASSWORD) {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
         localStorage.setItem('galicia_auth', 'true');
         initApp();
-      } else { input.classList.add('error'); error.textContent = 'Contraseña incorrecta'; setTimeout(function() { input.classList.remove('error'); }, 400); input.value = ''; input.focus(); }
+      } else {
+        input.classList.add('error');
+        error.textContent = 'Contraseña incorrecta';
+        setTimeout(function() { input.classList.remove('error'); }, 400);
+        input.value = '';
+        input.focus();
+      }
     });
+    
     document.addEventListener('DOMContentLoaded', function() {
-      if (localStorage.getItem('galicia_auth') === 'true') { document.getElementById('splashScreen').classList.add('hidden'); document.getElementById('mainContent').classList.add('visible'); initApp(); }
-      else setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
+      if (localStorage.getItem('galicia_auth') === 'true') {
+        document.getElementById('splashScreen').classList.add('hidden');
+        document.getElementById('mainContent').classList.add('visible');
+        initApp();
+      } else {
+        setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
+      }
     });
 
     var map = null, markers = {}, userLocation = null, userMarker = null, selectedPlaces = [];
@@ -858,13 +870,13 @@
     ];
 
     var categorias = [
-      { id: "ciudades", nombre: "Ciudades históricas", nombreCorto: "Ciudades", emoji: "🏛️" },
-      { id: "villas", nombre: "Villas con carácter", nombreCorto: "Villas", emoji: "🏘️" },
-      { id: "pueblos", nombre: "Pueblos marineros", nombreCorto: "Pueblos", emoji: "⚓" },
-      { id: "costa", nombre: "Costa atlántica", nombreCorto: "Costa", emoji: "🏖️" },
+      { id: "ciudades", nombre: "Ciudades", nombreCorto: "Ciudades", emoji: "🏛️" },
+      { id: "villas", nombre: "Villas", nombreCorto: "Villas", emoji: "🏘️" },
+      { id: "pueblos", nombre: "Pueblos", nombreCorto: "Pueblos", emoji: "⚓" },
+      { id: "costa", nombre: "Costa", nombreCorto: "Costa", emoji: "🏖️" },
       { id: "naturaleza", nombre: "Naturaleza", nombreCorto: "Naturaleza", emoji: "🌿" },
-      { id: "patrimonio", nombre: "Patrimonio histórico", nombreCorto: "Patrimonio", emoji: "🏰" },
-      { id: "magicos", nombre: "Lugares mágicos", nombreCorto: "Mágicos", emoji: "✨" }
+      { id: "patrimonio", nombre: "Patrimonio", nombreCorto: "Patrimonio", emoji: "🏰" },
+      { id: "magicos", nombre: "Mágicos", nombreCorto: "Mágicos", emoji: "✨" }
     ];
 
     var lugares = [
@@ -931,32 +943,20 @@
         if (!arr.length) return;
 
         html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
-        
-        // NUEVO HEADER HORIZONTAL
         html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
-        
-        // Mapa a la izquierda
         html += '<div class="bloque-map-sidebar">';
         html += '<div class="bloque-map-mini"><img src="' + bloque.id + '.svg" alt="Mapa" onerror="this.parentElement.parentElement.style.display=\'none\'"></div>';
         html += '</div>';
-        
-        // Cuerpo central
         html += '<div class="bloque-body">';
         html += '<div class="bloque-content-wrapper">';
         html += '<span class="bloque-emoji">' + bloque.emoji + '</span>';
         html += '<span class="bloque-nombre">' + bloque.nombre + '</span>';
         html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
-        html += '</div>';
-        html += '</div>';
-        
-        // Lado derecho
+        html += '</div></div>';
         html += '<div class="bloque-actions">';
         html += '<span class="bloque-contador">' + arr.length + '</span>';
         html += '<div class="bloque-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
-        html += '</div>';
-        
-        html += '</div>';
-        
+        html += '</div></div>';
         html += '<div class="bloque-content"><div class="bloque-content-inner">';
 
         arr.forEach(function(l) {
@@ -966,14 +966,12 @@
           var catName = getCategoryName(l.categoria);
           
           html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
-          
           html += '<div class="place-image">';
           html += '<img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
           html += '<span class="place-number-badge">' + gi + '</span>';
           html += '<span class="place-category-badge ' + l.categoria + '">' + catName + '</span>';
           html += '<div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div>';
           html += '</div>';
-          
           html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
           html += '<div class="place-header-left">';
           html += '<span class="place-header-title">Desplegar</span>';
@@ -982,7 +980,6 @@
           html += '</button></div>';
           html += '<svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
           html += '</div>';
-          
           html += '<div class="place-content"><div class="place-content-inner">';
           html += '<div class="place-category-tag ' + l.categoria + '">' + getCategoryEmoji(l.categoria) + ' ' + getCategoryName(l.categoria) + '</div>';
           html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
@@ -1038,4 +1035,29 @@
     function togglePlace(id) { var card = document.getElementById(id); if (!card) return; var exp = card.classList.contains('expanded'); document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); if (!exp) card.classList.add('expanded'); }
 
     async function generateItinerary() {
-      if (
+      if (selectedPlaces.length === 0) return;
+      var btn = document.getElementById('generateBtn'); btn.textContent = 'Calculando...'; btn.disabled = true;
+      selectedPlaces.sort(function(a, b) { return lugares.findIndex(function(l) { return l.id === a; }) - lugares.findIndex(function(l) { return l.id === b; }); });
+      var sel = selectedPlaces.map(function(id) { return lugares.find(function(l) { return l.id === id; }); });
+      var route = await calculateRoute(sel, userLocation !== null);
+      showIti(sel, route); highlightItinerary(selectedPlaces);
+      btn.textContent = 'Generar'; btn.disabled = false;
+    }
+
+    async function showIti(lista, route) {
+      var ct = document.getElementById('itineraryResult'); ct.classList.remove('hidden');
+      var h = lista.reduce(function(s, l) { return s + l.horas; }, 0);
+      var html = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + h + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
+      html += '<div class="trip-summary"><div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + (userLocation ? 'Desde ti' : 'Total') + '</div></div><div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">Coche</div></div></div>';
+      lista.forEach(function(l) {
+        var idx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
+        html += '<div class="itinerary-place"><span class="itinerary-place-num" style="background:var(--bloque-' + l.bloque + ')">' + idx + '</span><img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button><a href="https://www.google.com/maps/dir/?api=1&destination=' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
+      });
+      html += '<a href="https://www.google.com/maps/dir/?api=1' + (userLocation ? '&origin=' + userLocation.lat + ',' + userLocation.lng : '') + lista.map(function(p) { return '&destination=' + p.lat + ',' + p.lng; }).join('') + '&travelmode=driving" target="_blank" class="route-btn">Ver en Google Maps</a></div>';
+      ct.innerHTML = html;
+    }
+
+    function resetMap() { lugares.forEach(function(l) { var m = markers[l.id]; if (!m) return; var e = m.getElement(); if (e) e.classList.remove('highlighted', 'dimmed'); m.setOpacity(1); }); if (map) map.setView([42.6, -8.4], 8); filterMap('all'); }
+  </script>
+</body>
+</html>
