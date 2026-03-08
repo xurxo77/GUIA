@@ -29,7 +29,6 @@
       --border-aged: #e0d8c8;
       --border-card: #8b7355;
       --shadow-warm: rgba(44, 36, 22, 0.1);
-      /* Colores suavizados para bloques */
       --bloque-riasbaixas: #4a9ec4;
       --bloque-morte: #6b7a8c;
       --bloque-artabro: #4a8ec4;
@@ -127,12 +126,11 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* BLOQUES - Diseño suavizado */
+    /* BLOQUES */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
     
     .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
     
-    /* Fondos suavizados con transparencia */
     .bloque-header.riasbaixas { background: linear-gradient(135deg, rgba(74, 158, 196, 0.25) 0%, rgba(74, 158, 196, 0.15) 100%); }
     .bloque-header.morte { background: linear-gradient(135deg, rgba(107, 122, 140, 0.25) 0%, rgba(107, 122, 140, 0.15) 100%); }
     .bloque-header.artabro { background: linear-gradient(135deg, rgba(74, 142, 196, 0.25) 0%, rgba(74, 142, 196, 0.15) 100%); }
@@ -141,23 +139,19 @@
     .bloque-header.ribeira { background: linear-gradient(135deg, rgba(196, 122, 74, 0.25) 0%, rgba(196, 122, 74, 0.15) 100%); }
     .bloque-header.ancares { background: linear-gradient(135deg, rgba(74, 154, 122, 0.25) 0%, rgba(74, 154, 122, 0.15) 100%); }
     
-    /* Fila principal */
     .bloque-header-main { display: flex; align-items: center; padding: 20px; padding-right: 16px; }
     .bloque-emoji { font-size: 2.8rem; margin-right: 16px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); flex-shrink: 0; }
     .bloque-info { flex: 1; min-width: 0; }
     .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 4.5vw, 1.8rem); font-weight: 700; color: var(--fg-ink); line-height: 1.2; margin: 0; }
     
-    /* Flecha desplegable suavizada */
     .bloque-arrow { width: 40px; height: 40px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
     .bloque-arrow svg { width: 20px; height: 20px; stroke: var(--fg-muted); transition: transform 0.3s ease; }
     .bloque-card.expanded .bloque-arrow { background: rgba(0,0,0,0.08); }
     .bloque-card.expanded .bloque-arrow svg { transform: rotate(180deg); }
     
-    /* Segunda fila */
     .bloque-header-meta { display: flex; align-items: center; padding: 0 20px 18px; gap: 14px; }
     .bloque-subtitulo { font-size: 0.82rem; color: var(--fg-muted); font-style: italic; flex: 1; min-width: 0; line-height: 1.3; }
     
-    /* Mini mapa en header */
     .bloque-map-mini { 
       width: 100px; 
       height: 70px; 
@@ -245,7 +239,7 @@
     .place-carousel-section { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border-card); }
     .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
     .place-carousel-container { position: relative; border-radius: 10px; overflow: hidden; background: var(--bg-cream); }
-    .place-carousel { display: flex; transition: transform 0.4s ease; }
+    .place-carousel { display: flex; transition: transform 0.4s ease; will-change: transform; }
     .place-carousel-slide { min-width: 100%; flex-shrink: 0; }
     .place-carousel-slide img { width: 100%; height: 200px; object-fit: cover; display: block; }
     .place-carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: all 0.2s ease; }
@@ -254,7 +248,7 @@
     .place-carousel-btn-prev { left: 8px; }
     .place-carousel-btn-next { right: 8px; }
     .place-carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; }
-    .place-carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: all 0.3s ease; }
+    .place-carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
     .place-carousel-dot.active { background: white; transform: scale(1.2); }
 
     .footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
@@ -687,17 +681,25 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // CARRUSEL DE IMÁGENES
-    function initPlaceCarousel(id, totalImages) { if (totalImages <= 1) return; placeCarousels[id] = { current: 0, total: totalImages }; }
+    // CARRUSEL DE IMÁGENES - CORREGIDO
+    function initPlaceCarousel(id, totalImages) {
+      placeCarousels[id] = { current: 0, total: totalImages };
+    }
 
     function movePlaceCarousel(id, direction) {
       var carousel = placeCarousels[id];
-      if (!carousel) return;
+      if (!carousel) {
+        console.log('Carousel not found for id:', id);
+        return;
+      }
       carousel.current += direction;
       if (carousel.current < 0) carousel.current = carousel.total - 1;
       if (carousel.current >= carousel.total) carousel.current = 0;
+      
       var track = document.getElementById('carousel-track-' + id);
-      if (track) track.style.transform = 'translateX(-' + (carousel.current * 100) + '%)';
+      if (track) {
+        track.style.transform = 'translateX(-' + (carousel.current * 100) + '%)';
+      }
       updatePlaceCarouselDots(id);
     }
 
@@ -728,7 +730,7 @@
       { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
     ];
 
-    // LUGARES
+    // LUGARES - Puedes añadir tantas fotos como quieras en imagenesCarousel
     var lugares = [
       { 
         id: 1, nombre: "Vigo", bloque: "riasbaixas", horas: 4, 
@@ -848,8 +850,6 @@
         if (!arr.length) return;
 
         html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
-        
-        // Header suavizado
         html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
         html += '<div class="bloque-header-main">';
         html += '<span class="bloque-emoji">' + bloque.emoji + '</span>';
@@ -867,13 +867,13 @@
         html += '</div>';
         html += '</div>';
         
-        // Content
         html += '<div class="bloque-content"><div class="bloque-content-inner">';
 
         arr.forEach(function(l) {
           gi++;
           var isFav = isFavorite(l.id);
-          var hasCarousel = l.imagenesCarousel && l.imagenesCarousel.length > 0;
+          // Mostrar carrusel solo si hay más de 1 imagen
+          var hasCarousel = l.imagenesCarousel && l.imagenesCarousel.length > 1;
           
           html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
           
@@ -907,10 +907,10 @@
           html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
           html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
           
-          // CARRUSEL
+          // CARRUSEL - Solo si hay más de 1 imagen
           if (hasCarousel) {
             html += '<div class="place-carousel-section">';
-            html += '<div class="place-carousel-title">Fotos</div>';
+            html += '<div class="place-carousel-title">Fotos (' + l.imagenesCarousel.length + ')</div>';
             html += '<div class="place-carousel-container">';
             html += '<div class="place-carousel" id="carousel-track-' + l.id + '">';
             l.imagenesCarousel.forEach(function(img) {
@@ -937,6 +937,7 @@
       c.innerHTML = html;
       initAnimations();
       
+      // Inicializar TODOS los carruseles
       lugares.forEach(function(l) {
         if (l.imagenesCarousel && l.imagenesCarousel.length > 1) {
           initPlaceCarousel(l.id, l.imagenesCarousel.length);
