@@ -128,7 +128,9 @@
 
     /* BLOQUES */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px var(--shadow-warm); position: relative; }
-    .bloque-header { display: flex; align-items: stretch; padding: 24px 20px; cursor: pointer; position: relative; transition: all 0.3s ease; }
+    
+    .bloque-header { display: flex; align-items: stretch; padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; }
+    
     .bloque-header.riasbaixas { background: linear-gradient(135deg, var(--bloque-riasbaixas) 0%, #165570 100%); }
     .bloque-header.morte { background: linear-gradient(135deg, var(--bloque-morte) 0%, #2A3544 100%); }
     .bloque-header.artabro { background: linear-gradient(135deg, var(--bloque-artabro) 0%, #154066 100%); }
@@ -136,28 +138,28 @@
     .bloque-header.santiago { background: linear-gradient(135deg, var(--bloque-santiago) 0%, #705A08 100%); }
     .bloque-header.ribeira { background: linear-gradient(135deg, var(--bloque-ribeira) 0%, #6B3410 100%); }
     .bloque-header.ancares { background: linear-gradient(135deg, var(--bloque-ancares) 0%, #1E4A35 100%); }
+    
+    .bloque-header-left { display: flex; align-items: center; padding: 24px 20px; flex: 1; min-width: 0; }
     .bloque-emoji { font-size: 3.5rem; margin-right: 18px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); flex-shrink: 0; }
-    .bloque-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .bloque-info { flex: 1; min-width: 0; }
     .bloque-numero { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px; }
-    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; color: white; line-height: 1.15; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
-    .bloque-subtitulo { font-size: 0.85rem; color: rgba(255,255,255,0.7); font-style: italic; margin-top: 4px; }
-    .bloque-contador { background: rgba(255,255,255,0.15); color: white; padding: 10px 16px; border-radius: 24px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; backdrop-filter: blur(4px); align-self: center; margin-left: auto; }
-    .bloque-toggle-icon { position: absolute; right: 20px; bottom: 12px; width: 28px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 700; color: white; line-height: 1.15; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .bloque-subtitulo { font-size: 0.8rem; color: rgba(255,255,255,0.7); font-style: italic; margin-top: 4px; }
+    
+    /* Mini mapa en header */
+    .bloque-map-mini { width: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 8px; position: relative; }
+    .bloque-map-mini::before { content: ''; position: absolute; left: 0; top: 10%; bottom: 10%; width: 1px; background: rgba(255,255,255,0.15); }
+    .bloque-map-mini img { width: 80px; height: 80px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.1); padding: 4px; }
+    
+    .bloque-contador { position: absolute; bottom: 12px; left: 20px; background: rgba(255,255,255,0.15); color: white; padding: 8px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; backdrop-filter: blur(4px); }
+    
+    .bloque-toggle-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .bloque-toggle-icon svg { width: 16px; height: 16px; stroke: white; transition: transform 0.3s ease; }
     .bloque-card.expanded .bloque-toggle-icon svg { transform: rotate(180deg); }
+    
     .bloque-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; background: var(--bg-cream); }
     .bloque-card.expanded .bloque-content { max-height: 10000px; }
     .bloque-content-inner { padding: 20px; }
-
-    /* TARJETA MAPA SVG */
-    .map-svg-card { background: var(--bg-paper); border: 3px solid var(--border-card); border-radius: 12px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 4px 16px var(--shadow-warm); }
-    .map-svg-header { background: linear-gradient(135deg, var(--bloque-artabro) 0%, #154066 100%); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
-    .map-svg-header-emoji { font-size: 1.8rem; }
-    .map-svg-header-text { flex: 1; }
-    .map-svg-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: white; }
-    .map-svg-header-subtitle { font-size: 0.75rem; color: rgba(255,255,255,0.8); }
-    .map-svg-body { padding: 16px; }
-    .map-svg-image { width: 100%; height: auto; display: block; }
 
     /* TARJETAS LUGARES */
     .place-card { background: var(--bg-card); border: 2px solid var(--border-card); border-radius: 10px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 3px 12px var(--shadow-warm); position: relative; transition: box-shadow 0.3s ease; }
@@ -641,11 +643,11 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // BLOQUES - Corregido Bloque 7
+    // BLOQUES
     var bloques = [
       { id: "riasbaixas", numero: "Bloque 1", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅" },
       { id: "morte", numero: "Bloque 2", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀" },
-      { id: "artabro", numero: "Bloque 3", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊" },
+      { id: "artabro", numero: "Bloque 3", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊", hasMap: true, mapFile: "golfoartabro.svg" },
       { id: "riasaltas", numero: "Bloque 4", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️" },
       { id: "santiago", numero: "Bloque 5", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪" },
       { id: "ribeira", numero: "Bloque 6", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️" },
@@ -675,31 +677,31 @@
         if (!arr.length) return;
 
         html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
+        
+        // Header con mini-mapa si existe
         html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
+        html += '<div class="bloque-header-left">';
         html += '<span class="bloque-emoji">' + bloque.emoji + '</span>';
         html += '<div class="bloque-info">';
         html += '<div class="bloque-numero">' + bloque.numero + '</div>';
         html += '<h3 class="bloque-nombre">' + bloque.nombre + '</h3>';
         html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
+        html += '</div></div>';
+        
+        // Mini mapa en header (solo si tiene)
+        if (bloque.hasMap) {
+          html += '<div class="bloque-map-mini">';
+          html += '<img src="' + bloque.mapFile + '" alt="Mapa" onerror="this.style.display=\'none\'">';
+          html += '</div>';
+        }
+        
         html += '</div>';
+        
+        // Contador y toggle
         html += '<span class="bloque-contador">' + arr.length + ' lugares</span>';
         html += '<div class="bloque-toggle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
-        html += '</div>';
+        
         html += '<div class="bloque-content"><div class="bloque-content-inner">';
-
-        // AÑADIR TARJETA MAPA SVG SOLO EN GOLFO ÁRTABRO
-        if (bloque.id === 'artabro') {
-          html += '<div class="map-svg-card">';
-          html += '<div class="map-svg-header">';
-          html += '<span class="map-svg-header-emoji">🗺️</span>';
-          html += '<div class="map-svg-header-text">';
-          html += '<div class="map-svg-header-title">Mapa de la zona</div>';
-          html += '<div class="map-svg-header-subtitle">Golfo Ártabro</div>';
-          html += '</div></div>';
-          html += '<div class="map-svg-body">';
-          html += '<img src="golfoartabro.svg" alt="Mapa Golfo Ártabro" class="map-svg-image" onerror="this.style.display=\'none\'">';
-          html += '</div></div>';
-        }
 
         arr.forEach(function(l) {
           gi++;
