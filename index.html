@@ -247,7 +247,7 @@
     .place-carousel-btn svg { width: 16px; height: 16px; stroke: var(--accent-sea); }
     .place-carousel-btn-prev { left: 8px; }
     .place-carousel-btn-next { right: 8px; }
-    .place-carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; }
+    .place-carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 60px); }
     .place-carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
     .place-carousel-dot.active { background: white; transform: scale(1.2); }
 
@@ -681,25 +681,19 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // CARRUSEL DE IMÁGENES - CORREGIDO
+    // CARRUSEL DE IMÁGENES
     function initPlaceCarousel(id, totalImages) {
       placeCarousels[id] = { current: 0, total: totalImages };
     }
 
     function movePlaceCarousel(id, direction) {
       var carousel = placeCarousels[id];
-      if (!carousel) {
-        console.log('Carousel not found for id:', id);
-        return;
-      }
+      if (!carousel) return;
       carousel.current += direction;
       if (carousel.current < 0) carousel.current = carousel.total - 1;
       if (carousel.current >= carousel.total) carousel.current = 0;
-      
       var track = document.getElementById('carousel-track-' + id);
-      if (track) {
-        track.style.transform = 'translateX(-' + (carousel.current * 100) + '%)';
-      }
+      if (track) track.style.transform = 'translateX(-' + (carousel.current * 100) + '%)';
       updatePlaceCarouselDots(id);
     }
 
@@ -730,12 +724,12 @@
       { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
     ];
 
-    // LUGARES - Puedes añadir tantas fotos como quieras en imagenesCarousel
+    // LUGARES - 5 IMÁGENES POR LUGAR
     var lugares = [
       { 
         id: 1, nombre: "Vigo", bloque: "riasbaixas", horas: 4, 
         imagen: "img/vigo.jpg",
-        imagenesCarousel: ["ima/vigo1.jpg", "ima/vigo2.jpg"],
+        imagenesCarousel: ["ima/vigo1.jpg", "ima/vigo2.jpg", "ima/vigo3.jpg", "ima/vigo4.jpg", "ima/vigo5.jpg"],
         lat: 42.2406, lng: -8.7207, 
         porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", 
         imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], 
@@ -746,7 +740,7 @@
       { 
         id: 2, nombre: "Pontevedra", bloque: "riasbaixas", horas: 3, 
         imagen: "img/pontevedra.jpg",
-        imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg"],
+        imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg", "ima/pontevedra3.jpg", "ima/pontevedra4.jpg", "ima/pontevedra5.jpg"],
         lat: 42.4333, lng: -8.6333, 
         porQueVenir: "Ciudad amable con el peatón. Perderse es el plan.", momentoPerfecto: "Tarde para cenar.", 
         imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], 
@@ -756,7 +750,7 @@
       { 
         id: 3, nombre: "Cíes y Ons", bloque: "riasbaixas", horas: 6, 
         imagen: "ciesyons.jpg",
-        imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg"],
+        imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg", "ima/ciesyons3.jpg", "ima/ciesyons4.jpg", "ima/ciesyons5.jpg"],
         lat: 42.2244, lng: -8.9031, 
         porQueVenir: "Dos archipiélagos protegidos. Playas de arena blanca y aguas cristalinas. Paraíso natural.", momentoPerfecto: "Junio o septiembre.", 
         imprescindibles: ["Playa de Rodas (Cíes)", "Monte Faro (Cíes)", "Playa de Melide (Ons)"], 
@@ -767,7 +761,7 @@
       { 
         id: 4, nombre: "Fisterra", bloque: "morte", horas: 3, 
         imagen: "img/fisterra.jpg",
-        imagenesCarousel: ["ima/fisterra1.jpg", "ima/fisterra2.jpg"],
+        imagenesCarousel: ["ima/fisterra1.jpg", "ima/fisterra2.jpg", "ima/fisterra3.jpg", "ima/fisterra4.jpg", "ima/fisterra5.jpg"],
         lat: 42.8652, lng: -9.2606, 
         porQueVenir: "Para los romanos, el fin del mundo.", momentoPerfecto: "Atardecer.", 
         imprescindibles: ["Faro", "Señal km 0", "Playa de Langosteira"], 
@@ -778,7 +772,7 @@
       { 
         id: 5, nombre: "Muxía", bloque: "morte", horas: 3, 
         imagen: "img/muxia.jpg",
-        imagenesCarousel: ["ima/muxia1.jpg", "ima/muxia2.jpg"],
+        imagenesCarousel: ["ima/muxia1.jpg", "ima/muxia2.jpg", "ima/muxia3.jpg", "ima/muxia4.jpg", "ima/muxia5.jpg"],
         lat: 43.1500, lng: -9.0333, 
         porQueVenir: "Santuario de la Virgen de la Barca y mar bravío.", momentoPerfecto: "Marea baja.", 
         imprescindibles: ["Santuario", "Piedra de Atalar", "Piedra dos Cadris"], 
@@ -789,7 +783,7 @@
       { 
         id: 6, nombre: "A Coruña", bloque: "artabro", horas: 4, 
         imagen: "img/acoruna.jpg",
-        imagenesCarousel: ["ima/acoruna1.jpg", "ima/acoruna2.jpg"],
+        imagenesCarousel: ["ima/acoruna1.jpg", "ima/acoruna2.jpg", "ima/acoruna3.jpg", "ima/acoruna4.jpg", "ima/acoruna5.jpg"],
         lat: 43.3700, lng: -8.4000, 
         porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", 
         imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], 
@@ -800,7 +794,7 @@
       { 
         id: 7, nombre: "Ribadeo", bloque: "riasaltas", horas: 3, 
         imagen: "img/ribadeo.jpg",
-        imagenesCarousel: ["ima/ribadeo1.jpg", "ima/ribadeo2.jpg"],
+        imagenesCarousel: ["ima/ribadeo1.jpg", "ima/ribadeo2.jpg", "ima/ribadeo3.jpg", "ima/ribadeo4.jpg", "ima/ribadeo5.jpg"],
         lat: 43.5333, lng: -7.0333, 
         porQueVenir: "Villa marinera con encanto.", momentoPerfecto: "Fin de tarde.", 
         imprescindibles: ["Paseo marítimo", "Torre de los Moreno", "Praia das Catedrais"], 
@@ -811,7 +805,7 @@
       { 
         id: 8, nombre: "Santiago de Compostela", bloque: "santiago", horas: 5, 
         imagen: "img/santiago.jpg",
-        imagenesCarousel: ["ima/santiago1.jpg", "ima/santiago2.jpg"],
+        imagenesCarousel: ["ima/santiago1.jpg", "ima/santiago2.jpg", "ima/santiago3.jpg", "ima/santiago4.jpg", "ima/santiago5.jpg"],
         lat: 42.8800, lng: -8.5450, 
         porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", momentoPerfecto: "Cualquier momento.", 
         imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], 
@@ -821,7 +815,7 @@
       { 
         id: 9, nombre: "Cañón del Sil", bloque: "ribeira", horas: 5, 
         imagen: "img/sil.jpg",
-        imagenesCarousel: ["ima/sil1.jpg", "ima/sil2.jpg"],
+        imagenesCarousel: ["ima/sil1.jpg", "ima/sil2.jpg", "ima/sil3.jpg", "ima/sil4.jpg", "ima/sil5.jpg"],
         lat: 42.4167, lng: -7.7500, 
         porQueVenir: "Los cañones más espectaculares de Galicia.", momentoPerfecto: "Primavera y otoño.", 
         imprescindibles: ["Catamarán", "Miradores", "Monasterios"], 
@@ -831,7 +825,7 @@
       { 
         id: 10, nombre: "Os Ancares", bloque: "ancares", horas: 4, 
         imagen: "img/ancares.jpg",
-        imagenesCarousel: ["ima/ancares1.jpg", "ima/ancares2.jpg"],
+        imagenesCarousel: ["ima/ancares1.jpg", "ima/ancares2.jpg", "ima/ancares3.jpg", "ima/ancares4.jpg", "ima/ancares5.jpg"],
         lat: 42.7833, lng: -7.2000, 
         porQueVenir: "Montaña, pallozas, sosiego. Galicia más salvaje.", momentoPerfecto: "Cualquier momento tranquilo.", 
         imprescindibles: ["Pallozas", "Ruta de senderismo", "Vistas"], 
@@ -872,7 +866,6 @@
         arr.forEach(function(l) {
           gi++;
           var isFav = isFavorite(l.id);
-          // Mostrar carrusel solo si hay más de 1 imagen
           var hasCarousel = l.imagenesCarousel && l.imagenesCarousel.length > 1;
           
           html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
@@ -907,7 +900,7 @@
           html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
           html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
           
-          // CARRUSEL - Solo si hay más de 1 imagen
+          // CARRUSEL
           if (hasCarousel) {
             html += '<div class="place-carousel-section">';
             html += '<div class="place-carousel-title">Fotos (' + l.imagenesCarousel.length + ')</div>';
@@ -937,7 +930,7 @@
       c.innerHTML = html;
       initAnimations();
       
-      // Inicializar TODOS los carruseles
+      // Inicializar carruseles
       lugares.forEach(function(l) {
         if (l.imagenesCarousel && l.imagenesCarousel.length > 1) {
           initPlaceCarousel(l.id, l.imagenesCarousel.length);
