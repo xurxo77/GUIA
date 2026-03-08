@@ -126,7 +126,7 @@
     .rec-icon { font-size: 1.3rem; flex-shrink: 0; }
     .rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
 
-    /* BLOQUES - Nuevo diseño */
+    /* BLOQUES - Diseño con mini mapas */
     .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 24px var(--shadow-warm); position: relative; }
     
     .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; }
@@ -669,15 +669,15 @@
     }
     function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
 
-    // BLOQUES - Sin "Bloque X", con mini mapa opcional
+    // BLOQUES - Todos con sus mapas SVG
     var bloques = [
-      { id: "riasbaixas", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅" },
-      { id: "morte", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀" },
+      { id: "riasbaixas", nombre: "Rías Baixas", nombreCorto: "Rías Baixas", subtitulo: "Vigo, Pontevedra, Baiona, Noia, Muros, Cíes, Ons...", emoji: "🌅", hasMap: true, mapFile: "riasbaixas.svg" },
+      { id: "morte", nombre: "Costa da Morte", nombreCorto: "Costa Morte", subtitulo: "Fisterra, Muxía, Camariñas", emoji: "💀", hasMap: true, mapFile: "costadamorte.svg" },
       { id: "artabro", nombre: "Golfo Ártabro", nombreCorto: "G. Ártabro", subtitulo: "A Coruña, Ferrol", emoji: "🌊", hasMap: true, mapFile: "golfoartabro.svg" },
-      { id: "riasaltas", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️" },
-      { id: "santiago", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪" },
-      { id: "ribeira", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️" },
-      { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲" }
+      { id: "riasaltas", nombre: "Rías Altas", nombreCorto: "Rías Altas", subtitulo: "Cedeira, Viveiro, Ribadeo", emoji: "🏞️", hasMap: true, mapFile: "riasaltas.svg" },
+      { id: "santiago", nombre: "Comarca de Santiago", nombreCorto: "Santiago", subtitulo: "Santiago de Compostela", emoji: "⛪", hasMap: true, mapFile: "santiago.svg" },
+      { id: "ribeira", nombre: "Ribeira Sacra y Ourense interior", nombreCorto: "Ribeira Sacra", subtitulo: "Ourense, Monforte, Cañón del Sil...", emoji: "🏔️", hasMap: true, mapFile: "ribeirasacra.svg" },
+      { id: "ancares", nombre: "Os Ancares y Lugo interior", nombreCorto: "Os Ancares", subtitulo: "Navia de Suarna, Cervantes", emoji: "🌲", hasMap: true, mapFile: "osancares.svg" }
     ];
 
     var lugares = [
@@ -722,7 +722,7 @@
         html += '<div class="bloque-header-meta">';
         html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
         
-        // Mini mapa (solo si tiene)
+        // Mini mapa
         if (bloque.hasMap) {
           html += '<div class="bloque-map-mini"><img src="' + bloque.mapFile + '" alt="Mapa" onerror="this.parentElement.style.display=\'none\'"></div>';
         }
