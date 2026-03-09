@@ -272,22 +272,21 @@
     .place-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 12px 10px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 4; }
     .place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.5); margin: 0; }
 
-    /* BARRA INFERIOR CON MÚLTIPLES CATEGORÍAS */
+    /* BARRA INFERIOR CON MÚLTIPLES CATEGORÍAS (SOLO TEXTO) */
     .place-header { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; border-top: 1px solid rgba(139, 115, 85, 0.2); }
     .place-header:hover { background: rgba(184, 134, 11, 0.05); }
     .place-header:focus { outline: none; background: rgba(184, 134, 11, 0.08); }
     
-    /* LADO IZQUIERDO: Múltiples categorías */
+    /* LADO IZQUIERDO: Múltiples categorías con TEXTO */
     .place-header-left { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
     .place-header-left::-webkit-scrollbar { display: none; }
     
     .place-category-chip {
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 12px;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 600;
       color: white;
       white-space: nowrap;
@@ -782,7 +781,6 @@
       updatePlacesSelector();
     }
     
-    // FILTRADO CON MÚLTIPLES CATEGORÍAS
     function updatePlacesSelector() {
       var items = document.querySelectorAll('.place-select-item');
       items.forEach(function(item) {
@@ -994,11 +992,11 @@
           html += '<div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div>';
           html += '</div>';
           
-          // BARRA INFERIOR CON MÚLTIPLES CATEGORÍAS
+          // BARRA INFERIOR CON CATEGORÍAS EN TEXTO
           html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
           html += '<div class="place-header-left">';
           l.categorias.forEach(function(catId) {
-            html += '<span class="place-category-chip ' + catId + '">' + getCategoryEmoji(catId) + '</span>';
+            html += '<span class="place-category-chip ' + catId + '">' + getCategoryName(catId) + '</span>';
           });
           html += '</div>';
           html += '<div class="place-header-right">';
@@ -1010,7 +1008,7 @@
           
           html += '<div class="place-content"><div class="place-content-inner">';
           
-          // TAGS DE CATEGORÍAS
+          // TAGS DE CATEGORÍAS EN CONTENIDO
           html += '<div class="place-category-tags">';
           l.categorias.forEach(function(catId) {
             html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>';
