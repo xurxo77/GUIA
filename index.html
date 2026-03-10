@@ -811,6 +811,32 @@
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
       );
     }
+    function updateFullscreenUI() {
+      var totalHours = selectedPlaces.reduce(function(sum, id) {
+        var l = lugares.find(function(x) { return x.id === id; });
+        return sum + (l ? l.horas : 0);
+      }, 0);
+      
+      document.getElementById('mapSelectionCount').textContent = selectedPlaces.length + ' seleccionados';
+      document.getElementById('mapSelectionTime').textContent = totalHours + 'h';
+      
+      var placesContainer = document.getElementById('mapSelectionPlaces');
+      if (selectedPlaces.length === 0) {
+        placesContainer.innerHTML = '';
+      } else {
+        var html = '';
+        selectedPlaces.forEach(function(id) {
+          var l = lugares.find(function(x) { return x.id === id; });
+          if (!l) return;
+          html += '<div class="map-selection-chip">';
+          html += l.nombre;
+          // CORRECCIÓN: return false evita propagación y recarga
+          html += '<span class="remove" onclick="togglePlaceSelection(' + l.id + '); updateFullscreenUI(); return false;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>';
+          html += '</div>';
+        });
+        placesContainer.innerHTML = html;
+      }
+    }
     
     function showUserOnMap(loc) { 
       if (!map) return; 
