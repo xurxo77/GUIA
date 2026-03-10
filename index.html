@@ -220,121 +220,22 @@
     .info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
     .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-    /* CARRUSEL DE FOTOS - ROBUSTO PARA MÓVIL */
-    .place-carousel-section { 
-      margin-top: 16px; 
-      padding-top: 16px; 
-      border-top: 2px solid var(--border-card); 
-    }
-    .place-carousel-title { 
-      font-family: 'Cormorant Garamond', serif; 
-      font-size: 0.85rem; 
-      font-weight: 600; 
-      color: var(--fg-ink); 
-      margin-bottom: 10px; 
-    }
-    
-    .place-carousel-wrapper { 
-      position: relative; 
-      width: 100%;
-      border-radius: 10px; 
-      overflow: hidden; 
-      background: var(--bg-cream); 
-    }
-    
-    .place-carousel-viewport {
-      width: 100%;
-      overflow: hidden;
-    }
-    
-    .place-carousel-track {
-      display: flex;
-      width: 100%;
-      will-change: transform;
-    }
-    
-    .place-carousel-slide {
-      flex: 0 0 100%;
-      width: 100%;
-      min-width: 100%;
-      max-width: 100%;
-    }
-    
-    .place-carousel-slide img {
-      display: block;
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      object-position: center;
-    }
-    
-    .place-carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid var(--border-card);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 10;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .place-carousel-btn:active {
-      transform: translateY(-50%) scale(0.92);
-    }
-    
-    .place-carousel-btn svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--accent-sea);
-      pointer-events: none;
-    }
-    
-    .place-carousel-btn-prev {
-      left: 8px;
-    }
-    
-    .place-carousel-btn-next {
-      right: 8px;
-    }
-    
-    .place-carousel-dots {
-      position: absolute;
-      bottom: 12px;
-      left: 0;
-      right: 0;
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      z-index: 10;
-      padding: 0 10px;
-    }
-    
-    .place-carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.6);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      touch-action: manipulation;
-    }
-    
-    .place-carousel-dot.active {
-      background: white;
-      transform: scale(1.3);
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-    }
+    /* CARRUSEL DE FOTOS */
+    .place-carousel-section { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border-card); }
+    .place-carousel-title { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; }
+    .place-carousel-wrapper { position: relative; width: 100%; border-radius: 10px; overflow: hidden; background: var(--bg-cream); }
+    .place-carousel-viewport { width: 100%; overflow: hidden; }
+    .place-carousel-track { display: flex; width: 100%; will-change: transform; }
+    .place-carousel-slide { flex: 0 0 100%; width: 100%; min-width: 100%; max-width: 100%; }
+    .place-carousel-slide img { display: block; width: 100%; height: 200px; object-fit: cover; object-position: center; }
+    .place-carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(255, 255, 255, 0.95); border: 2px solid var(--border-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .place-carousel-btn:active { transform: translateY(-50%) scale(0.92); }
+    .place-carousel-btn svg { width: 20px; height: 20px; stroke: var(--accent-sea); pointer-events: none; }
+    .place-carousel-btn-prev { left: 8px; }
+    .place-carousel-btn-next { right: 8px; }
+    .place-carousel-dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; gap: 8px; justify-content: center; z-index: 10; padding: 0 10px; }
+    .place-carousel-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.6); border: none; padding: 0; cursor: pointer; transition: all 0.25s ease; touch-action: manipulation; }
+    .place-carousel-dot.active { background: white; transform: scale(1.3); box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
 
     .footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
     .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 22px; }
@@ -424,7 +325,6 @@
     .selection-empty { text-align: center; padding: 16px; color: var(--fg-muted); font-style: italic; font-size: 0.9rem; }
     .selection-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
     .selection-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: var(--bg-paper); border: 1px solid var(--border-aged); border-radius: 8px; }
-    /* IMPORTANTE: Esta clase controla el tamaño de la imagen */
     .selection-item-img { width: 36px; height: 36px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
     .selection-item-info { flex: 1; }
     .selection-item-name { font-weight: 600; font-size: 0.85rem; }
@@ -660,16 +560,8 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
-    // ===== CONTRASEÑA - CORREGIDO =====
+    // ===== CONTRASEÑA - SIMPLIFICADO =====
     var CORRECT_PASSWORD = 'Caamaño';
-    
-    // Función para normalizar texto (quitar acentos y comparar)
-    function normalizeText(text) {
-      return text.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '') // Quita diacríticos
-        .trim();
-    }
     
     document.getElementById('splashForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -677,8 +569,8 @@
       var error = document.getElementById('splashError');
       var value = input.value;
       
-      // Comparación normalizada
-      if (normalizeText(value) === normalizeText(CORRECT_PASSWORD)) {
+      // Comparación en minúsculas
+      if (value.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
         document.getElementById('splashScreen').classList.add('hidden');
         document.getElementById('mainContent').classList.add('visible');
         localStorage.setItem('galicia_auth', 'true');
@@ -724,9 +616,9 @@
       { id: "pueblos", nombre: "Pueblos", nombreCorto: "Pueblo", emoji: "⚓" },
       { id: "costa", nombre: "Costa", nombreCorto: "Costa", emoji: "🏖️" },
       { id: "naturaleza", nombre: "Naturaleza", nombreCorto: "Naturaleza", emoji: "🌿" },
-      { id: "patrimonio", nombre: "Patrimonio", nombreCorto: "Patrimonio", emoji: "🏰" },
+      { id: "patrimonio", nombre: "Patrimonio", nomeCorto: "Patrimonio", emoji: "🏰" },
       { id: "magicos", nombre: "Mágicos", nombreCorto: "Mágico", emoji: "✨" },
-      { id: "termalismo", nombre: "Termalismo", nombreCorto: "Termalismo", emoji: "♨️" }
+      { id: "termalismo", nome: "Termalismo", nombreCorto: "Termalismo", emoji: "♨️" }
     ];
 
     function getCategoryName(catId) { 
@@ -739,9 +631,8 @@
       return cat ? cat.emoji : ''; 
     }
 
-    // ===== LUGARES (SIN VERÍN, CIES CORREGIDO) =====
+    // ===== LUGARES =====
     var lugares = [
-      // A CORUÑA (14 lugares)
       { id: 1, nombre: "Santiago de Compostela", bloque: "acoruna", categorias: ["ciudades", "patrimonio"], horas: 5, imagen: "img/santiago.jpg", imagenesCarousel: ["ima/santiago1.jpg", "ima/santiago2.jpg", "ima/santiago3.jpg", "ima/santiago4.jpg", "ima/santiago5.jpg"], lat: 42.8800, lng: -8.5450, porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], comer: "Pulpo en el Mercado.", tomar: "Café en Plaza de Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Muchos turistas." },
       { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", imagenesCarousel: ["ima/acoruna1.jpg", "ima/acoruna2.jpg", "ima/acoruna3.jpg", "ima/acoruna4.jpg", "ima/acoruna5.jpg"], lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
       { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", imagenesCarousel: ["ima/betanzos1.jpg", "ima/betanzos2.jpg"], lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
@@ -756,14 +647,12 @@
       { id: 12, nombre: "San Andrés de Teixido", bloque: "acoruna", categorias: ["magicos"], horas: 3, imagen: "img/teixido.jpg", imagenesCarousel: ["ima/teixido1.jpg", "ima/teixido2.jpg"], lat: 43.6333, lng: -8.2500, porQueVenir: "Santuario donde van los que no van en vida.", momentoPerfecto: "Peregrinación.", imprescindibles: ["Santuario", "Ruta", "Vistas"], comer: "Lo que lleves.", tomar: "Agua.", secreto: "Amanecer.", masTiempo: "Cedeira.", advertencias: "Carretera estrecha." },
       { id: 13, nombre: "Muros", bloque: "acoruna", categorias: ["pueblos"], horas: 2, imagen: "img/muros.jpg", imagenesCarousel: ["ima/muros1.jpg", "ima/muros2.jpg"], lat: 42.7667, lng: -9.0500, porQueVenir: "Puerto pesquero con quintas indias.", momentoPerfecto: "Mañana.", imprescindibles: ["Puerto", "Quintas", "Playa"], comer: "Pescado fresco.", tomar: "Vino.", secreto: "Ruta de las Quintas.", masTiempo: "Noia.", advertencias: "Aparcar difícil." },
       { id: 14, nombre: "Noia", bloque: "acoruna", categorias: ["pueblos"], horas: 2, imagen: "img/noia.jpg", imagenesCarousel: ["ima/noia1.jpg", "ima/noia2.jpg"], lat: 42.7833, lng: -8.8833, porQueVenir: "Puerto fluvial con casco histórico.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Puerto", "Casco histórico", "Ría"], comer: "Marisco.", tomar: "Vino.", secreto: "Sendero.", masTiempo: "Muros.", advertencias: "Nada especial." },
-      // LUGO (6 lugares)
       { id: 15, nombre: "Lugo", bloque: "lugo", categorias: ["ciudades", "patrimonio"], horas: 3, imagen: "img/lugo.jpg", imagenesCarousel: ["ima/lugo1.jpg", "ima/lugo2.jpg"], lat: 43.0100, lng: -7.5600, porQueVenir: "Muralla romana mejor conservada.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Muralla", "Catedral", "Casco histórico"], comer: "Pulpo.", tomar: "Cerveza.", secreto: "Paseo nocturno.", masTiempo: "Termas romanas.", advertencias: "Ciudad tranquila." },
       { id: 16, nombre: "Viveiro", bloque: "lugo", categorias: ["villas", "costa"], horas: 3, imagen: "img/viveiro.jpg", imagenesCarousel: ["ima/viveiro1.jpg", "ima/viveiro2.jpg"], lat: 43.6500, lng: -7.6000, porQueVenir: "Villa marinera medieval.", momentoPerfecto: "Verano.", imprescindibles: ["Puerto", "Casco histórico", "Playa de Covas"], comer: "Marisco.", tomar: "Sidra.", secreto: "Fiestas del Carmen.", masTiempo: "Playa de Covas.", advertencias: "Lleno en verano." },
       { id: 17, nombre: "Mondoñedo", bloque: "lugo", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/mondonedo.jpg", imagenesCarousel: ["ima/mondonedo1.jpg", "ima/mondonedo2.jpg"], lat: 43.4667, lng: -7.4500, porQueVenir: "Antigua capital del reino de Galicia.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Casco histórico", "Miradores"], comer: "Empanada.", tomar: "Vino.", secreto: "Festival de la Cocina.", masTiempo: "Senda ecológica.", advertencias: "Lluvia frecuente." },
       { id: 18, nombre: "Ribadeo", bloque: "lugo", categorias: ["costa"], horas: 4, imagen: "img/ribadeo.jpg", imagenesCarousel: ["ima/ribadeo.jpg", "ima/ribadeo1.jpg", "ima/ribadeo2.jpg", "ima/ribadeo3.jpg", "ima/ribadeo4.jpg", "ima/ribadeo5.jpg"], lat: 43.5333, lng: -7.0333, porQueVenir: "Villa marinera y playa de las Catedrales.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de las Catedrales", "Torre de los Moreno", "Paseo marítimo"], comer: "Marisco.", tomar: "Sidra.", secreto: "Faro de la Isla Pancha.", masTiempo: "Mondoñedo.", advertencias: "Reserva en Catedrales." },
       { id: 19, nombre: "Serra dos Ancares", bloque: "lugo", categorias: ["naturaleza"], horas: 5, imagen: "img/ancares.jpg", imagenesCarousel: ["ima/ancares1.jpg", "ima/ancares2.jpg", "ima/ancares3.jpg", "ima/ancares4.jpg", "ima/ancares5.jpg"], lat: 42.7833, lng: -7.2000, porQueVenir: "Montaña, pallozas, sosiego.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Pallozas", "Rutas", "Vistas"], comer: "Cocina tradicional.", tomar: "Agua.", secreto: "Cascada secreta.", masTiempo: "Ruta completa.", advertencias: "Carreteras de montaña." },
       { id: 20, nombre: "Chantada", bloque: "lugo", categorias: ["patrimonio"], horas: 2, imagen: "img/chantada.jpg", imagenesCarousel: ["ima/chantada1.jpg", "ima/chantada2.jpg"], lat: 42.6167, lng: -7.7667, porQueVenir: "Villa con tradición vinícola.", momentoPerfecto: "Otoño.", imprescindibles: ["Casco histórico", "Bodegas", "Paisajes"], comer: "Vino y queso.", tomar: "Mencía.", secreto: "Rutas del vino.", masTiempo: "Carballeira.", advertencias: "Calor en verano." },
-      // OURENSE (7 lugares - SIN VERÍN)
       { id: 21, nombre: "Ourense", bloque: "ourense", categorias: ["ciudades", "termalismo"], horas: 3, imagen: "img/ourense.jpg", imagenesCarousel: ["ima/ourense1.jpg", "ima/ourense2.jpg"], lat: 42.3350, lng: -7.8640, porQueVenir: "Termas romanas, casco histórico.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Puente romano", "Termas", "Casco viejo"], comer: "Pulpo.", tomar: "Mencía.", secreto: "Termas libres.", masTiempo: "Ribeira Sacra.", advertencias: "Calor en verano." },
       { id: 22, nombre: "Allariz", bloque: "ourense", categorias: ["villas", "termalismo"], horas: 2, imagen: "img/allariz.jpg", imagenesCarousel: ["ima/allariz1.jpg", "ima/allariz2.jpg"], lat: 42.1833, lng: -7.8000, porQueVenir: "Villa medieval peatonal.", momentoPerfecto: "Tarde.", imprescindibles: ["Casco histórico", "Río Arnoia", "Artesanía"], comer: "Cocina gallega.", tomar: "Vino.", secreto: "Ruta del Arnoia.", masTiempo: "Playa fluvial.", advertencias: "Nada." },
       { id: 23, nombre: "Ribadavia", bloque: "ourense", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/ribadavia.jpg", imagenesCarousel: ["ima/ribadavia1.jpg", "ima/ribadavia2.jpg"], lat: 42.2833, lng: -8.1500, porQueVenir: "Capital del vino y judería.", momentoPerfecto: "Fiesta del vino.", imprescindibles: ["Judería", "Casco histórico", "Bodegas"], comer: "Vino y tapas.", tomar: "Mencía.", secreto: "Fiesta del vino.", masTiempo: "Riberas del Miño.", advertencias: "Fiestas en agosto." },
@@ -771,18 +660,16 @@
       { id: 25, nombre: "Castro Caldelas", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/castro.jpg", imagenesCarousel: ["ima/castro1.jpg", "ima/castro2.jpg"], lat: 42.3581, lng: -7.4649, porQueVenir: "Castillo medieval y vistas.", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo", "Pueblo", "Miradores"], comer: "Cocina tradicional.", tomar: "Mencía.", secreto: "Atardecer.", masTiempo: "Cañón del Sil.", advertencias: "Carretera curvas." },
       { id: 26, nombre: "Cañón del Sil", bloque: "ourense", categorias: ["naturaleza"], horas: 5, imagen: "img/sil.jpg", imagenesCarousel: ["ima/sil1.jpg", "ima/sil2.jpg", "ima/sil3.jpg", "ima/sil4.jpg", "ima/sil5.jpg"], lat: 42.4167, lng: -7.7500, porQueVenir: "Cañones más espectaculares.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
       { id: 27, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", imagenesCarousel: ["ima/ribeira1.jpg", "ima/ribeira2.jpg"], lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", tomar: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña." },
-      // PONTEVEDRA (10 lugares)
       { id: 28, nombre: "Vigo", bloque: "pontevedra", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/vigo.jpg", imagenesCarousel: ["ima/vigo1.jpg", "ima/vigo2.jpg", "ima/vigo3.jpg", "ima/vigo4.jpg", "ima/vigo5.jpg"], lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." },
-      { id: 29, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg", "ima/pontevedra3.jpg", "ima/pontevedra4.jpg", "ima/pontevedra5.jpg"], lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
+      { id: 29, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", imagenesCarousel: ["ima/pontevedra1.jpg", "ima/pontevedra2.jpg", "ima/pontevedra3.jpg", "ima/pontevedra4.jpg", "ima/pontevedra5.jpg"], lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento di San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
       { id: 30, nombre: "Tui", bloque: "pontevedra", categorias: ["villas", "patrimonio"], horas: 3, imagen: "img/tui.jpg", imagenesCarousel: ["ima/tui1.jpg", "ima/tui2.jpg"], lat: 42.0500, lng: -8.6333, porQueVenir: "Ciudad episcopal, frontera con Portugal.", momentoPerfecto: "Tarde.", imprescindibles: ["Catedral", "Casco histórico", "Mirador del Miño"], comer: "Marisco.", tomar: "Albariño.", secreto: "Paseo hasta Portugal.", masTiempo: "Valença.", advertencias: "Lluvia frecuente." },
-      { id: 31, nombre: "Cambados", bloque: "pontevedra", categorias: ["villas"], horas: 3, imagen: "img/cambados.jpg", imagenesCarousel: ["ima/cambados1.jpg", "ima/cambados2.jpg"], lat: 42.5167, lng: -8.8167, porQueVenir: "Capital del Albariño.", momentoPerfecto: "Fiesta del Albariño.", imprescindibles: ["Pazo de Fefiñáns", "Casco histórico", "Bodegas"], comer: "Marisco.", tomar: "Albariño.", secreto: "Playa de la Lajinha.", masTiempo: "Playa fluvial.", advertencias: "Agosto lleno." },
+      { id: 31, nombre: "Cambados", bloque: "pontevedra", categorias: ["villas"], horas: 3, imagen: "img/cambados.jpg", imagenesCarousel: ["ima/cambados1.jpg", "ima/cambados2.jpg"], lat: 42.5167, lng: -8.8167, porQueVenir: "Capital del Albariño.", momentoPerfecto: "Fiesta del Albariño.", imprescindibles: ["Pazo di Fefiñáns", "Casco histórico", "Bodegas"], comer: "Marisco.", tomar: "Albariño.", secreto: "Playa de la Lajinha.", masTiempo: "Playa fluviale.", advertencias: "Agosto lleno." },
       { id: 32, nombre: "Baiona", bloque: "pontevedra", categorias: ["pueblos", "costa"], horas: 3, imagen: "img/baiona.jpg", imagenesCarousel: ["ima/baiona1.jpg", "ima/baiona2.jpg"], lat: 42.1167, lng: -8.8500, porQueVenir: "Primer puerto en recibir la noticia del Nuevo Mundo.", momentoPerfecto: "Verano.", imprescindibles: ["Fortaleza", "Puerto", "Playa"], comer: "Marisco.", tomar: "Albariño.", secreto: "Arribada.", masTiempo: "Islas Cíes.", advertencias: "Lleno en verano." },
-      { id: 33, nombre: "Combarro", bloque: "pontevedra", categorias: ["pueblos"], horas: 2, imagen: "img/combarro.jpg", imagenesCarousel: ["ima/combarro1.jpg", "ima/combarro2.jpg"], lat: 42.3833, lng: -8.7167, porQueVenir: "Hórreos sobre el mar.", momentoPerfecto: "Atardecer.", imprescindibles: ["Hórreos", "Paseo marítimo", "Puerto"], comer: "Marisco.", tomar: "Albariño.", secreto: "Noche.", masTiempo: "Poio.", advertencias: "Muy turístico." },
-      { id: 34, nombre: "O Grove", bloque: "pontevedra", categorias: ["costa"], horas: 4, imagen: "img/ogrove.jpg", imagenesCarousel: ["ima/ogrove1.jpg", "ima/ogrove2.jpg"], lat: 42.3881, lng: -8.8833, porQueVenir: "Paraíso del marisco.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de la Lanzada", "Marisquerías", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "La Toja.", masTiempo: "Isla de Ons.", advertencias: "Muy concurrido." },
-      { id: 35, nombre: "A Illa de Arousa", bloque: "pontevedra", categorias: ["costa"], horas: 3, imagen: "img/arousa.jpg", imagenesCarousel: ["ima/arousa1.jpg", "ima/arousa2.jpg"], lat: 42.5573, lng: -8.8618, porQueVenir: "Isla con playas salvajes.", momentoPerfecto: "Verano.", imprescindibles: ["Faro", "Playas", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "Carretera del faro.", masTiempo: "O Grove.", advertencias: "Puente de dos sentidos." },
-      { id: 36, nombre: "A Guarda", bloque: "pontevedra", categorias: ["magicos", "patrimonio"], horas: 3, imagen: "img/aguarda.jpg", imagenesCarousel: ["ima/aguarda1.jpg", "ima/aguarda2.jpg"], lat: 41.9000, lng: -8.8667, porQueVenir: "Citania de Santa Trega.", momentoPerfecto: "Atardecer.", imprescindibles: ["Citania", "Faro", "Monte Trega"], comer: "Marisco.", tomar: "Albariño.", secreto: "Portugal.", masTiempo: "Tui.", advertencias: "Viento." },
-      // CORREGIDO: imagen con ruta correcta
-      { id: 37, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg", "ima/ciesyons3.jpg", "ima/ciesyons4.jpg", "ima/ciesyons5.jpg"], lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." }
+      { id: 33, nombre: "Combarro", bloque: "pontevedra", categorias: ["pueblos"], horas: 2, imagen: "img/combarro.jpg", imagenesCarousel: ["ima/combarro1.jpg", "ima/combarro2.jpg"], lat: 42.3833, lng: -8.7167, porQueVenir: "Hórreos sobre el mare.", momentoPerfecto: "Atardecer.", imprescindibles: ["Hórreos", "Paseo marítimo", "Puerto"], comer: "Marisco.", tomar: "Albariño.", secreto: "Noche.", masTiempo: "Poio.", advertencias: "Muy turístico." },
+      { id: 34, nombre: "O Grove", bloque: "pontevedra", categorias: ["costa"], horas: 4, imagen: "img/ogrove.jpg", imagenesCarousel: ["ima/ogrove1.jpg", "ima/ogrove2.jpg"], lat: 42.3881, lng: -8.8833, porQueVenir: "Paraíso del marisco.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de la Lanzada", "Marisquerías", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "La Toja.", masTiempo: "Isla di Ons.", advertencias: "Muy concurrido." },
+      { id: 35, nombre: "A Illa di Arousa", bloque: "pontevedra", categorias: ["costa"], horas: 3, imagen: "img/arousa.jpg", imagenesCarousel: ["ima/arousa1.jpg", "ima/arousa2.jpg"], lat: 42.5573, lng: -8.8618, porQueVenir: "Isla con playas salvajes.", momentoPerfecto: "Verano.", imprescindibles: ["Faro", "Playas", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "Carretera del faro.", masTiempo: "O Grove.", advertencias: "Puente di due sensi." },
+      { id: 36, nombre: "A Guarda", bloque: "pontevedra", categorias: ["magicos", "patrimonio"], horas: 3, imagen: "img/aguarda.jpg", imagenesCarousel: ["ima/aguarda1.jpg", "ima/aguarda2.jpg"], lat: 41.9000, lng: -8.8667, porQueVenir: "Citania di Santa Trega.", momentoPerfecto: "Atardecer.", imprescindibles: ["Citania", "Faro", "Monte Trega"], comer: "Marisco.", tomar: "Albariño.", secreto: "Portogallo.", masTiempo: "Tui.", advertencias: "Vento." },
+      { id: 37, nombre: "Cíes e Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", imagenesCarousel: ["ima/ciesyons1.jpg", "ima/ciesyons2.jpg", "ima/ciesyons3.jpg", "ima/ciesyons4.jpg", "ima/ciesyons5.jpg"], lat: 42.2244, lng: -8.9031, porQueVenir: "Due arcipelaghi protetti.", momentoPerfecto: "Giugno o settembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Porta cibo.", tomar: "Acqua.", secreto: "Playa de Figueiras.", masTiempo: "Camping in Cíes.", advertencias: "Prenotazione obbligatoria." }
     ];
 
     // ===== INIT APP =====
@@ -852,7 +739,7 @@
     
     function updateGeoUI(active) { var btn = document.getElementById('geoBtn'), status = document.getElementById('geoStatus'); if (active) { btn.textContent = 'Desactivar'; btn.disabled = false; btn.style.background = 'var(--accent-red)'; status.textContent = 'Ubicación activada'; status.classList.add('active'); } else { btn.textContent = 'Activar'; btn.disabled = false; btn.style.background = ''; status.textContent = 'Actívala para calcular distancias'; status.classList.remove('active'); } }
 
-    // ===== SELECCIÓN - CORREGIDO =====
+    // ===== SELECCIÓN =====
     function togglePlaceSelection(id) {
       var idx = selectedPlaces.indexOf(id);
       if (idx > -1) {
@@ -881,7 +768,6 @@
           var l = lugares.find(function(x) { return x.id === id; });
           if (!l) return;
           html += '<div class="selection-item">';
-          // CORREGIDO: Clase selection-item-img para tamaño fijo
           html += '<img class="selection-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
           html += '<div class="selection-item-info">';
           html += '<div class="selection-item-name">' + l.nombre + '</div>';
@@ -1083,7 +969,6 @@
         
         places.forEach(function(l, i) {
           var isSelected = selectedPlaces.indexOf(l.id) > -1;
-          var globalIdx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
           
           html += '<div class="place-item' + (isSelected ? ' selected' : '') + '" onclick="togglePlaceSelection(' + l.id + ')">';
           html += '<img class="place-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
@@ -1209,7 +1094,7 @@
       ct.innerHTML = html;
     }
 
-    // ===== CARRUSEL DE FOTOS ROBUSTO =====
+    // ===== CARRUSEL =====
     var placeCarousels = {};
     
     function initPlaceCarousel(placeId, totalImages) {
@@ -1290,7 +1175,7 @@
     function updateCarouselButtons(id) { var c = document.getElementById(id); if (!c) return; var w = c.parentElement, sl = c.scrollLeft, max = c.scrollWidth - c.clientWidth; var prev = w.querySelector('.carousel-btn-prev'), next = w.querySelector('.carousel-btn-next'); if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex'; if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex'; }
     function initCarousels() { ['carousel-xurxo'].forEach(function(id) { var c = document.getElementById(id); if (c) { c.addEventListener('scroll', function() { updateCarouselButtons(id); }); setTimeout(function() { updateCarouselButtons(id); }, 100); } }); }
     function initBottomMenu() {
-      var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id); }); }); }, { threshold: 0.5 });
+      var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id; }); }); }); }, { threshold: 0.5 });
       ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
       items.forEach(function(i) { i.addEventListener('click', function(e) { e.preventDefault(); var t = document.getElementById(i.getAttribute('href').substring(1)); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
     }
@@ -1364,4 +1249,54 @@
           html += renderInfoBlock('🍷', 'TOMAR', l.tomar);
           if (l.playas) html += renderListBlock('🏖️', 'PLAYAS', l.playas);
           html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
-          html += renderInfoBlock
+          html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
+          html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
+          
+          if (hasValidCarousel) {
+            var numImages = images.length;
+            html += '<div class="place-carousel-section">';
+            html += '<div class="place-carousel-title">Fotos (' + numImages + ')</div>';
+            html += '<div class="place-carousel-wrapper">';
+            html += '<div class="place-carousel-viewport">';
+            html += '<div class="place-carousel-track" data-carousel-place="' + l.id + '">';
+            images.forEach(function(img) {
+              html += '<div class="place-carousel-slide"><img src="' + img + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"></div>';
+            });
+            html += '</div></div>';
+            html += '<button class="place-carousel-btn place-carousel-btn-prev" data-place="' + l.id + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>';
+            html += '<button class="place-carousel-btn place-carousel-btn-next" data-place="' + l.id + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>';
+            html += '<div class="place-carousel-dots" data-dots-place="' + l.id + '">';
+            for (var d = 0; d < numImages; d++) {
+              html += '<button class="place-carousel-dot' + (d === 0 ? ' active' : '') + '" data-place="' + l.id + '" data-index="' + d + '"></button>';
+            }
+            html += '</div></div></div>';
+            
+            initPlaceCarousel(l.id, numImages);
+          }
+          
+          html += '</div></div></article>';
+        });
+
+        html += '</div></div></div>';
+      });
+
+      c.innerHTML = html;
+      initAnimations();
+    }
+
+    function toggleBloque(id) { 
+      var card = document.getElementById(id); 
+      if (!card) return; 
+      var exp = card.classList.contains('expanded'); 
+      document.querySelectorAll('.bloque-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
+      if (!exp) card.classList.add('expanded'); 
+    }
+    
+    function renderInfoBlock(icon, title, text) { 
+      if (!text) return ''; 
+      return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><p class="info-text">' + text + '</p></div>'; 
+    }
+    
+    function renderListBlock(icon, title, items) { 
+      if (!items || !items.length) return ''; 
+      return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items
