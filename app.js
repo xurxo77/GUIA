@@ -646,10 +646,24 @@ function showItinerary(lista, route) {
     html += '</div></div></div>';
   });
   
-  var gmapsUrl = 'https://www.google.com/maps/dir/?api=1';
-  if (userLocation) gmapsUrl += '&origin=' + userLocation.lat + ',' + userLocation.lng;
-  gmapsUrl += lista.map(function(p) { return '&destination=' + p.lat + ',' + p.lng; }).join('');
-  gmapsUrl += '&travelmode=driving';
+ var gmapsUrl = 'https://www.google.com/maps/dir/?api=1';
+      
+      if (userLocation) {
+        gmapsUrl += '&origin=' + userLocation.lat + ',' + userLocation.lng;
+        gmapsUrl += '&destination=' + lista[lista.length - 1].lat + ',' + lista[lista.length - 1].lng;
+        if (lista.length > 1) {
+          var waypoints = lista.slice(0, -1).map(function(p) { return p.lat + ',' + p.lng; }).join('|');
+          gmapsUrl += '&waypoints=' + waypoints;
+        }
+      } else {
+        gmapsUrl += '&origin=' + lista[0].lat + ',' + lista[0].lng;
+        gmapsUrl += '&destination=' + lista[lista.length - 1].lat + ',' + lista[lista.length - 1].lng;
+        if (lista.length > 2) {
+          var waypoints = lista.slice(1, -1).map(function(p) { return p.lat + ',' + p.lng; }).join('|');
+          gmapsUrl += '&waypoints=' + waypoints;
+        }
+      }
+      gmapsUrl += '&travelmode=driving';
   
   html += '<a href="' + gmapsUrl + '" target="_blank" class="route-btn">Ver en Google Maps</a>';
   html += '</div>';
