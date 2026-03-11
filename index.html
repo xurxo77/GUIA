@@ -106,7 +106,9 @@
     <section id="generador">
       <div class="section-header fade-in"><span class="section-number">4</span><h2 class="section-title">Tu ruta</h2></div>
       <div class="generator-box fade-in" style="margin-top:20px">
+        
         <div class="favorites-section" id="favoritesSection"></div>
+
         <div class="geo-section">
           <div class="geo-header">
             <div class="geo-info">
@@ -116,6 +118,7 @@
             <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
           </div>
         </div>
+
         <div class="map-section">
           <div class="map-container-wrapper">
             <div id="map" class="map-container"></div>
@@ -123,17 +126,12 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p class="map-hint">Toca un punto en el mapa para añadirlo a tu ruta</p>
+          <p class="map-hint">Toca el botón para abrir el mapa y elegir tu ruta 👆</p>
         </div>
-        <div class="places-list-section">
-          <div class="places-list-header">
-            <span class="places-list-title">O selecciona de la lista</span>
-          </div>
-          <div id="placesList"></div>
-        </div>
+
         <div class="selection-section">
           <div class="selection-header">
-            <span class="selection-title">Tu selección</span>
+            <span class="selection-title">Lugares en tu ruta</span>
             <span class="selection-stats" id="selectionStats">0 lugares · 0h</span>
           </div>
           <div id="selectionContent"></div>
@@ -160,19 +158,17 @@
 
   <div class="map-fullscreen" id="mapFullscreen">
     <div class="map-fullscreen-header">
-      <span class="map-fullscreen-title">Selecciona lugares en el mapa</span>
+      <span class="map-fullscreen-title">Toca los puntos para añadirlos</span>
       <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div id="mapFullscreenMap" class="map-fullscreen-map"></div>
     <div class="map-fullscreen-footer">
-      <div class="map-selection-summary">
-        <span class="map-selection-count" id="mapSelectionCount">0 seleccionados</span>
-        <span class="map-selection-time" id="mapSelectionTime">0h</span>
-      </div>
-      <div class="map-selection-places" id="mapSelectionPlaces"></div>
-      <p class="map-fullscreen-hint">Toca un punto para añadirlo o quitarlo. Haz zoom para ver mejor.</p>
+      <div class="map-selection-places" id="mapSelectionPlaces" style="max-height: 80px; overflow-y: auto;"></div>
+      <button class="btn-primary" onclick="closeFullscreenMap()" style="width: 100%; margin-top: 8px;">
+        Listo: <span id="mapSelectionCountBtn">0</span> lugares en ruta
+      </button>
     </div>
   </div>
 
