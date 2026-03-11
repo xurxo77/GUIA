@@ -1400,6 +1400,64 @@ function registerServiceWorker() {
       document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
       if (!exp) card.classList.add('expanded'); 
     }
+    // ===== BUSCADOR =====
+function initSearch() {
+  var input = document.getElementById('searchInput');
+  if (!input) return;
+  input.addEventListener('input', function(e) {
+    var term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normalizar tildes
+    filterPlaces(term);
+  });
+}
+
+function filterPlaces(term) {
+  // Filtramos en las tarjetas detalladas
+  var cards = document.querySelectorAll('.bloque-card');
+  cards.forEach(function(bloque) {
+    var visiblePlacesInBloque = 0;
+    var placeCards = bloque.querySelectorAll('.place-card');
+    
+    placeCards.forEach(function(card) {
+      var nombre = card.querySelector('.place-title').textContent.toLowerCase();
+      // Buscamos también en las categorías (chips)
+      var cats = Array.from(card.querySelectorAll('.place-category-chip')).map(c => c.textContent.toLowerCase()).join(' ');
+      var combinedText = nombre + ' ' + cats;
+      
+      // Normalizamos texto de la tarjeta
+      var normalizedText = combinedText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      
+      if (normalizedText.includes(term)) {
+        card.style.display = '';
+        visiblePlacesInBloque++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Si no hay lugares visibles en la provincia, ocultamos toda la provincia
+    bloque.style.display = (visiblePlacesInBloque > 0 || term === '') ? '' : 'none';
+    if (term !== '') bloque.classList.add('expanded'); // Auto-expandir si hay búsqueda
+  });
+}
+
+// ===== COMPARTIR =====
+function sharePlace(lugar) {
+  var text = "🏔️ " + lugar.nombre + "\n";
+  text += "✨ " + lugar.porQueVenir + "\n";
+  text += "📍 https://www.google.com/maps?q=" + lugar.lat + "," + lugar.lng;
+  
+  if (navigator.share) {
+    navigator.share({
+      title: lugar.nombre + ' - Galicia Guía',
+      text: text
+    }).catch(() => {});
+  } else {
+    // Fallback para escritorio: copiar al portapapeles
+    navigator.clipboard.writeText(text).then(function() {
+      alert("¡Información copiada al portapapeles!");
+    });
+  }
+}
   </script>
 </body>
 </html>
