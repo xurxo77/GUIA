@@ -5,7 +5,8 @@ document.getElementById('splashForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var input = document.getElementById('passwordInput');
   var error = document.getElementById('splashError');
-  var value = input.value;
+  // Usamos trim() para ignorar si el usuario pone un espacio en blanco sin querer al final
+  var value = input.value.trim(); 
   
   if (value === CORRECT_PASSWORD) {
     document.getElementById('splashScreen').classList.add('hidden');
@@ -303,7 +304,8 @@ function updateSelectionUI() {
       var l = lugares.find(function(x) { return x.id === id; });
       if (!l) return;
       html += '<div class="selection-item">';
-      html += '<img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
+      // Clase selection-item-img añadida para controlar tamaño
+      html += '<img class="selection-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
       html += '<div class="selection-item-info">';
       html += '<div class="selection-item-name">' + l.nombre + '</div>';
       html += '<div class="selection-item-time">' + l.horas + 'h</div>';
@@ -313,7 +315,7 @@ function updateSelectionUI() {
     });
     html += '</div>';
     html += '<div class="action-buttons">';
-    html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta en Google Maps</button>';
+    html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta</button>';
     html += '<button class="btn-secondary" onclick="clearSelection()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Limpiar selección</button>';
     html += '</div>';
     content.innerHTML = html;
@@ -550,18 +552,14 @@ async function generateItinerary() {
 
 async function calculateRoute(places, fromUser) {
   var pts = [];
-  // Si el usuario tiene la ubicación activada, la añadimos al principio
   if (fromUser && userLocation) pts.push({ lat: userLocation.lat, lng: userLocation.lng });
   pts = pts.concat(places);
   
-  // Si hay menos de 2 puntos, no hay ruta
   if (pts.length < 2) return { distance: 0, duration: 0 };
 
-  // 👇 AQUÍ PEGAS TU TOKEN DE OPENROUTESERVICE 👇
   var orsToken = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUyZjA0NzQ2YjE1ZDRlZWVhNjJkZWQ4MmZkZDZjNzgxIiwiaCI6Im11cm11cjY0In0=';
 
   try {
-    // OpenRouteService necesita un array de coordenadas con el formato [longitud, latitud]
     var coordsArray = pts.map(function(p) { return [p.lng, p.lat]; });
     
     var r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car', {
@@ -577,7 +575,6 @@ async function calculateRoute(places, fromUser) {
 
     var d = await r.json();
     if (d.routes && d.routes.length > 0) {
-      // ORS devuelve los totales dentro del objeto "summary"
       return { 
         distance: d.routes[0].summary.distance, 
         duration: d.routes[0].summary.duration 
@@ -587,14 +584,13 @@ async function calculateRoute(places, fromUser) {
     console.warn("Fallo en la API, calculando distancias estimadas: ", e);
   }
 
-  // EL PLAN B (Si se cae internet, si el token falla o no hay conexión)
-  // Calcula la distancia en línea recta (Haversine) asumiendo 50km/h de media
   var td = 0;
   for (var i = 1; i < pts.length; i++) {
     td += haversine(pts[i-1].lat, pts[i-1].lng, pts[i].lat, pts[i].lng);
   }
   return { distance: td * 1000, duration: (td / 50) * 3600 };
 }
+
 function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371;
   var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -642,33 +638,31 @@ function showItinerary(lista, route) {
     html += '<div class="itinerary-place-time">' + l.horas + 'h</div>';
     html += '<div class="itinerary-place-actions">';
     html += '<button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button>';
-    html += '<a href="https://www.google.com/maps/dir/?api=1&destination=' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a>';
+    // URL arreglada para abrir el GPS de Google Maps hacia un punto
+    html += '<a href="https://www.google.com/maps/dir//' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a>';
     html += '</div></div></div>';
   });
   
- var gmapsUrl = 'https://www.google.com/maps/dir/?api=1';
-      
-      if (userLocation) {
-        gmapsUrl += '&origin=' + userLocation.lat + ',' + userLocation.lng;
-        gmapsUrl += '&destination=' + lista[lista.length - 1].lat + ',' + lista[lista.length - 1].lng;
-        if (lista.length > 1) {
-          var waypoints = lista.slice(0, -1).map(function(p) { return p.lat + ',' + p.lng; }).join('|');
-          gmapsUrl += '&waypoints=' + waypoints;
-        }
-      } else {
-        gmapsUrl += '&origin=' + lista[0].lat + ',' + lista[0].lng;
-        gmapsUrl += '&destination=' + lista[lista.length - 1].lat + ',' + lista[lista.length - 1].lng;
-        if (lista.length > 2) {
-          var waypoints = lista.slice(1, -1).map(function(p) { return p.lat + ',' + p.lng; }).join('|');
-          gmapsUrl += '&waypoints=' + waypoints;
-        }
-      }
-      gmapsUrl += '&travelmode=driving';
+  // URL de la ruta completa, formateada 100% compatible con Google Maps app
+  var gmapsUrl = 'https://www.google.com/maps/dir/';
+  if (userLocation) {
+      gmapsUrl += userLocation.lat + ',' + userLocation.lng + '/';
+  }
+  lista.forEach(function(p) {
+      gmapsUrl += p.lat + ',' + p.lng + '/';
+  });
+  // Añadimos el parámetro para forzar la ruta en coche
+  gmapsUrl += 'data=!4m2!4m1!3e0';
   
-  html += '<a href="' + gmapsUrl + '" target="_blank" class="route-btn">Ver en Google Maps</a>';
+  html += '<a href="' + gmapsUrl + '" target="_blank" class="route-btn">Ver ruta en Maps</a>';
   html += '</div>';
   
   ct.innerHTML = html;
+  
+  // Desplazamiento automático hacia la tarjeta del itinerario
+  setTimeout(function() {
+    ct.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 150);
 }
 
 // ===== HELPERS =====
@@ -834,7 +828,8 @@ function filterPlaces(term) {
 function sharePlace(lugar) {
   var text = "🏔️ " + lugar.nombre + "\n";
   text += "✨ " + lugar.porQueVenir + "\n";
-  text += "📍 https://www.google.com/maps?q=" + lugar.lat + "," + lugar.lng;
+  // Enlace oficial de Google Maps corregido aquí también
+  text += "📍 https://www.google.com/maps/dir//" + lugar.lat + "," + lugar.lng;
   
   if (navigator.share) {
     navigator.share({
