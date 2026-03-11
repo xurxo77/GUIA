@@ -174,15 +174,29 @@ function updateFavoriteButton(id) {
 function renderFavoritesSection() {
   var container = document.getElementById('favoritesSection');
   if (!container) return;
+  
   if (favorites.length === 0) { 
-    container.innerHTML = '<div class="favorites-empty">Sin favoritos. Toca el corazón en cualquier lugar.</div>'; 
+    container.innerHTML = '<div class="favorites-empty">Toca el corazón en los lugares de la guía y aparecerán aquí para añadirlos a tu ruta rápidamente.</div>'; 
     return; 
   }
-  var html = '<div class="favorites-header"><div class="favorites-title"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Mis favoritos</div><span class="favorites-count">' + favorites.length + '</span></div><div class="favorites-list">';
+  
+  var html = '<div class="favorites-header"><div class="favorites-title"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Tus favoritos (Toca para añadir a la ruta)</div></div>';
+  html += '<div class="favorites-list">';
+  
   favorites.forEach(function(id) {
     var l = lugares.find(function(x) { return x.id === id; });
     if (!l) return;
-    html += '<div class="favorite-item"><img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><div class="favorite-info"><div class="favorite-name">' + l.nombre + '</div><div class="favorite-time">' + l.horas + 'h</div></div><button class="favorite-remove" onclick="removeFavorite(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
+    
+    // Comprobamos si el favorito está añadido a la ruta actual
+    var isSelected = selectedPlaces.indexOf(id) > -1;
+    
+    html += '<div class="favorite-item ' + (isSelected ? 'selected' : '') + '" onclick="togglePlaceSelection(' + l.id + ')" style="cursor:pointer;">';
+    html += '<img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
+    html += '<div class="favorite-info"><div class="favorite-name">' + l.nombre + '</div><div class="favorite-time">' + l.horas + 'h</div></div>';
+    
+    // Checkmark interactivo tipo checkbox
+    html += '<div class="place-item-check" style="width:24px; height:24px; border:2px solid var(--border-aged); border-radius:6px; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease;' + (isSelected ? 'background:var(--accent-sea); border-color:var(--accent-sea);' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" style="width:14px; height:14px; stroke:white; opacity:' + (isSelected ? '1' : '0') + '"><polyline points="20 6 9 17 4 12"/></svg></div>';
+    html += '</div>';
   });
   html += '</div>';
   container.innerHTML = html;
