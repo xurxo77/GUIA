@@ -550,23 +550,51 @@ async function generateItinerary() {
 
 async function calculateRoute(places, fromUser) {
   var pts = [];
+  // Si el usuario tiene la ubicación activada, la añadimos al principio
   if (fromUser && userLocation) pts.push({ lat: userLocation.lat, lng: userLocation.lng });
   pts = pts.concat(places);
+  
+  // Si hay menos de 2 puntos, no hay ruta
   if (pts.length < 2) return { distance: 0, duration: 0 };
-  
+
+  // 👇 AQUÍ PEGAS TU TOKEN DE OPENROUTESERVICE 👇
+  var orsToken = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUyZjA0NzQ2YjE1ZDRlZWVhNjJkZWQ4MmZkZDZjNzgxIiwiaCI6Im11cm11cjY0In0=';
+
   try {
-    var r = await fetch('https://router.project-osrm.org/route/v1/driving/' + pts.map(function(p) { return p.lng + ',' + p.lat; }).join(';') + '?overview=false');
+    // OpenRouteService necesita un array de coordenadas con el formato [longitud, latitud]
+    var coordsArray = pts.map(function(p) { return [p.lng, p.lat]; });
+    
+    var r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': orsToken
+      },
+      body: JSON.stringify({ coordinates: coordsArray })
+    });
+    
+    if (!r.ok) throw new Error('Error al conectar con OpenRouteService');
+
     var d = await r.json();
-    if (d.code === 'Ok') return { distance: d.routes[0].distance, duration: d.routes[0].duration };
-  } catch(e) {}
-  
+    if (d.routes && d.routes.length > 0) {
+      // ORS devuelve los totales dentro del objeto "summary"
+      return { 
+        distance: d.routes[0].summary.distance, 
+        duration: d.routes[0].summary.duration 
+      };
+    }
+  } catch(e) {
+    console.warn("Fallo en la API, calculando distancias estimadas: ", e);
+  }
+
+  // EL PLAN B (Si se cae internet, si el token falla o no hay conexión)
+  // Calcula la distancia en línea recta (Haversine) asumiendo 50km/h de media
   var td = 0;
   for (var i = 1; i < pts.length; i++) {
     td += haversine(pts[i-1].lat, pts[i-1].lng, pts[i].lat, pts[i].lng);
   }
-  return { distance: td * 1000, duration: td / 50 * 3600 };
+  return { distance: td * 1000, duration: (td / 50) * 3600 };
 }
-
 function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371;
   var dLat = (lat2 - lat1) * Math.PI / 180;
