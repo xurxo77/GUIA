@@ -114,7 +114,6 @@ function initApp() {
   loadFavorites();
   initAnimations(); 
   renderPlaces(); 
-  renderPlacesList();
   initCarousels(); 
   initBottomMenu(); 
   initMap(); 
@@ -170,7 +169,6 @@ function updateFavoriteButton(id) {
   } 
 }
 
-// NUEVA VERSIÓN: Favoritos interactivos que se añaden a la ruta al tocarlos
 function renderFavoritesSection() {
   var container = document.getElementById('favoritesSection');
   if (!container) return;
@@ -187,29 +185,17 @@ function renderFavoritesSection() {
     var l = lugares.find(function(x) { return x.id === id; });
     if (!l) return;
     
-    // Comprobamos si el favorito está añadido a la ruta actual
     var isSelected = selectedPlaces.indexOf(id) > -1;
     
     html += '<div class="favorite-item ' + (isSelected ? 'selected' : '') + '" onclick="togglePlaceSelection(' + l.id + ')" style="cursor:pointer;">';
     html += '<img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
     html += '<div class="favorite-info"><div class="favorite-name">' + l.nombre + '</div><div class="favorite-time">' + l.horas + 'h</div></div>';
     
-    // Checkmark interactivo
     html += '<div class="place-item-check" style="width:24px; height:24px; border:2px solid var(--border-aged); border-radius:6px; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease;' + (isSelected ? 'background:var(--accent-sea); border-color:var(--accent-sea);' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" style="width:14px; height:14px; stroke:white; opacity:' + (isSelected ? '1' : '0') + '"><polyline points="20 6 9 17 4 12"/></svg></div>';
     html += '</div>';
   });
   html += '</div>';
   container.innerHTML = html;
-}
-
-function removeFavorite(id) { 
-  var idx = favorites.indexOf(id); 
-  if (idx > -1) { 
-    favorites.splice(idx, 1); 
-    saveFavorites(); 
-    updateFavoriteButton(id); 
-    renderFavoritesSection(); 
-  } 
 }
 
 // ===== GEOLOCATION =====
@@ -337,8 +323,7 @@ function updateSelectionUI() {
     }
   }
   
-  renderPlacesList();
-  renderFavoritesSection(); // Actualiza los checks en la lista de favoritos
+  renderFavoritesSection();
 }
 
 function clearSelection() {
@@ -490,7 +475,6 @@ function updateFullscreenUI() {
   if (elCount) elCount.textContent = selectedPlaces.length + ' seleccionados';
   if (elTime) elTime.textContent = totalHours + 'h';
   
-  // Actualiza el número en el botón gigante
   var btnCount = document.getElementById('mapSelectionCountBtn');
   if (btnCount) btnCount.textContent = selectedPlaces.length;
   
@@ -510,53 +494,6 @@ function updateFullscreenUI() {
       });
       placesContainer.innerHTML = html;
     }
-  }
-}
-
-// ===== LISTA DE LUGARES =====
-function renderPlacesList() {
-  var container = document.getElementById('placesList');
-  if (!container) return; // Si la lista se ha quitado del HTML (como en la nueva versión), no hace nada.
-  
-  var html = '';
-  bloques.forEach(function(b) {
-    var places = lugares.filter(function(l) { return l.bloque === b.id; });
-    
-    html += '<div class="province-accordion" id="province-accordion-' + b.id + '">';
-    html += '<div class="province-header" onclick="toggleProvinceAccordion(\'' + b.id + '\')">';
-    html += '<div class="province-header-left">';
-    html += '<span class="province-emoji">' + b.emoji + '</span>';
-    html += '<span class="province-name">' + b.nombre + '</span>';
-    html += '<span class="province-count">' + places.length + '</span>';
-    html += '</div>';
-    html += '<div class="province-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
-    html += '</div>';
-    html += '<div class="province-content">';
-    html += '<div class="province-places">';
-    
-    places.forEach(function(l, i) {
-      var isSelected = selectedPlaces.indexOf(l.id) > -1;
-      
-      html += '<div class="place-item' + (isSelected ? ' selected' : '') + '" onclick="togglePlaceSelection(' + l.id + ')">';
-      html += '<img class="place-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
-      html += '<div class="place-item-info">';
-      html += '<div class="place-item-name">' + l.nombre + '</div>';
-      html += '<div class="place-item-meta">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
-      html += '</div>';
-      html += '<div class="place-item-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>';
-      html += '</div>';
-    });
-    
-    html += '</div></div></div>';
-  });
-  
-  container.innerHTML = html;
-}
-
-function toggleProvinceAccordion(id) {
-  var accordion = document.getElementById('province-accordion-' + id);
-  if (accordion) {
-    accordion.classList.toggle('expanded');
   }
 }
 
