@@ -256,36 +256,6 @@ section#generador { min-height: auto; }
 .map-selection-chip .remove svg { width: 10px; height: 10px; stroke: var(--accent-red); }
 .map-fullscreen-hint { text-align: center; font-size: 0.75rem; color: var(--fg-muted); font-style: italic; }
 
-/* LISTA LUGARES */
-.places-list-section { margin-top: 16px; }
-.places-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.places-list-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--fg-ink); }
-
-.province-accordion { margin-bottom: 8px; border: 2px solid var(--border-aged); border-radius: 10px; overflow: hidden; }
-.province-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; cursor: pointer; background: var(--bg-cream); transition: background 0.2s ease; }
-.province-header:hover { background: var(--bg-card); }
-.province-header-left { display: flex; align-items: center; gap: 8px; }
-.province-emoji { font-size: 1.2rem; }
-.province-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--fg-ink); }
-.province-count { font-size: 0.7rem; color: var(--fg-muted); background: var(--bg-paper); padding: 2px 8px; border-radius: 10px; }
-.province-arrow { width: 20px; height: 20px; transition: transform 0.3s ease; }
-.province-arrow svg { width: 14px; height: 14px; stroke: var(--fg-muted); }
-.province-accordion.expanded .province-arrow { transform: rotate(180deg); }
-.province-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: var(--bg-paper); }
-.province-accordion.expanded .province-content { max-height: 2000px; }
-.province-places { padding: 8px; display: flex; flex-direction: column; gap: 4px; }
-.place-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: var(--bg-card); border: 2px solid transparent; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; }
-.place-item:hover { border-color: var(--accent-sea); }
-.place-item.selected { border-color: var(--accent-sea); background: rgba(26, 74, 94, 0.05); }
-.place-item-img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
-.place-item-info { flex: 1; min-width: 0; }
-.place-item-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 2px; }
-.place-item-meta { font-size: 0.7rem; color: var(--fg-muted); }
-.place-item-check { width: 24px; height: 24px; border: 2px solid var(--border-aged); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s ease; }
-.place-item.selected .place-item-check { background: var(--accent-sea); border-color: var(--accent-sea); }
-.place-item-check svg { width: 14px; height: 14px; stroke: white; opacity: 0; transition: opacity 0.2s ease; }
-.place-item.selected .place-item-check svg { opacity: 1; }
-
 /* SELECCIÓN */
 .selection-section { margin-top: 20px; padding: 12px; background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 12px; width: 100%; box-sizing: border-box; }
 .selection-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
