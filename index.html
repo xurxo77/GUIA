@@ -687,30 +687,31 @@
       { id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." }
     ];
 
-    // ===== INIT APP =====
-    function initApp()
+      // ===== INIT APP =====
     function initApp() { 
-  loadFavorites();
-  initAnimations(); 
-  renderPlaces(); 
-  renderPlacesList();
-  initCarousels(); 
-  initBottomMenu(); 
-  initMap(); 
-  checkSavedLocation(); 
-  renderFavoritesSection();
-  updateSelectionUI();
-  initSearch(); // <--- NUEVO
-  registerServiceWorker(); // <--- NUEVO
-}
+      loadFavorites();
+      initAnimations(); 
+      renderPlaces(); 
+      renderPlacesList();
+      initCarousels(); 
+      initBottomMenu(); 
+      initMap(); 
+      checkSavedLocation(); 
+      renderFavoritesSection();
+      updateSelectionUI();
+      initSearch();
+      registerServiceWorker();
+    }
 
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW registrado!', reg.scope))
-      .catch(err => console.error('Error al registrar SW', err));
-  }
-}
+    function registerServiceWorker() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW registrado!', reg.scope))
+          .catch(err => console.error('Error al registrar SW', err));
+      }
+    }
+
+    // (Aquí siguen las demás funciones: loadFavorites, saveFavorites, etc...)
     { 
       loadFavorites();
       initAnimations(); 
