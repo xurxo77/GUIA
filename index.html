@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Galicia - Guía para amigos</title>
   
-  <!-- Manifest y Meta Tags -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,10 +13,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
 
-  <!-- Estilos externos -->
   <link rel="stylesheet" href="styles.css">
   
-  <!-- Librerías externas -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,14 +22,12 @@
 </head>
 <body>
 
-  <!-- Banner de instalación -->
   <div class="install-banner" id="installBanner">
     <div class="install-banner-text"><strong>Instalar Galicia</strong><span>Añade la guía a tu pantalla de inicio</span></div>
     <button class="install-banner-btn" id="installBtn">Instalar</button>
     <button class="install-banner-close" id="installClose">&times;</button>
   </div>
 
-  <!-- Pantalla de carga (Login) -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
       <div class="splash-icon"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg></div>
@@ -50,7 +45,6 @@
     </div>
   </div>
 
-  <!-- Contenido Principal -->
   <div class="main-content" id="mainContent">
     <header id="hero" class="hero">
       <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
@@ -97,12 +91,11 @@
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
 
     <section id="lugares">
-          <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
+      <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
       <p class="fade-in delay-1" style="font-size:0.95rem;color:var(--fg-muted);margin-bottom:16px;">4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.</p>
       
-      <!-- BUSCADOR -->
       <div class="search-wrapper fade-in">
-<input type="text" id="searchInput" placeholder="Buscar lugar o categoría..." autocomplete="off"> 
+        <input type="text" id="searchInput" placeholder="Buscar lugar o categoría..." autocomplete="off"> 
       </div>
 
       <div id="placesContainer"></div>
@@ -165,7 +158,6 @@
     </nav>
   </div>
 
-  <!-- MAPA FULLSCREEN -->
   <div class="map-fullscreen" id="mapFullscreen">
     <div class="map-fullscreen-header">
       <span class="map-fullscreen-title">Selecciona lugares en el mapa</span>
@@ -184,7 +176,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js"></script>
 </body>
