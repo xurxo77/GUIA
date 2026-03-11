@@ -5,7 +5,6 @@ document.getElementById('splashForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var input = document.getElementById('passwordInput');
   var error = document.getElementById('splashError');
-  // Usamos trim() para ignorar si el usuario pone un espacio en blanco sin querer al final
   var value = input.value.trim(); 
   
   if (value === CORRECT_PASSWORD) {
@@ -171,6 +170,7 @@ function updateFavoriteButton(id) {
   } 
 }
 
+// NUEVA VERSIÓN: Favoritos interactivos que se añaden a la ruta al tocarlos
 function renderFavoritesSection() {
   var container = document.getElementById('favoritesSection');
   if (!container) return;
@@ -194,7 +194,7 @@ function renderFavoritesSection() {
     html += '<img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
     html += '<div class="favorite-info"><div class="favorite-name">' + l.nombre + '</div><div class="favorite-time">' + l.horas + 'h</div></div>';
     
-    // Checkmark interactivo tipo checkbox
+    // Checkmark interactivo
     html += '<div class="place-item-check" style="width:24px; height:24px; border:2px solid var(--border-aged); border-radius:6px; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease;' + (isSelected ? 'background:var(--accent-sea); border-color:var(--accent-sea);' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" style="width:14px; height:14px; stroke:white; opacity:' + (isSelected ? '1' : '0') + '"><polyline points="20 6 9 17 4 12"/></svg></div>';
     html += '</div>';
   });
@@ -307,35 +307,38 @@ function updateSelectionUI() {
     return sum + (l ? l.horas : 0);
   }, 0);
   
-  document.getElementById('selectionStats').textContent = selectedPlaces.length + ' lugares · ' + totalHours + 'h';
+  var selectionStatsEl = document.getElementById('selectionStats');
+  if (selectionStatsEl) selectionStatsEl.textContent = selectedPlaces.length + ' lugares · ' + totalHours + 'h';
   
   var content = document.getElementById('selectionContent');
-  if (selectedPlaces.length === 0) {
-    content.innerHTML = '<div class="selection-empty">Toca puntos en el mapa o usa la lista</div>';
-  } else {
-    var html = '<div class="selection-list">';
-    selectedPlaces.forEach(function(id) {
-      var l = lugares.find(function(x) { return x.id === id; });
-      if (!l) return;
-      html += '<div class="selection-item">';
-      // Clase selection-item-img añadida para controlar tamaño
-      html += '<img class="selection-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
-      html += '<div class="selection-item-info">';
-      html += '<div class="selection-item-name">' + l.nombre + '</div>';
-      html += '<div class="selection-item-time">' + l.horas + 'h</div>';
+  if (content) {
+    if (selectedPlaces.length === 0) {
+      content.innerHTML = '<div class="selection-empty">Toca puntos en el mapa o en tus favoritos</div>';
+    } else {
+      var html = '<div class="selection-list">';
+      selectedPlaces.forEach(function(id) {
+        var l = lugares.find(function(x) { return x.id === id; });
+        if (!l) return;
+        html += '<div class="selection-item">';
+        html += '<img class="selection-item-img" src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
+        html += '<div class="selection-item-info">';
+        html += '<div class="selection-item-name">' + l.nombre + '</div>';
+        html += '<div class="selection-item-time">' + l.horas + 'h</div>';
+        html += '</div>';
+        html += '<button class="selection-item-remove" onclick="togglePlaceSelection(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';
+        html += '</div>';
+      });
       html += '</div>';
-      html += '<button class="selection-item-remove" onclick="togglePlaceSelection(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';
+      html += '<div class="action-buttons">';
+      html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta</button>';
+      html += '<button class="btn-secondary" onclick="clearSelection()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Limpiar selección</button>';
       html += '</div>';
-    });
-    html += '</div>';
-    html += '<div class="action-buttons">';
-    html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta</button>';
-    html += '<button class="btn-secondary" onclick="clearSelection()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Limpiar selección</button>';
-    html += '</div>';
-    content.innerHTML = html;
+      content.innerHTML = html;
+    }
   }
   
   renderPlacesList();
+  renderFavoritesSection(); // Actualiza los checks en la lista de favoritos
 }
 
 function clearSelection() {
@@ -380,6 +383,8 @@ function updateAllMarkers() {
 
 // ===== MAPA NORMAL =====
 function initMap() {
+  var mapEl = document.getElementById('map');
+  if (!mapEl) return;
   map = L.map('map', { center: [42.6, -8.4], zoom: 8, scrollWheelZoom: true, zoomControl: true });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(map);
   
@@ -405,6 +410,7 @@ function initMap() {
 // ===== MAPA FULLSCREEN =====
 function openFullscreenMap() {
   var container = document.getElementById('mapFullscreen');
+  if (!container) return;
   container.classList.add('active');
   
   if (!mapFullscreen) {
@@ -454,7 +460,8 @@ function openFullscreenMap() {
 }
 
 function closeFullscreenMap() {
-  document.getElementById('mapFullscreen').classList.remove('active');
+  var container = document.getElementById('mapFullscreen');
+  if (container) container.classList.remove('active');
 }
 
 function updateFullscreenMarker(id) {
@@ -478,31 +485,40 @@ function updateFullscreenUI() {
     return sum + (l ? l.horas : 0);
   }, 0);
   
-  document.getElementById('mapSelectionCount').textContent = selectedPlaces.length + ' seleccionados';
-  document.getElementById('mapSelectionTime').textContent = totalHours + 'h';
+  var elCount = document.getElementById('mapSelectionCount');
+  var elTime = document.getElementById('mapSelectionTime');
+  if (elCount) elCount.textContent = selectedPlaces.length + ' seleccionados';
+  if (elTime) elTime.textContent = totalHours + 'h';
+  
+  // Actualiza el número en el botón gigante
+  var btnCount = document.getElementById('mapSelectionCountBtn');
+  if (btnCount) btnCount.textContent = selectedPlaces.length;
   
   var placesContainer = document.getElementById('mapSelectionPlaces');
-  if (selectedPlaces.length === 0) {
-    placesContainer.innerHTML = '';
-  } else {
-    var html = '';
-    selectedPlaces.forEach(function(id) {
-      var l = lugares.find(function(x) { return x.id === id; });
-      if (!l) return;
-      html += '<div class="map-selection-chip">';
-      html += l.nombre;
-      html += '<span class="remove" onclick="event.stopPropagation(); togglePlaceSelection(' + l.id + '); updateFullscreenUI();"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>';
-      html += '</div>';
-    });
-    placesContainer.innerHTML = html;
+  if (placesContainer) {
+    if (selectedPlaces.length === 0) {
+      placesContainer.innerHTML = '';
+    } else {
+      var html = '';
+      selectedPlaces.forEach(function(id) {
+        var l = lugares.find(function(x) { return x.id === id; });
+        if (!l) return;
+        html += '<div class="map-selection-chip">';
+        html += l.nombre;
+        html += '<span class="remove" onclick="event.stopPropagation(); togglePlaceSelection(' + l.id + '); updateFullscreenUI();"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>';
+        html += '</div>';
+      });
+      placesContainer.innerHTML = html;
+    }
   }
 }
 
 // ===== LISTA DE LUGARES =====
 function renderPlacesList() {
   var container = document.getElementById('placesList');
-  var html = '';
+  if (!container) return; // Si la lista se ha quitado del HTML (como en la nueva versión), no hace nada.
   
+  var html = '';
   bloques.forEach(function(b) {
     var places = lugares.filter(function(l) { return l.bloque === b.id; });
     
@@ -627,6 +643,7 @@ function formatDistance(m) {
 
 function showItinerary(lista, route) {
   var ct = document.getElementById('itineraryResult');
+  if (!ct) return;
   ct.classList.remove('hidden');
   
   var totalHours = lista.reduce(function(s, l) { return s + l.horas; }, 0);
@@ -652,12 +669,10 @@ function showItinerary(lista, route) {
     html += '<div class="itinerary-place-time">' + l.horas + 'h</div>';
     html += '<div class="itinerary-place-actions">';
     html += '<button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button>';
-    // URL arreglada para abrir el GPS de Google Maps hacia un punto
     html += '<a href="https://www.google.com/maps/dir//' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a>';
     html += '</div></div></div>';
   });
   
-  // URL de la ruta completa, formateada 100% compatible con Google Maps app
   var gmapsUrl = 'https://www.google.com/maps/dir/';
   if (userLocation) {
       gmapsUrl += userLocation.lat + ',' + userLocation.lng + '/';
@@ -665,7 +680,6 @@ function showItinerary(lista, route) {
   lista.forEach(function(p) {
       gmapsUrl += p.lat + ',' + p.lng + '/';
   });
-  // Añadimos el parámetro para forzar la ruta en coche
   gmapsUrl += 'data=!4m2!4m1!3e0';
   
   html += '<a href="' + gmapsUrl + '" target="_blank" class="route-btn">Ver ruta en Maps</a>';
@@ -673,7 +687,6 @@ function showItinerary(lista, route) {
   
   ct.innerHTML = html;
   
-  // Desplazamiento automático hacia la tarjeta del itinerario
   setTimeout(function() {
     ct.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, 150);
@@ -736,13 +749,10 @@ function renderPlaces() {
       });
       html += '</div>';
       html += '<div class="place-header-right">';
-      // Botones de acción (Fav y Compartir)
       html += '<div style="display:flex; gap:4px;">';
-      // Botón Compartir
       html += '<button class="fav-btn" onclick="event.stopPropagation(); sharePlace(lugares.find(l => l.id === ' + l.id + '))">';
       html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
       html += '</button>';
-      // Botón Favorito
       html += '<button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')">';
       html += '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
       html += '</button>';
@@ -808,7 +818,7 @@ function initSearch() {
   var input = document.getElementById('searchInput');
   if (!input) return;
   input.addEventListener('input', function(e) {
-    var term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Normalizar tildes
+    var term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
     filterPlaces(term);
   });
 }
@@ -842,7 +852,6 @@ function filterPlaces(term) {
 function sharePlace(lugar) {
   var text = "🏔️ " + lugar.nombre + "\n";
   text += "✨ " + lugar.porQueVenir + "\n";
-  // Enlace oficial de Google Maps corregido aquí también
   text += "📍 https://www.google.com/maps/dir//" + lugar.lat + "," + lugar.lng;
   
   if (navigator.share) {
