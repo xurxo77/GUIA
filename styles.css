@@ -97,25 +97,18 @@ section#generador { min-height: auto; }
 .quote::before { content: '"'; position: absolute; top: 6px; left: 8px; font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--accent-sea); opacity: 0.2; line-height: 1; }
 .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 500; color: var(--fg-muted); font-size: 0.9rem; }
 
-.rec-author-section { margin-top: 24px; }
-.carousel-wrapper { position: relative; width: 100%; }
-.carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0; }
-.carousel::-webkit-scrollbar { display: none; }
-.carousel-card { flex: 0 0 100%; width: 100%; scroll-snap-align: center; padding: 0 4px; }
-.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.2s ease; box-shadow: 0 2px 8px var(--shadow-warm); }
-.carousel-btn:hover { background: var(--bg-cream); border-color: var(--accent-sea); }
-.carousel-btn-prev { left: -8px; }
-.carousel-btn-next { right: -8px; }
-.carousel-btn svg { width: 18px; height: 18px; stroke: var(--accent-sea); }
-.carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.rec-author-card { background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 14px; padding: 28px 20px; text-align: center; }
-.rec-author-avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--border-aged); object-fit: cover; margin: 0 auto 16px; }
-.rec-author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--accent-sea); margin-bottom: 4px; }
-.rec-author-subtitle { font-size: 0.85rem; color: var(--fg-muted); font-style: italic; }
-.rec-card { background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 14px; padding: 22px 20px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
-.rec-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--fg-ink); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-.rec-icon { font-size: 1.3rem; flex-shrink: 0; }
-.rec-text { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.55; }
+/* ACORDEÓN RECOMENDACIONES */
+.accordion-wrapper { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.accordion-item { background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 2px 8px var(--shadow-warm); }
+.accordion-item.active { border-color: var(--accent-sea); box-shadow: 0 4px 12px rgba(26, 74, 94, 0.15); }
+.accordion-header { width: 100%; display: flex; align-items: center; padding: 16px; background: transparent; border: none; cursor: pointer; text-align: left; }
+.accordion-icon { font-size: 1.4rem; margin-right: 14px; flex-shrink: 0; }
+.accordion-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--fg-ink); flex: 1; margin: 0; }
+.accordion-arrow { width: 20px; height: 20px; stroke: var(--fg-muted); transition: transform 0.3s ease; flex-shrink: 0; }
+.accordion-item.active .accordion-arrow { transform: rotate(180deg); stroke: var(--accent-sea); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--bg-cream); }
+.accordion-item.active .accordion-content { max-height: 800px; }
+.accordion-content-inner { padding: 0 16px 20px 52px; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; border-top: 1px solid transparent; }
 
 /* BLOQUES */
 .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
@@ -348,13 +341,13 @@ section#generador { min-height: auto; }
 
 /* MARKERS */
 .custom-marker { position: relative; border: 2px solid white; border-radius: 50%; width: 28px; height: 28px; font-family: system-ui, -apple-system, sans-serif; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; text-shadow: 0 1px 3px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
-.custom-marker span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding-top: 1px; /* Ajuste óptico para clavar el centro */ line-height: 1; }
+.custom-marker span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding-top: 1px; line-height: 1; }
 .custom-marker.acoruna { background: var(--bloque-acoruna); }
 .custom-marker.lugo { background: var(--bloque-lugo); }
 .custom-marker.ourense { background: var(--bloque-ourense); }
 .custom-marker.pontevedra { background: var(--bloque-pontevedra); }
 .custom-marker.touchable { width: 44px; height: 44px; font-size: 20px; border-width: 3px; }
-.custom-marker.touchable span { padding-top: 2px; /* Ajuste óptico para el mapa grande */ }
+.custom-marker.touchable span { padding-top: 2px; }
 .custom-marker.selected-ring { box-shadow: 0 0 0 4px var(--accent-gold); }
 .user-location-marker { background: var(--accent-red); border: 3px solid white; border-radius: 50%; width: 14px; height: 14px; box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } }
