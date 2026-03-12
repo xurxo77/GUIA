@@ -111,27 +111,20 @@ var lugares = [
 ];
 
 // ===== MAGIA: AUTOGENERAR LAS 5 IMÁGENES DEL CARRUSEL =====
-// Para no tener que escribir a mano las 5 imágenes en los 38 lugares,
-// este código lo hace automáticamente por ti tomando el nombre base.
 lugares.forEach(function(l) {
   if (l.imagen) {
-    // Si alguna imagen no tiene "img/" delante (como pasaba en ciesyons), se lo ponemos para evitar errores.
     if (!l.imagen.startsWith('img/')) {
       l.imagen = 'img/' + l.imagen;
     }
 
     var puntoIndex = l.imagen.lastIndexOf('.');
-    var rutaBase = l.imagen.substring(0, puntoIndex); // Extrae "img/santiago"
-    var extension = l.imagen.substring(puntoIndex);   // Extrae ".jpg"
+    var rutaBase = l.imagen.substring(0, puntoIndex); 
+    var extension = l.imagen.substring(puntoIndex);   
     
-    // Creamos las 5 imágenes: img/santiago1.jpg, img/santiago2.jpg...
     l.imagenes = [];
     for (var i = 1; i <= 5; i++) {
       l.imagenes.push(rutaBase + i + extension);
     }
-    
-    // Actualizamos la imagen principal para que en favoritos y rutas 
-    // se muestre correctamente la número 1 (ej: img/santiago1.jpg)
     l.imagen = l.imagenes[0];
   }
 });
@@ -163,7 +156,7 @@ function initBottomMenu() {
   });
 }
 
-// ===== MAPA NORMAL (ESTÁTICO PARA MÓVIL) =====
+// ===== MAPA NORMAL =====
 function initMap() {
   var mapEl = document.getElementById('map');
   if (!mapEl) return;
@@ -284,11 +277,11 @@ function renderFavoritesSection() {
   if (!container) return;
   
   if (favorites.length === 0) { 
-    container.innerHTML = '<div class="favorites-empty">Toca el corazón en los lugares de la guía y aparecerán aquí para añadirlos a tu ruta rápidamente.</div>'; 
+    container.innerHTML = '<div class="favorites-empty">Toca el corazón en los lugares de la guía y aparecerán aquí.</div>'; 
     return; 
   }
   
-  var html = '<div class="favorites-header"><div class="favorites-title"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Tus favoritos (Toca para añadir a la ruta)</div></div>';
+  var html = '<div class="favorites-header"><div class="favorites-title"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Tus favoritos</div></div>';
   html += '<div class="favorites-list">';
   
   favorites.forEach(function(id) {
@@ -300,7 +293,6 @@ function renderFavoritesSection() {
     html += '<div class="favorite-item ' + (isSelected ? 'selected' : '') + '" onclick="togglePlaceSelection(' + l.id + ')" style="cursor:pointer;">';
     html += '<img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'">';
     html += '<div class="favorite-info"><div class="favorite-name">' + l.nombre + '</div><div class="favorite-time">' + l.horas + 'h</div></div>';
-    
     html += '<div class="place-item-check" style="width:24px; height:24px; border:2px solid var(--border-aged); border-radius:6px; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease;' + (isSelected ? 'background:var(--accent-sea); border-color:var(--accent-sea);' : '') + '"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" style="width:14px; height:14px; stroke:white; opacity:' + (isSelected ? '1' : '0') + '"><polyline points="20 6 9 17 4 12"/></svg></div>';
     html += '</div>';
   });
