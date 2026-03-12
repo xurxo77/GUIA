@@ -36,7 +36,6 @@ var map = null, mapFullscreen = null, markers = {}, fullscreenMarkers = {};
 var userLocation = null, userMarker = null;
 var selectedPlaces = [];
 var favorites = [];
-var carouselsState = {};
 var currentRouteFilter = 'all';
 
 // ===== CATEGORÍAS Y BLOQUES =====
@@ -115,7 +114,6 @@ function initApp() {
   loadFavorites();
   initAnimations(); 
   renderPlaces(); 
-  initCarousels(); 
   initBottomMenu(); 
   initMap(); 
   checkSavedLocation(); 
@@ -131,6 +129,18 @@ function registerServiceWorker() {
     navigator.serviceWorker.register('./sw.js')
       .then(reg => console.log('SW registrado!', reg.scope))
       .catch(err => console.error('Error al registrar SW', err));
+  }
+}
+
+// ===== ACORDEÓN RECOMENDACIONES =====
+function toggleAccordion(btn) {
+  var item = btn.parentElement;
+  var isActive = item.classList.contains('active');
+  
+  if (!isActive) {
+    item.classList.add('active');
+  } else {
+    item.classList.remove('active');
   }
 }
 
@@ -703,10 +713,6 @@ function showItinerary(lista, route) {
 }
 
 // ===== HELPERS =====
-function carouselNext(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
-function carouselPrev(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
-function updateCarouselButtons(id) { var c = document.getElementById(id); if (!c) return; var w = c.parentElement, sl = c.scrollLeft, max = c.scrollWidth - c.clientWidth; var prev = w.querySelector('.carousel-btn-prev'), next = w.querySelector('.carousel-btn-next'); if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex'; if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex'; }
-function initCarousels() { ['carousel-xurxo'].forEach(function(id) { var c = document.getElementById(id); if (c) { c.addEventListener('scroll', function() { updateCarouselButtons(id); }); setTimeout(function() { updateCarouselButtons(id); }, 100); } }); }
 function initBottomMenu() {
   var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id); }); }); }, { threshold: 0.5 });
   ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
