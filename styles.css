@@ -135,7 +135,7 @@ section#generador { min-height: auto; }
 .bloque-card.expanded .bloque-content { max-height: 10000px; }
 .bloque-content-inner { padding: 20px; }
 
-/* TARJETAS LUGARES */
+/* TARJETAS LUGARES Y GALERÍA (SWIPE) */
 .place-card { background: var(--bg-card); border: 2px solid var(--border-card); border-radius: 10px; overflow: hidden; margin-bottom: 14px; box-shadow: 0 3px 12px var(--shadow-warm); position: relative; transition: box-shadow 0.3s ease; }
 .place-card:hover { box-shadow: 0 5px 18px var(--shadow-warm); }
 .place-card.acoruna::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-acoruna); z-index: 1; }
@@ -146,10 +146,17 @@ section#generador { min-height: auto; }
 .place-card.lugo .place-number-badge { background: var(--bloque-lugo); }
 .place-card.ourense .place-number-badge { background: var(--bloque-ourense); }
 .place-card.pontevedra .place-number-badge { background: var(--bloque-pontevedra); }
-.place-image { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
-.place-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.place-image-container { position: relative; height: 180px; overflow: hidden; background: var(--bg-cream); }
+.place-image-gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; height: 100%; width: 100%; }
+.place-image-gallery::-webkit-scrollbar { display: none; }
+.place-image-gallery img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: center; }
+.gallery-indicators { position: absolute; bottom: 35px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 5; pointer-events: none; }
+.gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.gallery-dot.active { background: white; }
+
 .place-number-badge { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.25); z-index: 6; }
-.place-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 12px 10px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 4; }
+.place-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 12px 10px; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 4; pointer-events: none; }
 .place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.5); margin: 0; }
 
 .place-header { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; border-top: 1px solid rgba(139, 115, 85, 0.2); }
@@ -229,7 +236,7 @@ section#generador { min-height: auto; }
 .map-expand-btn svg { width: 22px; height: 22px; stroke: var(--accent-sea); }
 .map-hint { text-align: center; font-size: 0.75rem; color: var(--fg-muted); margin-top: 8px; font-style: italic; }
 
-/* MAPA FULLSCREEN */
+/* MAPA FULLSCREEN Y TARJETA FLOTANTE */
 .map-fullscreen { position: fixed; inset: 0; height: 100dvh; z-index: 9999; background: var(--bg-paper); display: none; flex-direction: column; }
 .map-fullscreen.active { display: flex; }
 .map-fullscreen-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 2px solid var(--border-aged); background: var(--bg-cream); flex-shrink: 0; }
@@ -237,8 +244,8 @@ section#generador { min-height: auto; }
 .map-fullscreen-close { width: 40px; height: 40px; background: var(--bg-card); border: 2px solid var(--border-aged); border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
 .map-fullscreen-close:active { transform: scale(0.95); }
 .map-fullscreen-close svg { width: 20px; height: 20px; stroke: var(--fg-muted); }
-.map-fullscreen-map { flex: 1; width: 100%; }
-.map-fullscreen-footer { background: var(--bg-cream); border-top: 2px solid var(--border-aged); padding: 12px 16px; flex-shrink: 0; }
+.map-fullscreen-map { flex: 1; width: 100%; position: relative; }
+.map-fullscreen-footer { background: var(--bg-cream); border-top: 2px solid var(--border-aged); padding: 12px 16px; flex-shrink: 0; z-index: 10; }
 .map-selection-summary { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
 .map-selection-count { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-sea); }
 .map-selection-time { font-size: 0.85rem; color: var(--fg-muted); }
@@ -248,6 +255,20 @@ section#generador { min-height: auto; }
 .map-selection-chip .remove:hover { opacity: 1; }
 .map-selection-chip .remove svg { width: 10px; height: 10px; stroke: var(--accent-red); }
 .map-fullscreen-hint { text-align: center; font-size: 0.75rem; color: var(--fg-muted); font-style: italic; }
+
+/* Tarjeta Flotante */
+.map-floating-card { position: absolute; bottom: 20px; left: 16px; right: 16px; background: white; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.25); z-index: 1000; transform: translateY(150%); opacity: 0; pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.map-floating-card.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.map-floating-card-info { display: flex; gap: 14px; align-items: center; }
+.map-floating-card-img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; border: 1px solid var(--border-aged); flex-shrink: 0; }
+.map-floating-card-details { flex: 1; }
+.map-floating-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; color: var(--accent-sea); line-height: 1.1; margin-bottom: 6px; }
+.map-floating-card-time { font-size: 0.85rem; color: var(--fg-muted); display: flex; align-items: center; gap: 4px; font-weight: 600; }
+.map-floating-card-btn { width: 100%; padding: 12px; border-radius: 10px; font-weight: 600; font-size: 1rem; border: none; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; }
+.map-floating-card-btn.add { background: var(--accent-green); color: white; }
+.map-floating-card-btn.add:active { background: #2d4537; transform: scale(0.98); }
+.map-floating-card-btn.remove { background: var(--bg-card); color: var(--accent-red); border: 2px solid var(--border-aged); }
+.map-floating-card-btn.remove:active { background: #e8e2d8; transform: scale(0.98); }
 
 /* SELECCIÓN */
 .selection-section { margin-top: 20px; padding: 12px; background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 12px; width: 100%; box-sizing: border-box; }
@@ -301,6 +322,12 @@ section#generador { min-height: auto; }
 .menu-item svg { width: 22px; height: 22px; stroke: currentColor; }
 .menu-item span { font-size: 0.6rem; font-weight: 500; text-align: center; line-height: 1.2; }
 .menu-item.active svg { stroke: var(--accent-sea); }
+
+/* VOLVER ARRIBA */
+.back-to-top { position: fixed; bottom: 85px; right: 20px; width: 48px; height: 48px; background: var(--accent-sea); color: white; border: none; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 998; }
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:active { transform: scale(0.9); }
+.back-to-top svg { width: 24px; height: 24px; stroke: white; }
 
 /* ITINERARIO */
 .itinerary-result { background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 10px; padding: 12px; margin-top: 14px; width: 100%; box-sizing: border-box; overflow: hidden; }
