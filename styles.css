@@ -347,13 +347,14 @@ section#generador { min-height: auto; }
 .route-filter-chip.active { background: var(--accent-sea); color: white; border-color: var(--accent-sea); }
 
 /* MARKERS */
-.custom-marker { border: 2px solid white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-family: system-ui, -apple-system, sans-serif; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; text-shadow: 0 1px 3px rgba(0,0,0,0.6); }
-.custom-marker span { display: block; line-height: 1; margin-top: 1px; }
+.custom-marker { position: relative; border: 2px solid white; border-radius: 50%; width: 28px; height: 28px; font-family: system-ui, -apple-system, sans-serif; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; text-shadow: 0 1px 3px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+.custom-marker span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding-top: 1px; /* Ajuste óptico para clavar el centro */ line-height: 1; }
 .custom-marker.acoruna { background: var(--bloque-acoruna); }
 .custom-marker.lugo { background: var(--bloque-lugo); }
 .custom-marker.ourense { background: var(--bloque-ourense); }
 .custom-marker.pontevedra { background: var(--bloque-pontevedra); }
 .custom-marker.touchable { width: 44px; height: 44px; font-size: 20px; border-width: 3px; }
+.custom-marker.touchable span { padding-top: 2px; /* Ajuste óptico para el mapa grande */ }
 .custom-marker.selected-ring { box-shadow: 0 0 0 4px var(--accent-gold); }
 .user-location-marker { background: var(--accent-red); border: 3px solid white; border-radius: 50%; width: 14px; height: 14px; box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } }
