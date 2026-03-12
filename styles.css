@@ -26,14 +26,14 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y proximity; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; scroll-snap-type: none; }
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-body { font-family: 'Crimson Pro', Georgia, serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Crimson Pro', Georgia, serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; }
 
 .search-wrapper { position: relative; margin-bottom: 16px; }
@@ -69,7 +69,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
 .main-content { display: none; padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
 .main-content.visible { display: block; }
 
-.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); scroll-snap-align: start; }
+.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); }
 .hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
 .hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; }
 .hero-authors { margin-top: 24px; width: 100%; }
@@ -79,9 +79,9 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
 .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .author-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--accent-sea); }
 
-section { min-height: 100vh; min-height: 100dvh; padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; scroll-snap-align: start; scroll-snap-stop: always; }
-section#lugares { min-height: auto; padding-bottom: 100px; }
-section#generador { min-height: auto; }
+/* Se eliminan las alturas fijas restrictivas para permitir que el contenido crezca y se haga scroll normal */
+section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; }
+section#lugares { padding-bottom: 40px; }
 
 .decorative-divider { display: flex; align-items: center; gap: 16px; padding: 12px 20px; max-width: 680px; margin: 0 auto; }
 .decorative-divider::before, .decorative-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-aged), transparent); }
@@ -206,7 +206,7 @@ section#generador { min-height: auto; }
 .info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
 .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
-.footer { min-height: auto; padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); scroll-snap-align: start; scroll-snap-stop: always; }
+.footer { padding: 50px 20px calc(80px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border-aged); }
 .footer-text { font-size: 0.95rem; color: var(--fg-muted); margin-bottom: 22px; }
 .footer-signature { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--fg-muted); font-size: 1rem; }
 .footer-signature strong { font-style: normal; font-weight: 600; color: var(--accent-sea); }
