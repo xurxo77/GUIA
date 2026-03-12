@@ -37,7 +37,7 @@ var userLocation = null, userMarker = null;
 var selectedPlaces = [];
 var favorites = [];
 var currentRouteFilter = 'all';
-var currentPreviewPlace = null; // Para la tarjeta flotante del mapa
+var currentPreviewPlace = null; 
 
 // ===== CATEGORÍAS Y BLOQUES =====
 var bloques = [
@@ -68,7 +68,7 @@ function getCategoryEmoji(catId) {
   return cat ? cat.emoji : ''; 
 }
 
-// ===== LUGARES (AHORA CON ARRAY 'imagenes') =====
+// ===== LUGARES =====
 var lugares = [
   { id: 1, nombre: "Santiago de Compostela", bloque: "acoruna", categorias: ["ciudades", "patrimonio"], horas: 5, imagenes: ["img/santiago.jpg", "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&h=400&fit=crop", "https://images.unsplash.com/photo-1566838883651-7871b65f7c32?w=600&h=400&fit=crop"], imagen: "img/santiago.jpg", lat: 42.8800, lng: -8.5450, porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", opinion: "Para nosotros es la ciudad más especial. Piérdete por la zona vieja de noche cuando llueve, es pura magia.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], comer: "Pulpo en el Mercado.", beber: "Café en Plaza de Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Muchos turistas.", masInfo: "<a href='https://santiagoturismo.com' target='_blank'>Web oficial de Turismo</a>" },
   { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagenes: ["img/acoruna.jpg"], imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", beber: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
@@ -110,7 +110,32 @@ var lugares = [
   { id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagenes: ["ciesyons.jpg"], imagen: "ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", beber: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" }
 ];
 
-// ===== INIT APP =====
+// ===== INIT APP (LA FUNCIÓN QUE FALTABA) =====
+function initApp() {
+  loadFavorites();
+  initAnimations();
+  renderPlaces();
+  initBottomMenu();
+  initMap();
+  checkSavedLocation();
+  renderFavoritesSection();
+  updateSelectionUI();
+  initSearch();
+  initRouteFilters();
+  initBackToTop();
+  registerServiceWorker();
+}
+
+function initBottomMenu() {
+  var menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      menuItems.forEach(function(i) { i.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+}
+
 // ===== MAPA NORMAL (ESTÁTICO PARA MÓVIL) =====
 function initMap() {
   var mapEl = document.getElementById('map');
@@ -388,7 +413,6 @@ function togglePlaceSelection(id) {
   updateSelectionUI();
   updateMarkerSelection(id);
   
-  // Si la tarjeta flotante del mapa está abierta, actualizamos su botón
   if (currentPreviewPlace === id) {
     updateFloatingCardBtn();
   }
@@ -474,46 +498,6 @@ function updateAllMarkers() {
   });
 }
 
-// ===== MAPA NORMAL (ESTÁTICO PARA MÓVIL) =====
-function initMap() {
-  var mapEl = document.getElementById('map');
-  if (!mapEl) return;
-  
-  map = L.map('map', { 
-    zoomControl: false,       
-    dragging: false,          
-    touchZoom: false,         
-    scrollWheelZoom: false,   
-    doubleClickZoom: false,   
-    boxZoom: false,
-    keyboard: false
-  });
-  
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
-    attribution: '', 
-    maxZoom: 18 
-  }).addTo(map);
-  
-  var mapBounds = [];
-
-  lugares.forEach(function(l, i) {
-    if (!l.lat || !l.lng) return;
-    mapBounds.push([l.lat, l.lng]);
-    var m = L.marker([l.lat, l.lng], {
-      icon: L.divIcon({ className: 'custom-marker ' + l.bloque, html: '<span>' + (i+1) + '</span>', iconSize: [28, 28], iconAnchor: [14, 14] }),
-      interactive: false 
-    }).addTo(map);
-    markers[l.id] = m;
-  });
-
-  if (mapBounds.length > 0) {
-    map.fitBounds(mapBounds, { padding: [15, 15] });
-  }
-
-  mapEl.style.cursor = 'pointer';
-  map.on('click', function() { openFullscreenMap(); });
-}
-
 // ===== MAPA FULLSCREEN Y TARJETA FLOTANTE =====
 function openFullscreenMap() {
   var container = document.getElementById('mapFullscreen');
@@ -525,7 +509,7 @@ function openFullscreenMap() {
     mapFullscreen = L.map('mapFullscreenMap', { center: [42.6, -8.4], zoom: 9, zoomControl: true });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(mapFullscreen);
     
-    mapFullscreen.on('click', function() { hideFloatingCard(); }); // Ocultar tarjeta si tocas fuera
+    mapFullscreen.on('click', function() { hideFloatingCard(); }); 
     
     lugares.forEach(function(l, i) {
       if (!l.lat || !l.lng) return;
@@ -568,8 +552,6 @@ function showFloatingCard(lugar) {
   updateFloatingCardBtn();
   
   document.getElementById('mapFloatingCard').classList.add('active');
-  
-  // Centramos un pelín el mapa hacia el lugar (opcional, queda guay)
   mapFullscreen.setView([lugar.lat, lugar.lng]);
 }
 
@@ -659,7 +641,6 @@ function renderPlaces() {
       
       html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
       
-      // NUEVO: CONTENEDOR DE LA GALERÍA
       html += '<div class="place-image-container">';
       html += '<div class="place-image-gallery" onscroll="updateGalleryDots(event, ' + l.id + ')">';
       if (l.imagenes && l.imagenes.length > 0) {
@@ -671,7 +652,6 @@ function renderPlaces() {
       }
       html += '</div>';
       
-      // Indicadores (Puntitos) si hay más de 1 imagen
       if (l.imagenes && l.imagenes.length > 1) {
         html += '<div class="gallery-indicators">';
         l.imagenes.forEach(function(_, idx) {
@@ -682,7 +662,7 @@ function renderPlaces() {
 
       html += '<span class="place-number-badge">' + gi + '</span>';
       html += '<div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div>';
-      html += '</div>'; // Fin place-image-container
+      html += '</div>';
       
       html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
       html += '<div class="place-header-left">';
@@ -731,10 +711,8 @@ function renderPlaces() {
   initAnimations();
 }
 
-// Sincronizar los puntitos de la galería al hacer swipe
 function updateGalleryDots(event, placeId) {
   var container = event.target;
-  // Calcula en qué imagen estamos según el scroll
   var index = Math.round(container.scrollLeft / container.offsetWidth);
   var card = document.getElementById('place-' + placeId);
   if (card) {
@@ -891,6 +869,7 @@ function showItinerary(lista, route) {
   ct.innerHTML = html;
   setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
 }
+
 // ===== ANIMACIONES =====
 function initAnimations() {
   if (!window.IntersectionObserver) {
