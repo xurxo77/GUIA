@@ -345,3 +345,14 @@ section#generador { min-height: auto; }
 .btn-small.secondary:hover { background: #9a7209; }
 .route-btn { display: block; width: 100%; padding: 10px; background: var(--accent-gold); color: white; text-align: center; text-decoration: none; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 0.95rem; margin-top: 12px; }
 .route-btn:hover { background: #9a7209; }
+
+/* NUEVOS TEXTOS DE SECCIÓN UNIFICADOS */
+.section-description { font-size: 0.95rem; color: var(--fg-muted); font-style: italic; margin-bottom: 20px; }
+
+/* FILTROS EN LA RUTA */
+.route-filter-wrapper { margin-bottom: 16px; width: 100%; overflow: hidden; }
+.route-filter-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 8px; padding-bottom: 4px; }
+.route-filter-scroll::-webkit-scrollbar { display: none; }
+.route-filter-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--fg-ink); white-space: nowrap; cursor: pointer; transition: all 0.2s ease; scroll-snap-align: start; }
+.route-filter-chip:hover { border-color: var(--accent-sea); }
+.route-filter-chip.active { background: var(--accent-sea); color: white; border-color: var(--accent-sea); }
