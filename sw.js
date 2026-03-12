@@ -1,4 +1,4 @@
-const CACHE_NAME = 'galicia-guia-v2'; // Cambio a v2 para forzar el borrado del caché roto
+const CACHE_NAME = 'galicia-guia-restaurada';
 const urlsToCache = [
   './',
   './index.html',
@@ -7,18 +7,18 @@ const urlsToCache = [
   './manifest.json'
 ];
 
-// Instala la nueva versión y fuerza a que tome el control al instante
 self.addEventListener('install', event => {
-  self.skipWaiting(); 
+  self.skipWaiting(); // Fuerza a que esta versión sana se instale ya
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(urlsToCache);
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        return cache.addAll(urlsToCache);
+      })
   );
 });
 
-// Al activarse, busca el caché viejo que rompió la app y lo ELIMINA
 self.addEventListener('activate', event => {
+  // Esta parte borra la memoria rota que se te había quedado en el móvil
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -32,8 +32,8 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Nueva estrategia: Siempre intenta descargar la última versión primero
 self.addEventListener('fetch', event => {
+  // Siempre intenta ir a internet a por lo nuevo primero
   event.respondWith(
     fetch(event.request).catch(() => {
       return caches.match(event.request);
