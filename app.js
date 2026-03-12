@@ -111,19 +111,54 @@ var lugares = [
 ];
 
 // ===== INIT APP =====
-function initApp() { 
-  loadFavorites();
-  initAnimations(); 
-  renderPlaces(); 
-  initBottomMenu(); 
-  initMap(); 
-  checkSavedLocation(); 
-  renderFavoritesSection();
-  updateSelectionUI();
-  initSearch();
-  initRouteFilters(); 
-  initBackToTop();
-  registerServiceWorker();
+// ===== MAPA NORMAL (ESTÁTICO PARA MÓVIL) =====
+function initMap() {
+  var mapEl = document.getElementById('map');
+  if (!mapEl) return;
+  
+  map = L.map('map', { 
+    zoomControl: false,       
+    dragging: false,          
+    touchZoom: false,         
+    scrollWheelZoom: false,   
+    doubleClickZoom: false,   
+    boxZoom: false,
+    keyboard: false
+  });
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+    attribution: '', 
+    maxZoom: 18 
+  }).addTo(map);
+  
+  var mapBounds = [];
+
+  lugares.forEach(function(l, i) {
+    if (!l.lat || !l.lng) return;
+    mapBounds.push([l.lat, l.lng]);
+    var m = L.marker([l.lat, l.lng], {
+      icon: L.divIcon({ className: 'custom-marker ' + l.bloque, html: '<span>' + (i+1) + '</span>', iconSize: [28, 28], iconAnchor: [14, 14] }),
+      interactive: false 
+    }).addTo(map);
+    markers[l.id] = m;
+  });
+
+  if (mapBounds.length > 0) {
+    map.fitBounds(mapBounds, { padding: [15, 15] });
+  }
+
+  mapEl.style.cursor = 'pointer';
+  map.on('click', function() { openFullscreenMap(); });
+
+  // === LA SOLUCIÓN ===
+  // Le damos 300 milisegundos a la página para que termine de renderizar la caja,
+  // y entonces forzamos al mapa a que recalcule su tamaño y re-centre los puntos.
+  setTimeout(function() {
+    map.invalidateSize();
+    if (mapBounds.length > 0) {
+      map.fitBounds(mapBounds, { padding: [15, 15] });
+    }
+  }, 300);
 }
 
 function registerServiceWorker() {
