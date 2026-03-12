@@ -856,3 +856,23 @@ function showItinerary(lista, route) {
   ct.innerHTML = html;
   setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
 }
+// ===== ANIMACIONES =====
+function initAnimations() {
+  if (!window.IntersectionObserver) {
+    document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+    observer.observe(el);
+  });
+}
