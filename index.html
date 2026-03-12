@@ -75,15 +75,45 @@
     <section id="recomendaciones">
       <div class="section-header fade-in"><span class="section-number">2</span><h2 class="section-title">Recomendaciones</h2></div>
       <p class="section-description fade-in delay-1">Cosas que nadie te dice, pero te alegrará saber.</p>
-      <div class="rec-author-section fade-in">
-        <div class="carousel-wrapper">
-          <button class="carousel-btn carousel-btn-prev" onclick="carouselPrev('carousel-xurxo')" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <div class="carousel" id="carousel-xurxo">
-            <article class="carousel-card"><div class="rec-author-card"><img src="xurxo.jpg" class="rec-author-avatar" onerror="this.style.display='none'"><span class="rec-author-name">Xurxo</span><span class="rec-author-subtitle">Sus recomendaciones</span></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">☀️</span>Por las noches refresca</h3><p class="rec-text">En Galicia la chaqueta es como el paraguas: imprescindible.</p></div></article>
-            <article class="carousel-card"><div class="rec-card"><h3 class="rec-title"><span class="rec-icon">🌊</span>Cuidado con las mareas</h3><p class="rec-text">No aparques cerca del mar. Consulta las tablas de mareas.</p></div></article>
+      
+      <div class="accordion-wrapper fade-in">
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-icon">☀️</span>
+            <span class="accordion-title">Por las noches refresca</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              En Galicia la chaqueta es como el paraguas: imprescindible incluso en agosto. No te fíes del sol del mediodía, cuando cae la tarde cerca del mar vas a agradecer llevar algo de abrigo.
+            </div>
           </div>
-          <button class="carousel-btn carousel-btn-next" onclick="carouselNext('carousel-xurxo')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-icon">🌊</span>
+            <span class="accordion-title">Cuidado con las mareas</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              El Atlántico sube y baja muy rápido. Si vas a aparcar cerca de una rampa del puerto o vas a dejar la toalla en una cala estrecha, fíjate bien en la marca de humedad de las rocas para saber hasta dónde llega el agua.
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-icon">🍽️</span>
+            <span class="accordion-title">Los horarios de comida</span>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              Aquí se come abundantemente, pero las cocinas no cierran tarde. Intenta sentarte a comer sobre las 14:00 y a cenar antes de las 21:30, especialmente en pueblos pequeños donde la vida va a otro ritmo.
+            </div>
+          </div>
         </div>
       </div>
     </section>
