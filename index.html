@@ -122,7 +122,7 @@
 
     <section id="lugares">
       <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Lugares de Galicia</h2></div>
-      <p class="section-description fade-in delay-1">4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.</p>
+      <p class="section-description fade-in delay-1">4 provincias. Pincha para ver lugares. Desliza las fotos de cada lugar.</p>
       
       <div class="search-wrapper fade-in">
         <input type="text" id="searchInput" placeholder="Buscar lugar o categoría..." autocomplete="off"> 
@@ -194,6 +194,10 @@
       <div class="footer-signature">Escrito por <strong>Xurxo</strong> y <strong>Raquel</strong></div>
     </footer>
 
+    <button id="backToTopBtn" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Volver arriba">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
     <nav class="bottom-menu">
       <div class="menu-container">
         <a href="#hero" class="menu-item active" data-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Portada</span></a>
@@ -212,7 +216,20 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
+    
     <div id="mapFullscreenMap" class="map-fullscreen-map"></div>
+    
+    <div id="mapFloatingCard" class="map-floating-card">
+      <div class="map-floating-card-info">
+        <img id="mfcImage" src="" class="map-floating-card-img" alt="Lugar">
+        <div class="map-floating-card-details">
+          <div id="mfcTitle" class="map-floating-card-title">Nombre del Lugar</div>
+          <div class="map-floating-card-time"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span id="mfcHours">0</span>h visita est.</div>
+        </div>
+      </div>
+      <button id="mfcBtn" class="map-floating-card-btn add" onclick="handleFloatingCardBtn()">Añadir a Ruta</button>
+    </div>
+
     <div class="map-fullscreen-footer">
       <div class="map-selection-places" id="mapSelectionPlaces" style="max-height: 80px; overflow-y: auto;"></div>
       <button class="btn-primary" onclick="closeFullscreenMap()" style="width: 100%; margin-top: 8px;">
