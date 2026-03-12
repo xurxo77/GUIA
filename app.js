@@ -37,6 +37,7 @@ var userLocation = null, userMarker = null;
 var selectedPlaces = [];
 var favorites = [];
 var carouselsState = {};
+var currentRouteFilter = 'all'; // Para los filtros de ruta
 
 // ===== CATEGORÍAS Y BLOQUES =====
 var bloques = [
@@ -94,7 +95,7 @@ var lugares = [
   { id: 23, nombre: "Ribadavia", bloque: "ourense", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/ribadavia.jpg", lat: 42.2833, lng: -8.1500, porQueVenir: "Capital del vino y judería.", momentoPerfecto: "Fiesta del vino.", imprescindibles: ["Judería", "Casco histórico", "Bodegas"], comer: "Vino y tapas.", tomar: "Mencía.", secreto: "Fiesta del vino.", masTiempo: "Riberas del Miño.", advertencias: "Fiestas en agosto." },
   { id: 24, nombre: "Monforte de Lemos", bloque: "ourense", categorias: ["patrimonio"], horas: 3, imagen: "img/monforte.jpg", lat: 42.5167, lng: -7.5167, porQueVenir: "Colegiata y torre del homenaje.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Colexiata", "Torre da Homenaxe", "Huerta"], comer: "Pulpo.", tomar: "Mencía.", secreto: "Vistas desde la torre.", masTiempo: "Ribeira Sacra.", advertencias: "Cuesta arriba." },
   { id: 25, nombre: "Castro Caldelas", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/castro.jpg", lat: 42.3581, lng: -7.4649, porQueVenir: "Castillo medieval y vistas.", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo", "Pueblo", "Miradores"], comer: "Cocina tradicional.", tomar: "Mencía.", secreto: "Atardecer.", masTiempo: "Cañón del Sil.", advertencias: "Carretera curvas." },
-  { id: 26, nombre: "Verín", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/verin.jpg", lat: 41.9333, lng: -7.4333, porQueVenir: "Frontera con Portugal.", momentoPerfecto: "Fiestas.", imprescindibles: ["Monterrei", "Pueblo", "Fiestas del vino"], comer: "Jamón.", tomar: "Godello.", secreto: "Ruta de los vinos.", masTiempo: "Portugal.", advertencias: "Fiestas concurridas." },
+  { id: 26, nombre: "Ferrol", bloque: "acoruna", categorias: ["ciudades", "patrimonio", "costa"], horas: 3, imagen: "img/ferrol.jpg", lat: 43.4833, lng: -8.2333, porQueVenir: "El Arsenal Ilustrado, modernismo y playas salvajes.", momentoPerfecto: "Mañana.", imprescindibles: ["Barrio de la Magdalena", "Arsenal Militar", "Castillo de San Felipe"], comer: "Marisco y pescado.", tomar: "Estrella Galicia.", secreto: "Ruta de las Meninas de Canido.", masTiempo: "Playas de Doniños.", advertencias: "Clima muy cambiante." },
   { id: 27, nombre: "Cañón del Sil", bloque: "ourense", categorias: ["naturaleza"], horas: 5, imagen: "img/sil.jpg", lat: 42.4167, lng: -7.7500, porQueVenir: "Cañones más espectaculares.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
   { id: 28, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", tomar: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña." },
   { id: 29, nombre: "Vigo", bloque: "pontevedra", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/vigo.jpg", lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." },
@@ -121,6 +122,7 @@ function initApp() {
   renderFavoritesSection();
   updateSelectionUI();
   initSearch();
+  initRouteFilters(); // Iniciamos los filtros del mapa
   registerServiceWorker();
 }
 
@@ -275,7 +277,52 @@ function updateGeoUI(active) {
   } 
 }
 
-// ===== SELECCIÓN =====
+// ===== SELECCIÓN Y FILTROS RUTA =====
+
+function initRouteFilters() {
+  var chips = document.querySelectorAll('.route-filter-chip');
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      this.classList.add('active');
+      currentRouteFilter = this.dataset.cat;
+      updateMapFilters();
+    });
+  });
+}
+
+function updateMapFilters() {
+  var visibleBounds = [];
+
+  lugares.forEach(function(l) {
+    var match = currentRouteFilter === 'all' || l.categorias.includes(currentRouteFilter);
+
+    // Actualizamos el minimapa estático
+    if (map && markers[l.id]) {
+      if (match) {
+        if (!map.hasLayer(markers[l.id])) markers[l.id].addTo(map);
+        visibleBounds.push([l.lat, l.lng]);
+      } else {
+        if (map.hasLayer(markers[l.id])) markers[l.id].removeFrom(map);
+      }
+    }
+
+    // Actualizamos el mapa en grande si está abierto
+    if (mapFullscreen && fullscreenMarkers[l.id]) {
+      if (match) {
+        if (!mapFullscreen.hasLayer(fullscreenMarkers[l.id])) fullscreenMarkers[l.id].addTo(mapFullscreen);
+      } else {
+        if (mapFullscreen.hasLayer(fullscreenMarkers[l.id])) fullscreenMarkers[l.id].removeFrom(mapFullscreen);
+      }
+    }
+  });
+
+  // Re-encuadramos el minimapa estático con lo que haya visible
+  if (map && visibleBounds.length > 0) {
+    map.fitBounds(visibleBounds, { padding: [15, 15] });
+  }
+}
+
 function togglePlaceSelection(id) {
   var idx = selectedPlaces.indexOf(id);
   if (idx > -1) {
@@ -371,13 +418,12 @@ function initMap() {
   var mapEl = document.getElementById('map');
   if (!mapEl) return;
   
-  // 1. Inicializamos el mapa con TODAS las interacciones bloqueadas
   map = L.map('map', { 
-    zoomControl: false,       // Quita los botones de + y -
-    dragging: false,          // Impide arrastrar con el dedo o ratón
-    touchZoom: false,         // Impide hacer zoom pellizcando
-    scrollWheelZoom: false,   // Impide el zoom con la rueda del ratón
-    doubleClickZoom: false,   // Impide zoom con doble clic
+    zoomControl: false,       
+    dragging: false,          
+    touchZoom: false,         
+    scrollWheelZoom: false,   
+    doubleClickZoom: false,   
     boxZoom: false,
     keyboard: false
   });
@@ -387,13 +433,11 @@ function initMap() {
     maxZoom: 18 
   }).addTo(map);
   
-  // Array para guardar todas las coordenadas y encuadrar la vista
   var mapBounds = [];
 
   lugares.forEach(function(l, i) {
     if (!l.lat || !l.lng) return;
     
-    // Añadimos las coordenadas al array de límites
     mapBounds.push([l.lat, l.lng]);
 
     var m = L.marker([l.lat, l.lng], {
@@ -403,21 +447,18 @@ function initMap() {
         iconSize: [28, 28],
         iconAnchor: [14, 14]
       }),
-      interactive: false // Evita que el marcador robe el clic al mapa
+      interactive: false 
     }).addTo(map);
     
     markers[l.id] = m;
   });
 
-  // 2. Encuadramos matemáticamente toda Galicia en la caja
   if (mapBounds.length > 0) {
     map.fitBounds(mapBounds, { padding: [15, 15] });
   }
 
-  // 3. Hacemos que la caja parezca un botón
   mapEl.style.cursor = 'pointer';
 
-  // 4. Cualquier clic o toque en esta caja abre el mapa en grande
   map.on('click', function() {
     openFullscreenMap();
   });
@@ -462,6 +503,11 @@ function openFullscreenMap() {
       
       fullscreenMarkers[l.id] = m;
     });
+
+    // Si había un filtro activo antes de abrir, nos aseguramos de que se aplique
+    if (currentRouteFilter !== 'all') {
+      updateMapFilters();
+    }
   } else {
     lugares.forEach(function(l) {
       updateFullscreenMarker(l.id);
