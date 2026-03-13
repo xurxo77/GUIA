@@ -59,7 +59,7 @@ body { font-family: 'Crimson Pro', Georgia, serif; background: var(--bg-paper); 
 .main-content.visible { display: block; }
 
 /* NUEVO: SCROLL SNAP AL HERO */
-.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); scroll-snap-align: start; }
+.hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); }
 .hero-title { font-size: clamp(2.8rem, 12vw, 4.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
 .hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; }
 
