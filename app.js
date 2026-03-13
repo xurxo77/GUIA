@@ -1,3 +1,12 @@
+// ANTÍDOTO: Borrar caché atascada en dispositivos
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
+
 // ===== CONTRASEÑA =====
 var CORRECT_PASSWORD = 'Caamanho';
 
@@ -116,11 +125,9 @@ lugares.forEach(function(l) {
     if (!l.imagen.startsWith('img/')) {
       l.imagen = 'img/' + l.imagen;
     }
-
     var puntoIndex = l.imagen.lastIndexOf('.');
     var rutaBase = l.imagen.substring(0, puntoIndex); 
     var extension = l.imagen.substring(puntoIndex);   
-    
     l.imagenes = [];
     for (var i = 1; i <= 5; i++) {
       l.imagenes.push(rutaBase + i + extension);
@@ -128,7 +135,6 @@ lugares.forEach(function(l) {
     l.imagen = l.imagenes[0];
   }
 });
-
 
 // ===== INIT APP =====
 function initApp() {
@@ -143,7 +149,6 @@ function initApp() {
   initSearch();
   initRouteFilters();
   initBackToTop();
-  registerServiceWorker();
 }
 
 function initBottomMenu() {
@@ -200,15 +205,7 @@ function initMap() {
     if (mapBounds.length > 0) {
       map.fitBounds(mapBounds, { padding: [15, 15] });
     }
-  }, 300);
-}
-
-function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW registrado!', reg.scope))
-      .catch(err => console.error('Error al registrar SW', err));
-  }
+  }, 600); // Tiempo extra para que los puntos caigan bien con la letra a 20px
 }
 
 // ===== ACORDEÓN RECOMENDACIONES =====
@@ -691,218 +688,4 @@ function renderPlaces() {
       html += '<button class="fav-btn" onclick="event.stopPropagation(); sharePlace(lugares.find(l => l.id === ' + l.id + '))">';
       html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
       html += '</button>';
-      html += '<button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')">';
-      html += '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-      html += '</button>';
-      html += '</div>';
-      html += '<svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
-      html += '</div></div>';
-      
-      html += '<div class="place-content"><div class="place-content-inner">';
-      
-      html += '<div class="place-category-tags">';
-      l.categorias.forEach(function(catId) {
-        html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>';
-      });
-      html += '</div>';
-      
-      html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
-      html += renderInfoBlock('💭', 'NUESTRA OPINIÓN', l.opinion);
-      html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
-      if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
-      html += renderInfoBlock('🍽️', 'COMER', l.comer);
-      html += renderInfoBlock('🍷', 'BEBER', l.beber);
-      html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
-      html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
-      html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
-      html += renderInfoBlock('ℹ️', 'MÁS INFO', l.masInfo);
-      
-      html += '</div></div></article>';
-    });
-
-    html += '</div></div></div>';
-  });
-
-  c.innerHTML = html;
-  initAnimations();
-}
-
-function updateGalleryDots(event, placeId) {
-  var container = event.target;
-  var index = Math.round(container.scrollLeft / container.offsetWidth);
-  var card = document.getElementById('place-' + placeId);
-  if (card) {
-    var dots = card.querySelectorAll('.gallery-dot');
-    dots.forEach(function(dot, i) {
-      if (i === index) dot.classList.add('active');
-      else dot.classList.remove('active');
-    });
-  }
-}
-
-function toggleBloque(id) { 
-  var card = document.getElementById(id); 
-  if (!card) return; 
-  var exp = card.classList.contains('expanded'); 
-  document.querySelectorAll('.bloque-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
-  if (!exp) card.classList.add('expanded'); 
-}
-
-function renderInfoBlock(icon, title, text) { 
-  if (!text) return ''; 
-  return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><p class="info-text">' + text + '</p></div>'; 
-}
-
-function renderListBlock(icon, title, items) { 
-  if (!items || !items.length) return ''; 
-  return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>'; 
-}
-
-function togglePlace(id) { 
-  var card = document.getElementById(id); 
-  if (!card) return; 
-  var exp = card.classList.contains('expanded'); 
-  document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
-  if (!exp) card.classList.add('expanded'); 
-}
-
-// ===== BUSCADOR =====
-function initSearch() {
-  var input = document.getElementById('searchInput');
-  if (!input) return;
-  input.addEventListener('input', function(e) {
-    var term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
-    filterPlaces(term);
-  });
-}
-
-function filterPlaces(term) {
-  var cards = document.querySelectorAll('.bloque-card');
-  cards.forEach(function(bloque) {
-    var visiblePlacesInBloque = 0;
-    var placeCards = bloque.querySelectorAll('.place-card');
-    
-    placeCards.forEach(function(card) {
-      var nombre = card.querySelector('.place-title').textContent.toLowerCase();
-      var cats = Array.from(card.querySelectorAll('.place-category-chip')).map(c => c.textContent.toLowerCase()).join(' ');
-      var combinedText = nombre + ' ' + cats;
-      var normalizedText = combinedText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      
-      if (normalizedText.includes(term)) {
-        card.style.display = '';
-        visiblePlacesInBloque++;
-      } else {
-        card.style.display = 'none';
-      }
-    });
-    
-    bloque.style.display = (visiblePlacesInBloque > 0 || term === '') ? '' : 'none';
-    if (term !== '') bloque.classList.add('expanded');
-  });
-}
-
-// ===== COMPARTIR =====
-function sharePlace(lugar) {
-  var text = "🏔️ " + lugar.nombre + "\n";
-  text += "✨ " + lugar.porQueVenir + "\n";
-  text += "📍 https://www.google.com/maps/dir//" + lugar.lat + "," + lugar.lng;
-  if (navigator.share) {
-    navigator.share({ title: lugar.nombre + ' - Galicia Guía', text: text }).catch(() => {});
-  } else {
-    navigator.clipboard.writeText(text).then(function() { alert("¡Información copiada al portapapeles!"); });
-  }
-}
-
-// ===== GENERAR ITINERARIO =====
-async function generateItinerary() {
-  if (selectedPlaces.length === 0) return;
-  if (userLocation) {
-    selectedPlaces.sort(function(a, b) {
-      var la = lugares.find(function(x) { return x.id === a; });
-      var lb = lugares.find(function(x) { return x.id === b; });
-      if (!la || !lb) return 0;
-      var da = haversine(userLocation.lat, userLocation.lng, la.lat, la.lng);
-      var db = haversine(userLocation.lat, userLocation.lng, lb.lat, lb.lng);
-      return da - db;
-    });
-  }
-  var sel = selectedPlaces.map(function(id) { return lugares.find(function(l) { return l.id === id; }); });
-  var route = await calculateRoute(sel, userLocation !== null);
-  showItinerary(sel, route);
-}
-
-async function calculateRoute(places, fromUser) {
-  var pts = [];
-  if (fromUser && userLocation) pts.push({ lat: userLocation.lat, lng: userLocation.lng });
-  pts = pts.concat(places);
-  if (pts.length < 2) return { distance: 0, duration: 0 };
-
-  var orsToken = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUyZjA0NzQ2YjE1ZDRlZWVhNjJkZWQ4MmZkZDZjNzgxIiwiaCI6Im11cm11cjY0In0=';
-  try {
-    var coordsArray = pts.map(function(p) { return [p.lng, p.lat]; });
-    var r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': orsToken },
-      body: JSON.stringify({ coordinates: coordsArray })
-    });
-    if (!r.ok) throw new Error('Error API');
-    var d = await r.json();
-    if (d.routes && d.routes.length > 0) return { distance: d.routes[0].summary.distance, duration: d.routes[0].summary.duration };
-  } catch(e) { console.warn("Fallo API:", e); }
-
-  var td = 0;
-  for (var i = 1; i < pts.length; i++) td += haversine(pts[i-1].lat, pts[i-1].lng, pts[i].lat, pts[i].lng);
-  return { distance: td * 1000, duration: (td / 50) * 3600 };
-}
-
-function haversine(lat1, lon1, lat2, lon2) {
-  var R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180;
-  return R * 2 * Math.atan2(Math.sqrt(Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2)), Math.sqrt(1 - Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2)));
-}
-
-function formatDuration(s) {
-  var h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
-  return h > 0 ? h + 'h ' + m + 'min' : m + ' min';
-}
-
-function formatDistance(m) {
-  return m >= 1000 ? (m / 1000).toFixed(1) + ' km' : Math.round(m) + ' m';
-}
-
-function showItinerary(lista, route) {
-  var ct = document.getElementById('itineraryResult');
-  if (!ct) return;
-  ct.classList.remove('hidden');
-  var totalHours = lista.reduce(function(s, l) { return s + l.horas; }, 0);
-  var html = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + totalHours + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
-  html += '<div class="trip-summary"><div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + (userLocation ? 'Desde ti' : 'Total') + '</div></div><div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">Coche</div></div></div>';
-  lista.forEach(function(l) {
-    var idx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
-    html += '<div class="itinerary-place"><span class="itinerary-place-num" style="background:var(--bloque-' + l.bloque + ')">' + idx + '</span><img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button><a href="https://www.google.com/maps/dir//' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
-  });
-  var gmapsUrl = 'https://www.google.com/maps/dir/' + (userLocation ? userLocation.lat + ',' + userLocation.lng + '/' : '');
-  lista.forEach(function(p) { gmapsUrl += p.lat + ',' + p.lng + '/'; });
-  html += '<a href="' + gmapsUrl + 'data=!4m2!4m1!3e0" target="_blank" class="route-btn">Ver ruta en Maps</a></div>';
-  ct.innerHTML = html;
-  setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
-}
-
-// ===== ANIMACIONES =====
-function initAnimations() {
-  if (!window.IntersectionObserver) {
-    document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
-    return;
-  }
-  
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
-    observer.observe(el);
-  });
-}
+      html += '<button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite('
