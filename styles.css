@@ -59,7 +59,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600
 .main-content.visible { display: block; }
 
 .hero { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; padding-top: calc(20px + env(safe-area-inset-top)); }
-.hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
+.hero-title { font-size: clamp(2.8rem, 12vw, 4.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
 .hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; }
 
 section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; min-height: 100vh; min-height: 100dvh; }
@@ -255,9 +255,9 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 /* BOTTOM MENU */
 .bottom-menu { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-paper); border-top: 1px solid var(--border-aged); z-index: 1000; box-shadow: 0 -4px 20px var(--shadow-warm); padding-bottom: env(safe-area-inset-bottom); }
 .menu-container { max-width: 680px; margin: 0 auto; display: flex; justify-content: space-around; padding: 8px 10px 12px; }
-.menu-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px; text-decoration: none; color: var(--fg-muted); transition: color 0.2s ease; flex: 1; max-width: 80px; }
+.menu-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; text-decoration: none; color: var(--fg-muted); transition: color 0.2s ease; flex: 1; }
 .menu-item svg { width: 22px; height: 22px; stroke: currentColor; }
-.menu-item span { font-size: 0.6rem; font-weight: 500; text-align: center; line-height: 1.2; }
+.menu-item span { font-size: 12px; font-weight: 600; text-align: center; line-height: 1.2; }
 .menu-item.active { color: var(--accent-sea); }
 .menu-item.active svg { stroke: var(--accent-sea); }
 
@@ -297,7 +297,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .route-filter-chip.active { background: var(--accent-sea); color: white; border-color: var(--accent-sea); }
 
 /* MARKERS MAPA */
-.custom-marker { position: relative; border: 2px solid white; border-radius: 50%; width: 28px; height: 28px; font-family: system-ui, -apple-system, sans-serif; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; text-shadow: 0 1px 3px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+.custom-marker { position: relative; margin: 0 !important; padding: 0 !important; border: 2px solid white; border-radius: 50%; width: 28px; height: 28px; font-family: system-ui, -apple-system, sans-serif; font-weight: 800; color: white; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: all 0.2s ease; text-shadow: 0 1px 3px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
 .custom-marker.acoruna { background: var(--bloque-acoruna); }
 .custom-marker.lugo { background: var(--bloque-lugo); }
 .custom-marker.ourense { background: var(--bloque-ourense); }
