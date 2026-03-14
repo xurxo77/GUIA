@@ -685,7 +685,7 @@ function updateCarouselButtons(id) { var c = document.getElementById(id); if (!c
 function initCarousels() { ['carousel-xurxo'].forEach(function(id) { var c = document.getElementById(id); if (c) { c.addEventListener('scroll', function() { updateCarouselButtons(id); }); setTimeout(function() { updateCarouselButtons(id); }, 100); } }); }
 function initBottomMenu() {
   var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id); }); }); }, { threshold: 0.5 });
-  ['hero', 'introduccion', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
+['hero', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
   items.forEach(function(i) { i.addEventListener('click', function(e) { e.preventDefault(); var t = document.getElementById(i.getAttribute('href').substring(1)); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
 }
 function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
