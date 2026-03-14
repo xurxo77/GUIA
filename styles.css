@@ -171,7 +171,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-green); }
 .info-text { font-size: 1.05rem; color: var(--fg-muted); line-height: 1.6; }
 .info-list { list-style: none; padding: 0; }
-.info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
+.info-list li { position: relative; padding-left: 14px; margin-bottom: 6px; font-size: 1.05rem; color: var(--fg-muted); line-height: 1.5; }
 .info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
 
 /* ANIMACIÓN */
