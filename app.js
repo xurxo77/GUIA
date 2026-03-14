@@ -378,7 +378,7 @@ function updateAllMarkers() {
 function initMap() {
 map = L.map('map', { 
     center: [42.6, -8.4], 
-    zoom: 8, 
+    zoom: 4, 
     dragging: false,         /* Evita que se mueva al arrastrar el dedo/ratón */
     touchZoom: false,        /* Apaga el zoom de pellizco en móvil */
     scrollWheelZoom: false,  /* Apaga el zoom con la rueda del ratón */
