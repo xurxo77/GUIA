@@ -1726,20 +1726,47 @@ section#generador { min-height: auto; }
   overflow: hidden !important;
 }
 /* ==========================================
-   ARREGLO: IMAGEN DESBORDADA EN "TU SELECCIÓN"
+   ARREGLO DEFINITIVO: MINIATURAS EN "TU SELECCIÓN"
    ========================================== */
 
-/* 1. Obligamos a cualquier imagen dentro de selección a no salirse de la caja */
-.selection-section img {
-  max-width: 100% !important; /* Prohíbe que sea más ancha que su contenedor */
-  height: auto !important; /* Mantiene la proporción para que no se achate */
-  border-radius: 8px !important; /* Le da unos bordes redondeados elegantes */
+/* 1. Forzamos la foto a ser un cuadrado pequeño y perfecto (50x50) */
+.selection-item img, .selection-item-img {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  flex-shrink: 0 !important; /* Prohíbe que el móvil la aplaste o la estire */
   object-fit: cover !important;
+  border-radius: 8px !important;
   display: block !important;
 }
 
-/* 2. Por si acaso, blindamos la caja principal para que corte cualquier fuga */
-.selection-section {
-  overflow: hidden !important;
+/* 2. Blindamos la fila entera para que los elementos no se peleen */
+.selection-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* Espacio entre la foto y el texto */
+  width: 100% !important;
+  max-width: 100% !important;
   box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 10px !important;
+}
+
+/* 3. El texto ocupa el resto del espacio libre, pero si no cabe, se corta con "..." */
+.selection-item-info {
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* Vital para que el texto no empuje los botones fuera */
+}
+
+.selection-item-name {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Añade los 3 puntitos si el nombre es muy largo */
+  display: block !important;
+}
+
+/* 4. El botón de la papelera siempre visible a la derecha */
+.selection-item-remove {
+  flex-shrink: 0 !important;
 }
