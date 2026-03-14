@@ -5,25 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Galicia Guía</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a4a5e">
-  <link rel="apple-touch-icon" href="img/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <div class="splash-icon">🧭</div>
-      <h1 class="splash-title">Galicia</h1>
-      <p class="splash-subtitle">Nuestra guía personal</p>
-      <form class="splash-form" id="splashForm">
-        <input type="password" class="splash-input" id="passwordInput" placeholder="Contraseña" autocomplete="off">
-        <div class="splash-error" id="splashError"></div>
+      <h1 class="hero-title">Galicia</h1>
+      <form id="splashForm">
+        <input type="password" id="passwordInput" class="splash-input" placeholder="Contraseña">
+        <div id="splashError" class="splash-error"></div>
         <button type="submit" class="splash-btn">Entrar</button>
       </form>
     </div>
@@ -31,97 +24,61 @@
 
   <main class="main-content" id="mainContent">
     
-    <div id="explorar-section">
-      <header class="hero" id="inicio">
+    <div id="tab-explorar" class="tab-content active">
+      <header class="hero">
         <h1 class="hero-title">Galicia</h1>
         <p class="hero-subtitle">La ruta definitiva</p>
       </header>
-
       <section id="lugares">
-        <div class="section-header">
-          <div class="section-number">1</div>
-          <h2 class="section-title">Los Lugares</h2>
-        </div>
-        <div class="search-wrapper">
-          <input type="text" id="searchInput" placeholder="Buscar lugar...">
-        </div>
         <div id="placesContainer"></div>
-      </section>
-
-      <section id="ruta">
-        <div class="section-header">
-          <div class="section-number">2</div>
-          <h2 class="section-title">Crear Ruta</h2>
-        </div>
-        <div class="generator-box">
-          <div class="geo-section">
-            <div class="geo-header">
-              <div class="geo-info">
-                <div class="geo-title">Tu ubicación</div>
-                <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
-              </div>
-              <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
-            </div>
-          </div>
-          <div id="map" class="map-container"></div>
-          <div id="favoritesSection"></div>
-          <div class="selection-section">
-            <div id="selectionStats" class="selection-stats">0 lugares · 0h</div>
-            <div id="selectionContent"></div>
-          </div>
-        </div>
       </section>
     </div>
 
-    <div id="recomendaciones-section" style="display: none; padding: 20px 20px 100px;">
-      <div class="section-header">
-        <div class="section-number">!</div>
-        <h2 class="section-title">Consejos de viaje</h2>
-      </div>
-      
-      <div class="accordion-wrapper">
-        <div class="accordion-item" onclick="toggleAccordion(this)">
-          <div class="accordion-header">
-            <span class="accordion-icon">🚗</span>
-            <h3 class="accordion-title">Conducir por Galicia</h3>
-          </div>
-          <div class="accordion-content">
-            <div class="accordion-content-inner">
-              <p class="info-text">Las carreteras pueden ser traicioneras por el clima y las curvas.</p>
-              <ul class="info-list">
-                <li>Usa siempre GPS (Google Maps está bien).</li>
-                <li>Cuidado con la niebla en el norte.</li>
-                <li>Aparcar en el centro es difícil.</li>
-              </ul>
+    <div id="tab-consejos" class="tab-content">
+      <section style="padding-top: 40px;">
+        <h2 style="margin-left: 20px; margin-bottom: 20px;">Consejos de viaje</h2>
+        <div class="accordion-wrapper">
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+            <div class="accordion-header">🚗 <span style="margin-left:10px; font-weight:bold;">Conducir por Galicia</span></div>
+            <div class="accordion-content">
+              <p class="info-text">Las distancias engañan. Hay muchas curvas y cuestas.</p>
             </div>
           </div>
-        </div>
-        </div>
+          </div>
+      </section>
+    </div>
+
+    <div id="tab-ruta" class="tab-content">
+      <section style="padding-top: 40px;">
+        <h2 style="margin-left: 20px;">Tu Hoja de Ruta</h2>
+        <div id="map" class="map-container" style="margin: 20px;"></div>
+        <div id="selectionContent"></div>
+      </section>
     </div>
 
   </main>
 
   <nav class="bottom-menu">
     <div class="menu-container">
-      <a href="javascript:void(0)" class="menu-item active" onclick="switchTab('explorar')">
+      <a href="javascript:void(0)" class="menu-item active" onclick="showTab('tab-explorar', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         <span>Inicio</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('recomendaciones')">
+      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-consejos', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>Consejos</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); document.getElementById('lugares').scrollIntoView();">
+      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-explorar', this); document.getElementById('lugares').scrollIntoView();">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Lugares</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); document.getElementById('ruta').scrollIntoView();">
+      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-ruta', this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
         <span>Ruta</span>
       </a>
     </div>
   </nav>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
