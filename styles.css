@@ -1596,18 +1596,24 @@ section#generador { min-height: auto; }
   display: none !important;
 }
 /* ==========================================
-   RESCATE DEFINITIVO DEL BOTÓN DE CERRAR
+   BLINDAJE ABSOLUTO DE LA CABECERA (ANTI-APLASTAMIENTO)
    ========================================== */
 .map-fullscreen-header {
-  display: flex !important; /* Fuerza a que la cabecera SIEMPRE se vea en móvil */
-  z-index: 99999 !important; /* Lo pone por encima de cualquier otro elemento */
-}
-
-.map-fullscreen-close {
   display: flex !important;
+  position: absolute !important; /* Lo sacamos del cálculo y lo fijamos arriba */
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
   z-index: 99999 !important;
+  background: var(--bg-cream) !important; /* Mantiene el fondo para no ser transparente */
 }
 
+/* Empujamos el mapa hacia abajo para que no quede tapado por la cabecera anclada */
+.map-fullscreen-map {
+  margin-top: 65px !important; 
+}
+
+/* Seguimos manteniendo enterrado el botón flotante que estorbaba */
 .map-floating-close {
-  display: none !important; /* Mantiene enterrado el botón fantasma que se superponía */
+  display: none !important; 
 }
