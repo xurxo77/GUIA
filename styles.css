@@ -1664,38 +1664,49 @@ section#generador { min-height: auto; }
   margin-left: auto !important;
 }
 /* ==========================================
-   ARREGLO: TARJETAS COMPACTAS Y SIN CORTES
+   ARREGLO DEFINITIVO: TARJETAS 100% ADAPTABLES (LÍQUIDAS)
    ========================================== */
 
-/* 1. Prohibimos al móvil aplastar las tarjetas (evita que se corten) */
-.place-card {
-  flex-shrink: 0 !important; 
+/* 1. Obligamos al contenedor de la lista a apilarlas hacia abajo sin salirse */
+#placesList, .places-list-section {
   display: flex !important;
   flex-direction: column !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important; /* Prohíbe el scroll horizontal */
+}
+
+/* 2. La tarjeta nunca superará el ancho de la pantalla y se adaptará */
+.place-card {
+  width: 100% !important;
+  max-width: 100% !important; 
+  box-sizing: border-box !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   height: auto !important;
+  display: block !important; /* Anulamos comportamientos extraños de flexbox aquí */
+  overflow: hidden !important; /* Corta cualquier cosa que intente asomar */
 }
 
-/* 2. Reducimos la altura de la imagen para que no sean "enormes" */
+/* 3. Magia para la foto: su altura será proporcional al ancho del móvil */
 .place-image {
-  height: 130px !important; /* Antes medía 180px, ahora es más panorámica */
+  width: 100% !important;
+  height: 55vw !important; /* En móviles será perfecta */
+  max-height: 220px !important; /* En tablets/PC no crecerá al infinito */
+  min-height: 140px !important; 
+  display: block !important;
 }
 
-/* 3. Ajustamos el título para que respire bien con la nueva foto */
-.place-title-overlay {
-  padding: 24px 12px 10px !important; 
-}
-.place-title {
-  font-size: 1.15rem !important; /* Ligeramente más proporcionado */
-  line-height: 1.2 !important;
+.place-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Rellena el hueco sin deformar la foto */
 }
 
-/* 4. Nos aseguramos de que al abrir la tarjeta NUNCA se corte el texto */
-.place-card.expanded .place-content {
-  max-height: 3000px !important; /* Margen de sobra para que el texto fluya */
-  overflow: hidden !important;
-}
-
-/* 5. Si hay carrusel de fotos dentro, también lo hacemos más compacto */
-.place-carousel-slide img {
-  height: 160px !important; /* Antes medía 200px */
+/* 4. Textos a prueba de cortes: si una palabra es muy larga, la rompe y baja de línea */
+.place-title, .place-content-inner, .info-text {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
 }
