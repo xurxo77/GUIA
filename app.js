@@ -1,4 +1,4 @@
-// ANTÍDOTO MEJORADO: Borrar caché atascada y forzar recarga
+// ===== ANTÍDOTO DE CACHÉ (Fuerza al móvil a actualizar la app) =====
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(function(registrations) {
     let debeRecargar = false;
@@ -6,14 +6,10 @@ if ('serviceWorker' in navigator) {
       registration.unregister();
       debeRecargar = true;
     }
-    // Si había un worker viejo atascado, recarga la página inmediatamente
     if (debeRecargar) {
       window.location.reload(true);
     }
   });
-  
-  // Registramos el nuevo SW corregido para que funcione offline
-  navigator.serviceWorker.register('./sw.js');
 }
 
 // ===== CONTRASEÑA =====
@@ -23,7 +19,7 @@ document.getElementById('splashForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var input = document.getElementById('passwordInput');
   var error = document.getElementById('splashError');
-  // Pasamos el texto a minúsculas para que no importe cómo se escriba
+  // Pasamos el input a minúsculas para evitar fallos de teclado
   var value = input.value.trim().toLowerCase(); 
   
   if (value === CORRECT_PASSWORD) {
@@ -116,7 +112,7 @@ var lugares = [
   { id: 25, nombre: "Castro Caldelas", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/castro.jpg", lat: 42.3581, lng: -7.4649, porQueVenir: "Castillo medieval y vistas.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo", "Pueblo", "Miradores"], comer: "Cocina tradicional.", beber: "Mencía.", secreto: "Atardecer.", masTiempo: "Cañón del Sil.", advertencias: "Carretera curvas.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
   { id: 26, nombre: "Ferrol", bloque: "acoruna", categorias: ["ciudades", "patrimonio", "costa"], horas: 3, imagen: "img/ferrol.jpg", lat: 43.4833, lng: -8.2333, porQueVenir: "El Arsenal Ilustrado, modernismo y playas salvajes.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Mañana.", imprescindibles: ["Barrio de la Magdalena", "Arsenal Militar", "Castillo de San Felipe"], comer: "Marisco y pescado.", beber: "Estrella Galicia.", secreto: "Ruta de las Meninas de Canido.", masTiempo: "Playas de Doniños.", advertencias: "Clima muy cambiante.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
   { id: 27, nombre: "Cañón del Sil", bloque: "ourense", categorias: ["naturaleza"], horas: 5, imagen: "img/sil.jpg", lat: 42.4167, lng: -7.7500, porQueVenir: "Cañones más espectaculares.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", beber: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
-  { id: 28, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", beber: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña.", masInfo: "<a href='#' target='_blank'>Enlace web</a>"" },
+  { id: 28, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", beber: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
   { id: 29, nombre: "Vigo", bloque: "pontevedra", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/vigo.jpg", lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", beber: "Blanco de la casa.", secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
   { id: 30, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", beber: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
   { id: 31, nombre: "Tui", bloque: "pontevedra", categorias: ["villas", "patrimonio"], horas: 3, imagen: "img/tui.jpg", lat: 42.0500, lng: -8.6333, porQueVenir: "Ciudad episcopal, frontera con Portugal.", opinion: "Escribe aquí tu opinión personal...", momentoPerfecto: "Tarde.", imprescindibles: ["Catedral", "Casco histórico", "Mirador del Miño"], comer: "Marisco.", beber: "Albariño.", secreto: "Paseo hasta Portugal.", masTiempo: "Valença.", advertencias: "Lluvia frecuente.", masInfo: "<a href='#' target='_blank'>Enlace web</a>" },
@@ -135,20 +131,19 @@ lugares.forEach(function(l) {
     if (!l.imagen.startsWith('img/')) {
       l.imagen = 'img/' + l.imagen;
     }
+
     var puntoIndex = l.imagen.lastIndexOf('.');
     var rutaBase = l.imagen.substring(0, puntoIndex); 
     var extension = l.imagen.substring(puntoIndex);   
+    
     l.imagenes = [];
-    
-    // Mantenemos la imagen original como la primera
-    l.imagenes.push(l.imagen);
-    
-    // Y generamos las 5 si es que las tuvieras en carpeta (santiago1.jpg, etc)
+    l.imagenes.push(l.imagen); // Mantenemos la imagen original
     for (var i = 1; i <= 5; i++) {
       l.imagenes.push(rutaBase + i + extension);
     }
   }
 });
+
 
 // ===== INIT APP =====
 function initApp() {
@@ -163,6 +158,7 @@ function initApp() {
   initSearch();
   initRouteFilters();
   initBackToTop();
+  registerServiceWorker();
 }
 
 function initBottomMenu() {
@@ -219,7 +215,15 @@ function initMap() {
     if (mapBounds.length > 0) {
       map.fitBounds(mapBounds, { padding: [15, 15] });
     }
-  }, 600); // Tiempo extra para que los puntos caigan bien con la letra a 20px
+  }, 300);
+}
+
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('SW registrado!', reg.scope))
+      .catch(err => console.error('Error al registrar SW', err));
+  }
 }
 
 // ===== ACORDEÓN RECOMENDACIONES =====
@@ -705,167 +709,220 @@ function renderPlaces() {
       html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
       html += '</button>';
       
-      html += '<button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>';
-      html += '</div></div></div>';
-
-      html += '<div class="place-details">';
-      html += '<div class="place-stats">';
-      html += '<div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ' + l.horas + ' h</div>';
-      html += '<div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ' + bloque.nombreCorto + '</div>';
-      html += '</div>';
-
-      html += '<div class="place-info-grid">';
-      html += '<div class="info-item"><div class="info-label">Por qué venir</div><div class="info-value">' + l.porQueVenir + '</div></div>';
-      html += '<div class="info-item"><div class="info-label">Mi opinión</div><div class="info-value"><em>"' + l.opinion + '"</em></div></div>';
-      html += '<div class="info-item"><div class="info-label">Imprescindibles</div><div class="info-value"><ul class="bullet-list">';
-      l.imprescindibles.forEach(function(imp) { html += '<li>' + imp + '</li>'; });
-      html += '</ul></div></div>';
-      html += '</div>';
-
-      html += '<div class="accordion-container">';
-      html += '<div class="accordion-item">';
-      html += '<button class="accordion-header" onclick="toggleAccordion(this)"><span>Gastronomía y Secretos</span><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>';
-      html += '<div class="accordion-content"><div class="accordion-content-inner">';
-      html += '<div class="info-grid-2">';
-      html += '<div class="info-item"><div class="info-label">Dónde comer</div><div class="info-value">' + l.comer + '</div></div>';
-      html += '<div class="info-item"><div class="info-label">Dónde beber</div><div class="info-value">' + l.beber + '</div></div>';
-      html += '<div class="info-item"><div class="info-label">Secreto</div><div class="info-value">' + l.secreto + '</div></div>';
-      html += '<div class="info-item"><div class="info-label">Advertencia</div><div class="info-value">' + l.advertencias + '</div></div>';
-      html += '</div></div></div></div>';
-      html += '</div>';
-
-      html += '<div class="place-actions">';
-      html += '<button class="btn-outline" onclick="openMapApp(' + l.lat + ', ' + l.lng + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Cómo llegar</button>';
-      html += '<button class="btn-primary" onclick="togglePlaceSelection(' + l.id + ')">';
-      var isSel = selectedPlaces.indexOf(l.id) > -1;
-      html += isSel ? 'Quitar de la Ruta' : 'Añadir a Ruta';
+      html += '<button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')">';
+      html += '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
       html += '</button>';
       html += '</div>';
-
-      html += '</div></article>';
+      html += '<svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';
+      html += '</div></div>';
+      
+      html += '<div class="place-content"><div class="place-content-inner">';
+      
+      html += '<div class="place-category-tags">';
+      l.categorias.forEach(function(catId) {
+        html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>';
+      });
+      html += '</div>';
+      
+      html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
+      html += renderInfoBlock('💭', 'NUESTRA OPINIÓN', l.opinion);
+      html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
+      if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
+      html += renderInfoBlock('🍽️', 'COMER', l.comer);
+      html += renderInfoBlock('🍷', 'BEBER', l.beber);
+      html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
+      html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
+      html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
+      html += renderInfoBlock('ℹ️', 'MÁS INFO', l.masInfo);
+      
+      html += '</div></div></article>';
     });
+
     html += '</div></div></div>';
   });
+
   c.innerHTML = html;
+  initAnimations();
 }
 
 function updateGalleryDots(event, placeId) {
-  var gallery = event.target;
-  var scrollLeft = gallery.scrollLeft;
-  var width = gallery.clientWidth;
-  var index = Math.round(scrollLeft / width);
-  
-  var placeEl = document.getElementById('place-' + placeId);
-  if (!placeEl) return;
-  
-  var dots = placeEl.querySelectorAll('.gallery-dot');
-  if (dots.length > 0 && index >= 0 && index < dots.length) {
-    dots.forEach(function(dot) { dot.classList.remove('active'); });
-    dots[index].classList.add('active');
-  }
-}
-
-function toggleBloque(id) {
-  var b = document.getElementById(id);
-  if (b.classList.contains('open')) {
-    b.classList.remove('open');
-  } else {
-    b.classList.add('open');
-  }
-}
-
-function togglePlace(id) {
-  var p = document.getElementById(id);
-  if (p.classList.contains('expanded')) {
-    p.classList.remove('expanded');
-  } else {
-    document.querySelectorAll('.place-card.expanded').forEach(function(el) {
-      el.classList.remove('expanded');
+  var container = event.target;
+  var index = Math.round(container.scrollLeft / container.offsetWidth);
+  var card = document.getElementById('place-' + placeId);
+  if (card) {
+    var dots = card.querySelectorAll('.gallery-dot');
+    dots.forEach(function(dot, i) {
+      if (i === index) dot.classList.add('active');
+      else dot.classList.remove('active');
     });
-    p.classList.add('expanded');
-    p.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+}
+
+function toggleBloque(id) { 
+  var card = document.getElementById(id); 
+  if (!card) return; 
+  var exp = card.classList.contains('expanded'); 
+  document.querySelectorAll('.bloque-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
+  if (!exp) card.classList.add('expanded'); 
+}
+
+function renderInfoBlock(icon, title, text) { 
+  if (!text) return ''; 
+  return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><p class="info-text">' + text + '</p></div>'; 
+}
+
+function renderListBlock(icon, title, items) { 
+  if (!items || !items.length) return ''; 
+  return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>'; 
+}
+
+function togglePlace(id) { 
+  var card = document.getElementById(id); 
+  if (!card) return; 
+  var exp = card.classList.contains('expanded'); 
+  document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
+  if (!exp) card.classList.add('expanded'); 
 }
 
 // ===== BUSCADOR =====
 function initSearch() {
   var input = document.getElementById('searchInput');
   if (!input) return;
-  
   input.addEventListener('input', function(e) {
-    var val = e.target.value.toLowerCase().trim();
-    
-    if (val === '') {
-      document.querySelectorAll('.bloque-card').forEach(function(b) { b.style.display = 'block'; });
-      document.querySelectorAll('.place-card').forEach(function(p) { p.style.display = 'block'; });
-      return;
-    }
-    
-    bloques.forEach(function(bloque) {
-      var bloqueEl = document.getElementById('bloque-' + bloque.id);
-      if (!bloqueEl) return;
-      
-      var matchBloque = false;
-      var lugaresBloque = lugares.filter(function(l) { return l.bloque === bloque.id; });
-      
-      lugaresBloque.forEach(function(l) {
-        var placeEl = document.getElementById('place-' + l.id);
-        if (!placeEl) return;
-        
-        var text = (l.nombre + ' ' + l.porQueVenir + ' ' + l.imprescindibles.join(' ')).toLowerCase();
-        if (text.includes(val)) {
-          placeEl.style.display = 'block';
-          matchBloque = true;
-        } else {
-          placeEl.style.display = 'none';
-        }
-      });
-      
-      if (matchBloque) {
-        bloqueEl.style.display = 'block';
-        bloqueEl.classList.add('open');
-      } else {
-        bloqueEl.style.display = 'none';
-      }
-    });
+    var term = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); 
+    filterPlaces(term);
   });
 }
 
-// ===== UTILIDADES =====
-function openMapApp(lat, lng) {
-  var url = '';
-  if ((navigator.platform.indexOf("iPhone") != -1) || (navigator.platform.indexOf("iPad") != -1) || (navigator.platform.indexOf("iPod") != -1)) {
-    url = 'maps://maps.apple.com/?q=' + lat + ',' + lng;
-  } else {
-    url = 'https://maps.google.com/?q=' + lat + ',' + lng;
-  }
-  window.open(url, '_blank');
+function filterPlaces(term) {
+  var cards = document.querySelectorAll('.bloque-card');
+  cards.forEach(function(bloque) {
+    var visiblePlacesInBloque = 0;
+    var placeCards = bloque.querySelectorAll('.place-card');
+    
+    placeCards.forEach(function(card) {
+      var nombre = card.querySelector('.place-title').textContent.toLowerCase();
+      var cats = Array.from(card.querySelectorAll('.place-category-chip')).map(c => c.textContent.toLowerCase()).join(' ');
+      var combinedText = nombre + ' ' + cats;
+      var normalizedText = combinedText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      
+      if (normalizedText.includes(term)) {
+        card.style.display = '';
+        visiblePlacesInBloque++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    
+    bloque.style.display = (visiblePlacesInBloque > 0 || term === '') ? '' : 'none';
+    if (term !== '') bloque.classList.add('expanded');
+  });
 }
 
-// FIX: Función sharePlace para que reciba solo el ID
-function sharePlace(idLugar) {
-  var lugar = lugares.find(function(l) { return l.id === idLugar; });
+// ===== COMPARTIR CORREGIDO =====
+function sharePlace(id) {
+  var lugar = lugares.find(function(l) { return l.id === id; });
   if (!lugar) return;
-
+  var text = "🏔️ " + lugar.nombre + "\n";
+  text += "✨ " + lugar.porQueVenir + "\n";
+  text += "📍 https://www.google.com/maps/dir//" + lugar.lat + "," + lugar.lng;
   if (navigator.share) {
-    navigator.share({
-      title: lugar.nombre,
-      text: 'Mira este lugar en Galicia: ' + lugar.nombre + '. ' + lugar.porQueVenir,
-      url: window.location.href
-    }).catch(function(error) { console.log('Error compartiendo', error); });
+    navigator.share({ title: lugar.nombre + ' - Galicia Guía', text: text }).catch(() => {});
   } else {
-    alert('Tu navegador no soporta compartir directamente.');
+    navigator.clipboard.writeText(text).then(function() { alert("¡Información copiada al portapapeles!"); });
   }
 }
 
-function generateItinerary() {
-  if (selectedPlaces.length === 0) {
-    alert('Selecciona algún lugar primero.');
+// ===== GENERAR ITINERARIO =====
+async function generateItinerary() {
+  if (selectedPlaces.length === 0) return;
+  if (userLocation) {
+    selectedPlaces.sort(function(a, b) {
+      var la = lugares.find(function(x) { return x.id === a; });
+      var lb = lugares.find(function(x) { return x.id === b; });
+      if (!la || !lb) return 0;
+      var da = haversine(userLocation.lat, userLocation.lng, la.lat, la.lng);
+      var db = haversine(userLocation.lat, userLocation.lng, lb.lat, lb.lng);
+      return da - db;
+    });
+  }
+  var sel = selectedPlaces.map(function(id) { return lugares.find(function(l) { return l.id === id; }); });
+  var route = await calculateRoute(sel, userLocation !== null);
+  showItinerary(sel, route);
+}
+
+async function calculateRoute(places, fromUser) {
+  var pts = [];
+  if (fromUser && userLocation) pts.push({ lat: userLocation.lat, lng: userLocation.lng });
+  pts = pts.concat(places);
+  if (pts.length < 2) return { distance: 0, duration: 0 };
+
+  var orsToken = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImUyZjA0NzQ2YjE1ZDRlZWVhNjJkZWQ4MmZkZDZjNzgxIiwiaCI6Im11cm11cjY0In0=';
+  try {
+    var coordsArray = pts.map(function(p) { return [p.lng, p.lat]; });
+    var r = await fetch('https://api.openrouteservice.org/v2/directions/driving-car', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': orsToken },
+      body: JSON.stringify({ coordinates: coordsArray })
+    });
+    if (!r.ok) throw new Error('Error API');
+    var d = await r.json();
+    if (d.routes && d.routes.length > 0) return { distance: d.routes[0].summary.distance, duration: d.routes[0].summary.duration };
+  } catch(e) { console.warn("Fallo API:", e); }
+
+  var td = 0;
+  for (var i = 1; i < pts.length; i++) td += haversine(pts[i-1].lat, pts[i-1].lng, pts[i].lat, pts[i].lng);
+  return { distance: td * 1000, duration: (td / 50) * 3600 };
+}
+
+function haversine(lat1, lon1, lat2, lon2) {
+  var R = 6371, dLat = (lat2 - lat1) * Math.PI / 180, dLon = (lon2 - lon1) * Math.PI / 180;
+  return R * 2 * Math.atan2(Math.sqrt(Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2)), Math.sqrt(1 - Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2)));
+}
+
+function formatDuration(s) {
+  var h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
+  return h > 0 ? h + 'h ' + m + 'min' : m + ' min';
+}
+
+function formatDistance(m) {
+  return m >= 1000 ? (m / 1000).toFixed(1) + ' km' : Math.round(m) + ' m';
+}
+
+function showItinerary(lista, route) {
+  var ct = document.getElementById('itineraryResult');
+  if (!ct) return;
+  ct.classList.remove('hidden');
+  var totalHours = lista.reduce(function(s, l) { return s + l.horas; }, 0);
+  var html = '<div class="itinerary-result"><div class="itinerary-header"><div><div class="itinerary-title">Tu itinerario</div><div class="itinerary-hours">' + totalHours + 'h</div></div><button onclick="document.getElementById(\'itineraryResult\').classList.add(\'hidden\')" style="background:none;border:none;cursor:pointer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';
+  html += '<div class="trip-summary"><div class="trip-summary-item"><div class="trip-summary-value">' + formatDistance(route.distance) + '</div><div class="trip-summary-label">' + (userLocation ? 'Desde ti' : 'Total') + '</div></div><div class="trip-summary-item"><div class="trip-summary-value">' + formatDuration(route.duration) + '</div><div class="trip-summary-label">Coche</div></div></div>';
+  lista.forEach(function(l) {
+    var idx = lugares.findIndex(function(x) { return x.id === l.id; }) + 1;
+    html += '<div class="itinerary-place"><span class="itinerary-place-num" style="background:var(--bloque-' + l.bloque + ')">' + idx + '</span><img src="' + l.imagen + '" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><div class="itinerary-place-info"><div class="itinerary-place-name">' + l.nombre + '</div><div class="itinerary-place-time">' + l.horas + 'h</div><div class="itinerary-place-actions"><button class="btn-small" onclick="map.setView([' + l.lat + ',' + l.lng + '],14)">Mapa</button><a href="https://www.google.com/maps/dir//' + l.lat + ',' + l.lng + '" target="_blank" class="btn-small secondary">Ir</a></div></div></div>';
+  });
+  var gmapsUrl = 'https://www.google.com/maps/dir/' + (userLocation ? userLocation.lat + ',' + userLocation.lng + '/' : '');
+  lista.forEach(function(p) { gmapsUrl += p.lat + ',' + p.lng + '/'; });
+  html += '<a href="' + gmapsUrl + 'data=!4m2!4m1!3e0" target="_blank" class="route-btn">Ver ruta en Maps</a></div>';
+  ct.innerHTML = html;
+  setTimeout(function() { ct.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+}
+
+// ===== ANIMACIONES =====
+function initAnimations() {
+  if (!window.IntersectionObserver) {
+    document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
     return;
   }
-  alert('Función de generar PDF o enlace de ruta en desarrollo.');
-}
+  
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -50px 0px', threshold: 0.1 });
 
-function initAnimations() {
-  document.body.classList.add('loaded');
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+    observer.observe(el);
+  });
 }
