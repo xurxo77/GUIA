@@ -134,7 +134,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .place-header { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; border-top: 1px solid rgba(139, 115, 85, 0.2); }
 .place-header-left { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .place-header-left::-webkit-scrollbar { display: none; }
-.place-category-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; color: white; white-space: nowrap; flex-shrink: 0; }
+.place-category-chip { display: inline-flex; align-items: center; padding: 6px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; color: white; white-space: nowrap; flex-shrink: 0; }
 .place-category-chip.ciudades { background: var(--cat-ciudades); }
 .place-category-chip.villas { background: var(--cat-villas); }
 .place-category-chip.pueblos { background: var(--cat-pueblos); }
@@ -150,7 +150,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .place-card.expanded .place-content { max-height: 5000px; }
 .place-content-inner { padding: 14px; border-top: 1px solid rgba(139, 115, 85, 0.2); }
 .place-category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.place-category-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; }
+.place-category-tag { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
 .place-category-tag.ciudades { background: rgba(139, 90, 43, 0.12); color: var(--cat-ciudades); }
 .place-category-tag.villas { background: rgba(107, 142, 74, 0.12); color: var(--cat-villas); }
 .place-category-tag.pueblos { background: rgba(74, 122, 142, 0.12); color: var(--cat-pueblos); }
