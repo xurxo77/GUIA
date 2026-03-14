@@ -440,10 +440,19 @@ function openFullscreenMap() {
         })
       }).addTo(mapFullscreen);
       
-      m.on('click', function() {
-        togglePlaceSelection(l.id);
-        updateFullscreenMarker(l.id);
-        updateFullscreenUI();
+    m.on('click', function(e) {
+        var isSel = selectedPlaces.indexOf(l.id) > -1;
+        var btnText = isSel ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta';
+        var btnColor = isSel ? 'var(--accent-red)' : 'var(--accent-sea)';
+        
+        var popupHtml = '<div style="text-align:center; min-width: 150px;">';
+        popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:95px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
+        popupHtml += '<div class="popup-title">' + l.nombre + '</div>';
+        popupHtml += '<div style="font-size:0.8rem; color:var(--fg-muted); margin-bottom:10px;">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
+        popupHtml += '<button class="popup-btn" style="background:' + btnColor + ';" onclick="togglePlaceFromPopup(' + l.id + ')">' + btnText + '</button>';
+        popupHtml += '</div>';
+
+        L.popup({closeButton: false, offset: [0, -15]}).setLatLng(e.latlng).setContent(popupHtml).openOn(mapFullscreen);
       });
       
       fullscreenMarkers[l.id] = m;
