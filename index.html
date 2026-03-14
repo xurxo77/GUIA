@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -43,7 +43,7 @@
           <h2 class="section-title">Los Lugares</h2>
         </div>
         <div class="search-wrapper">
-          <input type="text" id="searchInput" placeholder="Buscar lugar o categoría...">
+          <input type="text" id="searchInput" placeholder="Buscar lugar...">
         </div>
         <div id="placesContainer"></div>
       </section>
@@ -63,78 +63,43 @@
               <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
             </div>
           </div>
-          <div class="map-section">
-            <div class="map-container-wrapper">
-              <div id="map" class="map-container"></div>
-              <button class="map-expand-btn" onclick="openFullscreenMap()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-              </button>
-            </div>
-          </div>
+          <div id="map" class="map-container"></div>
           <div id="favoritesSection"></div>
           <div class="selection-section">
-            <div class="selection-header">
-              <div class="selection-title">Lugares en tu ruta</div>
-              <div class="selection-stats" id="selectionStats">0 lugares · 0h</div>
-            </div>
+            <div id="selectionStats" class="selection-stats">0 lugares · 0h</div>
             <div id="selectionContent"></div>
           </div>
-          <div id="itineraryResult" class="hidden"></div>
         </div>
       </section>
     </div>
 
-    <div id="recomendaciones-section" style="display: none; padding: 20px 20px 100px 20px;">
-      <h2 class="section-title" style="margin-bottom: 30px;">Consejos de viaje</h2>
+    <div id="recomendaciones-section" style="display: none; padding: 20px 20px 100px;">
+      <div class="section-header">
+        <div class="section-number">!</div>
+        <h2 class="section-title">Consejos de viaje</h2>
+      </div>
+      
       <div class="accordion-wrapper">
         <div class="accordion-item" onclick="toggleAccordion(this)">
-          <button class="accordion-header">
+          <div class="accordion-header">
             <span class="accordion-icon">🚗</span>
             <h3 class="accordion-title">Conducir por Galicia</h3>
-            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
+          </div>
           <div class="accordion-content">
             <div class="accordion-content-inner">
-              <p class="info-text">Las distancias engañan. Hay muchas curvas y cuestas, especialmente en la costa.</p>
+              <p class="info-text">Las carreteras pueden ser traicioneras por el clima y las curvas.</p>
               <ul class="info-list">
-                <li>Usa Google Maps, suele estar muy actualizado.</li>
-                <li>Ojo con la niebla en las autovías de montaña (A-8).</li>
-                <li>Aparcar en centros históricos es casi imposible; busca parkings fuera.</li>
+                <li>Usa siempre GPS (Google Maps está bien).</li>
+                <li>Cuidado con la niebla en el norte.</li>
+                <li>Aparcar en el centro es difícil.</li>
               </ul>
             </div>
           </div>
         </div>
-
-        <div class="accordion-item" onclick="toggleAccordion(this)">
-          <button class="accordion-header">
-            <span class="accordion-icon">🌦️</span>
-            <h3 class="accordion-title">El tiempo y la ropa</h3>
-            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-content-inner">
-              <p class="info-text">El clima cambia en minutos. "Si no te gusta el tiempo en Galicia, espera cinco minutos".</p>
-              <ul class="info-list">
-                <li>Lleva calzado que no resbale (el granito mojado es una pista de hielo).</li>
-                <li>Un chubasquero fino siempre en la mochila.</li>
-                <li>Ropa por capas (el famoso efecto cebolla).</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
+
   </main>
-
-  <div class="map-fullscreen" id="mapFullscreen">
-    <div class="map-fullscreen-header">
-      <div class="map-fullscreen-title">Selecciona lugares</div>
-      <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="map-fullscreen-map" id="mapFullscreenMap"></div>
-  </div>
 
   <nav class="bottom-menu">
     <div class="menu-container">
@@ -146,21 +111,17 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>Consejos</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('lugares').scrollIntoView({behavior:'smooth'}),100)">
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); document.getElementById('lugares').scrollIntoView();">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Lugares</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('ruta').scrollIntoView({behavior:'smooth'}),100)">
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); document.getElementById('ruta').scrollIntoView();">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
         <span>Ruta</span>
       </a>
     </div>
   </nav>
 
-  <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo(0,0)">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
