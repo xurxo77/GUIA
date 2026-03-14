@@ -1,21 +1,26 @@
 // ===== CONTRASEÑA =====
-var CORRECT_PASSWORD = 'Caamaño';
-
 document.getElementById('splashForm').addEventListener('submit', function(e) {
   e.preventDefault();
   var input = document.getElementById('passwordInput');
   var error = document.getElementById('splashError');
   
-  // Normalizamos: quitamos espacios y pasamos a minúsculas para evitar errores típicos de móvil
+  // Normalizamos: quitamos espacios y pasamos a minúsculas
   var value = input.value.trim().toLowerCase();
   
-  // Aceptamos 'caamaño' (minúscula) y 'caamanho' (por si no tienen la 'ñ' a mano)
+  // Aceptamos 'caamaño' y 'caamanho' para evitar problemas con la 'ñ' en móviles
   if (value === 'caamaño' || value === 'caamanho') {
     document.getElementById('splashScreen').classList.add('hidden');
     document.getElementById('mainContent').classList.add('visible');
     localStorage.setItem('galicia_auth', 'true');
     initApp();
   } else {
+    // Si falla, activamos la animación de error y el mensaje
+    input.classList.add('error');
+    error.textContent = 'Contraseña incorrecta';
+    setTimeout(function() { input.classList.remove('error'); }, 400);
+    input.value = '';
+    input.focus();
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -24,7 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('mainContent').classList.add('visible');
     initApp();
   } else {
-    setTimeout(function() { document.getElementById('passwordInput').focus(); }, 100);
+    // Foco automático al cargar si no está logueado
+    setTimeout(function() { 
+      var input = document.getElementById('passwordInput');
+      if(input) input.focus(); 
+    }, 100);
   }
 });
 
