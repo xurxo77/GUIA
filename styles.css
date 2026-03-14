@@ -1636,3 +1636,30 @@ section#generador { min-height: auto; }
 .map-floating-close {
   display: none !important; 
 }
+/* ==========================================
+   ARREGLO: BOTÓN DE CERRAR FUERA DE PANTALLA (ANCHO)
+   ========================================== */
+
+/* 1. Obligamos a la cabecera a no medir más que la pantalla */
+.map-fullscreen-header {
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  padding-right: 16px !important; 
+}
+
+/* 2. Le decimos al título que se corte con "..." si no cabe */
+.map-fullscreen-title {
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* Crítico: esto evita que desborde la pantalla */
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; 
+  margin-right: 10px !important;
+}
+
+/* 3. Protegemos el botón para que nunca se encoja ni se caiga */
+.map-fullscreen-close {
+  flex-shrink: 0 !important; 
+  margin-left: auto !important;
+}
