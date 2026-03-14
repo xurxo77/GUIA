@@ -673,20 +673,6 @@ section#generador { min-height: auto; }
 
 
 
-/* En móvil, ocultar el header para maximizar espacio del mapa */
-
-@media (max-width: 768px) {
-
-  .map-fullscreen-header {
-
-    display: none;
-
-  }
-
-}
-
-
-
 .map-fullscreen-title { 
 
   font-family: 'Cormorant Garamond', serif; 
