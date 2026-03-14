@@ -376,8 +376,17 @@ function updateAllMarkers() {
 
 // ===== MAPA NORMAL =====
 function initMap() {
-  map = L.map('map', { center: [42.6, -8.4], zoom: 8, scrollWheelZoom: true, zoomControl: true });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(map);
+map = L.map('map', { 
+    center: [42.6, -8.4], 
+    zoom: 8, 
+    dragging: false,         /* Evita que se mueva al arrastrar el dedo/ratón */
+    touchZoom: false,        /* Apaga el zoom de pellizco en móvil */
+    scrollWheelZoom: false,  /* Apaga el zoom con la rueda del ratón */
+    doubleClickZoom: false,  /* Apaga el zoom con doble toque */
+    boxZoom: false,
+    keyboard: false,
+    zoomControl: false       /* Oculta los botones de + y - para que quede más limpio */
+  });  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(map);
   
   lugares.forEach(function(l, i) {
     if (!l.lat || !l.lng) return;
