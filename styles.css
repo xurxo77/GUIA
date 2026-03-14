@@ -1664,49 +1664,64 @@ section#generador { min-height: auto; }
   margin-left: auto !important;
 }
 /* ==========================================
-   ARREGLO DEFINITIVO: TARJETAS 100% ADAPTABLES (LÍQUIDAS)
+   ARREGLO CLÁSICO Y ROBUSTO: TARJETAS DE LUGARES
    ========================================== */
 
-/* 1. Obligamos al contenedor de la lista a apilarlas hacia abajo sin salirse */
-#placesList, .places-list-section {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow-x: hidden !important; /* Prohíbe el scroll horizontal */
-}
-
-/* 2. La tarjeta nunca superará el ancho de la pantalla y se adaptará */
+/* 1. Limitamos el ancho en PC y forzamos a que ocupen el 100% en móvil */
 .place-card {
   width: 100% !important;
-  max-width: 100% !important; 
-  box-sizing: border-box !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  max-width: 480px !important; /* En PC nunca pasarán de este tamaño */
+  margin: 0 auto 16px auto !important; /* Las centra en la pantalla */
+  display: flex !important;
+  flex-direction: column !important;
   height: auto !important;
-  display: block !important; /* Anulamos comportamientos extraños de flexbox aquí */
-  overflow: hidden !important; /* Corta cualquier cosa que intente asomar */
+  box-sizing: border-box !important;
+  overflow: hidden !important; /* Corta de raíz lo que sobresalga */
 }
 
-/* 3. Magia para la foto: su altura será proporcional al ancho del móvil */
+/* 2. Altura de foto estricta: ni muy grande ni muy pequeña, SIEMPRE 160px */
 .place-image {
   width: 100% !important;
-  height: 55vw !important; /* En móviles será perfecta */
-  max-height: 220px !important; /* En tablets/PC no crecerá al infinito */
-  min-height: 140px !important; 
+  height: 160px !important; 
+  min-height: 160px !important;
+  max-height: 160px !important;
   display: block !important;
 }
 
 .place-image img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: cover !important; /* Rellena el hueco sin deformar la foto */
+  object-fit: cover !important; /* Rellena el hueco sin deformar */
 }
 
-/* 4. Textos a prueba de cortes: si una palabra es muy larga, la rompe y baja de línea */
-.place-title, .place-content-inner, .info-text {
-  white-space: normal !important;
+/* 3. Evitamos que el título se salga por los lados */
+.place-title-overlay {
+  padding: 20px 12px 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.place-title {
+  font-size: 1.15rem !important;
+  white-space: normal !important; /* Permite saltos de línea */
   word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
+  line-height: 1.3 !important;
+}
+
+/* 4. Cabecera (donde están las etiquetas): si no caben, bajan de línea */
+.place-header {
+  flex-wrap: wrap !important; 
+  height: auto !important;
+  min-height: 44px !important;
+}
+
+.place-header-left {
+  flex-wrap: wrap !important;
+  overflow: visible !important; /* Evita que las etiquetas se corten */
+}
+
+/* 5. Aseguramos que el contenido al desplegar se vea entero */
+.place-card.expanded .place-content {
+  max-height: 2000px !important;
+  overflow: hidden !important;
 }
