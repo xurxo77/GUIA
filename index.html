@@ -40,26 +40,47 @@
       <p class="hero-subtitle">La ruta definitiva</p>
     </header>
 
-    <section id="recomendaciones">
-      <div class="section-header fade-in">
-        <div class="section-number">1</div>
-        <h2 class="section-title">Recomendaciones</h2>
+  <div id="recomendaciones-section" style="display: none; padding: 20px;">
+  <h2 style="font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; color: var(--fg-default);">Consejos para tu viaje</h2>
+  
+  <div class="accordion">
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <i class="ph-fill ph-car"></i>
+        <span>Conducir por Galicia</span>
+        <i class="ph ph-caret-down"></i>
       </div>
-      <div class="accordion-wrapper fade-in">
-        <div class="accordion-item">
-          <button class="accordion-header" onclick="toggleAccordion(this)">
-            <span class="accordion-icon">🚗</span>
-            <h3 class="accordion-title">Conducir por Galicia</h3>
-            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-content">
-            <div class="accordion-content-inner">
-              <p>Las distancias engañan. Hay muchas curvas y cuestas.</p>
-            </div>
-          </div>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <p class="info-text">Galicia tiene carreteras preciosas pero secundarias. Ten paciencia con las curvas en la costa y disfruta del paisaje.</p>
+          <ul class="info-list">
+            <li>Usa GPS actualizado (Google Maps va bien).</li>
+            <li>Cuidado con la niebla en zonas altas.</li>
+            <li>El aparcamiento en centros históricos es difícil; busca parkings disuasorios.</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+
+    <div class="accordion-item" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <i class="ph-fill ph-cloud-rain"></i>
+        <span>El tiempo y qué llevar</span>
+        <i class="ph ph-caret-down"></i>
+      </div>
+      <div class="accordion-content">
+        <div class="accordion-content-inner">
+          <p class="info-text">El clima es cambiante. Puedes tener las cuatro estaciones en un mismo día.</p>
+          <ul class="info-list">
+            <li>Lleva siempre un chubasquero ligero.</li>
+            <li>Calzado cómodo y que no resbale (el granito mojado patina).</li>
+            <li>Vístete "a capas" como una cebolla.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <section id="lugares">
       <div class="section-header fade-in">
