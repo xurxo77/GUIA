@@ -4,19 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Galicia Guía</title>
-  
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1a4a5e">
   <link rel="apple-touch-icon" href="img/icon-192.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -35,164 +31,136 @@
 
   <main class="main-content" id="mainContent">
     
-    <header class="hero" id="inicio">
-      <h1 class="hero-title">Galicia</h1>
-      <p class="hero-subtitle">La ruta definitiva</p>
-    </header>
+    <div id="explorar-section">
+      <header class="hero" id="inicio">
+        <h1 class="hero-title">Galicia</h1>
+        <p class="hero-subtitle">La ruta definitiva</p>
+      </header>
 
-  <div id="recomendaciones-section" style="display: none; padding: 20px;">
-  <h2 style="font-family: 'Cormorant Garamond', serif; margin-bottom: 20px; color: var(--fg-default);">Consejos para tu viaje</h2>
-  
-  <div class="accordion">
-    <div class="accordion-item" onclick="toggleAccordion(this)">
-      <div class="accordion-header">
-        <i class="ph-fill ph-car"></i>
-        <span>Conducir por Galicia</span>
-        <i class="ph ph-caret-down"></i>
-      </div>
-      <div class="accordion-content">
-        <div class="accordion-content-inner">
-          <p class="info-text">Galicia tiene carreteras preciosas pero secundarias. Ten paciencia con las curvas en la costa y disfruta del paisaje.</p>
-          <ul class="info-list">
-            <li>Usa GPS actualizado (Google Maps va bien).</li>
-            <li>Cuidado con la niebla en zonas altas.</li>
-            <li>El aparcamiento en centros históricos es difícil; busca parkings disuasorios.</li>
-          </ul>
+      <section id="lugares">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <h2 class="section-title">Los Lugares</h2>
         </div>
-      </div>
-    </div>
-
-    <div class="accordion-item" onclick="toggleAccordion(this)">
-      <div class="accordion-header">
-        <i class="ph-fill ph-cloud-rain"></i>
-        <span>El tiempo y qué llevar</span>
-        <i class="ph ph-caret-down"></i>
-      </div>
-      <div class="accordion-content">
-        <div class="accordion-content-inner">
-          <p class="info-text">El clima es cambiante. Puedes tener las cuatro estaciones en un mismo día.</p>
-          <ul class="info-list">
-            <li>Lleva siempre un chubasquero ligero.</li>
-            <li>Calzado cómodo y que no resbale (el granito mojado patina).</li>
-            <li>Vístete "a capas" como una cebolla.</li>
-          </ul>
+        <div class="search-wrapper">
+          <input type="text" id="searchInput" placeholder="Buscar lugar o categoría...">
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <div id="placesContainer"></div>
+      </section>
 
-    <section id="lugares">
-      <div class="section-header fade-in">
-        <div class="section-number">2</div>
-        <h2 class="section-title">Los Lugares</h2>
-      </div>
-      <div class="search-wrapper fade-in">
-        <input type="text" id="searchInput" placeholder="Buscar lugar o categoría...">
-      </div>
-      <div id="placesContainer"></div>
-    </section>
-
-    <section id="ruta">
-      <div class="section-header fade-in">
-        <div class="section-number">3</div>
-        <h2 class="section-title">Crear Ruta</h2>
-      </div>
-      
-      <div class="generator-box fade-in">
-        <div class="geo-section">
-          <div class="geo-header">
-            <div class="geo-info">
-              <div class="geo-title">Tu ubicación</div>
-              <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
+      <section id="ruta">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <h2 class="section-title">Crear Ruta</h2>
+        </div>
+        <div class="generator-box">
+          <div class="geo-section">
+            <div class="geo-header">
+              <div class="geo-info">
+                <div class="geo-title">Tu ubicación</div>
+                <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
+              </div>
+              <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
             </div>
-            <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
+          </div>
+          <div class="map-section">
+            <div class="map-container-wrapper">
+              <div id="map" class="map-container"></div>
+              <button class="map-expand-btn" onclick="openFullscreenMap()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="favoritesSection"></div>
+          <div class="selection-section">
+            <div class="selection-header">
+              <div class="selection-title">Lugares en tu ruta</div>
+              <div class="selection-stats" id="selectionStats">0 lugares · 0h</div>
+            </div>
+            <div id="selectionContent"></div>
+          </div>
+          <div id="itineraryResult" class="hidden"></div>
+        </div>
+      </section>
+    </div>
+
+    <div id="recomendaciones-section" style="display: none; padding: 20px 20px 100px 20px;">
+      <h2 class="section-title" style="margin-bottom: 30px;">Consejos de viaje</h2>
+      <div class="accordion-wrapper">
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            <span class="accordion-icon">🚗</span>
+            <h3 class="accordion-title">Conducir por Galicia</h3>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <p class="info-text">Las distancias engañan. Hay muchas curvas y cuestas, especialmente en la costa.</p>
+              <ul class="info-list">
+                <li>Usa Google Maps, suele estar muy actualizado.</li>
+                <li>Ojo con la niebla en las autovías de montaña (A-8).</li>
+                <li>Aparcar en centros históricos es casi imposible; busca parkings fuera.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="map-section">
-          <div class="map-container-wrapper">
-            <div id="map" class="map-container"></div>
-            <button class="map-expand-btn" onclick="openFullscreenMap()">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
+        <div class="accordion-item" onclick="toggleAccordion(this)">
+          <button class="accordion-header">
+            <span class="accordion-icon">🌦️</span>
+            <h3 class="accordion-title">El tiempo y la ropa</h3>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <p class="info-text">El clima cambia en minutos. "Si no te gusta el tiempo en Galicia, espera cinco minutos".</p>
+              <ul class="info-list">
+                <li>Lleva calzado que no resbale (el granito mojado es una pista de hielo).</li>
+                <li>Un chubasquero fino siempre en la mochila.</li>
+                <li>Ropa por capas (el famoso efecto cebolla).</li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div id="favoritesSection" class="favorites-section"></div>
-
-        <div class="selection-section">
-          <div class="selection-header">
-            <div class="selection-title">Lugares en tu ruta</div>
-            <div class="selection-stats" id="selectionStats">0 lugares · 0h</div>
-          </div>
-          <div id="selectionContent"></div>
-        </div>
-        
-        <div id="itineraryResult" class="hidden"></div>
       </div>
-    </section>
+    </div>
   </main>
 
   <div class="map-fullscreen" id="mapFullscreen">
     <div class="map-fullscreen-header">
       <div class="map-fullscreen-title">Selecciona lugares</div>
       <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    
-    <div class="route-filter-wrapper" style="background:var(--bg-cream); padding: 8px 16px;">
-      <div class="route-filter-scroll">
-        <div class="route-filter-chip active" data-cat="all">Todos</div>
-        <div class="route-filter-chip" data-cat="ciudades">🏛️ Ciudades</div>
-        <div class="route-filter-chip" data-cat="naturaleza">🌿 Naturaleza</div>
-        <div class="route-filter-chip" data-cat="costa">🏖️ Costa</div>
-      </div>
-    </div>
-
     <div class="map-fullscreen-map" id="mapFullscreenMap"></div>
-    
-    <div class="map-fullscreen-footer">
-      <div class="map-selection-summary">
-        <div class="map-selection-count"><span id="mapSelectionCountBtn">0</span> lugares en ruta</div>
-      </div>
-      <div class="map-selection-places" id="mapSelectionPlaces"></div>
-    </div>
-    
-    <div class="map-floating-card" id="mapFloatingCard">
-      <div class="map-floating-card-info">
-        <img id="mfcImage" class="map-floating-card-img" src="" alt="">
-        <div class="map-floating-card-details">
-          <div class="map-floating-card-title" id="mfcTitle"></div>
-          <div class="map-floating-card-time">⏱️ <span id="mfcHours"></span> horas aprox.</div>
-        </div>
-      </div>
-      <button id="mfcBtn" class="map-floating-card-btn add" onclick="handleFloatingCardBtn()">Añadir a Ruta</button>
-    </div>
   </div>
 
   <nav class="bottom-menu">
     <div class="menu-container">
-      <a href="#inicio" class="menu-item active">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="2"/></svg>
+      <a href="javascript:void(0)" class="menu-item active" onclick="switchTab('explorar')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         <span>Inicio</span>
       </a>
-      <a href="#lugares" class="menu-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke-width="2"/></svg>
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('recomendaciones')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <span>Consejos</span>
+      </a>
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('lugares').scrollIntoView({behavior:'smooth'}),100)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Lugares</span>
       </a>
-      <a href="#ruta" class="menu-item">
-        <svg viewBox="0 0 24 24" fill="none"><polygon points="3 11 22 2 13 21 11 13 3 11" stroke-width="2"/></svg>
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('ruta').scrollIntoView({behavior:'smooth'}),100)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
         <span>Ruta</span>
       </a>
     </div>
   </nav>
 
   <button class="back-to-top" id="backToTopBtn" onclick="window.scrollTo(0,0)">
-    <svg viewBox="0 0 24 24" fill="none"><polyline points="18 15 12 9 6 15" stroke-width="2"/></svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
