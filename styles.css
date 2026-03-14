@@ -1663,3 +1663,39 @@ section#generador { min-height: auto; }
   flex-shrink: 0 !important; 
   margin-left: auto !important;
 }
+/* ==========================================
+   ARREGLO: TARJETAS COMPACTAS Y SIN CORTES
+   ========================================== */
+
+/* 1. Prohibimos al móvil aplastar las tarjetas (evita que se corten) */
+.place-card {
+  flex-shrink: 0 !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+}
+
+/* 2. Reducimos la altura de la imagen para que no sean "enormes" */
+.place-image {
+  height: 130px !important; /* Antes medía 180px, ahora es más panorámica */
+}
+
+/* 3. Ajustamos el título para que respire bien con la nueva foto */
+.place-title-overlay {
+  padding: 24px 12px 10px !important; 
+}
+.place-title {
+  font-size: 1.15rem !important; /* Ligeramente más proporcionado */
+  line-height: 1.2 !important;
+}
+
+/* 4. Nos aseguramos de que al abrir la tarjeta NUNCA se corte el texto */
+.place-card.expanded .place-content {
+  max-height: 3000px !important; /* Margen de sobra para que el texto fluya */
+  overflow: hidden !important;
+}
+
+/* 5. Si hay carrusel de fotos dentro, también lo hacemos más compacto */
+.place-carousel-slide img {
+  height: 160px !important; /* Antes medía 200px */
+}
