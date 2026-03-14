@@ -68,7 +68,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type
 
 
 
-body { font-family: 'Crimson Pro', Georgia, serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Montserrat', sans-serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
 
