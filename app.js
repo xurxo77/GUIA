@@ -4,17 +4,18 @@ document.getElementById('splashForm').addEventListener('submit', function(e) {
   var input = document.getElementById('passwordInput');
   var error = document.getElementById('splashError');
   
-  // Normalizamos: quitamos espacios y pasamos a minúsculas
+  // Limpiamos espacios y pasamos a minúsculas
   var value = input.value.trim().toLowerCase();
   
-  // Aceptamos 'caamaño' y 'caamanho' para evitar problemas con la 'ñ' en móviles
+  console.log("Intento de acceso con:", value);
+
+  // Comprobación doble (con ñ y con nh para evitar problemas de teclado/codificación)
   if (value === 'caamaño' || value === 'caamanho') {
     document.getElementById('splashScreen').classList.add('hidden');
     document.getElementById('mainContent').classList.add('visible');
     localStorage.setItem('galicia_auth', 'true');
     initApp();
   } else {
-    // Si falla, activamos la animación de error y el mensaje
     input.classList.add('error');
     error.textContent = 'Contraseña incorrecta';
     setTimeout(function() { input.classList.remove('error'); }, 400);
