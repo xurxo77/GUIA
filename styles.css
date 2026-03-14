@@ -1725,3 +1725,21 @@ section#generador { min-height: auto; }
   max-height: 2000px !important;
   overflow: hidden !important;
 }
+/* ==========================================
+   ARREGLO: IMAGEN DESBORDADA EN "TU SELECCIÓN"
+   ========================================== */
+
+/* 1. Obligamos a cualquier imagen dentro de selección a no salirse de la caja */
+.selection-section img {
+  max-width: 100% !important; /* Prohíbe que sea más ancha que su contenedor */
+  height: auto !important; /* Mantiene la proporción para que no se achate */
+  border-radius: 8px !important; /* Le da unos bordes redondeados elegantes */
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* 2. Por si acaso, blindamos la caja principal para que corte cualquier fuga */
+.selection-section {
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
