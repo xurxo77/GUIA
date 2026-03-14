@@ -831,3 +831,10 @@ function togglePlace(id) {
   document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
   if (!exp) card.classList.add('expanded'); 
 }
+// ===== FUNCIÓN PARA LA TARJETA PEQUEÑA DEL MAPA =====
+window.togglePlaceFromPopup = function(id) {
+  togglePlaceSelection(id);
+  if (map) map.closePopup();
+  if (mapFullscreen) mapFullscreen.closePopup();
+  if (typeof updateFullscreenUI === 'function') updateFullscreenUI();
+};
