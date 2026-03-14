@@ -81,7 +81,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .accordion-item.active .accordion-arrow { transform: rotate(180deg); stroke: var(--accent-sea); }
 .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--bg-cream); }
 .accordion-item.active .accordion-content { max-height: 800px; }
-.accordion-content-inner { padding: 0 16px 20px 52px; font-size: 0.95rem; color: var(--fg-muted); line-height: 1.6; border-top: 1px solid transparent; }
+.accordion-content-inner { padding: 0 16px 20px 52px; font-size: 1.1rem; color: var(--fg-muted); line-height: 1.6; border-top: 1px solid transparent; }
 
 .bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
 .bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; align-items: stretch; }
