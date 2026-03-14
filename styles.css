@@ -96,9 +96,9 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .bloque-content-wrapper { flex: 1; min-width: 0; }
 .bloque-emoji { font-size: 1.8rem; margin-right: 10px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1)); flex-shrink: 0; vertical-align: middle; display: inline-block; }
 .bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 700; color: var(--fg-ink); line-height: 1.2; display: inline; vertical-align: middle; }
-.bloque-subtitulo { display: block; font-size: 0.75rem; color: var(--fg-muted); font-style: italic; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bloque-subtitulo { display: block; font-size: 0.95rem; color: var(--fg-muted); font-style: italic; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bloque-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding-left: 12px; flex-shrink: 0; }
-.bloque-contador { background: rgba(0,0,0,0.05); color: var(--fg-muted); padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+.bloque-contador { background: rgba(0,0,0,0.05); color: var(--fg-muted); padding: 4px 10px; border-radius: 14px; font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
 .bloque-arrow { width: 28px; height: 28px; background: rgba(0,0,0,0.04); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
 .bloque-arrow svg { width: 16px; height: 16px; stroke: var(--fg-muted); transition: transform 0.3s ease; }
 .bloque-card.expanded .bloque-arrow { background: rgba(0,0,0,0.08); }
