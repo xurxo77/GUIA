@@ -1,3 +1,11 @@
+// ANTÍDOTO PARA ELIMINAR CACHÉ ANTIGUA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for (var registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
 // ===== CONTRASEÑA =====
 document.getElementById('splashForm').addEventListener('submit', function(e) {
   e.preventDefault();
