@@ -1595,3 +1595,19 @@ section#generador { min-height: auto; }
 .map-floating-close {
   display: none !important;
 }
+/* ==========================================
+   RESCATE DEFINITIVO DEL BOTÓN DE CERRAR
+   ========================================== */
+.map-fullscreen-header {
+  display: flex !important; /* Fuerza a que la cabecera SIEMPRE se vea en móvil */
+  z-index: 99999 !important; /* Lo pone por encima de cualquier otro elemento */
+}
+
+.map-fullscreen-close {
+  display: flex !important;
+  z-index: 99999 !important;
+}
+
+.map-floating-close {
+  display: none !important; /* Mantiene enterrado el botón fantasma que se superponía */
+}
