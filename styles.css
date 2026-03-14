@@ -1590,3 +1590,8 @@ section#generador { min-height: auto; }
 .route-btn { display: block; width: 100%; padding: 10px; background: var(--accent-gold); color: white; text-align: center; text-decoration: none; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 0.95rem; margin-top: 12px; }
 
 .route-btn:hover { background: #9a7209; }
+
+/* APAGAR EL BOTÓN FLOTANTE PROBLEMÁTICO */
+.map-floating-close {
+  display: none !important;
+}
