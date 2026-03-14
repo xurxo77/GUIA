@@ -1617,3 +1617,12 @@ section#generador { min-height: auto; }
 .map-floating-close {
   display: none !important; 
 }
+/* ==========================================
+   BLINDAJE INMORTAL DE LA "X" EN EL MAPA
+   ========================================== */
+.map-fullscreen-header {
+  display: flex !important;
+  flex-shrink: 0 !important;
+  min-height: 65px !important;
+  z-index: 999999 !important; /* Siempre por encima del mapa y las tarjetas */
+}
