@@ -168,7 +168,7 @@ section { padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; f
 .info-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 .info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .info-icon { font-size: 0.9rem; }
-.info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-green); }
+.info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent-green); }
 .info-text { font-size: 1.05rem; color: var(--fg-muted); line-height: 1.6; }
 .info-list { list-style: none; padding: 0; }
 .info-list li { position: relative; padding-left: 14px; margin-bottom: 6px; font-size: 1.05rem; color: var(--fg-muted); line-height: 1.5; }
