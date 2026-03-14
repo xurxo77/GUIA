@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Galicia Guía</title>
   <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a4a5e">
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <h1 class="hero-title">Galicia</h1>
-      <form id="splashForm">
-        <input type="password" id="passwordInput" class="splash-input" placeholder="Contraseña">
-        <div id="splashError" class="splash-error"></div>
+      <div class="splash-icon">🧭</div>
+      <h1 class="splash-title">Galicia</h1>
+      <p class="splash-subtitle">Nuestra guía personal</p>
+      <form class="splash-form" id="splashForm">
+        <input type="password" class="splash-input" id="passwordInput" placeholder="Contraseña" autocomplete="off">
+        <div class="splash-error" id="splashError"></div>
         <button type="submit" class="splash-btn">Entrar</button>
       </form>
     </div>
@@ -24,61 +31,119 @@
 
   <main class="main-content" id="mainContent">
     
-    <div id="tab-explorar" class="tab-content active">
-      <header class="hero">
+    <div id="tab-explorar" class="tab-pane active">
+      <header class="hero" id="inicio">
         <h1 class="hero-title">Galicia</h1>
         <p class="hero-subtitle">La ruta definitiva</p>
       </header>
+
       <section id="lugares">
+        <div class="section-header fade-in">
+          <div class="section-number">1</div>
+          <h2 class="section-title">Los Lugares</h2>
+        </div>
+        <div class="search-wrapper fade-in">
+          <input type="text" id="searchInput" placeholder="Buscar lugar o categoría...">
+        </div>
         <div id="placesContainer"></div>
+      </section>
+
+      <section id="ruta">
+        <div class="section-header fade-in">
+          <div class="section-number">2</div>
+          <h2 class="section-title">Crear Ruta</h2>
+        </div>
+        <div class="generator-box fade-in">
+          <div class="geo-section">
+            <div class="geo-header">
+              <div class="geo-info">
+                <div class="geo-title">Tu ubicación</div>
+                <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
+              </div>
+              <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
+            </div>
+          </div>
+          <div class="map-section">
+            <div class="map-container-wrapper">
+              <div id="map" class="map-container"></div>
+              <button class="map-expand-btn" onclick="openFullscreenMap()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="favoritesSection" class="favorites-section"></div>
+          <div class="selection-section">
+            <div class="selection-header">
+              <div class="selection-title">Lugares en tu ruta</div>
+              <div class="selection-stats" id="selectionStats">0 lugares · 0h</div>
+            </div>
+            <div id="selectionContent"></div>
+          </div>
+          <div id="itineraryResult" class="hidden"></div>
+        </div>
       </section>
     </div>
 
-    <div id="tab-consejos" class="tab-content">
-      <section style="padding-top: 40px;">
-        <h2 style="margin-left: 20px; margin-bottom: 20px;">Consejos de viaje</h2>
+    <div id="tab-consejos" class="tab-pane" style="padding-top: 40px; padding-bottom: 120px;">
+      <section>
+        <div class="section-header">
+          <div class="section-number">!</div>
+          <h2 class="section-title">Recomendaciones</h2>
+        </div>
         <div class="accordion-wrapper">
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
-            <div class="accordion-header">🚗 <span style="margin-left:10px; font-weight:bold;">Conducir por Galicia</span></div>
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="accordion-icon">🚗</span>
+              <h3 class="accordion-title">Conducir por Galicia</h3>
+              <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
             <div class="accordion-content">
-              <p class="info-text">Las distancias engañan. Hay muchas curvas y cuestas.</p>
+              <div class="accordion-content-inner">
+                <p class="info-text">Las distancias engañan. Hay muchas curvas y cuestas.</p>
+                <ul class="info-list">
+                  <li>Usa GPS actualizado.</li>
+                  <li>Cuidado con la niebla en zonas altas.</li>
+                  <li>Aparcar en centros históricos es difícil.</li>
+                </ul>
+              </div>
             </div>
           </div>
           </div>
       </section>
     </div>
-
-    <div id="tab-ruta" class="tab-content">
-      <section style="padding-top: 40px;">
-        <h2 style="margin-left: 20px;">Tu Hoja de Ruta</h2>
-        <div id="map" class="map-container" style="margin: 20px;"></div>
-        <div id="selectionContent"></div>
-      </section>
-    </div>
-
   </main>
+
+  <div class="map-fullscreen" id="mapFullscreen">
+    <div class="map-fullscreen-header">
+      <div class="map-fullscreen-title">Selecciona lugares</div>
+      <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="map-fullscreen-map" id="mapFullscreenMap"></div>
+  </div>
 
   <nav class="bottom-menu">
     <div class="menu-container">
-      <a href="javascript:void(0)" class="menu-item active" onclick="showTab('tab-explorar', this)">
+      <a href="javascript:void(0)" class="menu-item active" onclick="switchTab('explorar')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         <span>Inicio</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-consejos', this)">
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('consejos')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         <span>Consejos</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-explorar', this); document.getElementById('lugares').scrollIntoView();">
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('lugares').scrollIntoView({behavior:'smooth'}),100)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span>Lugares</span>
       </a>
-      <a href="javascript:void(0)" class="menu-item" onclick="showTab('tab-ruta', this)">
+      <a href="javascript:void(0)" class="menu-item" onclick="switchTab('explorar'); setTimeout(()=>document.getElementById('ruta').scrollIntoView({behavior:'smooth'}),100)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
         <span>Ruta</span>
       </a>
     </div>
   </nav>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
