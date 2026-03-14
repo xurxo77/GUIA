@@ -90,7 +90,7 @@
       <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Tu ruta</h2></div>
     <div class="generator-box fade-in" style="margin-top:20px">
         
-        <div class="map-section">
+<div class="map-section">
           <div class="map-container-wrapper">
             <div id="map" class="map-container" style="min-height: 450px;"></div>
             <button class="map-expand-btn" onclick="openFullscreenMap()" aria-label="Expandir mapa">
@@ -102,7 +102,23 @@
           </p>
         </div>
 
+        <div class="geo-section" style="margin-top: 16px;">
+          <div class="geo-header">
+            <div class="geo-info">
+              <div class="geo-title">Tu ubicación</div>
+              <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
+            </div>
+            <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
+          </div>
+        </div>
+
         <div class="selection-section" style="margin-top: 24px;">
+          <div class="selection-header">
+            <span class="selection-title">Tu selección</span>
+            <span class="selection-stats" id="selectionStats">0 lugares · 0h</span>
+          </div>
+          <div id="selectionContent"></div>
+        </div>
           <div class="selection-header">
             <span class="selection-title">Tu selección</span>
             <span class="selection-stats" id="selectionStats">0 lugares · 0h</span>
