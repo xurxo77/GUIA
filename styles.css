@@ -1591,38 +1591,29 @@ section#generador { min-height: auto; }
 
 .route-btn:hover { background: #9a7209; }
 
-/* APAGAR EL BOTÓN FLOTANTE PROBLEMÁTICO */
+/* ==========================================
+   SOLUCIÓN DEFINITIVA: MAPA FULLSCREEN 
+   ========================================== */
+
+/* 1. Enterramos el botón flotante fantasma */
 .map-floating-close {
   display: none !important;
 }
-/* ==========================================
-   BLINDAJE ABSOLUTO DE LA CABECERA (ANTI-APLASTAMIENTO)
-   ========================================== */
+
+/* 2. Blindamos la cabecera para que ni crezca ni se encoja */
 .map-fullscreen-header {
   display: flex !important;
-  position: absolute !important; /* Lo sacamos del cálculo y lo fijamos arriba */
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 99999 !important;
-  background: var(--bg-cream) !important; /* Mantiene el fondo para no ser transparente */
+  flex: 0 0 auto !important; 
+  z-index: 999999 !important;
 }
 
-/* Empujamos el mapa hacia abajo para que no quede tapado por la cabecera anclada */
+/* 3. El truco maestro: obligamos al mapa a absorber los cambios de tamaño */
 .map-fullscreen-map {
-  margin-top: 65px !important; 
+  flex: 1 1 auto !important;
+  min-height: 0 !important; /* CRÍTICO: Esto evita que empuje la cabecera hacia arriba */
 }
 
-/* Seguimos manteniendo enterrado el botón flotante que estorbaba */
-.map-floating-close {
-  display: none !important; 
-}
-/* ==========================================
-   BLINDAJE INMORTAL DE LA "X" EN EL MAPA
-   ========================================== */
-.map-fullscreen-header {
-  display: flex !important;
-  flex-shrink: 0 !important;
-  min-height: 65px !important;
-  z-index: 999999 !important; /* Siempre por encima del mapa y las tarjetas */
+/* 4. Blindamos el footer para que se expanda hacia arriba, no empujando el resto */
+.map-fullscreen-footer {
+  flex: 0 0 auto !important;
 }
