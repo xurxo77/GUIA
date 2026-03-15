@@ -1966,88 +1966,63 @@ section#generador { min-height: auto; }
 
 /* Si la tarjeta está expandida, ocultamos el botón o lo cambiamos */
 .guide-card.expanded .guide-expand-btn { display: none; }
-/* SECCIÓN RECOMENDACIONES */
-.recommendations-section {
-  padding: 40px 20px;
-  background: var(--bg-color);
-}
+/* ==========================================
+   ARREGLO: FOTOS DE CATEGORÍA 100% RESPONSIVE
+   ========================================== */
 
 .category-row {
   margin-bottom: 32px;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden; /* Evita que nada sobresalga por los lados */
 }
 
-/* Imagen destacada de la categoría */
+/* El contenedor de la foto */
 .category-header {
   position: relative;
+  width: 100% !important;
+  height: 140px !important;
   border-radius: 12px;
   overflow: hidden;
-  height: 140px;
-  margin-bottom: 16px;
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
+  box-sizing: border-box !important;
 }
 
+/* La foto "hero" de la categoría */
 .category-hero-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.7); /* Oscurece un poco para que el texto resalte */
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Corta la foto para que rellene el hueco sin deformarse */
+  filter: brightness(0.65);
   z-index: 1;
+  pointer-events: none; /* Evita que la imagen interfiera con el scroll */
 }
 
 .category-name {
   position: relative;
   z-index: 2;
   color: white;
-  margin-left: 16px;
-  font-size: 1.5rem;
+  margin-left: 20px;
+  font-size: 1.4rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  pointer-events: none;
 }
 
-/* Carrusel Horizontal */
+/* Ajuste del carrusel para que no empuje el ancho de la página */
 .horizontal-scroll {
-  display: flex;
-  overflow-x: auto;
+  display: flex !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
   gap: 12px;
-  padding-bottom: 8px;
-  scrollbar-width: none; /* Oculta scroll en Firefox */
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-  display: none; /* Oculta scroll en Chrome/Safari */
-}
-
-/* Tarjetas */
-.rec-card {
-  flex: 0 0 160px; /* Ancho fijo de la tarjeta */
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  border: 1px solid #eee;
-  transition: transform 0.2s;
-}
-
-.rec-card:active {
-  transform: scale(0.95);
-}
-
-.rec-icon {
-  font-size: 1.5rem;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.rec-card h4 {
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-  color: var(--fg-color);
-}
-
-.rec-card p {
-  font-size: 0.8rem;
-  color: var(--fg-muted);
-  line-height: 1.3;
+  padding: 4px 0 12px 0;
+  width: 100% !important;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  scrollbar-width: none;
 }
