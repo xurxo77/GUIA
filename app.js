@@ -927,3 +927,12 @@ window.togglePlaceFromPopup = function(id) {
   if (mapFullscreen) mapFullscreen.closePopup();
   if (typeof updateFullscreenUI === 'function') updateFullscreenUI();
 };
+function toggleGuide(id) {
+    var card = document.getElementById(id);
+    if (!card) return;
+    
+    // Si quieres que solo haya uno abierto a la vez, descomenta la línea de abajo:
+    // document.querySelectorAll('.guide-card.expanded').forEach(function(x) { if(x.id !== id) x.classList.remove('expanded'); });
+    
+    card.classList.toggle('expanded');
+}
