@@ -32,19 +32,7 @@ document.getElementById('splashForm').addEventListener('submit', function(e) {
   }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (localStorage.getItem('galicia_auth') === 'true') {
-    document.getElementById('splashScreen').classList.add('hidden');
-    document.getElementById('mainContent').classList.add('visible');
-    ;
-  } else {
-    // Foco automático al cargar si no está logueado
-    setTimeout(function() { 
-      var input = document.getElementById('passwordInput');
-      if(input) input.focus(); 
-    }, 100);
-  }
-});
+DOMContentLoaded
 
 // ===== VARIABLES GLOBALES =====
 var map = null, mapFullscreen = null, markers = {}, fullscreenMarkers = {};
