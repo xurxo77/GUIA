@@ -387,3 +387,40 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   margin: 0 !important;
   font-weight: 700 !important;
 }
+/* --- TOQUES MÁGICOS: RECOMENDACIONES PREMIUM --- */
+
+/* 1. Preparar el contenedor para el efecto de niebla */
+.category-row {
+  position: relative !important;
+}
+
+/* Efecto "Niebla" derecha (Sigue deslizando) */
+.category-row::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 116px !important; /* Empieza justo debajo de la foto cabecera */
+  right: 0 !important;
+  width: 50px !important;
+  height: calc(100% - 116px) !important; /* Cubre solo la zona de las tarjetas */
+  background: linear-gradient(to right, rgba(255,255,255,0), var(--bg-paper)) !important;
+  pointer-events: none !important; /* Para que el dedo pase a través y puedas hacer scroll */
+  z-index: 5 !important;
+}
+
+/* 2. Efecto Elevación (Levitan al tocarlas/pasar el ratón) */
+.rec-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  cursor: grab !important; /* Cambia el cursor para indicar que se mueve */
+}
+
+.rec-card:hover, .rec-card:active {
+  transform: translateY(-6px) !important; /* Se eleva 6 milímetros */
+  box-shadow: 0 12px 24px rgba(44, 36, 22, 0.15) !important; /* Sombra más grande */
+  border-color: var(--border-card) !important; /* El borde se oscurece un poco */
+}
+
+/* 3. Títulos más clásicos (Tipo revista) */
+.rec-card h4 {
+  font-size: 1.2rem !important;
+  letter-spacing: 0.5px !important; /* Un poco más de aire entre las letras */
+}
