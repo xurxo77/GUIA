@@ -269,115 +269,118 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .hidden { display: none !important; }
 
 
-/* --- REVOLUCIÓN: RECOMENDACIONES TIPO APP NATIVA (AIRBNB/APPLE) --- */
+/* --- REVOLUCIÓN EDITORIAL: GUÍA DE VIAJE PREMIUM --- */
 
-/* 1. La Fila: Cada categoría es una "isla" independiente, limpia y blanca */
+/* 1. Limpiar el contenedor (fuera cajas y sombras raras) */
 .category-row {
-  background: #ffffff !important;
-  border-radius: 24px !important;
-  padding: 20px 0 10px 0 !important;
-  margin-bottom: 32px !important;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.04) !important; /* Sombra amplísima y muy suave */
-  border: 1px solid rgba(0,0,0,0.03) !important;
-  position: relative !important;
-}
-
-/* 2. El Banner: Tipo "Pill" de alto contraste, vibrante y moderno */
-.category-hero-card {
-  height: 65px !important; /* Más fino, no roba espacio */
-  background: linear-gradient(135deg, var(--accent-sea) 0%, #2a6a85 100%) !important;
+  background: transparent !important;
   border: none !important;
-  border-radius: 16px !important;
-  margin: 0 20px 20px 20px !important;
-  width: calc(100% - 40px) !important;
-  box-shadow: 0 8px 20px rgba(26, 74, 94, 0.25) !important;
+  box-shadow: none !important;
+  margin-bottom: 40px !important;
+  padding: 0 !important;
+}
+.category-row::after {
+  display: none !important; /* Quitamos la niebla antigua */
 }
 
-/* Imagen integrada como textura casi invisible */
+/* 2. Fuera fotos genéricas. Título 100% editorial, gigante y elegante */
+.category-hero-card {
+  height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 20px 16px 20px !important;
+  width: auto !important;
+}
+
 .category-hero-card img {
-  opacity: 0.1 !important;
-  mix-blend-mode: overlay !important;
-  filter: grayscale(100%) contrast(150%) !important;
+  display: none !important; /* Magia: Escondemos la foto para que no estorbe */
 }
 
-/* Texto de cabecera: Blanco, crujiente, alineado a la izquierda */
 .category-overlay {
+  position: relative !important;
+  padding: 0 !important;
   background: transparent !important;
   justify-content: flex-start !important;
-  padding: 0 24px !important;
 }
 
 .category-overlay h3 {
-  color: #ffffff !important;
-  font-size: 1.3rem !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 2.4rem !important; /* Letra espectacularmente grande */
+  color: var(--accent-sea) !important;
   font-weight: 700 !important;
-  letter-spacing: 0.5px !important;
+  margin: 0 !important;
   text-shadow: none !important;
+  letter-spacing: -0.5px !important;
 }
 
-/* 3. El Carrusel: Dinámico y sin barras */
+/* Subrayado joya (Dorado) debajo del título */
+.category-overlay h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--border-card);
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+/* 3. El Carrusel: Limpio y natural */
 .horizontal-scroll {
-  padding: 0 20px 24px 20px !important;
-  gap: 16px !important;
-  scroll-snap-type: x mandatory !important; 
-  -webkit-overflow-scrolling: touch !important;
+  padding: 10px 20px 40px 20px !important;
+  gap: 20px !important;
+  scroll-snap-type: x mandatory !important;
 }
 
-.horizontal-scroll::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* 4. Las Tarjetas: Minimalismo puro, sin bordes feos */
+/* 4. Las Tarjetas: Diseño "Boutique" (Papel físico) */
 .rec-card {
-  flex: 0 0 250px !important;
-  background: var(--bg-cream) !important; /* Contraste sutil con la isla blanca */
-  border: none !important;
-  border-radius: 20px !important; /* Súper redondas y amables */
-  padding: 24px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.4s ease !important;
+  flex: 0 0 280px !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(139, 115, 85, 0.2) !important; /* Borde muy sutil color arena */
+  border-radius: 12px !important; /* Curva suave, menos redonda, más elegante */
+  padding: 32px 24px !important; /* Mucho aire interior */
+  box-shadow: 0 12px 30px rgba(44, 36, 22, 0.05) !important; /* Sombra amplísima y difusa */
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  scroll-snap-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: center !important;
-  scroll-snap-align: start !important;
+  justify-content: flex-start !important;
 }
 
-/* Efecto Muelle Wow: Al tocar, saltan y se iluminan */
+/* Detalle premium: línea azul superior en la tarjeta */
+.rec-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-sea);
+}
+
+/* Interacción táctil súper suave */
 .rec-card:hover, .rec-card:active {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: 0 16px 32px rgba(0,0,0,0.08) !important;
-  background: #ffffff !important; 
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 40px rgba(44, 36, 22, 0.12) !important;
+  border-color: var(--accent-sea) !important;
 }
 
-/* 5. Tipografía de las tarjetas: Directa y legible */
+/* 5. Textos de la tarjeta: Título clásico, cuerpo moderno */
 .rec-card h4 {
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 1.15rem !important;
-  font-weight: 700 !important;
-  color: var(--accent-sea) !important;
-  margin: 0 0 8px 0 !important;
-  border-bottom: none !important; /* Fuera rayas */
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.4rem !important;
+  color: var(--fg-ink) !important;
+  margin: 0 0 16px 0 !important;
   line-height: 1.3 !important;
+  font-weight: 700 !important;
 }
 
 .rec-card p {
-  font-size: 0.95rem !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1rem !important;
   color: var(--fg-muted) !important;
   line-height: 1.6 !important;
   margin: 0 !important;
-}
-
-/* Efecto niebla lateral derecho para indicar que hay más tarjetas */
-.category-row::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 85px !important; 
-  right: 0 !important;
-  width: 40px !important;
-  height: calc(100% - 85px) !important; 
-  background: linear-gradient(to right, rgba(255,255,255,0), #ffffff) !important;
-  pointer-events: none !important; 
-  z-index: 5 !important;
-  border-radius: 0 24px 24px 0 !important;
 }
