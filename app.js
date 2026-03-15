@@ -588,50 +588,43 @@ function toggleProvinceAccordion(id) {
   }
 }
 
-// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN TODOTERRENO) =====
 window.generateItinerary = function() {
   if (selectedPlaces.length === 0) {
-    alert('Selecciona al menos un lugar en el mapa para crear tu ruta.');
+    alert('Selecciona al menos un lugar para crear tu ruta.');
     return;
   }
 
-  // URL moderna y oficial de rutas de Google Maps
-  let googleMapsUrl = "https://www.google.com/maps/dir/";
-  let paradas = [];
+  // URL estándar de Google Maps para navegación
+  let baseUrl = "https://www.google.com/maps/dir/?api=1";
+  let origin = "";
+  let stops = [];
 
-  // Añadimos el GPS del usuario si está activo
-  if (typeof userLocation !== 'undefined' && userLocation !== null && userLocation.lat) {
-    paradas.push(userLocation.lat + "," + userLocation.lng);
+  // 1. Añadimos el GPS del usuario como punto de partida si está activo
+  if (userLocation && userLocation.lat) {
+    origin = "&origin=" + userLocation.lat + "," + userLocation.lng;
+  } else {
+    // Si no hay GPS, el primer lugar seleccionado será el origen
+    let firstId = selectedPlaces[0];
+    let firstPlace = lugares.find(l => l.id == firstId);
+    origin = "&origin=" + firstPlace.lat + "," + firstPlace.lng;
   }
 
-  // Buscamos cada lugar
+  // 2. Recopilamos las coordenadas de los lugares seleccionados
   selectedPlaces.forEach(function(id) {
-    // Usamos == (dos iguales) para evitar fallos si uno es texto y otro número
-    let lugar = lugares.find(l => l.id == id);
-    
-    if (lugar) {
-      // Rastreamos las coordenadas en todos los formatos posibles
-      if (lugar.coords && lugar.coords.length >= 2) {
-        paradas.push(lugar.coords[0] + "," + lugar.coords[1]); // Formato array [lat, lng]
-      } 
-      else if (lugar.lat && lugar.lng) {
-        paradas.push(lugar.lat + "," + lugar.lng); // Formato lat: X, lng: Y
-      } 
-      else if (lugar.latitud && lugar.longitud) {
-        paradas.push(lugar.latitud + "," + lugar.longitud); // Formato en español
-      }
-    }
+    let l = lugares.find(x => x.id == id);
+    if (l) stops.push(l.lat + "," + l.lng);
   });
 
-  // Si después de buscar en todos los formatos sigue vacía, lanzamos la alerta
-  if (paradas.length === 0) {
-    alert('No se pudieron encontrar las coordenadas de los lugares.');
-    return;
-  }
+  // 3. El último será el destino final
+  let destination = stops.pop();
+  
+  // 4. Los intermedios van como "waypoints"
+  let waypoints = stops.length > 0 ? "&waypoints=" + stops.join('|') : "";
 
-  // Juntamos las paradas separadas por "/" y abrimos
-  googleMapsUrl += paradas.join("/");
-  window.open(googleMapsUrl, '_blank');
+  // Montamos la URL final
+  let finalUrl = baseUrl + origin + "&destination=" + destination + waypoints + "&travelmode=driving";
+  
+  window.open(finalUrl, '_blank');
 };
 function calculateRoute(places, fromUser) {
   return new Promise(function(resolve) {
