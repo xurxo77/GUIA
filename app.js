@@ -930,9 +930,9 @@ window.togglePlaceFromPopup = function(id) {
 function toggleGuide(id) {
     var card = document.getElementById(id);
     if (!card) return;
-    
-    // Si quieres que solo haya uno abierto a la vez, descomenta la línea de abajo:
-    // document.querySelectorAll('.guide-card.expanded').forEach(function(x) { if(x.id !== id) x.classList.remove('expanded'); });
-    
+    // Cierra los demás para ahorrar scroll
+    document.querySelectorAll('.guide-card.expanded').forEach(function(x) { 
+        if(x.id !== id) x.classList.remove('expanded'); 
+    });
     card.classList.toggle('expanded');
 }
