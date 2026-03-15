@@ -2026,90 +2026,101 @@ section#generador { min-height: auto; }
   -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
   scrollbar-width: none;
 }
-/* SECCIÓN RECOMENDACIONES */
-.recommendations-section {
-  padding: 40px 0; /* Quitamos padding lateral para que el scroll llegue al borde */
-  background: var(--bg-color);
-}
-
-.section-title, .section-subtitle {
+/* TÍTULO CON CÍRCULO */
+.section-header-container {
   padding: 0 20px;
+  margin-bottom: 24px;
 }
 
-.category-row {
-  margin-bottom: 40px;
-  width: 100%;
+.circle-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--accent-sea, #0077b6); /* Usa tu color de acento */
+  color: white;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
-/* Cabecera de Categoría (La foto grande) */
-.category-header {
+/* TARJETA DE IMAGEN CATEGORÍA */
+.category-hero-card {
   position: relative;
   width: calc(100% - 40px);
   margin: 0 20px 16px 20px;
-  height: 150px;
+  height: 160px;
   border-radius: 16px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.category-hero-img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+.category-hero-card img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: brightness(0.6); /* Oscurece para leer el título */
-  z-index: 1;
 }
 
-.category-name {
-  position: relative;
-  z-index: 2;
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.category-overlay h3 {
   color: white;
-  padding: 0 20px;
-  font-size: 1.6rem;
+  margin: 0;
+  font-size: 1.4rem;
   font-weight: 800;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Carrusel Horizontal */
+/* CAROUSEL HORIZONTAL */
 .horizontal-scroll {
   display: flex;
   overflow-x: auto;
   gap: 12px;
-  padding: 0 20px 10px 20px; /* Padding izquierdo para alinear con la foto */
-  scrollbar-width: none; /* Firefox */
+  padding: 0 20px 20px 20px;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 
 .horizontal-scroll::-webkit-scrollbar { display: none; }
 
-/* Tarjetas Pequeñas */
+/* TARJETAS DE RECOMENDACIÓN */
 .rec-card {
-  flex: 0 0 160px; /* Ancho fijo */
+  flex: 0 0 240px; /* Un poco más anchas para que el texto fluya mejor */
   background: white;
-  padding: 16px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
 }
 
 .rec-icon {
-  font-size: 1.6rem;
-  margin-bottom: 8px;
-  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
 }
 
 .rec-card h4 {
-  font-size: 1rem;
-  margin-bottom: 6px;
-  color: var(--fg-color);
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
   font-weight: 700;
+  color: var(--fg-color, #333);
 }
 
 .rec-card p {
-  font-size: 0.85rem;
-  color: var(--fg-muted);
-  line-height: 1.4;
   margin: 0;
+  font-size: 0.9rem;
+  color: var(--fg-muted, #666);
+  line-height: 1.5;
+  white-space: normal; /* Asegura que el texto largo salte de línea */
 }
