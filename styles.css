@@ -1966,3 +1966,88 @@ section#generador { min-height: auto; }
 
 /* Si la tarjeta está expandida, ocultamos el botón o lo cambiamos */
 .guide-card.expanded .guide-expand-btn { display: none; }
+/* SECCIÓN RECOMENDACIONES */
+.recommendations-section {
+  padding: 40px 20px;
+  background: var(--bg-color);
+}
+
+.category-row {
+  margin-bottom: 32px;
+}
+
+/* Imagen destacada de la categoría */
+.category-header {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 140px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.category-hero-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Oscurece un poco para que el texto resalte */
+  z-index: 1;
+}
+
+.category-name {
+  position: relative;
+  z-index: 2;
+  color: white;
+  margin-left: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Carrusel Horizontal */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scrollbar-width: none; /* Oculta scroll en Firefox */
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+/* Tarjetas */
+.rec-card {
+  flex: 0 0 160px; /* Ancho fijo de la tarjeta */
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  transition: transform 0.2s;
+}
+
+.rec-card:active {
+  transform: scale(0.95);
+}
+
+.rec-icon {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.rec-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--fg-color);
+}
+
+.rec-card p {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  line-height: 1.3;
+}
