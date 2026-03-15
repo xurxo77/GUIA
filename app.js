@@ -134,7 +134,6 @@ function initApp() {
   initAnimations(); 
   renderPlaces(); 
   renderPlacesList();
-  initCarousels(); 
   initBottomMenu(); 
   initMap(); 
   checkSavedLocation(); 
