@@ -110,3 +110,23 @@ section { padding: 50px 20px; max-width: 680px; margin: 0 auto; }
 .custom-marker { background: var(--accent-sea); color: white; border: 2px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
 .custom-marker.touchable { width: 44px; height: 44px; font-size: 18px; }
 .custom-marker.selected-ring { background: var(--accent-red); border: 3px solid var(--accent-gold); transform: scale(1.1); }
+/* 1. ARREGLO BOTONES ENORMES */
+.btn-primary, .btn-secondary {
+  width: auto !important;
+  padding: 10px 24px !important;
+  font-size: 0.95rem !important;
+  margin: 12px auto !important;
+  display: block !important;
+  border-radius: 8px !important;
+}
+
+/* 2. ARREGLO COLOR ILEGIBLE POPUP MAPA */
+.popup-btn {
+  color: white !important;
+  border: none !important;
+  padding: 8px 14px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  width: 100% !important;
+}
