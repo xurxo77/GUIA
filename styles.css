@@ -267,3 +267,78 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
 .hidden { display: none !important; }
+
+
+/* --- MEJORA SECCIÓN RECOMENDACIONES (CARRUSEL ELEGANTE) --- */
+
+/* 1. Contenedor: Efecto carrusel real magnético */
+.horizontal-scroll {
+  display: flex !important;
+  overflow-x: auto !important;
+  padding: 10px 20px 30px 20px !important; /* Espacio para que respire la sombra */
+  gap: 16px !important;
+  scroll-snap-type: x mandatory !important; /* El imán */
+  scroll-padding-left: 20px !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Ocultar barra de scroll en navegadores que aún la muestren */
+.horizontal-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 2. Tarjetas: Mismo diseño elegante que los lugares */
+.rec-card {
+  flex: 0 0 280px !important; /* Tamaño exacto para que asome la siguiente tarjeta y sepas que puedes deslizar */
+  background: var(--bg-card) !important;
+  padding: 20px 20px 24px 20px !important;
+  border-radius: 12px !important;
+  border: 2px solid var(--border-aged) !important;
+  box-shadow: 0 6px 16px var(--shadow-warm) !important;
+  scroll-snap-align: start !important; /* Aquí es donde se frena la tarjeta */
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+/* Línea decorativa superior */
+.rec-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-sea);
+}
+
+/* 3. Textos: Tipografía premium */
+.rec-card h4 {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-sea) !important;
+  margin: 0 0 10px 0 !important;
+  letter-spacing: 0.5px;
+}
+
+.rec-card p {
+  font-size: 0.95rem !important;
+  color: var(--fg-muted) !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+/* 4. Tarjeta de cabecera con la imagen */
+.category-hero-card {
+  border: 2px solid var(--border-aged) !important;
+  box-shadow: 0 4px 16px var(--shadow-warm) !important;
+}
+
+.category-overlay h3 {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.7rem !important;
+  letter-spacing: 0.5px;
+}
