@@ -2115,3 +2115,41 @@ img {
   display: block;
   text-align: center !important; /* CENTRADO DEL TEXTO */
 }
+/* ==========================================
+   ESTILO UNIFICADO DE CABECERAS (1, 2 y 3)
+   ========================================== */
+
+/* Alineación de la cabecera */
+.section-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important; /* Cambia a center si prefieres todo centrado */
+  margin-bottom: 8px !important;
+  gap: 12px;
+}
+
+/* El círculo del número (Unificado para todas) */
+.section-number {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid #1a3a4a !important; /* Borde fino */
+  background: transparent !important;
+  color: #1a3a4a !important;
+  border-radius: 50% !important;
+  font-family: sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  flex-shrink: 0 !important;
+}
+
+/* El título de la sección */
+.section-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  color: #1a3a4a !important;
+  margin: 0 !important;
+}
