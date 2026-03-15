@@ -132,7 +132,6 @@ var lugares = [
 function initApp() { 
   loadFavorites();
   initAnimations(); 
-  renderPlaces(); 
   renderPlacesList();
   initBottomMenu(); 
   initMap(); 
@@ -330,7 +329,6 @@ function updateSelectionUI() {
     content.innerHTML = html;
   }
   
-  renderPlacesList();
 }
 
 function clearSelection() {
