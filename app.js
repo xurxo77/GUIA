@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('galicia_auth') === 'true') {
     document.getElementById('splashScreen').classList.add('hidden');
     document.getElementById('mainContent').classList.add('visible');
-    initApp();
+    ;
   } else {
     // Foco automático al cargar si no está logueado
     setTimeout(function() { 
@@ -133,7 +133,6 @@ function initApp() {
   loadFavorites();
   initAnimations(); 
   renderPlaces(); 
-  renderPlacesList();
   initBottomMenu(); 
   initMap(); 
   checkSavedLocation(); 
@@ -330,8 +329,6 @@ function updateSelectionUI() {
     content.innerHTML = html;
   }
   
-  renderPlacesList();
-}
 
 function clearSelection() {
   selectedPlaces = [];
