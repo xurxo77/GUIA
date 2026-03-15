@@ -269,87 +269,88 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .hidden { display: none !important; }
 
 
-/* --- REVOLUCIÓN EDITORIAL: GUÍA DE VIAJE PREMIUM --- */
+/* --- DISEÑO ACORDEÓN DE RECOMENDACIONES (COLORES PASTEL) --- */
 
-/* 1. Limpiar el contenedor (fuera cajas y sombras raras) */
+/* 1. Cajas de categorías (Animadas al hacer scroll) */
 .category-row {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin-bottom: 40px !important;
-  padding: 0 !important;
-}
-.category-row::after {
-  display: none !important; /* Quitamos la niebla antigua */
-}
-
-/* 2. Fuera fotos genéricas. Título 100% editorial, gigante y elegante */
-.category-hero-card {
-  height: auto !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin: 0 20px 16px 20px !important;
-  width: auto !important;
+  border-radius: 16px !important;
+  margin-bottom: 20px !important;
+  border: 2px solid var(--border-aged) !important;
+  overflow: hidden !important; 
+  box-shadow: 0 4px 16px var(--shadow-warm) !important;
+  transition: all 0.3s ease !important;
+  background: transparent !important; /* Limpiamos fondos viejos */
 }
 
-.category-hero-card img {
-  display: none !important; /* Magia: Escondemos la foto para que no estorbe */
+/* Colores de fondo de cada acordeón */
+.category-row.cat-clima { background-color: #f0f5f9 !important; border-color: #d2e3ee !important; }
+.category-row.cat-comer { background-color: #fff9f0 !important; border-color: #fce3ca !important; }
+.category-row.cat-disfrutar { background-color: #f1f7f3 !important; border-color: #d4ebd9 !important; }
+
+/* 2. Cabecera clicable */
+.category-header {
+  padding: 20px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-.category-overlay {
-  position: relative !important;
-  padding: 0 !important;
-  background: transparent !important;
-  justify-content: flex-start !important;
-}
-
-.category-overlay h3 {
+.category-header h3 {
   font-family: 'Playfair Display', serif !important;
-  font-size: 2.4rem !important; /* Letra espectacularmente grande */
-  color: var(--accent-sea) !important;
-  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  color: var(--fg-ink) !important;
   margin: 0 !important;
   text-shadow: none !important;
-  letter-spacing: -0.5px !important;
 }
 
-/* Subrayado joya (Dorado) debajo del título */
-.category-overlay h3::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--border-card);
-  margin-top: 12px;
-  border-radius: 2px;
+/* Flecha del acordeón */
+.category-arrow {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(0,0,0,0.05) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.4s ease !important;
+}
+.category-arrow svg { width: 18px !important; height: 18px !important; stroke: var(--fg-ink) !important; }
+
+/* Giro de la flecha al expandir */
+.category-row.expanded .category-arrow { transform: rotate(180deg) !important; background: var(--accent-sea) !important; }
+.category-row.expanded .category-arrow svg { stroke: white !important; }
+
+/* 3. Contenido desplegable (Animación de altura) */
+.category-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.category-row.expanded .category-content {
+  max-height: 1200px; /* Suficiente para las tarjetas */
 }
 
-/* 3. El Carrusel: Limpio y natural */
+/* 4. Carrusel y Tarjetas Blancas sobre fondo de color */
 .horizontal-scroll {
-  padding: 10px 20px 40px 20px !important;
-  gap: 20px !important;
+  padding: 0 20px 24px 20px !important;
+  gap: 16px !important;
   scroll-snap-type: x mandatory !important;
 }
 
-/* 4. Las Tarjetas: Diseño "Boutique" (Papel físico) */
 .rec-card {
-  flex: 0 0 280px !important;
-  background: #ffffff !important;
-  border: 1px solid rgba(139, 115, 85, 0.2) !important; /* Borde muy sutil color arena */
-  border-radius: 12px !important; /* Curva suave, menos redonda, más elegante */
-  padding: 32px 24px !important; /* Mucho aire interior */
-  box-shadow: 0 12px 30px rgba(44, 36, 22, 0.05) !important; /* Sombra amplísima y difusa */
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  flex: 0 0 260px !important;
+  background: #ffffff !important; /* Tarjeta blanca impecable */
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  border-radius: 12px !important;
+  padding: 24px 20px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
   scroll-snap-align: center !important;
   position: relative !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
 }
 
-/* Detalle premium: línea azul superior en la tarjeta */
+/* Decoración superior en la tarjeta */
 .rec-card::before {
   content: '';
   position: absolute;
@@ -358,29 +359,19 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   width: 100%;
   height: 4px;
   background: var(--accent-sea);
+  opacity: 0.8;
 }
 
-/* Interacción táctil súper suave */
-.rec-card:hover, .rec-card:active {
-  transform: translateY(-6px) !important;
-  box-shadow: 0 20px 40px rgba(44, 36, 22, 0.12) !important;
-  border-color: var(--accent-sea) !important;
-}
-
-/* 5. Textos de la tarjeta: Título clásico, cuerpo moderno */
 .rec-card h4 {
   font-family: 'Playfair Display', serif !important;
-  font-size: 1.4rem !important;
-  color: var(--fg-ink) !important;
-  margin: 0 0 16px 0 !important;
-  line-height: 1.3 !important;
-  font-weight: 700 !important;
+  font-size: 1.25rem !important;
+  color: var(--accent-sea) !important;
+  margin: 0 0 10px 0 !important;
 }
 
 .rec-card p {
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 1rem !important;
+  font-size: 0.95rem !important;
   color: var(--fg-muted) !important;
-  line-height: 1.6 !important;
+  line-height: 1.5 !important;
   margin: 0 !important;
 }
