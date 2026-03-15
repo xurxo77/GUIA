@@ -1,52 +1,52 @@
 :root {
 
-  --bg-paper: #ffffff;
+  --bg-paper: #ffffff;
 
-  --bg-cream: #faf8f5;
+  --bg-cream: #faf8f5;
 
-  --bg-card: #f5f3ee;
+  --bg-card: #f5f3ee;
 
-  --fg-ink: #2c2416;
+  --fg-ink: #2c2416;
 
-  --fg-muted: #5a4d3a;
+  --fg-muted: #5a4d3a;
 
-  --accent-sea: #1a4a5e;
+  --accent-sea: #1a4a5e;
 
-  --accent-gold: #1a1918ff;
+  --accent-gold: #1a1918ff;
 
-  --accent-green: #3d5a47;
+  --accent-green: #3d5a47;
 
-  --accent-red: #c45a3f;
+  --accent-red: #c45a3f;
 
-  --border-aged: #e0d8c8;
+  --border-aged: #e0d8c8;
 
-  --border-card: #8b7355;
+  --border-card: #8b7355;
 
-  --shadow-warm: rgba(44, 36, 22, 0.1);
+  --shadow-warm: rgba(44, 36, 22, 0.1);
 
-  --bloque-acoruna: #3a7ca5;
+  --bloque-acoruna: #3a7ca5;
 
-  --bloque-lugo: #4a8c5a;
+  --bloque-lugo: #4a8c5a;
 
-  --bloque-ourense: #c47a3a;
+  --bloque-ourense: #c47a3a;
 
-  --bloque-pontevedra: #2a8a8a;
+  --bloque-pontevedra: #2a8a8a;
 
-  --cat-ciudades: #8b5a2b;
+  --cat-ciudades: #8b5a2b;
 
-  --cat-villas: #6b8e4a;
+  --cat-villas: #6b8e4a;
 
-  --cat-pueblos: #4a7a8e;
+  --cat-pueblos: #4a7a8e;
 
-  --cat-costa: #c47a3a;
+  --cat-costa: #c47a3a;
 
-  --cat-naturaleza: #4a9a6a;
+  --cat-naturaleza: #4a9a6a;
 
-  --cat-patrimonio: #8a6a9a;
+  --cat-patrimonio: #8a6a9a;
 
-  --cat-magicos: #9a4a6a;
+  --cat-magicos: #9a4a6a;
 
-  --cat-termalismo: #4a8a9a;
+  --cat-termalismo: #4a8a9a;
 
 }
 
@@ -60,9 +60,9 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type
 
 @media (prefers-reduced-motion: reduce) {
 
-  html { scroll-behavior: auto; scroll-snap-type: none; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
 
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 
 }
 
@@ -483,27 +483,27 @@ section#generador { min-height: auto; }
 
 /* ============================================
 
-   MAPA - MEJORADO PARA MÓVIL
+   MAPA - MEJORADO PARA MÓVIL
 
-   ============================================ */
+   ============================================ */
 
 .map-section { margin-bottom: 20px; }
 
 .map-container-wrapper { position: relative; }
 
-.map-container { 
+.map-container { 
 
-  height: 350px;
+  height: 350px;
 
-  min-height: 300px;
+  min-height: 300px;
 
-  border-radius: 12px; 
+  border-radius: 12px; 
 
-  border: 3px solid var(--border-card); 
+  border: 3px solid var(--border-card); 
 
-  overflow: hidden; 
+  overflow: hidden; 
 
-  background: var(--bg-cream); 
+  background: var(--bg-cream); 
 
 }
 
@@ -513,11 +513,11 @@ section#generador { min-height: auto; }
 
 @media (min-width: 768px) {
 
-  .map-container {
+  .map-container {
 
-    height: 420px;
+    height: 420px;
 
-  }
+  }
 
 }
 
@@ -525,53 +525,53 @@ section#generador { min-height: auto; }
 
 /* Botón expandir más grande y visible */
 
-.map-expand-btn { 
+.map-expand-btn { 
 
-  position: absolute; 
+  position: absolute; 
 
-  bottom: 16px; 
+  bottom: 16px; 
 
-  right: 16px; 
+  right: 16px; 
 
-  width: 52px; 
+  width: 52px; 
 
-  height: 52px; 
+  height: 52px; 
 
-  background: rgba(255,255,255,0.98); 
+  background: rgba(255,255,255,0.98); 
 
-  border: 3px solid var(--border-card); 
+  border: 3px solid var(--border-card); 
 
-  border-radius: 12px; 
+  border-radius: 12px; 
 
-  display: flex; 
+  display: flex; 
 
-  align-items: center; 
+  align-items: center; 
 
-  justify-content: center; 
+  justify-content: center; 
 
-  cursor: pointer; 
+  cursor: pointer; 
 
-  z-index: 1000; 
+  z-index: 1000; 
 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
 
-  transition: all 0.2s ease;
-
-}
-
-.map-expand-btn:active { 
-
-  transform: scale(0.95); 
+  transition: all 0.2s ease;
 
 }
 
-.map-expand-btn svg { 
+.map-expand-btn:active { 
 
-  width: 24px; 
+  transform: scale(0.95); 
 
-  height: 24px; 
+}
 
-  stroke: var(--accent-sea); 
+.map-expand-btn svg { 
+
+  width: 24px; 
+
+  height: 24px; 
+
+  stroke: var(--accent-sea); 
 
 }
 
@@ -581,45 +581,45 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-expand-btn {
+  .map-expand-btn {
 
-    width: 56px;
+    width: 56px;
 
-    height: 56px;
+    height: 56px;
 
-    bottom: 14px;
+    bottom: 14px;
 
-    right: 14px;
+    right: 14px;
 
-    border-radius: 14px;
+    border-radius: 14px;
 
-  }
+  }
 
-  .map-expand-btn svg {
+  .map-expand-btn svg {
 
-    width: 26px;
+    width: 26px;
 
-    height: 26px;
+    height: 26px;
 
-  }
+  }
 
 }
 
 
 
-.map-hint { 
+.map-hint { 
 
-  text-align: center; 
+  text-align: center; 
 
-  font-size: 0.8rem; 
+  font-size: 0.8rem; 
 
-  color: var(--fg-muted); 
+  color: var(--fg-muted); 
 
-  margin-top: 10px; 
+  margin-top: 10px; 
 
-  font-style: italic;
+  font-style: italic;
 
-  padding: 0 10px;
+  padding: 0 10px;
 
 }
 
@@ -627,19 +627,19 @@ section#generador { min-height: auto; }
 
 /* MAPA FULLSCREEN */
 
-.map-fullscreen { 
+.map-fullscreen { 
 
-  position: fixed; 
+  position: fixed; 
 
-  inset: 0; 
+  inset: 0; 
 
-  z-index: 9999; 
+  z-index: 9999; 
 
-  background: var(--bg-paper); 
+  background: var(--bg-paper); 
 
-  display: none; 
+  display: none; 
 
-  flex-direction: column; 
+  flex-direction: column; 
 
 }
 
@@ -647,69 +647,69 @@ section#generador { min-height: auto; }
 
 .map-fullscreen.active {
 
-  display: flex;
+  display: flex;
 
 }
 
-.map-fullscreen-header { 
+.map-fullscreen-header { 
 
-  display: flex; 
+  display: flex; 
 
-  align-items: center; 
+  align-items: center; 
 
-  justify-content: space-between; 
+  justify-content: space-between; 
 
-  padding: 14px 16px; 
+  padding: 14px 16px; 
 
-  border-bottom: 2px solid var(--border-aged); 
+  border-bottom: 2px solid var(--border-aged); 
 
-  background: var(--bg-cream); 
+  background: var(--bg-cream); 
 
-  flex-shrink: 0;
+  flex-shrink: 0;
 
-  padding-top: calc(14px + env(safe-area-inset-top));
-
-}
-
-
-
-.map-fullscreen-title { 
-
-  font-family: 'Cormorant Garamond', serif; 
-
-  font-size: 1.15rem; 
-
-  font-weight: 600; 
-
-  color: var(--accent-sea); 
+  padding-top: calc(14px + env(safe-area-inset-top));
 
 }
 
-.map-fullscreen-close { 
 
-  width: 48px; 
 
-  height: 48px; 
+.map-fullscreen-title { 
 
-  background: var(--accent-red); 
+  font-family: 'Cormorant Garamond', serif; 
 
-  border: 2px solid white; 
+  font-size: 1.15rem; 
 
-  border-radius: 12px; 
+  font-weight: 600; 
 
-  display: flex; 
+  color: var(--accent-sea); 
 
-  align-items: center; 
+}
 
-  justify-content: center; 
+.map-fullscreen-close { 
 
-  cursor: pointer; 
+  width: 48px; 
 
-  transition: all 0.2s ease; 
+  height: 48px; 
 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  background: var(--accent-red); 
 
-  z-index: 10;
+  border: 2px solid white; 
+
+  border-radius: 12px; 
+
+  display: flex; 
+
+  align-items: center; 
+
+  justify-content: center; 
+
+  cursor: pointer; 
+
+  transition: all 0.2s ease; 
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  z-index: 10;
 
 }
 
@@ -717,45 +717,45 @@ section#generador { min-height: auto; }
 
 .map-fullscreen-close:active {
 
-  transform: scale(0.95);
+  transform: scale(0.95);
 
 }
 
-.map-fullscreen-close svg { 
+.map-fullscreen-close svg { 
 
-  width: 24px; 
+  width: 24px; 
 
-  height: 24px; 
+  height: 24px; 
 
-  stroke: white; 
+  stroke: white; 
 
-  stroke-width: 2.5;
-
-}
-
-.map-fullscreen-map { 
-
-  flex: 1; 
-
-  width: 100%; 
+  stroke-width: 2.5;
 
 }
 
-.map-fullscreen-footer { 
+.map-fullscreen-map { 
 
-  background: var(--bg-cream); 
+  flex: 1; 
 
-  border-top: 2px solid var(--border-aged); 
+  width: 100%; 
 
-  padding: 8px 12px; 
+}
 
-  flex-shrink: 0;
+.map-fullscreen-footer { 
 
-  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  background: var(--bg-cream); 
 
-  max-height: 80px;
+  border-top: 2px solid var(--border-aged); 
 
-  overflow-y: auto;
+  padding: 8px 12px; 
+
+  flex-shrink: 0;
+
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+
+  max-height: 80px;
+
+  overflow-y: auto;
 
 }
 
@@ -765,63 +765,39 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-fullscreen-footer {
+  .map-fullscreen-footer {
 
-    max-height: 60px;
+    max-height: 60px;
 
-    padding: 6px 10px;
+    padding: 6px 10px;
 
-    padding-bottom: calc(6px + env(safe-area-inset-bottom));
+    padding-bottom: calc(6px + env(safe-area-inset-bottom));
 
-  }
+  }
 
-  .map-selection-places {
+  .map-selection-places {
 
-    display: none;
+    display: none;
 
-  }
+  }
 
-  .map-fullscreen-hint {
+  .map-fullscreen-hint {
 
-    display: none;
+    display: none;
 
-  }
-
-}
-
-.map-selection-summary { 
-
-  display: flex; 
-
-  align-items: center; 
-
-  justify-content: space-between; 
-
-  margin-bottom: 6px; 
+  }
 
 }
 
+.map-selection-summary { 
 
+  display: flex; 
 
-@media (max-width: 768px) {
+  align-items: center; 
 
-  .map-selection-summary {
+  justify-content: space-between; 
 
-    margin-bottom: 4px;
-
-  }
-
-}
-
-.map-selection-count { 
-
-  font-family: 'Cormorant Garamond', serif; 
-
-  font-size: 0.95rem; 
-
-  font-weight: 600; 
-
-  color: var(--accent-sea); 
+  margin-bottom: 6px; 
 
 }
 
@@ -829,43 +805,23 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-selection-count {
+  .map-selection-summary {
 
-    font-size: 0.85rem;
+    margin-bottom: 4px;
 
-  }
-
-}
-
-.map-selection-time { 
-
-  font-size: 0.8rem; 
-
-  color: var(--fg-muted); 
+  }
 
 }
 
+.map-selection-count { 
 
+  font-family: 'Cormorant Garamond', serif; 
 
-@media (max-width: 768px) {
+  font-size: 0.95rem; 
 
-  .map-selection-time {
+  font-weight: 600; 
 
-    font-size: 0.75rem;
-
-  }
-
-}
-
-.map-selection-places { 
-
-  display: flex; 
-
-  flex-wrap: wrap; 
-
-  gap: 4px; 
-
-  margin-bottom: 6px; 
+  color: var(--accent-sea); 
 
 }
 
@@ -873,43 +829,87 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-selection-places {
+  .map-selection-count {
 
-    gap: 3px;
+    font-size: 0.85rem;
 
-    margin-bottom: 4px;
-
-  }
+  }
 
 }
 
-.map-selection-chip { 
+.map-selection-time { 
 
-  display: inline-flex; 
+  font-size: 0.8rem; 
 
-  align-items: center; 
+  color: var(--fg-muted); 
 
-  gap: 4px; 
+}
 
-  padding: 4px 8px; 
 
-  background: var(--bg-card); 
 
-  border: 1px solid var(--border-aged); 
+@media (max-width: 768px) {
 
-  border-radius: 12px; 
+  .map-selection-time {
 
-  font-size: 0.75rem; 
+    font-size: 0.75rem;
 
-  color: var(--fg-ink);
+  }
 
-  max-width: 120px;
+}
 
-  overflow: hidden;
+.map-selection-places { 
 
-  text-overflow: ellipsis;
+  display: flex; 
 
-  white-space: nowrap;
+  flex-wrap: wrap; 
+
+  gap: 4px; 
+
+  margin-bottom: 6px; 
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .map-selection-places {
+
+    gap: 3px;
+
+    margin-bottom: 4px;
+
+  }
+
+}
+
+.map-selection-chip { 
+
+  display: inline-flex; 
+
+  align-items: center; 
+
+  gap: 4px; 
+
+  padding: 4px 8px; 
+
+  background: var(--bg-card); 
+
+  border: 1px solid var(--border-aged); 
+
+  border-radius: 12px; 
+
+  font-size: 0.75rem; 
+
+  color: var(--fg-ink);
+
+  max-width: 120px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
 
 }
 
@@ -919,75 +919,75 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-selection-chip {
+  .map-selection-chip {
 
-    padding: 3px 6px;
+    padding: 3px 6px;
 
-    font-size: 0.7rem;
+    font-size: 0.7rem;
 
-    max-width: 100px;
+    max-width: 100px;
 
-  }
-
-}
-
-.map-selection-chip .remove { 
-
-  width: 16px; 
-
-  height: 16px; 
-
-  display: flex; 
-
-  align-items: center; 
-
-  justify-content: center; 
-
-  cursor: pointer; 
-
-  opacity: 0.6; 
-
-  margin-left: 2px;
-
-  border-radius: 50%;
-
-  background: rgba(0,0,0,0.05);
-
-  transition: all 0.2s ease;
-
-  flex-shrink: 0;
+  }
 
 }
 
-.map-selection-chip .remove:hover { 
+.map-selection-chip .remove { 
 
-  opacity: 1; 
+  width: 16px; 
 
-  background: rgba(196, 90, 63, 0.15);
+  height: 16px; 
+
+  display: flex; 
+
+  align-items: center; 
+
+  justify-content: center; 
+
+  cursor: pointer; 
+
+  opacity: 0.6; 
+
+  margin-left: 2px;
+
+  border-radius: 50%;
+
+  background: rgba(0,0,0,0.05);
+
+  transition: all 0.2s ease;
+
+  flex-shrink: 0;
 
 }
 
-.map-selection-chip .remove svg { 
+.map-selection-chip .remove:hover { 
 
-  width: 10px; 
+  opacity: 1; 
 
-  height: 10px; 
-
-  stroke: var(--accent-red); 
+  background: rgba(196, 90, 63, 0.15);
 
 }
 
-.map-fullscreen-hint { 
+.map-selection-chip .remove svg { 
 
-  text-align: center; 
+  width: 10px; 
 
-  font-size: 0.7rem; 
+  height: 10px; 
 
-  color: var(--fg-muted); 
+  stroke: var(--accent-red); 
 
-  font-style: italic;
+}
 
-  padding: 4px 0;
+.map-fullscreen-hint { 
+
+  text-align: center; 
+
+  font-size: 0.7rem; 
+
+  color: var(--fg-muted); 
+
+  font-style: italic;
+
+  padding: 4px 0;
 
 }
 
@@ -995,13 +995,13 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-fullscreen-hint {
+  .map-fullscreen-hint {
 
-    font-size: 0.65rem;
+    font-size: 0.65rem;
 
-    padding: 2px 0;
+    padding: 2px 0;
 
-  }
+  }
 
 }
 
@@ -1009,9 +1009,9 @@ section#generador { min-height: auto; }
 
 /* ============================================
 
-   BOTONES FLOTANTES EN MAPA FULLSCREEN
+   BOTONES FLOTANTES EN MAPA FULLSCREEN
 
-   ============================================ */
+   ============================================ */
 
 /* Por defecto ocultos */
 
@@ -1019,7 +1019,7 @@ section#generador { min-height: auto; }
 
 .map-floating-selection {
 
-  display: none;
+  display: none;
 
 }
 
@@ -1031,7 +1031,7 @@ section#generador { min-height: auto; }
 
 .map-fullscreen.active .map-floating-selection {
 
-  display: flex;
+  display: flex;
 
 }
 
@@ -1041,49 +1041,49 @@ section#generador { min-height: auto; }
 
 .map-floating-close {
 
-  position: fixed;
+  position: fixed;
 
-  top: 70px;
+  top: 70px;
 
-  right: 12px;
+  right: 12px;
 
-  width: 56px;
+  width: 56px;
 
-  height: 56px;
+  height: 56px;
 
-  background: var(--accent-red);
+  background: var(--accent-red);
 
-  border: 3px solid white;
+  border: 3px solid white;
 
-  border-radius: 50%;
+  border-radius: 50%;
 
-  align-items: center;
+  align-items: center;
 
-  justify-content: center;
+  justify-content: center;
 
-  cursor: pointer;
+  cursor: pointer;
 
-  z-index: 10000;
+  z-index: 10000;
 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 
-  transition: all 0.2s ease;
+  transition: all 0.2s ease;
 
 }
 
 .map-floating-close:active {
 
-  transform: scale(0.9);
+  transform: scale(0.9);
 
 }
 
 .map-floating-close svg {
 
-  width: 28px;
+  width: 28px;
 
-  height: 28px;
+  height: 28px;
 
-  stroke: white;
+  stroke: white;
 
 }
 
@@ -1093,27 +1093,27 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-floating-close {
+  .map-floating-close {
 
-    width: 64px;
+    width: 64px;
 
-    height: 64px;
+    height: 64px;
 
-    top: 16px;
+    top: 16px;
 
-    right: 12px;
+    right: 12px;
 
-    border-width: 4px;
+    border-width: 4px;
 
-  }
+  }
 
-  .map-floating-close svg {
+  .map-floating-close svg {
 
-    width: 32px;
+    width: 32px;
 
-    height: 32px;
+    height: 32px;
 
-  }
+  }
 
 }
 
@@ -1121,55 +1121,55 @@ section#generador { min-height: auto; }
 
 .map-floating-selection {
 
-  position: fixed;
+  position: fixed;
 
-  bottom: 100px;
+  bottom: 100px;
 
-  left: 50%;
+  left: 50%;
 
-  transform: translateX(-50%);
+  transform: translateX(-50%);
 
-  background: var(--accent-sea);
+  background: var(--accent-sea);
 
-  color: white;
+  color: white;
 
-  border: none;
+  border: none;
 
-  border-radius: 24px;
+  border-radius: 24px;
 
-  padding: 10px 20px;
+  padding: 10px 20px;
 
-  align-items: center;
+  align-items: center;
 
-  gap: 8px;
+  gap: 8px;
 
-  cursor: pointer;
+  cursor: pointer;
 
-  z-index: 10000;
+  z-index: 10000;
 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
 
-  font-size: 1rem;
+  font-size: 1rem;
 
-  font-weight: 600;
+  font-weight: 600;
 
 }
 
 .map-floating-selection:active {
 
-  transform: translateX(-50%) scale(0.95);
+  transform: translateX(-50%) scale(0.95);
 
 }
 
 .map-floating-selection svg {
 
-  width: 18px;
+  width: 18px;
 
-  height: 18px;
+  height: 18px;
 
-  stroke: white;
+  stroke: white;
 
 }
 
@@ -1177,17 +1177,17 @@ section#generador { min-height: auto; }
 
 @media (max-width: 768px) {
 
-  .map-floating-selection {
+  .map-floating-selection {
 
-    bottom: 80px;
+    bottom: 80px;
 
-    padding: 10px 18px;
+    padding: 10px 18px;
 
-    font-size: 0.95rem;
+    font-size: 0.95rem;
 
-    border-radius: 22px;
+    border-radius: 22px;
 
-  }
+  }
 
 }
 
@@ -1357,37 +1357,37 @@ section#generador { min-height: auto; }
 
 /* ============================================
 
-   MARCADORES PERSONALIZADOS - MÁS TÁCTILES
+   MARCADORES PERSONALIZADOS - MÁS TÁCTILES
 
-   ============================================ */
+   ============================================ */
 
-.custom-marker { 
+.custom-marker { 
 
-  border: 3px solid white; 
+  border: 3px solid white; 
 
-  border-radius: 50%; 
+  border-radius: 50%; 
 
-  width: 32px; 
+  width: 32px; 
 
-  height: 32px; 
+  height: 32px; 
 
-  display: flex; 
+  display: flex; 
 
-  align-items: center; 
+  align-items: center; 
 
-  justify-content: center; 
+  justify-content: center; 
 
-  font-family: 'Cormorant Garamond', serif; 
+  font-family: 'Cormorant Garamond', serif; 
 
-  font-weight: 700; 
+  font-weight: 700; 
 
-  color: white; 
+  color: white; 
 
-  font-size: 14px; 
+  font-size: 14px; 
 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.35); 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35); 
 
-  transition: all 0.2s ease; 
+  transition: all 0.2s ease; 
 
 }
 
@@ -1403,29 +1403,29 @@ section#generador { min-height: auto; }
 
 /* Marcadores más grandes y táctiles en fullscreen/móvil */
 
-.custom-marker.touchable { 
+.custom-marker.touchable { 
 
-  width: 48px; 
+  width: 48px; 
 
-  height: 48px; 
+  height: 48px; 
 
-  font-size: 18px; 
+  font-size: 18px; 
 
-  border-width: 4px; 
+  border-width: 4px; 
 
-  cursor: pointer;
-
-}
-
-.custom-marker:hover { 
-
-  transform: scale(1.15); 
+  cursor: pointer;
 
 }
 
-.custom-marker.selected-ring { 
+.custom-marker:hover { 
 
-  box-shadow: 0 0 0 4px var(--accent-gold); 
+  transform: scale(1.15); 
+
+}
+
+.custom-marker.selected-ring { 
+
+  box-shadow: 0 0 0 4px var(--accent-gold); 
 
 }
 
@@ -1433,31 +1433,31 @@ section#generador { min-height: auto; }
 
 /* Marcador de ubicación del usuario */
 
-.user-location-marker { 
+.user-location-marker { 
 
-  background: var(--accent-red); 
+  background: var(--accent-red); 
 
-  border: 3px solid white; 
+  border: 3px solid white; 
 
-  border-radius: 50%; 
+  border-radius: 50%; 
 
-  width: 14px; 
+  width: 14px; 
 
-  height: 14px; 
+  height: 14px; 
 
-  box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); 
+  box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); 
 
-  animation: pulse 2s infinite; 
+  animation: pulse 2s infinite; 
 
 }
 
-@keyframes pulse { 
+@keyframes pulse { 
 
-  0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 
+  0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 
 
-  70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 
+  70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 
 
-  100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } 
+  100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } 
 
 }
 
@@ -1465,77 +1465,77 @@ section#generador { min-height: auto; }
 
 /* Popup de Leaflet personalizado */
 
-.leaflet-popup-content-wrapper { 
+.leaflet-popup-content-wrapper { 
 
-  border-radius: 10px !important; 
+  border-radius: 10px !important; 
 
-  box-shadow: 0 4px 16px var(--shadow-warm) !important; 
+  box-shadow: 0 4px 16px var(--shadow-warm) !important; 
 
-  border: 2px solid var(--border-aged) !important;
-
-}
-
-.leaflet-popup-content { 
-
-  margin: 12px 14px !important; 
-
-  font-family: 'Crimson Pro', Georgia, serif !important; 
-
-  font-size: 14px !important; 
-
-  line-height: 1.5 !important; 
+  border: 2px solid var(--border-aged) !important;
 
 }
 
-.popup-title { 
+.leaflet-popup-content { 
 
-  font-family: 'Cormorant Garamond', serif !important; 
+  margin: 12px 14px !important; 
 
-  font-size: 16px !important; 
+  font-family: 'Crimson Pro', Georgia, serif !important; 
 
-  font-weight: 600 !important; 
+  font-size: 14px !important; 
 
-  margin-bottom: 6px !important; 
-
-  color: var(--fg-ink) !important;
+  line-height: 1.5 !important; 
 
 }
 
-.popup-btn { 
+.popup-title { 
 
-  display: block; 
+  font-family: 'Cormorant Garamond', serif !important; 
 
-  width: 100%; 
+  font-size: 16px !important; 
 
-  padding: 8px; 
+  font-weight: 600 !important; 
 
-  background: var(--accent-sea); 
+  margin-bottom: 6px !important; 
 
-  color: white; 
-
-  text-align: center; 
-
-  text-decoration: none; 
-
-  border-radius: 6px; 
-
-  font-family: 'Cormorant Garamond', serif !important; 
-
-  font-weight: 600; 
-
-  font-size: 14px !important; 
-
-  margin-top: 8px;
-
-  border: none;
-
-  cursor: pointer;
+  color: var(--fg-ink) !important;
 
 }
 
-.popup-btn:hover { 
+.popup-btn { 
 
-  background: #143a4a; 
+  display: block; 
+
+  width: 100%; 
+
+  padding: 8px; 
+
+  background: var(--accent-sea); 
+
+  color: white; 
+
+  text-align: center; 
+
+  text-decoration: none; 
+
+  border-radius: 6px; 
+
+  font-family: 'Cormorant Garamond', serif !important; 
+
+  font-weight: 600; 
+
+  font-size: 14px !important; 
+
+  margin-top: 8px;
+
+  border: none;
+
+  cursor: pointer;
+
+}
+
+.popup-btn:hover { 
+
+  background: #143a4a; 
 
 }
 
@@ -1592,228 +1592,228 @@ section#generador { min-height: auto; }
 .route-btn:hover { background: #9a7209; }
 
 /* ==========================================
-   BLINDAJE NUCLEAR: MAPA FULLSCREEN MÓVIL
-   ========================================== */
+   BLINDAJE NUCLEAR: MAPA FULLSCREEN MÓVIL
+   ========================================== */
 
 /* 1. Congelamos la caja principal a la altura exacta de la pantalla del móvil */
 .map-fullscreen {
-  position: fixed !important;
-  inset: 0 !important;
-  height: 100vh !important;
-  height: 100dvh !important; /* Medida mágica para móviles modernos */
-  overflow: hidden !important; /* Prohíbe totalmente el scroll general */
-  z-index: 9999 !important;
+  position: fixed !important;
+  inset: 0 !important;
+  height: 100vh !important;
+  height: 100dvh !important; /* Medida mágica para móviles modernos */
+  overflow: hidden !important; /* Prohíbe totalmente el scroll general */
+  z-index: 9999 !important;
 }
 
 .map-fullscreen.active {
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* 2. Cabecera rígida: exactamente 65px de alto, ni uno más, ni uno menos */
 .map-fullscreen-header {
-  display: flex !important;
-  flex: 0 0 65px !important; 
-  z-index: 99999 !important;
+  display: flex !important;
+  flex: 0 0 65px !important; 
+  z-index: 99999 !important;
 }
 
 /* 3. Mapa flexible: ocupa SOLO el hueco que quede entre la cabecera y el pie */
 .map-fullscreen-map {
-  flex: 1 1 0% !important; 
-  min-height: 0 !important; /* Esto evita que el mapa expulse a la cabecera */
-  position: relative !important;
+  flex: 1 1 0% !important; 
+  min-height: 0 !important; /* Esto evita que el mapa expulse a la cabecera */
+  position: relative !important;
 }
 
 /* 4. Pie de página: puede crecer, pero tiene un límite para no comerse el mapa */
 .map-fullscreen-footer {
-  flex: 0 0 auto !important;
-  max-height: 35vh !important; /* Máximo 35% de la pantalla */
-  overflow-y: auto !important; /* Si seleccionas 10 sitios, haces scroll aquí dentro */
-  z-index: 99999 !important;
+  flex: 0 0 auto !important;
+  max-height: 35vh !important; /* Máximo 35% de la pantalla */
+  overflow-y: auto !important; /* Si seleccionas 10 sitios, haces scroll aquí dentro */
+  z-index: 99999 !important;
 }
 
 /* 5. Enterramos el botón flotante antiguo */
 .map-floating-close {
-  display: none !important; 
+  display: none !important; 
 }
 /* ==========================================
-   ARREGLO: BOTÓN DE CERRAR FUERA DE PANTALLA (ANCHO)
-   ========================================== */
+   ARREGLO: BOTÓN DE CERRAR FUERA DE PANTALLA (ANCHO)
+   ========================================== */
 
 /* 1. Obligamos a la cabecera a no medir más que la pantalla */
 .map-fullscreen-header {
-  width: 100% !important;
-  max-width: 100vw !important;
-  box-sizing: border-box !important;
-  padding-right: 16px !important; 
+  width: 100% !important;
+  max-width: 100vw !important;
+  box-sizing: border-box !important;
+  padding-right: 16px !important; 
 }
 
 /* 2. Le decimos al título que se corte con "..." si no cabe */
 .map-fullscreen-title {
-  flex: 1 1 auto !important;
-  min-width: 0 !important; /* Crítico: esto evita que desborde la pantalla */
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important; 
-  margin-right: 10px !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* Crítico: esto evita que desborde la pantalla */
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; 
+  margin-right: 10px !important;
 }
 
 /* 3. Protegemos el botón para que nunca se encoja ni se caiga */
 .map-fullscreen-close {
-  flex-shrink: 0 !important; 
-  margin-left: auto !important;
+  flex-shrink: 0 !important; 
+  margin-left: auto !important;
 }
 /* ==========================================
-   ARREGLO CLÁSICO Y ROBUSTO: TARJETAS DE LUGARES
-   ========================================== */
+   ARREGLO CLÁSICO Y ROBUSTO: TARJETAS DE LUGARES
+   ========================================== */
 
 /* 1. Limitamos el ancho en PC y forzamos a que ocupen el 100% en móvil */
 .place-card {
-  width: 100% !important;
-  max-width: 480px !important; /* En PC nunca pasarán de este tamaño */
-  margin: 0 auto 16px auto !important; /* Las centra en la pantalla */
-  display: flex !important;
-  flex-direction: column !important;
-  height: auto !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important; /* Corta de raíz lo que sobresalga */
+  width: 100% !important;
+  max-width: 480px !important; /* En PC nunca pasarán de este tamaño */
+  margin: 0 auto 16px auto !important; /* Las centra en la pantalla */
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important; /* Corta de raíz lo que sobresalga */
 }
 
 /* 2. Altura de foto estricta: ni muy grande ni muy pequeña, SIEMPRE 160px */
 .place-image {
-  width: 100% !important;
-  height: 160px !important; 
-  min-height: 160px !important;
-  max-height: 160px !important;
-  display: block !important;
+  width: 100% !important;
+  height: 160px !important; 
+  min-height: 160px !important;
+  max-height: 160px !important;
+  display: block !important;
 }
 
 .place-image img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important; /* Rellena el hueco sin deformar */
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Rellena el hueco sin deformar */
 }
 
 /* 3. Evitamos que el título se salga por los lados */
 .place-title-overlay {
-  padding: 20px 12px 10px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
+  padding: 20px 12px 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .place-title {
-  font-size: 1.15rem !important;
-  white-space: normal !important; /* Permite saltos de línea */
-  word-wrap: break-word !important;
-  line-height: 1.3 !important;
+  font-size: 1.15rem !important;
+  white-space: normal !important; /* Permite saltos de línea */
+  word-wrap: break-word !important;
+  line-height: 1.3 !important;
 }
 
 /* 4. Cabecera (donde están las etiquetas): si no caben, bajan de línea */
 .place-header {
-  flex-wrap: wrap !important; 
-  height: auto !important;
-  min-height: 44px !important;
+  flex-wrap: wrap !important; 
+  height: auto !important;
+  min-height: 44px !important;
 }
 
 .place-header-left {
-  flex-wrap: wrap !important;
-  overflow: visible !important; /* Evita que las etiquetas se corten */
+  flex-wrap: wrap !important;
+  overflow: visible !important; /* Evita que las etiquetas se corten */
 }
 
 /* 5. Aseguramos que el contenido al desplegar se vea entero */
 .place-card.expanded .place-content {
-  max-height: 2000px !important;
-  overflow: hidden !important;
+  max-height: 2000px !important;
+  overflow: hidden !important;
 }
 /* ==========================================
-   ARREGLO DEFINITIVO: MINIATURAS EN "TU SELECCIÓN"
-   ========================================== */
+   ARREGLO DEFINITIVO: MINIATURAS EN "TU SELECCIÓN"
+   ========================================== */
 
 /* 1. Forzamos la foto a ser un cuadrado pequeño y perfecto (50x50) */
 .selection-item img, .selection-item-img {
-  width: 50px !important;
-  height: 50px !important;
-  min-width: 50px !important;
-  max-width: 50px !important;
-  flex-shrink: 0 !important; /* Prohíbe que el móvil la aplaste o la estire */
-  object-fit: cover !important;
-  border-radius: 8px !important;
-  display: block !important;
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  flex-shrink: 0 !important; /* Prohíbe que el móvil la aplaste o la estire */
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  display: block !important;
 }
 
 /* 2. Blindamos la fila entera para que los elementos no se peleen */
 .selection-item {
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important; /* Espacio entre la foto y el texto */
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  padding: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* Espacio entre la foto y el texto */
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 10px !important;
 }
 
 /* 3. El texto ocupa el resto del espacio libre, pero si no cabe, se corta con "..." */
 .selection-item-info {
-  flex: 1 1 auto !important;
-  min-width: 0 !important; /* Vital para que el texto no empuje los botones fuera */
+  flex: 1 1 auto !important;
+  min-width: 0 !important; /* Vital para que el texto no empuje los botones fuera */
 }
 
 .selection-item-name {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important; /* Añade los 3 puntitos si el nombre es muy largo */
-  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important; /* Añade los 3 puntitos si el nombre es muy largo */
+  display: block !important;
 }
 
 /* 4. El botón de la papelera siempre visible a la derecha */
 .selection-item-remove {
-  flex-shrink: 0 !important;
+  flex-shrink: 0 !important;
 }
 /* --- NUEVA GUÍA DE SUPERVIVENCIA --- */
 .guide-section {
-    padding: 20px 15px;
-    background-color: #f9f9f9; /* O el color de fondo de tu app */
+    padding: 20px 15px;
+    background-color: #f9f9f9; /* O el color de fondo de tu app */
 }
 
 .guide-main-title {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 25px;
-    text-align: center;
-    color: #333;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
 }
 
 .guide-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .guide-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border: 1px solid rgba(0,0,0,0.05);
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 /* Títulos Pegajosos (Sticky) */
 .guide-card-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
 }
 
 .guide-card-header h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 /* Colores por sección */
@@ -1822,62 +1822,62 @@ section#generador { min-height: auto; }
 .guide-card.green .guide-card-header { background: #f0fdf4; color: #16a34a; border-bottom: 2px solid #16a34a; }
 
 .guide-card-content {
-    padding: 10px 0;
+    padding: 10px 0;
 }
 
 .guide-item {
-    padding: 12px 20px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    border-bottom: 1px solid #f0f0f0;
-    color: #444;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
 }
 
 .guide-item:last-child {
-    border-bottom: none;
+    border-bottom: none;
 }
 
 .guide-item strong {
-    color: #111;
-    font-weight: 700;
-    display: block; /* Para que la palabra clave esté arriba y el texto debajo, mejor legibilidad */
-    margin-bottom: 2px;
+    color: #111;
+    font-weight: 700;
+    display: block; /* Para que la palabra clave esté arriba y el texto debajo, mejor legibilidad */
+    margin-bottom: 2px;
 }
 /* Estilo compacto para los desplegables */
 .guide-card-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: white;
 }
 
 /* Cuando la tarjeta tiene la clase 'expanded' */
 .guide-card.expanded .guide-card-content {
-    max-height: 1000px; /* Un valor alto para que quepa todo */
-    border-top: 1px solid rgba(0,0,0,0.05);
+    max-height: 1000px; /* Un valor alto para que quepa todo */
+    border-top: 1px solid rgba(0,0,0,0.05);
 }
 
 .guide-arrow {
-    margin-left: auto;
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s;
-    stroke: currentColor;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+    stroke: currentColor;
 }
 
 .guide-card.expanded .guide-arrow {
-    transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 /* Reducimos un poco el padding de los items para ahorrar más espacio */
 .guide-item {
-    padding: 8px 20px;
-    border-bottom: 1px solid #f5f5f5;
+    padding: 8px 20px;
+    border-bottom: 1px solid #f5f5f5;
 }
 
 .guide-item strong {
-    display: inline; /* Volvemos a ponerlo en línea para ahorrar altura */
-    margin-right: 5px;
+    display: inline; /* Volvemos a ponerlo en línea para ahorrar altura */
+    margin-right: 5px;
 }
 /* --- GUÍA CON TUS COLORES --- */
 .guide-section { padding: 20px 15px; }
@@ -1915,13 +1915,13 @@ section#generador { min-height: auto; }
 .guide-container { display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto; }
 
 /* Tarjetas */
-.guide-card { 
-    background: #fff; 
-    border-radius: 15px; 
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    display: flex;
-    flex-direction: column;
+.guide-card { 
+    background: #fff; 
+    border-radius: 15px; 
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
 }
 
 /* Colores de borde izquierdo con tus variables */
@@ -1940,230 +1940,230 @@ section#generador { min-height: auto; }
 .guide-item strong { display: block; color: #111; margin-bottom: 2px; }
 
 /* Control del contenido extra */
-.guide-more-content { 
-    display: none; /* Oculto por defecto */
-    border-top: 1px dashed #eee;
+.guide-more-content { 
+    display: none; /* Oculto por defecto */
+    border-top: 1px dashed #eee;
 }
 
 .guide-card.expanded .guide-more-content { display: block; }
 
 /* Botón Ver Más */
 .guide-expand-btn {
-    background: none;
-    border: none;
-    padding: 15px;
-    width: 100%;
-    color: #888;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    background: none;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 .guide-expand-btn span { font-size: 1.2rem; }
 
 /* Si la tarjeta está expandida, ocultamos el botón o lo cambiamos */
 .guide-card.expanded .guide-expand-btn { display: none; }
 /* ==========================================
-   IDENTIDAD VISUAL: TÍTULOS Y CÍRCULOS
-   ========================================== */
+   IDENTIDAD VISUAL: TÍTULOS Y CÍRCULOS
+   ========================================== */
 
 .section-title {
-  font-family: 'Playfair Display', serif; /* O la Serif que uses en tu app */
-  font-size: 1.8rem !important;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #1a3a4a; /* Tu color oscuro de títulos */
+  font-family: 'Playfair Display', serif; /* O la Serif que uses en tu app */
+  font-size: 1.8rem !important;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1a3a4a; /* Tu color oscuro de títulos */
 }
 
 /* El círculo con borde (como el de tu imagen 2) */
 .circle-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 2px solid #1a3a4a; /* Mismo color que el título */
-  background: transparent;
-  color: #1a3a4a;
-  border-radius: 50%;
-  font-family: sans-serif; /* El número suele ser sans-serif */
-  font-size: 0.9rem;
-  font-weight: bold;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #1a3a4a; /* Mismo color que el título */
+  background: transparent;
+  color: #1a3a4a;
+  border-radius: 50%;
+  font-family: sans-serif; /* El número suele ser sans-serif */
+  font-size: 0.9rem;
+  font-weight: bold;
+  flex-shrink: 0;
 }
 
 /* ==========================================
-   REPARACIÓN DE IMÁGENES (NO MÁS DESBORDES)
-   ========================================== */
+   REPARACIÓN DE IMÁGENES (NO MÁS DESBORDES)
+   ========================================== */
 
 /* Bloqueamos cualquier fuga de imagen en toda la web */
 img {
-  max-width: 100% !important;
-  height: auto !important;
-  box-sizing: border-box !important;
+  max-width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box !important;
 }
 
 /* Arreglo específico para "Tu Selección" (Foto de la playa que se salía) */
 .selection-item {
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  padding: 10px !important;
-  gap: 15px;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 10px !important;
+  gap: 15px;
 }
 
 .selection-item img {
-  width: 70px !important;
-  height: 70px !important;
-  min-width: 70px !important;
-  object-fit: cover !important;
-  border-radius: 10px !important;
-  flex-shrink: 0 !important;
+  width: 70px !important;
+  height: 70px !important;
+  min-width: 70px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  flex-shrink: 0 !important;
 }
 
 /* Arreglo para las fotos de Recomendaciones (Las del "Hero") */
 .category-hero-card {
-  width: calc(100% - 40px) !important; /* Margen de 20px a cada lado */
-  margin: 0 20px 16px 20px !important;
-  height: 160px !important;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-  box-sizing: border-box !important;
+  width: calc(100% - 40px) !important; /* Margen de 20px a cada lado */
+  margin: 0 20px 16px 20px !important;
+  height: 160px !important;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box !important;
 }
 
 .category-hero-card img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
 /* Carrusel de recomendaciones (Tarjetas de texto) */
 .horizontal-scroll {
-  display: flex !important;
-  overflow-x: auto !important;
-  padding: 0 20px 20px 20px !important;
-  gap: 12px;
-  -webkit-overflow-scrolling: touch;
+  display: flex !important;
+  overflow-x: auto !important;
+  padding: 0 20px 20px 20px !important;
+  gap: 12px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .rec-card {
-  flex: 0 0 250px !important; /* Ancho para que el texto fluya */
-  background: #fdfdfd;
-  border: 1px solid #eee;
-  border-radius: 15px;
-  padding: 16px;
-  white-space: normal !important; /* PERMITE SALTOS DE LÍNEA */
+  flex: 0 0 250px !important; /* Ancho para que el texto fluya */
+  background: #fdfdfd;
+  border: 1px solid #eee;
+  border-radius: 15px;
+  padding: 16px;
+  white-space: normal !important; /* PERMITE SALTOS DE LÍNEA */
 }
 /* ==========================================
-   ESTILO UNIFICADO PARA TODAS LAS SECCIONES
-   ========================================== */
+   ESTILO UNIFICADO PARA TODAS LAS SECCIONES
+   ========================================== */
 
 /* 1. Contenedor de cabecera: Centrado total */
 .section-header-container {
-  width: 100%;
-  text-align: center; /* Centra el subtítulo */
-  margin-bottom: 30px;
-  padding: 0 20px;
-  box-sizing: border-box;
+  width: 100%;
+  text-align: center; /* Centra el subtítulo */
+  margin-bottom: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* 2. El Título: Con el número al lado y centrado */
 .section-title {
-  font-family: 'Playfair Display', serif !important;
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: #1a3a4a;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important; /* CENTRADO DEL TÍTULO */
-  margin: 0 auto !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #1a3a4a;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* CENTRADO DEL TÍTULO */
+  margin: 0 auto !important;
 }
 
 /* 3. El Círculo: Fino y hueco */
 .circle-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #1a3a4a !important;
-  background: transparent !important;
-  color: #1a3a4a !important;
-  border-radius: 50%;
-  font-family: sans-serif !important;
-  font-size: 0.9rem !important;
-  margin-right: 12px;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #1a3a4a !important;
+  background: transparent !important;
+  color: #1a3a4a !important;
+  border-radius: 50%;
+  font-family: sans-serif !important;
+  font-size: 0.9rem !important;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
 /* 4. El Subtítulo (Tagline): Gris, pequeño y centrado */
 .section-subtitle {
-  font-size: 0.9rem !important; /* Ajustado al tamaño de tus otros puntos */
-  color: var(--fg-muted, #777) !important;
-  margin-top: 8px !important;
-  margin-bottom: 0 !important;
-  font-family: sans-serif !important;
-  font-weight: 400 !important;
-  display: block;
-  text-align: center !important; /* CENTRADO DEL TEXTO */
+  font-size: 0.9rem !important; /* Ajustado al tamaño de tus otros puntos */
+  color: var(--fg-muted, #777) !important;
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+  font-family: sans-serif !important;
+  font-weight: 400 !important;
+  display: block;
+  text-align: center !important; /* CENTRADO DEL TEXTO */
 }
 /* ==========================================
-   ESTILO UNIFICADO DE CABECERAS (1, 2 y 3)
-   ========================================== */
+   ESTILO UNIFICADO DE CABECERAS (1, 2 y 3)
+   ========================================== */
 
 /* Alineación de la cabecera */
 .section-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important; /* Cambia a center si prefieres todo centrado */
-  margin-bottom: 8px !important;
-  gap: 12px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important; /* Cambia a center si prefieres todo centrado */
+  margin-bottom: 8px !important;
+  gap: 12px;
 }
 
 /* El círculo del número (Unificado para todas) */
 .section-number {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 30px !important;
-  height: 30px !important;
-  border: 1px solid #1a3a4a !important; /* Borde fino */
-  background: transparent !important;
-  color: #1a3a4a !important;
-  border-radius: 50% !important;
-  font-family: sans-serif !important;
-  font-size: 0.9rem !important;
-  font-weight: bold !important;
-  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid #1a3a4a !important; /* Borde fino */
+  background: transparent !important;
+  color: #1a3a4a !important;
+  border-radius: 50% !important;
+  font-family: sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+  flex-shrink: 0 !important;
 }
 
 /* El título de la sección */
 .section-title {
-  font-family: 'Playfair Display', serif !important;
-  font-size: 1.7rem !important;
-  font-weight: 700 !important;
-  color: #1a3a4a !important;
-  margin: 0 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  color: #1a3a4a !important;
+  margin: 0 !important;
 }
 .rec-card {
-  flex: 0 0 300px !important; /* Más anchas */
-  padding: 12px 18px !important; /* Menos relleno arriba/abajo */
-  min-height: 90px !important; /* Altura mínima reducida */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 0 0 300px !important; /* Más anchas */
+  padding: 12px 18px !important; /* Menos relleno arriba/abajo */
+  min-height: 90px !important; /* Altura mínima reducida */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .rec-card p {
-  font-size: 0.85rem;
-  line-height: 1.3; /* Texto más compacto */
-  margin-top: 2px !important;
+  font-size: 0.85rem;
+  line-height: 1.3; /* Texto más compacto */
+  margin-top: 2px !important;
 }
