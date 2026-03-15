@@ -728,22 +728,62 @@ function showItinerary(lista, route) {
   ct.innerHTML = html;
 }
 
-// ===== HELPERS =====
-function carouselNext(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
-function carouselPrev(id) { var c = document.getElementById(id); if (c) c.scrollBy({ left: -c.querySelector('.carousel-card').offsetWidth, behavior: 'smooth' }); }
-function updateCarouselButtons(id) { var c = document.getElementById(id); if (!c) return; var w = c.parentElement, sl = c.scrollLeft, max = c.scrollWidth - c.clientWidth; var prev = w.querySelector('.carousel-btn-prev'), next = w.querySelector('.carousel-btn-next'); if (prev) prev.style.display = sl <= 5 ? 'none' : 'flex'; if (next) next.style.display = sl >= max - 5 ? 'none' : 'flex'; }
-function initCarousels() { ['carousel-xurxo'].forEach(function(id) { var c = document.getElementById(id); if (c) { c.addEventListener('scroll', function() { updateCarouselButtons(id); }); setTimeout(function() { updateCarouselButtons(id); }, 100); } }); }
-function initBottomMenu() {
-  var items = document.querySelectorAll('.menu-item'), obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) items.forEach(function(i) { i.classList.toggle('active', i.dataset.section === x.target.id); }); }); }, { threshold: 0.5 });
-['hero', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { var el = document.getElementById(id); if (el) obs.observe(el); });
-  items.forEach(function(i) { i.addEventListener('click', function(e) { e.preventDefault(); var t = document.getElementById(i.getAttribute('href').substring(1)); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
-}
-function initAnimations() { var obs = new IntersectionObserver(function(e) { e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); }
+// ===== HELPERS (LIMPIO) =====
 
+// Navegación del menú inferior
+function initBottomMenu() {
+  var items = document.querySelectorAll('.menu-item'), 
+      obs = new IntersectionObserver(function(e) { 
+        e.forEach(function(x) { 
+          if (x.isIntersecting) items.forEach(function(i) { 
+            i.classList.toggle('active', i.dataset.section === x.target.id); 
+          }); 
+        }); 
+      }, { threshold: 0.5 });
+      
+  ['hero', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { 
+    var el = document.getElementById(id); if (el) obs.observe(el); 
+  });
+
+  items.forEach(function(i) { 
+    i.addEventListener('click', function(e) { 
+      e.preventDefault(); 
+      var t = document.getElementById(i.getAttribute('href').substring(1)); 
+      if (t) t.scrollIntoView({ behavior: 'smooth' }); 
+    }); 
+  });
+}
+
+// Animaciones de entrada (Fade In)
+function initAnimations() { 
+  var obs = new IntersectionObserver(function(e) { 
+    e.forEach(function(x) { if (x.isIntersecting) x.target.classList.add('visible'); }); 
+  }, { threshold: 0.1 }); 
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); 
+}
+
+// Gestión de fotos en las fichas de lugares (MANTENER si hay carrusel en los pueblos)
 function initPlaceCarousel(placeId, totalImages) { carouselsState[placeId] = { current: 0, total: totalImages }; }
-function moveCarousel(placeId, direction) { var state = carouselsState[placeId]; if (!state) return; state.current += direction; if (state.current < 0) state.current = state.total - 1; if (state.current >= state.total) state.current = 0; updateCarouselView(placeId); }
-function goToSlide(placeId, index) { var state = carouselsState[placeId]; if (!state) return; state.current = index; updateCarouselView(placeId); }
-function updateCarouselView(placeId) { var state = carouselsState[placeId]; if (!state) return; var track = document.querySelector('[data-carousel="' + placeId + '"]'); if (track) track.style.transform = 'translateX(-' + (state.current * 100) + '%)'; var dots = document.querySelectorAll('[data-dots="' + placeId + '"] .place-carousel-dot'); dots.forEach(function(dot, i) { dot.classList.toggle('active', i === state.current); }); }
+function moveCarousel(placeId, direction) { 
+  var state = carouselsState[placeId]; if (!state) return; 
+  state.current += direction; 
+  if (state.current < 0) state.current = state.total - 1; 
+  if (state.current >= state.total) state.current = 0; 
+  updateCarouselView(placeId); 
+}
+function goToSlide(placeId, index) { 
+  var state = carouselsState[placeId]; if (!state) return; 
+  state.current = index; 
+  updateCarouselView(placeId); 
+}
+function updateCarouselView(placeId) { 
+  var state = carouselsState[placeId]; if (!state) return; 
+  var track = document.querySelector('[data-carousel="' + placeId + '"]'); 
+  if (track) track.style.transform = 'translateX(-' + (state.current * 100) + '%)'; 
+  var dots = document.querySelectorAll('[data-dots="' + placeId + '"] .place-carousel-dot'); 
+  dots.forEach(function(dot, i) { dot.classList.toggle('active', i === state.current); }); 
+}
+
 document.addEventListener('click', function(e) {
   var prevBtn = e.target.closest('.place-carousel-btn-prev'); if (prevBtn) { moveCarousel(parseInt(prevBtn.dataset.place), -1); return; }
   var nextBtn = e.target.closest('.place-carousel-btn-next'); if (nextBtn) { moveCarousel(parseInt(nextBtn.dataset.place), 1); return; }
