@@ -1770,3 +1770,76 @@ section#generador { min-height: auto; }
 .selection-item-remove {
   flex-shrink: 0 !important;
 }
+/* --- NUEVA GUÍA DE SUPERVIVENCIA --- */
+.guide-section {
+    padding: 20px 15px;
+    background-color: #f9f9f9; /* O el color de fondo de tu app */
+}
+
+.guide-main-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #333;
+}
+
+.guide-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.guide-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Títulos Pegajosos (Sticky) */
+.guide-card-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.guide-card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Colores por sección */
+.guide-card.blue .guide-card-header { background: #eef6ff; color: #2563eb; border-bottom: 2px solid #2563eb; }
+.guide-card.orange .guide-card-header { background: #fff7ed; color: #ea580c; border-bottom: 2px solid #ea580c; }
+.guide-card.green .guide-card-header { background: #f0fdf4; color: #16a34a; border-bottom: 2px solid #16a34a; }
+
+.guide-card-content {
+    padding: 10px 0;
+}
+
+.guide-item {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+}
+
+.guide-item:last-child {
+    border-bottom: none;
+}
+
+.guide-item strong {
+    color: #111;
+    font-weight: 700;
+    display: block; /* Para que la palabra clave esté arriba y el texto debajo, mejor legibilidad */
+    margin-bottom: 2px;
+}
