@@ -1909,3 +1909,60 @@ section#generador { min-height: auto; }
 
 .guide-arrow { margin-left: auto; width: 18px; height: 18px; stroke: #999; transition: 0.3s; }
 .guide-card.expanded .guide-arrow { transform: rotate(180deg); }
+.guide-section { padding: 30px 15px; background: #fff; }
+.guide-main-title { font-size: 1.7rem; text-align: center; margin-bottom: 25px; color: #333; }
+
+.guide-container { display: flex; flex-direction: column; gap: 20px; max-width: 500px; margin: 0 auto; }
+
+/* Tarjetas */
+.guide-card { 
+    background: #fff; 
+    border-radius: 15px; 
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Colores de borde izquierdo con tus variables */
+.guide-card.blue { border-left: 6px solid var(--accent-sea); }
+.guide-card.orange { border-left: 6px solid var(--bloque-pontevedra); }
+.guide-card.green { border-left: 6px solid var(--bloque-lugo); }
+
+.guide-card-header { padding: 15px 20px 5px 20px; }
+.guide-card-header h3 { margin: 0; font-size: 1.2rem; }
+.guide-card.blue h3 { color: var(--accent-sea); }
+.guide-card.orange h3 { color: var(--bloque-pontevedra); }
+.guide-card.green h3 { color: var(--bloque-lugo); }
+
+.guide-item { padding: 12px 20px; border-bottom: 1px solid #f8f8f8; font-size: 0.95rem; line-height: 1.4; }
+.guide-item:last-child { border-bottom: none; }
+.guide-item strong { display: block; color: #111; margin-bottom: 2px; }
+
+/* Control del contenido extra */
+.guide-more-content { 
+    display: none; /* Oculto por defecto */
+    border-top: 1px dashed #eee;
+}
+
+.guide-card.expanded .guide-more-content { display: block; }
+
+/* Botón Ver Más */
+.guide-expand-btn {
+    background: none;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.guide-expand-btn span { font-size: 1.2rem; }
+
+/* Si la tarjeta está expandida, ocultamos el botón o lo cambiamos */
+.guide-card.expanded .guide-expand-btn { display: none; }
