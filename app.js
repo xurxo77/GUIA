@@ -535,3 +535,14 @@ function initAnimations() {
   }, { threshold: 0.1 }); 
   document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); 
 }
+// ABRIR Y CERRAR ACORDEÓN DE RECOMENDACIONES
+window.toggleCategoria = function(id) {
+  var row = document.getElementById(id);
+  if (row) {
+    row.classList.toggle('expanded');
+    // Si quieres que al abrir baje un poco la pantalla automáticamente:
+    if(row.classList.contains('expanded')) {
+      setTimeout(function() { row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 300);
+    }
+  }
+}
