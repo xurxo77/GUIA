@@ -162,29 +162,51 @@ function initMap() {
 
 // ====== MAPA FULLSCREEN ======
 window.openFullscreenMap = function() {
-  var container = document.getElementById('mapFullscreen');
-  container.classList.add('active');
+  document.getElementById('mapFullscreen').classList.add('active');
   
+  // Le damos 100 milisegundos al navegador para abrir la pantalla antes de dibujar el mapa
   setTimeout(function() {
-    if (!fsMap) {
-      fsMap = L.map('mapFullscreenMap', { center: [42.6, -8.4], zoom: 8 });
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(fsMap);
+    // Usamos window.myBigMap para evitar el conflicto mortal de nombres
+    if (!window.myBigMap) {
+      window.myBigMap = L.map('mapFullscreenMap', { center: [42.6, -8.4], zoom: 8 });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(window.myBigMap);
       
       lugares.forEach(function(l, i) {
+        if (!l.lat || !l.lng) return;
+        var isSelected = selectedPlaces.indexOf(l.id) > -1;
         var m = L.marker([l.lat, l.lng], {
-          icon: L.divIcon({ className: 'custom-marker touchable', html: (i+1), iconSize: [44, 44] })
-        }).addTo(fsMap);
+          icon: L.divIcon({ className: 'custom-marker touchable ' + l.bloque + (isSelected ? ' selected-ring' : ''), html: '<span>' + (i+1) + '</span>', iconSize: [48, 48], iconAnchor: [24, 24] })
+        }).addTo(window.myBigMap);
         
-        m.on('click', function() { togglePlaceSelection(l.id); });
+        m.on('click', function(e) {
+          var isSel = selectedPlaces.indexOf(l.id) > -1;
+          var btnText = isSel ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta';
+          var btnColor = isSel ? 'var(--accent-red)' : 'var(--accent-sea)';
+          
+          var popupHtml = '<div style="text-align:center; min-width: 150px;">';
+          popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:95px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
+          popupHtml += '<div class="popup-title" style="font-weight:bold; margin-bottom:8px;">' + l.nombre + '</div>';
+          // Aquí aplicamos la clase popup-btn que arreglamos en el CSS
+          popupHtml += '<button class="popup-btn" style="background:' + btnColor + ';" onclick="togglePlaceFromPopup(' + l.id + ')">' + btnText + '</button>';
+          popupHtml += '</div>';
+          
+          L.popup({closeButton: false, offset: [0, -15]}).setLatLng(e.latlng).setContent(popupHtml).openOn(window.myBigMap);
+        });
         fullscreenMarkers[l.id] = m;
       });
+    } else {
+      lugares.forEach(function(l) { updateFullscreenMarker(l.id); });
     }
-    fsMap.invalidateSize(); // El truco mágico para que Leaflet no se rompa
+    
+    // El truco definitivo para que el mapa no se quede en gris ni bloqueado
+    window.myBigMap.invalidateSize(); 
     updateFullscreenUI();
-  }, 400); // Dar tiempo a la transición CSS
+  }, 100);
 }
 
-window.closeFullscreenMap = function() { document.getElementById('mapFullscreen').classList.remove('active'); }
+window.closeFullscreenMap = function() { 
+  document.getElementById('mapFullscreen').classList.remove('active'); 
+}
 
 // ====== SELECCIÓN Y RUTAS ======
 window.togglePlaceSelection = function(id) {
