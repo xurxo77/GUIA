@@ -1843,3 +1843,39 @@ section#generador { min-height: auto; }
     display: block; /* Para que la palabra clave esté arriba y el texto debajo, mejor legibilidad */
     margin-bottom: 2px;
 }
+/* Estilo compacto para los desplegables */
+.guide-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: white;
+}
+
+/* Cuando la tarjeta tiene la clase 'expanded' */
+.guide-card.expanded .guide-card-content {
+    max-height: 1000px; /* Un valor alto para que quepa todo */
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.guide-arrow {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+    stroke: currentColor;
+}
+
+.guide-card.expanded .guide-arrow {
+    transform: rotate(180deg);
+}
+
+/* Reducimos un poco el padding de los items para ahorrar más espacio */
+.guide-item {
+    padding: 8px 20px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.guide-item strong {
+    display: inline; /* Volvemos a ponerlo en línea para ahorrar altura */
+    margin-right: 5px;
+}
