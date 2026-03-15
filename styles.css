@@ -2026,3 +2026,90 @@ section#generador { min-height: auto; }
   -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
   scrollbar-width: none;
 }
+/* SECCIÓN RECOMENDACIONES */
+.recommendations-section {
+  padding: 40px 0; /* Quitamos padding lateral para que el scroll llegue al borde */
+  background: var(--bg-color);
+}
+
+.section-title, .section-subtitle {
+  padding: 0 20px;
+}
+
+.category-row {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+/* Cabecera de Categoría (La foto grande) */
+.category-header {
+  position: relative;
+  width: calc(100% - 40px);
+  margin: 0 20px 16px 20px;
+  height: 150px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.category-hero-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6); /* Oscurece para leer el título */
+  z-index: 1;
+}
+
+.category-name {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 20px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* Carrusel Horizontal */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 0 20px 10px 20px; /* Padding izquierdo para alinear con la foto */
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll::-webkit-scrollbar { display: none; }
+
+/* Tarjetas Pequeñas */
+.rec-card {
+  flex: 0 0 160px; /* Ancho fijo */
+  background: white;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.rec-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.rec-card h4 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: var(--fg-color);
+  font-weight: 700;
+}
+
+.rec-card p {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  line-height: 1.4;
+  margin: 0;
+}
