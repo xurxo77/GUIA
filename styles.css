@@ -130,3 +130,40 @@ section { padding: 50px 20px; max-width: 680px; margin: 0 auto; }
   font-weight: bold !important;
   width: 100% !important;
 }
+
+
+/* --- RESCATE DEL DISEÑO: PORTADA --- */
+
+/* 1. Domar al icono gigante para que vuelva a su tamaño */
+.hero svg {
+  width: 64px !important;
+  height: 64px !important;
+  margin: 0 auto 24px auto !important;
+  display: block !important;
+}
+
+/* 2. Centrar todo el bloque en medio de la pantalla */
+.hero {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-height: 90vh !important;
+  padding: 20px !important;
+}
+
+/* 3. Devolver la elegancia y los márgenes a los textos */
+.hero-title {
+  font-size: clamp(3.5rem, 12vw, 5rem) !important;
+  margin-bottom: 16px !important;
+  line-height: 1.1 !important;
+  color: var(--accent-sea) !important;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 4vw, 1.4rem) !important;
+  max-width: 500px !important;
+  margin: 0 auto 12px auto !important;
+  color: var(--fg-muted) !important;
+}
