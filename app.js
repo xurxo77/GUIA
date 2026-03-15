@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ===== VARIABLES GLOBALES =====
-var map = null, mapFullscreen = null, markers = {}, fullscreenMarkers = {};
+// ===== VARIABLES GLOBALES CORREGIDAS PARA EVITAR CONFLICTO CON HTML =====
+var mainMap = null, fsMap = null;
+var markers = {}, fullscreenMarkers = {};
 var userLocation = null, userMarker = null;
 var selectedPlaces = [];
 var favorites = [];
@@ -148,7 +149,7 @@ function updateFavoriteButton(id) {
 }
 
 function renderFavoritesSection() {
-  var container = document.getElementById('favoritesSection') || document.querySelector('.favorites-section');
+  var container = document.getElementById('favoritesSection');
   if (!container) return;
   if (favorites.length === 0) { 
     container.innerHTML = '<div class="favorites-empty">Sin favoritos. Toca el corazón en cualquier lugar.</div>'; 
@@ -187,7 +188,7 @@ function checkSavedLocation() {
 function toggleGeolocation() { 
   if (userLocation) { 
     userLocation = null; 
-    if (userMarker) { map.removeLayer(userMarker); userMarker = null; } 
+    if (userMarker) { mainMap.removeLayer(userMarker); userMarker = null; } 
     localStorage.removeItem('galicia_lat'); 
     localStorage.removeItem('galicia_lng'); 
     updateGeoUI(false); 
@@ -202,7 +203,8 @@ function requestLocation() {
     function(p) { 
       userLocation = { lat: p.coords.latitude, lng: p.coords.longitude }; 
       localStorage.setItem('galicia_lat', userLocation.lat); localStorage.setItem('galicia_lng', userLocation.lng); 
-      showUserOnMap(userLocation); updateGeoUI(true); map.setView([userLocation.lat, userLocation.lng], 10); 
+      showUserOnMap(userLocation); updateGeoUI(true); 
+      if(mainMap) mainMap.setView([userLocation.lat, userLocation.lng], 10); 
     },
     function(err) { status.textContent = err.code === 1 ? 'Permiso denegado' : 'Error'; btn.disabled = false; btn.textContent = 'Reintentar'; },
     { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
@@ -210,9 +212,9 @@ function requestLocation() {
 }
 
 function showUserOnMap(loc) { 
-  if (!map) return; 
-  if (userMarker) map.removeLayer(userMarker); 
-  userMarker = L.marker([loc.lat, loc.lng], { icon: L.divIcon({ className: 'user-location-marker', iconSize: [14, 14], iconAnchor: [7, 7] }) }).addTo(map); 
+  if (!mainMap) return; 
+  if (userMarker) mainMap.removeLayer(userMarker); 
+  userMarker = L.marker([loc.lat, loc.lng], { icon: L.divIcon({ className: 'user-location-marker', iconSize: [14, 14], iconAnchor: [7, 7] }) }).addTo(mainMap); 
 }
 
 function updateGeoUI(active) { 
@@ -221,7 +223,7 @@ function updateGeoUI(active) {
   else { btn.textContent = 'Activar'; btn.disabled = false; btn.style.background = ''; status.textContent = 'Actívala para calcular distancias'; status.classList.remove('active'); } 
 }
 
-// ===== SELECCIÓN =====
+// ===== SELECCIÓN DE RUTA =====
 function togglePlaceSelection(id) {
   var idx = selectedPlaces.indexOf(id);
   if (idx > -1) selectedPlaces.splice(idx, 1);
@@ -260,8 +262,8 @@ function updateSelectionUI() {
     });
     html += '</div>';
     html += '<div class="action-buttons">';
-    html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta en Maps</button>';
-    html += '<button class="btn-secondary" onclick="clearSelection()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Limpiar</button>';
+    html += '<button class="btn-primary" onclick="generateItinerary()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Crear ruta en Google Maps</button>';
+    html += '<button class="btn-secondary" onclick="clearSelection()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Limpiar selección</button>';
     html += '</div>';
     content.innerHTML = html;
   }
@@ -272,93 +274,109 @@ function clearSelection() { selectedPlaces = []; updateSelectionUI(); updateAllM
 function updateMarkerSelection(id) {
   var isSelected = selectedPlaces.indexOf(id) > -1;
   var m = markers[id];
-  if (m) {
-    var el = m.getElement();
-    if (el) { if (isSelected) el.classList.add('selected-ring'); else el.classList.remove('selected-ring'); }
+  if (m && m.getElement()) {
+    if (isSelected) m.getElement().classList.add('selected-ring');
+    else m.getElement().classList.remove('selected-ring');
   }
   var fm = fullscreenMarkers[id];
-  if (fm) {
-    var fel = fm.getElement();
-    if (fel) { if (isSelected) fel.classList.add('selected-ring'); else fel.classList.remove('selected-ring'); }
+  if (fm && fm.getElement()) {
+    if (isSelected) fm.getElement().classList.add('selected-ring');
+    else fm.getElement().classList.remove('selected-ring');
   }
 }
 
 function updateAllMarkers() { lugares.forEach(function(l) { updateMarkerSelection(l.id); }); }
+
+// Esta función se llama desde los globos del mapa
 window.togglePlaceFromPopup = function(id) { togglePlaceSelection(id); }
 
-// ===== MAPA NORMAL =====
+// ===== MAPA NORMAL (CON BLINDAJE) =====
 function initMap() {
-  map = L.map('map', { center: [42.6, -8.4], zoom: 7, dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, zoomControl: false }); 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(map);
-  
-  lugares.forEach(function(l, i) {
-    if (!l.lat || !l.lng) return;
-    var isSelected = selectedPlaces.indexOf(l.id) > -1;
-    var m = L.marker([l.lat, l.lng], {
-      icon: L.divIcon({ className: 'custom-marker ' + l.bloque + (isSelected ? ' selected-ring' : ''), html: '<span>' + (i+1) + '</span>', iconSize: [32, 32], iconAnchor: [16, 16] })
-    }).addTo(map);
+  // Le damos 150ms al navegador para que dibuje el contenedor HTML antes de lanzar Leaflet
+  setTimeout(function() {
+    if (mainMap) return; // Si ya existe, no lo duplica
     
-    m.on('click', function(e) {
-      var isSel = selectedPlaces.indexOf(l.id) > -1;
-      var btnText = isSel ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta';
-      var btnColor = isSel ? 'var(--accent-red)' : 'var(--accent-sea)';
-      var popupHtml = '<div style="text-align:center; min-width: 140px;">';
-      popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:85px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
-      popupHtml += '<div class="popup-title">' + l.nombre + '</div>';
-      popupHtml += '<div style="font-size:0.75rem; color:var(--fg-muted); margin-bottom:10px;">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
-      popupHtml += '<button class="popup-btn" style="background:' + btnColor + ';" onclick="togglePlaceFromPopup(' + l.id + ')">' + btnText + '</button>';
-      popupHtml += '</div>';
-      L.popup({closeButton: false, offset: [0, -10]}).setLatLng(e.latlng).setContent(popupHtml).openOn(map);
-    });
-    markers[l.id] = m;
-  });
-}
-
-// ===== MAPA FULLSCREEN =====
-function openFullscreenMap() {
-  var container = document.getElementById('mapFullscreen');
-  container.classList.add('active');
-  
-  if (!mapFullscreen) {
-    mapFullscreen = L.map('mapFullscreenMap', { center: [42.6, -8.4], zoom: 9, zoomControl: true });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(mapFullscreen);
+    mainMap = L.map('map', { 
+      center: [42.6, -8.4], zoom: 7, 
+      dragging: false, touchZoom: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, zoomControl: false 
+    }); 
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(mainMap);
     
     lugares.forEach(function(l, i) {
       if (!l.lat || !l.lng) return;
       var isSelected = selectedPlaces.indexOf(l.id) > -1;
       var m = L.marker([l.lat, l.lng], {
-        icon: L.divIcon({ className: 'custom-marker touchable ' + l.bloque + (isSelected ? ' selected-ring' : ''), html: '<span>' + (i+1) + '</span>', iconSize: [48, 48], iconAnchor: [24, 24] })
-      }).addTo(mapFullscreen);
+        icon: L.divIcon({ className: 'custom-marker ' + l.bloque + (isSelected ? ' selected-ring' : ''), html: '<span>' + (i+1) + '</span>', iconSize: [32, 32], iconAnchor: [16, 16] })
+      }).addTo(mainMap);
       
       m.on('click', function(e) {
         var isSel = selectedPlaces.indexOf(l.id) > -1;
         var btnText = isSel ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta';
         var btnColor = isSel ? 'var(--accent-red)' : 'var(--accent-sea)';
-        var popupHtml = '<div style="text-align:center; min-width: 150px;">';
-        popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:95px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
+        var popupHtml = '<div style="text-align:center; min-width: 140px;">';
+        popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:85px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
         popupHtml += '<div class="popup-title">' + l.nombre + '</div>';
-        popupHtml += '<div style="font-size:0.8rem; color:var(--fg-muted); margin-bottom:10px;">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
+        popupHtml += '<div style="font-size:0.75rem; color:var(--fg-muted); margin-bottom:10px;">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
         popupHtml += '<button class="popup-btn" style="background:' + btnColor + ';" onclick="togglePlaceFromPopup(' + l.id + ')">' + btnText + '</button>';
         popupHtml += '</div>';
-        L.popup({closeButton: false, offset: [0, -15]}).setLatLng(e.latlng).setContent(popupHtml).openOn(mapFullscreen);
+        L.popup({closeButton: false, offset: [0, -10]}).setLatLng(e.latlng).setContent(popupHtml).openOn(mainMap);
       });
-      fullscreenMarkers[l.id] = m;
+      markers[l.id] = m;
     });
-  } else {
-    lugares.forEach(function(l) { updateFullscreenMarker(l.id); });
-  }
-  updateFullscreenUI();
-  setTimeout(function() { mapFullscreen.invalidateSize(); }, 100);
+  }, 150);
 }
 
-function closeFullscreenMap() { document.getElementById('mapFullscreen').classList.remove('active'); }
+// ===== MAPA FULLSCREEN (CON BLINDAJE) =====
+window.openFullscreenMap = function() {
+  var container = document.getElementById('mapFullscreen');
+  container.classList.add('active');
+  
+  // Le damos un milisegundo al CSS para que ponga la pantalla en grande
+  setTimeout(function() {
+    if (!fsMap) {
+      fsMap = L.map('mapFullscreenMap', { center: [42.6, -8.4], zoom: 9, zoomControl: true });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '', maxZoom: 18 }).addTo(fsMap);
+      
+      lugares.forEach(function(l, i) {
+        if (!l.lat || !l.lng) return;
+        var isSelected = selectedPlaces.indexOf(l.id) > -1;
+        var m = L.marker([l.lat, l.lng], {
+          icon: L.divIcon({ className: 'custom-marker touchable ' + l.bloque + (isSelected ? ' selected-ring' : ''), html: '<span>' + (i+1) + '</span>', iconSize: [48, 48], iconAnchor: [24, 24] })
+        }).addTo(fsMap);
+        
+        m.on('click', function(e) {
+          var isSel = selectedPlaces.indexOf(l.id) > -1;
+          var btnText = isSel ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta';
+          var btnColor = isSel ? 'var(--accent-red)' : 'var(--accent-sea)';
+          var popupHtml = '<div style="text-align:center; min-width: 150px;">';
+          popupHtml += '<img src="' + l.imagen + '" style="width:100%; height:95px; object-fit:cover; border-radius:6px; margin-bottom:8px;">';
+          popupHtml += '<div class="popup-title">' + l.nombre + '</div>';
+          popupHtml += '<div style="font-size:0.8rem; color:var(--fg-muted); margin-bottom:10px;">' + l.horas + 'h · ' + getCategoryName(l.categorias[0]) + '</div>';
+          popupHtml += '<button class="popup-btn" style="background:' + btnColor + ';" onclick="togglePlaceFromPopup(' + l.id + ')">' + btnText + '</button>';
+          popupHtml += '</div>';
+          L.popup({closeButton: false, offset: [0, -15]}).setLatLng(e.latlng).setContent(popupHtml).openOn(fsMap);
+        });
+        fullscreenMarkers[l.id] = m;
+      });
+    } else {
+      lugares.forEach(function(l) { updateFullscreenMarker(l.id); });
+    }
+    updateFullscreenUI();
+    fsMap.invalidateSize(); // Esto evita que el mapa se quede gris al abrirse
+  }, 150);
+}
+
+window.closeFullscreenMap = function() { 
+  document.getElementById('mapFullscreen').classList.remove('active'); 
+}
 
 function updateFullscreenMarker(id) {
   var isSelected = selectedPlaces.indexOf(id) > -1;
   var m = fullscreenMarkers[id];
-  if (m) {
-    var el = m.getElement();
-    if (el) { if (isSelected) el.classList.add('selected-ring'); else el.classList.remove('selected-ring'); }
+  if (m && m.getElement()) {
+    if (isSelected) m.getElement().classList.add('selected-ring');
+    else m.getElement().classList.remove('selected-ring');
   }
 }
 
@@ -393,14 +411,16 @@ function updateFullscreenUI() {
   }
 }
 
-function scrollToMapFooter() {
+window.scrollToMapFooter = function() {
   var footer = document.getElementById('mapFullscreenFooter');
   if (footer) footer.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ===== GENERAR ITINERARIO =====
+// ===== ABRIR EN GOOGLE MAPS =====
 window.generateItinerary = function() {
   if (selectedPlaces.length === 0) { alert('Selecciona al menos un lugar en el mapa.'); return; }
+  
+  // Usamos el enlace oficial de rutas de Google Maps
   let googleMapsUrl = "https://www.google.com/maps/dir/";
   let paradas = [];
 
@@ -416,12 +436,12 @@ window.generateItinerary = function() {
     }
   });
 
-  if (paradas.length === 0) { alert('No se encontraron coordenadas.'); return; }
+  if (paradas.length === 0) { alert('No se encontraron coordenadas para la ruta.'); return; }
   googleMapsUrl += paradas.join("/");
   window.open(googleMapsUrl, '_blank');
 };
 
-// ===== RENDER PLACES (Dibuja los 38 pueblos en la sección 2) =====
+// ===== DIBUJAR LUGARES (SECCIÓN 2) =====
 function renderPlaces() {
   var c = document.getElementById('placesContainer');
   if (!c) return;
@@ -475,7 +495,7 @@ function renderPlaces() {
   initAnimations();
 }
 
-function toggleBloque(id) { 
+window.toggleBloque = function(id) { 
   var card = document.getElementById(id); 
   if (!card) return; 
   var exp = card.classList.contains('expanded'); 
@@ -488,7 +508,7 @@ window.togglePlace = function(id) {
   if (card) {
       card.classList.toggle('expanded');
       if(card.classList.contains('expanded')) {
-        setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+        setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 150);
       }
   }
 }
