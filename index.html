@@ -1,1037 +1,243 @@
 <!DOCTYPE html>
-
-
-
 <html lang="es">
-
-
-
 <head>
-
-
-
   <meta charset="UTF-8">
-
-
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-
-
   <title>Galicia - Guía para amigos</title>
-
-
-
   <link rel="manifest" href="manifest.json">
-
-
-
   <meta name="theme-color" content="#ffffff">
-
-
-
   <meta name="apple-mobile-web-app-capable" content="yes">
-
-
-
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-
-
   <meta name="apple-mobile-web-app-title" content="Galicia">
-
-
-
   <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
-
-
-
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
-
-
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-
-
-
- <link rel="preconnect" href="https://fonts.googleapis.com">
-
-
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-
-
 </head>
-
-
-
 <body>
 
-
-
-
-
-
-
   <div class="install-banner" id="installBanner">
-
-
-
     <div class="install-banner-text"><strong>Instalar Galicia</strong><span>Añade la guía a tu pantalla de inicio</span></div>
-
-
-
     <button class="install-banner-btn" id="installBtn">Instalar</button>
-
-
-
     <button class="install-banner-close" id="installClose">&times;</button>
-
-
-
   </div>
-
-
-
-
-
-
 
   <div class="splash-screen" id="splashScreen">
-
-
-
     <div class="splash-content">
-
-
-
       <div class="splash-icon"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg></div>
-
-
-
       <h1 class="splash-title">Galicia</h1>
-
-
-
       <p class="splash-subtitle">Guía para amigos</p>
-
-
-
       <form class="splash-form" id="splashForm">
-
-
-
         <div><input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off"></div>
-
-
-
         <p class="splash-error" id="splashError"></p>
-
-
-
         <button type="submit" class="splash-btn">Entrar</button>
-
-
-
       </form>
-
-
-
       <div class="splash-footer">
-
-
-
         <p class="splash-footer-text">Esta guía ha sido creada con cariño, exclusivamente para amigos.</p>
-
-
-
         <p class="splash-footer-note">La contraseña se actualiza cada año.</p>
-
-
-
       </div>
-
-
-
     </div>
-
-
-
   </div>
 
-
-
-
-
-
-
   <div class="main-content" id="mainContent">
-
-
-
-    <!-- El resto del contenido se genera dinámicamente -->
-
-
-
+    
     <header id="hero" class="hero">
-
-
-
       <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
-
-
-
       <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
-
-
-
       <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
-
-
-
       <div class="hero-authors fade-in visible delay-2">
-
-
-
-      <div class="hero-authors fade-in visible delay-2">
-
-
-
-  <p class="hero-subtitle" style="margin-top: 0; font-size: 1.1rem;">Hecha por Xurxo & Raquel</p>
-
-
-
-</div>
-
-
-
+        <p class="hero-subtitle" style="margin-top: 0; font-size: 1.1rem;">Hecha por Xurxo & Raquel</p>
+      </div>
     </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </section>
-
-
-
-
-
-
 
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
 
-
-
-
-
-
-
-<section id="recomendaciones" class="recommendations-section">
-
-
-
-  <div class="section-header">
-
-
-
-    <span class="section-number">1</span>
-
-
-
-    <h2 class="section-title">Recomendaciones</h2>
-
-
-
-  </div>
-
-
-
-  <p class="section-subtitle">Lo que nadie te cuenta para disfrutar Galicia de verdad.</p>
-
-
-
-
-
-
-
-  <div class="category-row">
-
-
-
-    <div class="category-hero-card">
-
-
-
-      <img src="antesdevenir.jpg" alt="Antes de venir">
-
-
-
-      <div class="category-overlay"><h3>🌦️ Antes de venir</h3></div>
-
-
-
-    </div>
-
-
-
-    <div class="horizontal-scroll">
-
-
-
-      <div class="rec-card"><h4>🧥 Chaqueta</h4><p>Por las noches refresca; imprescindible y traicionera.</p></div>
-
-
-
-      <div class="rec-card"><h4>☔ Lluvia</h4><p>En verano también llueve y no es “un ratito”.</p></div>
-
-
-
-      <div class="rec-card"><h4>⛅ Clima</h4><p>Cuatro estaciones en un día, prepárate.</p></div>
-
-
-
-      <div class="rec-card"><h4>😋 Hambre</h4><p>Ven con apetito, Galicia invita a comer.</p></div>
-
-
-
-      <div class="rec-card"><h4>📍 Planes</h4><p>No llenes cada día de planes, siempre hay paradas inesperadas.</p></div>
-
-
-
-      <div class="rec-card"><h4>🗣️ Idioma</h4><p>La gente habla gallego; “boas” y “grazas” suman puntos.</p></div>
-
-
-
-      <div class="rec-card"><h4>🤝 Gallegos</h4><p>No somos raros, somos únicos.</p></div>
-
-
-
-      <div class="rec-card"><h4>❓ Preguntar</h4><p>Hazlo sin miedo, prepárate para el: “depende, mira, bueno…”.</p></div>
-
-
-
-      <div class="rec-card"><h4>📅 Reservas</h4><p>Islas Cíes, Catedral de Santiago, Pórtico de la Gloria, Playa de las Catedrales.</p></div>
-
-
-
-    </div>
-
-
-
-  </div>
-
-
-
-
-
-
-
-  <div class="category-row" style="margin-top: 24px;">
-
-
-
-    <div class="category-hero-card">
-
-
-
-      <img src="comerbien.jpg" alt="Para comer bien">
-
-
-
-      <div class="category-overlay"><h3>🍽️ Para comer bien</h3></div>
-
-
-
-    </div>
-
-
-
-    <div class="horizontal-scroll">
-
-
-
-      <div class="rec-card"><h4>🧘 Paciencia</h4><p>Comer en Galicia es un ritual, no tengas prisa.</p></div>
-
-
-
-      <div class="rec-card"><h4>🏁 Festín</h4><p>Si te invitan, prepárate para una maratón que recordarás.</p></div>
-
-
-
-      <div class="rec-card"><h4>🥖 Pan</h4><p>Prueba el pan de verdad, te hará replantearte tu vida.</p></div>
-
-
-
-      <div class="rec-card"><h4>🐙 Pulpo y empanada</h4><p>Pulpo á feira, empanada gallega o un buen caldo gallego.</p></div>
-
-
-
-      <div class="rec-card"><h4>🔥 Pescado</h4><p>A las brasas, fresco de ría, carne jugosa y sabor intenso; muy recomendable.</p></div>
-
-
-
-      <div class="rec-card"><h4>🥩 Raxo y zorza</h4><p>No dejes de probar estos clásicos de la carne gallega.</p></div>
-
-
-
-      <div class="rec-card"><h4>🐄 Ternera</h4><p>Ternera gallega suprema; las vacas viven mejor que nosotros.</p></div>
-
-
-
-      <div class="rec-card"><h4>💰 Mariscada</h4><p>Buena → mínimo 100 € por persona; menos no es mariscada.</p></div>
-
-
-
-      <div class="rec-card"><h4>🏠 Pulpeira</h4><p>Si quieres garantías de un buen pulpo, ve a una pulpeira.</p></div>
-
-
-
-      <div class="rec-card"><h4>🍷 Tinto</h4><p>Mencía, el más característico de Galicia (Ribeira Sacra).</p></div>
-
-
-
-      <div class="rec-card"><h4>🥂 Blanco fresco</h4><p>Albariño (Rías Baixas).</p></div>
-
-
-
-      <div class="rec-card"><h4>🏺 Blanco tradicional</h4><p>Ribeiro (Ribeiro).</p></div>
-
-
-
-      <div class="rec-card"><h4>✨ Blanco con cuerpo</h4><p>Godello (Valdeorras).</p></div>
-
-
-
-      <div class="rec-card"><h4>🎺 Fiestas</h4><p>Barrantes en romerías (Rías Baixas).</p></div>
-
-
-
-      <div class="rec-card"><h4>💎 Calidad</h4><p>Se paga; el buen producto merece la pena.</p></div>
-
-
-
-      <div class="rec-card"><h4>💬 Duda</h4><p>Pregunta al camarero, te recomendará lo mejor del día.</p></div>
-
-
-
-    </div>
-
-
-
-  </div>
-
-
-
-
-
-
-
-  <div class="category-row" style="margin-top: 24px;">
-
-
-
-    <div class="category-hero-card">
-
-
-
-      <img src="disfrutar.jpg" alt="Para disfrutar Galicia">
-
-
-
-      <div class="category-overlay"><h3>🌄 Para disfrutar Galicia</h3></div>
-
-
-
-    </div>
-
-
-
-    <div class="horizontal-scroll">
-
-
-
-      <div class="rec-card"><h4>📏 Distancias</h4><p>Engañan, el mapa dice una cosa y las carreteras otra.</p></div>
-
-
-
-      <div class="rec-card"><h4>🚗 Coche</h4><p>Es tu mejor aliado para descubrir playas, aldeas y miradores.</p></div>
-
-
-
-      <div class="rec-card"><h4>📡 GPS</h4><p>No confíes solo en él; en pueblos y aldeas se pierde fácilmente.</p></div>
-
-
-
-      <div class="rec-card"><h4>🪧 Carteles</h4><p>Sigue los carteles a faros y miradores.</p></div>
-
-
-
-      <div class="rec-card"><h4>🌊 Mareas</h4><p>Cuidado; no aparques en la playa porque “está seca”.</p></div>
-
-
-
-      <div class="rec-card"><h4>🧒 Playas de ría</h4><p>Ideales con niños, tranquilidad asegurada.</p></div>
-
-
-
-      <div class="rec-card"><h4>🚩 Playas mar abierto</h4><p>Oleaje, corrientes y bandera roja son palabras sagradas.</p></div>
-
-
-
-      <div class="rec-card"><h4>🌀 Resaca</h4><p>La del mar, no la de la fiesta.</p></div>
-
-
-
-      <div class="rec-card"><h4>🌅 Chiringuitos</h4><p>Pocos, pero mar y horizonte muchos; Galicia en estado puro.</p></div>
-
-
-
-      <div class="rec-card"><h4>🌍 Atardecer</h4><p>Ve a ver el sol ponerse en Cabo Fisterra, el fin del mundo.</p></div>
-
-
-
-    </div>
-
-
-
-  </div>
-
-
-
-</section>
-
-
+    <section id="recomendaciones" class="recommendations-section">
+      <div class="section-header">
+        <span class="section-number">1</span>
+        <h2 class="section-title">Recomendaciones</h2>
+      </div>
+      <p class="section-subtitle">Lo que nadie te cuenta para disfrutar Galicia de verdad.</p>
+
+      <div class="category-row">
+        <div class="category-hero-card">
+          <img src="antesdevenir.jpg" alt="Antes de venir">
+          <div class="category-overlay"><h3>🌦️ Antes de venir</h3></div>
+        </div>
+        <div class="horizontal-scroll">
+          <div class="rec-card"><h4>🧥 Chaqueta</h4><p>Por las noches refresca; imprescindible y traicionera.</p></div>
+          <div class="rec-card"><h4>☔ Lluvia</h4><p>En verano también llueve y no es “un ratito”.</p></div>
+          <div class="rec-card"><h4>⛅ Clima</h4><p>Cuatro estaciones en un día, prepárate.</p></div>
+          <div class="rec-card"><h4>😋 Hambre</h4><p>Ven con apetito, Galicia invita a comer.</p></div>
+          <div class="rec-card"><h4>📍 Planes</h4><p>No llenes cada día de planes, siempre hay paradas inesperadas.</p></div>
+          <div class="rec-card"><h4>🗣️ Idioma</h4><p>La gente habla gallego; “boas” y “grazas” suman puntos.</p></div>
+          <div class="rec-card"><h4>🤝 Gallegos</h4><p>No somos raros, somos únicos.</p></div>
+          <div class="rec-card"><h4>❓ Preguntar</h4><p>Hazlo sin miedo, prepárate para el: “depende, mira, bueno…”.</p></div>
+          <div class="rec-card"><h4>📅 Reservas</h4><p>Islas Cíes, Catedral de Santiago, Pórtico de la Gloria, Playa de las Catedrales.</p></div>
+        </div>
+      </div>
+
+      <div class="category-row" style="margin-top: 24px;">
+        <div class="category-hero-card">
+          <img src="comerbien.jpg" alt="Para comer bien">
+          <div class="category-overlay"><h3>🍽️ Para comer bien</h3></div>
+        </div>
+        <div class="horizontal-scroll">
+          <div class="rec-card"><h4>🧘 Paciencia</h4><p>Comer en Galicia es un ritual, no tengas prisa.</p></div>
+          <div class="rec-card"><h4>🏁 Festín</h4><p>Si te invitan, prepárate para una maratón que recordarás.</p></div>
+          <div class="rec-card"><h4>🥖 Pan</h4><p>Prueba el pan de verdad, te hará replantearte tu vida.</p></div>
+          <div class="rec-card"><h4>🐙 Pulpo y empanada</h4><p>Pulpo á feira, empanada gallega o un buen caldo gallego.</p></div>
+          <div class="rec-card"><h4>🔥 Pescado</h4><p>A las brasas, fresco de ría, carne jugosa y sabor intenso; muy recomendable.</p></div>
+          <div class="rec-card"><h4>🥩 Raxo y zorza</h4><p>No dejes de probar estos clásicos de la carne gallega.</p></div>
+          <div class="rec-card"><h4>🐄 Ternera</h4><p>Ternera gallega suprema; las vacas viven mejor que nosotros.</p></div>
+          <div class="rec-card"><h4>💰 Mariscada</h4><p>Buena → mínimo 100 € por persona; menos no es mariscada.</p></div>
+          <div class="rec-card"><h4>🏠 Pulpeira</h4><p>Si quieres garantías de un buen pulpo, ve a una pulpeira.</p></div>
+          <div class="rec-card"><h4>🍷 Tinto</h4><p>Mencía, el más característico de Galicia (Ribeira Sacra).</p></div>
+          <div class="rec-card"><h4>🥂 Blanco fresco</h4><p>Albariño (Rías Baixas).</p></div>
+          <div class="rec-card"><h4>🏺 Blanco tradicional</h4><p>Ribeiro (Ribeiro).</p></div>
+          <div class="rec-card"><h4>✨ Blanco con cuerpo</h4><p>Godello (Valdeorras).</p></div>
+          <div class="rec-card"><h4>🎺 Fiestas</h4><p>Barrantes en romerías (Rías Baixas).</p></div>
+          <div class="rec-card"><h4>💎 Calidad</h4><p>Se paga; el buen producto merece la pena.</p></div>
+          <div class="rec-card"><h4>💬 Duda</h4><p>Pregunta al camarero, te recomendará lo mejor del día.</p></div>
+        </div>
+      </div>
+
+      <div class="category-row" style="margin-top: 24px;">
+        <div class="category-hero-card">
+          <img src="disfrutar.jpg" alt="Para disfrutar Galicia">
+          <div class="category-overlay"><h3>🌄 Para disfrutar Galicia</h3></div>
+        </div>
+        <div class="horizontal-scroll">
+          <div class="rec-card"><h4>📏 Distancias</h4><p>Engañan, el mapa dice una cosa y las carreteras otra.</p></div>
+          <div class="rec-card"><h4>🚗 Coche</h4><p>Es tu mejor aliado para descubrir playas, aldeas y miradores.</p></div>
+          <div class="rec-card"><h4>📡 GPS</h4><p>No confíes solo en él; en pueblos y aldeas se pierde fácilmente.</p></div>
+          <div class="rec-card"><h4>🪧 Carteles</h4><p>Sigue los carteles a faros y miradores.</p></div>
+          <div class="rec-card"><h4>🌊 Mareas</h4><p>Cuidado; no aparques en la playa porque “está seca”.</p></div>
+          <div class="rec-card"><h4>🧒 Playas de ría</h4><p>Ideales con niños, tranquilidad asegurada.</p></div>
+          <div class="rec-card"><h4>🚩 Playas mar abierto</h4><p>Oleaje, corrientes y bandera roja son palabras sagradas.</p></div>
+          <div class="rec-card"><h4>🌀 Resaca</h4><p>La del mar, no la de la fiesta.</p></div>
+          <div class="rec-card"><h4>🌅 Chiringuitos</h4><p>Pocos, pero mar y horizonte muchos; Galicia en estado puro.</p></div>
+          <div class="rec-card"><h4>🌍 Atardecer</h4><p>Ve a ver el sol ponerse en Cabo Fisterra, el fin del mundo.</p></div>
+        </div>
+      </div>
+    </section>
 
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
 
+    <section id="lugares">
+      <div class="section-header fade-in">
+        <span class="section-number">2</span>
+        <h2 class="section-title">Lugares de Galicia</h2>
+      </div>
+      <p class="fade-in delay-1" style="font-size:0.95rem; color:var(--fg-muted); margin-bottom:16px;">
+        4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.
+      </p>
+      <div id="placesContainer"></div>
+    </section>
 
-
-
-
-
-
-<section id="lugares">
-
-
-
-  <div class="section-header fade-in">
-
-
-
-    <span class="section-number">2</span>
-
-
-
-    <h2 class="section-title">Lugares de Galicia</h2>
-
-
-
-  </div>
-
-
-
-  <p class="fade-in delay-1" style="font-size:0.95rem; color:var(--fg-muted); margin-bottom:16px;">
-
-
-
-    4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.
-
-
-
-  </p>
-
-
-
-  <div id="placesContainer"></div>
-
-
-
-</section>
-
-
-
-
-
-
-
-        <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-
-
-
-
-
-
+    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
 
     <section id="generador">
-
-
-
-      <div class="section-header fade-in"><span class="section-number">3</span><h2 class="section-title">Tu ruta</h2></div>
-
-
-
+      <div class="section-header fade-in">
+        <span class="section-number">3</span>
+        <h2 class="section-title">Tu ruta</h2>
+      </div>
       <p class="section-subtitle" style="text-align: left; color: var(--fg-muted); margin-bottom: 20px; font-size: 0.95rem;">
-
-
-
         Toca los números en el mapa para armar tu ruta 👇
-
-
-
       </p>
-
-
-
-    <div class="generator-box fade-in" style="margin-top:20px">
-
-
-
-        
-
-
-
-<div class="map-section">
-
-
-
+      
+      <div class="generator-box fade-in" style="margin-top:20px">
+        <div class="map-section">
           <div class="map-container-wrapper">
-
-
-
             <div id="map" class="map-container" style="min-height: 450px;"></div>
-
-
-
             <button class="map-expand-btn" onclick="openFullscreenMap()" aria-label="Expandir mapa">
-
-
-
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-
-
-
             </button>
-
-
-
           </div>
-
-
-
-          
-
-
-
         </div>
-
-
-
-
-
-
 
         <div class="geo-section" style="margin-top: 16px;">
-
-
-
           <div class="geo-header">
-
-
-
             <div class="geo-info">
-
-
-
               <div class="geo-title">Tu ubicación</div>
-
-
-
               <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
-
-
-
             </div>
-
-
-
             <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
-
-
-
           </div>
-
-
-
         </div>
-
-
-
-
-
-
 
         <div class="selection-section" style="margin-top: 24px;">
-
-
-
           <div class="selection-header">
-
-
-
             <span class="selection-title">Tu selección</span>
-
-
-
             <span class="selection-stats" id="selectionStats">0 lugares · 0h</span>
-
-
-
           </div>
-
-
-
           <div id="selectionContent"></div>
-
-
-
         </div>
-
-
-
-          <div class="selection-header">
-
-
-
-            <span class="selection-title">Tu selección</span>
-
-
-
-            <span class="selection-stats" id="selectionStats">0 lugares · 0h</span>
-
-
-
-          </div>
-
-
-
-          <div id="selectionContent"></div>
-
-
-
-        </div>
-
-
-
-
-
-
 
         <div class="decorative-divider" style="margin: 24px 0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg></div>
-
-
-
-
-
-
-
-        <div class="favorites-section" id="favoritesSection" style="margin-top: 20px;"></div>
-
-
-
         
-
-
-
+        <div class="favorites-section" id="favoritesSection" style="margin-top: 20px;"></div>
       </div>
-
-
-
       
-
-
-
       <div id="itineraryResult" class="hidden"></div>
-
-
-
-
-
-
-
-   <nav class="bottom-menu">
-
-
-
-  <div class="menu-container">
-
-
-
-    <a href="#hero" class="menu-item active" data-section="hero">
-
-
-
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-
-
-
-        <circle cx="12" cy="12" r="10"/>
-
-
-
-        <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
-
-
-
-      </svg>
-
-
-
-      <span>Inicio</span>
-
-
-
-    </a>
-
-
-
-
-
-
-
-    <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
-
-
-
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-
-
-
-        <path d="M9 18h6m-3-15a7 7 0 0 0-7 7c0 2.5 2 4.5 2 7h10c0-2.5 2-4.5 2-7a7 7 0 0 0-7-7z"/>
-
-
-
-      </svg>
-
-
-
-      <span>Consejos</span>
-
-
-
-    </a>
-
-
-
-
-
-
-
-    <a href="#lugares" class="menu-item" data-section="lugares">
-
-
-
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-
-
-
-        <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/>
-
-
-
-      </svg>
-
-
-
-      <span>Lugares</span>
-
-
-
-    </a>
-
-
-
-
-
-
-
-    <a href="#generador" class="menu-item" data-section="generador">
-
-
-
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-
-
-
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-
-
-
-        <circle cx="12" cy="10" r="3"/>
-
-
-
-      </svg>
-
-
-
-      <span>Ruta</span>
-
-
-
-    </a>
-
-
-
-  </div>
-
-
-
-</nav>
-
-
-
-  </div>
-
-
-
-
-
-
-
-  <!-- MAPA FULLSCREEN -->
-
-
-
-  <div class="map-fullscreen" id="mapFullscreen">
-
-
-
-    <div class="map-fullscreen-header">
-
-
-
-      <span class="map-fullscreen-title">Selecciona lugares en el mapa</span>
-
-
-
-      <button class="map-fullscreen-close" onclick="closeFullscreenMap()" aria-label="Cerrar mapa">
-
-
-
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-
-
-
-      </button>
-
-
-
-    </div>
-
-
-
-    <div id="mapFullscreenMap" class="map-fullscreen-map"></div>
-
-
-
-    <!-- Botón flotante para cerrar - siempre visible -->
-
-
-
-   
-
-
-
-    <!-- Botón flotante para ver selección -->
-
-
-
-    <button class="map-floating-selection" id="mapFloatingSelection" onclick="scrollToMapFooter()" style="display:none;">
-
-
-
-      <span id="mapFloatingCount">0</span>
-
-
-
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-
-
-
-    </button>
-
-
-
-    <div class="map-fullscreen-footer" id="mapFullscreenFooter">
-
-
-
-      <div class="map-selection-summary">
-
-
-
-        <span class="map-selection-count" id="mapSelectionCount">0 seleccionados</span>
-
-
-
-        <span class="map-selection-time" id="mapSelectionTime">0h</span>
-
-
-
+    </section>
+
+    <nav class="bottom-menu">
+      <div class="menu-container">
+        <a href="#hero" class="menu-item active" data-section="hero">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
+          </svg>
+          <span>Inicio</span>
+        </a>
+        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 18h6m-3-15a7 7 0 0 0-7 7c0 2.5 2 4.5 2 7h10c0-2.5 2-4.5 2-7a7 7 0 0 0-7-7z"/>
+          </svg>
+          <span>Consejos</span>
+        </a>
+        <a href="#lugares" class="menu-item" data-section="lugares">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/>
+          </svg>
+          <span>Lugares</span>
+        </a>
+        <a href="#generador" class="menu-item" data-section="generador">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Ruta</span>
+        </a>
       </div>
-
-
-
-      <div class="map-selection-places" id="mapSelectionPlaces"></div>
-
-
-
-      <p class="map-fullscreen-hint">Toca un punto para añadirlo o quitarlo. Haz zoom para ver mejor.</p>
-
-
-
+    </nav>
+  </div> <div class="map-fullscreen" id="mapFullscreen">
+    <div class="map-fullscreen-header">
+      <span class="map-fullscreen-title">Selecciona lugares</span>
+      <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
-
-
-
+    <div id="mapFullscreenMap" class="map-fullscreen-map"></div>
+    <button class="map-floating-selection" id="mapFloatingSelection" onclick="scrollToMapFooter()" style="display:none;">
+      <span id="mapFloatingCount">0</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="map-fullscreen-footer" id="mapFullscreenFooter">
+      <div class="map-selection-summary">
+        <span class="map-selection-count" id="mapSelectionCount">0 seleccionados</span>
+        <span class="map-selection-time" id="mapSelectionTime">0h</span>
+      </div>
+      <div class="map-selection-places" id="mapSelectionPlaces"></div>
+      <p class="map-fullscreen-hint">Toca un punto para añadirlo o quitarlo. Haz zoom para ver mejor.</p>
+    </div>
   </div>
-
-
-
-
-
-
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-
-
-<script src="app.js?v=1.1"></script>
-
-
-
+  <script src="app.js?v=1.1"></script>
 </body>
-
-
-
 </html>
