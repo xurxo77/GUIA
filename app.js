@@ -913,26 +913,13 @@ function renderListBlock(icon, title, items) {
   return '<div class="info-block"><div class="info-header"><span class="info-icon">' + icon + '</span><span class="info-title">' + title + '</span></div><ul class="info-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul></div>'; 
 }
 
-function togglePlace(id) { 
-  var card = document.getElementById(id); 
-  if (!card) return; 
-  var exp = card.classList.contains('expanded'); 
-  document.querySelectorAll('.place-card.expanded').forEach(function(x) { x.classList.remove('expanded'); }); 
-  if (!exp) card.classList.add('expanded'); 
-}
-// ===== FUNCIÓN PARA LA TARJETA PEQUEÑA DEL MAPA =====
-window.togglePlaceFromPopup = function(id) {
-  togglePlaceSelection(id);
-  if (map) map.closePopup();
-  if (mapFullscreen) mapFullscreen.closePopup();
-  if (typeof updateFullscreenUI === 'function') updateFullscreenUI();
-};
-function toggleGuide(id) {
+function toggleExpand(id) {
     var card = document.getElementById(id);
-    if (!card) return;
-    // Cierra los demás para ahorrar scroll
-    document.querySelectorAll('.guide-card.expanded').forEach(function(x) { 
-        if(x.id !== id) x.classList.remove('expanded'); 
-    });
-    card.classList.toggle('expanded');
+    if (card) {
+        card.classList.add('expanded');
+        // Opcional: scroll suave para que el nuevo contenido entre en pantalla
+        setTimeout(function() {
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    }
 }
