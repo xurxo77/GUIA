@@ -592,41 +592,49 @@ function toggleProvinceAccordion(id) {
   }
 }
 
-// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN DEFINITIVA) =====
+// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN TODOTERRENO) =====
 window.generateItinerary = function() {
-  // 1. Comprobamos que haya algo seleccionado
   if (selectedPlaces.length === 0) {
     alert('Selecciona al menos un lugar en el mapa para crear tu ruta.');
     return;
   }
 
-  // 2. Preparamos la URL base CORRECTA de Google Maps para rutas
+  // URL moderna y oficial de rutas de Google Maps
   let googleMapsUrl = "https://www.google.com/maps/dir/";
   let paradas = [];
 
-  // 3. SUPERPODER: Leemos la ubicación del usuario (usando tu variable real)
-  if (typeof userLocation !== 'undefined' && userLocation !== null) {
+  // Añadimos el GPS del usuario si está activo
+  if (typeof userLocation !== 'undefined' && userLocation !== null && userLocation.lat) {
     paradas.push(userLocation.lat + "," + userLocation.lng);
   }
 
-  // 4. Buscamos las coordenadas exactas de cada lugar seleccionado
+  // Buscamos cada lugar
   selectedPlaces.forEach(function(id) {
-    let lugar = lugares.find(l => l.id === id);
-    if (lugar && lugar.coords) {
-      paradas.push(lugar.coords[0] + "," + lugar.coords[1]);
+    // Usamos == (dos iguales) para evitar fallos si uno es texto y otro número
+    let lugar = lugares.find(l => l.id == id);
+    
+    if (lugar) {
+      // Rastreamos las coordenadas en todos los formatos posibles
+      if (lugar.coords && lugar.coords.length >= 2) {
+        paradas.push(lugar.coords[0] + "," + lugar.coords[1]); // Formato array [lat, lng]
+      } 
+      else if (lugar.lat && lugar.lng) {
+        paradas.push(lugar.lat + "," + lugar.lng); // Formato lat: X, lng: Y
+      } 
+      else if (lugar.latitud && lugar.longitud) {
+        paradas.push(lugar.latitud + "," + lugar.longitud); // Formato en español
+      }
     }
   });
 
-  // 5. Si por algún motivo no hay coordenadas válidas, avisamos
+  // Si después de buscar en todos los formatos sigue vacía, lanzamos la alerta
   if (paradas.length === 0) {
     alert('No se pudieron encontrar las coordenadas de los lugares.');
     return;
   }
 
-  // 6. Juntamos todas las coordenadas separadas por "/" (formato de Google)
+  // Juntamos las paradas separadas por "/" y abrimos
   googleMapsUrl += paradas.join("/");
-
-  // 7. ¡Magia! Abrimos Google Maps
   window.open(googleMapsUrl, '_blank');
 };
 function calculateRoute(places, fromUser) {
