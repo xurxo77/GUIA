@@ -592,29 +592,43 @@ function toggleProvinceAccordion(id) {
   }
 }
 
-// ===== GENERAR ITINERARIO =====
-function generateItinerary() {
+// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN BLINDADA) =====
+window.generateItinerary = function() {
+  // 1. Comprobamos que haya algo seleccionado
   if (selectedPlaces.length === 0) {
-    alert('Selecciona al menos un lugar para crear un itinerario');
+    alert('Selecciona al menos un lugar en el mapa para crear tu ruta.');
     return;
   }
-  
-  if (userLocation) {
-    selectedPlaces.sort(function(a, b) {
-      var la = lugares.find(function(x) { return x.id === a; });
-      var lb = lugares.find(function(x) { return x.id === b; });
-      if (!la || !lb) return 0;
-      var da = haversine(userLocation.lat, userLocation.lng, la.lat, la.lng);
-      var db = haversine(userLocation.lat, userLocation.lng, lb.lat, lb.lng);
-      return da - db;
-    });
+
+  // 2. Preparamos la URL base de Google Maps para crear rutas (direcciones)
+  let googleMapsUrl = "https://www.google.com/maps/dir/";
+  let paradas = [];
+
+  // 3. SUPERPODER: Si el usuario activó su ubicación, la ponemos como punto de partida
+  if (typeof userLat !== 'undefined' && typeof userLng !== 'undefined' && userLat && userLng) {
+    paradas.push(userLat + "," + userLng);
   }
-  
-  var sel = selectedPlaces.map(function(id) { return lugares.find(function(l) { return l.id === id; }); });
-  calculateRoute(sel, userLocation !== null).then(function(route) {
-    showItinerary(sel, route);
+
+  // 4. Buscamos las coordenadas exactas de cada lugar seleccionado
+  selectedPlaces.forEach(function(id) {
+    let lugar = lugares.find(l => l.id === id);
+    if (lugar && lugar.coords) {
+      paradas.push(lugar.coords[0] + "," + lugar.coords[1]);
+    }
   });
-}
+
+  // 5. Si por algún motivo no hay coordenadas válidas, avisamos
+  if (paradas.length === 0) {
+    alert('No se pudieron encontrar las coordenadas de los lugares.');
+    return;
+  }
+
+  // 6. Juntamos todas las coordenadas separadas por "/" (es el formato que pide Google)
+  googleMapsUrl += paradas.join("/");
+
+  // 7. ¡Magia! Abrimos Google Maps en una pestaña nueva o en la app del móvil
+  window.open(googleMapsUrl, '_blank');
+};
 
 function calculateRoute(places, fromUser) {
   return new Promise(function(resolve) {
