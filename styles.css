@@ -269,69 +269,65 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .hidden { display: none !important; }
 
 
-/* --- MEJORA SECCIÓN RECOMENDACIONES (CARRUSEL ELEGANTE) --- */
+/* --- MEJORA SECCIÓN RECOMENDACIONES (ESTILO GUÍA PREMIUM) --- */
 
-/* 1. Contenedor: Efecto carrusel real magnético */
+/* 1. Carrusel suave y con espacio para las sombras */
 .horizontal-scroll {
   display: flex !important;
   overflow-x: auto !important;
-  padding: 10px 20px 30px 20px !important; /* Espacio para que respire la sombra */
+  padding: 10px 20px 30px 20px !important; 
   gap: 16px !important;
-  scroll-snap-type: x mandatory !important; /* El imán */
+  scroll-snap-type: x mandatory !important; 
   scroll-padding-left: 20px !important;
   -webkit-overflow-scrolling: touch !important;
 }
 
-/* Ocultar barra de scroll en navegadores que aún la muestren */
 .horizontal-scroll::-webkit-scrollbar {
   display: none !important;
 }
 
-/* 2. Tarjetas: Mismo diseño elegante que los lugares */
+/* 2. Tarjetas: Mismo ADN que el resto de la App */
 .rec-card {
-  flex: 0 0 280px !important; /* Tamaño exacto para que asome la siguiente tarjeta y sepas que puedes deslizar */
-  background: var(--bg-card) !important;
-  padding: 20px 20px 24px 20px !important;
+  flex: 0 0 260px !important; /* Un poco más estrechas para que se vea claro que hay más a la derecha */
+  background: var(--bg-paper) !important; /* Fondo de papel limpio */
+  padding: 20px 24px !important;
   border-radius: 12px !important;
-  border: 2px solid var(--border-aged) !important;
-  box-shadow: 0 6px 16px var(--shadow-warm) !important;
-  scroll-snap-align: start !important; /* Aquí es donde se frena la tarjeta */
-  position: relative !important;
-  overflow: hidden !important;
+  border: 2px solid var(--border-aged) !important; /* Borde de guía antigua */
+  box-shadow: 0 4px 16px var(--shadow-warm) !important; /* Sombra cálida exacta de los bloques */
+  scroll-snap-align: start !important; 
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
 }
 
-/* Línea decorativa superior */
+/* Quitamos la franja de color moderna de arriba (si la tuviera) */
 .rec-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--accent-sea);
+  display: none !important;
 }
 
-/* 3. Textos: Tipografía premium */
+/* 3. Título de la tarjeta: Tipografía elegante y línea punteada */
 .rec-card h4 {
   font-family: 'Playfair Display', serif !important;
-  font-size: 1.35rem !important;
+  font-size: 1.25rem !important;
   font-weight: 700 !important;
   color: var(--accent-sea) !important;
-  margin: 0 0 10px 0 !important;
-  letter-spacing: 0.5px;
+  margin: 0 0 12px 0 !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px dashed var(--border-aged) !important; /* El toque clásico de las tarjetas de lugares */
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
 
+/* 4. Texto descriptivo */
 .rec-card p {
-  font-size: 0.95rem !important;
+  font-size: 0.9rem !important;
   color: var(--fg-muted) !important;
   line-height: 1.6 !important;
   margin: 0 !important;
 }
 
-/* 4. Tarjeta de cabecera con la imagen */
+/* 5. Cabecera grande con imagen de la categoría */
 .category-hero-card {
   border: 2px solid var(--border-aged) !important;
   box-shadow: 0 4px 16px var(--shadow-warm) !important;
@@ -339,6 +335,6 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 
 .category-overlay h3 {
   font-family: 'Playfair Display', serif !important;
-  font-size: 1.7rem !important;
+  font-size: 1.6rem !important;
   letter-spacing: 0.5px;
 }
