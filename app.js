@@ -592,7 +592,7 @@ function toggleProvinceAccordion(id) {
   }
 }
 
-// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN BLINDADA) =====
+// ===== GENERAR ITINERARIO EN GOOGLE MAPS (VERSIÓN DEFINITIVA) =====
 window.generateItinerary = function() {
   // 1. Comprobamos que haya algo seleccionado
   if (selectedPlaces.length === 0) {
@@ -600,13 +600,13 @@ window.generateItinerary = function() {
     return;
   }
 
-  // 2. Preparamos la URL base de Google Maps para crear rutas (direcciones)
+  // 2. Preparamos la URL base CORRECTA de Google Maps para rutas
   let googleMapsUrl = "https://www.google.com/maps/dir/";
   let paradas = [];
 
-  // 3. SUPERPODER: Si el usuario activó su ubicación, la ponemos como punto de partida
-  if (typeof userLat !== 'undefined' && typeof userLng !== 'undefined' && userLat && userLng) {
-    paradas.push(userLat + "," + userLng);
+  // 3. SUPERPODER: Leemos la ubicación del usuario (usando tu variable real)
+  if (typeof userLocation !== 'undefined' && userLocation !== null) {
+    paradas.push(userLocation.lat + "," + userLocation.lng);
   }
 
   // 4. Buscamos las coordenadas exactas de cada lugar seleccionado
@@ -623,13 +623,12 @@ window.generateItinerary = function() {
     return;
   }
 
-  // 6. Juntamos todas las coordenadas separadas por "/" (es el formato que pide Google)
+  // 6. Juntamos todas las coordenadas separadas por "/" (formato de Google)
   googleMapsUrl += paradas.join("/");
 
-  // 7. ¡Magia! Abrimos Google Maps en una pestaña nueva o en la app del móvil
+  // 7. ¡Magia! Abrimos Google Maps
   window.open(googleMapsUrl, '_blank');
 };
-
 function calculateRoute(places, fromUser) {
   return new Promise(function(resolve) {
     var pts = [];
