@@ -1879,3 +1879,33 @@ section#generador { min-height: auto; }
     display: inline; /* Volvemos a ponerlo en línea para ahorrar altura */
     margin-right: 5px;
 }
+/* --- GUÍA CON TUS COLORES --- */
+.guide-section { padding: 20px 15px; }
+.guide-main-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; text-align: center; color: var(--fg-muted); }
+
+.guide-container { display: flex; flex-direction: column; gap: 12px; max-width: 600px; margin: 0 auto; }
+
+.guide-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.08); }
+
+.guide-card-header { padding: 15px 20px; display: flex; align-items: center; cursor: pointer; }
+.guide-card-header h3 { margin: 0; font-size: 1.1rem; }
+
+/* Aplicando tus variables de la app */
+.guide-card.blue { border-left: 5px solid var(--accent-sea); }
+.guide-card.blue h3 { color: var(--accent-sea); }
+
+.guide-card.orange { border-left: 5px solid var(--bloque-pontevedra); }
+.guide-card.orange h3 { color: var(--bloque-pontevedra); }
+
+.guide-card.green { border-left: 5px solid var(--bloque-lugo); }
+.guide-card.green h3 { color: var(--bloque-lugo); }
+
+.guide-card-content { max-height: 0; overflow: hidden; transition: all 0.3s ease-in-out; }
+.guide-card.expanded .guide-card-content { max-height: 2000px; padding-bottom: 10px; }
+
+.guide-item { padding: 10px 20px; font-size: 0.92rem; border-bottom: 1px solid #f0f0f0; line-height: 1.4; }
+.guide-item:last-child { border-bottom: none; }
+.guide-item strong { color: #111; display: block; margin-bottom: 2px; }
+
+.guide-arrow { margin-left: auto; width: 18px; height: 18px; stroke: #999; transition: 0.3s; }
+.guide-card.expanded .guide-arrow { transform: rotate(180deg); }
