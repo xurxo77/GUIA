@@ -535,14 +535,32 @@ function initAnimations() {
   }, { threshold: 0.1 }); 
   document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); 
 }
-// ABRIR Y CERRAR ACORDEÓN DE RECOMENDACIONES
+// ABRIR Y CERRAR ACORDEÓN DE RECOMENDACIONES (INTELIGENTE)
 window.toggleCategoria = function(id) {
   var row = document.getElementById(id);
-  if (row) {
-    row.classList.toggle('expanded');
-    // Si quieres que al abrir baje un poco la pantalla automáticamente:
-    if(row.classList.contains('expanded')) {
-      setTimeout(function() { row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 300);
-    }
+  if (!row) return;
+  
+  var isExpanding = !row.classList.contains('expanded');
+  
+  // Magia 1: Cerrar los demás acordeones automáticamente
+  document.querySelectorAll('.category-row.expanded').forEach(function(el) {
+    if (el.id !== id) el.classList.remove('expanded');
+  });
+
+  if (isExpanding) {
+    row.classList.add('expanded');
+    // Magia 2: Espera a que se abra y centra la pantalla perfectamente
+    setTimeout(function() { 
+      var headerOffset = 80; // Espacio para que respire por arriba
+      var elementPosition = row.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+           top: offsetPosition,
+           behavior: "smooth"
+      });
+    }, 350);
+  } else {
+    row.classList.remove('expanded');
   }
 }
