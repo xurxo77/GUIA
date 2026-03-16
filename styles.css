@@ -409,9 +409,9 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .rec-card h4 {
   margin-top: 4px !important;
 }
-/* --- REDISEÑO UX: ANIMACIÓN SUAVE Y PISTA VISUAL --- */
+/* --- REDISEÑO UX: UNA TARJETA CENTRADA + PISTA VISUAL --- */
 
-/* 1. La pista visual "Desliza" */
+/* 1. La pista visual "Desliza" (Se mantiene intacta) */
 .category-content::before {
   content: 'Desliza para ver más ➔';
   display: block !important;
@@ -430,22 +430,26 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   50% { transform: translateX(4px); }
 }
 
-/* 2. Ajuste del carrusel */
+/* 2. Ajuste del carrusel: Centrado perfecto */
 .horizontal-scroll {
-  padding: 8px 16px 30px 16px !important;
-  gap: 12px !important;
+  padding: 8px 0 30px 0 !important; /* Quitamos padding lateral para que el scroll empiece en el borde de la pantalla */
+  gap: 0 !important; /* Quitamos gap, el espacio lo dará el margin de la tarjeta */
   scroll-snap-type: x mandatory !important;
 }
 
-/* 3. Tarjetas: Asoma el 18% de la siguiente */
+/* 3. Tarjetas: 1 sola a la vez, perfectamente centrada */
 .rec-card {
-  flex: 0 0 82% !important; 
+  flex: 0 0 calc(100% - 40px) !important; /* Ocupa todo el ancho menos 20px por lado */
+  margin: 0 20px !important; /* El margen que centra la tarjeta */
   scroll-snap-align: center !important;
+  
+  /* Animación suave */
   opacity: 0 !important;
   transform: translateY(15px) !important; 
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
 }
 
+/* 4. Aparición al abrir el acordeón */
 .category-row.expanded .rec-card {
   opacity: 1 !important;
   transform: translateY(0) !important;
