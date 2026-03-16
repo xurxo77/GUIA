@@ -409,3 +409,40 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .rec-card h4 {
   margin-top: 4px !important;
 }
+/* --- REDISEÑO UX: UNA TARJETA, ANIMACIÓN Y RESETEO --- */
+
+/* 1. Ajustar el carrusel para que no tenga márgenes internos que estorben */
+.horizontal-scroll {
+  padding: 20px 0 30px 0 !important; 
+  gap: 0 !important; /* El margen lo dará la propia tarjeta */
+  scroll-snap-type: x mandatory !important;
+}
+
+/* Quitamos la niebla lateral si aún quedaba alguna */
+.category-row::after { 
+  display: none !important; 
+}
+
+/* 2. Tarjetas a pantalla completa (1 a la vez) */
+.rec-card {
+  flex: 0 0 calc(100% - 40px) !important; /* Ocupa todo menos 20px por lado */
+  margin: 0 20px !important; /* Centra la tarjeta perfectamente */
+  scroll-snap-align: center !important;
+  
+  /* Estado inicial para la animación: invisible y 30px hacia abajo */
+  opacity: 0 !important;
+  transform: translateY(30px) !important;
+  /* Animación suave para cuando aparezca */
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease, filter 0.3s ease !important;
+}
+
+/* 3. La magia: Cuando el acordeón se expande, la tarjeta sube y aparece */
+.category-row.expanded .rec-card {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Pequeño retardo para que la tarjeta espere a que el acordeón se abra un poco */
+.category-row.expanded .rec-card {
+  transition-delay: 0.15s !important;
+}
