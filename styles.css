@@ -538,3 +538,35 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   min-height: 100vh !important;
   animation: fadeInTab 0.4s ease forwards !important;
 }
+/* El carrusel de lugares (A prueba de aplastamientos) */
+.places-carousel {
+  display: flex !important;
+  flex-wrap: nowrap !important; /* Prohíbe que se amontonen */
+  overflow-x: auto !important; /* ACTIVA LA MAGIA DEL SCROLL HORIZONTAL */
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important; /* Deslizamiento suave en iPhone */
+  padding: 8px 0 30px 0 !important;
+  gap: 0 !important;
+  align-items: flex-start !important;
+}
+
+/* Ocultamos la barra de scroll para que quede limpio */
+.places-carousel::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Adaptamos la tarjeta: Tamaño fijo, prohibido encoger */
+.places-carousel .place-card {
+  flex: 0 0 calc(100% - 40px) !important;
+  width: calc(100% - 40px) !important; /* Fuerza el ancho */
+  min-width: calc(100% - 40px) !important; /* Bloqueo total anti-aplastamiento */
+  max-width: calc(100% - 40px) !important;
+  margin: 0 20px !important;
+  scroll-snap-align: center !important;
+  
+  /* Animación de entrada suave */
+  opacity: 0 !important;
+  transform: translateY(15px) !important;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+}
