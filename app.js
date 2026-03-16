@@ -283,59 +283,64 @@ function updateAllMarkers() { lugares.forEach(function(l) { updateMarkerSelectio
 window.togglePlaceFromPopup = function(id) { togglePlaceSelection(id); }
 
 // ===== EL DIBUJO BONITO DE LOS LUGARES CON TODA LA INFO =====
+// ===== EL DIBUJO BONITO DE LOS LUGARES (AHORA CON CARRUSEL HORIZONTAL) =====
 function renderPlaces() {
-  var c = document.getElementById('placesContainer');
-  if (!c) return;
-  var html = '', gi = 0;
-  
-  bloques.forEach(function(bloque) {
-    var arr = lugares.filter(function(l) { return l.bloque === bloque.id; });
-    if (!arr.length) return;
+  var c = document.getElementById('placesContainer');
+  if (!c) return;
+  var html = '', gi = 0;
+  
+  bloques.forEach(function(bloque) {
+    var arr = lugares.filter(function(l) { return l.bloque === bloque.id; });
+    if (!arr.length) return;
 
-    html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
-    html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
-    html += '<div class="bloque-map-sidebar"><div class="bloque-map-mini"><img src="' + bloque.id + '.svg" onerror="this.parentElement.style.display=\'none\'"></div></div>';
-    html += '<div class="bloque-body"><div class="bloque-content-wrapper"><span class="bloque-emoji">' + bloque.emoji + '</span><span class="bloque-nombre">' + bloque.nombre + '</span><span class="bloque-subtitulo">' + bloque.subtitulo + '</span></div></div>';
-    html += '<div class="bloque-actions"><span class="bloque-contador">' + arr.length + '</span><div class="bloque-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>';
-    html += '<div class="bloque-content"><div class="bloque-content-inner">';
+    html += '<div class="province-box" id="prov-' + bloque.id + '">';
+    
+    html += '<div class="province-header" onclick="toggleProvincia(\'prov-' + bloque.id + '\')">';
+    html += '<h3>' + bloque.emoji + ' ' + bloque.nombre + ' <span style="font-size: 0.9rem; color: var(--fg-muted); font-weight: normal; font-family: \'Montserrat\', sans-serif;">(' + arr.length + ')</span></h3>';
+    html += '<div class="province-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
+    html += '</div>';
+    
+    html += '<div class="province-content">';
+    // AQUÍ ESTÁ LA MAGIA: Usamos horizontal-scroll
+    html += '<div class="horizontal-scroll places-carousel">';
 
-    arr.forEach(function(l) {
-      gi++;
-      var isFav = isFavorite(l.id);
-      
-      html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
-      html += '<div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div>';
-      
-      html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
-      html += '<div class="place-header-left">';
-      l.categorias.forEach(function(catId) { html += '<span class="place-category-chip ' + catId + '">' + getCategoryName(catId) + '</span>'; });
-      html += '</div>';
-      html += '<div class="place-header-right"><button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div>';
-      
-      html += '<div class="place-content"><div class="place-content-inner">';
-      html += '<div class="place-category-tags">';
-      l.categorias.forEach(function(catId) { html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>'; });
-      html += '</div>';
-      
-      html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
-      html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
-      if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
-      html += renderInfoBlock('🍽️', 'COMER', l.comer);
-      html += renderInfoBlock('🍷', 'TOMAR', l.tomar);
-      html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
-      html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
-      html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
-      
-      html += '<button class="btn-primary" onclick="togglePlaceSelection(' + l.id + ')" style="width:100%; margin-top:16px;">Añadir / Quitar de la ruta</button>';
+    arr.forEach(function(l) {
+      gi++;
+      var isFav = isFavorite(l.id);
+      
+      html += '<article class="place-card ' + l.bloque + '" id="place-' + l.id + '">';
+      html += '<div class="place-image"><img src="' + l.imagen + '" alt="' + l.nombre + '" loading="lazy" onerror="this.src=\'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop\'"><span class="place-number-badge">' + gi + '</span><div class="place-title-overlay"><h3 class="place-title">' + l.nombre + '</h3></div></div>';
+      
+      html += '<div class="place-header" onclick="togglePlace(\'place-' + l.id + '\')">';
+      html += '<div class="place-header-left">';
+      l.categorias.forEach(function(catId) { html += '<span class="place-category-chip ' + catId + '">' + getCategoryName(catId) + '</span>'; });
+      html += '</div>';
+      html += '<div class="place-header-right"><button class="fav-btn ' + (isFav ? 'active' : '') + '" data-id="' + l.id + '" onclick="event.stopPropagation(); toggleFavorite(' + l.id + ')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button><svg class="place-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div>';
+      
+      html += '<div class="place-content"><div class="place-content-inner">';
+      html += '<div class="place-category-tags">';
+      l.categorias.forEach(function(catId) { html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>'; });
+      html += '</div>';
+      
+      html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
+      html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
+      if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
+      html += renderInfoBlock('🍽️', 'COMER', l.comer);
+      html += renderInfoBlock('🍷', 'TOMAR', l.tomar);
+      html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
+      html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
+      html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
+      
+      html += '<button class="btn-primary" onclick="togglePlaceSelection(' + l.id + ')" style="width:100%; margin-top:16px;">Añadir / Quitar de la ruta</button>';
 
-      html += '</div></div></article>';
-    });
+      html += '</div></div></article>';
+    });
 
-    html += '</div></div></div>';
-  });
+    html += '</div></div></div>';
+  });
 
-  c.innerHTML = html;
-  initAnimations();
+  c.innerHTML = html;
+  initAnimations();
 }
 
 window.toggleBloque = function(id) { 
