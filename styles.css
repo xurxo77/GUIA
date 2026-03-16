@@ -551,18 +551,13 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   align-items: flex-start !important;
 }
 
-/* Ocultamos la barra de scroll para que quede limpio */
-.places-carousel::-webkit-scrollbar {
-  display: none !important;
-}
-
-/* Adaptamos la tarjeta: Tamaño fijo, prohibido encoger */
+/* Adaptamos la tarjeta: Tamaño fijo basado en la PANTALLA, prohibido encoger */
 .places-carousel .place-card {
-  flex: 0 0 calc(100% - 40px) !important;
-  width: calc(100% - 40px) !important; /* Fuerza el ancho */
-  min-width: calc(100% - 40px) !important; /* Bloqueo total anti-aplastamiento */
-  max-width: calc(100% - 40px) !important;
-  margin: 0 20px !important;
+  flex: 0 0 85vw !important;       /* ← MAGIA: 85% del ancho de la pantalla */
+  width: 85vw !important;          /* ← MAGIA */
+  min-width: 85vw !important;      /* ← BLOQUEO TOTAL ANTI-APLASTAMIENTO */
+  max-width: 85vw !important;      /* ← MAGIA */
+  margin: 0 16px !important;       /* Margen un poco más ajustado */
   scroll-snap-align: center !important;
   
   /* Animación de entrada suave */
