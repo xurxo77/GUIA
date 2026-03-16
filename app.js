@@ -506,27 +506,59 @@ window.generateItinerary = function() {
 };
 
 // ===== HELPERS =====
+// ===== MENÚ INFERIOR TIPO APP NATIVA =====
 function initBottomMenu() {
-  var items = document.querySelectorAll('.menu-item'), 
-      obs = new IntersectionObserver(function(e) { 
-        e.forEach(function(x) { 
-          if (x.isIntersecting) items.forEach(function(i) { 
-            i.classList.toggle('active', i.dataset.section === x.target.id); 
-          }); 
-        }); 
-      }, { threshold: 0.5 });
-      
-  ['hero', 'recomendaciones', 'lugares', 'generador'].forEach(function(id) { 
-    var el = document.getElementById(id); if (el) obs.observe(el); 
+  var items = document.querySelectorAll('.menu-item');
+  
+  // Convertimos las secciones en "pantallas"
+  var screens = {
+    'hero': document.getElementById('hero'),
+    'recomendaciones': document.getElementById('recomendaciones'),
+    'lugares': document.getElementById('lugares'),
+    'generador': document.getElementById('generador')
+  };
+
+  // Les añadimos la clase base a todas
+  Object.values(screens).forEach(function(screen) {
+    if(screen) screen.classList.add('app-screen');
   });
 
-  items.forEach(function(i) { 
-    i.addEventListener('click', function(e) { 
-      e.preventDefault(); 
-      var t = document.getElementById(i.getAttribute('href').substring(1)); 
-      if (t) t.scrollIntoView({ behavior: 'smooth' }); 
-    }); 
+  items.forEach(function(i) {
+    i.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = i.getAttribute('data-section');
+      
+      // 1. Apagar todos los botones y encender el tocado
+      items.forEach(function(item) { item.classList.remove('active'); });
+      i.classList.add('active');
+
+      // 2. Ocultar todas las pantallas y mostrar solo la elegida
+      Object.keys(screens).forEach(function(key) {
+        var screen = screens[key];
+        if (screen) {
+          if (key === targetId) {
+            screen.classList.add('active-screen');
+          } else {
+            screen.classList.remove('active-screen');
+          }
+        }
+      });
+
+      // 3. Subir la vista arriba del todo mágicamente
+      window.scrollTo(0, 0);
+
+      // 4. PARCHE VITAL PARA EL MAPA: Si entramos a la pestaña de la ruta, 
+      // tenemos que decirle al mapa que recalcule su tamaño para que no se vea gris.
+      if (targetId === 'generador') {
+        setTimeout(function() { 
+          if (mainMap) mainMap.invalidateSize(); 
+        }, 100);
+      }
+    });
   });
+
+  // Arrancar la app activando automáticamente la primera pantalla (Inicio)
+  document.querySelector('.menu-item[data-section="hero"]').click();
 }
 
 function initAnimations() { 
