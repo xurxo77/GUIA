@@ -535,23 +535,35 @@ function initAnimations() {
   }, { threshold: 0.1 }); 
   document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); }); 
 }
-// ABRIR Y CERRAR ACORDEÓN DE RECOMENDACIONES (INTELIGENTE)
+// ABRIR Y CERRAR ACORDEÓN DE RECOMENDACIONES (UNA TARJETA + RESETEO)
 window.toggleCategoria = function(id) {
   var row = document.getElementById(id);
   if (!row) return;
   
   var isExpanding = !row.classList.contains('expanded');
   
-  // Magia 1: Cerrar los demás acordeones automáticamente
+  // 1. Cerrar los demás acordeones y resetear su scroll al principio
   document.querySelectorAll('.category-row.expanded').forEach(function(el) {
-    if (el.id !== id) el.classList.remove('expanded');
+    if (el.id !== id) {
+      el.classList.remove('expanded');
+      var scrollBox = el.querySelector('.horizontal-scroll');
+      if (scrollBox) {
+        // Le damos tiempo a que se cierre para resetearlo sin que el usuario lo vea
+        setTimeout(function() { scrollBox.scrollLeft = 0; }, 400); 
+      }
+    }
   });
 
   if (isExpanding) {
+    // 2. Antes de abrir este, nos aseguramos de que el scroll esté en el primer elemento
+    var scrollBox = row.querySelector('.horizontal-scroll');
+    if (scrollBox) scrollBox.scrollLeft = 0;
+
     row.classList.add('expanded');
-    // Magia 2: Espera a que se abra y centra la pantalla perfectamente
+    
+    // 3. Centramos la pantalla en el acordeón abierto
     setTimeout(function() { 
-      var headerOffset = 80; // Espacio para que respire por arriba
+      var headerOffset = 80; 
       var elementPosition = row.getBoundingClientRect().top;
       var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
   
@@ -561,6 +573,11 @@ window.toggleCategoria = function(id) {
       });
     }, 350);
   } else {
+    // 4. Si el usuario cierra el acordeón manualmente, también reseteamos el scroll
     row.classList.remove('expanded');
+    var scrollBox = row.querySelector('.horizontal-scroll');
+    if (scrollBox) {
+      setTimeout(function() { scrollBox.scrollLeft = 0; }, 400);
+    }
   }
 }
