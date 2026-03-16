@@ -539,39 +539,41 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   animation: fadeInTab 0.4s ease forwards !important;
 }
 /* ========================================================= */
-/* EL BLINDAJE DEFINITIVO: CAJÓN Y TARJETAS (ANTI-APLASTAMIENTO) */
+/* LA SOLUCIÓN ATÓMICA: FUERZA BRUTA CONTRA EL APLASTAMIENTO */
 /* ========================================================= */
 
-/* 1. Al cajón le prohibimos terminantemente aplastar su contenido */
-.horizontal-scroll, .places-carousel {
-  display: flex !important;
-  flex-wrap: nowrap !important; /* Prohíbe que se amontonen */
-  overflow-x: auto !important;  /* Activa el scroll horizontal */
-  overflow-y: hidden !important;
-  -webkit-overflow-scrolling: touch !important; /* Scroll suave en iPhone */
-  align-items: flex-start !important; /* Evita que se estiren de alto */
+/* Forzamos al contenedor a ser una línea infinita hacia la derecha */
+.horizontal-scroll, 
+[class*="carousel"], 
+.bloque-content-inner {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important; /* PROHIBIDO saltar de línea */
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
 }
 
-/* 2. A las tarjetas les damos tamaño de roca (flex-shrink: 0 es la clave mágica) */
-.horizontal-scroll .place-card, 
-.places-carousel .place-card {
-  flex-shrink: 0 !important;       /* MAGIA PURA: Prohibido encogerse */
-  flex-grow: 0 !important;
-  width: 82vw !important;
-  min-width: 280px !important;     /* Nunca bajará de 280px */
-  max-width: 320px !important;
-  margin: 0 16px !important;
-  scroll-snap-align: center !important;
-  
-  /* Animación */
-  opacity: 0 !important;
-  transform: translateY(15px) !important;
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+/* Forzamos a CUALQUIER tarjeta hija a mantener su tamaño sí o sí */
+.horizontal-scroll > *, 
+[class*="carousel"] > *,
+.rec-card,
+.place-card {
+    flex: 0 0 280px !important; /* NO crece, NO encoge, MIDE 280px */
+    width: 280px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;
+    margin-right: 16px !important;
+    margin-left: 0 !important;
+    display: block !important; /* Para que el width de 280px sea ley */
+    opacity: 1 !important;     /* Forzamos visibilidad por ahora */
+    transform: none !important; /* Quitamos transformaciones que puedan fallar */
 }
 
-/* 3. Aparición al abrir la provincia */
-.province-box.expanded .place-card {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition-delay: 0.1s !important;
+/* Ajuste para que la última tarjeta no se pegue al borde */
+.horizontal-scroll::after {
+    content: '';
+    flex: 0 0 20px;
 }
