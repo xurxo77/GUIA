@@ -411,7 +411,7 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 }
 /* --- REDISEÑO UX: ANIMACIÓN SUAVE Y PISTA VISUAL --- */
 
-/* 1. La pista visual "Desliza" (Magia CSS, sin tocar el HTML) */
+/* 1. La pista visual "Desliza" */
 .category-content::before {
   content: 'Desliza para ver más ➔';
   display: block !important;
@@ -427,34 +427,27 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 
 @keyframes swipeBounce {
   0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(4px); } /* Un pequeño vaivén horizontal */
+  50% { transform: translateX(4px); }
 }
 
-/* 2. Ajuste del carrusel para que la siguiente tarjeta asome */
+/* 2. Ajuste del carrusel */
 .horizontal-scroll {
-  padding: 8px 16px 30px 16px !important; /* Menos padding arriba para dar sitio al texto */
-  gap: 12px !important; /* Un poco menos de espacio entre tarjetas */
+  padding: 8px 16px 30px 16px !important;
+  gap: 12px !important;
   scroll-snap-type: x mandatory !important;
 }
 
-/* 3. Tarjetas: Asoma el 18% de la siguiente tarjeta (La mejor pista visual) */
+/* 3. Tarjetas: Asoma el 18% de la siguiente */
 .rec-card {
-  flex: 0 0 82% !important; /* Aquí está el truco: no ocupa el 100% */
+  flex: 0 0 82% !important; 
   scroll-snap-align: center !important;
-  
-  /* Animación ultra-suave (curva cubic-bezier para que frene despacio) */
   opacity: 0 !important;
-  transform: translateY(15px) !important; /* Menos salto, más elegancia */
+  transform: translateY(15px) !important; 
   transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
 }
 
-/* 4. Cuando se abre el acordeón, la tarjeta se hace visible */
 .category-row.expanded .rec-card {
   opacity: 1 !important;
   transform: translateY(0) !important;
-}
-
-/* Ligero retraso para que espere a que el cajón empiece a abrirse */
-.category-row.expanded .rec-card {
   transition-delay: 0.1s !important;
 }
