@@ -409,40 +409,52 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .rec-card h4 {
   margin-top: 4px !important;
 }
-/* --- REDISEÑO UX: UNA TARJETA, ANIMACIÓN Y RESETEO --- */
+/* --- REDISEÑO UX: ANIMACIÓN SUAVE Y PISTA VISUAL --- */
 
-/* 1. Ajustar el carrusel para que no tenga márgenes internos que estorben */
+/* 1. La pista visual "Desliza" (Magia CSS, sin tocar el HTML) */
+.category-content::before {
+  content: 'Desliza para ver más ➔';
+  display: block !important;
+  text-align: right !important;
+  font-size: 0.75rem !important;
+  color: var(--fg-muted) !important;
+  opacity: 0.8 !important;
+  padding: 12px 24px 0 0 !important;
+  font-style: italic !important;
+  font-family: 'Montserrat', sans-serif !important;
+  animation: swipeBounce 2s infinite ease-in-out !important;
+}
+
+@keyframes swipeBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); } /* Un pequeño vaivén horizontal */
+}
+
+/* 2. Ajuste del carrusel para que la siguiente tarjeta asome */
 .horizontal-scroll {
-  padding: 20px 0 30px 0 !important; 
-  gap: 0 !important; /* El margen lo dará la propia tarjeta */
+  padding: 8px 16px 30px 16px !important; /* Menos padding arriba para dar sitio al texto */
+  gap: 12px !important; /* Un poco menos de espacio entre tarjetas */
   scroll-snap-type: x mandatory !important;
 }
 
-/* Quitamos la niebla lateral si aún quedaba alguna */
-.category-row::after { 
-  display: none !important; 
-}
-
-/* 2. Tarjetas a pantalla completa (1 a la vez) */
+/* 3. Tarjetas: Asoma el 18% de la siguiente tarjeta (La mejor pista visual) */
 .rec-card {
-  flex: 0 0 calc(100% - 40px) !important; /* Ocupa todo menos 20px por lado */
-  margin: 0 20px !important; /* Centra la tarjeta perfectamente */
+  flex: 0 0 82% !important; /* Aquí está el truco: no ocupa el 100% */
   scroll-snap-align: center !important;
   
-  /* Estado inicial para la animación: invisible y 30px hacia abajo */
+  /* Animación ultra-suave (curva cubic-bezier para que frene despacio) */
   opacity: 0 !important;
-  transform: translateY(30px) !important;
-  /* Animación suave para cuando aparezca */
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease, filter 0.3s ease !important;
+  transform: translateY(15px) !important; /* Menos salto, más elegancia */
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
 }
 
-/* 3. La magia: Cuando el acordeón se expande, la tarjeta sube y aparece */
+/* 4. Cuando se abre el acordeón, la tarjeta se hace visible */
 .category-row.expanded .rec-card {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
 
-/* Pequeño retardo para que la tarjeta espere a que el acordeón se abra un poco */
+/* Ligero retraso para que espere a que el cajón empiece a abrirse */
 .category-row.expanded .rec-card {
-  transition-delay: 0.15s !important;
+  transition-delay: 0.1s !important;
 }
