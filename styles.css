@@ -282,11 +282,10 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   background: transparent !important; /* Limpiamos fondos viejos */
 }
 
-/* Colores de fondo de cada acordeón (Más intensos y elegantes) */
-.category-row.cat-clima { background-color: #e4eff7 !important; border-color: #c3d9eb !important; }
-.category-row.cat-comer { background-color: #ffecd6 !important; border-color: #f5cca3 !important; }
-.category-row.cat-disfrutar { background-color: #e3f0e8 !important; border-color: #b8d9c3 !important; }
-
+/* --- COLORES RECOMENDACIONES (Paleta Complementaria: Lavanda, Mantequilla, Arena) --- */
+.category-row.cat-clima { background-color: #edeef5 !important; border-color: #d6d9eb !important; } /* Bruma / Lavanda suave */
+.category-row.cat-comer { background-color: #fcf4db !important; border-color: #ebe0bd !important; } /* Amarillo Mantequilla */
+.category-row.cat-disfrutar { background-color: #f2efe9 !important; border-color: #e0dcd3 !important; } /* Arena / Piedra cálida */
 /* 2. Cabecera clicable */
 .category-header {
   padding: 20px !important;
