@@ -383,3 +383,29 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   line-height: 1.5 !important;
   margin: 0 !important;
 }
+/* --- FOTOS ELEGANTES EN TARJETAS DE RECOMENDACIÓN --- */
+.rec-card-img {
+  width: 100% !important;
+  height: 120px !important; /* Altura controlada, tipo panorámica pequeña */
+  object-fit: cover !important;
+  border-radius: 8px !important; 
+  margin-bottom: 16px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  
+  /* El filtro mágico: Colores un poco apagados/cálidos para armonizar con el papel */
+  filter: sepia(15%) contrast(95%) brightness(95%) !important; 
+  transition: all 0.4s ease !important;
+  display: block !important;
+}
+
+/* Al tocar la tarjeta, la foto cobra vida, se ilumina y hace un ligerísimo zoom */
+.rec-card:hover .rec-card-img, 
+.rec-card:active .rec-card-img {
+  filter: sepia(0%) contrast(105%) brightness(100%) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Ajuste sutil para que el título respire mejor debajo de la foto */
+.rec-card h4 {
+  margin-top: 4px !important;
+}
