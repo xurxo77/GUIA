@@ -613,3 +613,33 @@ window.toggleCategoria = function(id) {
     }
   }
 }
+// ===== ABRIR Y CERRAR PROVINCIAS (MODO INTELIGENTE) =====
+window.toggleProvincia = function(id) {
+  var row = document.getElementById(id);
+  if (!row) return;
+  
+  var isExpanding = !row.classList.contains('expanded');
+  
+  // 1. Cerrar las demás provincias automáticamente
+  document.querySelectorAll('.province-box.expanded').forEach(function(el) {
+    if (el.id !== id) el.classList.remove('expanded');
+  });
+
+  if (isExpanding) {
+    row.classList.add('expanded');
+    
+    // 2. Espera a que se abra y centra la pantalla perfectamente
+    setTimeout(function() { 
+      var headerOffset = 70; // Espacio para que respire por arriba
+      var elementPosition = row.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+      window.scrollTo({
+           top: offsetPosition,
+           behavior: "smooth"
+      });
+    }, 350);
+  } else {
+    row.classList.remove('expanded');
+  }
+}
