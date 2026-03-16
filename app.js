@@ -283,6 +283,7 @@ function updateAllMarkers() { lugares.forEach(function(l) { updateMarkerSelectio
 window.togglePlaceFromPopup = function(id) { togglePlaceSelection(id); }
 
 // ===== EL DIBUJO BONITO DE LOS LUGARES CON TODA LA INFO =====
+// ===== EL DIBUJO BONITO DE LOS LUGARES CON TODA LA INFO (VERSIÓN PREMIUM) =====
 function renderPlaces() {
   var c = document.getElementById('placesContainer');
   if (!c) return;
@@ -292,13 +293,20 @@ function renderPlaces() {
     var arr = lugares.filter(function(l) { return l.bloque === bloque.id; });
     if (!arr.length) return;
 
-    html += '<div class="bloque-card" id="bloque-' + bloque.id + '">';
-    html += '<div class="bloque-header ' + bloque.id + '" onclick="toggleBloque(\'bloque-' + bloque.id + '\')">';
-    html += '<div class="bloque-map-sidebar"><div class="bloque-map-mini"><img src="' + bloque.id + '.svg" onerror="this.parentElement.style.display=\'none\'"></div></div>';
-    html += '<div class="bloque-body"><div class="bloque-content-wrapper"><span class="bloque-emoji">' + bloque.emoji + '</span><span class="bloque-nombre">' + bloque.nombre + '</span><span class="bloque-subtitulo">' + bloque.subtitulo + '</span></div></div>';
-    html += '<div class="bloque-actions"><span class="bloque-contador">' + arr.length + '</span><div class="bloque-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>';
-    html += '<div class="bloque-content"><div class="bloque-content-inner">';
+    // EL NUEVO ENVOLTORIO "PROVINCE-BOX" PREMIUM
+    html += '<div class="province-box" id="prov-' + bloque.id + '">';
+    
+    // CABECERA LIMPIA CON EMOJI, NOMBRE Y CONTADOR DISCRETO
+    html += '<div class="province-header" onclick="toggleProvincia(\'prov-' + bloque.id + '\')">';
+    html += '<h3>' + bloque.emoji + ' ' + bloque.nombre + ' <span style="font-size: 0.9rem; color: var(--fg-muted); font-weight: normal; font-family: \'Montserrat\', sans-serif;">(' + arr.length + ')</span></h3>';
+    html += '<div class="province-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
+    html += '</div>';
+    
+    // EL CONTENEDOR DESPLEGABLE
+    html += '<div class="province-content">';
+    html += '<div class="places-grid">';
 
+    // TUS TARJETAS INTACTAS
     arr.forEach(function(l) {
       gi++;
       var isFav = isFavorite(l.id);
@@ -331,7 +339,7 @@ function renderPlaces() {
       html += '</div></div></article>';
     });
 
-    html += '</div></div></div>';
+    html += '</div></div></div>'; // Cierra los nuevos contenedores
   });
 
   c.innerHTML = html;
