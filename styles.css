@@ -538,12 +538,28 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   min-height: 100vh !important;
   animation: fadeInTab 0.4s ease forwards !important;
 }
-/* EL BLINDAJE DEFINITIVO ANTI-APLASTAMIENTO (Uso de Píxeles Fijos) */
-.horizontal-scroll .place-card {
-  flex: 0 0 auto !important;       /* Prohíbe al flexbox alterar el tamaño */
-  width: 82vw !important;          /* Intenta usar el ancho de pantalla... */
-  min-width: 280px !important;     /* ...PERO JAMÁS bajará de 280 píxeles (La cura) */
-  max-width: 320px !important;     /* ...ni pasará de 320 píxeles */
+/* ========================================================= */
+/* EL BLINDAJE DEFINITIVO: CAJÓN Y TARJETAS (ANTI-APLASTAMIENTO) */
+/* ========================================================= */
+
+/* 1. Al cajón le prohibimos terminantemente aplastar su contenido */
+.horizontal-scroll, .places-carousel {
+  display: flex !important;
+  flex-wrap: nowrap !important; /* Prohíbe que se amontonen */
+  overflow-x: auto !important;  /* Activa el scroll horizontal */
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important; /* Scroll suave en iPhone */
+  align-items: flex-start !important; /* Evita que se estiren de alto */
+}
+
+/* 2. A las tarjetas les damos tamaño de roca (flex-shrink: 0 es la clave mágica) */
+.horizontal-scroll .place-card, 
+.places-carousel .place-card {
+  flex-shrink: 0 !important;       /* MAGIA PURA: Prohibido encogerse */
+  flex-grow: 0 !important;
+  width: 82vw !important;
+  min-width: 280px !important;     /* Nunca bajará de 280px */
+  max-width: 320px !important;
   margin: 0 16px !important;
   scroll-snap-align: center !important;
   
@@ -551,4 +567,11 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   opacity: 0 !important;
   transform: translateY(15px) !important;
   transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+}
+
+/* 3. Aparición al abrir la provincia */
+.province-box.expanded .place-card {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition-delay: 0.1s !important;
 }
