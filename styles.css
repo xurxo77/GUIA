@@ -455,3 +455,54 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   transform: translateY(0) !important;
   transition-delay: 0.1s !important;
 }
+/* --- TRANSFORMACIÓN A APP NATIVA --- */
+
+/* 1. Ocultar los divisores antiguos (ya no hacen falta si no hay scroll infinito) */
+.main-content > .decorative-divider {
+  display: none !important;
+}
+
+/* 2. Pantallas de la App */
+.app-screen {
+  display: none !important; /* Ocultas por defecto */
+  animation: fadeInTab 0.4s ease forwards; /* Animación suave al entrar */
+}
+
+/* Solo la pantalla activa se muestra */
+.app-screen.active-screen {
+  display: flex !important; 
+}
+
+@keyframes fadeInTab {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. El Menú Inferior (Diseño Premium) */
+.bottom-menu {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important; /* Efecto cristal de iOS */
+}
+
+.menu-item {
+  position: relative;
+  padding: 8px 16px !important;
+  border-radius: 16px !important;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* EL BOTÓN ACTIVO: Efecto Píldora que tú pedías */
+.menu-item.active {
+  background: rgba(26, 74, 94, 0.08) !important; /* Fondito azul claro */
+  color: var(--accent-sea) !important;
+  transform: translateY(-4px) !important; /* Se eleva un poquito */
+}
+
+.menu-item.active svg {
+  stroke-width: 2.2 !important; /* Icono más gordito */
+}
+
+.menu-item.active span {
+  font-weight: 700 !important; /* Letra en negrita */
+  font-size: 0.65rem !important;
+}
