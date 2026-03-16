@@ -322,14 +322,22 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .category-row.expanded .category-arrow { transform: rotate(180deg) !important; background: var(--accent-sea) !important; }
 .category-row.expanded .category-arrow svg { stroke: white !important; }
 
-/* 3. Contenido desplegable (Animación de altura) */
+/* Contenido desplegable con efecto "Cajón/Bandeja 3D" */
 .category-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animación más natural */
+  box-shadow: inset 0px 8px 12px -10px rgba(0,0,0,0.15); /* Sombra interior arriba */
+  background: rgba(0,0,0,0.015); /* Un ligerísimo oscurecimiento del fondo */
 }
 .category-row.expanded .category-content {
-  max-height: 1200px; /* Suficiente para las tarjetas */
+  max-height: 1200px; 
+}
+
+/* Efecto Focus al acordeón activo */
+.category-row.expanded {
+  border-color: var(--accent-sea) !important;
+  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.15) !important;
 }
 
 /* 4. Carrusel y Tarjetas Blancas sobre fondo de color */
