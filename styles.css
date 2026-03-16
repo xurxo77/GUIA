@@ -506,3 +506,36 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   font-weight: 700 !important; /* Letra en negrita */
   font-size: 0.65rem !important;
 }
+/* --- BLOQUEO TOTAL DE SCROLL (APP NATIVA REAL) --- */
+
+/* 1. Aniquilamos los separadores de estrellita (ya no los necesitamos) */
+.decorative-divider {
+  display: none !important;
+}
+
+/* 2. REGLA DE ORO: Si la pantalla NO está activa, NO existe */
+#hero:not(.active-screen),
+#recomendaciones:not(.active-screen),
+#lugares:not(.active-screen),
+#generador:not(.active-screen) {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+}
+
+/* 3. Nos aseguramos de que la activa se dibuje correctamente */
+#hero.active-screen {
+  display: flex !important; 
+}
+
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  display: block !important; 
+  min-height: 100vh !important;
+  animation: fadeInTab 0.4s ease forwards !important;
+}
