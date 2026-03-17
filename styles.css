@@ -539,41 +539,59 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   animation: fadeInTab 0.4s ease forwards !important;
 }
 /* ========================================================= */
-/* LA SOLUCIÓN ATÓMICA: FUERZA BRUTA CONTRA EL APLASTAMIENTO */
+/* SOLUCIÓN FINAL: ALTURA Y DESPLAZAMIENTO GARANTIZADO      */
 /* ========================================================= */
 
-/* Forzamos al contenedor a ser una línea infinita hacia la derecha */
-.horizontal-scroll, 
-[class*="carousel"], 
-.bloque-content-inner {
+/* 1. Forzamos al contenedor a tener altura suficiente para la tarjeta */
+.province-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0,0,0,0.02);
+}
+
+/* Cuando se expande, le damos altura de sobra para que no corte la tarjeta */
+.province-box.expanded .province-content {
+    max-height: 600px !important; /* Altura suficiente para la foto y el título */
+}
+
+/* 2. El carrusel: Evitamos que nada lo comprima */
+.places-carousel {
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: nowrap !important; /* PROHIBIDO saltar de línea */
-    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    width: 100% !important;
+    padding: 20px 0 40px 0 !important; /* Espacio abajo para que no choque con el borde */
     -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
 }
 
-/* Forzamos a CUALQUIER tarjeta hija a mantener su tamaño sí o sí */
-.horizontal-scroll > *, 
-[class*="carousel"] > *,
-.rec-card,
-.place-card {
-    flex: 0 0 280px !important; /* NO crece, NO encoge, MIDE 280px */
+/* 3. La tarjeta con medidas fijas que no fallan */
+.places-carousel .place-card {
+    flex: 0 0 280px !important;      /* Ancho fijo de 280px */
     width: 280px !important;
     min-width: 280px !important;
-    max-width: 280px !important;
-    margin-right: 16px !important;
-    margin-left: 0 !important;
-    display: block !important; /* Para que el width de 280px sea ley */
-    opacity: 1 !important;     /* Forzamos visibilidad por ahora */
-    transform: none !important; /* Quitamos transformaciones que puedan fallar */
+    margin: 0 12px !important;       /* Separación entre tarjetas */
+    scroll-snap-align: center !important;
+    
+    /* Reset de altura para que no se estire raro */
+    height: auto !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    
+    /* Aseguramos que sea visible */
+    opacity: 1 !important;
+    transform: none !important;
 }
 
-/* Ajuste para que la última tarjeta no se pegue al borde */
-.horizontal-scroll::after {
-    content: '';
-    flex: 0 0 20px;
+/* Ajuste para las imágenes dentro del carrusel */
+.places-carousel .place-image {
+    height: 180px !important;
+    min-height: 180px !important;
+}
+
+/* Ocultar barra de scroll para estética limpia */
+.places-carousel::-webkit-scrollbar {
+    display: none !important;
 }
