@@ -17,6 +17,56 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=5.0">
   <link rel="stylesheet" href="styles.css?v=7.0">
+  <style>
+    .category-row {
+      border-radius: 12px !important;
+      margin-bottom: 12px !important;
+      border: 2px solid var(--border-aged) !important;
+      overflow: hidden !important; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+    }
+    
+    /* Colores pastel refinados */
+    .category-row.cat-clima { background-color: #f0f4f8 !important; border-color: #d9e2ec !important; }
+    .category-row.cat-comer { background-color: #fffbf0 !important; border-color: #f0e6d2 !important; }
+    .category-row.cat-beber { background-color: #fcf0f2 !important; border-color: #f0d8dc !important; }
+    .category-row.cat-disfrutar { background-color: #f4f6f0 !important; border-color: #dce4d2 !important; }
+
+    /* La dieta estricta de altura */
+    .category-header {
+      padding: 0 16px !important;
+      height: 60px !important; /* Altura de botón bloqueada matemáticamente */
+      min-height: 60px !important;
+      max-height: 60px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+
+    .category-header h3 {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important; 
+      margin: 0 !important;
+      padding: 0 !important;
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.15rem !important;
+      line-height: 60px !important; /* Fuerza el centrado vertical */
+      color: var(--fg-ink) !important;
+    }
+
+    .category-arrow {
+      width: 32px !important; 
+      height: 32px !important;
+      background: rgba(0,0,0,0.05) !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important; 
+    }
+  </style>
+</head>
 </head>
 <body>
 
