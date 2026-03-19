@@ -555,3 +555,36 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .places-carousel::-webkit-scrollbar {
     display: none !important;
 }
+/* ========================================================= */
+/* --- FOTOS ELEGANTES EN TARJETAS DE RECOMENDACIÓN ---      */
+/* ========================================================= */
+
+.rec-card-img {
+  width: 100% !important; 
+  height: 140px !important; /* Altura FIJA para que todas sean exactamente iguales */
+  min-height: 140px !important; 
+  max-height: 140px !important; 
+  object-fit: cover !important; /* Recorte perfecto sin deformar la foto */
+  border-radius: 8px !important; 
+  margin-bottom: 12px !important;
+  display: block !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  
+  /* Filtro elegante para que peguen con el diseño de la app */
+  filter: sepia(10%) contrast(95%) brightness(95%) !important; 
+  transition: all 0.4s ease !important;
+}
+
+/* Al tocar la tarjeta, la foto se ilumina y hace un pequeño zoom */
+.rec-card:hover .rec-card-img, 
+.rec-card:active .rec-card-img {
+  filter: sepia(0%) contrast(105%) brightness(100%) !important;
+  transform: scale(1.02) !important;
+}
+
+/* Ajuste fino para los títulos debajo de la foto */
+.rec-card h4 {
+  margin-top: 8px !important;
+  font-size: 1.05rem !important;
+  line-height: 1.3 !important;
+}
