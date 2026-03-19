@@ -269,26 +269,27 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .hidden { display: none !important; }
 
 
-/* --- DISEÑO ACORDEÓN DE RECOMENDACIONES (COLORES PASTEL) --- */
+/* --- DISEÑO ACORDEÓN DE RECOMENDACIONES (REDISEÑO ELEGANTE) --- */
 
-/* 1. Cajas de categorías (Animadas al hacer scroll) */
 .category-row {
-  border-radius: 16px !important;
-  margin-bottom: 20px !important;
+  border-radius: 14px !important;
+  margin-bottom: 14px !important; /* Menos espacio muerto entre tarjetas */
   border: 2px solid var(--border-aged) !important;
   overflow: hidden !important; 
-  box-shadow: 0 4px 16px var(--shadow-warm) !important;
-  transition: all 0.3s ease !important;
-  background: transparent !important; /* Limpiamos fondos viejos */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important; /* Sombra más sutil */
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  background: transparent !important;
 }
 
-/* --- COLORES RECOMENDACIONES (Paleta Complementaria: Lavanda, Mantequilla, Arena) --- */
-.category-row.cat-clima { background-color: #edeef5 !important; border-color: #d6d9eb !important; } /* Bruma / Lavanda suave */
-.category-row.cat-comer { background-color: #fcf4db !important; border-color: #ebe0bd !important; } /* Amarillo Mantequilla */
-.category-row.cat-disfrutar { background-color: #f2efe9 !important; border-color: #e0dcd3 !important; } /* Arena / Piedra cálida */
-/* 2. Cabecera clicable */
+/* Colores pastel refinados (Incluida la nueva sección "Beber") */
+.category-row.cat-clima { background-color: #f0f4f8 !important; border-color: #d9e2ec !important; } /* Bruma marina */
+.category-row.cat-comer { background-color: #fffbf0 !important; border-color: #f0e6d2 !important; } /* Crema / Mantequilla */
+.category-row.cat-beber { background-color: #fcf0f2 !important; border-color: #f0d8dc !important; } /* Vino rosado suave */
+.category-row.cat-disfrutar { background-color: #f4f6f0 !important; border-color: #dce4d2 !important; } /* Verde musgo claro */
+
+/* Cabecera: Más compacta y en una sola línea */
 .category-header {
-  padding: 20px !important;
+  padding: 16px 20px !important; /* Reducimos el alto de la caja */
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
@@ -297,136 +298,49 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 }
 
 .category-header h3 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; /* Separación perfecta entre el emoji y el texto */
   font-family: 'Playfair Display', serif !important;
-  font-size: 1.5rem !important;
+  font-size: 1.25rem !important; /* Letra un pelín más pequeña para que no se rompa */
   color: var(--fg-ink) !important;
   margin: 0 !important;
-  text-shadow: none !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important; /* PROHÍBE que el texto salte a la segunda línea */
 }
 
-/* Flecha del acordeón */
+/* Flecha del acordeón proporcionada */
 .category-arrow {
-  width: 36px !important;
-  height: 36px !important;
-  background: rgba(0,0,0,0.05) !important;
+  width: 32px !important;
+  height: 32px !important;
+  background: rgba(0,0,0,0.04) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: transform 0.4s ease !important;
+  transition: all 0.4s ease !important;
+  flex-shrink: 0 !important; /* Evita que la flecha se aplaste si el título es largo */
 }
 .category-arrow svg { width: 18px !important; height: 18px !important; stroke: var(--fg-ink) !important; }
 
-/* Giro de la flecha al expandir */
+/* Efecto al abrir */
+.category-row.expanded {
+  border-color: var(--accent-sea) !important;
+  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.12) !important;
+}
 .category-row.expanded .category-arrow { transform: rotate(180deg) !important; background: var(--accent-sea) !important; }
 .category-row.expanded .category-arrow svg { stroke: white !important; }
 
-/* Contenido desplegable con efecto "Cajón/Bandeja 3D" */
+/* Contenido desplegable con efecto "Cajón 3D" */
 .category-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animación más natural */
-  box-shadow: inset 0px 8px 12px -10px rgba(0,0,0,0.15); /* Sombra interior arriba */
-  background: rgba(0,0,0,0.015); /* Un ligerísimo oscurecimiento del fondo */
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0px 8px 12px -10px rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.015);
 }
 .category-row.expanded .category-content {
-  max-height: 1200px; 
-}
-
-/* Efecto Focus al acordeón activo */
-.category-row.expanded {
-  border-color: var(--accent-sea) !important;
-  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.15) !important;
-}
-
-/* 4. Carrusel y Tarjetas Blancas sobre fondo de color */
-.horizontal-scroll {
-  padding: 0 20px 24px 20px !important;
-  gap: 16px !important;
-  scroll-snap-type: x mandatory !important;
-}
-
-.rec-card {
-  flex: 0 0 260px !important;
-  background: #ffffff !important; /* Tarjeta blanca impecable */
-  border: 1px solid rgba(0,0,0,0.06) !important;
-  border-radius: 12px !important;
-  padding: 24px 20px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-  scroll-snap-align: center !important;
-  position: relative !important;
-}
-
-/* Decoración superior en la tarjeta */
-.rec-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--accent-sea);
-  opacity: 0.8;
-}
-
-.rec-card h4 {
-  font-family: 'Playfair Display', serif !important;
-  font-size: 1.25rem !important;
-  color: var(--accent-sea) !important;
-  margin: 0 0 10px 0 !important;
-}
-
-.rec-card p {
-  font-size: 0.95rem !important;
-  color: var(--fg-muted) !important;
-  line-height: 1.5 !important;
-  margin: 0 !important;
-}
-/* --- FOTOS ELEGANTES EN TARJETAS DE RECOMENDACIÓN --- */
-.rec-card-img {
-  width: 100% !important;
-  height: 120px !important; /* Altura controlada, tipo panorámica pequeña */
-  object-fit: cover !important;
-  border-radius: 8px !important; 
-  margin-bottom: 16px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-  
-  /* El filtro mágico: Colores un poco apagados/cálidos para armonizar con el papel */
-  filter: sepia(15%) contrast(95%) brightness(95%) !important; 
-  transition: all 0.4s ease !important;
-  display: block !important;
-}
-
-/* Al tocar la tarjeta, la foto cobra vida, se ilumina y hace un ligerísimo zoom */
-.rec-card:hover .rec-card-img, 
-.rec-card:active .rec-card-img {
-  filter: sepia(0%) contrast(105%) brightness(100%) !important;
-  transform: scale(1.02) !important;
-}
-
-/* Ajuste sutil para que el título respire mejor debajo de la foto */
-.rec-card h4 {
-  margin-top: 4px !important;
-}
-/* --- REDISEÑO UX: UNA TARJETA CENTRADA + PISTA VISUAL --- */
-
-/* 1. La pista visual "Desliza" (Se mantiene intacta) */
-.category-content::before {
-  content: 'Desliza para ver más ➔';
-  display: block !important;
-  text-align: right !important;
-  font-size: 0.75rem !important;
-  color: var(--fg-muted) !important;
-  opacity: 0.8 !important;
-  padding: 12px 24px 0 0 !important;
-  font-style: italic !important;
-  font-family: 'Montserrat', sans-serif !important;
-  animation: swipeBounce 2s infinite ease-in-out !important;
-}
-
-@keyframes swipeBounce {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(4px); }
+  max-height: 2000px; /* Aumentado por si metes mucho texto */
 }
 
 /* 2. Ajuste del carrusel: Centrado perfecto */
