@@ -306,14 +306,19 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .category-row.cat-disfrutar { background-color: #f4f6f0 !important; border-color: #dce4d2 !important; } /* Verde musgo claro */
 
 /* Cabecera: El control total de altura */
+/* --- LA DIETA ABSOLUTA: ALTURA FIJA Y CERO RELLENO VERTICAL --- */
+
 .category-header {
-  padding: 12px 16px !important; /* Relleno MUCHO más fino (dieta estricta) */
-  min-height: 52px !important; /* Altura máxima controlada para que parezca una píldora */
+  padding: 0 16px !important;  /* CERO padding arriba y abajo */
+  height: 48px !important;     /* Altura bloqueada a 48px */
+  min-height: 48px !important; /* Prohibido encoger */
+  max-height: 48px !important; /* Prohibido crecer */
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   cursor: pointer !important;
   -webkit-tap-highlight-color: transparent !important;
+  overflow: hidden !important; /* Si algo sobresale, se oculta */
 }
 
 .category-header h3 {
@@ -321,14 +326,13 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   align-items: center !important;
   gap: 10px !important; 
   font-family: 'Playfair Display', serif !important;
-  font-size: 1.1rem !important; /* Texto un pelín más pequeño y ajustado */
-  line-height: 1.1 !important; /* LA CLAVE: elimina el aire "invisible" arriba y abajo */
+  font-size: 1.05rem !important; /* Letra ajustada */
+  line-height: 48px !important; /* Centrado vertical matemático exacto a la caja */
   color: var(--fg-ink) !important;
   margin: 0 !important;
+  padding: 0 !important;
   font-weight: 700 !important;
-  white-space: nowrap !important; /* Prohíbe que el texto salte a la segunda línea */
-  overflow: hidden !important; /* Si es muy largo, lo corta */
-  text-overflow: ellipsis !important; /* Añade puntos suspensivos si no cabe */
+  white-space: nowrap !important; 
 }
 
 /* Flecha más pequeñita y proporcionada */
