@@ -600,3 +600,81 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   justify-content: flex-start !important; /* Obliga a que la foto y el texto siempre empiecen desde el techo */
   height: auto !important; 
 }
+/* ========================================================= */
+/* --- DISEÑO ACORDEÓN DE PROVINCIAS (LUGARES) ---           */
+/* ========================================================= */
+
+.province-box {
+  border-radius: 12px !important;
+  margin-bottom: 12px !important;
+  border: 2px solid var(--border-aged) !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  background: #ffffff !important;
+}
+
+.province-header {
+  padding: 0 16px !important;
+  height: 55px !important;
+  min-height: 55px !important;
+  max-height: 55px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent !important;
+  background: var(--bg-cream) !important;
+}
+
+.province-header h3 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.15rem !important;
+  color: var(--fg-ink) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 700 !important;
+}
+
+.province-arrow {
+  width: 28px !important;
+  height: 28px !important;
+  background: rgba(0,0,0,0.04) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.4s ease, background 0.4s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.province-arrow svg {
+  width: 16px !important;
+  height: 16px !important;
+  stroke: var(--fg-ink) !important;
+  transition: stroke 0.4s ease !important;
+}
+
+/* --- ESTADOS AL ABRIR LA PROVINCIA --- */
+
+.province-box.expanded {
+  border-color: var(--accent-sea) !important;
+  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.12) !important;
+}
+
+.province-box.expanded .province-arrow {
+  transform: rotate(180deg) !important;
+  background: var(--accent-sea) !important;
+}
+
+.province-box.expanded .province-arrow svg {
+  stroke: white !important;
+}
+
+/* Le damos altura infinita al cajón para que no corte las tarjetas al abrirlas */
+.province-box.expanded .province-content {
+  max-height: 5000px !important; 
+}
