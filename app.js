@@ -284,6 +284,7 @@ window.togglePlaceFromPopup = function(id) { togglePlaceSelection(id); }
 
 // ===== EL DIBUJO BONITO DE LOS LUGARES CON TODA LA INFO =====
 // ===== EL DIBUJO BONITO DE LOS LUGARES (AHORA CON CARRUSEL HORIZONTAL) =====
+// ===== EL DIBUJO BONITO DE LOS LUGARES =====
 function renderPlaces() {
   var c = document.getElementById('placesContainer');
   if (!c) return;
@@ -295,13 +296,28 @@ function renderPlaces() {
 
     html += '<div class="province-box" id="prov-' + bloque.id + '">';
     
-    html += '<div class="province-header" onclick="toggleProvincia(\'prov-' + bloque.id + '\')">';
-    html += '<h3>' + bloque.emoji + ' ' + bloque.nombre + ' <span style="font-size: 0.9rem; color: var(--fg-muted); font-weight: normal; font-family: \'Montserrat\', sans-serif;">(' + arr.length + ')</span></h3>';
+    // CABECERA RECUPERADA CON SUS MAPAS Y SUBTÍTULOS
+    html += '<div class="province-header ' + bloque.id + '" onclick="toggleProvincia(\'prov-' + bloque.id + '\')">';
+    
+    html += '<div class="bloque-map-sidebar">';
+    html += '<div class="bloque-map-mini"><img src="img/mapa_' + bloque.id + '.svg" alt="Mapa" onerror="this.style.display=\'none\'"></div>';
+    html += '</div>';
+
+    html += '<div class="bloque-body">';
+    html += '<div class="bloque-content-wrapper">';
+    html += '<div class="bloque-nombre">' + bloque.emoji + ' ' + bloque.nombre + '</div>';
+    html += '<span class="bloque-subtitulo">' + bloque.subtitulo + '</span>';
+    html += '</div>';
+    html += '</div>';
+
+    html += '<div class="bloque-actions">';
+    html += '<div class="bloque-contador">' + arr.length + ' lugares</div>';
     html += '<div class="province-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>';
     html += '</div>';
     
+    html += '</div>';
+    
     html += '<div class="province-content">';
-    // AQUÍ ESTÁ LA MAGIA: Usamos horizontal-scroll
     html += '<div class="horizontal-scroll places-carousel">';
 
     arr.forEach(function(l) {
