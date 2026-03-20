@@ -625,11 +625,11 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   transition: background 0.3s ease !important;
 }
 
-/* LOS GRADIENTES DE COLOR RECUPERADOS */
-.province-header.acoruna { background: linear-gradient(135deg, rgba(58, 124, 165, 0.2) 0%, rgba(58, 124, 165, 0.03) 100%) !important; }
-.province-header.lugo { background: linear-gradient(135deg, rgba(74, 140, 90, 0.2) 0%, rgba(74, 140, 90, 0.03) 100%) !important; }
-.province-header.ourense { background: linear-gradient(135deg, rgba(196, 122, 58, 0.2) 0%, rgba(196, 122, 58, 0.03) 100%) !important; }
-.province-header.pontevedra { background: linear-gradient(135deg, rgba(42, 138, 138, 0.2) 0%, rgba(42, 138, 138, 0.03) 100%) !important; }
+/* LOS GRADIENTES DE COLOR RECUPERADOS Y ADAPTADOS */
+.province-header.acoruna { background: linear-gradient(135deg, rgba(44, 105, 141, 0.15) 0%, rgba(44, 105, 141, 0.02) 100%) !important; }
+.province-header.lugo { background: linear-gradient(135deg, rgba(61, 90, 71, 0.15) 0%, rgba(61, 90, 71, 0.02) 100%) !important; }
+.province-header.ourense { background: linear-gradient(135deg, rgba(196, 90, 63, 0.12) 0%, rgba(196, 90, 63, 0.02) 100%) !important; }
+.province-header.pontevedra { background: linear-gradient(135deg, rgba(38, 128, 128, 0.15) 0%, rgba(38, 128, 128, 0.02) 100%) !important; }
 
 /* EL SIDEBAR DEL MAPA */
 .bloque-map-sidebar { 
@@ -673,18 +673,23 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   transition: stroke 0.4s ease !important;
 }
 
-/* ESTADOS AL ABRIR LA PROVINCIA */
-.province-box.expanded {
-  border-color: var(--accent-sea) !important;
-  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.12) !important;
-}
-.province-box.expanded .province-arrow {
-  transform: rotate(180deg) !important;
-  background: var(--accent-sea) !important;
-}
-.province-box.expanded .province-arrow svg {
-  stroke: white !important;
-}
-.province-box.expanded .province-content {
-  max-height: 5000px !important; 
-}
+/* --- ESTADOS AL ABRIR LA PROVINCIA (BORDES PERSONALIZADOS) --- */
+.province-box.expanded .province-arrow { transform: rotate(180deg) !important; }
+.province-box.expanded .province-arrow svg { stroke: white !important; }
+.province-box.expanded .province-content { max-height: 5000px !important; }
+
+/* A Coruña */
+#prov-acoruna.expanded { border-color: #2c698d !important; box-shadow: 0 8px 24px rgba(44, 105, 141, 0.12) !important; }
+#prov-acoruna.expanded .province-arrow { background: #2c698d !important; }
+
+/* Lugo */
+#prov-lugo.expanded { border-color: #3d5a47 !important; box-shadow: 0 8px 24px rgba(61, 90, 71, 0.12) !important; }
+#prov-lugo.expanded .province-arrow { background: #3d5a47 !important; }
+
+/* Ourense */
+#prov-ourense.expanded { border-color: #c45a3f !important; box-shadow: 0 8px 24px rgba(196, 90, 63, 0.12) !important; }
+#prov-ourense.expanded .province-arrow { background: #c45a3f !important; }
+
+/* Pontevedra */
+#prov-pontevedra.expanded { border-color: #268080 !important; box-shadow: 0 8px 24px rgba(38, 128, 128, 0.12) !important; }
+#prov-pontevedra.expanded .province-arrow { background: #268080 !important; }
