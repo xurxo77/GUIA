@@ -654,21 +654,15 @@
 
       // Hemos creado una FUNCIÓN que hace el cambio
       function actualizarSabiasQue() {
-        if (cajaTexto) {
-          const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
-          cajaTexto.innerHTML = fraseAleatoria;
-        }
+        // Usamos querySelectorAll para capturar las dos tarjetas que tienes ahora
+        const cajas = document.querySelectorAll("#texto-sabias-que");
+        const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+        
+        // Actualizamos todas las tarjetas que encuentre
+        cajas.forEach(caja => {
+          caja.innerHTML = fraseAleatoria;
+        });
       }
-
-      // 1. Se ejecuta la primera vez que entras
-      actualizarSabiasQue();
-
-      // 2. MAGIA: Se ejecuta cada vez que minimizas y vuelves a abrir la app
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") {
-          actualizarSabiasQue();
-        }
-      });
       
     });
   </script>
