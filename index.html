@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=5.0">
-  <link rel="stylesheet" href="styles.css?v=25.0">
+  <link rel="stylesheet" href="styles.css?v=26.0">
   <style>
     .category-row {
       border-radius: 12px !important;
@@ -634,9 +634,9 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js?v=4.0"></script>
- <script>
+<script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Aquí están tus frases con el formato HTML integrado (negritas y saltos de línea)
+      // Aquí están tus frases
       const curiosidades = [
         "<strong>La diáspora gallega es uno de los movimientos migratorios más grandes de Europa.</strong> Se calcula que, entre finales del siglo XIX y el siglo XX, más de 2 millones de gallegos emigraron, sobre todo a países como Argentina, Cuba y Uruguay.<br><br>👉 Hoy, hay casi tantos descendientes de gallegos fuera como en la propia Galicia.",
         
@@ -647,14 +647,26 @@
         "<strong>Galicia mantiene huellas vivas de su cultura celta.</strong> Los antiguos castros de piedra, la música con gaitas y muchas de sus tradiciones y leyendas populares reflejan la herencia celta que aún late en nuestra tierra."
       ];
 
-      // Buscamos el párrafo en la tarjeta
       const cajaTexto = document.getElementById("texto-sabias-que");
-      
-      // Si existe, elegimos una frase al azar y la inyectamos con su formato
-      if (cajaTexto) {
-        const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
-        cajaTexto.innerHTML = fraseAleatoria;
+
+      // Hemos creado una FUNCIÓN que hace el cambio
+      function actualizarSabiasQue() {
+        if (cajaTexto) {
+          const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+          cajaTexto.innerHTML = fraseAleatoria;
+        }
       }
+
+      // 1. Se ejecuta la primera vez que entras
+      actualizarSabiasQue();
+
+      // 2. MAGIA: Se ejecuta cada vez que minimizas y vuelves a abrir la app
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          actualizarSabiasQue();
+        }
+      });
+      
     });
   </script>
 </body>
