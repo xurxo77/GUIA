@@ -634,5 +634,24 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js?v=4.0"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Aquí guardamos todas tus frases
+      const curiosidades = [
+        "Las Rías no son fiordos. Son valles de ríos antiguos que fueron inundados por el mar al subir su nivel tras la última glaciación. Esta mezcla única de agua dulce y salada es el secreto de la increíble riqueza de nuestro marisco.",
+        "La Torre de Hércules, en A Coruña, es el único faro romano del mundo que sigue en funcionamiento a día de hoy.",
+        "Galicia tiene más de 1.400 kilómetros de costa. Esto supone casi un tercio de todo el litoral peninsular de España."
+      ];
+
+      // Buscamos el párrafo en la tarjeta
+      const cajaTexto = document.getElementById("texto-sabias-que");
+      
+      // Si existe, elegimos una frase al azar y la mostramos
+      if (cajaTexto) {
+        const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+        cajaTexto.innerHTML = fraseAleatoria;
+      }
+    });
+  </script>
 </body>
 </html>
