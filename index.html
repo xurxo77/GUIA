@@ -634,19 +634,23 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js?v=4.0"></script>
-  <script>
+ <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Aquí guardamos todas tus frases
+      // Aquí están tus frases con el formato HTML integrado (negritas y saltos de línea)
       const curiosidades = [
-        "Las Rías no son fiordos. Son valles de ríos antiguos que fueron inundados por el mar al subir su nivel tras la última glaciación. Esta mezcla única de agua dulce y salada es el secreto de la increíble riqueza de nuestro marisco.",
-        "La Torre de Hércules, en A Coruña, es el único faro romano del mundo que sigue en funcionamiento a día de hoy.",
-        "Galicia tiene más de 1.400 kilómetros de costa. Esto supone casi un tercio de todo el litoral peninsular de España."
+        "<strong>La diáspora gallega es uno de los movimientos migratorios más grandes de Europa.</strong> Se calcula que, entre finales del siglo XIX y el siglo XX, más de 2 millones de gallegos emigraron, sobre todo a países como Argentina, Cuba y Uruguay.<br><br>👉 Hoy, hay casi tantos descendientes de gallegos fuera como en la propia Galicia.",
+        
+        "<strong>Galicia no solo tiene más de 1.000 ríos, sino que es una potencia en producción de energía eléctrica.</strong> En 2024, generó más de 23.000 GWh de electricidad, gran parte con energías limpias como la hidráulica, eólica y solar. Aproximadamente el 40% de esa energía sobrante se exportó a otras partes de España y Europa.",
+        
+        "<strong>Galicia fue uno de los primeros reinos de Europa.</strong> Tras la caída del Imperio Romano, en el siglo V, Galicia se consolidó como el Reino de los Suevos, convirtiéndose en uno de los primeros reinos establecidos en toda Europa occidental.",
+        
+        "<strong>Galicia mantiene huellas vivas de su cultura celta.</strong> Los antiguos castros de piedra, la música con gaitas y muchas de sus tradiciones y leyendas populares reflejan la herencia celta que aún late en nuestra tierra."
       ];
 
       // Buscamos el párrafo en la tarjeta
       const cajaTexto = document.getElementById("texto-sabias-que");
       
-      // Si existe, elegimos una frase al azar y la mostramos
+      // Si existe, elegimos una frase al azar y la inyectamos con su formato
       if (cajaTexto) {
         const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
         cajaTexto.innerHTML = fraseAleatoria;
