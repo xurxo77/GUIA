@@ -639,7 +639,7 @@
   <script src="app.js?v=5.0"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Aquí están tus frases
+      // Aquí están tus frases con el formato HTML integrado
       const curiosidades = [
         "<strong>La diáspora gallega es uno de los movimientos migratorios más grandes de Europa.</strong> Se calcula que, entre finales del siglo XIX y el siglo XX, más de 2 millones de gallegos emigraron, sobre todo a países como Argentina, Cuba y Uruguay.<br><br>👉 Hoy, hay casi tantos descendientes de gallegos fuera como en la propia Galicia.",
         
@@ -650,19 +650,27 @@
         "<strong>Galicia mantiene huellas vivas de su cultura celta.</strong> Los antiguos castros de piedra, la música con gaitas y muchas de sus tradiciones y leyendas populares reflejan la herencia celta que aún late en nuestra tierra."
       ];
 
-      const cajaTexto = document.getElementById("texto-sabias-que");
-
       // Hemos creado una FUNCIÓN que hace el cambio
       function actualizarSabiasQue() {
-        // Usamos querySelectorAll para capturar las dos tarjetas que tienes ahora
-        const cajas = document.querySelectorAll("#texto-sabias-que");
+        // Busca TODAS las tarjetas que tengan este ID (tienes 2 en tu HTML)
+        const cajas = document.querySelectorAll('[id="texto-sabias-que"]');
         const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
         
-        // Actualizamos todas las tarjetas que encuentre
+        // Aplica el texto nuevo a todas las que encuentre
         cajas.forEach(caja => {
           caja.innerHTML = fraseAleatoria;
         });
       }
+
+      // 1. Se ejecuta la primera vez que entras
+      actualizarSabiasQue();
+
+      // 2. Se ejecuta cada vez que minimizas y vuelves a abrir la app
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          actualizarSabiasQue();
+        }
+      });
       
     });
   </script>
