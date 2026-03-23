@@ -837,57 +837,37 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   display: block !important;
 }
 /* ========================================================= */
-/* --- INDICADOR LATERAL PREMIUM (PURO CSS) ---              */
+/* --- INDICADOR LATERAL SUTIL (TRIÁNGULO CSS) ---           */
 /* ========================================================= */
 
-/* 1. Preparamos el contenedor para que la flecha flote correctamente */
+/* 1. Preparamos el contenedor para anclar el triángulo */
 #recomendaciones .province-box.expanded .province-content {
   position: relative !important;
 }
 
-/* 2. Inyectamos la flecha en el lateral derecho */
-#recomendaciones .province-box.expanded .province-content::before {
-  content: '➔'; /* Solo el icono, sin texto */
+/* 2. Dibujamos el triángulo en el margen derecho */
+#recomendaciones .province-box.expanded .province-content::after {
+  content: '' !important;
   position: absolute !important;
-  right: 15px !important;
-  top: 50% !important; /* Centrada verticalmente respecto a las tarjetas */
+  right: 6px !important; /* Pegadito al borde derecho de la pantalla */
+  top: 60% !important;   /* Más o menos a la altura del texto, como en tu imagen */
   transform: translateY(-50%) !important;
-  z-index: 100 !important;
+  z-index: 10 !important;
+  pointer-events: none !important; /* Para que el dedo lo traspase al deslizar */
   
-  /* Diseño ultra-elegante */
-  font-family: 'Arial', sans-serif !important;
-  font-size: 1.6rem !important;
-  font-weight: 200 !important; /* Muy fina */
-  color: #c9a063 !important; /* Oro suave premium */
-  opacity: 0.7 !important;
+  /* Truco CSS para dibujar un triángulo */
+  width: 0 !important;
+  height: 0 !important;
+  border-top: 8px solid transparent !important;
+  border-bottom: 8px solid transparent !important;
+  border-left: 10px solid #c8a97e !important; /* El color tostado/dorado premium */
   
-  /* Fondo sutil para que no se pierda con la foto */
-  background: rgba(255,255,255,0.8) !important;
-  width: 45px !important;
-  height: 45px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
-  border: 1px solid rgba(201,160,99,0.1) !important;
-  
-  /* Animación suave */
-  animation: pulsaFlechita 2.5s infinite ease-in-out !important;
-  transition: opacity 0.3s ease !important;
-  pointer-events: none !important; /* Para que no moleste al tocar */
+  /* Animación suave de empuje */
+  animation: empujaTriangulo 2s infinite ease-in-out !important;
 }
 
-/* 3. La flecha se esconde automáticamente cuando haces scroll lateral */
-#recomendaciones .province-box.expanded .horizontal-scroll:active + .rec-antes::before,
-#recomendaciones .province-box.expanded .horizontal-scroll {
-  /* No podemos esconder ::before basándonos en el scroll de .horizontal-scroll con puro CSS fácilmente. 
-     Pero podemos usar un truco: la flecha solo se ve mientras el usuario no esté interactuando con el carrusel.
-     (Para un control absoluto necesitaríamos JS, pero esto suele ser suficiente en móvil) */
-}
-
-/* Animación de latido sutil para llamar la atención */
-@keyframes pulsaFlechita {
-  0%, 100% { opacity: 0.2; transform: translateY(-50%) scale(0.95); }
-  50% { opacity: 0.8; transform: translateY(-50%) scale(1.05); }
+/* 3. La animación para que haga el gesto de deslizar */
+@keyframes empujaTriangulo {
+  0%, 100% { transform: translate(0, -50%); opacity: 0.3; }
+  50% { transform: translate(4px, -50%); opacity: 0.9; }
 }
