@@ -836,3 +836,29 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   color: #2c2416 !important;
   display: block !important;
 }
+/* ========================================================= */
+/* --- INDICADOR DE SCROLL ANIMADO (PURO CSS) ---            */
+/* ========================================================= */
+
+/* Inyectamos "DESLIZA ➔" justo encima del carrusel */
+#recomendaciones .province-box.expanded .province-content::before {
+  content: 'Desliza ➔';
+  display: block !important;
+  text-align: right !important;
+  padding-right: 20px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #8b7355 !important; /* Un tono premium tostado */
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  margin-top: 16px !important;
+  margin-bottom: -10px !important; /* Para que quede pegadito a las tarjetas */
+  animation: mueveFlechita 2s infinite ease-in-out !important;
+}
+
+/* Animación para que la flecha palpite y se mueva hacia la derecha */
+@keyframes mueveFlechita {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(5px); opacity: 1; }
+}
