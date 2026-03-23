@@ -745,3 +745,22 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .province-header.rec-disfrutar { background: linear-gradient(135deg, rgba(107, 112, 92, 0.15) 0%, rgba(107, 112, 92, 0.02) 100%) !important; }
 #rec-disfrutar.expanded { border-color: #6b705c !important; box-shadow: 0 8px 24px rgba(107, 112, 92, 0.12) !important; }
 #rec-disfrutar.expanded .province-arrow { background: #6b705c !important; }
+/* ========================================================= */
+/* --- CORRECCIÓN: ABRIR CAJAS DE RECOMENDACIONES ---        */
+/* ========================================================= */
+
+/* 1. Escondemos el contenido por defecto para que no ocupe espacio */
+#recomendaciones .province-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+/* 2. Cuando tocas la caja (estado expanded), mostramos las tarjetas */
+#recomendaciones .province-box.expanded .province-content {
+  max-height: 1000px !important; /* Altura de sobra para el carrusel */
+  opacity: 1 !important;
+  visibility: visible !important;
+}
