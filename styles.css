@@ -763,3 +763,54 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   visibility: visible !important;
   display: block !important;
 }
+/* ========================================================= */
+/* --- RESCATE: FORMA DE LAS TARJETAS DE RECOMENDACIONES --- */
+/* ========================================================= */
+
+/* Le decimos al carrusel cómo debe comportarse */
+#recomendaciones .horizontal-scroll {
+  display: flex !important;
+  overflow-x: auto !important;
+  gap: 16px !important;
+  padding: 16px 20px 24px 20px !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+/* Le damos cuerpo y tamaño a las tarjetas para que dejen de medir 0px */
+#recomendaciones .rec-card {
+  flex: 0 0 260px !important; /* Ancho fijo de la tarjeta */
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  white-space: normal !important;
+  height: auto !important;
+}
+
+/* Arreglamos las fotos */
+#recomendaciones .rec-card-img {
+  width: 100% !important;
+  height: 140px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+/* Arreglamos los títulos y los textos de dentro */
+#recomendaciones .rec-card h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #2c2416 !important;
+  margin: 0 0 8px 0 !important;
+  line-height: 1.3 !important;
+}
+
+#recomendaciones .rec-card p {
+  font-size: 0.9rem !important;
+  color: #5a4d3a !important;
+  line-height: 1.5 !important;
+}
