@@ -196,7 +196,7 @@ var lugares = [
       "<strong>Miradores:</strong> O Castro y Monte Alba, con vistas panorámicas de la ciudad y la ría."
     ], 
     
-    comer: "Marisco, pescado fresco y tapas.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Casco Vello:</strong> tradición y ambiente local.<br>• <strong>Puerto y Paseo Marítimo:</strong> restaurantes con vistas a la ría y la actividad portuaria.<br>• <strong>Bouzas y Coia:</strong> barrios tranquilos con oferta gastronómica cercana a playas.<br>• <strong>Príncipe y centro comercial:</strong> zonas modernas con bares de tapas y locales de moda.", 
+    comer: "Marisco, pescado fresco, ostras, tapas y torta de nata.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Casco Vello:</strong> tradición y ambiente local.<br>• <strong>Puerto y Paseo Marítimo:</strong> restaurantes con vistas a la ría y la actividad portuaria.<br>• <strong>Bouzas y Coia:</strong> barrios tranquilos con oferta gastronómica cercana a playas.<br>• <strong>Príncipe y centro comercial:</strong> zonas modernas con bares de tapas y locales de moda.", 
     
     tomar: "Vinos gallegos (albariño, ribeiro) y cervezas locales; ambiente animado en los bares del centro y la zona portuaria.",
     
