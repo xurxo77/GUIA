@@ -338,14 +338,28 @@ function renderPlaces() {
       l.categorias.forEach(function(catId) { html += '<span class="place-category-tag ' + catId + '">' + getCategoryEmoji(catId) + ' ' + getCategoryName(catId) + '</span>'; });
       html += '</div>';
       
+    // --- DIBUJADO DE LA NUEVA PLANTILLA ---
       html += renderInfoBlock('✨', 'POR QUÉ VENIR', l.porQueVenir);
       html += renderInfoBlock('🕐', 'EL MOMENTO', l.momentoPerfecto);
+      
       if (l.imprescindibles) html += renderListBlock('⭐', 'IMPRESCINDIBLES', l.imprescindibles);
+      
       html += renderInfoBlock('🍽️', 'COMER', l.comer);
-      html += renderInfoBlock('🍷', 'TOMAR', l.tomar);
+      html += renderInfoBlock('🍷', 'BEBER', l.tomar);
+      
+      // Nuevas secciones
+      if (l.playasYAlrededores) html += renderListBlock('🏖️', 'PLAYAS Y ALREDEDORES', l.playasYAlrededores);
       html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
-      html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo);
-      html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias);
+      
+      // Inteligencia: Si es una lista (nuevo formato) usa renderListBlock, si es texto (viejo) usa renderInfoBlock
+      if (Array.isArray(l.masTiempo)) { html += renderListBlock('⏳', 'MÁS TIEMPO', l.masTiempo); } 
+      else { html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo); }
+      
+      if (Array.isArray(l.advertencias)) { html += renderListBlock('⚠️', 'ADVERTENCIAS', l.advertencias); } 
+      else { html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias); }
+      
+      html += renderInfoBlock('❤️', 'MI OPINIÓN', l.miOpinion);
+      if (l.algunasPlayas) html += renderListBlock('🌊', 'ALGUNAS PLAYAS', l.algunasPlayas);
       
       html += '<button class="btn-primary" onclick="togglePlaceSelection(' + l.id + ')" style="width:100%; margin-top:16px;">Añadir / Quitar de la ruta</button>';
 
