@@ -672,23 +672,53 @@
         "<strong>Rosalía de Castro dio voz a Galicia cuando casi nadie la escuchaba.</strong> En el siglo XIX, fue una de las primeras autoras en escribir en gallego tras siglos de abandono, dignificando la lengua y reflejando la morriña de su pueblo.<br><br>👉 Su inmensa obra marcó el inicio del Rexurdimento y la convirtió en el pilar fundamental de nuestra identidad cultural."
       ];
 
-      // Hemos creado una FUNCIÓN que hace el cambio
+     // Variable para recordar la última frase y no repetirla
+      let ultimaFraseId = -1;
+
       function actualizarSabiasQue() {
         const cajas = document.querySelectorAll('[id="texto-sabias-que"]');
-        const fraseAleatoria = curiosidades[Math.floor(Math.random() * curiosidades.length)];
+        
+        // Anti-repetición: Buscamos un número aleatorio distinto al anterior
+        let nuevoId = Math.floor(Math.random() * curiosidades.length);
+        while (nuevoId === ultimaFraseId) {
+          nuevoId = Math.floor(Math.random() * curiosidades.length);
+        }
+        ultimaFraseId = nuevoId;
+        const fraseElegida = curiosidades[nuevoId];
         
         cajas.forEach(caja => {
-          caja.innerHTML = fraseAleatoria;
+          // Pequeño efecto de parpadeo suave al cambiar el texto
+          caja.style.opacity = 0;
+          setTimeout(() => {
+            caja.innerHTML = fraseElegida;
+            caja.style.transition = "opacity 0.4s ease";
+            caja.style.opacity = 1;
+          }, 200); // Espera 200ms para volver a mostrar el texto nuevo
         });
       }
 
-      // 1. Se ejecuta la primera vez que entras
+      // 1. Ejecutar al entrar
       actualizarSabiasQue();
 
-      // 2. Se ejecuta cada vez que minimizas y vuelves a abrir la app
+      // 2. Ejecutar al volver de segundo plano
       document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") {
-          actualizarSabiasQue();
+        if (document.visibilityState === "visible") actualizarSabiasQue();
+      });
+
+      // 3. LA MAGIA: Hacer que las tarjetas sean botones tocables
+      const textos = document.querySelectorAll('[id="texto-sabias-que"]');
+      textos.forEach(texto => {
+        const tarjetaPapi = texto.closest('.rec-card-static');
+        if (tarjetaPapi) {
+          // Cambiar el cursor a la mano para dar pista de que es tocable
+          tarjetaPapi.style.cursor = 'pointer';
+          tarjetaPapi.addEventListener('click', actualizarSabiasQue);
+          
+          // Añadir sutilmente "(Toca para otra)" en el título
+          const titulo = tarjetaPapi.querySelector('h4');
+          if(titulo && !titulo.innerHTML.includes('Toca')) {
+            titulo.innerHTML += '<span style="font-size: 0.65rem; font-weight: 500; color: #888; margin-left: auto; text-transform: uppercase; letter-spacing: 0.5px;">Toca para otra 🔄</span>';
+          }
         }
       });
       
