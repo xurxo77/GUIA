@@ -103,7 +103,7 @@ var lugares = [
   { id: 37, nombre: "A Guarda", bloque: "pontevedra", categorias: ["magicos", "patrimonio"], horas: 3, imagen: "img/aguarda.jpg", lat: 41.9000, lng: -8.8667, porQueVenir: "Citania de Santa Trega.", momentoPerfecto: "Atardecer.", imprescindibles: ["Citania", "Faro", "Monte Trega"], comer: "Marisco.", tomar: "Albariño.", secreto: "Portugal.", masTiempo: "Tui.", advertencias: "Viento." },
 { id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." },
   
-  { 
+{ 
     id: 39, 
     nombre: "Fisterra y alrededores", 
     bloque: "acoruna", 
@@ -126,9 +126,12 @@ var lugares = [
     tomar: "Vino gallego o cerveza local (Estrella Galicia), según prefieras.",
     
     playasYAlrededores: [
-      "<strong>Playa de Langosteira:</strong> amplia y salvaje, Atlántico puro.",
-      "<strong>Playa de Lariño:</strong> arena dorada y oleaje potente.",
-      "<strong>Hórreos de Carnota y Lira:</strong> una joya patrimonial para ver y fotografiar."
+      "<strong>Playa de Langosteira:</strong> La más extensa y familiar, con aguas tranquilas, servicios y posibilidades de deportes acuáticos.",
+      "<strong>Playa de Mar de Fóra:</strong> Salvaje y abierta al Atlántico, ideal para pasear y disfrutar de puestas de sol, aunque el baño es peligroso por las corrientes.",
+      "<strong>Playa de O Rostro:</strong> Gran playa natural y espectacular, rodeada de dunas y vegetación; baño arriesgado, perfecta para pasear.",
+      "<strong>Playa de Lariño:</strong> Arena dorada y oleaje potente en un entorno espectacular.",
+      "<strong>Playa de Arnela:</strong> Pequeña y tranquila, rodeada de acantilados, ideal para desconectar en un entorno natural.",
+      "<strong>Hórreos de Carnota y Lira:</strong> Una joya patrimonial impresionante para ver y fotografiar muy cerca de la costa."
     ],
     
     secreto: "El pueblo en sí es pequeño; lo verdaderamente impresionante está en los alrededores: acantilados, playas, hórreos y el faro. Si tienes tiempo, perderse por los caminos costeros es un descubrimiento inolvidable.", 
@@ -144,14 +147,7 @@ var lugares = [
       "Pueblo pequeño, no esperes vida urbana intensa."
     ],
     
-    miOpinion: "Finisterre merece la pena sobre todo por sus alrededores: el faro, las playas, los hórreos y el mar abierto. El pueblo no impresiona por sí mismo, pero la sensación de estar “al final del mundo” es única. Paisajes que quitan el aliento, historias de mar y leyenda, y playas que parecen secretas: un lugar para quienes buscan naturaleza y magia en estado puro.",
-    
-    algunasPlayas: [
-      "<strong>Playa de Mar de Fóra:</strong> Salvaje y abierta al Atlántico, ideal para pasear y disfrutar de puestas de sol, aunque el baño es peligroso por las corrientes.",
-      "<strong>Playa de Langosteira:</strong> La más extensa y familiar, con aguas tranquilas, servicios y posibilidades de deportes acuáticos.",
-      "<strong>Playa de O Rostro:</strong> Gran playa natural y espectacular, rodeada de dunas y vegetación; baño arriesgado, perfecta para pasear.",
-      "<strong>Playa de Arnela:</strong> Pequeña y tranquila, rodeada de acantilados, ideal para desconectar en un entorno natural."
-    ]
+    miOpinion: "Finisterre merece la pena sobre todo por sus alrededores: el faro, las playas, los hórreos y el mar abierto. El pueblo no impresiona por sí mismo, pero la sensación de estar “al final del mundo” es única. Paisajes que quitan el aliento, historias de mar y leyenda, y playas que parecen secretas: un lugar para quienes buscan naturaleza y magia en estado puro."
   }
 ];
 
