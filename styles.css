@@ -784,22 +784,23 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   display: block !important;
 }
 
-/* 3. El carrusel de dentro (Forzamos a que exista y se vea) */
+/* 3. El contenedor interior (Cambiamos horizontal por vertical) */
 #recomendaciones .province-box.expanded .horizontal-scroll {
   display: flex !important;
+  flex-direction: column !important; /* <--- LA MAGIA: Las apilamos hacia abajo */
   opacity: 1 !important;
   visibility: visible !important;
-  overflow-x: auto !important;
-  gap: 16px !important;
+  overflow-x: hidden !important; /* Quitamos el scroll lateral */
+  gap: 20px !important;
   padding: 16px 20px 24px 20px !important;
-  -webkit-overflow-scrolling: touch !important;
 }
 
-/* 4. Las tarjetas (Forzamos su tamaño, fondo y visibilidad) */
+/* 4. Las tarjetas (Forzamos que ocupen todo el ancho de la caja) */
 #recomendaciones .province-box.expanded .rec-card {
   display: flex !important;
   flex-direction: column !important;
-  flex: 0 0 260px !important; 
+  width: 100% !important; /* <--- LA MAGIA: Se adaptan a la caja padre */
+  flex: none !important; 
   opacity: 1 !important;
   visibility: visible !important;
   background: #ffffff !important;
