@@ -857,20 +857,30 @@ window.toggleProvincia = function(id) {
   }
 }
 /* ========================================================= */
-/* --- ACORDEÓN PARA LAS TARJETAS DE RECOMENDACIONES ---     */
+/* --- ACORDEÓN Y SCROLL PARA RECOMENDACIONES ---            */
 /* ========================================================= */
 
 function abrirSoloUnaRec(idSeleccionado) {
-  // 1. Buscamos las 4 cajas de recomendaciones
+  // 1. Buscamos todas las cajas
   const todasLasCajas = document.querySelectorAll('#recomendaciones .province-box');
+  const cajaTocada = document.getElementById(idSeleccionado);
   
-  // 2. Cerramos todas las que NO sean la que hemos tocado
+  // 2. Comprobamos si la que hemos tocado ya estaba abierta
+  const estabaAbierta = cajaTocada.classList.contains('expanded');
+
+  // 3. Cerramos absolutamente todas
   todasLasCajas.forEach(caja => {
-    if (caja.id !== idSeleccionado) {
-      caja.classList.remove('expanded');
-    }
+    caja.classList.remove('expanded');
   });
-  
-  // 3. Abrimos (o cerramos) la que hemos tocado
-  document.getElementById(idSeleccionado).classList.toggle('expanded');
+
+  // 4. Si la que tocamos NO estaba abierta, la abrimos y hacemos el scroll
+  if (!estabaAbierta) {
+    cajaTocada.classList.add('expanded');
+    
+    // Le damos un pequeño respiro (300ms) para que termine la animación de cerrarse la anterior,
+    // y entonces deslizamos la pantalla suavemente hacia arriba.
+    setTimeout(() => {
+      cajaTocada.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
 }
