@@ -102,8 +102,53 @@ var lugares = [
     ],
     
     miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."},  
-    { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
-  { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
+{ 
+    id: 2, 
+    nombre: "A Coruña", 
+    bloque: "acoruna", 
+    categorias: ["ciudades", "costa"], 
+    horas: 4, 
+    imagen: "img/acoruna.jpg", 
+    lat: 43.3700, 
+    lng: -8.4000, 
+    
+    porQueVenir: "A Coruña combina ciudad y mar como pocas. Rascacielos frente a playas, historia en cada esquina y un paseo marítimo que es de los más largos de Europa. Ciudad viva, siempre con gente en movimiento, mercados, cafés y tiendas. Conocida como la \"Ciudad de Cristal\", destaca por sus galerías acristaladas de la Marina, diseñadas para captar luz y calor, formando uno de los conjuntos acristalados más extensos del mundo. Además, hay un toque de rivalidad con otras ciudades gallegas, especialmente Vigo y Santiago, que se percibe tanto en lo cultural como en lo deportivo (Dépor vs. Celta) y en debates sobre calidad de vida.", 
+    
+    momentoPerfecto: "Por la mañana en el casco histórico para ver la Plaza de María Pita y la Torre de Hércules, o al atardecer para pasear por el paseo marítimo y disfrutar de la luz sobre el Atlántico.", 
+    
+    imprescindibles: [
+      "<strong>Torre de Hércules:</strong> faro romano en funcionamiento más antiguo del mundo, Patrimonio de la Humanidad.",
+      "<strong>Plaza de María Pita:</strong> centro histórico con bares y ambiente constante.",
+      "<strong>Casco viejo:</strong> calles empedradas, plazas escondidas y esencia local.",
+      "<strong>Paseo marítimo:</strong> el más largo de Europa, ideal para caminatas atlánticas.",
+      "<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos."
+    ], 
+    
+    comer: "Marisco, pescado fresco y tapas gallegas.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Zona de Vinos (Calles Galera, Barrera y Estrella):</strong> tapeo por excelencia.<br>• <strong>Ciudad Vieja y Plaza de María Pita:</strong> mesones tradicionales y restaurantes de producto de alta calidad.<br>• <strong>Monte de San Pedro:</strong> comer con vistas panorámicas de la ciudad y el Atlántico.<br>• <strong>Cuatro Caminos y Ensanche:</strong> zonas más comerciales y residenciales con oferta variada.<br>• <strong>Matogrande:</strong> centro de negocios, opciones modernas y rápidas.", 
+    
+    tomar: "Estrella Galicia, albariño o ribeiro según acompañamiento.",
+    
+    secreto: "<strong>Paseo marítimo hasta Orzán y Riazor:</strong> kilómetros de costa urbana que pocos turistas aprovechan del todo.<br><br><strong>Miradores del Monte de San Pedro:</strong> vistas panorámicas increíbles y jardines poco conocidos.", 
+    
+    masTiempo: [
+      "<strong>Excursión rápida a Betanzos:</strong> villa medieval cercana.",
+      "<strong>Costa da Morte:</strong> paisaje salvaje y natural."
+    ], 
+    
+    planLluvia: [
+      "<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos.",
+      "<strong>Museo de las Ciencias:</strong> exposiciones interactivas y aprendizaje para todas las edades.",
+      "<strong>Aquarium Finisterrae:</strong> vida marina y experiencias atlánticas sin mojarse."
+    ],
+    
+    advertencias: [
+      "Ciudad húmeda y ventosa, sobre todo en invierno.",
+      "Aparcar en el centro puede ser un reto.",
+      "Playas urbanas con oleaje: precaución."
+    ],
+    
+    miOpinion: "A Coruña es energía pura: ciudad activa, atlántica y viva, con un carácter señorial muy marcado. Mezcla perfecta de ciudad y playa, historia y modernidad. Sus galerías acristaladas, la Torre de Hércules y su paseo marítimo la convierten en única. La zona del puerto es fantástica para pasear y descubrir la vida local. Y si te quedas sin planes, o eres fanático de la Estrella Galicia, visitar su museo merece la pena. Cada esquina tiene algo que descubrir, y pese a la rivalidad cultural con Vigo o Santiago, nadie duda de su carácter especial como capital atlántica gallega."
+  },  { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
   { id: 4, nombre: "Cedeira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 2, imagen: "img/cedeira.jpg", lat: 43.6667, lng: -8.0500, porQueVenir: "Playa de Magdalena y puerto pesquero.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de Magdalena", "Puerto", "Monte da Sartá"], comer: "Marisco.", tomar: "Vino blanco.", secreto: "Senda costera.", masTiempo: "Paseo al faro.", advertencias: "Mar peligroso." },
   { id: 5, nombre: "Ortigueira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 3, imagen: "img/ortigueira.jpg", lat: 43.6333, lng: -7.8500, porQueVenir: "Playa de Ortigueira, una de las mejores.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de Ortigueira", "Cabo Ortegal", "Puerto"], comer: "Marisco.", tomar: "Sidra.", secreto: "Estaca de Bares.", masTiempo: "Cabo Ortegal.", advertencias: "Marea alta cubre la playa." },
   { id: 6, nombre: "Estaca de Bares", bloque: "acoruna", categorias: ["magicos", "costa"], horas: 2, imagen: "img/estacadebares.jpg", lat: 43.7833, lng: -7.6833, porQueVenir: "Punto más al norte de España.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Mirador", "Paseo hasta el faro"], comer: "En Ortigueira.", tomar: "Lo que lleves.", secreto: "Amanecer.", masTiempo: "Ortigueira.", advertencias: "Viento muy fuerte." },
