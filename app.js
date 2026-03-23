@@ -101,8 +101,8 @@ var lugares = [
       "Precios más altos en el centro."
     ],
     
-    miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."
-  },  { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
+    miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."},  
+    { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
   { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
   { id: 4, nombre: "Cedeira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 2, imagen: "img/cedeira.jpg", lat: 43.6667, lng: -8.0500, porQueVenir: "Playa de Magdalena y puerto pesquero.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de Magdalena", "Puerto", "Monte da Sartá"], comer: "Marisco.", tomar: "Vino blanco.", secreto: "Senda costera.", masTiempo: "Paseo al faro.", advertencias: "Mar peligroso." },
   { id: 5, nombre: "Ortigueira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 3, imagen: "img/ortigueira.jpg", lat: 43.6333, lng: -7.8500, porQueVenir: "Playa de Ortigueira, una de las mejores.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de Ortigueira", "Cabo Ortegal", "Puerto"], comer: "Marisco.", tomar: "Sidra.", secreto: "Estaca de Bares.", masTiempo: "Cabo Ortegal.", advertencias: "Marea alta cubre la playa." },
@@ -431,13 +431,17 @@ function renderPlaces() {
       html += renderInfoBlock('🍽️', 'COMER', l.comer);
       html += renderInfoBlock('🍷', 'BEBER', l.tomar);
       
-      // Nuevas secciones
       if (l.playasYAlrededores) html += renderListBlock('🏖️', 'PLAYAS Y ALREDEDORES', l.playasYAlrededores);
       html += renderInfoBlock('🔮', 'SECRETO', l.secreto);
       
-      // Inteligencia: Si es una lista (nuevo formato) usa renderListBlock, si es texto (viejo) usa renderInfoBlock
       if (Array.isArray(l.masTiempo)) { html += renderListBlock('⏳', 'MÁS TIEMPO', l.masTiempo); } 
       else { html += renderInfoBlock('⏳', 'MÁS TIEMPO', l.masTiempo); }
+      
+      // LA NUEVA SECCIÓN DE LLUVIA
+      if (l.planLluvia) {
+        if (Array.isArray(l.planLluvia)) { html += renderListBlock('☔', 'PLAN PARA DÍA DE LLUVIA', l.planLluvia); } 
+        else { html += renderInfoBlock('☔', 'PLAN PARA DÍA DE LLUVIA', l.planLluvia); }
+      }
       
       if (Array.isArray(l.advertencias)) { html += renderListBlock('⚠️', 'ADVERTENCIAS', l.advertencias); } 
       else { html += renderInfoBlock('⚠️', 'ADVERTENCIAS', l.advertencias); }
