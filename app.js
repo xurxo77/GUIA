@@ -101,7 +101,56 @@ var lugares = [
   { id: 35, nombre: "O Grove", bloque: "pontevedra", categorias: ["costa"], horas: 4, imagen: "img/ogrove.jpg", lat: 42.3881, lng: -8.8833, porQueVenir: "Paraíso del marisco.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de la Lanzada", "Marisquerías", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "La Toxa.", masTiempo: "Isla de Ons.", advertencias: "Muy concurrido." },
   { id: 36, nombre: "A Illa de Arousa", bloque: "pontevedra", categorias: ["costa"], horas: 3, imagen: "img/arousa.jpg", lat: 42.5573, lng: -8.8618, porQueVenir: "Isla con playas salvajes.", momentoPerfecto: "Verano.", imprescindibles: ["Faro", "Playas", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "Carretera del faro.", masTiempo: "O Grove.", advertencias: "Puente de dos sentidos." },
   { id: 37, nombre: "A Guarda", bloque: "pontevedra", categorias: ["magicos", "patrimonio"], horas: 3, imagen: "img/aguarda.jpg", lat: 41.9000, lng: -8.8667, porQueVenir: "Citania de Santa Trega.", momentoPerfecto: "Atardecer.", imprescindibles: ["Citania", "Faro", "Monte Trega"], comer: "Marisco.", tomar: "Albariño.", secreto: "Portugal.", masTiempo: "Tui.", advertencias: "Viento." },
-  { id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." }
+  { id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." },
+  { 
+    id: 39, 
+    nombre: "Fisterra y alrededores", 
+    bloque: "acoruna", 
+    categorias: ["costa", "magicos", "naturaleza"], 
+    horas: 5, 
+    imagen: "img/fisterra.jpg", 
+    lat: 42.9049, 
+    lng: -9.2625, 
+    
+    porQueVenir: "Finisterre es el punto más al oeste de la península ibérica: frente a ti, solo hay mar… y América. Aquí los paisajes son de película: acantilados, playas salvajes y un faro que marca “el fin del mundo”. La zona está llena de historias ligadas al mar y a lo mágico, y es perfecta para quien busca naturaleza y leyenda.", 
+    momentoPerfecto: "Mañana o tarde con buen tiempo. Consulta siempre la previsión meteorológica: si hay niebla, no verás ni el mar aunque lo tengas justo delante.", 
+    
+    imprescindibles: [
+      "<strong>Faro de Finisterre:</strong> icono del fin del mundo, sobre los acantilados.", 
+      "<strong>Playas y acantilados:</strong> vistas espectaculares del Atlántico abierto.", 
+      "<strong>Hórreos de Carnota y Lira:</strong> antiguos graneros típicos de Galicia, los más grandes, fascinantes y poco conocidos."
+    ], 
+    
+    comer: "Marisco y pescado fresco de la Costa da Morte. Sencillo, auténtico y con productos locales.", 
+    tomar: "Vino gallego o cerveza local (Estrella Galicia), según prefieras.",
+    
+    playasYAlrededores: [
+      "<strong>Playa de Langosteira:</strong> amplia y salvaje, Atlántico puro.",
+      "<strong>Playa de Lariño:</strong> arena dorada y oleaje potente.",
+      "<strong>Hórreos de Carnota y Lira:</strong> una joya patrimonial para ver y fotografiar."
+    ],
+    
+    secreto: "El pueblo en sí es pequeño; lo verdaderamente impresionante está en los alrededores: acantilados, playas, hórreos y el faro. Si tienes tiempo, perderse por los caminos costeros es un descubrimiento inolvidable.", 
+    
+    masTiempo: [
+      "Explorar la Costa da Morte hacia Camariñas o Muxía.",
+      "Senderos por los acantilados y rutas cercanas."
+    ], 
+    advertencias: [
+      "Clima cambiante, niebla frecuente.",
+      "Corrientes fuertes en playas abiertas.",
+      "Pueblo pequeño, no esperes vida urbana intensa."
+    ],
+    
+    miOpinion: "Finisterre merece la pena sobre todo por sus alrededores: el faro, las playas, los hórreos y el mar abierto. El pueblo no impresiona por sí mismo, pero la sensación de estar “al final del mundo” es única. Paisajes que quitan el aliento, historias de mar y leyenda, y playas que parecen secretas: un lugar para quienes buscan naturaleza y magia en estado puro.",
+    
+    algunasPlayas: [
+      "<strong>Playa de Mar de Fóra:</strong> Salvaje y abierta al Atlántico, ideal para pasear y disfrutar de puestas de sol, aunque el baño es peligroso por las corrientes.",
+      "<strong>Playa de Langosteira:</strong> La más extensa y familiar, con aguas tranquilas, servicios y posibilidades de deportes acuáticos.",
+      "<strong>Playa de O Rostro:</strong> Gran playa natural y espectacular, rodeada de dunas y vegetación; baño arriesgado, perfecta para pasear.",
+      "<strong>Playa de Arnela:</strong> Pequeña y tranquila, rodeada de acantilados, ideal para desconectar en un entorno natural."
+    ]
+  }
 ];
 
 // ===== INIT APP =====
