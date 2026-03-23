@@ -722,3 +722,26 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 .province-box.expanded .province-content {
   max-height: 15000px !important; 
 }
+/* ========================================================= */
+/* --- COLORES PARA LAS TARJETAS DE RECOMENDACIONES ---      */
+/* ========================================================= */
+
+/* 1. Antes de venir (Mostaza / Crema) */
+.province-header.rec-antes { background: linear-gradient(135deg, rgba(212, 163, 115, 0.15) 0%, rgba(212, 163, 115, 0.02) 100%) !important; }
+#rec-antes.expanded { border-color: #d4a373 !important; box-shadow: 0 8px 24px rgba(212, 163, 115, 0.12) !important; }
+#rec-antes.expanded .province-arrow { background: #d4a373 !important; }
+
+/* 2. Comer bien (Teja / Coral) */
+.province-header.rec-comer { background: linear-gradient(135deg, rgba(231, 111, 81, 0.15) 0%, rgba(231, 111, 81, 0.02) 100%) !important; }
+#rec-comer.expanded { border-color: #e76f51 !important; box-shadow: 0 8px 24px rgba(231, 111, 81, 0.12) !important; }
+#rec-comer.expanded .province-arrow { background: #e76f51 !important; }
+
+/* 3. Beber bien (Vino / Burdeos) */
+.province-header.rec-beber { background: linear-gradient(135deg, rgba(157, 129, 137, 0.15) 0%, rgba(157, 129, 137, 0.02) 100%) !important; }
+#rec-beber.expanded { border-color: #9d8189 !important; box-shadow: 0 8px 24px rgba(157, 129, 137, 0.12) !important; }
+#rec-beber.expanded .province-arrow { background: #9d8189 !important; }
+
+/* 4. Disfrutar Galicia (Verde Musgo) */
+.province-header.rec-disfrutar { background: linear-gradient(135deg, rgba(107, 112, 92, 0.15) 0%, rgba(107, 112, 92, 0.02) 100%) !important; }
+#rec-disfrutar.expanded { border-color: #6b705c !important; box-shadow: 0 8px 24px rgba(107, 112, 92, 0.12) !important; }
+#rec-disfrutar.expanded .province-arrow { background: #6b705c !important; }
