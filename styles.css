@@ -693,3 +693,16 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 /* Pontevedra */
 #prov-pontevedra.expanded { border-color: #268080 !important; box-shadow: 0 8px 24px rgba(38, 128, 128, 0.12) !important; }
 #prov-pontevedra.expanded .province-arrow { background: #268080 !important; }
+/* ========================================================= */
+/* --- CORRECCIÓN: TARJETAS DE LUGARES INDEPENDIENTES ---    */
+/* ========================================================= */
+
+.places-carousel {
+  align-items: flex-start !important; /* Evita que las tarjetas contiguas se estiren por simpatía */
+}
+
+/* Y aseguramos que la tarjeta en sí no herede el stretch */
+.places-carousel .place-card {
+  height: auto !important;
+  align-self: flex-start !important;
+}
