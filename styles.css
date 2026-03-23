@@ -784,23 +784,26 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   display: block !important;
 }
 
-/* 3. El contenedor interior (Cambiamos horizontal por vertical) */
+/* 3. El contenedor interior (Volvemos al carrusel lateral) */
 #recomendaciones .province-box.expanded .horizontal-scroll {
   display: flex !important;
-  flex-direction: column !important; /* <--- LA MAGIA: Las apilamos hacia abajo */
+  flex-direction: row !important; /* Volvemos al scroll horizontal */
   opacity: 1 !important;
   visibility: visible !important;
-  overflow-x: hidden !important; /* Quitamos el scroll lateral */
-  gap: 20px !important;
+  overflow-x: auto !important; /* Activamos el scroll */
+  gap: 16px !important;
   padding: 16px 20px 24px 20px !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory !important; /* Efecto imán al deslizar */
 }
 
-/* 4. Las tarjetas (Forzamos que ocupen todo el ancho de la caja) */
+/* 4. Las tarjetas (Anchas pero en fila) */
 #recomendaciones .province-box.expanded .rec-card {
   display: flex !important;
   flex-direction: column !important;
-  width: 100% !important; /* <--- LA MAGIA: Se adaptan a la caja padre */
-  flex: none !important; 
+  flex: 0 0 88% !important; /* LA MAGIA: 88% del ancho para dejar asomar la siguiente */
+  max-width: 320px !important; /* Tope de tamaño para tablets */
+  scroll-snap-align: center !important; /* Se centra sola al soltar el dedo */
   opacity: 1 !important;
   visibility: visible !important;
   background: #ffffff !important;
