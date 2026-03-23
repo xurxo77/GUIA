@@ -174,8 +174,53 @@ var lugares = [
   { id: 26, nombre: "Castro Caldelas", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/castro.jpg", lat: 42.3581, lng: -7.4649, porQueVenir: "Castillo medieval y vistas.", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo", "Pueblo", "Miradores"], comer: "Cocina tradicional.", tomar: "Mencía.", secreto: "Atardecer.", masTiempo: "Cañón del Sil.", advertencias: "Carretera curvas." },
   { id: 27, nombre: "Cañón del Sil", bloque: "ourense", categorias: ["naturaleza"], horas: 5, imagen: "img/sil.jpg", lat: 42.4167, lng: -7.7500, porQueVenir: "Cañones más espectaculares.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
   { id: 28, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", tomar: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña." },
-  { id: 29, nombre: "Vigo", bloque: "pontevedra", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/vigo.jpg", lat: 42.2406, lng: -8.7207, porQueVenir: "Puerto, marisco y puerta de las Cíes.", momentoPerfecto: "Tarde-noche.", imprescindibles: ["Tabernas del Berbés", "Playa de Samil", "Monte del Castro"], comer: "Pulpo, navajas, ostras.", tomar: "Blanco de la casa.", secreto: "Taberna de Cervantes.", masTiempo: "Monte del Castro.", advertencias: "Llenísimo fines de semana." },
-  { id: 30, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
+{ 
+    id: 29, 
+    nombre: "Vigo", 
+    bloque: "pontevedra", 
+    categorias: ["ciudades", "costa"], 
+    horas: 4, 
+    imagen: "img/vigo.jpg", 
+    lat: 42.2406, 
+    lng: -8.7207, 
+    
+    porQueVenir: "Vigo es una ciudad dinámica y abierta al Atlántico, famosa por su puerto pesquero, su ría y su proximidad a playas espectaculares. Combina zonas señoriales y barrios históricos con parques, miradores y una gastronomía reconocida, especialmente en marisco y pescado fresco. Además, es un punto estratégico cercano a las Islas Cíes y a Portugal, lo que le da un valor añadido.", 
+    
+    momentoPerfecto: "Por la mañana para recorrer el casco histórico y los miradores, o al atardecer para disfrutar de la ría y de los atardeceres sobre las Islas Cíes.", 
+    
+    imprescindibles: [
+      "<strong>Casco Vello:</strong> calles estrechas, plazas y ambiente tradicional.",
+      "<strong>Puerto y Ría de Vigo:</strong> paseos marítimos y actividad portuaria, corazón de la ciudad.",
+      "<strong>Islas Cíes:</strong> parque natural, playas de arena blanca y aguas cristalinas (accesibles en barco).",
+      "<strong>Parque de Castrelos:</strong> jardines históricos y espacios verdes para pasear.",
+      "<strong>Miradores:</strong> O Castro y Monte Alba, con vistas panorámicas de la ciudad y la ría."
+    ], 
+    
+    comer: "Marisco, pescado fresco y tapas.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Casco Vello:</strong> tradición y ambiente local.<br>• <strong>Puerto y Paseo Marítimo:</strong> restaurantes con vistas a la ría y la actividad portuaria.<br>• <strong>Bouzas y Coia:</strong> barrios tranquilos con oferta gastronómica cercana a playas.<br>• <strong>Príncipe y centro comercial:</strong> zonas modernas con bares de tapas y locales de moda.", 
+    
+    tomar: "Vinos gallegos (albariño, ribeiro) y cervezas locales; ambiente animado en los bares del centro y la zona portuaria.",
+    
+    secreto: "<strong>Paseo de la Playa de Samil:</strong> kilómetros de costa urbana con parques, pistas deportivas y vistas a las Cíes.<br><br><strong>Miradores de O Castro y Monte Alba:</strong> panorámicas espectaculares de la ciudad y la ría.<br><br><strong>Rutas por barrios menos turísticos:</strong> como Bouzas y Coia, para conocer el auténtico ambiente local.", 
+    
+    masTiempo: [
+      "<strong>Excursión rápida a las Islas Cíes:</strong> playas vírgenes y senderos naturales.",
+      "<strong>Ruta por la Ría de Vigo:</strong> ferry o paseo en barco para conocer la ciudad desde el mar."
+    ], 
+    
+    planLluvia: [
+      "<strong>Museo del Mar de Galicia:</strong> historia marítima y vida atlántica.",
+      "<strong>Museo Quiñones de León:</strong> arte, historia y jardines cubiertos.",
+      "<strong>Centros comerciales:</strong> o paseos por el casco histórico cubierto."
+    ],
+    
+    advertencias: [
+      "Ciudad con muchas cuestas y desniveles; prepárate para caminar.",
+      "Aparcar en el centro puede ser difícil.",
+      "Algunas playas son urbanas, precaución con el oleaje."
+    ],
+    
+    miOpinion: "Vigo es una ciudad vibrante y llena de energía, hasta en el tráfico. Combina su carácter portuario con zonas señoriales, parques, miradores y playas de primer nivel. Tiene ese microclima propio de las Rías Baixas, y si vienes en invierno no te pierdas sus famosas luces de Navidad: son tan espectaculares que merece la pena traerse gafas de sol para contemplarlas.<br><br>El puerto y el paseo marítimo son fantásticos para pasear y empaparse del ambiente local. Vigo destaca por su ocio nocturno activo y una oferta cultural de primer nivel. Además, su cercanía a las Islas Cíes y a Portugal añade un valor extra. La ría de Vigo es preciosa, y las vistas del puente de Rande o del Lazareto de San Simón son simplemente impresionantes. Si eres amante del marisco y la vida atlántica, Vigo es un destino que no puedes perderte."
+  },  { id: 30, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
   { id: 31, nombre: "Tui", bloque: "pontevedra", categorias: ["villas", "patrimonio"], horas: 3, imagen: "img/tui.jpg", lat: 42.0500, lng: -8.6333, porQueVenir: "Ciudad episcopal, frontera con Portugal.", momentoPerfecto: "Tarde.", imprescindibles: ["Catedral", "Casco histórico", "Mirador del Miño"], comer: "Marisco.", tomar: "Albariño.", secreto: "Paseo hasta Portugal.", masTiempo: "Valença.", advertencias: "Lluvia frecuente." },
   { id: 32, nombre: "Cambados", bloque: "pontevedra", categorias: ["villas"], horas: 3, imagen: "img/cambados.jpg", lat: 42.5167, lng: -8.8167, porQueVenir: "Capital del Albariño.", momentoPerfecto: "Fiesta del Albariño.", imprescindibles: ["Pazo de Fefiñáns", "Casco histórico", "Bodegas"], comer: "Marisco.", tomar: "Albariño.", secreto: "Playa de la Lajinha.", masTiempo: "Playa fluvial.", advertencias: "Agosto lleno." },
   { id: 33, nombre: "Baiona", bloque: "pontevedra", categorias: ["pueblos", "costa"], horas: 3, imagen: "img/baiona.jpg", lat: 42.1167, lng: -8.8500, porQueVenir: "Primer puerto en recibir la noticia del Nuevo Mundo.", momentoPerfecto: "Verano.", imprescindibles: ["Fortaleza", "Puerto", "Playa"], comer: "Marisco.", tomar: "Albariño.", secreto: "Arribada.", masTiempo: "Islas Cíes.", advertencias: "Lleno en verano." },
