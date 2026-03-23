@@ -797,13 +797,13 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   scroll-snap-type: x mandatory !important; /* Efecto imán al deslizar */
 }
 
-/* 4. Las tarjetas (Anchas pero en fila) */
+/* 4. Las tarjetas (Tamaño XXL, sin frenos) */
 #recomendaciones .province-box.expanded .rec-card {
   display: flex !important;
   flex-direction: column !important;
-  flex: 0 0 88% !important; /* LA MAGIA: 88% del ancho para dejar asomar la siguiente */
-  max-width: 320px !important; /* Tope de tamaño para tablets */
-  scroll-snap-align: center !important; /* Se centra sola al soltar el dedo */
+  flex: 0 0 93% !important; /* LA MAGIA: 93% para que asome solo un hilo de la siguiente */
+  max-width: none !important; /* QUITAMOS el límite de tamaño */
+  scroll-snap-align: center !important; 
   opacity: 1 !important;
   visibility: visible !important;
   background: #ffffff !important;
