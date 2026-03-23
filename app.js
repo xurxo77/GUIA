@@ -64,8 +64,45 @@ function getCategoryEmoji(catId) { var cat = categorias.find(function(c) { retur
 
 // ===== LUGARES CON TODA LA INFORMACIÓN INTACTA =====
 var lugares = [
-  { id: 1, nombre: "Santiago de Compostela", bloque: "acoruna", categorias: ["ciudades", "patrimonio"], horas: 5, imagen: "img/santiago.jpg", lat: 42.8800, lng: -8.5450, porQueVenir: "Fin del Camino. Ciudad santa, monumental y viva.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Plaza del Obradoiro", "Mercado de Abastos"], comer: "Pulpo en el Mercado.", tomar: "Café en Plaza de Cervantes.", secreto: "Jardines de la Universidad.", masTiempo: "Monte do Gozo.", advertencias: "Muchos turistas." },
-  { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
+{ 
+    id: 1, 
+    nombre: "Santiago de Compostela", 
+    bloque: "acoruna", 
+    categorias: ["ciudades", "patrimonio"], 
+    horas: 5, 
+    imagen: "img/santiago.jpg", 
+    lat: 42.8800, 
+    lng: -8.5450, 
+    
+    porQueVenir: "Santiago es el corazón cultural de Galicia. Más que una ciudad monumental, es un lugar vivido: piedra, historia y ambiente constante. Es el final del Camino, pero también un sitio al que siempre apetece volver.", 
+    momentoPerfecto: "A cualquier hora, pero especialmente al atardecer, cuando la luz cae sobre la piedra y la ciudad se vuelve más tranquila. Con lluvia también tiene su encanto.", 
+    
+    imprescindibles: [
+      "<strong>Catedral de Santiago</strong>", 
+      "<strong>Plaza del Obradoiro</strong>", 
+      "<strong>Casco histórico:</strong> perderse es obligatorio.",
+      "<strong>Mercado de Abastos</strong>"
+    ], 
+    
+    comer: "Pulpo, empanada, marisco y producto gallego en general. Zonas recomendadas: Rúa do Franco y Rúa de San Pedro.", 
+    tomar: "Vino gallego (albariño, ribeiro) o cerveza (Estrella Galicia).",
+    
+    secreto: "Además de perderse por el casco histórico, si tienes tiempo merece mucho la pena salir un poco del centro y recorrer los paseos fluviales del río Sar. Es un sitio muy local, tranquilo y diferente, ideal si ya has visto lo principal y te quedas varios días.", 
+    
+    masTiempo: [
+      "<strong>Noia</strong>",
+      "<strong>Padrón</strong>",
+      "<strong>Excursiones en tren:</strong> a A Coruña o Vigo (rápidas y cómodas, con llegada directa al centro)."
+    ], 
+    
+    advertencias: [
+      "Mucho turismo en temporada alta.",
+      "Lluvia frecuente.",
+      "Precios más altos en el centro."
+    ],
+    
+    miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."
+  },  { id: 2, nombre: "A Coruña", bloque: "acoruna", categorias: ["ciudades", "costa"], horas: 4, imagen: "img/acoruna.jpg", lat: 43.3700, lng: -8.4000, porQueVenir: "Ciudad de cristal, faro romano, paseo marítimo.", momentoPerfecto: "Atardecer.", imprescindibles: ["Torre de Hércules", "Paseo marítimo", "Playa de Riazor"], comer: "Pulpería Ezequiela.", tomar: "Estrella Galicia.", secreto: "Inscripciones romanas.", masTiempo: "Aquarium.", advertencias: "Siempre hace aire." },
   { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
   { id: 4, nombre: "Cedeira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 2, imagen: "img/cedeira.jpg", lat: 43.6667, lng: -8.0500, porQueVenir: "Playa de Magdalena y puerto pesquero.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de Magdalena", "Puerto", "Monte da Sartá"], comer: "Marisco.", tomar: "Vino blanco.", secreto: "Senda costera.", masTiempo: "Paseo al faro.", advertencias: "Mar peligroso." },
   { id: 5, nombre: "Ortigueira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 3, imagen: "img/ortigueira.jpg", lat: 43.6333, lng: -7.8500, porQueVenir: "Playa de Ortigueira, una de las mejores.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de Ortigueira", "Cabo Ortegal", "Puerto"], comer: "Marisco.", tomar: "Sidra.", secreto: "Estaca de Bares.", masTiempo: "Cabo Ortegal.", advertencias: "Marea alta cubre la playa." },
