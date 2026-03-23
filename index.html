@@ -106,23 +106,29 @@
 
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
 
- <section id="recomendaciones" class="recommendations-section">
-   <div class="section-header fade-in">
+<section id="recomendaciones" class="recommendations-section">
+      <div class="section-header fade-in">
         <span class="section-number">1</span>
         <h2 class="section-title">Recomendaciones</h2>
       </div>
       <p class="section-subtitle fade-in delay-1">Lo que nadie te cuenta para disfrutar Galicia de verdad.</p>
-     <div class="category-row fade-in delay-1" id="cat-1" style="border-radius: 12px !important; margin-bottom: 12px !important; background-color: #f0f4f8 !important; border: 2px solid #d9e2ec !important; overflow: hidden !important;">
-        <div class="category-header" onclick="toggleCategoria('cat-1')" style="padding: 0 16px !important; height: 50px !important; min-height: 50px !important; max-height: 50px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; -webkit-tap-highlight-color: transparent !important;">
-          <h3 style="margin: 0 !important; padding: 0 !important; font-size: 1.1rem !important; display: flex !important; align-items: center !important; gap: 10px !important; line-height: 1 !important; color: #2c2416 !important; font-family: 'Playfair Display', serif !important;">
-            <span style="display: flex; align-items: center; justify-content: center;">🧳</span> Antes de venir
-          </h3>
-          <div class="category-arrow" style="width: 28px !important; height: 28px !important; background: rgba(0,0,0,0.05) !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2416" stroke-width="2" style="width: 16px !important; height: 16px !important;"><polyline points="6 9 12 15 18 9"/></svg>
+
+      <div class="province-box fade-in delay-1" id="rec-antes">
+        <div class="province-header rec-antes" onclick="document.getElementById('rec-antes').classList.toggle('expanded')">
+          <div class="bloque-body">
+            <div class="bloque-content-wrapper">
+              <div class="bloque-nombre">🎒 1. Antes de venir</div>
+              <span class="bloque-subtitulo">Clima, maleta y lo básico</span>
+            </div>
+          </div>
+          <div class="bloque-actions">
+            <div class="province-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
           </div>
         </div>
-        <div class="category-content">
-          <div class="horizontal-scroll">
+        <div class="province-content">
+          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
             <div class="rec-card">
               <img src="img/rec_chaqueta.jpg" class="rec-card-img" alt="Chaqueta" onerror="this.style.display='none'">
               <h4>🧥 Trae una prenda de abrigo. Siempre.</h4>
@@ -181,17 +187,22 @@
         </div>
       </div>
 
-      <div class="category-row fade-in delay-2" id="cat-2" style="border-radius: 12px !important; margin-bottom: 12px !important; background-color: #fffbf0 !important; border: 2px solid #f0e6d2 !important; overflow: hidden !important;">
-        <div class="category-header" onclick="toggleCategoria('cat-2')" style="padding: 0 16px !important; height: 50px !important; min-height: 50px !important; max-height: 50px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; -webkit-tap-highlight-color: transparent !important;">
-          <h3 style="margin: 0 !important; padding: 0 !important; font-size: 1.1rem !important; display: flex !important; align-items: center !important; gap: 10px !important; line-height: 1 !important; color: #2c2416 !important; font-family: 'Playfair Display', serif !important;">
-            <span style="display: flex; align-items: center; justify-content: center;">🍴</span> Para comer bien
-          </h3>
-          <div class="category-arrow" style="width: 28px !important; height: 28px !important; background: rgba(0,0,0,0.05) !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2416" stroke-width="2" style="width: 16px !important; height: 16px !important;"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="province-box fade-in delay-2" id="rec-comer">
+        <div class="province-header rec-comer" onclick="document.getElementById('rec-comer').classList.toggle('expanded')">
+          <div class="bloque-body">
+            <div class="bloque-content-wrapper">
+              <div class="bloque-nombre">🍽️ 2. Para comer bien</div>
+              <span class="bloque-subtitulo">Marisco, pulpo y gastronomía local</span>
+            </div>
+          </div>
+          <div class="bloque-actions">
+            <div class="province-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
           </div>
         </div>
-        <div class="category-content">
-          <div class="horizontal-scroll">
+        <div class="province-content">
+          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
             <div class="rec-card">
               <img src="img/rec_pan.jpg" class="rec-card-img" alt="Pan" onerror="this.style.display='none'">
               <h4>🥖 El pan importa. Mucho.</h4>
@@ -202,7 +213,6 @@
                 <li><strong>Pan de Carral:</strong> “molete” con moño.</li>
                 <li><strong>Pan de Neda:</strong> corteza gruesa y durabilidad asegurada.</li>
                 <li><strong>Pan de O Porriño:</strong> famoso por sus bollas.</li>
-
               </ul>
               <p>💡 <strong>Consejo:</strong> buen pan puedes encontrarlo en casi cualquier rincón de Galicia.</p>
             </div>
@@ -264,18 +274,22 @@
         </div>
       </div>
 
-   <div class="category-row fade-in delay-2" id="cat-beber" style="border-radius: 12px !important; margin-bottom: 12px !important; background-color: #fcf0f2 !important; border: 2px solid #f0d8dc !important; overflow: hidden !important;">
-        <div class="category-header" onclick="toggleCategoria('cat-beber')" style="padding: 0 16px !important; height: 50px !important; min-height: 50px !important; max-height: 50px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; -webkit-tap-highlight-color: transparent !important;">
-          <h3 style="margin: 0 !important; padding: 0 !important; font-size: 1.1rem !important; display: flex !important; align-items: center !important; gap: 10px !important; line-height: 1 !important; color: #2c2416 !important; font-family: 'Playfair Display', serif !important;">
-            <span style="display: flex; align-items: center; justify-content: center;">🍷</span> Para beber bien
-          </h3>
-          <div class="category-arrow" style="width: 28px !important; height: 28px !important; background: rgba(0,0,0,0.05) !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2416" stroke-width="2" style="width: 16px !important; height: 16px !important;"><polyline points="6 9 12 15 18 9"/></svg>
+      <div class="province-box fade-in delay-2" id="rec-beber">
+        <div class="province-header rec-beber" onclick="document.getElementById('rec-beber').classList.toggle('expanded')">
+          <div class="bloque-body">
+            <div class="bloque-content-wrapper">
+              <div class="bloque-nombre">🍷 3. Para beber bien</div>
+              <span class="bloque-subtitulo">Vinos de la tierra y Estrella Galicia</span>
+            </div>
+          </div>
+          <div class="bloque-actions">
+            <div class="province-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
           </div>
         </div>
-        <div class="category-content">
-          <div class="horizontal-scroll">
-            
+        <div class="province-content">
+          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
             <div class="rec-card">
               <img src="img/rec_albarino.jpg" class="rec-card-img" alt="Albariño" onerror="this.style.display='none'">
               <h4>🍇 Albariño: fácil de entender, difícil de olvidar</h4>
@@ -284,7 +298,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, pescado, arroces.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> frío, pero no helado.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_ribeiro.jpg" class="rec-card-img" alt="Ribeiro" onerror="this.style.display='none'">
               <h4>🍷 Ribeiro: el clásico que vuelve</h4>
@@ -293,7 +306,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cocina tradicional, pulpo, carnes suaves.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> déjalo abrirse un poco, gana mucho.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_godello.jpg" class="rec-card-img" alt="Godello" onerror="this.style.display='none'">
               <h4>🍾 Godello: un paso más</h4>
@@ -302,7 +314,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> pescados potentes, carnes blancas.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> temperatura media, no demasiado frío.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_mencia.jpg" class="rec-card-img" alt="Mencía" onerror="this.style.display='none'">
               <h4>🍷 Mencía: el tinto gallego</h4>
@@ -311,7 +322,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> raxo, zorza, embutidos.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> ligeramente fresco, incluso en verano.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_barrantes.jpg" class="rec-card-img" alt="Barrantes" onerror="this.style.display='none'">
               <h4>🍶 Barrantes: el raro</h4>
@@ -320,7 +330,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, empanada.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin pensar demasiado, se bebe y ya.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_licores.jpg" class="rec-card-img" alt="Licores" onerror="this.style.display='none'">
               <h4>🥃 Licores: cuidado que engañan</h4>
@@ -329,7 +338,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> sobremesa, conversación larga.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> despacio… aunque no lo parezca.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_queimada.jpg" class="rec-card-img" alt="Queimada" onerror="this.style.display='none'">
               <h4>🔥 Queimada: no es solo beber</h4>
@@ -338,7 +346,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> grupo, ambiente, ganas de alargar.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin prisas. Es experiencia, no solo bebida.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_estrella.jpg" class="rec-card-img" alt="Estrella Galicia" onerror="this.style.display='none'">
               <h4>🍺 Estrella Galicia: juega en casa</h4>
@@ -347,28 +354,31 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cualquier tapa, cualquier momento.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> bien tirada y fría. No tiene más misterio.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_brindis.jpg" class="rec-card-img" alt="Brindis" onerror="this.style.display='none'">
               <h4>💡 Clave general:</h4>
               <p style="margin-bottom: 12px !important;">En Galicia no se bebe rápido. Se bebe acompañando, conversando y comiendo. Si tienes prisa, te estás perdiendo la mitad.</p>
             </div>
-
           </div>
         </div>
       </div>
- <div class="category-row fade-in delay-2" id="cat-3" style="border-radius: 12px !important; margin-bottom: 12px !important; background-color: #f4f6f0 !important; border: 2px solid #dce4d2 !important; overflow: hidden !important;">
-        <div class="category-header" onclick="toggleCategoria('cat-3')" style="padding: 0 16px !important; height: 50px !important; min-height: 50px !important; max-height: 50px !important; display: flex !important; align-items: center !important; justify-content: space-between !important; -webkit-tap-highlight-color: transparent !important;">
-          <h3 style="margin: 0 !important; padding: 0 !important; font-size: 1.1rem !important; display: flex !important; align-items: center !important; gap: 10px !important; line-height: 1 !important; color: #2c2416 !important; font-family: 'Playfair Display', serif !important;">
-            <span style="display: flex; align-items: center; justify-content: center;">🌊</span> Para disfrutar Galicia
-          </h3>
-          <div class="category-arrow" style="width: 28px !important; height: 28px !important; background: rgba(0,0,0,0.05) !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2c2416" stroke-width="2" style="width: 16px !important; height: 16px !important;"><polyline points="6 9 12 15 18 9"/></svg>
+
+      <div class="province-box fade-in delay-2" id="rec-disfrutar">
+        <div class="province-header rec-disfrutar" onclick="document.getElementById('rec-disfrutar').classList.toggle('expanded')">
+          <div class="bloque-body">
+            <div class="bloque-content-wrapper">
+              <div class="bloque-nombre">🌊 4. Para disfrutar Galicia</div>
+              <span class="bloque-subtitulo">Naturaleza, paisajes y morriña</span>
+            </div>
+          </div>
+          <div class="bloque-actions">
+            <div class="province-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
           </div>
         </div>
-        <div class="category-content">
-          <div class="horizontal-scroll">
-            
+        <div class="province-content">
+          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
             <div class="rec-card">
               <img src="img/rec_distancias.jpg" class="rec-card-img" alt="Distancias" onerror="this.style.display='none'">
               <h4>🗺️ No midas en kilómetros, mide en tiempo</h4>
@@ -376,7 +386,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> 50 km pueden ser 1 hora o más.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> querer ver demasiado en un día.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_coche.jpg" class="rec-card-img" alt="Coche" onerror="this.style.display='none'">
               <h4>🚗 Sin coche, te pierdes Galicia</h4>
@@ -384,7 +393,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> alquila coche si quieres libertad.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Ganancia:</strong> acceso a sitios que no salen en ninguna guía.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_gps.jpg" class="rec-card-img" alt="GPS" onerror="this.style.display='none'">
               <h4>📍 El GPS no siempre tiene razón</h4>
@@ -392,7 +400,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si dudas, no sigas a ciegas.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Mejor opción:</strong> parar y preguntar.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_mirador.jpg" class="rec-card-img" alt="Mirador" onerror="this.style.display='none'">
               <h4>📸 Si ves un mirador, párate</h4>
@@ -400,7 +407,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si hay hueco para parar, para.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> muchas veces, lo mejor del día.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_mar_impone.jpg" class="rec-card-img" alt="Mar" onerror="this.style.display='none'">
               <h4>🌊 El mar aquí impone</h4>
@@ -409,7 +415,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Error típico:</strong> confiarse en playas salvajes.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Aviso:</strong> esto es el Atlántico. No es una broma.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_playas.jpg" class="rec-card-img" alt="Playas" onerror="this.style.display='none'">
               <h4>🏖️ No todas las playas son iguales</h4>
@@ -417,7 +422,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Rías:</strong> más tranquilas, familiares.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Abiertas:</strong> más espectaculares, pero más exigentes.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_mareas.jpg" class="rec-card-img" alt="Mareas" onerror="this.style.display='none'">
               <h4>🌗 Mira las mareas antes de ir</h4>
@@ -426,7 +430,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Ejemplo:</strong> puedes quedarte sin arena… o sin salida. Incluso sin coche.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Prueba:</strong> busca “Galicia coche marea”. Vas a flipar.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_barco.jpg" class="rec-card-img" alt="Barco" onerror="this.style.display='none'">
               <h4>⛴️ Cruza la ría en barco si puedes</h4>
@@ -435,7 +438,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Experiencia:</strong> ver la costa desde el agua cambia completamente la perspectiva.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Ejemplo:</strong> la línea Moaña–Vigo es rápida, barata y muy recomendable.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_chiringuitos.jpg" class="rec-card-img" alt="Chiringuitos" onerror="this.style.display='none'">
               <h4>🍻 Aquí chiringuitos, pocos</h4>
@@ -443,7 +445,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> muchas están prácticamente vírgenes.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> ven preparado. Y sí, a nosotros nos gusta así.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_interior.jpg" class="rec-card-img" alt="Interior" onerror="this.style.display='none'">
               <h4>🌿 El interior es otra Galicia</h4>
@@ -451,14 +452,12 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> no te quedes solo en la costa.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Premio:</strong> menos gente, más autenticidad.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_rias.jpg" class="rec-card-img" alt="Rías" onerror="this.style.display='none'">
               <h4>🌊 Las rías lo explican todo</h4>
               <p style="margin-bottom: 12px !important;">Paisaje, comida, clima.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Regla:</strong> si entiendes las rías, entiendes la mitad de Galicia.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_islas.jpg" class="rec-card-img" alt="Islas" onerror="this.style.display='none'">
               <h4>🏝️ Las islas cambian el ritmo</h4>
@@ -466,7 +465,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> planifica con antelación.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Consejo:</strong> si vas, recórrelas. Merece la pena.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_caminar.jpg" class="rec-card-img" alt="Caminar" onerror="this.style.display='none'">
               <h4>🥾 Caminar es parte del viaje</h4>
@@ -474,7 +472,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> baja, camina, explora.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> lo que no ve todo el mundo.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_fiesta.jpg" class="rec-card-img" alt="Fiesta" onerror="this.style.display='none'">
               <h4>🎉 Si hay fiesta, quédate</h4>
@@ -483,7 +480,6 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> es Galicia en estado puro.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Pista:</strong> aquí hay más fiestas que días. Si quieres curiosear, mira: <a href="https://festigaleiros.com/" target="_blank" style="color: var(--accent-sea); font-weight: 600; text-decoration: none;">https://festigaleiros.com/</a></p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_magia.jpg" class="rec-card-img" alt="Magia" onerror="this.style.display='none'">
               <h4>🌫️ Galicia también es mágica</h4>
@@ -492,17 +488,16 @@
               <p style="margin-bottom: 4px !important;">👉 <strong>Extra:</strong> mouras, mouros, trasgos, meigas, la Santa Compaña… hay más historias que kilómetros.</p>
               <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> la magia, la muerte, el mar y el misterio forman parte de lo que somos.</p>
             </div>
-
             <div class="rec-card">
               <img src="img/rec_clavefinal.jpg" class="rec-card-img" alt="Clave final" onerror="this.style.display='none'">
               <h4>💡 Clave final:</h4>
               <p style="margin-bottom: 0 !important;">Disfruta de todo, cuida el entorno, sé buena gente… <strong>y vuelve.</strong></p>
             </div>
-
           </div>
         </div>
       </div>
-  <div class="decorative-divider" style="margin-top: 15px; margin-bottom: 15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+
+      <div class="decorative-divider" style="margin-top: 15px; margin-bottom: 15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
 
       <div class="rec-card-static fade-in delay-2" style="background-color: #faf8f5 !important; padding: 18px 20px !important; border-radius: 12px !important; border: 1.5px dashed #d0c8b6 !important; margin-top: 10px; margin-bottom: 30px;">
         <h4 style="margin: 0 0 8px 0 !important; font-family: 'Montserrat', sans-serif !important; font-size: 0.85rem !important; font-weight: 700 !important; color: #8b7355 !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; display: flex !important; align-items: center !important; gap: 8px !important;">
