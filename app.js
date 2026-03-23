@@ -856,3 +856,21 @@ window.toggleProvincia = function(id) {
     row.classList.remove('expanded');
   }
 }
+/* ========================================================= */
+/* --- ACORDEÓN PARA LAS TARJETAS DE RECOMENDACIONES ---     */
+/* ========================================================= */
+
+function abrirSoloUnaRec(idSeleccionado) {
+  // 1. Buscamos las 4 cajas de recomendaciones
+  const todasLasCajas = document.querySelectorAll('#recomendaciones .province-box');
+  
+  // 2. Cerramos todas las que NO sean la que hemos tocado
+  todasLasCajas.forEach(caja => {
+    if (caja.id !== idSeleccionado) {
+      caja.classList.remove('expanded');
+    }
+  });
+  
+  // 3. Abrimos (o cerramos) la que hemos tocado
+  document.getElementById(idSeleccionado).classList.toggle('expanded');
+}
