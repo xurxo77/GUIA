@@ -125,8 +125,8 @@
       ">¿Sabías que...?</p>
       <p id="texto-sabias-que" style="
         font-family: 'Playfair Display', serif;
-        font-size: 1.05rem;
-        line-height: 1.8;
+        font-size: 1.25rem;
+        line-height: 1.9;
         color: #2c2416;
         margin: 0 0 40px 0;
         font-style: italic;
@@ -738,24 +738,32 @@
       // Pequeño delay para que el navegador pinte antes de arrancar la transición
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          barra.style.transition = 'width 9.8s linear';
+          barra.style.transition = 'width 11.8s linear';
           barra.style.width = '100%';
         });
       });
 
-      // Tras 10s, fade out y lanzamos el callback
+      // A los 10s el texto hace fade out suave
       setTimeout(() => {
-        screen.style.transition = 'opacity 0.6s ease';
+        texto.style.transition = 'opacity 1.2s ease';
+        texto.style.opacity = '0';
+      }, 10000);
+
+      // A los 12s fade out de toda la pantalla
+      setTimeout(() => {
+        screen.style.transition = 'opacity 0.8s ease';
         screen.style.opacity = '0';
         setTimeout(() => {
           screen.style.display = 'none';
           screen.style.opacity = '1';
           screen.style.transition = '';
+          texto.style.opacity = '1';
+          texto.style.transition = '';
           barra.style.transition = 'none';
           barra.style.width = '0%';
           if (callback) callback();
-        }, 600);
-      }, 10000);
+        }, 800);
+      }, 12000);
     }
 
     // Aparece en cada apertura, antes de que se muestre nada más
