@@ -738,11 +738,6 @@
           tarjetaPapi.style.cursor = 'pointer';
           tarjetaPapi.addEventListener('click', actualizarSabiasQue);
           
-          // Añadir sutilmente "(Toca para otra)" en el título
-          const titulo = tarjetaPapi.querySelector('h4');
-          if(titulo && !titulo.innerHTML.includes('Toca')) {
-            titulo.innerHTML += '<span style="font-size: 0.65rem; font-weight: 500; color: #888; margin-left: auto; text-transform: uppercase; letter-spacing: 0.5px;">Toca para otra 🔄</span>';
-          }
         }
       });
       
