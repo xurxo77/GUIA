@@ -727,43 +727,100 @@
     }
 
     // Muestra la pantalla de curiosidad y luego pasa al contenido
+    // El tiempo se pausa al mantener el dedo (o el ratón) sobre la pantalla
     function mostrarSabiasQue(callback) {
-      const screen = document.getElementById('sabiasQueScreen');
-      const texto  = document.getElementById('texto-sabias-que');
-      const barra  = document.getElementById('sabiasQueProgress');
+      const screen   = document.getElementById('sabiasQueScreen');
+      const texto    = document.getElementById('texto-sabias-que');
+      const barra    = document.getElementById('sabiasQueProgress');
+
+      const TOTAL        = 14000; // duración total en ms
+      const TEXT_FADE_AT = 12000; // momento en que el texto empieza a desvanecerse
+
+      let elapsed      = 0;       // tiempo acumulado
+      let startTs      = null;    // timestamp de la última reanudación
+      let paused       = false;
+      let textFaded    = false;
+      let finished     = false;
+      let rafId        = null;
 
       texto.innerHTML = elegirCuriosidad();
       screen.style.display = 'flex';
 
-      // Pequeño delay para que el navegador pinte antes de arrancar la transición
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          barra.style.transition = 'width 13.8s linear';
-          barra.style.width = '100%';
-        });
-      });
+      function tick(ts) {
+        if (paused || finished) return;
+        if (!startTs) startTs = ts;
+        elapsed = (ts - startTs) + (elapsed > 0 ? elapsed : 0);
 
-      // A los 12s el texto hace fade out suave
-      setTimeout(() => {
-        texto.style.transition = 'opacity 1.2s ease';
-        texto.style.opacity = '0';
-      }, 12000);
+        // Actualizar barra de progreso
+        const pct = Math.min(elapsed / TOTAL * 100, 100);
+        barra.style.width = pct + '%';
 
-      // A los 14s fade out de toda la pantalla
-      setTimeout(() => {
+        // Fade del texto a los TEXT_FADE_AT ms
+        if (!textFaded && elapsed >= TEXT_FADE_AT) {
+          textFaded = true;
+          texto.style.transition = 'opacity 1.2s ease';
+          texto.style.opacity    = '0';
+        }
+
+        if (elapsed >= TOTAL) {
+          finished = true;
+          cerrar();
+          return;
+        }
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function cerrar() {
         screen.style.transition = 'opacity 0.8s ease';
-        screen.style.opacity = '0';
+        screen.style.opacity    = '0';
         setTimeout(() => {
-          screen.style.display = 'none';
-          screen.style.opacity = '1';
-          screen.style.transition = '';
-          texto.style.opacity = '1';
-          texto.style.transition = '';
-          barra.style.transition = 'none';
-          barra.style.width = '0%';
+          screen.style.display     = 'none';
+          screen.style.opacity     = '1';
+          screen.style.transition  = '';
+          texto.style.opacity      = '1';
+          texto.style.transition   = '';
+          barra.style.width        = '0%';
           if (callback) callback();
         }, 800);
-      }, 14000);
+      }
+
+      function pausar() {
+        if (paused || finished) return;
+        paused  = true;
+        elapsed = elapsed + (performance.now() - (startTs || performance.now()));
+        startTs = null;
+        cancelAnimationFrame(rafId);
+        // Congela visualmente la barra
+        barra.style.transition = 'none';
+      }
+
+      function reanudar() {
+        if (!paused || finished) return;
+        paused  = false;
+        startTs = null; // se resetea en el próximo tick
+        // Arrancamos con el elapsed ya acumulado
+        const elapsedSnapshot = elapsed;
+        elapsed = 0;
+        startTs = null;
+        rafId   = requestAnimationFrame((ts) => {
+          startTs = ts - elapsedSnapshot; // truquito para que elapsed siga desde donde estaba
+          elapsed = 0;
+          rafId   = requestAnimationFrame(tick);
+        });
+      }
+
+      // Eventos de pausa: touch y mouse
+      screen.addEventListener('touchstart',  pausar,   { passive: true });
+      screen.addEventListener('touchend',    reanudar, { passive: true });
+      screen.addEventListener('touchcancel', reanudar, { passive: true });
+      screen.addEventListener('mousedown',   pausar);
+      screen.addEventListener('mouseup',     reanudar);
+
+      // Arranque
+      requestAnimationFrame((ts) => {
+        startTs = ts;
+        rafId   = requestAnimationFrame(tick);
+      });
     }
 
     // Aparece en cada apertura, antes de que se muestre nada más
