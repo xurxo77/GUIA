@@ -93,6 +93,63 @@
     </div>
   </div>
 
+  <!-- Pantalla ¿Sabías que? -->
+  <div id="sabiasQueScreen" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: linear-gradient(160deg, #1a1a18 0%, #2c2820 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    text-align: center;
+  ">
+    <div style="max-width: 420px; width: 100%;">
+      <p style="
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #b8956a;
+        margin: 0 0 20px 0;
+        opacity: 0.85;
+      ">💡 ¿Sabías que...?</p>
+      <p id="texto-sabias-que" style="
+        font-family: 'Playfair Display', serif;
+        font-size: 1.05rem;
+        line-height: 1.75;
+        color: #f0ece4;
+        margin: 0 0 36px 0;
+        font-style: italic;
+      ">Cargando curiosidad...</p>
+      <div style="
+        width: 100%;
+        height: 2px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
+        overflow: hidden;
+      ">
+        <div id="sabiasQueProgress" style="
+          height: 100%;
+          width: 0%;
+          background: #b8956a;
+          border-radius: 2px;
+          transition: width 4.5s linear;
+        "></div>
+      </div>
+      <p style="
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.68rem;
+        color: rgba(255,255,255,0.3);
+        margin: 14px 0 0 0;
+        letter-spacing: 0.5px;
+      ">Entrando en la guía...</p>
+    </div>
+  </div>
+
   <div class="main-content" id="mainContent">
 
     <header id="hero" class="hero">
@@ -497,45 +554,6 @@
         </div>
       </div>
 
-      <div class="decorative-divider" style="margin-top: 15px; margin-bottom: 15px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-
-    <div class="rec-card-static fade-in delay-2" style="
-  position: relative;
-  background: linear-gradient(135deg, #f5f0e8 0%, #faf8f4 100%) !important;
-  padding: 20px 22px 20px 28px !important;
-  border-radius: 14px !important;
-  border: 1px solid #e0d6c4 !important;
-  border-left: 4px solid #b8956a !important;
-  margin-top: 10px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06) !important;
-">
-  <h4 style="
-    margin: 0 0 10px 0 !important;
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    color: #b8956a !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-  ">
-    <span style="font-size: 1rem;">💡</span> ¿Sabías que...?
-    <span style="margin-left: auto; font-size: 0.62rem; font-weight: 500; color: #bba98a; letter-spacing: 0.3px; text-transform: none;">Toca para otra 🔄</span>
-  </h4>
-  <p id="texto-sabias-que" style="
-    margin: 0 !important;
-    font-family: 'Georgia', serif !important;
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
-    color: #5a4a35 !important;
-    font-style: italic !important;
-  ">
-    Cargando curiosidad...
-  </p>
-</div>
     </section>
 
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
@@ -662,9 +680,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js?v=5.0"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Tu base de datos de curiosidades (¡15 datos en total!)
-      const curiosidades = [
+    // ── ¿Sabías que? integrado en el flujo de login ──────────────────────────
+    const curiosidades = [
         "<strong>La diáspora gallega es uno de los movimientos migratorios más grandes de Europa.</strong> Se calcula que, entre finales del siglo XIX y el siglo XX, más de 2 millones de gallegos emigraron, sobre todo a países como Argentina, Cuba y Uruguay.<br><br>👉 Hoy, hay casi tantos descendientes de gallegos fuera como en la propia Galicia.",
         
         "<strong>Galicia no solo tiene más de 1.000 ríos, sino que es una potencia en producción de energía eléctrica.</strong> En 2024, generó más de 23.000 GWh de electricidad, gran parte con energías limpias como la hidráulica, eólica y solar.<br><br>👉 Aproximadamente el 40% de esa energía sobrante se exportó a otras partes de España y Europa.",
@@ -696,51 +713,64 @@
         "<strong>Rosalía de Castro dio voz a Galicia cuando casi nadie la escuchaba.</strong> En el siglo XIX, fue una de las primeras autoras en escribir en gallego tras siglos de abandono, dignificando la lengua y reflejando la morriña de su pueblo.<br><br>👉 Su inmensa obra marcó el inicio del Rexurdimento y la convirtió en el pilar fundamental de nuestra identidad cultural."
       ];
 
-     // Variable para recordar la última frase y no repetirla
-      let ultimaFraseId = -1;
+    // Elige una curiosidad aleatoria
+    function elegirCuriosidad() {
+      const id = Math.floor(Math.random() * curiosidades.length);
+      return curiosidades[id];
+    }
 
-      function actualizarSabiasQue() {
-        const cajas = document.querySelectorAll('[id="texto-sabias-que"]');
-        
-        // Anti-repetición: Buscamos un número aleatorio distinto al anterior
-        let nuevoId = Math.floor(Math.random() * curiosidades.length);
-        while (nuevoId === ultimaFraseId) {
-          nuevoId = Math.floor(Math.random() * curiosidades.length);
-        }
-        ultimaFraseId = nuevoId;
-        const fraseElegida = curiosidades[nuevoId];
-        
-        cajas.forEach(caja => {
-          // Pequeño efecto de parpadeo suave al cambiar el texto
-          caja.style.opacity = 0;
-          setTimeout(() => {
-            caja.innerHTML = fraseElegida;
-            caja.style.transition = "opacity 0.4s ease";
-            caja.style.opacity = 1;
-          }, 200); // Espera 200ms para volver a mostrar el texto nuevo
+    // Muestra la pantalla de curiosidad y luego pasa al contenido
+    function mostrarSabiasQue(callback) {
+      const screen = document.getElementById('sabiasQueScreen');
+      const texto  = document.getElementById('texto-sabias-que');
+      const barra  = document.getElementById('sabiasQueProgress');
+
+      texto.innerHTML = elegirCuriosidad();
+      screen.style.display = 'flex';
+
+      // Pequeño delay para que el navegador pinte antes de arrancar la transición
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          barra.style.width = '100%';
+        });
+      });
+
+      // Tras 4.8s, fade out y lanzamos el callback (mostrar mainContent)
+      setTimeout(() => {
+        screen.style.transition = 'opacity 0.6s ease';
+        screen.style.opacity = '0';
+        setTimeout(() => {
+          screen.style.display = 'none';
+          screen.style.opacity = '1';
+          screen.style.transition = '';
+          barra.style.transition = 'none';
+          barra.style.width = '0%';
+          if (callback) callback();
+        }, 600);
+      }, 4800);
+    }
+
+    // Enganchamos al evento de login correcto.
+    // app.js llama a mostrarContenido() o similar; interceptamos desde aquí
+    // buscando cuándo el splash desaparece para insertar nuestra pantalla.
+    const splashObserver = new MutationObserver(() => {
+      const splash = document.getElementById('splashScreen');
+      if (splash && (splash.style.display === 'none' || splash.classList.contains('hidden'))) {
+        splashObserver.disconnect();
+        const main = document.getElementById('mainContent');
+        // Ocultamos el main mientras mostramos la curiosidad
+        if (main) main.style.visibility = 'hidden';
+        mostrarSabiasQue(() => {
+          if (main) main.style.visibility = '';
         });
       }
+    });
 
-      // 1. Ejecutar al entrar
-      actualizarSabiasQue();
-
-      // 2. Ejecutar al volver de segundo plano
-      document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") actualizarSabiasQue();
-      });
-
-      // 3. LA MAGIA: Hacer que las tarjetas sean botones tocables
-      const textos = document.querySelectorAll('[id="texto-sabias-que"]');
-      textos.forEach(texto => {
-        const tarjetaPapi = texto.closest('.rec-card-static');
-        if (tarjetaPapi) {
-          // Cambiar el cursor a la mano para dar pista de que es tocable
-          tarjetaPapi.style.cursor = 'pointer';
-          tarjetaPapi.addEventListener('click', actualizarSabiasQue);
-          
-        }
-      });
-      
+    document.addEventListener('DOMContentLoaded', () => {
+      const splash = document.getElementById('splashScreen');
+      if (splash) {
+        splashObserver.observe(splash, { attributes: true, attributeFilter: ['style', 'class'] });
+      }
     });
   </script>
 </body>
