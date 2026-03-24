@@ -99,7 +99,7 @@
     position: fixed;
     inset: 0;
     z-index: 900;
-    background: linear-gradient(160deg, #1a1a18 0%, #2c2820 100%);
+    background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -107,45 +107,52 @@
     text-align: center;
   ">
     <div style="max-width: 420px; width: 100%;">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" stroke="#1a4a5e" stroke-width="1.5" style="margin: 0 auto 20px auto; display: block; opacity: 0.6;">
+        <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+        <circle cx="32" cy="32" r="20"/>
+        <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+        <circle cx="32" cy="32" r="4"/>
+      </svg>
       <p style="
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 700;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: #b8956a;
-        margin: 0 0 20px 0;
-        opacity: 0.85;
-      ">💡 ¿Sabías que...?</p>
+        color: #1a4a5e;
+        margin: 0 0 24px 0;
+        opacity: 0.7;
+      ">¿Sabías que...?</p>
       <p id="texto-sabias-que" style="
         font-family: 'Playfair Display', serif;
         font-size: 1.05rem;
-        line-height: 1.75;
-        color: #f0ece4;
-        margin: 0 0 36px 0;
+        line-height: 1.8;
+        color: #2c2416;
+        margin: 0 0 40px 0;
         font-style: italic;
       ">Cargando curiosidad...</p>
       <div style="
         width: 100%;
-        height: 2px;
-        background: rgba(255,255,255,0.1);
+        height: 1.5px;
+        background: #e0d8c8;
         border-radius: 2px;
         overflow: hidden;
       ">
         <div id="sabiasQueProgress" style="
           height: 100%;
           width: 0%;
-          background: #b8956a;
+          background: #1a4a5e;
           border-radius: 2px;
-          transition: width 4.5s linear;
         "></div>
       </div>
       <p style="
         font-family: 'Montserrat', sans-serif;
-        font-size: 0.68rem;
-        color: rgba(255,255,255,0.3);
+        font-size: 0.65rem;
+        color: #5a4d3a;
+        opacity: 0.5;
         margin: 14px 0 0 0;
         letter-spacing: 0.5px;
+        font-style: italic;
       ">Entrando en la guía...</p>
     </div>
   </div>
@@ -731,11 +738,12 @@
       // Pequeño delay para que el navegador pinte antes de arrancar la transición
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
+          barra.style.transition = 'width 9.8s linear';
           barra.style.width = '100%';
         });
       });
 
-      // Tras 4.8s, fade out y lanzamos el callback (mostrar mainContent)
+      // Tras 10s, fade out y lanzamos el callback
       setTimeout(() => {
         screen.style.transition = 'opacity 0.6s ease';
         screen.style.opacity = '0';
@@ -747,30 +755,23 @@
           barra.style.width = '0%';
           if (callback) callback();
         }, 600);
-      }, 4800);
+      }, 10000);
     }
 
-    // Enganchamos al evento de login correcto.
-    // app.js llama a mostrarContenido() o similar; interceptamos desde aquí
-    // buscando cuándo el splash desaparece para insertar nuestra pantalla.
-    const splashObserver = new MutationObserver(() => {
-      const splash = document.getElementById('splashScreen');
-      if (splash && (splash.style.display === 'none' || splash.classList.contains('hidden'))) {
-        splashObserver.disconnect();
-        const main = document.getElementById('mainContent');
-        // Ocultamos el main mientras mostramos la curiosidad
-        if (main) main.style.visibility = 'hidden';
-        mostrarSabiasQue(() => {
-          if (main) main.style.visibility = '';
-        });
-      }
-    });
-
+    // Aparece en cada apertura, antes de que se muestre nada más
     document.addEventListener('DOMContentLoaded', () => {
       const splash = document.getElementById('splashScreen');
-      if (splash) {
-        splashObserver.observe(splash, { attributes: true, attributeFilter: ['style', 'class'] });
-      }
+      const main   = document.getElementById('mainContent');
+
+      // Ocultamos splash y main mientras se ve la curiosidad
+      if (splash) splash.style.visibility = 'hidden';
+      if (main)   main.style.visibility   = 'hidden';
+
+      mostrarSabiasQue(() => {
+        // Al terminar, devolvemos visibilidad al flujo normal de la app
+        if (splash) splash.style.visibility = '';
+        if (main)   main.style.visibility   = '';
+      });
     });
   </script>
 </body>
