@@ -738,18 +738,18 @@
       // Pequeño delay para que el navegador pinte antes de arrancar la transición
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          barra.style.transition = 'width 11.8s linear';
+          barra.style.transition = 'width 13.8s linear';
           barra.style.width = '100%';
         });
       });
 
-      // A los 10s el texto hace fade out suave
+      // A los 12s el texto hace fade out suave
       setTimeout(() => {
         texto.style.transition = 'opacity 1.2s ease';
         texto.style.opacity = '0';
-      }, 10000);
+      }, 12000);
 
-      // A los 12s fade out de toda la pantalla
+      // A los 14s fade out de toda la pantalla
       setTimeout(() => {
         screen.style.transition = 'opacity 0.8s ease';
         screen.style.opacity = '0';
@@ -763,7 +763,7 @@
           barra.style.width = '0%';
           if (callback) callback();
         }, 800);
-      }, 12000);
+      }, 14000);
     }
 
     // Aparece en cada apertura, antes de que se muestre nada más
