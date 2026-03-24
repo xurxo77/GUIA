@@ -809,9 +809,31 @@
         });
       }
 
-      // Eventos de pausa: touch y mouse
-      screen.addEventListener('touchstart',  pausar,   { passive: true });
-      screen.addEventListener('touchend',    reanudar, { passive: true });
+      // Eventos de pausa y swipe para saltar
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const SWIPE_THRESHOLD = 30; // píxeles mínimos para considerar que es un deslizamiento
+
+      screen.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        pausar();
+      }, { passive: true });
+
+      screen.addEventListener('touchend', (e) => {
+        const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+        const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        if (dx > SWIPE_THRESHOLD || dy > SWIPE_THRESHOLD) {
+          // Es un swipe: saltar directamente al contenido
+          finished = true;
+          cancelAnimationFrame(rafId);
+          cerrar();
+        } else {
+          // Es un tap/hold: reanudar
+          reanudar();
+        }
+      }, { passive: true });
+
       screen.addEventListener('touchcancel', reanudar, { passive: true });
       screen.addEventListener('mousedown',   pausar);
       screen.addEventListener('mouseup',     reanudar);
