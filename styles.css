@@ -871,3 +871,317 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
   0%, 100% { transform: translate(0, -50%); opacity: 0.3; }
   50% { transform: translate(4px, -50%); opacity: 0.9; }
 }
+
+
+/* ================================================================ */
+/* === REDISEÑO UX/UI — PALETA PROVINCIAL + INTERACCIÓN TÁCTIL === */
+/* ================================================================ */
+
+/* --- VARIABLES DE COLOR NUEVAS --- */
+:root {
+  /* A Coruña — Azul atlántico */
+  --ac-bg:     #e6f1fb;
+  --ac-border: #85b7eb;
+  --ac-mid:    #378add;
+  --ac-strong: #185fa5;
+  --ac-dark:   #042c53;
+
+  /* Pontevedra — Verde ría */
+  --po-bg:     #e1f5ee;
+  --po-border: #9fe1cb;
+  --po-mid:    #1d9e75;
+  --po-strong: #0f6e56;
+  --po-dark:   #04342c;
+
+  /* Lugo — Verde bosque */
+  --lu-bg:     #eaf3de;
+  --lu-border: #c0dd97;
+  --lu-mid:    #639922;
+  --lu-strong: #3b6d11;
+  --lu-dark:   #173404;
+
+  /* Ourense — Ámbar termal */
+  --ou-bg:     #faeeda;
+  --ou-border: #fac775;
+  --ou-mid:    #ba7517;
+  --ou-strong: #854f0b;
+  --ou-dark:   #412402;
+
+  /* Recomendaciones */
+  --rec-clima-bg:       #e6f1fb;
+  --rec-clima-border:   #b5d4f4;
+  --rec-clima-strong:   #185fa5;
+  --rec-clima-dark:     #042c53;
+
+  --rec-comer-bg:       #faeeda;
+  --rec-comer-border:   #fac775;
+  --rec-comer-strong:   #ba7517;
+  --rec-comer-dark:     #412402;
+
+  --rec-beber-bg:       #fbeaf0;
+  --rec-beber-border:   #f4c0d1;
+  --rec-beber-strong:   #d4537e;
+  --rec-beber-dark:     #4b1528;
+
+  --rec-disfrutar-bg:       #eaf3de;
+  --rec-disfrutar-border:   #c0dd97;
+  --rec-disfrutar-strong:   #639922;
+  --rec-disfrutar-dark:     #173404;
+}
+
+/* --- FEEDBACK TÁCTIL GLOBAL --- */
+.province-box,
+.province-header,
+.rec-card,
+.place-card,
+.menu-item,
+.fav-btn,
+.bloque-card,
+.bloque-header {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.province-box:active,
+.bloque-card:active {
+  transform: scale(0.985) !important;
+  transition: transform 0.1s ease !important;
+}
+
+.rec-card:active {
+  transform: scale(0.97) !important;
+  transition: transform 0.1s ease !important;
+}
+
+.place-card:active {
+  transform: scale(0.985) !important;
+  transition: transform 0.1s ease !important;
+}
+
+.fav-btn:active {
+  transform: scale(1.35) !important;
+  transition: transform 0.15s ease !important;
+}
+
+/* --- ACORDEONES DE RECOMENDACIONES — NUEVO DISEÑO POR CATEGORÍA --- */
+
+/* Antes de venir — Azul atlántico */
+.province-header.rec-antes {
+  background: var(--rec-clima-bg) !important;
+  border-bottom: 1.5px solid var(--rec-clima-border) !important;
+}
+#rec-antes {
+  border: 1.5px solid var(--rec-clima-border) !important;
+  background: var(--rec-clima-bg) !important;
+  border-radius: 14px !important;
+}
+#rec-antes .bloque-nombre { color: var(--rec-clima-dark) !important; }
+#rec-antes .bloque-subtitulo { color: var(--rec-clima-strong) !important; }
+#rec-antes .bloque-contador { background: var(--rec-clima-border) !important; color: var(--rec-clima-dark) !important; }
+#rec-antes.expanded { border-color: var(--rec-clima-strong) !important; box-shadow: 0 8px 28px rgba(24,95,165,0.13) !important; }
+#rec-antes.expanded .province-arrow { background: var(--rec-clima-strong) !important; }
+#rec-antes .province-header:active { background: #cfe3f7 !important; }
+
+/* Comer bien — Ámbar */
+.province-header.rec-comer {
+  background: var(--rec-comer-bg) !important;
+  border-bottom: 1.5px solid var(--rec-comer-border) !important;
+}
+#rec-comer {
+  border: 1.5px solid var(--rec-comer-border) !important;
+  background: var(--rec-comer-bg) !important;
+  border-radius: 14px !important;
+}
+#rec-comer .bloque-nombre { color: var(--rec-comer-dark) !important; }
+#rec-comer .bloque-subtitulo { color: var(--rec-comer-strong) !important; }
+#rec-comer .bloque-contador { background: var(--rec-comer-border) !important; color: var(--rec-comer-dark) !important; }
+#rec-comer.expanded { border-color: var(--rec-comer-strong) !important; box-shadow: 0 8px 28px rgba(186,117,23,0.13) !important; }
+#rec-comer.expanded .province-arrow { background: var(--rec-comer-strong) !important; }
+
+/* Beber bien — Rosa burdeos */
+.province-header.rec-beber {
+  background: var(--rec-beber-bg) !important;
+  border-bottom: 1.5px solid var(--rec-beber-border) !important;
+}
+#rec-beber {
+  border: 1.5px solid var(--rec-beber-border) !important;
+  background: var(--rec-beber-bg) !important;
+  border-radius: 14px !important;
+}
+#rec-beber .bloque-nombre { color: var(--rec-beber-dark) !important; }
+#rec-beber .bloque-subtitulo { color: var(--rec-beber-strong) !important; }
+#rec-beber .bloque-contador { background: var(--rec-beber-border) !important; color: var(--rec-beber-dark) !important; }
+#rec-beber.expanded { border-color: var(--rec-beber-strong) !important; box-shadow: 0 8px 28px rgba(212,83,126,0.13) !important; }
+#rec-beber.expanded .province-arrow { background: var(--rec-beber-strong) !important; }
+
+/* Disfrutar — Verde */
+.province-header.rec-disfrutar {
+  background: var(--rec-disfrutar-bg) !important;
+  border-bottom: 1.5px solid var(--rec-disfrutar-border) !important;
+}
+#rec-disfrutar {
+  border: 1.5px solid var(--rec-disfrutar-border) !important;
+  background: var(--rec-disfrutar-bg) !important;
+  border-radius: 14px !important;
+}
+#rec-disfrutar .bloque-nombre { color: var(--rec-disfrutar-dark) !important; }
+#rec-disfrutar .bloque-subtitulo { color: var(--rec-disfrutar-strong) !important; }
+#rec-disfrutar .bloque-contador { background: var(--rec-disfrutar-border) !important; color: var(--rec-disfrutar-dark) !important; }
+#rec-disfrutar.expanded { border-color: var(--rec-disfrutar-strong) !important; box-shadow: 0 8px 28px rgba(99,153,34,0.13) !important; }
+#rec-disfrutar.expanded .province-arrow { background: var(--rec-disfrutar-strong) !important; }
+
+/* Tarjetas internas de recomendaciones — fondo blanco limpio */
+#recomendaciones .rec-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  border-radius: 12px !important;
+}
+
+/* --- ACORDEONES DE LUGARES — PALETA PROVINCIAL --- */
+
+/* A Coruña */
+#prov-acoruna {
+  border: 1.5px solid var(--ac-border) !important;
+  background: var(--ac-bg) !important;
+  border-radius: 14px !important;
+}
+.province-header.acoruna {
+  background: var(--ac-bg) !important;
+  border-bottom: 1.5px solid var(--ac-border) !important;
+}
+#prov-acoruna .bloque-nombre { color: var(--ac-dark) !important; }
+#prov-acoruna .bloque-subtitulo { color: var(--ac-strong) !important; }
+#prov-acoruna .bloque-contador { background: var(--ac-border) !important; color: var(--ac-dark) !important; }
+#prov-acoruna.expanded { border-color: var(--ac-strong) !important; box-shadow: 0 8px 28px rgba(24,95,165,0.15) !important; }
+#prov-acoruna.expanded .province-arrow { background: var(--ac-strong) !important; }
+
+/* Lugo */
+#prov-lugo {
+  border: 1.5px solid var(--lu-border) !important;
+  background: var(--lu-bg) !important;
+  border-radius: 14px !important;
+}
+.province-header.lugo {
+  background: var(--lu-bg) !important;
+  border-bottom: 1.5px solid var(--lu-border) !important;
+}
+#prov-lugo .bloque-nombre { color: var(--lu-dark) !important; }
+#prov-lugo .bloque-subtitulo { color: var(--lu-strong) !important; }
+#prov-lugo .bloque-contador { background: var(--lu-border) !important; color: var(--lu-dark) !important; }
+#prov-lugo.expanded { border-color: var(--lu-strong) !important; box-shadow: 0 8px 28px rgba(59,109,17,0.15) !important; }
+#prov-lugo.expanded .province-arrow { background: var(--lu-strong) !important; }
+
+/* Ourense */
+#prov-ourense {
+  border: 1.5px solid var(--ou-border) !important;
+  background: var(--ou-bg) !important;
+  border-radius: 14px !important;
+}
+.province-header.ourense {
+  background: var(--ou-bg) !important;
+  border-bottom: 1.5px solid var(--ou-border) !important;
+}
+#prov-ourense .bloque-nombre { color: var(--ou-dark) !important; }
+#prov-ourense .bloque-subtitulo { color: var(--ou-strong) !important; }
+#prov-ourense .bloque-contador { background: var(--ou-border) !important; color: var(--ou-dark) !important; }
+#prov-ourense.expanded { border-color: var(--ou-strong) !important; box-shadow: 0 8px 28px rgba(133,79,11,0.15) !important; }
+#prov-ourense.expanded .province-arrow { background: var(--ou-strong) !important; }
+
+/* Pontevedra */
+#prov-pontevedra {
+  border: 1.5px solid var(--po-border) !important;
+  background: var(--po-bg) !important;
+  border-radius: 14px !important;
+}
+.province-header.pontevedra {
+  background: var(--po-bg) !important;
+  border-bottom: 1.5px solid var(--po-border) !important;
+}
+#prov-pontevedra .bloque-nombre { color: var(--po-dark) !important; }
+#prov-pontevedra .bloque-subtitulo { color: var(--po-strong) !important; }
+#prov-pontevedra .bloque-contador { background: var(--po-border) !important; color: var(--po-dark) !important; }
+#prov-pontevedra.expanded { border-color: var(--po-strong) !important; box-shadow: 0 8px 28px rgba(15,110,86,0.15) !important; }
+#prov-pontevedra.expanded .province-arrow { background: var(--po-strong) !important; }
+
+/* --- TARJETAS DE LUGAR — BARRA SUPERIOR PROVINCIAL --- */
+
+/* Barra de color arriba de cada tarjeta */
+.place-card::before {
+  content: '' !important;
+  display: block !important;
+  height: 5px !important;
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.place-card.acoruna { border-color: var(--ac-border) !important; background: var(--ac-bg) !important; }
+.place-card.acoruna::before { background: var(--ac-strong) !important; }
+.place-card.acoruna .place-title { color: var(--ac-dark) !important; }
+.place-card.acoruna .place-number-badge { background: var(--ac-strong) !important; }
+.place-card.acoruna .place-category-chip { opacity: 0.9; }
+
+.place-card.lugo { border-color: var(--lu-border) !important; background: var(--lu-bg) !important; }
+.place-card.lugo::before { background: var(--lu-strong) !important; }
+.place-card.lugo .place-title { color: var(--lu-dark) !important; }
+.place-card.lugo .place-number-badge { background: var(--lu-strong) !important; }
+
+.place-card.ourense { border-color: var(--ou-border) !important; background: var(--ou-bg) !important; }
+.place-card.ourense::before { background: var(--ou-strong) !important; }
+.place-card.ourense .place-title { color: var(--ou-dark) !important; }
+.place-card.ourense .place-number-badge { background: var(--ou-strong) !important; }
+
+.place-card.pontevedra { border-color: var(--po-border) !important; background: var(--po-bg) !important; }
+.place-card.pontevedra::before { background: var(--po-strong) !important; }
+.place-card.pontevedra .place-title { color: var(--po-dark) !important; }
+.place-card.pontevedra .place-number-badge { background: var(--po-strong) !important; }
+
+/* Contenido interior de tarjeta de lugar — fondo blanco para legibilidad */
+.place-content-inner {
+  background: #ffffff !important;
+}
+
+/* --- BOTÓN DE FAVORITO MEJORADO --- */
+.fav-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(0,0,0,0.04) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.2s ease, background 0.2s ease !important;
+}
+.fav-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+.fav-btn.active {
+  background: rgba(226,75,74,0.1) !important;
+}
+.fav-btn.active svg {
+  stroke: var(--accent-red) !important;
+  fill: var(--accent-red) !important;
+}
+
+/* --- MENÚ INFERIOR — ÍTEM ACTIVO MÁS VISIBLE --- */
+.menu-item {
+  border-radius: 14px !important;
+  transition: all 0.25s cubic-bezier(0.25,1,0.5,1) !important;
+}
+.menu-item.active {
+  background: rgba(26,74,94,0.09) !important;
+  color: var(--accent-sea) !important;
+  transform: translateY(-3px) !important;
+}
+.menu-item:active {
+  transform: scale(0.9) !important;
+}
+
+/* --- PROVINCE BOX — TRANSICIÓN SUAVE --- */
+.province-box {
+  transition: transform 0.15s ease, box-shadow 0.3s ease !important;
+}
+
+/* --- REC CARD — FONDO BLANCO CONSISTENTE --- */
+.rec-card {
+  background: #ffffff !important;
+}
