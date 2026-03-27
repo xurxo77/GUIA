@@ -168,14 +168,7 @@
         <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
         <p class="hero-subtitle fade-in visible delay-2" style="margin-top: 0; font-size: 1rem;">Hecha por Xurxo &amp; Raquel</p>
       </div>
-      <div class="hero-sabias fade-in visible delay-2" id="heroSabiasCard" onclick="heroNuevaCuriosidad()">
-        <div class="hero-sabias-label">
-          <span class="hero-sabias-icon">💡</span>
-          <span>¿Sabías que...?</span>
-          <span class="hero-sabias-hint">Toca para otra</span>
-        </div>
-        <p class="hero-sabias-texto" id="heroSabiasTexto">Cargando...</p>
-      </div>
+
     </header>
 
     <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
@@ -845,35 +838,6 @@
         "<strong>Rosalía de Castro dio voz a Galicia cuando casi nadie la escuchaba.</strong> En el siglo XIX, fue una de las primeras autoras en escribir en gallego tras siglos de abandono, dignificando la lengua y reflejando la morriña de su pueblo.<br><br>👉 Su inmensa obra marcó el inicio del Rexurdimento y la convirtió en el pilar fundamental de nuestra identidad cultural."
       ];
 
-    // Extrae solo la frase en negrita (teaser) de cada curiosidad
-    function extraerTeaser(html) {
-      const match = html.match(/<strong>([\s\S]*?)<\/strong>/);
-      if (match) return match[1].replace(/<[^>]+>/g, '');
-      return html.replace(/<[^>]+>/g, '').substring(0, 100);
-    }
-
-    let heroUltimoId = -1;
-
-    function heroNuevaCuriosidad() {
-      const el = document.getElementById('heroSabiasTexto');
-      const card = document.getElementById('heroSabiasCard');
-      if (!el) return;
-      let nuevoId;
-      do { nuevoId = Math.floor(Math.random() * curiosidades.length); }
-      while (nuevoId === heroUltimoId && curiosidades.length > 1);
-      heroUltimoId = nuevoId;
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(6px)';
-      setTimeout(() => {
-        el.textContent = extraerTeaser(curiosidades[nuevoId]);
-        el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
-      }, 200);
-      card.style.transform = 'scale(0.97)';
-      setTimeout(() => card.style.transform = '', 180);
-    }
-
     // Elige una curiosidad aleatoria
     function elegirCuriosidad() {
       const id = Math.floor(Math.random() * curiosidades.length);
@@ -970,7 +934,6 @@
       mostrarSabiasQue(() => {
         if (splash) splash.style.visibility = '';
         if (main)   main.style.visibility   = '';
-        heroNuevaCuriosidad();
       });
     });
   </script>
