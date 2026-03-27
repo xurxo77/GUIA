@@ -874,314 +874,531 @@ section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
 
 
 /* ================================================================ */
-/* === REDISEÑO UX/UI — PALETA PROVINCIAL + INTERACCIÓN TÁCTIL === */
+/* === MATERIAL DESIGN 3 EXPRESSIVE — GALICIA APP               === */
 /* ================================================================ */
 
-/* --- VARIABLES DE COLOR NUEVAS --- */
+/* --- FUENTE MD3 --- */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&display=swap');
+
+/* --- TOKENS MD3 --- */
 :root {
-  /* A Coruña — Azul atlántico */
-  --ac-bg:     #e6f1fb;
-  --ac-border: #85b7eb;
-  --ac-mid:    #378add;
-  --ac-strong: #185fa5;
-  --ac-dark:   #042c53;
+  /* Tipografía */
+  --md-font:         'Google Sans', 'Roboto', sans-serif;
+  --md-font-display: 'Google Sans Display', 'Google Sans', sans-serif;
 
-  /* Pontevedra — Verde ría */
-  --po-bg:     #e1f5ee;
-  --po-border: #9fe1cb;
-  --po-mid:    #1d9e75;
-  --po-strong: #0f6e56;
-  --po-dark:   #04342c;
+  /* Paleta primaria — Azul Atlántico */
+  --md-primary:          #1a5276;
+  --md-on-primary:       #ffffff;
+  --md-primary-cont:     #d6e4f0;
+  --md-on-primary-cont:  #003355;
 
-  /* Lugo — Verde bosque */
-  --lu-bg:     #eaf3de;
-  --lu-border: #c0dd97;
-  --lu-mid:    #639922;
-  --lu-strong: #3b6d11;
-  --lu-dark:   #173404;
+  /* Superficie */
+  --md-surface:          #FFFBFE;
+  --md-surface-1:        #f0ecf8;
+  --md-outline:          #CAC4D0;
+  --md-outline-var:      #E7E0EC;
 
-  /* Ourense — Ámbar termal */
-  --ou-bg:     #faeeda;
-  --ou-border: #fac775;
-  --ou-mid:    #ba7517;
-  --ou-strong: #854f0b;
-  --ou-dark:   #412402;
+  /* Colores categoría */
+  --md-clima-bg:    #dce8f5; --md-clima-on:    #0d3a5c; --md-clima-acc:   #185fa5;
+  --md-comer-bg:    #fef0d9; --md-comer-on:    #4a2800; --md-comer-acc:   #854f0b;
+  --md-beber-bg:    #fce4ef; --md-beber-on:    #5c0a2e; --md-beber-acc:   #993556;
+  --md-disf-bg:     #e2f0d5; --md-disf-on:     #1a3d08; --md-disf-acc:    #3b6d11;
 
-  /* Recomendaciones */
-  --rec-clima-bg:       #e6f1fb;
-  --rec-clima-border:   #b5d4f4;
-  --rec-clima-strong:   #185fa5;
-  --rec-clima-dark:     #042c53;
+  /* Colores provincia */
+  --md-ac-strip: #185fa5; --md-ac-tag-bg: #d6e4f5; --md-ac-tag-on: #0d3a5c;
+  --md-lu-strip: #3b6d11; --md-lu-tag-bg: #ddf0c5; --md-lu-tag-on: #173404;
+  --md-ou-strip: #854f0b; --md-ou-tag-bg: #fde8c0; --md-ou-tag-on: #412402;
+  --md-po-strip: #0f6e56; --md-po-tag-bg: #d5f0e5; --md-po-tag-on: #04342c;
 
-  --rec-comer-bg:       #faeeda;
-  --rec-comer-border:   #fac775;
-  --rec-comer-strong:   #ba7517;
-  --rec-comer-dark:     #412402;
+  /* Shapes MD3 Expressive */
+  --md-shape-sm:   8px;
+  --md-shape-md:   12px;
+  --md-shape-lg:   16px;
+  --md-shape-xl:   28px;
+  --md-shape-full: 50px;
 
-  --rec-beber-bg:       #fbeaf0;
-  --rec-beber-border:   #f4c0d1;
-  --rec-beber-strong:   #d4537e;
-  --rec-beber-dark:     #4b1528;
+  /* Elevación MD3 */
+  --md-elev-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --md-elev-2: 0 3px 6px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.08);
 
-  --rec-disfrutar-bg:       #eaf3de;
-  --rec-disfrutar-border:   #c0dd97;
-  --rec-disfrutar-strong:   #639922;
-  --rec-disfrutar-dark:     #173404;
+  /* Motion MD3 */
+  --md-ease-standard: cubic-bezier(0.2,0,0,1);
+  --md-ease-decel:    cubic-bezier(0,0,0,1);
+  --md-ease-accel:    cubic-bezier(0.3,0,1,1);
 }
 
-/* --- FEEDBACK TÁCTIL GLOBAL --- */
+/* --- TIPOGRAFÍA GLOBAL MD3 --- */
+body {
+  font-family: var(--md-font) !important;
+  background: var(--md-surface) !important;
+}
+
+h1, h2, h3 {
+  font-family: var(--md-font-display) !important;
+}
+
+.hero-title {
+  font-family: var(--md-font-display) !important;
+  letter-spacing: -0.5px !important;
+}
+
+.section-title {
+  font-family: var(--md-font-display) !important;
+  font-size: 1.75rem !important;
+}
+
+.section-number {
+  background: var(--md-primary-cont) !important;
+  color: var(--md-on-primary-cont) !important;
+  border: none !important;
+  font-family: var(--md-font) !important;
+  font-weight: 700 !important;
+}
+
+/* --- FEEDBACK TÁCTIL GLOBAL (STATE LAYER MD3) --- */
 .province-box,
-.province-header,
-.rec-card,
+.bloque-card,
 .place-card,
+.rec-card,
 .menu-item,
 .fav-btn,
-.bloque-card,
+.province-header,
 .bloque-header {
   -webkit-tap-highlight-color: transparent !important;
+  position: relative !important;
 }
+
+/* State layer overlay */
+.province-box::after,
+.bloque-card::after,
+.place-card::after,
+.rec-card::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  background: transparent !important;
+  transition: background 0.18s ease !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.province-box:active::after,
+.bloque-card:active::after { background: rgba(0,0,0,0.07) !important; }
+.place-card:active::after   { background: rgba(0,0,0,0.06) !important; }
+.rec-card:active::after     { background: rgba(0,0,0,0.05) !important; }
 
 .province-box:active,
 .bloque-card:active {
-  transform: scale(0.985) !important;
-  transition: transform 0.1s ease !important;
+  transform: scale(0.975) !important;
+  transition: transform 0.12s var(--md-ease-standard) !important;
+}
+
+.place-card:active {
+  transform: scale(0.975) !important;
+  box-shadow: var(--md-elev-1) !important;
+  transition: transform 0.12s var(--md-ease-standard), box-shadow 0.12s ease !important;
 }
 
 .rec-card:active {
   transform: scale(0.97) !important;
-  transition: transform 0.1s ease !important;
-}
-
-.place-card:active {
-  transform: scale(0.985) !important;
-  transition: transform 0.1s ease !important;
+  transition: transform 0.12s var(--md-ease-standard) !important;
 }
 
 .fav-btn:active {
   transform: scale(1.35) !important;
-  transition: transform 0.15s ease !important;
+  transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1) !important;
 }
 
-/* --- ACORDEONES DE RECOMENDACIONES — NUEVO DISEÑO POR CATEGORÍA --- */
+/* --- SHAPES MD3 EXPRESSIVE — ESQUINAS GENEROSAS --- */
+.province-box,
+.bloque-card {
+  border-radius: var(--md-shape-xl) !important;
+  overflow: hidden !important;
+  transition: transform 0.15s var(--md-ease-standard),
+              box-shadow 0.25s ease !important;
+}
 
-/* Antes de venir — Azul atlántico */
-.province-header.rec-antes {
-  background: var(--rec-clima-bg) !important;
-  border-bottom: 1.5px solid var(--rec-clima-border) !important;
-}
-#rec-antes {
-  border: 1.5px solid var(--rec-clima-border) !important;
-  background: var(--rec-clima-bg) !important;
-  border-radius: 14px !important;
-}
-#rec-antes .bloque-nombre { color: var(--rec-clima-dark) !important; }
-#rec-antes .bloque-subtitulo { color: var(--rec-clima-strong) !important; }
-#rec-antes .bloque-contador { background: var(--rec-clima-border) !important; color: var(--rec-clima-dark) !important; }
-#rec-antes.expanded { border-color: var(--rec-clima-strong) !important; box-shadow: 0 8px 28px rgba(24,95,165,0.13) !important; }
-#rec-antes.expanded .province-arrow { background: var(--rec-clima-strong) !important; }
-#rec-antes .province-header:active { background: #cfe3f7 !important; }
-
-/* Comer bien — Ámbar */
-.province-header.rec-comer {
-  background: var(--rec-comer-bg) !important;
-  border-bottom: 1.5px solid var(--rec-comer-border) !important;
-}
-#rec-comer {
-  border: 1.5px solid var(--rec-comer-border) !important;
-  background: var(--rec-comer-bg) !important;
-  border-radius: 14px !important;
-}
-#rec-comer .bloque-nombre { color: var(--rec-comer-dark) !important; }
-#rec-comer .bloque-subtitulo { color: var(--rec-comer-strong) !important; }
-#rec-comer .bloque-contador { background: var(--rec-comer-border) !important; color: var(--rec-comer-dark) !important; }
-#rec-comer.expanded { border-color: var(--rec-comer-strong) !important; box-shadow: 0 8px 28px rgba(186,117,23,0.13) !important; }
-#rec-comer.expanded .province-arrow { background: var(--rec-comer-strong) !important; }
-
-/* Beber bien — Rosa burdeos */
-.province-header.rec-beber {
-  background: var(--rec-beber-bg) !important;
-  border-bottom: 1.5px solid var(--rec-beber-border) !important;
-}
-#rec-beber {
-  border: 1.5px solid var(--rec-beber-border) !important;
-  background: var(--rec-beber-bg) !important;
-  border-radius: 14px !important;
-}
-#rec-beber .bloque-nombre { color: var(--rec-beber-dark) !important; }
-#rec-beber .bloque-subtitulo { color: var(--rec-beber-strong) !important; }
-#rec-beber .bloque-contador { background: var(--rec-beber-border) !important; color: var(--rec-beber-dark) !important; }
-#rec-beber.expanded { border-color: var(--rec-beber-strong) !important; box-shadow: 0 8px 28px rgba(212,83,126,0.13) !important; }
-#rec-beber.expanded .province-arrow { background: var(--rec-beber-strong) !important; }
-
-/* Disfrutar — Verde */
-.province-header.rec-disfrutar {
-  background: var(--rec-disfrutar-bg) !important;
-  border-bottom: 1.5px solid var(--rec-disfrutar-border) !important;
-}
-#rec-disfrutar {
-  border: 1.5px solid var(--rec-disfrutar-border) !important;
-  background: var(--rec-disfrutar-bg) !important;
-  border-radius: 14px !important;
-}
-#rec-disfrutar .bloque-nombre { color: var(--rec-disfrutar-dark) !important; }
-#rec-disfrutar .bloque-subtitulo { color: var(--rec-disfrutar-strong) !important; }
-#rec-disfrutar .bloque-contador { background: var(--rec-disfrutar-border) !important; color: var(--rec-disfrutar-dark) !important; }
-#rec-disfrutar.expanded { border-color: var(--rec-disfrutar-strong) !important; box-shadow: 0 8px 28px rgba(99,153,34,0.13) !important; }
-#rec-disfrutar.expanded .province-arrow { background: var(--rec-disfrutar-strong) !important; }
-
-/* Tarjetas internas de recomendaciones — fondo blanco limpio */
-#recomendaciones .rec-card {
+.rec-card {
+  border-radius: var(--md-shape-lg) !important;
   background: #ffffff !important;
-  border: 1px solid rgba(0,0,0,0.06) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
-  border-radius: 12px !important;
 }
 
-/* --- ACORDEONES DE LUGARES — PALETA PROVINCIAL --- */
+.place-card {
+  border-radius: var(--md-shape-xl) !important;
+  overflow: hidden !important;
+  box-shadow: var(--md-elev-1) !important;
+  transition: transform 0.15s var(--md-ease-standard),
+              box-shadow 0.2s ease !important;
+}
 
-/* A Coruña */
+/* --- ACORDEONES RECOMENDACIONES — FILLED TONAL MD3 --- */
+
+/* Antes de venir */
+#rec-antes {
+  border: none !important;
+  background: var(--md-clima-bg) !important;
+  box-shadow: none !important;
+}
+.province-header.rec-antes {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(24,95,165,0.15) !important;
+}
+#rec-antes .bloque-nombre      { color: var(--md-clima-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
+#rec-antes .bloque-subtitulo   { color: var(--md-clima-acc) !important; font-style: normal !important; }
+#rec-antes .bloque-contador    { background: rgba(24,95,165,0.15) !important; color: var(--md-clima-on) !important; border-radius: var(--md-shape-full) !important; }
+#rec-antes.expanded            { box-shadow: var(--md-elev-2) !important; }
+#rec-antes.expanded .province-arrow { background: var(--md-clima-acc) !important; }
+#rec-antes .province-arrow     { border-radius: var(--md-shape-full) !important; }
+
+/* Comer bien */
+#rec-comer {
+  border: none !important;
+  background: var(--md-comer-bg) !important;
+  box-shadow: none !important;
+}
+.province-header.rec-comer {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(133,79,11,0.15) !important;
+}
+#rec-comer .bloque-nombre      { color: var(--md-comer-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
+#rec-comer .bloque-subtitulo   { color: var(--md-comer-acc) !important; font-style: normal !important; }
+#rec-comer .bloque-contador    { background: rgba(133,79,11,0.15) !important; color: var(--md-comer-on) !important; border-radius: var(--md-shape-full) !important; }
+#rec-comer.expanded            { box-shadow: var(--md-elev-2) !important; }
+#rec-comer.expanded .province-arrow { background: var(--md-comer-acc) !important; }
+#rec-comer .province-arrow     { border-radius: var(--md-shape-full) !important; }
+
+/* Beber bien */
+#rec-beber {
+  border: none !important;
+  background: var(--md-beber-bg) !important;
+  box-shadow: none !important;
+}
+.province-header.rec-beber {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(153,53,86,0.15) !important;
+}
+#rec-beber .bloque-nombre      { color: var(--md-beber-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
+#rec-beber .bloque-subtitulo   { color: var(--md-beber-acc) !important; font-style: normal !important; }
+#rec-beber .bloque-contador    { background: rgba(153,53,86,0.15) !important; color: var(--md-beber-on) !important; border-radius: var(--md-shape-full) !important; }
+#rec-beber.expanded            { box-shadow: var(--md-elev-2) !important; }
+#rec-beber.expanded .province-arrow { background: var(--md-beber-acc) !important; }
+#rec-beber .province-arrow     { border-radius: var(--md-shape-full) !important; }
+
+/* Disfrutar */
+#rec-disfrutar {
+  border: none !important;
+  background: var(--md-disf-bg) !important;
+  box-shadow: none !important;
+}
+.province-header.rec-disfrutar {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(59,109,17,0.15) !important;
+}
+#rec-disfrutar .bloque-nombre      { color: var(--md-disf-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
+#rec-disfrutar .bloque-subtitulo   { color: var(--md-disf-acc) !important; font-style: normal !important; }
+#rec-disfrutar .bloque-contador    { background: rgba(59,109,17,0.15) !important; color: var(--md-disf-on) !important; border-radius: var(--md-shape-full) !important; }
+#rec-disfrutar.expanded            { box-shadow: var(--md-elev-2) !important; }
+#rec-disfrutar.expanded .province-arrow { background: var(--md-disf-acc) !important; }
+#rec-disfrutar .province-arrow     { border-radius: var(--md-shape-full) !important; }
+
+/* Cabecera común de recomendaciones */
+.province-header {
+  min-height: 72px !important;
+}
+.bloque-nombre {
+  font-family: var(--md-font) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+.bloque-subtitulo {
+  font-style: normal !important;
+  font-size: 0.78rem !important;
+  font-family: var(--md-font) !important;
+}
+.bloque-contador {
+  border-radius: var(--md-shape-full) !important;
+  font-family: var(--md-font) !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+}
+
+/* --- MAPA SVG — SE RESPETA INTACTO --- */
+.bloque-map-sidebar {
+  width: 72px !important;
+  background: rgba(255,255,255,0.35) !important;
+  border-right: 1px solid rgba(0,0,0,0.06) !important;
+}
+.bloque-map-mini {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: var(--md-shape-md) !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  border: none !important;
+}
+.bloque-map-mini img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.12)) !important;
+}
+
+/* --- ACORDEONES LUGARES — FILLED TONAL MD3 + PALETA PROVINCIAL --- */
+
 #prov-acoruna {
-  border: 1.5px solid var(--ac-border) !important;
-  background: var(--ac-bg) !important;
-  border-radius: 14px !important;
+  border: none !important;
+  background: #dce8f5 !important;
+  box-shadow: none !important;
 }
 .province-header.acoruna {
-  background: var(--ac-bg) !important;
-  border-bottom: 1.5px solid var(--ac-border) !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(24,95,165,0.15) !important;
 }
-#prov-acoruna .bloque-nombre { color: var(--ac-dark) !important; }
-#prov-acoruna .bloque-subtitulo { color: var(--ac-strong) !important; }
-#prov-acoruna .bloque-contador { background: var(--ac-border) !important; color: var(--ac-dark) !important; }
-#prov-acoruna.expanded { border-color: var(--ac-strong) !important; box-shadow: 0 8px 28px rgba(24,95,165,0.15) !important; }
-#prov-acoruna.expanded .province-arrow { background: var(--ac-strong) !important; }
+#prov-acoruna .bloque-nombre    { color: #0d3a5c !important; }
+#prov-acoruna .bloque-subtitulo { color: #185fa5 !important; font-style: normal !important; }
+#prov-acoruna .bloque-contador  { background: rgba(24,95,165,0.15) !important; color: #0d3a5c !important; }
+#prov-acoruna.expanded          { box-shadow: var(--md-elev-2) !important; }
+#prov-acoruna.expanded .province-arrow { background: #185fa5 !important; }
 
-/* Lugo */
 #prov-lugo {
-  border: 1.5px solid var(--lu-border) !important;
-  background: var(--lu-bg) !important;
-  border-radius: 14px !important;
+  border: none !important;
+  background: #ddf0c5 !important;
+  box-shadow: none !important;
 }
 .province-header.lugo {
-  background: var(--lu-bg) !important;
-  border-bottom: 1.5px solid var(--lu-border) !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(59,109,17,0.15) !important;
 }
-#prov-lugo .bloque-nombre { color: var(--lu-dark) !important; }
-#prov-lugo .bloque-subtitulo { color: var(--lu-strong) !important; }
-#prov-lugo .bloque-contador { background: var(--lu-border) !important; color: var(--lu-dark) !important; }
-#prov-lugo.expanded { border-color: var(--lu-strong) !important; box-shadow: 0 8px 28px rgba(59,109,17,0.15) !important; }
-#prov-lugo.expanded .province-arrow { background: var(--lu-strong) !important; }
+#prov-lugo .bloque-nombre    { color: #173404 !important; }
+#prov-lugo .bloque-subtitulo { color: #3b6d11 !important; font-style: normal !important; }
+#prov-lugo .bloque-contador  { background: rgba(59,109,17,0.15) !important; color: #173404 !important; }
+#prov-lugo.expanded          { box-shadow: var(--md-elev-2) !important; }
+#prov-lugo.expanded .province-arrow { background: #3b6d11 !important; }
 
-/* Ourense */
 #prov-ourense {
-  border: 1.5px solid var(--ou-border) !important;
-  background: var(--ou-bg) !important;
-  border-radius: 14px !important;
+  border: none !important;
+  background: #fde8c0 !important;
+  box-shadow: none !important;
 }
 .province-header.ourense {
-  background: var(--ou-bg) !important;
-  border-bottom: 1.5px solid var(--ou-border) !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(133,79,11,0.15) !important;
 }
-#prov-ourense .bloque-nombre { color: var(--ou-dark) !important; }
-#prov-ourense .bloque-subtitulo { color: var(--ou-strong) !important; }
-#prov-ourense .bloque-contador { background: var(--ou-border) !important; color: var(--ou-dark) !important; }
-#prov-ourense.expanded { border-color: var(--ou-strong) !important; box-shadow: 0 8px 28px rgba(133,79,11,0.15) !important; }
-#prov-ourense.expanded .province-arrow { background: var(--ou-strong) !important; }
+#prov-ourense .bloque-nombre    { color: #412402 !important; }
+#prov-ourense .bloque-subtitulo { color: #854f0b !important; font-style: normal !important; }
+#prov-ourense .bloque-contador  { background: rgba(133,79,11,0.15) !important; color: #412402 !important; }
+#prov-ourense.expanded          { box-shadow: var(--md-elev-2) !important; }
+#prov-ourense.expanded .province-arrow { background: #854f0b !important; }
 
-/* Pontevedra */
 #prov-pontevedra {
-  border: 1.5px solid var(--po-border) !important;
-  background: var(--po-bg) !important;
-  border-radius: 14px !important;
+  border: none !important;
+  background: #d5f0e5 !important;
+  box-shadow: none !important;
 }
 .province-header.pontevedra {
-  background: var(--po-bg) !important;
-  border-bottom: 1.5px solid var(--po-border) !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(15,110,86,0.15) !important;
 }
-#prov-pontevedra .bloque-nombre { color: var(--po-dark) !important; }
-#prov-pontevedra .bloque-subtitulo { color: var(--po-strong) !important; }
-#prov-pontevedra .bloque-contador { background: var(--po-border) !important; color: var(--po-dark) !important; }
-#prov-pontevedra.expanded { border-color: var(--po-strong) !important; box-shadow: 0 8px 28px rgba(15,110,86,0.15) !important; }
-#prov-pontevedra.expanded .province-arrow { background: var(--po-strong) !important; }
+#prov-pontevedra .bloque-nombre    { color: #04342c !important; }
+#prov-pontevedra .bloque-subtitulo { color: #0f6e56 !important; font-style: normal !important; }
+#prov-pontevedra .bloque-contador  { background: rgba(15,110,86,0.15) !important; color: #04342c !important; }
+#prov-pontevedra.expanded          { box-shadow: var(--md-elev-2) !important; }
+#prov-pontevedra.expanded .province-arrow { background: #0f6e56 !important; }
 
-/* --- TARJETAS DE LUGAR — BARRA SUPERIOR PROVINCIAL --- */
-
-/* Barra de color arriba de cada tarjeta */
-.place-card::before {
-  content: '' !important;
-  display: block !important;
-  height: 5px !important;
-  width: 100% !important;
-  border-radius: 0 !important;
+/* Flecha común */
+.province-arrow {
+  border-radius: var(--md-shape-full) !important;
+  transition: transform 0.3s var(--md-ease-standard),
+              background 0.25s ease !important;
 }
-.place-card.acoruna { border-color: var(--ac-border) !important; background: var(--ac-bg) !important; }
-.place-card.acoruna::before { background: var(--ac-strong) !important; }
-.place-card.acoruna .place-title { color: var(--ac-dark) !important; }
-.place-card.acoruna .place-number-badge { background: var(--ac-strong) !important; }
-.place-card.acoruna .place-category-chip { opacity: 0.9; }
+.province-box.expanded .province-arrow {
+  transform: rotate(180deg) !important;
+}
+.province-arrow svg {
+  transition: stroke 0.25s ease !important;
+}
+.province-box.expanded .province-arrow svg { stroke: white !important; }
 
-.place-card.lugo { border-color: var(--lu-border) !important; background: var(--lu-bg) !important; }
-.place-card.lugo::before { background: var(--lu-strong) !important; }
-.place-card.lugo .place-title { color: var(--lu-dark) !important; }
-.place-card.lugo .place-number-badge { background: var(--lu-strong) !important; }
+/* --- TARJETAS DE LUGARES — ELEVATED MD3 + GARANTÍA TÍTULO BLANCO --- */
 
-.place-card.ourense { border-color: var(--ou-border) !important; background: var(--ou-bg) !important; }
-.place-card.ourense::before { background: var(--ou-strong) !important; }
-.place-card.ourense .place-title { color: var(--ou-dark) !important; }
-.place-card.ourense .place-number-badge { background: var(--ou-strong) !important; }
+/* Barra de color superior */
+.place-card { overflow: hidden !important; }
+.place-image { position: relative !important; }
 
-.place-card.pontevedra { border-color: var(--po-border) !important; background: var(--po-bg) !important; }
-.place-card.pontevedra::before { background: var(--po-strong) !important; }
-.place-card.pontevedra .place-title { color: var(--po-dark) !important; }
-.place-card.pontevedra .place-number-badge { background: var(--po-strong) !important; }
+.place-card.acoruna  { border: none !important; background: #ffffff !important; }
+.place-card.lugo     { border: none !important; background: #ffffff !important; }
+.place-card.ourense  { border: none !important; background: #ffffff !important; }
+.place-card.pontevedra { border: none !important; background: #ffffff !important; }
 
-/* Contenido interior de tarjeta de lugar — fondo blanco para legibilidad */
-.place-content-inner {
-  background: #ffffff !important;
+/* Barra de color como pseudo del place-image */
+.place-card.acoruna   .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #185fa5; z-index: 5; }
+.place-card.lugo      .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #3b6d11; z-index: 5; }
+.place-card.ourense   .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #854f0b; z-index: 5; }
+.place-card.pontevedra .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #0f6e56; z-index: 5; }
+
+/* Badge numérico provincial */
+.place-card.acoruna   .place-number-badge { background: #185fa5 !important; }
+.place-card.lugo      .place-number-badge { background: #3b6d11 !important; }
+.place-card.ourense   .place-number-badge { background: #854f0b !important; }
+.place-card.pontevedra .place-number-badge { background: #0f6e56 !important; }
+
+/* GARANTÍA TÍTULO BLANCO — múltiple especificidad para que no falle */
+.place-title,
+.place-title-overlay .place-title,
+.place-card .place-title,
+.place-card.acoruna .place-title,
+.place-card.lugo .place-title,
+.place-card.ourense .place-title,
+.place-card.pontevedra .place-title {
+  color: #ffffff !important;
+  font-family: var(--md-font) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4) !important;
 }
 
-/* --- BOTÓN DE FAVORITO MEJORADO --- */
+/* Overlay del título */
+.place-title-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%) !important;
+}
+
+/* Label de provincia en el header */
+.place-header {
+  font-family: var(--md-font) !important;
+}
+
+/* Chips de categoría */
+.place-category-chip {
+  border-radius: var(--md-shape-full) !important;
+  font-family: var(--md-font) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* --- BOTÓN FAVORITO MD3 — TONAL ICON BUTTON --- */
 .fav-btn {
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 50% !important;
-  background: rgba(0,0,0,0.04) !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: var(--md-shape-full) !important;
+  background: rgba(0,0,0,0.05) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transition: transform 0.2s ease, background 0.2s ease !important;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+              background 0.2s ease !important;
 }
-.fav-btn svg {
-  width: 18px !important;
-  height: 18px !important;
-}
+.fav-btn svg { width: 20px !important; height: 20px !important; }
 .fav-btn.active {
-  background: rgba(226,75,74,0.1) !important;
+  background: rgba(179,38,30,0.1) !important;
 }
 .fav-btn.active svg {
-  stroke: var(--accent-red) !important;
-  fill: var(--accent-red) !important;
+  stroke: #B3261E !important;
+  fill:   #B3261E !important;
 }
 
-/* --- MENÚ INFERIOR — ÍTEM ACTIVO MÁS VISIBLE --- */
-.menu-item {
-  border-radius: 14px !important;
-  transition: all 0.25s cubic-bezier(0.25,1,0.5,1) !important;
+/* --- MENÚ INFERIOR MD3 — NAVIGATION BAR --- */
+.bottom-menu {
+  background: #FFFBFE !important;
+  border-top: 1px solid var(--md-outline-var) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
-.menu-item.active {
-  background: rgba(26,74,94,0.09) !important;
-  color: var(--accent-sea) !important;
-  transform: translateY(-3px) !important;
+.menu-container {
+  padding: 12px 8px 10px !important;
+}
+.menu-item {
+  border-radius: 0 !important;
+  padding: 0 12px !important;
+  gap: 4px !important;
+  transition: color 0.2s ease !important;
+  position: relative !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+/* Píldora de indicador MD3 */
+.menu-item::before {
+  content: '' !important;
+  display: block !important;
+  width: 64px !important;
+  height: 32px !important;
+  border-radius: var(--md-shape-full) !important;
+  background: transparent !important;
+  transition: background 0.25s var(--md-ease-standard) !important;
+  position: absolute !important;
+  top: 0 !important;
+}
+.menu-item.active::before {
+  background: var(--md-primary-cont) !important;
+}
+.menu-item svg {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 4px !important;
+}
+.menu-item span {
+  font-family: var(--md-font) !important;
+  font-size: 0.68rem !important;
+  font-weight: 500 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+.menu-item.active span {
+  font-weight: 700 !important;
+  color: var(--md-primary) !important;
+}
+.menu-item.active svg {
+  stroke: var(--md-primary) !important;
 }
 .menu-item:active {
-  transform: scale(0.9) !important;
+  transform: scale(0.92) !important;
+  transition: transform 0.1s ease !important;
 }
 
-/* --- PROVINCE BOX — TRANSICIÓN SUAVE --- */
-.province-box {
-  transition: transform 0.15s ease, box-shadow 0.3s ease !important;
+/* --- CARRUSEL TARJETAS REC — DOTS INDICADORES --- */
+.horizontal-scroll {
+  scroll-snap-type: x mandatory !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
-/* --- REC CARD — FONDO BLANCO CONSISTENTE --- */
-.rec-card {
-  background: #ffffff !important;
+/* --- SPLASH SCREEN MD3 --- */
+.splash-btn {
+  border-radius: var(--md-shape-xl) !important;
+  font-family: var(--md-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1px !important;
+}
+.splash-input {
+  border-radius: var(--md-shape-lg) !important;
+  font-family: var(--md-font) !important;
+}
+.splash-title {
+  font-family: var(--md-font-display) !important;
+}
+
+/* --- SECCIÓN HERO --- */
+.hero-title {
+  font-family: var(--md-font-display) !important;
+}
+
+/* --- GENERADOR / BOTONES ACCIÓN MD3 --- */
+.btn-primary {
+  border-radius: var(--md-shape-xl) !important;
+  font-family: var(--md-font) !important;
+  font-weight: 700 !important;
+  background: var(--md-primary) !important;
+}
+.btn-secondary {
+  border-radius: var(--md-shape-xl) !important;
+  font-family: var(--md-font) !important;
+  border-color: var(--md-outline) !important;
+}
+
+/* --- ANIMACIONES DE ENTRADA MD3 --- */
+@keyframes md3FadeSlide {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.active-screen {
+  animation: md3FadeSlide 0.35s var(--md-ease-decel) forwards !important;
 }
