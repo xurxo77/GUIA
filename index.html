@@ -160,11 +160,21 @@
   <div class="main-content" id="mainContent">
 
     <header id="hero" class="hero">
-      <svg width="52" height="52" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5" style="margin-bottom:16px" class="fade-in visible"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
-      <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
-      <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
-      <div class="hero-authors fade-in visible delay-2">
-        <p class="hero-subtitle" style="margin-top: 0; font-size: 1.1rem;">Hecha por Xurxo & Raquel</p>
+      <div class="hero-top fade-in visible">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
+      </div>
+      <div class="hero-center">
+        <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
+        <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
+        <p class="hero-subtitle fade-in visible delay-2" style="margin-top: 0; font-size: 1rem;">Hecha por Xurxo &amp; Raquel</p>
+      </div>
+      <div class="hero-sabias fade-in visible delay-2" id="heroSabiasCard" onclick="heroNuevaCuriosidad()">
+        <div class="hero-sabias-label">
+          <span class="hero-sabias-icon">💡</span>
+          <span>¿Sabías que...?</span>
+          <span class="hero-sabias-hint">Toca para otra</span>
+        </div>
+        <p class="hero-sabias-texto" id="heroSabiasTexto">Cargando...</p>
       </div>
     </header>
 
@@ -686,6 +696,121 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="app.js?v=5.0"></script>
+  <script>
+  // ── MD3 ANIMATIONS ─────────────────────────────────────────────
+
+  // 1. RIPPLE TÁCTIL
+  function attachRipple(selector) {
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.dataset.ripple) return;
+      el.dataset.ripple = '1';
+      el.classList.add('ripple-host');
+      el.addEventListener('pointerdown', function(e) {
+        const rect   = el.getBoundingClientRect();
+        const size   = Math.max(rect.width, rect.height) * 2;
+        const x      = e.clientX - rect.left - size / 2;
+        const y      = e.clientY - rect.top  - size / 2;
+        const ripple = document.createElement('span');
+        ripple.className = 'md3-ripple';
+        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
+        el.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+    });
+  }
+
+  function initRipples() {
+    attachRipple('.province-box');
+    attachRipple('.bloque-card');
+    attachRipple('.place-card');
+    attachRipple('.rec-card');
+  }
+
+  // Lanzar ripples cuando el contenido esté listo y re-lanzar al cambiar sección
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initRipples, 600);
+    const obs = new MutationObserver(initRipples);
+    const cont = document.getElementById('mainContent');
+    if (cont) obs.observe(cont, { childList: true, subtree: true });
+  });
+
+  // 2. SCROLL REVEAL con IntersectionObserver
+  function initScrollReveal() {
+    const targets = document.querySelectorAll(
+      '.province-box, .bloque-card, .place-card, .rec-card, ' +
+      '.section-header, .section-subtitle, .generator-box'
+    );
+    targets.forEach(el => {
+      if (!el.classList.contains('sr')) el.classList.add('sr');
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('sr-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initScrollReveal, 700);
+    // Re-inicializar cuando cambia la sección activa
+    const sectionObs = new MutationObserver(() => setTimeout(initScrollReveal, 100));
+    const cont = document.getElementById('mainContent');
+    if (cont) sectionObs.observe(cont, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+  });
+
+  // 3. TRANSICIÓN DE PANTALLA EXPRESIVA
+  // Orden de las secciones para determinar dirección
+  const SECTION_ORDER = ['hero', 'recomendaciones', 'lugares', 'generador'];
+
+  let currentSectionIdx = 0;
+
+  function animateScreenTransition(fromId, toId) {
+    const fromIdx = SECTION_ORDER.indexOf(fromId);
+    const toIdx   = SECTION_ORDER.indexOf(toId);
+    if (fromIdx === -1 || toIdx === -1 || fromIdx === toIdx) return;
+
+    const forward  = toIdx > fromIdx;
+    const fromEl   = document.getElementById(fromId);
+    const toEl     = document.getElementById(toId);
+    if (!fromEl || !toEl) return;
+
+    // Clases de salida en el elemento actual
+    fromEl.classList.add(forward ? 'screen-exit-left' : 'screen-exit-right');
+
+    setTimeout(() => {
+      fromEl.classList.remove('screen-exit-left', 'screen-exit-right');
+      // La clase active-screen la gestiona app.js; aquí solo añadimos la animación de entrada
+      toEl.classList.add(forward ? 'screen-enter-right' : 'screen-enter-left');
+      setTimeout(() => {
+        toEl.classList.remove('screen-enter-right', 'screen-enter-left');
+        setTimeout(initScrollReveal, 50);
+      }, 360);
+    }, 200);
+  }
+
+  // Interceptar los clicks del menú para inyectar la animación
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const href    = this.getAttribute('href') || '';
+        const targetId = href.replace('#', '');
+        const activeEl = document.querySelector('.active-screen');
+        const fromId   = activeEl ? activeEl.id : SECTION_ORDER[currentSectionIdx];
+        if (targetId && fromId !== targetId) {
+          animateScreenTransition(fromId, targetId);
+          currentSectionIdx = SECTION_ORDER.indexOf(targetId);
+        }
+      });
+    });
+  });
+  </script>
 <script>
     // ── ¿Sabías que? integrado en el flujo de login ──────────────────────────
     const curiosidades = [
@@ -719,6 +844,35 @@
 
         "<strong>Rosalía de Castro dio voz a Galicia cuando casi nadie la escuchaba.</strong> En el siglo XIX, fue una de las primeras autoras en escribir en gallego tras siglos de abandono, dignificando la lengua y reflejando la morriña de su pueblo.<br><br>👉 Su inmensa obra marcó el inicio del Rexurdimento y la convirtió en el pilar fundamental de nuestra identidad cultural."
       ];
+
+    // Extrae solo la frase en negrita (teaser) de cada curiosidad
+    function extraerTeaser(html) {
+      const match = html.match(/<strong>([\s\S]*?)<\/strong>/);
+      if (match) return match[1].replace(/<[^>]+>/g, '');
+      return html.replace(/<[^>]+>/g, '').substring(0, 100);
+    }
+
+    let heroUltimoId = -1;
+
+    function heroNuevaCuriosidad() {
+      const el = document.getElementById('heroSabiasTexto');
+      const card = document.getElementById('heroSabiasCard');
+      if (!el) return;
+      let nuevoId;
+      do { nuevoId = Math.floor(Math.random() * curiosidades.length); }
+      while (nuevoId === heroUltimoId && curiosidades.length > 1);
+      heroUltimoId = nuevoId;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(6px)';
+      setTimeout(() => {
+        el.textContent = extraerTeaser(curiosidades[nuevoId]);
+        el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 200);
+      card.style.transform = 'scale(0.97)';
+      setTimeout(() => card.style.transform = '', 180);
+    }
 
     // Elige una curiosidad aleatoria
     function elegirCuriosidad() {
@@ -810,14 +964,13 @@
       const splash = document.getElementById('splashScreen');
       const main   = document.getElementById('mainContent');
 
-      // Ocultamos splash y main mientras se ve la curiosidad
       if (splash) splash.style.visibility = 'hidden';
       if (main)   main.style.visibility   = 'hidden';
 
       mostrarSabiasQue(() => {
-        // Al terminar, devolvemos visibilidad al flujo normal de la app
         if (splash) splash.style.visibility = '';
         if (main)   main.style.visibility   = '';
+        heroNuevaCuriosidad();
       });
     });
   </script>
