@@ -1579,3 +1579,113 @@ h1, h2, h3 {
 .screen-enter-left  { animation: md3SlideInLeft  0.35s var(--md-ease-decel) forwards !important; }
 .screen-exit-left   { animation: md3SlideOutLeft  0.25s var(--md-ease-accel) forwards !important; }
 .screen-exit-right  { animation: md3SlideOutRight 0.25s var(--md-ease-accel) forwards !important; }
+
+
+
+/* ================================================================ */
+/* === CORRECCIONES DEFINITIVAS — CARRUSEL + SECCIONES MÓVIL    === */
+/* ================================================================ */
+
+/* --- CARRUSEL DE RECOMENDACIONES — REGLA ÚNICA FINAL --- */
+/* Anula todos los conflictos anteriores */
+#recomendaciones .horizontal-scroll {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory !important;
+  padding: 12px 16px 20px 16px !important;
+  gap: 12px !important;
+  align-items: flex-start !important;
+  scrollbar-width: none !important;
+}
+#recomendaciones .horizontal-scroll::-webkit-scrollbar { display: none !important; }
+
+#recomendaciones .rec-card {
+  flex: 0 0 82% !important;
+  width: 82% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  scroll-snap-align: start !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  padding: 14px 16px !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  height: auto !important;
+  white-space: normal !important;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+#recomendaciones .rec-card img {
+  width: 100% !important;
+  height: 130px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+#recomendaciones .rec-card h4 {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: #1a2a3a !important;
+  margin: 0 0 6px 0 !important;
+  line-height: 1.3 !important;
+}
+
+#recomendaciones .rec-card p,
+#recomendaciones .rec-card li {
+  font-size: 0.82rem !important;
+  line-height: 1.45 !important;
+  color: #555 !important;
+}
+
+/* province-content siempre visible cuando expandido */
+#recomendaciones .province-box.expanded .province-content {
+  max-height: 3000px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* --- SECCIONES EN MÓVIL — PADDING Y ALTURA CORRECTOS --- */
+section#recomendaciones,
+section#lugares,
+section#generador {
+  min-height: auto !important;
+  padding: 20px 16px 120px 16px !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+}
+
+section#hero {
+  min-height: 100dvh !important;
+  padding: 24px 20px 80px 20px !important;
+}
+
+/* Cuando la sección está activa */
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  display: block !important;
+  min-height: auto !important;
+  padding-bottom: 120px !important;
+}
+
+/* Evitar overflow horizontal en toda la app */
+.main-content {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
