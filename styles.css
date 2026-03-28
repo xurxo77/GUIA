@@ -1,1761 +1,1214 @@
+/* ================================================================
+   GALICIA APP — CSS LIMPIO
+   Estructura: Variables → Reset → Layout → Componentes → MD3
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@700&display=swap');
+
+/* ── 1. VARIABLES ─────────────────────────────────────────────── */
 :root {
-  --bg-paper: #ffffff;
-  --bg-cream: #faf8f5;
-  --bg-card: #f5f3ee;
-  --fg-ink: #2c2416;
-  --fg-muted: #5a4d3a;
-  --accent-sea: #1a4a5e;
-  --accent-gold: #1a1918;
+  /* Paleta base */
+  --bg-paper:    #FFFBFE;
+  --bg-cream:    #F5F3EE;
+  --bg-card:     #F0EDE8;
+  --fg-ink:      #1C1B1F;
+  --fg-muted:    #49454F;
+
+  /* Acento principal — Azul Atlántico */
+  --accent-sea:    #1a5276;
+  --accent-cont:   #d6e4f0;
+  --accent-on:     #003355;
+
+  /* Colores funcionales */
   --accent-green: #3d5a47;
-  --accent-red: #c45a3f;
-  --border-aged: #e0d8c8;
-  --border-card: #8b7355;
-  --shadow-warm: rgba(44, 36, 22, 0.1);
-  --bloque-acoruna: #3a7ca5;
-  --bloque-lugo: #4a8c5a;
-  --bloque-ourense: #c47a3a;
-  --bloque-pontevedra: #2a8a8a;
-  --cat-ciudades: #8b5a2b;
-  --cat-villas: #6b8e4a;
-  --cat-pueblos: #4a7a8e;
-  --cat-costa: #c47a3a;
+  --accent-red:   #B3261E;
+  --border:       #CAC4D0;
+  --shadow:       rgba(28, 27, 31, 0.08);
+
+  /* Provincias */
+  --ac-color:  #185fa5; --ac-bg: #e6f1fb; --ac-border: #85b7eb;
+  --lu-color:  #3b6d11; --lu-bg: #eaf3de; --lu-border: #c0dd97;
+  --ou-color:  #854f0b; --ou-bg: #faeeda; --ou-border: #fac775;
+  --po-color:  #0f6e56; --po-bg: #e1f5ee; --po-border: #9fe1cb;
+
+  /* Recomendaciones */
+  --clima-color: #185fa5; --clima-bg: #dce8f5; --clima-on: #0d3a5c;
+  --comer-color: #854f0b; --comer-bg: #fef0d9; --comer-on: #412402;
+  --beber-color: #993556; --beber-bg: #fce4ef; --beber-on: #5c0a2e;
+  --disf-color:  #3b6d11; --disf-bg:  #e2f0d5; --disf-on:  #173404;
+
+  /* Categorías de lugar */
+  --cat-ciudades:   #8b5a2b;
+  --cat-villas:     #6b8e4a;
+  --cat-pueblos:    #4a7a8e;
+  --cat-costa:      #c47a3a;
   --cat-naturaleza: #4a9a6a;
   --cat-patrimonio: #8a6a9a;
-  --cat-magicos: #9a4a6a;
+  --cat-magicos:    #9a4a6a;
   --cat-termalismo: #4a8a9a;
+
+  /* MD3 Shapes */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   28px;
+  --r-full: 50px;
+
+  /* MD3 Motion */
+  --ease-std:   cubic-bezier(0.2, 0, 0, 1);
+  --ease-decel: cubic-bezier(0, 0, 0, 1);
+  --ease-accel: cubic-bezier(0.3, 0, 1, 1);
+
+  /* Elevaciones */
+  --elev-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
+  --elev-2: 0 3px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-snap-type: y proximity; }
+/* ── 2. RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body { font-family: 'Montserrat', sans-serif; background: var(--bg-paper); color: var(--fg-ink); line-height: 1.7; font-size: 18px; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
-h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
-
-img { max-width: 100% !important; height: auto !important; box-sizing: border-box !important; }
-
-/* INSTALACIÓN Y SPLASH */
-.install-banner { position: fixed; bottom: 80px; left: 16px; right: 16px; background: var(--accent-sea); color: white; padding: 14px 16px; border-radius: 14px; display: none; align-items: center; justify-content: space-between; gap: 12px; z-index: 9998; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
-.install-banner.visible { display: flex; }
-.install-banner-text { font-size: 0.9rem; }
-.install-banner-text strong { display: block; font-size: 1rem; margin-bottom: 2px; }
-.install-banner-btn { background: white; color: var(--accent-sea); border: none; padding: 10px 18px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
-.install-banner-close { background: none; border: none; color: white; opacity: 0.7; cursor: pointer; padding: 4px; font-size: 1.2rem; }
-
-.splash-screen { position: fixed; inset: 0; z-index: 9999; background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; transition: opacity 0.5s ease, visibility 0.5s ease; }
-.splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.splash-content { width: 100%; max-width: 400px; text-align: center; }
-.splash-icon { margin-bottom: 24px; }
-.splash-icon svg { width: 56px !important; height: 56px !important; }
-.splash-title { font-size: clamp(3rem, 12vw, 4rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 8px; }
-.splash-subtitle { font-size: 1.1rem; color: var(--fg-muted); font-style: italic; margin-bottom: 36px; }
-.splash-form { display: flex; flex-direction: column; gap: 16px; }
-.splash-input { width: 100%; padding: 16px 20px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 12px; font-family: inherit; font-size: 1.1rem; color: var(--fg-ink); text-align: center; letter-spacing: 0.1em; transition: border-color 0.2s ease; }
-.splash-input:focus { outline: none; border-color: var(--accent-sea); }
-.splash-input.error { border-color: #c45a3f; animation: shake 0.4s ease; }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
-.splash-btn { width: 100%; padding: 16px; background: var(--accent-sea); color: white; border: none; border-radius: 12px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
-.splash-error { color: #c45a3f; font-size: 0.9rem; min-height: 1.4em; }
-.splash-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-aged); }
-.splash-footer-text { font-size: 0.85rem; color: var(--fg-muted); line-height: 1.6; }
-.splash-footer-note { font-size: 0.75rem; color: var(--fg-muted); opacity: 0.7; margin-top: 12px; font-style: italic; }
-
-.main-content { display: none; padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
-.main-content.visible { display: block; }
-
-/* HERO Y SECCIONES */
-.hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 90vh; padding: 20px; width: 100%; }
-.hero svg { width: 52px !important; height: 52px !important; margin: 0 auto 20px auto !important; display: block !important; }
-.hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); font-weight: 700; color: var(--accent-sea); line-height: 1; margin-bottom: 14px; }
-.hero-subtitle { font-size: clamp(1.2rem, 5vw, 1.6rem); color: var(--fg-muted); font-style: italic; margin-bottom: 28px; max-width: 90%; margin-left: auto; margin-right: auto;}
-.hero-authors { margin-top: 24px; width: 100%; }
-
-section { min-height: 100vh; padding: 60px 20px; max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; justify-content: flex-start; scroll-snap-align: start; }
-section#lugares, section#generador { min-height: auto; padding-bottom: 100px; }
-
-/* REGLA VITAL: ESTRELLA DECORATIVA PEQUEÑA */
-.decorative-divider { display: flex; align-items: center; gap: 16px; padding: 12px 20px; max-width: 680px; margin: 0 auto; }
-.decorative-divider::before, .decorative-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-aged), transparent); }
-.decorative-divider svg { width: 24px !important; height: 24px !important; color: var(--accent-gold); flex-shrink: 0 !important; }
-
-/* CABECERAS UNIFICADAS (1, 2, 3) */
-.section-header { display: flex !important; align-items: center !important; justify-content: flex-start !important; margin-bottom: 8px !important; gap: 12px; }
-.section-number { display: inline-flex !important; align-items: center !important; justify-content: center !important; width: 30px !important; height: 30px !important; border: 1px solid #1a3a4a !important; background: transparent !important; color: #1a3a4a !important; border-radius: 50% !important; font-family: sans-serif !important; font-size: 0.9rem !important; font-weight: bold !important; flex-shrink: 0 !important; }
-.section-title { font-family: 'Playfair Display', serif !important; font-size: 1.7rem !important; font-weight: 700 !important; color: #1a3a4a !important; margin: 0 !important; }
-.section-subtitle { font-size: 0.9rem !important; color: #777 !important; margin-top: 4px !important; margin-bottom: 24px !important; font-family: sans-serif !important; font-weight: 400 !important; line-height: 1.4 !important; text-align: left !important; }
-
-/* RECOMENDACIONES */
-.category-hero-card { width: calc(100% - 40px) !important; margin: 0 20px 16px 20px !important; height: 160px !important; border-radius: 16px; overflow: hidden; position: relative; box-sizing: border-box !important; }
-.category-hero-card img { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
-.category-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%); display: flex; align-items: flex-end; padding: 20px; }
-.category-overlay h3 { color: white; margin: 0; font-size: 1.4rem; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-
-.horizontal-scroll { display: flex !important; overflow-x: auto !important; padding: 0 20px 20px 20px !important; gap: 12px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.horizontal-scroll::-webkit-scrollbar { display: none; }
-
-.rec-card { flex: 0 0 300px !important; background: #ffffff; padding: 14px 18px !important; border-radius: 14px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 6px rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: center; min-height: 100px; white-space: normal !important; }
-.rec-card h4 { margin: 0 0 4px 0 !important; font-size: 1rem; font-weight: 700; color: #1a3a4a; }
-.rec-card p { margin: 0 !important; font-size: 0.85rem; line-height: 1.4; color: #555; }
-
-/* BLOQUES DE PROVINCIAS */
-.bloque-card { margin: 20px 0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow-warm); position: relative; border: 2px solid var(--border-aged); }
-.bloque-header { padding: 0; cursor: pointer; position: relative; transition: all 0.3s ease; display: flex; align-items: stretch; }
-.bloque-header.acoruna { background: linear-gradient(135deg, rgba(58, 124, 165, 0.25) 0%, rgba(58, 124, 165, 0.15) 100%); }
-.bloque-header.lugo { background: linear-gradient(135deg, rgba(74, 140, 90, 0.25) 0%, rgba(74, 140, 90, 0.15) 100%); }
-.bloque-header.ourense { background: linear-gradient(135deg, rgba(196, 122, 58, 0.25) 0%, rgba(196, 122, 58, 0.15) 100%); }
-.bloque-header.pontevedra { background: linear-gradient(135deg, rgba(42, 138, 138, 0.25) 0%, rgba(42, 138, 138, 0.15) 100%); }
-.bloque-map-sidebar { width: 80px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 12px; background: rgba(255,255,255,0.3); border-right: 1px solid var(--border-aged); }
-.bloque-map-mini { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.03); border: 1px solid var(--border-aged); }
-.bloque-map-mini img { width: 100%; height: 100%; object-fit: contain; }
-.bloque-body { flex: 1; display: flex; align-items: center; padding: 14px 16px; min-width: 0; }
-.bloque-content-wrapper { flex: 1; min-width: 0; }
-.bloque-emoji { font-size: 1.8rem; margin-right: 10px; flex-shrink: 0; vertical-align: middle; display: inline-block; }
-.bloque-nombre { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 700; color: var(--fg-ink); line-height: 1.2; display: inline; vertical-align: middle; }
-.bloque-subtitulo { display: block; font-size: 0.75rem; color: var(--fg-muted); font-style: italic; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bloque-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding-left: 12px; flex-shrink: 0; }
-.bloque-contador { background: rgba(0,0,0,0.05); color: var(--fg-muted); padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; }
-.bloque-arrow { width: 28px; height: 28px; background: rgba(0,0,0,0.04); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
-.bloque-arrow svg { width: 16px !important; height: 16px !important; stroke: var(--fg-muted); transition: transform 0.3s ease; }
-.bloque-card.expanded .bloque-arrow svg { transform: rotate(180deg); }
-.bloque-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; background: var(--bg-cream); }
-.bloque-card.expanded .bloque-content { max-height: 10000px; }
-.bloque-content-inner { padding: 20px; }
-
-/* EL DISEÑO BONITO DE LAS TARJETAS DE LOS LUGARES */
-.place-card { width: 100% !important; max-width: 480px !important; margin: 0 auto 16px auto !important; display: flex !important; flex-direction: column !important; height: auto !important; box-sizing: border-box !important; overflow: hidden !important; background: var(--bg-card); border: 2px solid var(--border-card); border-radius: 10px; box-shadow: 0 3px 12px var(--shadow-warm); position: relative; transition: box-shadow 0.3s ease; }
-.place-card.acoruna::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-acoruna); z-index: 1; }
-.place-card.lugo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-lugo); z-index: 1; }
-.place-card.ourense::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-ourense); z-index: 1; }
-.place-card.pontevedra::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--bloque-pontevedra); z-index: 1; }
-.place-card.acoruna .place-number-badge { background: var(--bloque-acoruna); }
-.place-card.lugo .place-number-badge { background: var(--bloque-lugo); }
-.place-card.ourense .place-number-badge { background: var(--bloque-ourense); }
-.place-card.pontevedra .place-number-badge { background: var(--bloque-pontevedra); }
-
-.place-image { width: 100% !important; height: 160px !important; min-height: 160px !important; max-height: 160px !important; display: block !important; position: relative; background: var(--bg-cream); overflow: hidden; }
-.place-image img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
-.place-number-badge { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: white; box-shadow: 0 2px 6px rgba(0,0,0,0.25); z-index: 6; }
-.place-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 12px 10px !important; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); z-index: 4; width: 100% !important; box-sizing: border-box !important; }
-.place-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem !important; font-weight: 600; color: white; margin: 0; white-space: normal !important; word-wrap: break-word !important; line-height: 1.3 !important; }
-
-.place-header { padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border-top: 1px solid rgba(139, 115, 85, 0.2); flex-wrap: wrap !important; height: auto !important; min-height: 44px !important; }
-.place-header-left { display: flex; align-items: center; gap: 6px; flex: 1; flex-wrap: wrap !important; overflow: visible !important; }
-.place-category-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; color: white; white-space: nowrap; }
-.place-category-chip.ciudades { background: var(--cat-ciudades); }
-.place-category-chip.villas { background: var(--cat-villas); }
-.place-category-chip.pueblos { background: var(--cat-pueblos); }
-.place-category-chip.costa { background: var(--cat-costa); }
-.place-category-chip.naturaleza { background: var(--cat-naturaleza); }
-.place-category-chip.patrimonio { background: var(--cat-patrimonio); }
-.place-category-chip.magicos { background: var(--cat-magicos); }
-.place-category-chip.termalismo { background: var(--cat-termalismo); }
-.place-header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: 8px; }
-.place-toggle-icon { width: 18px !important; height: 18px !important; transition: transform 0.3s ease; color: var(--fg-muted); }
-.place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
-.place-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-.place-card.expanded .place-content { max-height: 2000px !important; overflow: hidden !important; }
-.place-content-inner { padding: 14px; border-top: 1px solid rgba(139, 115, 85, 0.2); }
-.place-category-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.place-category-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; }
-.fav-btn { background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; }
-.fav-btn svg { width: 20px !important; height: 20px !important; stroke: var(--fg-muted); fill: none; }
-.fav-btn.active svg { stroke: var(--accent-red); fill: var(--accent-red); }
-
-/* LOS BLOQUES DE INFORMACIÓN POR DENTRO */
-.info-block { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--border-aged); }
-.info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.info-icon { font-size: 0.9rem; }
-.info-title { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; color: var(--accent-green); }
-.info-text { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.5; }
-.info-list { list-style: none; padding: 0; }
-.info-list li { position: relative; padding-left: 14px; margin-bottom: 4px; font-size: 0.9rem; color: var(--fg-muted); }
-.info-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent-green); font-weight: bold; }
-
-/* SECCIÓN RUTA */
-.generator-box { background: var(--bg-card); border: 3px solid var(--border-card); border-radius: 10px; padding: 20px; margin-top: 18px; box-shadow: 0 4px 16px var(--shadow-warm); }
-.geo-section { background: linear-gradient(90deg, rgba(61, 90, 71, 0.08), transparent); border: 2px solid var(--accent-green); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
-.geo-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.geo-info { flex: 1; }
-.geo-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-green); }
-.geo-status { font-size: 0.8rem; color: var(--fg-muted); margin-top: 2px; }
-.geo-status.active { color: var(--accent-green); }
-.geo-btn { padding: 8px 14px; background: var(--accent-green); color: white; border: none; border-radius: 6px; font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
-
-/* MINIATURAS EN SELECCIÓN BLINDADAS */
-.selection-section { margin-top: 20px; padding: 16px; background: var(--bg-cream); border: 2px solid var(--border-aged); border-radius: 12px; }
-.selection-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.selection-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--accent-sea); }
-.selection-stats { font-size: 0.8rem; color: var(--fg-muted); }
-.selection-empty { text-align: center; padding: 16px; color: var(--fg-muted); font-style: italic; font-size: 0.9rem; }
-.selection-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-
-.selection-item { display: flex !important; align-items: center !important; gap: 12px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; overflow: hidden !important; padding: 10px !important; background: var(--bg-paper); border: 1px solid var(--border-aged); border-radius: 8px; }
-.selection-item img, .selection-item-img { width: 50px !important; height: 50px !important; min-width: 50px !important; max-width: 50px !important; flex-shrink: 0 !important; object-fit: cover !important; border-radius: 8px !important; display: block !important; }
-.selection-item-info { flex: 1 1 auto !important; min-width: 0 !important; }
-.selection-item-name { font-weight: 600; font-size: 0.85rem; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; display: block !important; }
-.selection-item-time { font-size: 0.7rem; color: var(--fg-muted); }
-.selection-item-remove { flex-shrink: 0 !important; width: 28px; height: 28px; background: none; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.4; }
-.selection-item-remove svg { width: 16px !important; height: 16px !important; stroke: var(--accent-red); }
-
-/* BOTONES GLOBALES DE LA RUTA ARREGLADOS */
-.action-buttons { display: flex; flex-direction: column; gap: 8px; }
-.btn-primary, .btn-secondary { width: auto !important; padding: 10px 24px !important; font-size: 0.95rem !important; margin: 0 auto !important; display: block !important; border-radius: 8px !important; font-weight: bold; font-family: 'Cormorant Garamond', serif; cursor: pointer; }
-.btn-primary { background: var(--accent-sea); color: white; border: none; }
-.btn-secondary { background: transparent; color: var(--fg-muted); border: 2px solid var(--border-aged); }
-
-/* FAVORITOS */
-.favorites-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.favorites-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--accent-red); display: flex; align-items: center; gap: 8px; }
-.favorites-title svg { width: 20px !important; height: 20px !important; stroke: var(--accent-red); fill: var(--accent-red); }
-.favorite-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--bg-paper); border: 2px solid var(--border-aged); border-radius: 8px; margin-bottom: 8px;}
-.favorite-item img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; }
-.favorite-info { flex: 1; }
-.favorite-name { font-weight: 600; font-size: 0.9rem; }
-.favorite-time { font-size: 0.75rem; color: var(--fg-muted); }
-.favorite-remove { background: none; border: none; cursor: pointer; padding: 4px; opacity: 0.5; }
-.favorite-remove svg { width: 18px !important; height: 18px !important; stroke: var(--accent-red); }
-
-/* MENÚ INFERIOR */
-.bottom-menu { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-paper); border-top: 1px solid var(--border-aged); z-index: 1000; box-shadow: 0 -4px 20px var(--shadow-warm); padding-bottom: env(safe-area-inset-bottom); }
-.menu-container { max-width: 680px; margin: 0 auto; display: flex; justify-content: space-around; padding: 8px 10px 12px; }
-.menu-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px; text-decoration: none; color: var(--fg-muted); transition: color 0.2s ease; flex: 1; max-width: 80px; }
-.menu-item.active { color: var(--accent-sea); }
-.menu-item svg { width: 22px !important; height: 22px !important; stroke: currentColor; }
-.menu-item span { font-size: 0.6rem; font-weight: 500; text-align: center; }
-.menu-item.active svg { stroke: var(--accent-sea); }
-
-/* MAPA */
-.map-container { height: 350px; min-height: 300px; border-radius: 12px; border: 3px solid var(--border-card); overflow: hidden; background: var(--bg-cream); }
-.map-expand-btn { position: absolute; bottom: 16px; right: 16px; width: 52px; height: 52px; background: rgba(255,255,255,0.98); border: 3px solid var(--border-card); border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-.map-expand-btn svg { width: 24px !important; height: 24px !important; stroke: var(--accent-sea); }
-
-.custom-marker { border: 3px solid white; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; color: white; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
-.custom-marker.touchable { width: 48px; height: 48px; font-size: 18px; }
-.custom-marker.acoruna { background: var(--bloque-acoruna); }
-.custom-marker.lugo { background: var(--bloque-lugo); }
-.custom-marker.ourense { background: var(--bloque-ourense); }
-.custom-marker.pontevedra { background: var(--bloque-pontevedra); }
-.custom-marker.selected-ring { box-shadow: 0 0 0 4px var(--accent-gold); }
-.user-location-marker { background: var(--accent-red); border: 3px solid white; border-radius: 50%; width: 14px; height: 14px; box-shadow: 0 0 0 6px rgba(196, 90, 63, 0.2); animation: pulse 2s infinite; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0.4); } 70% { box-shadow: 0 0 0 12px rgba(196, 90, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(196, 90, 63, 0); } }
-
-/* BLINDAJE MAPA FULLSCREEN */
-.map-fullscreen { position: fixed !important; inset: 0 !important; height: 100vh !important; height: 100dvh !important; overflow: hidden !important; z-index: 9999 !important; background: var(--bg-paper); display: none; flex-direction: column; }
-.map-fullscreen.active { display: flex !important; flex-direction: column !important; }
-.map-fullscreen-header { display: flex !important; flex: 0 0 65px !important; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 2px solid var(--border-aged); background: var(--bg-cream); width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important; z-index: 99999 !important; }
-.map-fullscreen-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--accent-sea); flex: 1 1 auto !important; min-width: 0 !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; margin-right: 10px !important; }
-.map-fullscreen-close { width: 48px; height: 48px; background: var(--accent-red); border: 2px solid white; border-radius: 12px; display: flex !important; align-items: center; justify-content: center; cursor: pointer; z-index: 10001 !important; flex-shrink: 0 !important; margin-left: auto !important; visibility: visible !important; opacity: 1 !important; }
-.map-fullscreen-close svg { width: 24px !important; height: 24px !important; stroke: white; stroke-width: 2.5; }
-.map-fullscreen-map { flex: 1 1 0% !important; min-height: 0 !important; width: 100%; position: relative !important; }
-.map-fullscreen-footer { background: var(--bg-cream); border-top: 2px solid var(--border-aged); padding: 8px 12px; flex: 0 0 auto !important; max-height: 35vh !important; overflow-y: auto !important; z-index: 99999 !important; }
-
-.map-selection-summary { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-.map-selection-count { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600; color: var(--accent-sea); }
-.map-selection-time { font-size: 0.8rem; color: var(--fg-muted); }
-.map-selection-places { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
-.map-selection-chip { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; background: var(--bg-card); border: 1px solid var(--border-aged); border-radius: 12px; font-size: 0.75rem; color: var(--fg-ink); }
-.map-selection-chip .remove { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; background: rgba(0,0,0,0.05); }
-.map-selection-chip .remove svg { width: 10px !important; height: 10px !important; stroke: var(--accent-red); }
-.map-fullscreen-hint { text-align: center; font-size: 0.7rem; color: var(--fg-muted); font-style: italic; }
-.map-floating-selection { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: var(--accent-sea); color: white; border: none; border-radius: 24px; padding: 10px 20px; align-items: center; gap: 8px; cursor: pointer; z-index: 10000; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; }
-.map-floating-selection svg { width: 18px !important; height: 18px !important; stroke: white; }
-
-/* EL BOTÓN LEGIBLE DEL MAPA */
-.popup-btn { background: var(--accent-sea); color: white !important; border: none !important; padding: 8px 14px !important; border-radius: 6px !important; cursor: pointer !important; font-weight: bold !important; width: 100% !important; margin-top: 8px; }
-
-.fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.hidden { display: none !important; }
-
-
-/* --- DISEÑO ACORDEÓN DE RECOMENDACIONES (REDISEÑO ELEGANTE) --- */
-
-.category-row {
-  border-radius: 14px !important;
-  margin-bottom: 14px !important; /* Menos espacio muerto entre tarjetas */
-  border: 2px solid var(--border-aged) !important;
-  overflow: hidden !important; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important; /* Sombra más sutil */
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  background: transparent !important;
-}
-
-/* Colores pastel refinados (Incluida la nueva sección "Beber") */
-.category-row.cat-clima { background-color: #f0f4f8 !important; border-color: #d9e2ec !important; } /* Bruma marina */
-.category-row.cat-comer { background-color: #fffbf0 !important; border-color: #f0e6d2 !important; } /* Crema / Mantequilla */
-.category-row.cat-beber { background-color: #fcf0f2 !important; border-color: #f0d8dc !important; } /* Vino rosado suave */
-.category-row.cat-disfrutar { background-color: #f4f6f0 !important; border-color: #dce4d2 !important; } /* Verde musgo claro */
-
-/* --- DISEÑO ACORDEÓN DE RECOMENDACIONES (MODO ULTRA COMPACTO) --- */
-
-.category-row {
-  border-radius: 12px !important; /* Bordes un pelín menos redondeados para mayor elegancia */
-  margin-bottom: 12px !important; /* Menos espacio entre tarjetas para densificar la vista */
-  border: 2px solid var(--border-aged) !important;
-  overflow: hidden !important; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  background: transparent !important;
-}
-
-/* Colores pastel refinados (con la nueva sección de vino rosado suave) */
-.category-row.cat-clima { background-color: #f0f4f8 !important; border-color: #d9e2ec !important; } /* Bruma marina */
-.category-row.cat-comer { background-color: #fffbf0 !important; border-color: #f0e6d2 !important; } /* Crema / Mantequilla */
-.category-row.cat-beber { background-color: #fcf0f2 !important; border-color: #f0d8dc !important; } /* Vino rosado suave */
-.category-row.cat-disfrutar { background-color: #f4f6f0 !important; border-color: #dce4d2 !important; } /* Verde musgo claro */
-
-/* Cabecera: El control total de altura */
-/* --- LA DIETA ABSOLUTA: ALTURA FIJA Y CERO RELLENO VERTICAL --- */
-
-.category-header {
-  padding: 0 16px !important;  /* CERO padding arriba y abajo */
-  height: 48px !important;     /* Altura bloqueada a 48px */
-  min-height: 48px !important; /* Prohibido encoger */
-  max-height: 48px !important; /* Prohibido crecer */
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  cursor: pointer !important;
-  -webkit-tap-highlight-color: transparent !important;
-  overflow: hidden !important; /* Si algo sobresale, se oculta */
-}
-
-.category-header h3 {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important; 
-  font-family: 'Playfair Display', serif !important;
-  font-size: 1.05rem !important; /* Letra ajustada */
-  line-height: 48px !important; /* Centrado vertical matemático exacto a la caja */
-  color: var(--fg-ink) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-weight: 700 !important;
-  white-space: nowrap !important; 
-}
-
-/* Flecha más pequeñita y proporcionada */
-.category-arrow {
-  width: 28px !important; 
-  height: 28px !important;
-  background: rgba(0,0,0,0.04) !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: all 0.4s ease !important;
-  flex-shrink: 0 !important; /* PROHÍBE que el título largo aplaste la flecha */
-}
-.category-arrow svg { width: 16px !important; height: 16px !important; stroke: var(--fg-ink) !important; }
-
-/* Efecto al abrir */
-.category-row.expanded {
-  border-color: var(--accent-sea) !important;
-  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.12) !important;
-}
-.category-row.expanded .category-arrow { transform: rotate(180deg) !important; background: var(--accent-sea) !important; }
-.category-row.expanded .category-arrow svg { stroke: white !important; }
-
-/* Contenido desplegable con efecto "Cajón 3D" */
-.category-content {
-  max-height: 0;
+html {
+  height: 100%;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: inset 0px 8px 12px -10px rgba(0,0,0,0.15);
-  background: rgba(0,0,0,0.015);
-}
-.category-row.expanded .category-content {
-  max-height: 2000px;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Efecto al abrir */
-.category-row.expanded {
-  border-color: var(--accent-sea) !important;
-  box-shadow: 0 8px 24px rgba(26, 74, 94, 0.12) !important;
-}
-.category-row.expanded .category-arrow { transform: rotate(180deg) !important; background: var(--accent-sea) !important; }
-.category-row.expanded .category-arrow svg { stroke: white !important; }
-
-/* Contenido desplegable con efecto "Cajón 3D" */
-.category-content {
-  max-height: 0;
+body {
+  height: 100%;
   overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: inset 0px 8px 12px -10px rgba(0,0,0,0.15);
-  background: rgba(0,0,0,0.015);
-}
-.category-row.expanded .category-content {
-  max-height: 2000px; /* Aumentado por si metes mucho texto */
-}
-
-/* 2. Ajuste del carrusel: Centrado perfecto */
-.horizontal-scroll {
-  padding: 8px 0 30px 0 !important; /* Quitamos padding lateral para que el scroll empiece en el borde de la pantalla */
-  gap: 0 !important; /* Quitamos gap, el espacio lo dará el margin de la tarjeta */
-  scroll-snap-type: x mandatory !important;
+  font-family: 'Google Sans', 'Montserrat', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-ink);
+  background: var(--bg-paper);
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* 3. Tarjetas: 1 sola a la vez, perfectamente centrada */
-.rec-card {
-  flex: 0 0 calc(100% - 40px) !important; /* Ocupa todo el ancho menos 20px por lado */
-  margin: 0 20px !important; /* El margen que centra la tarjeta */
-  scroll-snap-align: center !important;
-  
-  /* Animación suave */
-  opacity: 0 !important;
-  transform: translateY(15px) !important; 
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease !important;
+h1, h2, h3 {
+  font-family: 'Google Sans Display', 'Playfair Display', serif;
+  font-weight: 700;
 }
 
-/* 4. Aparición al abrir el acordeón */
-.category-row.expanded .rec-card {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition-delay: 0.1s !important;
-}
-/* --- TRANSFORMACIÓN A APP NATIVA --- */
+img { max-width: 100%; height: auto; display: block; }
 
-/* 1. Ocultar los divisores antiguos (ya no hacen falta si no hay scroll infinito) */
-.main-content > .decorative-divider {
-  display: none !important;
-}
+a { color: var(--accent-sea); text-decoration: none; }
 
-/* 2. Pantallas de la App */
-.app-screen {
-  display: none !important; /* Ocultas por defecto */
-  animation: fadeInTab 0.4s ease forwards; /* Animación suave al entrar */
-}
+/* ── 3. LAYOUT DE APP — NAVEGACIÓN POR PESTAÑAS ──────────────── */
 
-/* Solo la pantalla activa se muestra */
-.app-screen.active-screen {
-  display: flex !important; 
+/* Contenedor principal oculto hasta login */
+#mainContent {
+  display: none;
+  position: fixed;
+  inset: 0;
+  bottom: 0;
 }
+#mainContent.visible { display: block; }
 
-@keyframes fadeInTab {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 3. El Menú Inferior (Diseño Premium) */
-.bottom-menu {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(10px) !important; /* Efecto cristal de iOS */
+/* Todas las secciones ocupan toda la pantalla menos el menú */
+#hero,
+#recomendaciones,
+#lugares,
+#generador {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 64px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
-.menu-item {
-  position: relative;
-  padding: 8px 16px !important;
-  border-radius: 16px !important;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-}
-
-/* EL BOTÓN ACTIVO: Efecto Píldora que tú pedías */
-.menu-item.active {
-  background: rgba(26, 74, 94, 0.08) !important; /* Fondito azul claro */
-  color: var(--accent-sea) !important;
-  transform: translateY(-4px) !important; /* Se eleva un poquito */
-}
-
-.menu-item.active svg {
-  stroke-width: 2.2 !important; /* Icono más gordito */
-}
-
-.menu-item.active span {
-  font-weight: 700 !important; /* Letra en negrita */
-  font-size: 0.65rem !important;
-}
-/* --- BLOQUEO TOTAL DE SCROLL (APP NATIVA REAL) --- */
-
-/* 1. Aniquilamos los separadores de estrellita (ya no los necesitamos) */
-.decorative-divider {
-  display: none !important;
-}
-
-/* 2. REGLA DE ORO: Si la pantalla NO está activa, NO existe */
-#hero:not(.active-screen),
-#recomendaciones:not(.active-screen),
-#lugares:not(.active-screen),
-#generador:not(.active-screen) {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  opacity: 0 !important;
-}
-
-/* 3. Nos aseguramos de que la activa se dibuje correctamente */
+/* Solo la sección activa se muestra */
 #hero.active-screen {
-  display: flex !important; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px 24px;
 }
 
 #recomendaciones.active-screen,
 #lugares.active-screen,
 #generador.active-screen {
-  display: block !important; 
-  min-height: 100vh !important;
-  animation: fadeInTab 0.4s ease forwards !important;
+  display: block;
+  padding: 24px 16px 32px;
 }
-/* ========================================================= */
-/* SOLUCIÓN FINAL: ALTURA Y DESPLAZAMIENTO GARANTIZADO      */
-/* ========================================================= */
 
-/* 1. Forzamos al contenedor a tener altura suficiente para la tarjeta */
-.province-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(0,0,0,0.02);
-}
-
-/* Cuando se expande, le damos altura de sobra para que no corte la tarjeta */
-.province-box.expanded .province-content {
-    max-height: 600px !important; /* Altura suficiente para la foto y el título */
-}
-
-/* 2. El carrusel: Evitamos que nada lo comprima */
-.places-carousel {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    padding: 20px 0 40px 0 !important; /* Espacio abajo para que no choque con el borde */
-    -webkit-overflow-scrolling: touch !important;
-    scroll-snap-type: x mandatory !important;
-}
-
-/* 3. La tarjeta con medidas fijas que no fallan */
-.places-carousel .place-card {
-    flex: 0 0 280px !important;      /* Ancho fijo de 280px */
-    width: 280px !important;
-    min-width: 280px !important;
-    margin: 0 12px !important;       /* Separación entre tarjetas */
-    scroll-snap-align: center !important;
-    
-    /* Reset de altura para que no se estire raro */
-    height: auto !important; 
-    display: flex !important;
-    flex-direction: column !important;
-    
-    /* Aseguramos que sea visible */
-    opacity: 1 !important;
-    transform: none !important;
-}
-
-/* Ajuste para las imágenes dentro del carrusel */
-.places-carousel .place-image {
-    height: 180px !important;
-    min-height: 180px !important;
-}
-
-/* Ocultar barra de scroll para estética limpia */
-.places-carousel::-webkit-scrollbar {
-    display: none !important;
-}
-/* ========================================================= */
-/* --- FOTOS ELEGANTES EN TARJETAS DE RECOMENDACIÓN ---      */
-/* ========================================================= */
-
-.rec-card-img {
-  width: 100% !important; 
-  height: 140px !important; /* Altura FIJA para que todas sean exactamente iguales */
-  min-height: 140px !important; 
-  max-height: 140px !important; 
-  object-fit: cover !important; /* Recorte perfecto sin deformar la foto */
-  border-radius: 8px !important; 
-  margin-bottom: 12px !important;
-  display: block !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-  
-  /* Filtro elegante para que peguen con el diseño de la app */
-  filter: sepia(10%) contrast(95%) brightness(95%) !important; 
-  transition: all 0.4s ease !important;
-}
-
-/* Al tocar la tarjeta, la foto se ilumina y hace un pequeño zoom */
-.rec-card:hover .rec-card-img, 
-.rec-card:active .rec-card-img {
-  filter: sepia(0%) contrast(105%) brightness(100%) !important;
-  transform: scale(1.02) !important;
-}
-
-/* Ajuste fino para los títulos debajo de la foto */
-.rec-card h4 {
-  margin-top: 8px !important;
-  font-size: 1.05rem !important;
-  line-height: 1.3 !important;
-}
-/* ========================================================= */
-/* --- ALINEACIÓN PERFECTA DE TARJETAS (ANCLADAS ARRIBA) --- */
-/* ========================================================= */
-
-.horizontal-scroll {
-  align-items: stretch !important; /* Obliga a todas las tarjetas a igualar la altura de la más alta */
-}
-
-.rec-card {
-  justify-content: flex-start !important; /* Obliga a que la foto y el texto siempre empiecen desde el techo */
-  height: auto !important; 
-}
-/* ========================================================= */
-/* --- DISEÑO ACORDEÓN DE PROVINCIAS (LUGARES) RECUPERADO ---*/
-/* ========================================================= */
-
-.province-box {
-  border-radius: 12px !important;
-  margin-bottom: 16px !important;
-  border: 2px solid var(--border-aged) !important;
-  overflow: hidden !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  background: #ffffff !important;
-}
-
-/* CABECERA PRINCIPAL */
-.province-header {
-  padding: 0 !important; 
-  min-height: 75px !important; 
-  display: flex !important;
-  align-items: stretch !important; 
-  cursor: pointer !important;
-  -webkit-tap-highlight-color: transparent !important;
-  transition: background 0.3s ease !important;
-}
-
-/* LOS GRADIENTES DE COLOR RECUPERADOS Y ADAPTADOS */
-.province-header.acoruna { background: linear-gradient(135deg, rgba(44, 105, 141, 0.15) 0%, rgba(44, 105, 141, 0.02) 100%) !important; }
-.province-header.lugo { background: linear-gradient(135deg, rgba(61, 90, 71, 0.15) 0%, rgba(61, 90, 71, 0.02) 100%) !important; }
-.province-header.ourense { background: linear-gradient(135deg, rgba(196, 90, 63, 0.12) 0%, rgba(196, 90, 63, 0.02) 100%) !important; }
-.province-header.pontevedra { background: linear-gradient(135deg, rgba(38, 128, 128, 0.15) 0%, rgba(38, 128, 128, 0.02) 100%) !important; }
-
-/* EL SIDEBAR DEL MAPA */
-.bloque-map-sidebar { 
-  width: 75px; 
-  flex-shrink: 0; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  background: rgba(255,255,255,0.4); 
-  border-right: 1px solid rgba(0,0,0,0.05); 
-}
-.bloque-map-mini { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
-.bloque-map-mini img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
-
-/* EL CUERPO DEL TEXTO */
-.bloque-body { flex: 1; display: flex; align-items: center; padding: 10px 14px; min-width: 0; }
-.bloque-content-wrapper { display: flex; flex-direction: column; width: 100%; }
-.bloque-nombre { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--fg-ink); display: flex; align-items: center; margin-bottom: 2px;}
-.bloque-subtitulo { font-size: 0.75rem; color: var(--fg-muted); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: block; }
-
-/* LA ZONA DE LA FLECHA Y CONTADOR */
-.bloque-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 0 14px; border-left: 1px solid rgba(0,0,0,0.05); }
-.bloque-contador { background: rgba(0,0,0,0.06); color: var(--fg-ink); padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
-
-.province-arrow {
-  width: 28px !important;
-  height: 28px !important;
-  background: rgba(0,0,0,0.04) !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: transform 0.4s ease, background 0.4s ease !important;
-  flex-shrink: 0 !important;
-}
-
-.province-arrow svg {
-  width: 16px !important;
-  height: 16px !important;
-  stroke: var(--fg-ink) !important;
-  transition: stroke 0.4s ease !important;
-}
-
-/* --- ESTADOS AL ABRIR LA PROVINCIA (BORDES PERSONALIZADOS) --- */
-.province-box.expanded .province-arrow { transform: rotate(180deg) !important; }
-.province-box.expanded .province-arrow svg { stroke: white !important; }
-.province-box.expanded .province-content { max-height: 5000px !important; }
-
-/* A Coruña */
-#prov-acoruna.expanded { border-color: #2c698d !important; box-shadow: 0 8px 24px rgba(44, 105, 141, 0.12) !important; }
-#prov-acoruna.expanded .province-arrow { background: #2c698d !important; }
-
-/* Lugo */
-#prov-lugo.expanded { border-color: #3d5a47 !important; box-shadow: 0 8px 24px rgba(61, 90, 71, 0.12) !important; }
-#prov-lugo.expanded .province-arrow { background: #3d5a47 !important; }
-
-/* Ourense */
-#prov-ourense.expanded { border-color: #c45a3f !important; box-shadow: 0 8px 24px rgba(196, 90, 63, 0.12) !important; }
-#prov-ourense.expanded .province-arrow { background: #c45a3f !important; }
-
-/* Pontevedra */
-#prov-pontevedra.expanded { border-color: #268080 !important; box-shadow: 0 8px 24px rgba(38, 128, 128, 0.12) !important; }
-#prov-pontevedra.expanded .province-arrow { background: #268080 !important; }
-
-/* ========================================================= */
-/* --- CORRECCIÓN FINAL: FICHA DE LUGARES INDEPENDIENTES --- */
-/* ========================================================= */
-
-/* Usamos el ID de la sección #lugares para máxima especificidad */
-#lugares .horizontal-scroll.places-carousel {
-  align-items: flex-start !important; /* Rompe el estiramiento de altura coincidente */
-}
-
-/* Y aseguramos que la tarjeta en sí no herede el stretch ni tenga altura fija */
-#lugares .horizontal-scroll.places-carousel .place-card {
-  height: auto !important; /* Cada tarjeta decide su altura */
-  max-height: none !important; 
-  align-self: flex-start !important; /* Se alinea arriba, cada una a su ritmo */
-}
-/* ========================================================= */
-/* --- CORRECCIÓN: ALTURA PARA LAS TARJETAS XXL ---          */
-/* ========================================================= */
-
-/* Le damos muchísimo más espacio a la ficha del lugar para que no corte el texto */
-.place-card.expanded .place-content {
-  max-height: 8000px !important; 
-}
-
-/* Y le subimos el techo a la provincia entera por si abres varias cosas a la vez */
-.province-box.expanded .province-content {
-  max-height: 15000px !important; 
-}
-/* ========================================================= */
-/* --- COLORES PARA LAS TARJETAS DE RECOMENDACIONES ---      */
-/* ========================================================= */
-
-/* 1. Antes de venir (Mostaza / Crema) */
-.province-header.rec-antes { background: linear-gradient(135deg, rgba(212, 163, 115, 0.15) 0%, rgba(212, 163, 115, 0.02) 100%) !important; }
-#rec-antes.expanded { border-color: #d4a373 !important; box-shadow: 0 8px 24px rgba(212, 163, 115, 0.12) !important; }
-#rec-antes.expanded .province-arrow { background: #d4a373 !important; }
-
-/* 2. Comer bien (Teja / Coral) */
-.province-header.rec-comer { background: linear-gradient(135deg, rgba(231, 111, 81, 0.15) 0%, rgba(231, 111, 81, 0.02) 100%) !important; }
-#rec-comer.expanded { border-color: #e76f51 !important; box-shadow: 0 8px 24px rgba(231, 111, 81, 0.12) !important; }
-#rec-comer.expanded .province-arrow { background: #e76f51 !important; }
-
-/* 3. Beber bien (Vino / Burdeos) */
-.province-header.rec-beber { background: linear-gradient(135deg, rgba(157, 129, 137, 0.15) 0%, rgba(157, 129, 137, 0.02) 100%) !important; }
-#rec-beber.expanded { border-color: #9d8189 !important; box-shadow: 0 8px 24px rgba(157, 129, 137, 0.12) !important; }
-#rec-beber.expanded .province-arrow { background: #9d8189 !important; }
-
-/* 4. Disfrutar Galicia (Verde Musgo) */
-.province-header.rec-disfrutar { background: linear-gradient(135deg, rgba(107, 112, 92, 0.15) 0%, rgba(107, 112, 92, 0.02) 100%) !important; }
-#rec-disfrutar.expanded { border-color: #6b705c !important; box-shadow: 0 8px 24px rgba(107, 112, 92, 0.12) !important; }
-#rec-disfrutar.expanded .province-arrow { background: #6b705c !important; }
-/* ========================================================= */
-/* --- CORRECCIÓN DEFINITIVA: ABRIR RECOMENDACIONES ---      */
-/* ========================================================= */
-
-#recomendaciones .province-content {
-  max-height: 0 !important;
-  opacity: 0 !important;
-  overflow: hidden !important;
-  visibility: hidden !important;
-  transition: all 0.4s ease !important;
-}
-
-#recomendaciones .province-box.expanded .province-content {
-  max-height: 2000px !important; 
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-}
-/* ========================================================= */
-/* --- RESCATE ABSOLUTO: TARJETAS DE RECOMENDACIONES ---     */
-/* ========================================================= */
-
-/* 1. La caja cerrada */
-#recomendaciones .province-box .province-content {
-  max-height: 0 !important;
-  opacity: 0 !important;
-  overflow: hidden !important;
-  visibility: hidden !important;
-  transition: all 0.4s ease !important;
-}
-
-/* 2. La caja abierta (Forzamos visibilidad absoluta) */
-#recomendaciones .province-box.expanded .province-content {
-  max-height: 2000px !important; 
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-}
-
-/* 3. El contenedor interior (Volvemos al carrusel lateral) */
-#recomendaciones .province-box.expanded .horizontal-scroll {
-  display: flex !important;
-  flex-direction: row !important; /* Volvemos al scroll horizontal */
-  opacity: 1 !important;
-  visibility: visible !important;
-  overflow-x: auto !important; /* Activamos el scroll */
-  gap: 16px !important;
-  padding: 16px 20px 24px 20px !important;
-  -webkit-overflow-scrolling: touch !important;
-  scroll-snap-type: x mandatory !important; /* Efecto imán al deslizar */
-}
-
-/* 4. Las tarjetas (Tamaño XXL, sin frenos) */
-#recomendaciones .province-box.expanded .rec-card {
-  display: flex !important;
-  flex-direction: column !important;
-  flex: 0 0 93% !important; /* LA MAGIA: 93% para que asome solo un hilo de la siguiente */
-  max-width: none !important; /* QUITAMOS el límite de tamaño */
-  scroll-snap-align: center !important; 
-  opacity: 1 !important;
-  visibility: visible !important;
-  background: #ffffff !important;
-  border-radius: 12px !important;
-  padding: 16px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
-  border: 1px solid rgba(0,0,0,0.05) !important;
-  height: auto !important;
-  white-space: normal !important;
-}
-
-/* 5. Fotos y textos (Forzamos a que aparezcan y tengan color) */
-#recomendaciones .province-box.expanded .rec-card img {
-  display: block !important;
-  width: 100% !important;
-  height: 140px !important;
-  object-fit: cover !important;
-  border-radius: 8px !important;
-  margin-bottom: 12px !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-#recomendaciones .province-box.expanded .rec-card h4,
-#recomendaciones .province-box.expanded .rec-card p,
-#recomendaciones .province-box.expanded .rec-card ul,
-#recomendaciones .province-box.expanded .rec-card li {
-  opacity: 1 !important;
-  visibility: visible !important;
-  color: #2c2416 !important;
-  display: block !important;
-}
-/* ========================================================= */
-/* --- INDICADOR LATERAL SUTIL (TRIÁNGULO CSS) ---           */
-/* ========================================================= */
-
-/* 1. Preparamos el contenedor para anclar el triángulo */
-#recomendaciones .province-box.expanded .province-content {
-  position: relative !important;
-}
-
-/* 2. Dibujamos el triángulo en el margen derecho */
-#recomendaciones .province-box.expanded .province-content::after {
-  content: '' !important;
-  position: absolute !important;
-  right: 6px !important; /* Pegadito al borde derecho de la pantalla */
-  top: 60% !important;   /* Más o menos a la altura del texto, como en tu imagen */
-  transform: translateY(-50%) !important;
-  z-index: 10 !important;
-  pointer-events: none !important; /* Para que el dedo lo traspase al deslizar */
-  
-  /* Truco CSS para dibujar un triángulo */
-  width: 0 !important;
-  height: 0 !important;
-  border-top: 8px solid transparent !important;
-  border-bottom: 8px solid transparent !important;
-  border-left: 10px solid #c8a97e !important; /* El color tostado/dorado premium */
-  
-  /* Animación suave de empuje */
-  animation: empujaTriangulo 2s infinite ease-in-out !important;
-}
-
-/* 3. La animación para que haga el gesto de deslizar */
-@keyframes empujaTriangulo {
-  0%, 100% { transform: translate(0, -50%); opacity: 0.3; }
-  50% { transform: translate(4px, -50%); opacity: 0.9; }
-}
-
-
-/* ================================================================ */
-/* === MATERIAL DESIGN 3 EXPRESSIVE — GALICIA APP               === */
-/* ================================================================ */
-
-/* --- FUENTE MD3 --- */
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;700&display=swap');
-
-/* --- TOKENS MD3 --- */
-:root {
-  /* Tipografía */
-  --md-font:         'Google Sans', 'Roboto', sans-serif;
-  --md-font-display: 'Google Sans Display', 'Google Sans', sans-serif;
-
-  /* Paleta primaria — Azul Atlántico */
-  --md-primary:          #1a5276;
-  --md-on-primary:       #ffffff;
-  --md-primary-cont:     #d6e4f0;
-  --md-on-primary-cont:  #003355;
-
-  /* Superficie */
-  --md-surface:          #FFFBFE;
-  --md-surface-1:        #f0ecf8;
-  --md-outline:          #CAC4D0;
-  --md-outline-var:      #E7E0EC;
-
-  /* Colores categoría */
-  --md-clima-bg:    #dce8f5; --md-clima-on:    #0d3a5c; --md-clima-acc:   #185fa5;
-  --md-comer-bg:    #fef0d9; --md-comer-on:    #4a2800; --md-comer-acc:   #854f0b;
-  --md-beber-bg:    #fce4ef; --md-beber-on:    #5c0a2e; --md-beber-acc:   #993556;
-  --md-disf-bg:     #e2f0d5; --md-disf-on:     #1a3d08; --md-disf-acc:    #3b6d11;
-
-  /* Colores provincia */
-  --md-ac-strip: #185fa5; --md-ac-tag-bg: #d6e4f5; --md-ac-tag-on: #0d3a5c;
-  --md-lu-strip: #3b6d11; --md-lu-tag-bg: #ddf0c5; --md-lu-tag-on: #173404;
-  --md-ou-strip: #854f0b; --md-ou-tag-bg: #fde8c0; --md-ou-tag-on: #412402;
-  --md-po-strip: #0f6e56; --md-po-tag-bg: #d5f0e5; --md-po-tag-on: #04342c;
-
-  /* Shapes MD3 Expressive */
-  --md-shape-sm:   8px;
-  --md-shape-md:   12px;
-  --md-shape-lg:   16px;
-  --md-shape-xl:   28px;
-  --md-shape-full: 50px;
-
-  /* Elevación MD3 */
-  --md-elev-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
-  --md-elev-2: 0 3px 6px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.08);
-
-  /* Motion MD3 */
-  --md-ease-standard: cubic-bezier(0.2,0,0,1);
-  --md-ease-decel:    cubic-bezier(0,0,0,1);
-  --md-ease-accel:    cubic-bezier(0.3,0,1,1);
-}
-
-/* --- TIPOGRAFÍA GLOBAL MD3 --- */
-body {
-  font-family: var(--md-font) !important;
-  background: var(--md-surface) !important;
-}
-
-h1, h2, h3 {
-  font-family: var(--md-font-display) !important;
-}
-
-.hero-title {
-  font-family: var(--md-font-display) !important;
-  letter-spacing: -0.5px !important;
-}
-
-.section-title {
-  font-family: var(--md-font-display) !important;
-  font-size: 1.75rem !important;
-}
-
-.section-number {
-  background: var(--md-primary-cont) !important;
-  color: var(--md-on-primary-cont) !important;
-  border: none !important;
-  font-family: var(--md-font) !important;
-  font-weight: 700 !important;
-}
-
-/* --- FEEDBACK TÁCTIL GLOBAL (STATE LAYER MD3) --- */
-.province-box,
-.bloque-card,
-.place-card,
-.rec-card,
-.menu-item,
-.fav-btn,
-.province-header,
-.bloque-header {
-  -webkit-tap-highlight-color: transparent !important;
-  position: relative !important;
-}
-
-/* State layer overlay */
-.province-box::after,
-.bloque-card::after,
-.place-card::after,
-.rec-card::after {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: inherit !important;
-  background: transparent !important;
-  transition: background 0.18s ease !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-}
-
-.province-box:active::after,
-.bloque-card:active::after { background: rgba(0,0,0,0.07) !important; }
-.place-card:active::after   { background: rgba(0,0,0,0.06) !important; }
-.rec-card:active::after     { background: rgba(0,0,0,0.05) !important; }
-
-.province-box:active,
-.bloque-card:active {
-  transform: scale(0.975) !important;
-  transition: transform 0.12s var(--md-ease-standard) !important;
-}
-
-.place-card:active {
-  transform: scale(0.975) !important;
-  box-shadow: var(--md-elev-1) !important;
-  transition: transform 0.12s var(--md-ease-standard), box-shadow 0.12s ease !important;
-}
-
-.rec-card:active {
-  transform: scale(0.97) !important;
-  transition: transform 0.12s var(--md-ease-standard) !important;
-}
-
-.fav-btn:active {
-  transform: scale(1.35) !important;
-  transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1) !important;
-}
-
-/* --- SHAPES MD3 EXPRESSIVE — ESQUINAS GENEROSAS --- */
-.province-box,
-.bloque-card {
-  border-radius: var(--md-shape-xl) !important;
-  overflow: hidden !important;
-  transition: transform 0.15s var(--md-ease-standard),
-              box-shadow 0.25s ease !important;
-}
-
-.rec-card {
-  border-radius: var(--md-shape-lg) !important;
-  background: #ffffff !important;
-}
-
-.place-card {
-  border-radius: var(--md-shape-xl) !important;
-  overflow: hidden !important;
-  box-shadow: var(--md-elev-1) !important;
-  transition: transform 0.15s var(--md-ease-standard),
-              box-shadow 0.2s ease !important;
-}
-
-/* --- ACORDEONES RECOMENDACIONES — FILLED TONAL MD3 --- */
-
-/* Antes de venir */
-#rec-antes {
-  border: none !important;
-  background: var(--md-clima-bg) !important;
-  box-shadow: none !important;
-}
-.province-header.rec-antes {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(24,95,165,0.15) !important;
-}
-#rec-antes .bloque-nombre      { color: var(--md-clima-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
-#rec-antes .bloque-subtitulo   { color: var(--md-clima-acc) !important; font-style: normal !important; }
-#rec-antes .bloque-contador    { background: rgba(24,95,165,0.15) !important; color: var(--md-clima-on) !important; border-radius: var(--md-shape-full) !important; }
-#rec-antes.expanded            { box-shadow: var(--md-elev-2) !important; }
-#rec-antes.expanded .province-arrow { background: var(--md-clima-acc) !important; }
-#rec-antes .province-arrow     { border-radius: var(--md-shape-full) !important; }
-
-/* Comer bien */
-#rec-comer {
-  border: none !important;
-  background: var(--md-comer-bg) !important;
-  box-shadow: none !important;
-}
-.province-header.rec-comer {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(133,79,11,0.15) !important;
-}
-#rec-comer .bloque-nombre      { color: var(--md-comer-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
-#rec-comer .bloque-subtitulo   { color: var(--md-comer-acc) !important; font-style: normal !important; }
-#rec-comer .bloque-contador    { background: rgba(133,79,11,0.15) !important; color: var(--md-comer-on) !important; border-radius: var(--md-shape-full) !important; }
-#rec-comer.expanded            { box-shadow: var(--md-elev-2) !important; }
-#rec-comer.expanded .province-arrow { background: var(--md-comer-acc) !important; }
-#rec-comer .province-arrow     { border-radius: var(--md-shape-full) !important; }
-
-/* Beber bien */
-#rec-beber {
-  border: none !important;
-  background: var(--md-beber-bg) !important;
-  box-shadow: none !important;
-}
-.province-header.rec-beber {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(153,53,86,0.15) !important;
-}
-#rec-beber .bloque-nombre      { color: var(--md-beber-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
-#rec-beber .bloque-subtitulo   { color: var(--md-beber-acc) !important; font-style: normal !important; }
-#rec-beber .bloque-contador    { background: rgba(153,53,86,0.15) !important; color: var(--md-beber-on) !important; border-radius: var(--md-shape-full) !important; }
-#rec-beber.expanded            { box-shadow: var(--md-elev-2) !important; }
-#rec-beber.expanded .province-arrow { background: var(--md-beber-acc) !important; }
-#rec-beber .province-arrow     { border-radius: var(--md-shape-full) !important; }
-
-/* Disfrutar */
-#rec-disfrutar {
-  border: none !important;
-  background: var(--md-disf-bg) !important;
-  box-shadow: none !important;
-}
-.province-header.rec-disfrutar {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(59,109,17,0.15) !important;
-}
-#rec-disfrutar .bloque-nombre      { color: var(--md-disf-on)  !important; font-family: var(--md-font) !important; font-size: 1rem !important; }
-#rec-disfrutar .bloque-subtitulo   { color: var(--md-disf-acc) !important; font-style: normal !important; }
-#rec-disfrutar .bloque-contador    { background: rgba(59,109,17,0.15) !important; color: var(--md-disf-on) !important; border-radius: var(--md-shape-full) !important; }
-#rec-disfrutar.expanded            { box-shadow: var(--md-elev-2) !important; }
-#rec-disfrutar.expanded .province-arrow { background: var(--md-disf-acc) !important; }
-#rec-disfrutar .province-arrow     { border-radius: var(--md-shape-full) !important; }
-
-/* Cabecera común de recomendaciones */
-.province-header {
-  min-height: 72px !important;
-}
-.bloque-nombre {
-  font-family: var(--md-font) !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-}
-.bloque-subtitulo {
-  font-style: normal !important;
-  font-size: 0.78rem !important;
-  font-family: var(--md-font) !important;
-}
-.bloque-contador {
-  border-radius: var(--md-shape-full) !important;
-  font-family: var(--md-font) !important;
-  font-weight: 700 !important;
-  font-size: 0.72rem !important;
-}
-
-/* --- MAPA SVG — SE RESPETA INTACTO --- */
-.bloque-map-sidebar {
-  width: 72px !important;
-  background: rgba(255,255,255,0.35) !important;
-  border-right: 1px solid rgba(0,0,0,0.06) !important;
-}
-.bloque-map-mini {
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: var(--md-shape-md) !important;
-  overflow: hidden !important;
-  background: transparent !important;
-  border: none !important;
-}
-.bloque-map-mini img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.12)) !important;
-}
-
-/* --- ACORDEONES LUGARES — FILLED TONAL MD3 + PALETA PROVINCIAL --- */
-
-#prov-acoruna {
-  border: none !important;
-  background: #dce8f5 !important;
-  box-shadow: none !important;
-}
-.province-header.acoruna {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(24,95,165,0.15) !important;
-}
-#prov-acoruna .bloque-nombre    { color: #0d3a5c !important; }
-#prov-acoruna .bloque-subtitulo { color: #185fa5 !important; font-style: normal !important; }
-#prov-acoruna .bloque-contador  { background: rgba(24,95,165,0.15) !important; color: #0d3a5c !important; }
-#prov-acoruna.expanded          { box-shadow: var(--md-elev-2) !important; }
-#prov-acoruna.expanded .province-arrow { background: #185fa5 !important; }
-
-#prov-lugo {
-  border: none !important;
-  background: #ddf0c5 !important;
-  box-shadow: none !important;
-}
-.province-header.lugo {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(59,109,17,0.15) !important;
-}
-#prov-lugo .bloque-nombre    { color: #173404 !important; }
-#prov-lugo .bloque-subtitulo { color: #3b6d11 !important; font-style: normal !important; }
-#prov-lugo .bloque-contador  { background: rgba(59,109,17,0.15) !important; color: #173404 !important; }
-#prov-lugo.expanded          { box-shadow: var(--md-elev-2) !important; }
-#prov-lugo.expanded .province-arrow { background: #3b6d11 !important; }
-
-#prov-ourense {
-  border: none !important;
-  background: #fde8c0 !important;
-  box-shadow: none !important;
-}
-.province-header.ourense {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(133,79,11,0.15) !important;
-}
-#prov-ourense .bloque-nombre    { color: #412402 !important; }
-#prov-ourense .bloque-subtitulo { color: #854f0b !important; font-style: normal !important; }
-#prov-ourense .bloque-contador  { background: rgba(133,79,11,0.15) !important; color: #412402 !important; }
-#prov-ourense.expanded          { box-shadow: var(--md-elev-2) !important; }
-#prov-ourense.expanded .province-arrow { background: #854f0b !important; }
-
-#prov-pontevedra {
-  border: none !important;
-  background: #d5f0e5 !important;
-  box-shadow: none !important;
-}
-.province-header.pontevedra {
-  background: transparent !important;
-  border-bottom: 1px solid rgba(15,110,86,0.15) !important;
-}
-#prov-pontevedra .bloque-nombre    { color: #04342c !important; }
-#prov-pontevedra .bloque-subtitulo { color: #0f6e56 !important; font-style: normal !important; }
-#prov-pontevedra .bloque-contador  { background: rgba(15,110,86,0.15) !important; color: #04342c !important; }
-#prov-pontevedra.expanded          { box-shadow: var(--md-elev-2) !important; }
-#prov-pontevedra.expanded .province-arrow { background: #0f6e56 !important; }
-
-/* Flecha común */
-.province-arrow {
-  border-radius: var(--md-shape-full) !important;
-  transition: transform 0.3s var(--md-ease-standard),
-              background 0.25s ease !important;
-}
-.province-box.expanded .province-arrow {
-  transform: rotate(180deg) !important;
-}
-.province-arrow svg {
-  transition: stroke 0.25s ease !important;
-}
-.province-box.expanded .province-arrow svg { stroke: white !important; }
-
-/* --- TARJETAS DE LUGARES — ELEVATED MD3 + GARANTÍA TÍTULO BLANCO --- */
-
-/* Barra de color superior */
-.place-card { overflow: hidden !important; }
-.place-image { position: relative !important; }
-
-.place-card.acoruna  { border: none !important; background: #ffffff !important; }
-.place-card.lugo     { border: none !important; background: #ffffff !important; }
-.place-card.ourense  { border: none !important; background: #ffffff !important; }
-.place-card.pontevedra { border: none !important; background: #ffffff !important; }
-
-/* Barra de color como pseudo del place-image */
-.place-card.acoruna   .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #185fa5; z-index: 5; }
-.place-card.lugo      .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #3b6d11; z-index: 5; }
-.place-card.ourense   .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #854f0b; z-index: 5; }
-.place-card.pontevedra .place-image::before { content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: #0f6e56; z-index: 5; }
-
-/* Badge numérico provincial */
-.place-card.acoruna   .place-number-badge { background: #185fa5 !important; }
-.place-card.lugo      .place-number-badge { background: #3b6d11 !important; }
-.place-card.ourense   .place-number-badge { background: #854f0b !important; }
-.place-card.pontevedra .place-number-badge { background: #0f6e56 !important; }
-
-/* GARANTÍA TÍTULO BLANCO — múltiple especificidad para que no falle */
-.place-title,
-.place-title-overlay .place-title,
-.place-card .place-title,
-.place-card.acoruna .place-title,
-.place-card.lugo .place-title,
-.place-card.ourense .place-title,
-.place-card.pontevedra .place-title {
-  color: #ffffff !important;
-  font-family: var(--md-font) !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4) !important;
-}
-
-/* Overlay del título */
-.place-title-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%) !important;
-}
-
-/* Label de provincia en el header */
-.place-header {
-  font-family: var(--md-font) !important;
-}
-
-/* Chips de categoría */
-.place-category-chip {
-  border-radius: var(--md-shape-full) !important;
-  font-family: var(--md-font) !important;
-  font-size: 0.68rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.3px !important;
-}
-
-/* --- BOTÓN FAVORITO MD3 — TONAL ICON BUTTON --- */
-.fav-btn {
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: var(--md-shape-full) !important;
-  background: rgba(0,0,0,0.05) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
-              background 0.2s ease !important;
-}
-.fav-btn svg { width: 20px !important; height: 20px !important; }
-.fav-btn.active {
-  background: rgba(179,38,30,0.1) !important;
-}
-.fav-btn.active svg {
-  stroke: #B3261E !important;
-  fill:   #B3261E !important;
-}
-
-/* --- MENÚ INFERIOR MD3 — NAVIGATION BAR --- */
+/* Menú inferior siempre visible */
 .bottom-menu {
-  background: #FFFBFE !important;
-  border-top: 1px solid var(--md-outline-var) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-}
-.menu-container {
-  padding: 12px 8px 10px !important;
-}
-.menu-item {
-  border-radius: 0 !important;
-  padding: 0 12px !important;
-  gap: 4px !important;
-  transition: color 0.2s ease !important;
-  position: relative !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-/* Píldora de indicador MD3 */
-.menu-item::before {
-  content: '' !important;
-  display: block !important;
-  width: 64px !important;
-  height: 32px !important;
-  border-radius: var(--md-shape-full) !important;
-  background: transparent !important;
-  transition: background 0.25s var(--md-ease-standard) !important;
-  position: absolute !important;
-  top: 0 !important;
-}
-.menu-item.active::before {
-  background: var(--md-primary-cont) !important;
-}
-.menu-item svg {
-  position: relative !important;
-  z-index: 1 !important;
-  margin-top: 4px !important;
-}
-.menu-item span {
-  font-family: var(--md-font) !important;
-  font-size: 0.68rem !important;
-  font-weight: 500 !important;
-  position: relative !important;
-  z-index: 1 !important;
-}
-.menu-item.active span {
-  font-weight: 700 !important;
-  color: var(--md-primary) !important;
-}
-.menu-item.active svg {
-  stroke: var(--md-primary) !important;
-}
-.menu-item:active {
-  transform: scale(0.92) !important;
-  transition: transform 0.1s ease !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  z-index: 1000;
+  background: var(--bg-paper);
+  border-top: 1px solid var(--border);
 }
 
-/* --- CARRUSEL TARJETAS REC — DOTS INDICADORES --- */
-.horizontal-scroll {
-  scroll-snap-type: x mandatory !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-
-/* --- SPLASH SCREEN MD3 --- */
-.splash-btn {
-  border-radius: var(--md-shape-xl) !important;
-  font-family: var(--md-font) !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.1px !important;
-}
-.splash-input {
-  border-radius: var(--md-shape-lg) !important;
-  font-family: var(--md-font) !important;
-}
-.splash-title {
-  font-family: var(--md-font-display) !important;
-}
-
-/* --- SECCIÓN HERO --- */
-.hero-title {
-  font-family: var(--md-font-display) !important;
-}
-
-/* --- GENERADOR / BOTONES ACCIÓN MD3 --- */
-.btn-primary {
-  border-radius: var(--md-shape-xl) !important;
-  font-family: var(--md-font) !important;
-  font-weight: 700 !important;
-  background: var(--md-primary) !important;
-}
-.btn-secondary {
-  border-radius: var(--md-shape-xl) !important;
-  font-family: var(--md-font) !important;
-  border-color: var(--md-outline) !important;
-}
-
-/* --- ANIMACIONES DE ENTRADA MD3 --- */
-@keyframes md3FadeSlide {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.active-screen {
-  animation: md3FadeSlide 0.35s var(--md-ease-decel) forwards !important;
-}
-
-
-
-/* ================================================================ */
-/* === HERO REDISEÑADO — TODO VISIBLE SIN SCROLL               === */
-/* ================================================================ */
-
-/* Hero ocupa exactamente el viewport, sin scroll */
-#hero.hero {
-  height: 100dvh !important;
-  min-height: 0 !important;
-  max-height: 100dvh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 10vh 24px calc(80px + env(safe-area-inset-bottom) + 2vh) !important;
-  text-align: center !important;
-  box-sizing: border-box !important;
-}
-
-/* Bloque superior — icono */
-.hero-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-}
-.hero-top svg {
-  width: 44px !important;
-  height: 44px !important;
-  margin: 0 !important;
-}
-
-/* Bloque central — título + subtítulos */
-.hero-center {
+/* ── 4. SPLASH SCREEN ─────────────────────────────────────────── */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  flex: 0 0 auto;
+  justify-content: center;
+  padding: 24px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-.hero-center .hero-title {
-  margin: 0 !important;
-}
-.hero-center .hero-subtitle {
-  margin: 0 !important;
-}
+.splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* Widget ¿Sabías que? — tarjeta tonal MD3 compacta */
-.hero-sabias {
+.splash-content { width: 100%; max-width: 400px; text-align: center; }
+.splash-icon { margin-bottom: 24px; }
+.splash-icon svg { width: 56px; height: 56px; }
+.splash-title {
+  font-size: clamp(2.8rem, 12vw, 4rem);
+  font-weight: 700;
+  color: var(--accent-sea);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.splash-subtitle { font-size: 1rem; color: var(--fg-muted); font-style: italic; margin-bottom: 36px; }
+.splash-form { display: flex; flex-direction: column; gap: 16px; }
+.splash-input {
   width: 100%;
-  max-width: 420px;
-  background: var(--md-primary-cont, #d6e4f0);
-  border-radius: 20px;
-  padding: 14px 18px;
-  cursor: pointer;
-  flex: 0 0 auto;
-  transition: transform 0.18s cubic-bezier(0.2,0,0,1);
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  padding: 16px 20px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--fg-ink);
+  text-align: center;
+  letter-spacing: 0.1em;
+  transition: border-color 0.2s;
 }
-.hero-sabias:active {
-  transform: scale(0.97);
+.splash-input:focus { outline: none; border-color: var(--accent-sea); }
+.splash-input.error { border-color: var(--accent-red); animation: shake 0.4s ease; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.splash-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--accent-sea);
+  color: white;
+  border: none;
+  border-radius: var(--r-xl);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.splash-btn:active { opacity: 0.85; }
+.splash-error { color: var(--accent-red); font-size: 0.85rem; min-height: 1.4em; }
+.splash-footer { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+.splash-footer-text { font-size: 0.82rem; color: var(--fg-muted); line-height: 1.6; }
+.splash-footer-note { font-size: 0.72rem; color: var(--fg-muted); opacity: 0.6; margin-top: 10px; font-style: italic; }
+
+/* ── 5. INSTALL BANNER ────────────────────────────────────────── */
+.install-banner {
+  position: fixed;
+  bottom: 72px;
+  left: 16px;
+  right: 16px;
+  background: var(--accent-sea);
+  color: white;
+  padding: 14px 16px;
+  border-radius: var(--r-lg);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 998;
+  box-shadow: var(--elev-2);
+}
+.install-banner.visible { display: flex; }
+.install-banner-text { font-size: 0.85rem; }
+.install-banner-text strong { display: block; font-size: 0.95rem; margin-bottom: 2px; }
+.install-banner-btn {
+  background: white;
+  color: var(--accent-sea);
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.install-banner-close {
+  background: none;
+  border: none;
+  color: white;
+  opacity: 0.7;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px;
 }
 
-.hero-sabias-label {
+/* ── 6. HERO ──────────────────────────────────────────────────── */
+.hero-top { margin-bottom: 8px; }
+.hero-title {
+  font-size: clamp(3.5rem, 14vw, 5.5rem);
+  color: var(--accent-sea);
+  line-height: 1;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  color: var(--fg-muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* ── 7. CABECERAS DE SECCIÓN ─────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.section-number {
+  width: 28px;
+  height: 28px;
+  background: var(--accent-cont);
+  color: var(--accent-on);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: 1.6rem;
+  color: var(--fg-ink);
+}
+.section-subtitle {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  margin-bottom: 20px;
+}
+
+/* ── 8. ACORDEONES — RECOMENDACIONES ─────────────────────────── */
+.province-box {
+  border-radius: var(--r-xl);
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.25s var(--ease-std), transform 0.12s var(--ease-std);
+}
+.province-box:active { transform: scale(0.975); }
+
+.province-header {
+  display: flex;
+  align-items: stretch;
+  min-height: 68px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bloque-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  min-width: 0;
+}
+.bloque-content-wrapper { flex: 1; min-width: 0; }
+.bloque-nombre {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: inherit;
+  line-height: 1.3;
+}
+.bloque-subtitulo {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 2px;
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bloque-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+}
+.bloque-contador {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+}
+
+.province-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s var(--ease-std), background 0.25s ease;
+}
+.province-arrow svg { width: 16px; height: 16px; }
+.province-box.expanded .province-arrow { transform: rotate(180deg); }
+.province-box.expanded .province-arrow svg { stroke: white; }
+
+.province-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-std);
+  background: rgba(255,255,255,0.5);
+}
+.province-box.expanded .province-content { max-height: 4000px; }
+
+/* Colores por categoría */
+#rec-antes {
+  background: var(--clima-bg);
+  box-shadow: var(--elev-1);
+}
+#rec-antes .bloque-nombre    { color: var(--clima-on); }
+#rec-antes .bloque-subtitulo { color: var(--clima-color); }
+#rec-antes .bloque-contador  { background: rgba(24,95,165,0.15); color: var(--clima-on); }
+#rec-antes .province-arrow   { background: rgba(24,95,165,0.12); }
+#rec-antes .province-arrow svg { stroke: var(--clima-color); }
+#rec-antes.expanded          { box-shadow: var(--elev-2); }
+#rec-antes.expanded .province-arrow { background: var(--clima-color); }
+
+#rec-comer {
+  background: var(--comer-bg);
+  box-shadow: var(--elev-1);
+}
+#rec-comer .bloque-nombre    { color: var(--comer-on); }
+#rec-comer .bloque-subtitulo { color: var(--comer-color); }
+#rec-comer .bloque-contador  { background: rgba(133,79,11,0.15); color: var(--comer-on); }
+#rec-comer .province-arrow   { background: rgba(133,79,11,0.12); }
+#rec-comer .province-arrow svg { stroke: var(--comer-color); }
+#rec-comer.expanded          { box-shadow: var(--elev-2); }
+#rec-comer.expanded .province-arrow { background: var(--comer-color); }
+
+#rec-beber {
+  background: var(--beber-bg);
+  box-shadow: var(--elev-1);
+}
+#rec-beber .bloque-nombre    { color: var(--beber-on); }
+#rec-beber .bloque-subtitulo { color: var(--beber-color); }
+#rec-beber .bloque-contador  { background: rgba(153,53,86,0.15); color: var(--beber-on); }
+#rec-beber .province-arrow   { background: rgba(153,53,86,0.12); }
+#rec-beber .province-arrow svg { stroke: var(--beber-color); }
+#rec-beber.expanded          { box-shadow: var(--elev-2); }
+#rec-beber.expanded .province-arrow { background: var(--beber-color); }
+
+#rec-disfrutar {
+  background: var(--disf-bg);
+  box-shadow: var(--elev-1);
+}
+#rec-disfrutar .bloque-nombre    { color: var(--disf-on); }
+#rec-disfrutar .bloque-subtitulo { color: var(--disf-color); }
+#rec-disfrutar .bloque-contador  { background: rgba(59,109,17,0.15); color: var(--disf-on); }
+#rec-disfrutar .province-arrow   { background: rgba(59,109,17,0.12); }
+#rec-disfrutar .province-arrow svg { stroke: var(--disf-color); }
+#rec-disfrutar.expanded          { box-shadow: var(--elev-2); }
+#rec-disfrutar.expanded .province-arrow { background: var(--disf-color); }
+
+/* ── 9. CARRUSEL HORIZONTAL ──────────────────────────────────── */
+.horizontal-scroll {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: visible;
+  gap: 12px;
+  padding: 12px 16px 20px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.horizontal-scroll::-webkit-scrollbar { display: none; }
+
+.rec-card {
+  flex: 0 0 82%;
+  scroll-snap-align: start;
+  background: white;
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  box-shadow: var(--elev-1);
+  display: flex;
+  flex-direction: column;
+  white-space: normal;
+  transition: transform 0.12s var(--ease-std);
+}
+.rec-card:active { transform: scale(0.97); }
+
+.rec-card-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  margin-bottom: 10px;
+}
+
+.rec-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--fg-ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.rec-card p {
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--fg-muted);
+  margin-bottom: 4px;
+}
+.rec-card ul { font-size: 0.82rem; color: var(--fg-muted); padding-left: 18px; }
+.rec-card li { margin-bottom: 3px; }
+.rec-card a  { color: var(--accent-sea); }
+
+/* ── 10. ACORDEONES — LUGARES / PROVINCIAS ───────────────────── */
+.bloque-card {
+  border-radius: var(--r-xl);
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--elev-1);
+  transition: box-shadow 0.25s ease, transform 0.12s var(--ease-std);
+}
+.bloque-card:active { transform: scale(0.975); }
+
+.bloque-header {
+  display: flex;
+  align-items: stretch;
+  min-height: 72px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bloque-map-sidebar {
+  width: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.35);
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+.bloque-map-mini {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.bloque-map-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.12));
+}
+
+.bloque-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s var(--ease-std), background 0.25s ease;
+}
+.bloque-arrow svg { width: 16px; height: 16px; }
+.bloque-card.expanded .bloque-arrow { transform: rotate(180deg); }
+.bloque-card.expanded .bloque-arrow svg { stroke: white; }
+
+.bloque-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-std);
+  background: rgba(255,255,255,0.4);
+}
+.bloque-card.expanded .bloque-content { max-height: 15000px; }
+.bloque-content-inner { padding: 16px; }
+
+/* Colores de provincia */
+#prov-acoruna  { background: var(--ac-bg); }
+#prov-lugo     { background: var(--lu-bg); }
+#prov-ourense  { background: var(--ou-bg); }
+#prov-pontevedra { background: var(--po-bg); }
+
+#prov-acoruna   .bloque-nombre    { color: #0d3a5c; }
+#prov-lugo      .bloque-nombre    { color: #173404; }
+#prov-ourense   .bloque-nombre    { color: #412402; }
+#prov-pontevedra .bloque-nombre   { color: #04342c; }
+
+#prov-acoruna   .bloque-subtitulo { color: var(--ac-color); }
+#prov-lugo      .bloque-subtitulo { color: var(--lu-color); }
+#prov-ourense   .bloque-subtitulo { color: var(--ou-color); }
+#prov-pontevedra .bloque-subtitulo { color: var(--po-color); }
+
+#prov-acoruna   .bloque-contador  { background: rgba(24,95,165,0.15); color: #0d3a5c; }
+#prov-lugo      .bloque-contador  { background: rgba(59,109,17,0.15); color: #173404; }
+#prov-ourense   .bloque-contador  { background: rgba(133,79,11,0.15); color: #412402; }
+#prov-pontevedra .bloque-contador { background: rgba(15,110,86,0.15); color: #04342c; }
+
+#prov-acoruna   .bloque-arrow     { background: rgba(24,95,165,0.12); }
+#prov-lugo      .bloque-arrow     { background: rgba(59,109,17,0.12); }
+#prov-ourense   .bloque-arrow     { background: rgba(133,79,11,0.12); }
+#prov-pontevedra .bloque-arrow    { background: rgba(15,110,86,0.12); }
+
+#prov-acoruna   .bloque-arrow svg { stroke: var(--ac-color); }
+#prov-lugo      .bloque-arrow svg { stroke: var(--lu-color); }
+#prov-ourense   .bloque-arrow svg { stroke: var(--ou-color); }
+#prov-pontevedra .bloque-arrow svg { stroke: var(--po-color); }
+
+#prov-acoruna.expanded   .bloque-arrow { background: var(--ac-color); }
+#prov-lugo.expanded      .bloque-arrow { background: var(--lu-color); }
+#prov-ourense.expanded   .bloque-arrow { background: var(--ou-color); }
+#prov-pontevedra.expanded .bloque-arrow { background: var(--po-color); }
+
+#prov-acoruna.expanded   { box-shadow: 0 4px 20px rgba(24,95,165,0.18); }
+#prov-lugo.expanded      { box-shadow: 0 4px 20px rgba(59,109,17,0.18); }
+#prov-ourense.expanded   { box-shadow: 0 4px 20px rgba(133,79,11,0.18); }
+#prov-pontevedra.expanded { box-shadow: 0 4px 20px rgba(15,110,86,0.18); }
+
+/* ── 11. TARJETAS DE LUGAR ───────────────────────────────────── */
+.place-card {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 12px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: white;
+  box-shadow: var(--elev-1);
+  position: relative;
+  transition: transform 0.12s var(--ease-std), box-shadow 0.2s ease;
+}
+.place-card:active { transform: scale(0.975); }
+
+/* Barra de color superior por provincia */
+.place-card::before {
+  content: '';
+  display: block;
+  height: 5px;
+  width: 100%;
+}
+.place-card.acoruna::before   { background: var(--ac-color); }
+.place-card.lugo::before      { background: var(--lu-color); }
+.place-card.ourense::before   { background: var(--ou-color); }
+.place-card.pontevedra::before { background: var(--po-color); }
+
+.place-image {
+  width: 100%;
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-cream);
+}
+.place-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.place-number-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  z-index: 5;
+}
+.place-card.acoruna   .place-number-badge { background: var(--ac-color); }
+.place-card.lugo      .place-number-badge { background: var(--lu-color); }
+.place-card.ourense   .place-number-badge { background: var(--ou-color); }
+.place-card.pontevedra .place-number-badge { background: var(--po-color); }
+
+.place-title-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 12px 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.72), transparent);
+  z-index: 4;
+}
+.place-title {
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  line-height: 1.3;
+}
+
+.place-header {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+  min-height: 44px;
+}
+.place-header-left {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 8px;
+  flex: 1;
+  flex-wrap: wrap;
 }
-.hero-sabias-icon {
-  font-size: 14px;
+.place-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 8px;
 }
-.hero-sabias-label > span:nth-child(2) {
-  font-family: var(--md-font, 'Google Sans', sans-serif);
+
+.place-category-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 1.2px;
+  color: white;
+  white-space: nowrap;
+}
+.place-category-chip.ciudades   { background: var(--cat-ciudades); }
+.place-category-chip.villas     { background: var(--cat-villas); }
+.place-category-chip.pueblos    { background: var(--cat-pueblos); }
+.place-category-chip.costa      { background: var(--cat-costa); }
+.place-category-chip.naturaleza { background: var(--cat-naturaleza); }
+.place-category-chip.patrimonio { background: var(--cat-patrimonio); }
+.place-category-chip.magicos    { background: var(--cat-magicos); }
+.place-category-chip.termalismo { background: var(--cat-termalismo); }
+
+.place-toggle-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+  color: var(--fg-muted);
+}
+.place-card.expanded .place-toggle-icon { transform: rotate(180deg); }
+
+.place-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-std);
+}
+.place-card.expanded .place-content { max-height: 4000px; }
+
+.place-content-inner {
+  padding: 14px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Info blocks dentro de tarjeta lugar */
+.info-block {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+}
+.info-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.info-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.info-title {
+  font-size: 0.78rem;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--md-on-primary-cont, #003355);
+  letter-spacing: 0.5px;
+  color: var(--accent-green);
+}
+.info-text { font-size: 0.88rem; color: var(--fg-muted); line-height: 1.5; }
+.info-list { list-style: none; padding: 0; }
+.info-list li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 4px;
+  font-size: 0.88rem;
+  color: var(--fg-muted);
+}
+.info-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+}
+
+/* ── 12. FAVORITOS ────────────────────────────────────────────── */
+.fav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.04);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
+}
+.fav-btn svg { width: 18px; height: 18px; stroke: var(--fg-muted); fill: none; }
+.fav-btn.active { background: rgba(179,38,30,0.1); }
+.fav-btn.active svg { stroke: var(--accent-red); fill: var(--accent-red); }
+.fav-btn:active { transform: scale(1.35); }
+
+.favorites-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.favorites-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-red);
+}
+.favorites-title svg { width: 18px; height: 18px; stroke: var(--accent-red); fill: var(--accent-red); }
+.favorite-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-cream);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  margin-bottom: 8px;
+}
+.favorite-item img { width: 40px; height: 40px; border-radius: var(--r-sm); object-fit: cover; }
+.favorite-info { flex: 1; }
+.favorite-name { font-weight: 700; font-size: 0.88rem; }
+.favorite-time { font-size: 0.72rem; color: var(--fg-muted); }
+.favorite-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.5;
+}
+.favorite-remove svg { width: 16px; height: 16px; stroke: var(--accent-red); }
+
+/* ── 13. MENÚ INFERIOR MD3 ───────────────────────────────────── */
+.menu-container {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 8px 10px;
+  height: 64px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--fg-muted);
   flex: 1;
+  max-width: 80px;
+  position: relative;
+  transition: color 0.2s ease;
 }
-.hero-sabias-hint {
-  font-family: var(--md-font, 'Google Sans', sans-serif);
-  font-size: 0.62rem !important;
-  font-weight: 500 !important;
-  color: #1a5276 !important;
-  opacity: 0.6;
-  letter-spacing: 0.3px !important;
-  text-transform: none !important;
+.menu-item:active { transform: scale(0.9); }
+
+/* Píldora indicadora MD3 */
+.menu-item::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 28px;
+  border-radius: var(--r-full);
+  background: transparent;
+  transition: background 0.25s var(--ease-std);
+  position: absolute;
+  top: 0;
 }
-.hero-sabias-texto {
-  font-family: 'Playfair Display', Georgia, serif;
+.menu-item.active::before  { background: var(--accent-cont); }
+.menu-item.active          { color: var(--accent-sea); }
+
+.menu-item svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  position: relative;
+  z-index: 1;
+  margin-top: 2px;
+}
+.menu-item span {
+  font-size: 0.62rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+.menu-item.active span { font-weight: 700; }
+
+/* ── 14. MAPA ─────────────────────────────────────────────────── */
+.map-container-wrapper { position: relative; }
+.map-container {
+  height: 350px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--bg-cream);
+  border: 2px solid var(--border);
+}
+.map-expand-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: var(--elev-1);
+}
+.map-expand-btn svg { width: 22px; height: 22px; stroke: var(--accent-sea); }
+
+.map-fullscreen {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 9999;
+  background: var(--bg-paper);
+  display: none;
+  flex-direction: column;
+}
+.map-fullscreen.active { display: flex; }
+.map-fullscreen-header {
+  display: flex;
+  flex: 0 0 60px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-cream);
+}
+.map-fullscreen-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-sea);
+}
+.map-fullscreen-close {
+  width: 44px;
+  height: 44px;
+  background: var(--accent-red);
+  border: none;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.map-fullscreen-close svg { width: 22px; height: 22px; stroke: white; stroke-width: 2.5; }
+.map-fullscreen-map { flex: 1; min-height: 0; width: 100%; position: relative; }
+.map-fullscreen-footer {
+  background: var(--bg-cream);
+  border-top: 1px solid var(--border);
+  padding: 8px 12px;
+  flex: 0 0 auto;
+  max-height: 35vh;
+  overflow-y: auto;
+}
+.map-selection-summary { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.map-selection-count { font-size: 0.92rem; font-weight: 700; color: var(--accent-sea); }
+.map-selection-time  { font-size: 0.78rem; color: var(--fg-muted); }
+.map-selection-places { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.map-selection-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  font-size: 0.72rem;
+  color: var(--fg-ink);
+}
+.map-selection-chip .remove {
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.map-selection-chip .remove svg { width: 10px; height: 10px; stroke: var(--accent-red); }
+.map-fullscreen-hint { text-align: center; font-size: 0.68rem; color: var(--fg-muted); font-style: italic; }
+
+.map-floating-selection {
+  position: fixed;
+  bottom: 96px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-sea);
+  color: white;
+  border: none;
+  border-radius: var(--r-full);
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 10000;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: var(--elev-2);
+}
+.map-floating-selection svg { width: 18px; height: 18px; stroke: white; }
+
+.popup-btn {
+  background: var(--accent-sea);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 8px;
+  font-family: inherit;
+}
+
+/* Marcadores mapa */
+.custom-marker {
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.custom-marker.touchable { width: 44px; height: 44px; font-size: 16px; }
+.custom-marker.acoruna    { background: var(--ac-color); }
+.custom-marker.lugo       { background: var(--lu-color); }
+.custom-marker.ourense    { background: var(--ou-color); }
+.custom-marker.pontevedra { background: var(--po-color); }
+.custom-marker.selected-ring { box-shadow: 0 0 0 4px rgba(255,255,255,0.8), 0 2px 8px rgba(0,0,0,0.3); }
+
+.user-location-marker {
+  background: var(--accent-red);
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 0 6px rgba(179,38,30,0.2);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(179,38,30,0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(179,38,30,0); }
+  100% { box-shadow: 0 0 0 0 rgba(179,38,30,0); }
+}
+
+/* ── 15. GENERADOR DE RUTA ────────────────────────────────────── */
+.generator-box {
+  background: var(--bg-cream);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px;
+}
+
+.geo-section {
+  background: rgba(61,90,71,0.06);
+  border: 1.5px solid var(--accent-green);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.geo-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.geo-info { flex: 1; }
+.geo-title { font-size: 0.92rem; font-weight: 700; color: var(--accent-green); }
+.geo-status { font-size: 0.78rem; color: var(--fg-muted); margin-top: 2px; }
+.geo-status.active { color: var(--accent-green); }
+.geo-btn {
+  padding: 8px 14px;
+  background: var(--accent-green);
+  color: white;
+  border: none;
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.selection-section {
+  margin-top: 16px;
+  padding: 14px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.selection-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.selection-title { font-size: 1rem; font-weight: 700; color: var(--accent-sea); }
+.selection-stats { font-size: 0.78rem; color: var(--fg-muted); }
+.selection-empty { text-align: center; padding: 14px; color: var(--fg-muted); font-style: italic; font-size: 0.88rem; }
+.selection-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+
+.selection-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: var(--bg-cream);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.selection-item-img {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.selection-item-info { flex: 1; min-width: 0; }
+.selection-item-name {
+  font-weight: 700;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.selection-item-time { font-size: 0.68rem; color: var(--fg-muted); }
+.selection-item-remove {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.selection-item-remove svg { width: 14px; height: 14px; stroke: var(--accent-red); }
+
+.action-buttons { display: flex; flex-direction: column; gap: 8px; }
+.btn-primary {
+  padding: 12px 24px;
+  background: var(--accent-sea);
+  color: white;
+  border: none;
+  border-radius: var(--r-xl);
+  font-family: inherit;
   font-size: 0.92rem;
-  line-height: 1.5;
-  color: var(--md-on-primary-cont, #003355);
-  margin: 0;
-  font-style: italic;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-
-
-
-/* ================================================================ */
-/* === ANIMACIONES MD3 — RIPPLE + SCROLL REVEAL + TRANSICIONES  === */
-/* ================================================================ */
-
-/* --- RIPPLE MD3 --- */
-.ripple-host {
-  position: relative !important;
-  overflow: hidden !important;
+.btn-primary svg { width: 18px; height: 18px; stroke: white; }
+.btn-secondary {
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--fg-muted);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
+.btn-secondary svg { width: 18px; height: 18px; stroke: var(--fg-muted); }
+
+/* ── 16. FADE-IN ──────────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s var(--ease-decel), transform 0.45s var(--ease-decel);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+
+/* ── 17. ANIMACIONES MD3 ─────────────────────────────────────── */
+
+/* Ripple */
+.ripple-host { position: relative; overflow: hidden; }
 .md3-ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.1);
   transform: scale(0);
-  animation: md3RippleAnim 0.5s var(--md-ease-decel) forwards;
+  animation: rippleAnim 0.5s var(--ease-decel) forwards;
   pointer-events: none;
   z-index: 10;
 }
-.province-box .md3-ripple,
-.bloque-card .md3-ripple { background: rgba(0,0,0,0.09); }
-.rec-card .md3-ripple     { background: rgba(0,0,0,0.07); }
-.place-card .md3-ripple   { background: rgba(0,0,0,0.07); }
+@keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
-@keyframes md3RippleAnim {
-  to { transform: scale(4); opacity: 0; }
-}
-
-/* --- SCROLL REVEAL --- */
+/* Scroll reveal */
 .sr {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.45s var(--md-ease-decel),
-              transform 0.45s var(--md-ease-decel);
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--ease-decel), transform 0.4s var(--ease-decel);
 }
-.sr.sr-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Retrasos escalonados para grupos */
+.sr.sr-visible { opacity: 1; transform: translateY(0); }
 .sr:nth-child(1) { transition-delay: 0s; }
 .sr:nth-child(2) { transition-delay: 0.06s; }
 .sr:nth-child(3) { transition-delay: 0.12s; }
 .sr:nth-child(4) { transition-delay: 0.18s; }
 .sr:nth-child(5) { transition-delay: 0.24s; }
-.sr:nth-child(6) { transition-delay: 0.28s; }
 
-/* --- TRANSICIONES DE PANTALLA MD3 EXPRESSIVE --- */
-/* Entrada desde la derecha (navegar hacia adelante) */
-@keyframes md3SlideInRight {
-  from { opacity: 0; transform: translateX(40px) scale(0.97); }
-  to   { opacity: 1; transform: translateX(0)    scale(1); }
-}
-/* Entrada desde la izquierda (navegar hacia atrás) */
-@keyframes md3SlideInLeft {
-  from { opacity: 0; transform: translateX(-40px) scale(0.97); }
-  to   { opacity: 1; transform: translateX(0)     scale(1); }
-}
-/* Salida hacia la izquierda */
-@keyframes md3SlideOutLeft {
-  from { opacity: 1; transform: translateX(0)     scale(1); }
-  to   { opacity: 0; transform: translateX(-30px) scale(0.97); }
-}
-/* Salida hacia la derecha */
-@keyframes md3SlideOutRight {
-  from { opacity: 1; transform: translateX(0)    scale(1); }
-  to   { opacity: 0; transform: translateX(30px) scale(0.97); }
-}
+/* Transiciones de pantalla */
+@keyframes slideInRight  { from { opacity:0; transform: translateX(32px)  scale(0.97); } to { opacity:1; transform: translateX(0) scale(1); } }
+@keyframes slideInLeft   { from { opacity:0; transform: translateX(-32px) scale(0.97); } to { opacity:1; transform: translateX(0) scale(1); } }
+@keyframes slideOutLeft  { from { opacity:1; transform: translateX(0)    scale(1); } to { opacity:0; transform: translateX(-24px) scale(0.97); } }
+@keyframes slideOutRight { from { opacity:1; transform: translateX(0)    scale(1); } to { opacity:0; transform: translateX(24px)  scale(0.97); } }
 
-.screen-enter-right { animation: md3SlideInRight 0.35s var(--md-ease-decel) forwards !important; }
-.screen-enter-left  { animation: md3SlideInLeft  0.35s var(--md-ease-decel) forwards !important; }
-.screen-exit-left   { animation: md3SlideOutLeft  0.25s var(--md-ease-accel) forwards !important; }
-.screen-exit-right  { animation: md3SlideOutRight 0.25s var(--md-ease-accel) forwards !important; }
+.screen-enter-right { animation: slideInRight  0.32s var(--ease-decel) forwards; }
+.screen-enter-left  { animation: slideInLeft   0.32s var(--ease-decel) forwards; }
+.screen-exit-left   { animation: slideOutLeft  0.22s var(--ease-accel) forwards; }
+.screen-exit-right  { animation: slideOutRight 0.22s var(--ease-accel) forwards; }
 
-
-
-/* ================================================================ */
-/* === CORRECCIONES DEFINITIVAS — CARRUSEL + SECCIONES MÓVIL    === */
-/* ================================================================ */
-
-/* --- CARRUSEL DE RECOMENDACIONES — REGLA ÚNICA FINAL --- */
-/* Anula todos los conflictos anteriores */
-#recomendaciones .horizontal-scroll {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  overflow-x: auto !important;
-  overflow-y: visible !important;
-  -webkit-overflow-scrolling: touch !important;
-  scroll-snap-type: x mandatory !important;
-  padding: 12px 16px 20px 16px !important;
-  gap: 12px !important;
-  align-items: flex-start !important;
-  scrollbar-width: none !important;
-}
-#recomendaciones .horizontal-scroll::-webkit-scrollbar { display: none !important; }
-
-#recomendaciones .rec-card {
-  flex: 0 0 82% !important;
-  width: 82% !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  margin: 0 !important;
-  scroll-snap-align: start !important;
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  padding: 14px 16px !important;
-  border: 1px solid rgba(0,0,0,0.06) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: flex-start !important;
-  height: auto !important;
-  white-space: normal !important;
-  opacity: 1 !important;
-  transform: none !important;
-  visibility: visible !important;
-}
-
-#recomendaciones .rec-card img {
-  width: 100% !important;
-  height: 130px !important;
-  object-fit: cover !important;
-  border-radius: 10px !important;
-  margin-bottom: 10px !important;
-  display: block !important;
-}
-
-#recomendaciones .rec-card h4 {
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  color: #1a2a3a !important;
-  margin: 0 0 6px 0 !important;
-  line-height: 1.3 !important;
-}
-
-#recomendaciones .rec-card p,
-#recomendaciones .rec-card li {
-  font-size: 0.82rem !important;
-  line-height: 1.45 !important;
-  color: #555 !important;
-}
-
-/* province-content siempre visible cuando expandido */
-#recomendaciones .province-box.expanded .province-content {
-  max-height: 3000px !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  overflow: visible !important;
-  display: block !important;
-}
-
-/* --- SECCIONES EN MÓVIL — PADDING Y ALTURA CORRECTOS --- */
-section#recomendaciones,
-section#lugares,
-section#generador {
-  min-height: auto !important;
-  padding: 20px 16px 120px 16px !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-  overflow-x: hidden !important;
-}
-
-section#hero {
-  min-height: 100dvh !important;
-  padding: 24px 20px 80px 20px !important;
-}
-
-/* Cuando la sección está activa */
-#recomendaciones.active-screen,
-#lugares.active-screen,
-#generador.active-screen {
-  display: block !important;
-  min-height: auto !important;
-  padding-bottom: 120px !important;
-}
-
-/* Evitar overflow horizontal en toda la app */
-.main-content {
-  overflow-x: hidden !important;
-  width: 100% !important;
-}
-
-
-
-/* ================================================================ */
-/* === CORRECCIÓN NAVEGACIÓN — SOLO PANTALLA ACTIVA VISIBLE     === */
-/* ================================================================ */
-
-/* El body no hace scroll entre secciones */
-html, body {
-  overflow: hidden !important;
-  height: 100% !important;
-}
-
-.main-content {
-  height: 100% !important;
-  overflow: hidden !important;
-}
-
-/* Todas las secciones ocultas por defecto */
-#hero,
-#recomendaciones,
-#lugares,
-#generador {
-  display: none !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  -webkit-overflow-scrolling: touch !important;
-  padding-bottom: 80px !important;
-  box-sizing: border-box !important;
-}
-
-/* Solo la activa se muestra */
-#hero.active-screen {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 100% !important;
-  padding: 24px 20px 80px !important;
-}
-
-#recomendaciones.active-screen,
-#lugares.active-screen,
-#generador.active-screen {
-  display: block !important;
-  padding: 20px 16px 100px !important;
-}
-
-/* El contenedor principal ocupa toda la pantalla */
-.main-content.visible {
-  display: block !important;
-  position: fixed !important;
-  inset: 0 !important;
-  bottom: 60px !important; /* espacio para el menú */
-}
-
-/* El menú siempre encima */
-.bottom-nav-wrapper,
-.bottom-menu {
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1000 !important;
-}
+/* ── 18. UTILIDADES ───────────────────────────────────────────── */
+.hidden { display: none !important; }
