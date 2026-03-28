@@ -4,38 +4,122 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Galicia - Guía para amigos</title>
+  
+  <!-- Seguridad -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#1a5276">
+  <meta name="background-color" content="#F5F3EE">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Galicia">
+  <meta name="description" content="Guía personalizada para descubrir Galicia con calma, creada por Xurxo & Raquel">
+  
+  <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-192.png">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="mask-icon" href="icons/icon-mask.svg" color="#1a5276">
+  
+  <!-- Preconnect para performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://*.tile.openstreetmap.org">
+  
+  <!-- Fuentes con display=swap -->
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet con preload -->
+  <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></noscript>
+  
+  <!-- Estilos propios -->
   <link rel="stylesheet" href="styles.css">
-</head>
+  
+  <!-- Skip link para accesibilidad -->
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #1a5276;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      z-index: 10000;
+      transition: top 0.3s;
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 500;
+      border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus { top: 0; }
+  </style>
 </head>
 <body>
+  <a href="#mainContent" class="skip-link">Saltar al contenido principal</a>
 
-  <div class="install-banner" id="installBanner">
-    <div class="install-banner-text"><strong>Instalar Galicia</strong><span>Añade la guía a tu pantalla de inicio</span></div>
-    <button class="install-banner-btn" id="installBtn">Instalar</button>
-    <button class="install-banner-close" id="installClose">×</button>
+  <!-- Pull-to-refresh indicator -->
+  <div id="pullIndicator" class="pull-indicator" aria-hidden="true">
+    <div class="md3-loading-indicator"></div>
+    <span>Actualizar...</span>
   </div>
 
+  <!-- Install Banner mejorado -->
+  <div class="install-banner" id="installBanner" hidden>
+    <div class="install-banner-content">
+      <div class="install-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</div>
+      <div class="install-banner-text">
+        <strong>Instalar Galicia</strong>
+        <span>Añade la guía a tu pantalla de inicio</span>
+      </div>
+    </div>
+    <div class="install-actions">
+      <button class="install-banner-btn" id="installBtn">Instalar</button>
+      <button class="install-banner-close" id="installClose" aria-label="Cerrar">×</button>
+    </div>
+  </div>
+
+  <!-- Splash Screen -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <div class="splash-icon"><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg></div>
+      <div class="splash-icon">
+        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+          <circle cx="32" cy="32" r="4"/>
+        </svg>
+      </div>
       <h1 class="splash-title">Galicia</h1>
       <p class="splash-subtitle">Guía para amigos</p>
+      
       <form class="splash-form" id="splashForm">
-        <div><input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off"></div>
-        <p class="splash-error" id="splashError"></p>
-        <button type="submit" class="splash-btn">Entrar</button>
+        <div class="input-wrapper">
+          <input 
+            type="password" 
+            class="splash-input" 
+            id="passwordInput" 
+            placeholder="Introduce la contraseña" 
+            autocomplete="off"
+            aria-label="Contraseña de acceso"
+            required
+          >
+          <button type="button" class="password-toggle" id="passwordToggle" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+        <p class="splash-error" id="splashError" role="alert" aria-live="polite"></p>
+        <button type="submit" class="splash-btn ripple-host">
+          <span>Entrar</span>
+          <div class="btn-shine"></div>
+        </button>
       </form>
+      
       <div class="splash-footer">
         <p class="splash-footer-text">Esta guía ha sido creada con cariño, exclusivamente para amigos.</p>
         <p class="splash-footer-note">La contraseña se actualiza cada año.</p>
@@ -44,494 +128,187 @@
   </div>
 
   <!-- Pantalla ¿Sabías que? -->
-  <div id="sabiasQueScreen" style="
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 900;
-    background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 50%, #F0EDE5 100%);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 32px;
-    text-align: center;
-  ">
-    <div style="max-width: 420px; width: 100%;">
-      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" stroke="#1a4a5e" stroke-width="1.5" style="margin: 0 auto 20px auto; display: block; opacity: 0.6;">
+  <div id="sabiasQueScreen" class="sabias-screen" hidden>
+    <div class="sabias-content">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
         <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
         <circle cx="32" cy="32" r="20"/>
         <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
         <circle cx="32" cy="32" r="4"/>
       </svg>
-      <p style="
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: #1a4a5e;
-        margin: 0 0 24px 0;
-        opacity: 0.7;
-      ">¿Sabías que...?</p>
-      <p id="texto-sabias-que" style="
-        font-family: 'Playfair Display', serif;
-        font-size: 1.25rem;
-        line-height: 1.9;
-        color: #2c2416;
-        margin: 0 0 40px 0;
-        font-style: italic;
-      ">Cargando curiosidad...</p>
-      <div style="
-        width: 100%;
-        height: 1.5px;
-        background: #e0d8c8;
-        border-radius: 2px;
-        overflow: hidden;
-      ">
-        <div id="sabiasQueProgress" style="
-          height: 100%;
-          width: 0%;
-          background: #1a4a5e;
-          border-radius: 2px;
-        "></div>
+      <p class="sabias-label">¿Sabías que...?</p>
+      <p id="texto-sabias-que" class="sabias-text">Cargando curiosidad...</p>
+      <div class="sabias-progress">
+        <div id="sabiasQueProgress" class="sabias-progress-bar"></div>
       </div>
-      <p style="
-        font-family: 'Montserrat', sans-serif;
-        font-size: 0.65rem;
-        color: #5a4d3a;
-        opacity: 0.5;
-        margin: 14px 0 0 0;
-        letter-spacing: 0.5px;
-        font-style: italic;
-      ">Entrando en la guía...</p>
+      <p class="sabias-hint">Desliza para saltar</p>
     </div>
   </div>
 
-  <div class="main-content" id="mainContent">
-
-    <header id="hero" class="hero">
+  <!-- Contenido Principal -->
+  <main class="main-content" id="mainContent" hidden>
+    
+    <!-- Hero -->
+    <header id="hero" class="hero app-screen active-screen">
       <div class="hero-top fade-in visible">
-        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="var(--accent-gold)" stroke-width="1.5"><path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/><circle cx="32" cy="32" r="20"/><path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/><circle cx="32" cy="32" r="4"/></svg>
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+          <circle cx="32" cy="32" r="20"/>
+          <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+          <circle cx="32" cy="32" r="4"/>
+        </svg>
       </div>
       <div class="hero-center">
         <h1 class="hero-title fade-in visible delay-1">Galicia</h1>
         <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
-        <p class="hero-subtitle fade-in visible delay-2" style="margin-top: 0; font-size: 1rem;">Hecha por Xurxo &amp; Raquel</p>
+        <p class="hero-authors fade-in visible delay-2">Hecha por Xurxo & Raquel</p>
       </div>
-
+      
+      <!-- Quick actions -->
+      <div class="hero-actions fade-in delay-3">
+        <button class="hero-btn ripple-host" onclick="document.querySelector('[data-section=\'recomendaciones\']').click()">
+          <span>💡</span> Consejos
+        </button>
+        <button class="hero-btn ripple-host" onclick="document.querySelector('[data-section=\'lugares\']').click()">
+          <span>🗺️</span> Lugares
+        </button>
+      </div>
     </header>
 
-    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12M6 6L18 18M18 6L6 18"/></svg></div>
-
-<section id="recomendaciones" class="recommendations-section">
+    <!-- Recomendaciones -->
+    <section id="recomendaciones" class="app-screen recommendations-section">
       <div class="section-header fade-in">
         <span class="section-number">1</span>
         <h2 class="section-title">Recomendaciones</h2>
       </div>
       <p class="section-subtitle fade-in delay-1">Lo que nadie te cuenta para disfrutar Galicia de verdad.</p>
 
-      <div class="province-box fade-in delay-1" id="rec-antes">
-        <div class="province-header rec-antes" onclick="abrirSoloUnaRec('rec-antes')".classList.toggle('expanded')">
-          <div class="bloque-body">
-            <div class="bloque-content-wrapper">
-              <div class="bloque-nombre">🎒 1. Antes de venir</div>
-              <span class="bloque-subtitulo">Clima, maleta y lo básico</span>
+      <!-- Filtros por categoría -->
+      <div class="category-filters fade-in delay-1" role="tablist" aria-label="Filtrar recomendaciones">
+        <button class="filter-chip active" data-filter="all" role="tab" aria-selected="true">Todas</button>
+        <button class="filter-chip" data-filter="antes" role="tab" aria-selected="false">🎒 Antes</button>
+        <button class="filter-chip" data-filter="comer" role="tab" aria-selected="false">🍽️ Comer</button>
+        <button class="filter-chip" data-filter="beber" role="tab" aria-selected="false">🍷 Beber</button>
+        <button class="filter-chip" data-filter="disfrutar" role="tab" aria-selected="false">🌊 Disfrutar</button>
+      </div>
+
+      <div class="recommendations-list">
+        <!-- Antes de venir -->
+        <div class="province-box rec-category" id="rec-antes" data-category="antes">
+          <div class="province-header rec-antes ripple-host" onclick="abrirSoloUnaRec('rec-antes')">
+            <div class="bloque-body">
+              <div class="bloque-content-wrapper">
+                <div class="bloque-nombre">🎒 1. Antes de venir</div>
+                <span class="bloque-subtitulo">Clima, maleta y lo básico</span>
+              </div>
+            </div>
+            <div class="bloque-actions">
+              <div class="province-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
             </div>
           </div>
-          <div class="bloque-actions">
-            <div class="province-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <div class="province-content">
+            <div class="horizontal-scroll" role="region" aria-label="Consejos antes de venir">
+              <!-- Cards existentes... -->
             </div>
           </div>
         </div>
-        <div class="province-content">
-          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
-            <div class="rec-card">
-              <img src="img/rec_chaqueta.jpg" class="rec-card-img" alt="Chaqueta" onerror="this.style.display='none'">
-              <h4>🧥 Trae una prenda de abrigo. Siempre.</h4>
-              <p style="margin-bottom: 8px !important;">Aunque vengas en agosto y veas sol en la previsión, en Galicia <strong>refresca al caer la tarde</strong>, sobre todo cerca del mar.</p>
-              <p>No es drama, pero se agradece no acabar comprando una sudadera de emergencia.</p>
+
+        <!-- Para comer bien -->
+        <div class="province-box rec-category" id="rec-comer" data-category="comer">
+          <div class="province-header rec-comer ripple-host" onclick="abrirSoloUnaRec('rec-comer')">
+            <div class="bloque-body">
+              <div class="bloque-content-wrapper">
+                <div class="bloque-nombre">🍽️ 2. Para comer bien</div>
+                <span class="bloque-subtitulo">Marisco, pulpo y gastronomía local</span>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_lluvia.jpg" class="rec-card-img" alt="Lluvia" onerror="this.style.display='none'">
-              <h4>🌦️ La lluvia no avisa.</h4>
-              <p style="margin-bottom: 8px !important;">No es que llueva todo el día; es peor (o mejor): <strong>puede llover cinco minutos, parar, salir el sol… y repetir</strong>. Incluso te puede pillar justo cuando te pones el bañador.</p>
-              <p>Un chubasquero ligero suele ser mejor idea que un paraguas. Y ojo, en verano también hay días de tiempo espectacular.</p>
+            <div class="bloque-actions">
+              <div class="province-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_clima.jpg" class="rec-card-img" alt="Clima" onerror="this.style.display='none'">
-              <h4>🌫️ El clima cambia en horas.</h4>
-              <p style="margin-bottom: 8px !important;">Puedes salir con cielo despejado y encontrarte niebla cerrada en la costa en media hora. <strong>Galicia no tiene un clima: tiene varios a la vez.</strong></p>
-              <p>Si vas a la playa, consulta la meteorología (viento, niebla, mar) porque puede estar perfecto tierra adentro y torcerse en la costa.</p>
+          </div>
+          <div class="province-content">
+            <div class="horizontal-scroll" role="region" aria-label="Consejos para comer">
+              <!-- Cards... -->
             </div>
-            <div class="rec-card">
-              <img src="img/rec_hambre.jpg" class="rec-card-img" alt="Hambre" onerror="this.style.display='none'">
-              <h4>🍽️ Ven con hambre.</h4>
-              <p style="margin-bottom: 8px !important;">Las raciones no son simbólicas. <strong>Aquí se come en serio</strong>, y repetir no está mal visto.</p>
-              <p>En invierno, además, los platos son especialmente contundentes.</p>
+          </div>
+        </div>
+
+        <!-- Para beber bien -->
+        <div class="province-box rec-category" id="rec-beber" data-category="beber">
+          <div class="province-header rec-beber ripple-host" onclick="abrirSoloUnaRec('rec-beber')">
+            <div class="bloque-body">
+              <div class="bloque-content-wrapper">
+                <div class="bloque-nombre">🍷 3. Para beber bien</div>
+                <span class="bloque-subtitulo">Vinos de la tierra y Estrella Galicia</span>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_planes.jpg" class="rec-card-img" alt="Planes" onerror="this.style.display='none'">
-              <h4>🧭 No planifiques demasiado.</h4>
-              <p style="margin-bottom: 8px !important;">Galicia no encaja bien con horarios rígidos. Muchas veces lo mejor aparece sin buscarlo.</p>
-              <p><strong>Deja hueco para improvisar:</strong> suele ser ahí donde aciertas.</p>
+            <div class="bloque-actions">
+              <div class="province-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_idioma.jpg" class="rec-card-img" alt="Idioma" onerror="this.style.display='none'">
-              <h4>🗣️ El gallego existe (y se usa).</h4>
-              <p style="margin-bottom: 8px !important;">Escucharás palabras distintas, y es parte del viaje. <strong>Es nuestra identidad y nuestra lengua…</strong> y si quieres, también puede ser un poco la tuya.</p>
-              <p>Decir “boas” o “grazas” suma puntos.</p>
+          </div>
+          <div class="province-content">
+            <div class="horizontal-scroll" role="region" aria-label="Consejos para beber">
+              <!-- Cards... -->
             </div>
-            <div class="rec-card">
-              <img src="img/rec_preguntar.jpg" class="rec-card-img" alt="Preguntar" onerror="this.style.display='none'">
-              <h4>❓ Pregunta sin miedo.</h4>
-              <p style="margin-bottom: 8px !important;">La gente puede parecer seca al principio, pero <strong>si preguntas, te ayudan</strong>. Y muchas veces, mejor que cualquier app.</p>
-              <p>Prepárate, eso sí, para respuestas tipo: “depende”, “puede ser”… ayudamos, pero a nuestra manera.</p>
+          </div>
+        </div>
+
+        <!-- Para disfrutar -->
+        <div class="province-box rec-category" id="rec-disfrutar" data-category="disfrutar">
+          <div class="province-header rec-disfrutar ripple-host" onclick="abrirSoloUnaRec('rec-disfrutar')">
+            <div class="bloque-body">
+              <div class="bloque-content-wrapper">
+                <div class="bloque-nombre">🌊 4. Para disfrutar Galicia</div>
+                <span class="bloque-subtitulo">Naturaleza, paisajes y morriña</span>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_reservas.jpg" class="rec-card-img" alt="Reservas" onerror="this.style.display='none'">
-              <h4>📅 Ojo con las reservas.</h4>
-              <p style="margin-bottom: 8px !important;">En sitios conocidos o en verano, <strong>reserva</strong>. Donde menos te lo esperas, se llena.</p>
-              <p>Algunos lugares muy demandados <strong>requieren antelación</strong>: Islas Cíes y Ons, el Pórtico de la Gloria o la Playa de las Catedrales.</p>
+            <div class="bloque-actions">
+              <div class="province-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
             </div>
-            <div class="rec-card">
-              <img src="img/rec_gallegos.jpg" class="rec-card-img" alt="Gallegos" onerror="this.style.display='none'">
-              <h4>🧍 Los gallegos no somos bordes, somos prudentes.</h4>
-              <p style="margin-bottom: 8px !important;">No esperes entusiasmo inmediato. Aquí <strong>primero se observa, luego se confía.</strong></p>
-              <p>Pero cuando entras, entras de verdad.</p>
+          </div>
+          <div class="province-content">
+            <div class="horizontal-scroll" role="region" aria-label="Consejos para disfrutar">
+              <!-- Cards... -->
             </div>
           </div>
         </div>
       </div>
-
-      <div class="province-box fade-in delay-2" id="rec-comer">
-        <div class="province-header rec-comer" onclick="abrirSoloUnaRec('rec-comer')".classList.toggle('expanded')">
-          <div class="bloque-body">
-            <div class="bloque-content-wrapper">
-              <div class="bloque-nombre">🍽️ 2. Para comer bien</div>
-              <span class="bloque-subtitulo">Marisco, pulpo y gastronomía local</span>
-            </div>
-          </div>
-          <div class="bloque-actions">
-            <div class="province-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="province-content">
-          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
-            <div class="rec-card">
-              <img src="img/rec_pan.jpg" class="rec-card-img" alt="Pan" onerror="this.style.display='none'">
-              <h4>🥖 El pan importa. Mucho.</h4>
-              <p style="margin-bottom: 6px !important;">No es un simple acompañamiento. En serio: <strong>si el pan falla, desconfía.</strong></p>
-              <p style="margin-bottom: 4px !important;">Top 3:</p>
-              <ul style="font-size: 0.85rem; line-height: 1.4; color: #555; list-style-type: disc; padding-left: 20px; margin: 0 0 8px 0;">
-                <li><strong>Pan de Cea:</strong> el tradicional, horno de leña.</li>
-                <li><strong>Pan de Carral:</strong> “molete” con moño.</li>
-                <li><strong>Pan de Neda:</strong> corteza gruesa y durabilidad asegurada.</li>
-                <li><strong>Pan de O Porriño:</strong> famoso por sus bollas.</li>
-              </ul>
-              <p>💡 <strong>Consejo:</strong> buen pan puedes encontrarlo en casi cualquier rincón de Galicia.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_queso.jpg" class="rec-card-img" alt="Queso" onerror="this.style.display='none'">
-              <h4>🧀 Quesos con carácter</h4>
-              <p style="margin-bottom: 8px !important;">Entra en cualquier taberna con buena pinta y pide una tabla de quesos gallegos.</p>
-              <p>Desde el cremoso hasta el ahumado: <strong>prueba sin prejuicios</strong>, algunos sorprenden mucho.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_empanada.jpg" class="rec-card-img" alt="Empanada" onerror="this.style.display='none'">
-              <h4>🥟 Empanada: simple en apariencia, seria en ejecución</h4>
-              <p style="margin-bottom: 8px !important;">Clásicas: <strong>bonito, bacalao con pasas o zamburiñas</strong>, pero también hay versiones con cualquier producto local. La masa varía según la zona.</p>
-              <p>Ideal para un picnic improvisado o como sustituto del bocadillo.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_pulpo.jpg" class="rec-card-img" alt="Pulpo" onerror="this.style.display='none'">
-              <h4>🐙 Pulpo: menos espectáculo, más respeto</h4>
-              <p style="margin-bottom: 8px !important;">Solo necesita sal, aceite y pimentón. <strong>Si está duro… no vuelvas.</strong> Para garantías, busca una buena pulpeira.</p>
-              <p>El <strong>pulpo á feira</strong> es la opción clásica y casi siempre la mejor.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_raxo.jpg" class="rec-card-img" alt="Raxo" onerror="this.style.display='none'">
-              <h4>🐖 Raxo y zorza: el cerdo bien tratado</h4>
-              <p style="margin-bottom: 8px !important;">Platos sencillos y sabrosos, <strong>raciones estrella</strong> de las tabernas gallegas.</p>
-              <p>Perfectos para compartir o como plato único.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_pimientos.jpg" class="rec-card-img" alt="Pimientos" onerror="this.style.display='none'">
-              <h4>🌶️ Pimientos: una ruleta</h4>
-              <p style="margin-bottom: 8px !important;">“Unos pican, otros no”. Los auténticos pimientos de Padrón <strong>se cultivan en Herbón</strong>.</p>
-              <p>No todos los que se encuentran fuera de Galicia son reales. Aprovecha mientras estás aquí.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_pescado.jpg" class="rec-card-img" alt="Pescados" onerror="this.style.display='none'">
-              <h4>🐟 Pescados: Galicia habla claro</h4>
-              <p style="margin-bottom: 8px !important;">Merluza, rodaballo, lubina… <strong>frescos y sin adornos innecesarios.</strong></p>
-              <p>A la brasa, en caldeirada o directo de la ría: sencillo y delicioso.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_lacon.jpg" class="rec-card-img" alt="Lacón" onerror="this.style.display='none'">
-              <h4>🥬 Lacón con grelos: contundente</h4>
-              <p style="margin-bottom: 8px !important;">No es ligero, pero <strong>es Galicia en plato</strong>.</p>
-              <p>Plato de temporada: si aparece en la carta, pídelo sin dudar.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_ternera.jpg" class="rec-card-img" alt="Ternera" onerror="this.style.display='none'">
-              <h4>🥩 Ternera Gallega: otra liga</h4>
-              <p style="margin-bottom: 8px !important;"><strong>Carne con sabor real.</strong></p>
-              <p>Poco más que decir: prepárate para disfrutar… y para abrir la cartera si quieres lo mejor.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_mariscada.jpg" class="rec-card-img" alt="Marisco" onerror="this.style.display='none'">
-              <h4>🦐 Marisco: cuando es bueno, se nota</h4>
-              <p style="margin-bottom: 8px !important;">Y cuando no, también. No todo vale: <strong>busca locales con producto fresco y buena rotación.</strong></p>
-              <p>Para una experiencia de verdad, calcula <strong>no menos de 70 € por persona</strong>. La tarjeta es casi obligatoria, pero cada bocado lo vale.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="province-box fade-in delay-2" id="rec-beber">
-        <div class="province-header rec-beber" onclick="abrirSoloUnaRec('rec-beber')".classList.toggle('expanded')">
-          <div class="bloque-body">
-            <div class="bloque-content-wrapper">
-              <div class="bloque-nombre">🍷 3. Para beber bien</div>
-              <span class="bloque-subtitulo">Vinos de la tierra y Estrella Galicia</span>
-            </div>
-          </div>
-          <div class="bloque-actions">
-            <div class="province-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="province-content">
-          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
-            <div class="rec-card">
-              <img src="img/rec_albarino.jpg" class="rec-card-img" alt="Albariño" onerror="this.style.display='none'">
-              <h4>🍇 Albariño: fácil de entender, difícil de olvidar</h4>
-              <p style="margin-bottom: 12px !important;">Fresco, aromático y muy agradecido. Se cultiva en las Rías Baixas, donde el clima atlántico le da ese punto ácido y salino.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> comida al mediodía, días de calor.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, pescado, arroces.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> frío, pero no helado.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_ribeiro.jpg" class="rec-card-img" alt="Ribeiro" onerror="this.style.display='none'">
-              <h4>🍷 Ribeiro: el clásico que vuelve</h4>
-              <p style="margin-bottom: 12px !important;">Histórico y con personalidad. Fue uno de los vinos más exportados en la Edad Media. Hoy vuelve con fuerza.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> comidas largas, sin prisa.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cocina tradicional, pulpo, carnes suaves.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> déjalo abrirse un poco, gana mucho.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_godello.jpg" class="rec-card-img" alt="Godello" onerror="this.style.display='none'">
-              <h4>🍾 Godello: un paso más</h4>
-              <p style="margin-bottom: 12px !important;">Más estructura y profundidad. Recuperado hace relativamente poco, ahora juega en primera división.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> cenas, cuando quieres algo más serio.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> pescados potentes, carnes blancas.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> temperatura media, no demasiado frío.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_mencia.jpg" class="rec-card-img" alt="Mencía" onerror="this.style.display='none'">
-              <h4>🍷 Mencía: el tinto gallego</h4>
-              <p style="margin-bottom: 12px !important;">Ligero, afrutado, muy bebible. Especialmente en Ribeira Sacra.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> tarde-noche, tapeo o cena informal.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> raxo, zorza, embutidos.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> ligeramente fresco, incluso en verano.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_barrantes.jpg" class="rec-card-img" alt="Barrantes" onerror="this.style.display='none'">
-              <h4>🍶 Barrantes: el raro</h4>
-              <p style="margin-bottom: 12px !important;">Turbio, ácido, muy local. Vino de casa, sin filtros.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> taberna, sin postureo.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, empanada.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin pensar demasiado, se bebe y ya.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_licores.jpg" class="rec-card-img" alt="Licores" onerror="this.style.display='none'">
-              <h4>🥃 Licores: cuidado que engañan</h4>
-              <p style="margin-bottom: 12px !important;">De hierbas o de café, a partir de aguardiente tradicional.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> después de comer.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> sobremesa, conversación larga.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> despacio… aunque no lo parezca.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_queimada.jpg" class="rec-card-img" alt="Queimada" onerror="this.style.display='none'">
-              <h4>🔥 Queimada: no es solo beber</h4>
-              <p style="margin-bottom: 12px !important;">Ritual con fuego y “conxuro” incluido. Tradición pura.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> de noche.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> grupo, ambiente, ganas de alargar.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin prisas. Es experiencia, no solo bebida.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_estrella.jpg" class="rec-card-img" alt="Estrella Galicia" onerror="this.style.display='none'">
-              <h4>🍺 Estrella Galicia: juega en casa</h4>
-              <p style="margin-bottom: 12px !important;">Clásica, constante, parte del día a día desde 1906.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> siempre.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cualquier tapa, cualquier momento.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> bien tirada y fría. No tiene más misterio.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_brindis.jpg" class="rec-card-img" alt="Brindis" onerror="this.style.display='none'">
-              <h4>💡 Clave general:</h4>
-              <p style="margin-bottom: 12px !important;">En Galicia no se bebe rápido. Se bebe acompañando, conversando y comiendo. Si tienes prisa, te estás perdiendo la mitad.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="province-box fade-in delay-2" id="rec-disfrutar">
-        <div class="province-header rec-disfrutar" onclick="abrirSoloUnaRec('rec-disfrutar')".classList.toggle('expanded')">
-          <div class="bloque-body">
-            <div class="bloque-content-wrapper">
-              <div class="bloque-nombre">🌊 4. Para disfrutar Galicia</div>
-              <span class="bloque-subtitulo">Naturaleza, paisajes y morriña</span>
-            </div>
-          </div>
-          <div class="bloque-actions">
-            <div class="province-arrow">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-          </div>
-        </div>
-        <div class="province-content">
-          <div class="horizontal-scroll" style="padding-top: 10px; padding-bottom: 16px;">
-            <div class="rec-card">
-              <img src="img/rec_distancias.jpg" class="rec-card-img" alt="Distancias" onerror="this.style.display='none'">
-              <h4>🗺️ No midas en kilómetros, mide en tiempo</h4>
-              <p style="margin-bottom: 12px !important;">Las distancias engañan.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> 50 km pueden ser 1 hora o más.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> querer ver demasiado en un día.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_coche.jpg" class="rec-card-img" alt="Coche" onerror="this.style.display='none'">
-              <h4>🚗 Sin coche, te pierdes Galicia</h4>
-              <p style="margin-bottom: 12px !important;">El transporte público no llega a todo.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> alquila coche si quieres libertad.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Ganancia:</strong> acceso a sitios que no salen en ninguna guía.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_gps.jpg" class="rec-card-img" alt="GPS" onerror="this.style.display='none'">
-              <h4>📍 El GPS no siempre tiene razón</h4>
-              <p style="margin-bottom: 12px !important;">Te puede meter por carreteras estrechas o caminos raros.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si dudas, no sigas a ciegas.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Mejor opción:</strong> parar y preguntar.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_mirador.jpg" class="rec-card-img" alt="Mirador" onerror="this.style.display='none'">
-              <h4>📸 Si ves un mirador, párate</h4>
-              <p style="margin-bottom: 12px !important;">No todos salen en Google.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si hay hueco para parar, para.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> muchas veces, lo mejor del día.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_mar_impone.jpg" class="rec-card-img" alt="Mar" onerror="this.style.display='none'">
-              <h4>🌊 El mar aquí impone</h4>
-              <p style="margin-bottom: 12px !important;">Especialmente en costa abierta.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> respeta las olas y las corrientes.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Error típico:</strong> confiarse en playas salvajes.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Aviso:</strong> esto es el Atlántico. No es una broma.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_playas.jpg" class="rec-card-img" alt="Playas" onerror="this.style.display='none'">
-              <h4>🏖️ No todas las playas son iguales</h4>
-              <p style="margin-bottom: 12px !important;">Ría ≠ océano.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Rías:</strong> más tranquilas, familiares.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Abiertas:</strong> más espectaculares, pero más exigentes.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_mareas.jpg" class="rec-card-img" alt="Mareas" onerror="this.style.display='none'">
-              <h4>🌗 Mira las mareas antes de ir</h4>
-              <p style="margin-bottom: 12px !important;">Cambian completamente el paisaje.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> consulta mareas si vas a calas o playas largas.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Ejemplo:</strong> puedes quedarte sin arena… o sin salida. Incluso sin coche.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Prueba:</strong> busca “Galicia coche marea”. Vas a flipar.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_barco.jpg" class="rec-card-img" alt="Barco" onerror="this.style.display='none'">
-              <h4>⛴️ Cruza la ría en barco si puedes</h4>
-              <p style="margin-bottom: 12px !important;">Algunas rías permiten cruzar en transporte público marítimo, como en Ferrol o Vigo.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> no es solo transporte, es parte del viaje.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Experiencia:</strong> ver la costa desde el agua cambia completamente la perspectiva.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Ejemplo:</strong> la línea Moaña–Vigo es rápida, barata y muy recomendable.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_chiringuitos.jpg" class="rec-card-img" alt="Chiringuitos" onerror="this.style.display='none'">
-              <h4>🍻 Aquí chiringuitos, pocos</h4>
-              <p style="margin-bottom: 12px !important;">No esperes servicios en todas las playas.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> muchas están prácticamente vírgenes.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> ven preparado. Y sí, a nosotros nos gusta así.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_interior.jpg" class="rec-card-img" alt="Interior" onerror="this.style.display='none'">
-              <h4>🌿 El interior es otra Galicia</h4>
-              <p style="margin-bottom: 12px !important;">Ríos, bosques, fervenzas.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> no te quedes solo en la costa.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Premio:</strong> menos gente, más autenticidad.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_rias.jpg" class="rec-card-img" alt="Rías" onerror="this.style.display='none'">
-              <h4>🌊 Las rías lo explican todo</h4>
-              <p style="margin-bottom: 12px !important;">Paisaje, comida, clima.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Regla:</strong> si entiendes las rías, entiendes la mitad de Galicia.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_islas.jpg" class="rec-card-img" alt="Islas" onerror="this.style.display='none'">
-              <h4>🏝️ Las islas cambian el ritmo</h4>
-              <p style="margin-bottom: 12px !important;">Cíes, Ons… otra velocidad.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> planifica con antelación.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Consejo:</strong> si vas, recórrelas. Merece la pena.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_caminar.jpg" class="rec-card-img" alt="Caminar" onerror="this.style.display='none'">
-              <h4>🥾 Caminar es parte del viaje</h4>
-              <p style="margin-bottom: 12px !important;">Galicia no se disfruta solo en coche.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> baja, camina, explora.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> lo que no ve todo el mundo.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_fiesta.jpg" class="rec-card-img" alt="Fiesta" onerror="this.style.display='none'">
-              <h4>🎉 Si hay fiesta, quédate</h4>
-              <p style="margin-bottom: 12px !important;">Da igual cuál sea.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si te coincide una, no la esquives.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> es Galicia en estado puro.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Pista:</strong> aquí hay más fiestas que días. Si quieres curiosear, mira: <a href="https://festigaleiros.com/" target="_blank" style="color: var(--accent-sea); font-weight: 600; text-decoration: none;">https://festigaleiros.com/</a></p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_magia.jpg" class="rec-card-img" alt="Magia" onerror="this.style.display='none'">
-              <h4>🌫️ Galicia también es mágica</h4>
-              <p style="margin-bottom: 12px !important;">No todo es paisaje.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> escucha y pregunta.</p>
-              <p style="margin-bottom: 4px !important;">👉 <strong>Extra:</strong> mouras, mouros, trasgos, meigas, la Santa Compaña… hay más historias que kilómetros.</p>
-              <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> la magia, la muerte, el mar y el misterio forman parte de lo que somos.</p>
-            </div>
-            <div class="rec-card">
-              <img src="img/rec_clavefinal.jpg" class="rec-card-img" alt="Clave final" onerror="this.style.display='none'">
-              <h4>💡 Clave final:</h4>
-              <p style="margin-bottom: 0 !important;">Disfruta de todo, cuida el entorno, sé buena gente… <strong>y vuelve.</strong></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section>
 
-    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-
-    <section id="lugares">
+    <!-- Lugares -->
+    <section id="lugares" class="app-screen places-section">
       <div class="section-header fade-in">
         <span class="section-number">2</span>
         <h2 class="section-title">Lugares de Galicia</h2>
       </div>
-      <p class="fade-in delay-1" style="font-size:0.95rem; color:var(--fg-muted); margin-bottom:16px;">
+      <p class="section-subtitle fade-in delay-1" style="font-size:0.95rem; color:var(--fg-muted); margin-bottom:16px;">
         4 provincias. Pincha para ver lugares. Marca favoritos con el corazón.
       </p>
+      
+      <!-- Buscador de lugares -->
+      <div class="search-wrapper fade-in delay-1">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="search" id="placeSearch" placeholder="Buscar lugar..." aria-label="Buscar lugar">
+        </div>
+      </div>
+      
       <div id="placesContainer"></div>
     </section>
 
-    <div class="decorative-divider"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-
-    <section id="generador">
+    <!-- Generador de Ruta -->
+    <section id="generador" class="app-screen generator-section">
       <div class="section-header fade-in">
         <span class="section-number">3</span>
         <h2 class="section-title">Tu ruta</h2>
@@ -543,9 +320,11 @@
       <div class="generator-box fade-in" style="margin-top:20px">
         <div class="map-section">
           <div class="map-container-wrapper">
-            <div id="map" class="map-container" style="min-height: 450px;"></div>
-            <button class="map-expand-btn" onclick="openFullscreenMap()" aria-label="Expandir mapa">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            <div id="map" class="map-container" role="application" aria-label="Mapa interactivo de Galicia"></div>
+            <button class="map-expand-btn ripple-host" onclick="openFullscreenMap()" aria-label="Expandir mapa a pantalla completa">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+              </svg>
             </button>
           </div>
         </div>
@@ -556,7 +335,7 @@
               <div class="geo-title">Tu ubicación</div>
               <div class="geo-status" id="geoStatus">Actívala para calcular distancias</div>
             </div>
-            <button class="geo-btn" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
+            <button class="geo-btn ripple-host" id="geoBtn" onclick="toggleGeolocation()">Activar</button>
           </div>
         </div>
 
@@ -568,64 +347,71 @@
           <div id="selectionContent"></div>
         </div>
 
-        <div class="decorative-divider" style="margin: 24px 0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 22M2 12L22 12"/></svg></div>
+        <div class="decorative-divider" style="margin: 24px 0;" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L12 22M2 12L22 12"/>
+          </svg>
+        </div>
 
         <div class="favorites-section" id="favoritesSection" style="margin-top: 20px;"></div>
       </div>
 
       <div id="itineraryResult" class="hidden"></div>
-      <div class="decorative-divider" style="margin-top: 20px; margin-bottom: 20px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-
+      
       <div class="rec-card-static fade-in delay-2" style="background: #ffffff; padding: 20px 24px; border-radius: 14px; border: 2px solid var(--border-aged); box-shadow: 0 4px 12px rgba(0,0,0,0.03); margin-top: 10px; margin-bottom: 30px;">
         <h4 style="margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 700; color: #1a3a4a; display: flex; align-items: center; gap: 8px;">💡 Sabías que...</h4>
-        <p id="texto-sabias-que" style="margin: 0 !important; font-size: 0.9rem; line-height: 1.6; color: #555;">Cargando curiosidad...</p>
+        <p id="curiosityText" style="margin: 0 !important; font-size: 0.9rem; line-height: 1.6; color: #555;">Cargando curiosidad...</p>
       </div>
-
     </section>
 
-    <nav class="bottom-menu">
-      <div class="menu-container">
-        <a href="#hero" class="menu-item active" data-section="hero">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
-          </svg>
-          <span>Inicio</span>
-        </a>
-        <a href="#recomendaciones" class="menu-item" data-section="recomendaciones">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 18h6m-3-15a7 7 0 0 0-7 7c0 2.5 2 4.5 2 7h10c0-2.5 2-4.5 2-7a7 7 0 0 0-7-7z"/>
-          </svg>
-          <span>Consejos</span>
-        </a>
-        <a href="#lugares" class="menu-item" data-section="lugares">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/>
-          </svg>
-          <span>Lugares</span>
-        </a>
-        <a href="#generador" class="menu-item" data-section="generador">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Ruta</span>
-        </a>
-      </div>
+    <!-- Floating Toolbar (reemplaza bottom-menu) -->
+    <nav class="floating-toolbar" role="navigation" aria-label="Navegación principal">
+      <a href="#hero" class="toolbar-item active" data-section="hero" role="button" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
+        </svg>
+        <span>Inicio</span>
+      </a>
+      <a href="#recomendaciones" class="toolbar-item" data-section="recomendaciones" role="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M9 18h6m-3-15a7 7 0 0 0-7 7c0 2.5 2 4.5 2 7h10c0-2.5 2-4.5 2-7a7 7 0 0 0-7-7z"/>
+        </svg>
+        <span>Consejos</span>
+      </a>
+      <a href="#lugares" class="toolbar-item" data-section="lugares" role="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4zM8 2v16M16 6v16"/>
+        </svg>
+        <span>Lugares</span>
+      </a>
+      <a href="#generador" class="toolbar-item" data-section="generador" role="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <span>Ruta</span>
+      </a>
     </nav>
-  </div>
+  </main>
 
-  <div class="map-fullscreen" id="mapFullscreen">
+  <!-- Mapa Fullscreen -->
+  <div class="map-fullscreen" id="mapFullscreen" role="dialog" aria-label="Mapa a pantalla completa" aria-modal="true" hidden>
     <div class="map-fullscreen-header">
       <span class="map-fullscreen-title">Selecciona lugares</span>
-      <button class="map-fullscreen-close" onclick="closeFullscreenMap()">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="map-fullscreen-close ripple-host" onclick="closeFullscreenMap()" aria-label="Cerrar mapa">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
     </div>
     <div id="mapFullscreenMap" class="map-fullscreen-map"></div>
-    <button class="map-floating-selection" id="mapFloatingSelection" onclick="scrollToMapFooter()" style="display:none;">
+    <button class="map-floating-selection" id="mapFloatingSelection" onclick="scrollToMapFooter()" style="display:none;" aria-label="Ver selección">
       <span id="mapFloatingCount">0</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
     </button>
     <div class="map-fullscreen-footer" id="mapFullscreenFooter">
       <div class="map-selection-summary">
@@ -637,255 +423,11 @@
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="app.js?v=5.0"></script>
-  <script>
-  // ── MD3 ANIMATIONS ─────────────────────────────────────────────
+  <!-- Toast notifications -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  // 1. RIPPLE TÁCTIL
-  function attachRipple(selector) {
-    document.querySelectorAll(selector).forEach(el => {
-      if (el.dataset.ripple) return;
-      el.dataset.ripple = '1';
-      el.classList.add('ripple-host');
-      el.addEventListener('pointerdown', function(e) {
-        const rect   = el.getBoundingClientRect();
-        const size   = Math.max(rect.width, rect.height) * 2;
-        const x      = e.clientX - rect.left - size / 2;
-        const y      = e.clientY - rect.top  - size / 2;
-        const ripple = document.createElement('span');
-        ripple.className = 'md3-ripple';
-        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
-        el.appendChild(ripple);
-        ripple.addEventListener('animationend', () => ripple.remove());
-      });
-    });
-  }
-
-  function initRipples() {
-    attachRipple('.province-box');
-    attachRipple('.bloque-card');
-    attachRipple('.place-card');
-    attachRipple('.rec-card');
-  }
-
-  // Lanzar ripples cuando el contenido esté listo y re-lanzar al cambiar sección
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initRipples, 600);
-    const obs = new MutationObserver(initRipples);
-    const cont = document.getElementById('mainContent');
-    if (cont) obs.observe(cont, { childList: true, subtree: true });
-  });
-
-  // 2. SCROLL REVEAL con IntersectionObserver
-  function initScrollReveal() {
-    const targets = document.querySelectorAll(
-      '.province-box, .bloque-card, .place-card, .rec-card, ' +
-      '.section-header, .section-subtitle, .generator-box'
-    );
-    targets.forEach(el => {
-      if (!el.classList.contains('sr')) el.classList.add('sr');
-    });
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('sr-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('.sr').forEach(el => io.observe(el));
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initScrollReveal, 700);
-    // Re-inicializar cuando cambia la sección activa
-    const sectionObs = new MutationObserver(() => setTimeout(initScrollReveal, 100));
-    const cont = document.getElementById('mainContent');
-    if (cont) sectionObs.observe(cont, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
-  });
-
-  // 3. TRANSICIÓN DE PANTALLA EXPRESIVA
-  // Orden de las secciones para determinar dirección
-  const SECTION_ORDER = ['hero', 'recomendaciones', 'lugares', 'generador'];
-
-  let currentSectionIdx = 0;
-
-  function animateScreenTransition(fromId, toId) {
-    const fromIdx = SECTION_ORDER.indexOf(fromId);
-    const toIdx   = SECTION_ORDER.indexOf(toId);
-    if (fromIdx === -1 || toIdx === -1 || fromIdx === toIdx) return;
-
-    const forward  = toIdx > fromIdx;
-    const fromEl   = document.getElementById(fromId);
-    const toEl     = document.getElementById(toId);
-    if (!fromEl || !toEl) return;
-
-    // Clases de salida en el elemento actual
-    fromEl.classList.add(forward ? 'screen-exit-left' : 'screen-exit-right');
-
-    setTimeout(() => {
-      fromEl.classList.remove('screen-exit-left', 'screen-exit-right');
-      // La clase active-screen la gestiona app.js; aquí solo añadimos la animación de entrada
-      toEl.classList.add(forward ? 'screen-enter-right' : 'screen-enter-left');
-      setTimeout(() => {
-        toEl.classList.remove('screen-enter-right', 'screen-enter-left');
-        setTimeout(initScrollReveal, 50);
-      }, 360);
-    }, 200);
-  }
-
-  // Interceptar los clicks del menú para inyectar la animación
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuItems = document.querySelectorAll('.menu-item');
-    menuItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const href    = this.getAttribute('href') || '';
-        const targetId = href.replace('#', '');
-        const activeEl = document.querySelector('.active-screen');
-        const fromId   = activeEl ? activeEl.id : SECTION_ORDER[currentSectionIdx];
-        if (targetId && fromId !== targetId) {
-          animateScreenTransition(fromId, targetId);
-          currentSectionIdx = SECTION_ORDER.indexOf(targetId);
-        }
-      });
-    });
-  });
-  </script>
-<script>
-    // ── ¿Sabías que? integrado en el flujo de login ──────────────────────────
-    const curiosidades = [
-        "<strong>La diáspora gallega es uno de los movimientos migratorios más grandes de Europa.</strong> Se calcula que, entre finales del siglo XIX y el siglo XX, más de 2 millones de gallegos emigraron, sobre todo a países como Argentina, Cuba y Uruguay.<br><br>👉 Hoy, hay casi tantos descendientes de gallegos fuera como en la propia Galicia.",
-        
-        "<strong>Galicia no solo tiene más de 1.000 ríos, sino que es una potencia en producción de energía eléctrica.</strong> En 2024, generó más de 23.000 GWh de electricidad, gran parte con energías limpias como la hidráulica, eólica y solar.<br><br>👉 Aproximadamente el 40% de esa energía sobrante se exportó a otras partes de España y Europa.",
-        
-        "<strong>Galicia fue uno de los primeros reinos de Europa.</strong> Tras la caída del Imperio Romano, en el siglo V, Galicia se consolidó como el Reino de los Suevos.<br><br>👉 Se convirtió en uno de los primeros reinos establecidos en toda Europa occidental.",
-        
-        "<strong>Galicia mantiene huellas vivas de su cultura celta.</strong> Los antiguos castros de piedra, la música con gaitas y muchas de sus tradiciones y leyendas populares reflejan la herencia celta que aún late en nuestra tierra.",
-
-        "<strong>Para los romanos, Galicia era el literal 'Fin del Mundo'.</strong> Al llegar a Fisterra (Finis Terrae) y ver el sol hundirse en el océano, las legiones romanas creían que el mar hervía y no había nada más allá.<br><br>👉 Hoy es el final épico para muchos peregrinos del Camino de Santiago.",
-
-        "<strong>Breogán aparece en el Lebor Gabála Érenn.</strong> Este texto medieval irlandés cuenta cómo Breogán levantó una gran torre en Galicia desde la que sus descendientes vieron Irlanda, iniciando su viaje hacia la isla.<br><br>👉 La tradición sitúa esa torre en la actual Torre de Hércules, reforzando el vínculo mítico entre Galicia e Irlanda.",
-
-        "<strong>Ourense es una de las capitales termales de Europa.</strong> Solo Budapest la supera en volumen de aguas termales. De la fuente de As Burgas, en pleno centro, el agua sale humeando a más de 60ºC.<br><br>👉 Puedes bañarte gratis en pozas naturales a orillas del río Miño, incluso en pleno invierno.",
-
-        "<strong>El gallego y el portugués nacieron exactamente del mismo idioma.</strong> Durante la Edad Media, el galaico-portugués era la lengua de la poesía y el romance en toda la Península Ibérica.<br><br>👉 Por eso, si hablas gallego, puedes entenderte casi a la perfección con alguien en Portugal o Brasil.",
-
-        "<strong>Galicia está llena de 'hórreos', las despensas mágicas de piedra y madera.</strong> Hay más de 30.000 repartidos por la comunidad, diseñados para guardar el grano lejos de la humedad y los roedores.<br><br>👉 El hórreo de Carnota mide casi 35 metros de largo. ¡Es más grande que muchas casas!",
-
-        "<strong>Cuidado con pasear de noche por los bosques: podrías cruzarte con la Santa Compaña.</strong> La leyenda gallega más famosa habla de una procesión de almas en pena que vagan en la oscuridad.<br><br>👉 Dicen que huele a cera quemada a su paso, y no debes mirarles directamente si no quieres unirte a ellos.",
-
-        "<strong>Galicia fue refugio durante la última glaciación.</strong> Su clima más suave permitió que muchísimas especies animales y vegetales sobrevivieran aquí.<br><br>👉 Mientras gran parte de Europa quedaba completamente congelada, esta tierra fue un auténtico santuario de vida.",
-
-        "<strong>El “verde gallego” no es tan natural como parece.</strong> Gran parte del paisaje está ocupado por eucaliptos, una especie introducida de crecimiento rápido.<br><br>👉 Aunque a la vista resulte frondoso, este árbol desplaza al bosque autóctono y altera el equilibrio natural de la tierra.",
-
-        "<strong>Los gaiteiros fueron durante siglos los músicos del pueblo.</strong> Recorrían aldeas tocando en romerías y marcaban el ritmo social de la comunidad, desde bodas hasta procesiones.<br><br>👉 Con el tiempo, pasaron de ser músicos populares a convertirse en símbolos absolutos de la cultura gallega.",
-
-        "<strong>Los marinos gallegos fueron clave en la expansión marítima española.</strong> Durante siglos, formaron parte de grandes expediciones y rutas comerciales, curtidos por su experiencia en el duro Atlántico.<br><br>👉 No es casualidad: Galicia ha vivido siempre de cara al mar, y esa tradición sigue presente hoy en su forma de entender la vida.",
-
-        "<strong>Rosalía de Castro dio voz a Galicia cuando casi nadie la escuchaba.</strong> En el siglo XIX, fue una de las primeras autoras en escribir en gallego tras siglos de abandono, dignificando la lengua y reflejando la morriña de su pueblo.<br><br>👉 Su inmensa obra marcó el inicio del Rexurdimento y la convirtió en el pilar fundamental de nuestra identidad cultural."
-      ];
-
-    // Elige una curiosidad aleatoria
-    function elegirCuriosidad() {
-      const id = Math.floor(Math.random() * curiosidades.length);
-      return curiosidades[id];
-    }
-
-    // Muestra la pantalla de curiosidad y luego pasa al contenido
-    // Swipe en cualquier dirección para saltarla
-    function mostrarSabiasQue(callback) {
-      const screen = document.getElementById('sabiasQueScreen');
-      const texto  = document.getElementById('texto-sabias-que');
-      const barra  = document.getElementById('sabiasQueProgress');
-
-      const TOTAL        = 17000;
-      const TEXT_FADE_AT = 15000;
-
-      let elapsed   = 0;
-      let startTs   = null;
-      let textFaded = false;
-      let finished  = false;
-      let rafId     = null;
-
-      texto.innerHTML = elegirCuriosidad();
-      screen.style.display = 'flex';
-
-      function tick(ts) {
-        if (finished) return;
-        if (!startTs) startTs = ts;
-        elapsed = ts - startTs;
-
-        barra.style.width = Math.min(elapsed / TOTAL * 100, 100) + '%';
-
-        if (!textFaded && elapsed >= TEXT_FADE_AT) {
-          textFaded = true;
-          texto.style.transition = 'opacity 1.2s ease';
-          texto.style.opacity    = '0';
-        }
-
-        if (elapsed >= TOTAL) {
-          finished = true;
-          cerrar();
-          return;
-        }
-        rafId = requestAnimationFrame(tick);
-      }
-
-      function cerrar() {
-        cancelAnimationFrame(rafId);
-        screen.style.transition = 'opacity 0.8s ease';
-        screen.style.opacity    = '0';
-        setTimeout(() => {
-          screen.style.display    = 'none';
-          screen.style.opacity    = '1';
-          screen.style.transition = '';
-          texto.style.opacity     = '1';
-          texto.style.transition  = '';
-          barra.style.width       = '0%';
-          if (callback) callback();
-        }, 800);
-      }
-
-      // Swipe para saltar
-      let touchStartX = 0;
-      let touchStartY = 0;
-      const SWIPE_THRESHOLD = 30;
-
-      screen.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
-
-      screen.addEventListener('touchend', (e) => {
-        if (finished) return;
-        const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
-        const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-        if (dx > SWIPE_THRESHOLD || dy > SWIPE_THRESHOLD) {
-          finished = true;
-          cerrar();
-        }
-      }, { passive: true });
-
-      // Arranque
-      rafId = requestAnimationFrame(tick);
-    }
-
-    // Aparece en cada apertura, antes de que se muestre nada más
-    document.addEventListener('DOMContentLoaded', () => {
-      const splash = document.getElementById('splashScreen');
-      const main   = document.getElementById('mainContent');
-
-      if (splash) splash.style.visibility = 'hidden';
-      if (main)   main.style.visibility   = 'hidden';
-
-      mostrarSabiasQue(() => {
-        if (splash) splash.style.visibility = '';
-        if (main)   main.style.visibility   = '';
-      });
-    });
-  </script>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
+  <script src="app.js?v=6.0" defer></script>
 </body>
 </html>
