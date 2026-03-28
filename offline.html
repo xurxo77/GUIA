@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sin conexión - Galicia Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: linear-gradient(180deg, #F8F6F1 0%, #F5F3EE 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      color: #1C1B1F;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+      opacity: 0.5;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #1a5276;
+    }
+    p {
+      font-size: 1rem;
+      color: #49454F;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      max-width: 400px;
+    }
+    .btn {
+      background: #1a5276;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 82, 118, 0.3);
+    }
+    .cached-info {
+      margin-top: 32px;
+      padding: 16px;
+      background: rgba(26, 82, 118, 0.08);
+      border-radius: 16px;
+      font-size: 0.9rem;
+      color: #1a5276;
+    }
+  </style>
+</head>
+<body>
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3"/>
+  </svg>
+  
+  <h1>Sin conexión</h1>
+  <p>Parece que no tienes acceso a internet. Algunas funciones pueden no estar disponibles, pero puedes seguir viendo los lugares que ya cargaste.</p>
+  
+  <a href="/" class="btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+    </svg>
+    Volver al inicio
+  </a>
+  
+  <div class="cached-info">
+    💡 Consejo: Guarda tus lugares favoritos para verlos sin conexión
+  </div>
+
+  <script>
+    // Intentar recargar cuando vuelva la conexión
+    window.addEventListener('online', () => {
+      location.reload();
+    });
+  </script>
+</body>
+</html>
