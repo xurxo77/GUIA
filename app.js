@@ -378,6 +378,12 @@ const mapManager = {
         mapManager.addMarker(lugar, index);
       });
 
+      // Forzar recálculo de tamaño y centrado correcto en Galicia
+      setTimeout(() => {
+        state.mainMap.invalidateSize();
+        state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
+      }, 200);
+
       if (state.userLocation) {
         mapManager.showUserLocation();
       }
@@ -1178,7 +1184,10 @@ const navigationManager = {
     window.scrollTo(0, 0);
 
     if (targetId === 'generador' && state.mainMap) {
-      setTimeout(() => state.mainMap.invalidateSize(), 100);
+      setTimeout(() => {
+        state.mainMap.invalidateSize();
+        state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
+      }, 300);
     }
 
     utils.haptic('light');
