@@ -3434,3 +3434,81 @@ a:hover {
     font-size: 1.5rem;
   }
 }
+
+
+/* ================================================================
+   CORRECCIÓN: alias .menu-item → .toolbar-item
+   El JS busca .menu-item pero los estilos usan .toolbar-item
+   ================================================================ */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--r-xl);
+  color: var(--fg-muted);
+  transition: all var(--duration-fast) var(--ease-spring);
+  cursor: pointer;
+  min-width: 64px;
+  position: relative;
+  text-decoration: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--accent-cont);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--duration-fast) var(--ease-spring);
+  z-index: 0;
+}
+
+.menu-item.active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.menu-item:hover { color: var(--accent-sea); }
+
+.menu-item.active { color: var(--accent-on); }
+
+.menu-item svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.menu-item.active svg { transform: translateY(-2px); }
+
+.menu-item span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  transition: all var(--duration-fast);
+}
+
+.menu-item.active span {
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+/* El bottom de las secciones debe tener espacio para el toolbar flotante */
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  bottom: 100px;
+}
+
+#hero.active-screen {
+  bottom: 100px;
+}
