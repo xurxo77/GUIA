@@ -1266,45 +1266,29 @@ function handleLogin(e) {
   }
 }
 
+// Evento de login
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Cargamos los elementos para que el móvil sepa qué es el botón Entrar
-  ui.cacheElements();
-
-  // 2. Activamos la escucha de la contraseña INMEDIATAMENTE
-  if (ui.elements.splashForm) {
-    ui.elements.splashForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const pwd = ui.elements.passwordInput.value.trim().toLowerCase();
-      
-      if (pwd === CONFIG.PASSWORD) {
-        authManager.set(true);
-        ui.elements.splashError.textContent = '';
-        
-        ui.elements.splashScreen.style.opacity = '0';
-        setTimeout(() => {
-          ui.elements.splashScreen.classList.add('hidden');
-          ui.elements.mainContent.classList.add('visible');
-          app.init(); // Ahora sí arrancamos el resto de la app
-        }, CONFIG.ANIMATION_DURATION);
-      } else {
-        ui.elements.splashError.textContent = 'Contraseña incorrecta';
-        utils.haptic('error');
-        ui.elements.passwordInput.value = '';
-      }
-    });
+  const form = document.getElementById('splashForm');
+  if (form) {
+    form.addEventListener('submit', handleLogin);
   }
 
-  // 3. Comprobación inicial por si el usuario ya estaba dentro de otro día
+  // Verificar si ya está autenticado
   setTimeout(() => {
-    const splash = document.getElementById('splashScreen');
-    const main = document.getElementById('mainContent');
-    
     if (authManager.check()) {
-      requestAnimationFrame(() => {
-        splash.style.display = 'none';
-        splash.style.visibility = 'hidden';
-        
-        main.style.display = 'block';
+      // Ya autenticado: mostrar "¿Sabías que?" directamente
+      const splash = document.getElementById('splashScreen');
+      const main = document.getElementById('mainContent');
+
+      // Ocultar temporalmente para mostrar "¿Sabías que?"
+      splash.style.visibility = 'hidden';
+      main.style.visibility = 'hidden';
+
+      ui.cacheElements();
+      
+      ui.showSabiasQue(() => {
+        // Restaurar visibilidad y mostrar app
+        splash.style.visibility = '';
         main.style.visibility = '';
         
         splash.classList.add('hidden');
@@ -1313,6 +1297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         app.init();
       });
     }
+    // Si no está autenticado, el formulario está listo
   }, 100);
 });
 
