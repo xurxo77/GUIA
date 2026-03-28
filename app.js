@@ -76,7 +76,7 @@ const curiosidades = [
 
   "<strong>Galicia fue refugio durante la última glaciación.</strong> Su clima más suave permitió que muchísimas especies animales y vegetales sobrevivieran aquí.<br><br>👉 Mientras gran parte de Europa quedaba completamente congelada, esta tierra fue un auténtico santuario de vida.",
 
-  "<strong>El "verde gallego" no es tan natural como parece.</strong> Gran parte del paisaje está ocupado por eucaliptos, una especie introducida de crecimiento rápido.<br><br>👉 Aunque a la vista resulte frondoso, este árbol desplaza al bosque autóctono y altera el equilibrio natural de la tierra.",
+  "<strong>El \u00abverde gallego\u00bb no es tan natural como parece.</strong> Gran parte del paisaje está ocupado por eucaliptos, una especie introducida de crecimiento rápido.<br><br>👉 Aunque a la vista resulte frondoso, este árbol desplaza al bosque autóctono y altera el equilibrio natural de la tierra.",
 
   "<strong>Los gaiteiros fueron durante siglos los músicos del pueblo.</strong> Recorrían aldeas tocando en romerías y marcaban el ritmo social de la comunidad, desde bodas hasta procesiones.<br><br>👉 Con el tiempo, pasaron de ser músicos populares a convertirse en símbolos absolutos de la cultura gallega.",
 
@@ -1232,7 +1232,7 @@ function handleLogin(e) {
   const error = document.getElementById('splashError');
   const value = input.value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  if (value === CONFIG.PASSWORD || value === 'caamanho') {
+  if (value === CONFIG.PASSWORD || value === 'caamanho' || value === 'caamano') {
     // ÉXITO: Guardar auth y mostrar app
     authManager.set(true);
     
