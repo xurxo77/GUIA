@@ -95,24 +95,8 @@
       <h1 class="splash-title">Galicia</h1>
       <p class="splash-subtitle">Guía para amigos</p>
       
-      <form class="splash-form" id="splashForm">
-        <div class="input-wrapper">
-          <input 
-            type="password" 
-            class="splash-input" 
-            id="passwordInput" 
-            placeholder="Introduce la contraseña" 
-            autocomplete="off"
-            aria-label="Contraseña de acceso"
-            required
-          >
-          <button type="button" class="password-toggle" id="passwordToggle" aria-label="Mostrar contraseña">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </button>
-        </div>
+     <form class="splash-form" id="splashForm" onsubmit="event.preventDefault(); entrarApp();">
+        <div><input type="password" class="splash-input" id="passwordInput" placeholder="Introduce la contraseña" autocomplete="off"></div>
         <p class="splash-error" id="splashError" role="alert" aria-live="polite"></p>
         <button type="submit" class="splash-btn ripple-host">
           <span>Entrar</span>
@@ -493,5 +477,31 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" ></script>
   <script src="app.js?v=8.0" ></script>
+  <script>
+    function entrarApp() {
+      var input = document.getElementById('passwordInput').value.trim().toLowerCase();
+      var error = document.getElementById('splashError');
+      
+      // Aceptamos la ñ y la n por problemas de codificación en algunos móviles
+      if (input === 'caamaño' || input === 'caamano') {
+        error.textContent = '';
+        document.getElementById('splashScreen').style.opacity = '0';
+        
+        setTimeout(function() {
+          document.getElementById('splashScreen').style.display = 'none';
+          document.getElementById('mainContent').classList.add('visible');
+          
+          // Despertamos al resto de la aplicación
+          if (typeof app !== 'undefined' && typeof app.init === 'function') {
+            app.init();
+          }
+        }, 350);
+      } else {
+        error.textContent = 'Contraseña incorrecta';
+        // Borramos el campo para que vuelva a intentarlo
+        document.getElementById('passwordInput').value = '';
+      }
+    }
+  </script>
 </body>
 </html>
