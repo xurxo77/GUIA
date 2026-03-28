@@ -1,21 +1,152 @@
 {
-  "name": "Galicia Guía",
+  "name": "Galicia - Guía para Amigos",
   "short_name": "Galicia",
-  "start_url": "./index.html",
+  "description": "Guía personalizada para descubrir Galicia con calma. Hecha por Xurxo & Raquel.",
+  "start_url": "/?source=pwa",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1a4a5e",
-  "description": "Nuestra guía interactiva de Galicia",
+  "background_color": "#F5F3EE",
+  "theme_color": "#1a5276",
+  "orientation": "portrait",
+  "categories": ["travel", "lifestyle", "navigation"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "/",
+  "id": "galicia-guia-amigos",
+  
   "icons": [
     {
-      "src": "img/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "img/icon-512.png",
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  
+  "screenshots": [
+    {
+      "src": "screenshots/hero.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Pantalla principal de Galicia"
+    },
+    {
+      "src": "screenshots/lugares.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Lugares de Galicia"
+    },
+    {
+      "src": "screenshots/mapa.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mapa interactivo"
+    },
+    {
+      "src": "screenshots/desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vista en escritorio"
+    }
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Mis Favoritos",
+      "short_name": "Favoritos",
+      "description": "Ver lugares guardados",
+      "url": "/#favoritos",
+      "icons": [{ "src": "icons/shortcut-fav.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Crear Ruta",
+      "short_name": "Ruta",
+      "description": "Generar itinerario",
+      "url": "/#generador",
+      "icons": [{ "src": "icons/shortcut-route.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Recomendaciones",
+      "short_name": "Consejos",
+      "description": "Ver consejos de viaje",
+      "url": "/#recomendaciones",
+      "icons": [{ "src": "icons/shortcut-tips.png", "sizes": "96x96" }]
+    }
+  ],
+  
+  "related_applications": [],
+  "prefer_related_applications": false,
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "handle_links": "preferred",
+  
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  
+  "protocol_handlers": [
+    {
+      "protocol": "web+galicia",
+      "url": "/?lugar=%s"
+    }
+  ],
+  
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "name",
+      "text": "description",
+      "url": "link"
+    }
+  }
 }
