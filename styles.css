@@ -1689,3 +1689,73 @@ section#hero {
   overflow-x: hidden !important;
   width: 100% !important;
 }
+
+
+
+/* ================================================================ */
+/* === CORRECCIÓN NAVEGACIÓN — SOLO PANTALLA ACTIVA VISIBLE     === */
+/* ================================================================ */
+
+/* El body no hace scroll entre secciones */
+html, body {
+  overflow: hidden !important;
+  height: 100% !important;
+}
+
+.main-content {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Todas las secciones ocultas por defecto */
+#hero,
+#recomendaciones,
+#lugares,
+#generador {
+  display: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 80px !important;
+  box-sizing: border-box !important;
+}
+
+/* Solo la activa se muestra */
+#hero.active-screen {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100% !important;
+  padding: 24px 20px 80px !important;
+}
+
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  display: block !important;
+  padding: 20px 16px 100px !important;
+}
+
+/* El contenedor principal ocupa toda la pantalla */
+.main-content.visible {
+  display: block !important;
+  position: fixed !important;
+  inset: 0 !important;
+  bottom: 60px !important; /* espacio para el menú */
+}
+
+/* El menú siempre encima */
+.bottom-nav-wrapper,
+.bottom-menu {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+}
