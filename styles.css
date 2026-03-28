@@ -3512,3 +3512,99 @@ a:hover {
 #hero.active-screen {
   bottom: 100px;
 }
+
+
+
+/* ================================================================
+   CORRECCIONES VISUALES — CAPTURAS DE PANTALLA
+   ================================================================ */
+
+/* 1. PULL INDICATOR — ocultar siempre (no hay lógica JS que lo active) */
+.pull-indicator,
+#pullIndicator {
+  display: none !important;
+}
+
+/* 2. BUSCADOR DE LUGARES — el SVG hereda tamaño enorme, fijar */
+.search-wrapper {
+  margin-bottom: 16px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 10px 16px;
+  box-shadow: var(--elev-1);
+}
+.search-box svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+  stroke: var(--fg-muted);
+}
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--fg-ink);
+  background: transparent;
+}
+.search-box input::placeholder {
+  color: var(--fg-disabled);
+}
+
+/* 3. SECTION HEADER — evitar que el número tape el título */
+.section-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 8px !important;
+  flex-wrap: nowrap !important;
+}
+.section-number {
+  flex-shrink: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+}
+.section-title {
+  flex: 1 !important;
+  font-size: 1.6rem !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+/* 4. PROVINCE ARROW — el círculo debe ser pequeño, no enorme */
+.province-arrow {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+.province-arrow svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* 5. BLOQUE ACTIONS — contener la flecha correctamente */
+.bloque-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 14px !important;
+  flex-shrink: 0 !important;
+}
