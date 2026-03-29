@@ -614,6 +614,59 @@ const routeManager = {
   }
 };
 
+// ── DATOS DE RECOMENDACIONES ──────────────────────────────────
+
+const recomendaciones = {
+  antes: [
+    { img: 'img/rec_chaqueta.jpg', alt: 'Chaqueta', titulo: '🧥 Trae una prenda de abrigo. Siempre.', cuerpo: 'Aunque vengas en agosto y veas sol en la previsión, en Galicia <strong>refresca al caer la tarde</strong>, sobre todo cerca del mar.<br><br>No es drama, pero se agradece no acabar comprando una sudadera de emergencia.' },
+    { img: 'img/rec_lluvia.jpg', alt: 'Lluvia', titulo: '🌦️ La lluvia no avisa.', cuerpo: 'No es que llueva todo el día; es peor (o mejor): <strong>puede llover cinco minutos, parar, salir el sol… y repetir</strong>. Incluso te puede pillar justo cuando te pones el bañador.<br><br>Un chubasquero ligero suele ser mejor idea que un paraguas. Y ojo, en verano también hay días de tiempo espectacular.' },
+    { img: 'img/rec_clima.jpg', alt: 'Clima', titulo: '🌫️ El clima cambia en horas.', cuerpo: 'Puedes salir con cielo despejado y encontrarte niebla cerrada en la costa en media hora. <strong>Galicia no tiene un clima: tiene varios a la vez.</strong><br><br>Si vas a la playa, consulta la meteorología (viento, niebla, mar) porque puede estar perfecto tierra adentro y torcerse en la costa.' },
+    { img: 'img/rec_hambre.jpg', alt: 'Hambre', titulo: '🍽️ Ven con hambre.', cuerpo: 'Las raciones no son simbólicas. <strong>Aquí se come en serio</strong>, y repetir no está mal visto.<br><br>En invierno, además, los platos son especialmente contundentes.' },
+    { img: 'img/rec_planes.jpg', alt: 'Planes', titulo: '🧭 No planifiques demasiado.', cuerpo: 'Galicia no encaja bien con horarios rígidos. Muchas veces lo mejor aparece sin buscarlo.<br><br><strong>Deja hueco para improvisar:</strong> suele ser ahí donde aciertas.' },
+    { img: 'img/rec_idioma.jpg', alt: 'Idioma', titulo: '🗣️ El gallego existe (y se usa).', cuerpo: 'Escucharás palabras distintas, y es parte del viaje. <strong>Es nuestra identidad y nuestra lengua…</strong> y si quieres, también puede ser un poco la tuya.<br><br>Decir "boas" o "grazas" suma puntos.' },
+    { img: 'img/rec_preguntar.jpg', alt: 'Preguntar', titulo: '❓ Pregunta sin miedo.', cuerpo: 'La gente puede parecer seca al principio, pero <strong>si preguntas, te ayudan</strong>. Y muchas veces, mejor que cualquier app.<br><br>Prepárate, eso sí, para respuestas tipo: "depende", "puede ser"… ayudamos, pero a nuestra manera.' },
+    { img: 'img/rec_reservas.jpg', alt: 'Reservas', titulo: '📅 Ojo con las reservas.', cuerpo: 'En sitios conocidos o en verano, <strong>reserva</strong>. Donde menos te lo esperas, se llena.<br><br>Algunos lugares muy demandados <strong>requieren antelación</strong>: Islas Cíes y Ons, el Pórtico de la Gloria o la Playa de las Catedrales.' },
+    { img: 'img/rec_gallegos.jpg', alt: 'Gallegos', titulo: '🧍 Los gallegos no somos bordes, somos prudentes.', cuerpo: 'No esperes entusiasmo inmediato. Aquí <strong>primero se observa, luego se confía.</strong><br><br>Pero cuando entras, entras de verdad.' }
+  ],
+  comer: [
+    { img: 'img/rec_pan.jpg', alt: 'Pan', titulo: '🥖 El pan importa. Mucho.', cuerpo: 'No es un simple acompañamiento. En serio: <strong>si el pan falla, desconfía.</strong><br><br>Los mejores: Pan de Cea (horno de leña), Pan de Carral (molete con moño), Pan de Neda (corteza gruesa), Pan de O Porriño (bollas famosas).' },
+    { img: 'img/rec_queso.jpg', alt: 'Queso', titulo: '🧀 Quesos con carácter.', cuerpo: 'Entra en cualquier taberna con buena pinta y pide una tabla de quesos gallegos.<br><br>Desde el cremoso hasta el ahumado: <strong>prueba sin prejuicios</strong>, algunos sorprenden mucho.' },
+    { img: 'img/rec_empanada.jpg', alt: 'Empanada', titulo: '🥟 Empanada: simple en apariencia, seria en ejecución.', cuerpo: 'Clásicas: <strong>bonito, bacalao con pasas o zamburiñas</strong>, pero también hay versiones con cualquier producto local. La masa varía según la zona.<br><br>Ideal para un picnic improvisado o como sustituto del bocadillo.' },
+    { img: 'img/rec_pulpo.jpg', alt: 'Pulpo', titulo: '🐙 Pulpo: menos espectáculo, más respeto.', cuerpo: 'Solo necesita sal, aceite y pimentón. <strong>Si está duro… no vuelvas.</strong> Para garantías, busca una buena pulpeira.<br><br>El <strong>pulpo á feira</strong> es la opción clásica y casi siempre la mejor.' },
+    { img: 'img/rec_raxo.jpg', alt: 'Raxo', titulo: '🐖 Raxo y zorza: el cerdo bien tratado.', cuerpo: 'Platos sencillos y sabrosos, <strong>raciones estrella</strong> de las tabernas gallegas.<br><br>Perfectos para compartir o como plato único.' },
+    { img: 'img/rec_pimientos.jpg', alt: 'Pimientos', titulo: '🌶️ Pimientos: una ruleta.', cuerpo: '"Unos pican, otros no". Los auténticos pimientos de Padrón <strong>se cultivan en Herbón</strong>.<br><br>No todos los que se encuentran fuera de Galicia son reales. Aprovecha mientras estás aquí.' },
+    { img: 'img/rec_pescado.jpg', alt: 'Pescados', titulo: '🐟 Pescados: Galicia habla claro.', cuerpo: 'Merluza, rodaballo, lubina… <strong>frescos y sin adornos innecesarios.</strong><br><br>A la brasa, en caldeirada o directo de la ría: sencillo y delicioso.' },
+    { img: 'img/rec_lacon.jpg', alt: 'Lacón', titulo: '🥬 Lacón con grelos: contundente.', cuerpo: 'No es ligero, pero <strong>es Galicia en plato</strong>.<br><br>Plato de temporada: si aparece en la carta, pídelo sin dudar.' },
+    { img: 'img/rec_ternera.jpg', alt: 'Ternera', titulo: '🥩 Ternera Gallega: otra liga.', cuerpo: '<strong>Carne con sabor real.</strong><br><br>Poco más que decir: prepárate para disfrutar… y para abrir la cartera si quieres lo mejor.' },
+    { img: 'img/rec_mariscada.jpg', alt: 'Marisco', titulo: '🦐 Marisco: cuando es bueno, se nota.', cuerpo: 'Y cuando no, también. No todo vale: <strong>busca locales con producto fresco y buena rotación.</strong><br><br>Para una experiencia de verdad, calcula <strong>no menos de 70 € por persona</strong>. La tarjeta es casi obligatoria, pero cada bocado lo vale.' }
+  ],
+  beber: [
+    { img: 'img/rec_albarino.jpg', alt: 'Albariño', titulo: '🍇 Albariño: fácil de entender, difícil de olvidar.', cuerpo: 'Fresco, aromático y muy agradecido. Se cultiva en las Rías Baixas, donde el clima atlántico le da ese punto ácido y salino.<br><br>👉 <strong>Cuándo:</strong> comida al mediodía, días de calor.<br>👉 <strong>Con qué:</strong> marisco, pescado, arroces.' },
+    { img: 'img/rec_ribeiro.jpg', alt: 'Ribeiro', titulo: '🍷 Ribeiro: el vino de las tabernas.', cuerpo: 'Más ligero que el albariño, muy refrescante. Siempre en esos vasos blancos bajitos.<br><br>👉 <strong>Cuándo:</strong> de tapas, en bares tradicionales.<br>👉 <strong>Con qué:</strong> empanada, chorizos, queso.' },
+    { img: 'img/rec_mencia.jpg', alt: 'Mencía', titulo: '🍷 Mencía: el tinto que sorprende.', cuerpo: 'Si crees que en Galicia solo hay blancos, el mencía te cambia la perspectiva. Frutoso, con carácter propio.<br><br>👉 <strong>Cuándo:</strong> cenas, con carne o pulpo.<br>👉 <strong>Dónde:</strong> Ribeira Sacra y Valdeorras.' },
+    { img: 'img/rec_godello.jpg', alt: 'Godello', titulo: '✨ Godello: el blanco con más personalidad.', cuerpo: 'Si el albariño es el rey de la costa, el godello es el rey del interior. Más complejo, con más cuerpo.<br><br>👉 <strong>Cuándo:</strong> con carnes blancas, quesos curados.<br>👉 <strong>Dónde:</strong> Valdeorras.' },
+    { img: 'img/rec_orujo.jpg', alt: 'Orujo', titulo: '🔥 Orujo: el chupito de Galicia.', cuerpo: 'El orujo gallego es cosa seria. Blanco, de hierbas o de miel. En invierno, el <strong>queimada</strong> es un ritual.<br><br>👉 <strong>Cuándo:</strong> de postre, para el frío.<br>👉 <strong>Cuidado:</strong> tiene más grados de los que parece.' },
+    { img: 'img/rec_estrella.jpg', alt: 'Estrella Galicia', titulo: '🍺 Estrella Galicia: la de aquí.', cuerpo: 'No es solo cerveza: es parte de la identidad. Fría y de grifo, acompaña cualquier momento.<br><br>👉 <strong>Consejo:</strong> en verano, no hay nada mejor con mariscos o pimientos de Padrón.' }
+  ],
+  disfrutar: [
+    { img: 'img/rec_distancias.jpg', alt: 'Distancias', titulo: '🗺️ No midas en kilómetros, mide en tiempo.', cuerpo: 'Las distancias engañan. 50 km pueden ser 1 hora o más.<br><br>👉 <strong>Error típico:</strong> querer ver demasiado en un día.' },
+    { img: 'img/rec_coche.jpg', alt: 'Coche', titulo: '🚗 Sin coche, te pierdes Galicia.', cuerpo: 'El transporte público no llega a todo.<br><br>👉 <strong>Regla:</strong> alquila coche si quieres libertad.<br>👉 <strong>Ganancia:</strong> acceso a sitios que no salen en ninguna guía.' },
+    { img: 'img/rec_gps.jpg', alt: 'GPS', titulo: '📍 El GPS no siempre tiene razón.', cuerpo: 'Te puede meter por carreteras estrechas o caminos raros.<br><br>👉 <strong>Regla:</strong> si dudas, no sigas a ciegas.<br>👉 <strong>Mejor opción:</strong> parar y preguntar.' },
+    { img: 'img/rec_mirador.jpg', alt: 'Mirador', titulo: '📸 Si ves un mirador, párate.', cuerpo: 'No todos salen en Google.<br><br>👉 <strong>Regla:</strong> si hay hueco para parar, para.<br>👉 <strong>Resultado:</strong> muchas veces, lo mejor del día.' },
+    { img: 'img/rec_mar_impone.jpg', alt: 'Mar', titulo: '🌊 El mar aquí impone.', cuerpo: 'Especialmente en costa abierta. Respeta las olas y las corrientes.<br><br>👉 <strong>Aviso:</strong> esto es el Atlántico. No es una broma.' },
+    { img: 'img/rec_playas.jpg', alt: 'Playas', titulo: '🏖️ No todas las playas son iguales.', cuerpo: 'Ría ≠ océano.<br><br>👉 <strong>Rías:</strong> más tranquilas, familiares.<br>👉 <strong>Abiertas:</strong> más espectaculares, pero más exigentes.' },
+    { img: 'img/rec_mareas.jpg', alt: 'Mareas', titulo: '🌗 Mira las mareas antes de ir.', cuerpo: 'Cambian completamente el paisaje.<br><br>👉 <strong>Regla:</strong> consulta mareas si vas a calas o playas largas.<br>👉 <strong>Prueba:</strong> busca "Galicia coche marea". Vas a flipar.' },
+    { img: 'img/rec_barco.jpg', alt: 'Barco', titulo: '⛴️ Cruza la ría en barco si puedes.', cuerpo: 'No es solo transporte, es parte del viaje.<br><br>👉 <strong>Ejemplo:</strong> la línea Moaña–Vigo es rápida, barata y muy recomendable.' },
+    { img: 'img/rec_chiringuitos.jpg', alt: 'Chiringuitos', titulo: '🍻 Aquí chiringuitos, pocos.', cuerpo: 'No esperes servicios en todas las playas. Muchas están prácticamente vírgenes.<br><br>👉 <strong>Clave:</strong> ven preparado. Y sí, a nosotros nos gusta así.' },
+    { img: 'img/rec_interior.jpg', alt: 'Interior', titulo: '🌿 El interior es otra Galicia.', cuerpo: 'Ríos, bosques, fervenzas.<br><br>👉 <strong>Regla:</strong> no te quedes solo en la costa.<br>👉 <strong>Premio:</strong> menos gente, más autenticidad.' },
+    { img: 'img/rec_islas.jpg', alt: 'Islas', titulo: '🏝️ Las islas cambian el ritmo.', cuerpo: 'Cíes, Ons… otra velocidad.<br><br>👉 <strong>Regla:</strong> planifica con antelación.<br>👉 <strong>Consejo:</strong> si vas, recórrelas. Merece la pena.' },
+    { img: 'img/rec_caminar.jpg', alt: 'Caminar', titulo: '🥾 Caminar es parte del viaje.', cuerpo: 'Galicia no se disfruta solo en coche.<br><br>👉 <strong>Regla:</strong> baja, camina, explora.<br>👉 <strong>Resultado:</strong> lo que no ve todo el mundo.' },
+    { img: 'img/rec_fiesta.jpg', alt: 'Fiesta', titulo: '🎉 Si hay fiesta, quédate.', cuerpo: 'Da igual cuál sea. Es Galicia en estado puro.<br><br>👉 <strong>Pista:</strong> aquí hay más fiestas que días. Mira: <a href="https://festigaleiros.com/" target="_blank" rel="noopener">festigaleiros.com</a>' },
+    { img: 'img/rec_magia.jpg', alt: 'Magia', titulo: '🌫️ Galicia también es mágica.', cuerpo: 'Mouras, mouros, trasgos, meigas, la Santa Compaña… hay más historias que kilómetros.<br><br>👉 <strong>Clave:</strong> la magia, la muerte, el mar y el misterio forman parte de lo que somos.' },
+    { img: 'img/rec_clavefinal.jpg', alt: 'Clave final', titulo: '💡 Clave final:', cuerpo: 'Disfruta de todo, cuida el entorno, sé buena gente… <strong>y vuelve.</strong>' }
+  ]
+};
+
 // ── UI Y RENDERIZADO ──────────────────────────────────────────
 
 const ui = {
@@ -640,6 +693,21 @@ const ui = {
       textoSabiasQue: document.getElementById('texto-sabias-que'),
       sabiasQueProgress: document.getElementById('sabiasQueProgress')
     };
+  },
+
+  renderRecommendations: () => {
+    const categorias = { antes: 'rec-antes', comer: 'rec-comer', beber: 'rec-beber', disfrutar: 'rec-disfrutar' };
+    Object.entries(categorias).forEach(([key, id]) => {
+      const scroll = document.querySelector(`#${id} .horizontal-scroll`);
+      if (!scroll || !recomendaciones[key]) return;
+      scroll.innerHTML = recomendaciones[key].map(card => `
+        <div class="rec-card">
+          <img src="${card.img}" class="rec-card-img" alt="${card.alt}" loading="lazy" onerror="this.style.display='none'">
+          <h4>${card.titulo}</h4>
+          <p>${card.cuerpo}</p>
+        </div>
+      `).join('');
+    });
   },
 
   renderPlaces: () => {
@@ -784,24 +852,23 @@ const ui = {
     if (!element) return;
 
     const wasExpanded = element.classList.contains('expanded');
-    
-    document.querySelectorAll('.province-box.expanded').forEach(el => {
+
+    // Cerrar todos los demás province-box del mismo contenedor
+    const container = element.closest('section') || document.body;
+    container.querySelectorAll('.province-box.expanded').forEach(el => {
       if (el.id !== id) el.classList.remove('expanded');
     });
 
     if (!wasExpanded) {
       element.classList.add('expanded');
-      
+      // Scroll dentro del contenedor fijo de la sección
       setTimeout(() => {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }, 350);
+        const section = element.closest('#recomendaciones, #lugares');
+        if (section) {
+          const top = element.offsetTop - 70;
+          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+      }, 300);
     } else {
       element.classList.remove('expanded');
     }
@@ -814,10 +881,14 @@ const ui = {
     if (!card) return;
 
     const isExpanded = card.classList.toggle('expanded');
-    
+
     if (isExpanded) {
       setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+        const section = card.closest('#lugares');
+        if (section) {
+          const top = card.offsetTop - 70;
+          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
       }, 150);
       utils.haptic('medium');
     } else {
@@ -1209,6 +1280,7 @@ const app = {
     favoritesManager.load();
     geoManager.checkSaved();
     
+    ui.renderRecommendations();
     ui.renderPlaces();
     mapManager.init();
     navigationManager.init();
