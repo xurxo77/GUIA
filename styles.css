@@ -3712,3 +3712,15 @@ a:hover {
   flex: 0 0 82% !important;
   width: 82% !important;
 }
+
+
+
+/* ── TARJETAS MÁS ANCHAS — 92% ───────────────────────────────── */
+.places-carousel {
+  padding-inline: 4% !important;
+  scroll-padding-inline: 4% !important;
+}
+.places-carousel .place-card {
+  flex: 0 0 92% !important;
+  width: 92% !important;
+}
