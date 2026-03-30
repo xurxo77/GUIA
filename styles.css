@@ -3655,3 +3655,31 @@ a:hover {
   scroll-snap-align: none !important;
   margin: 0 !important;
 }
+
+
+
+/* ── CARRUSEL HORIZONTAL DE LUGARES ──────────────────────────── */
+.places-carousel {
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch !important;
+  scroll-snap-type: x mandatory !important;
+  gap: 12px !important;
+  padding: 12px 16px 20px !important;
+  scrollbar-width: none !important;
+}
+.places-carousel::-webkit-scrollbar { display: none !important; }
+
+.places-carousel .place-card {
+  flex: 0 0 82% !important;
+  width: 82% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  scroll-snap-align: start !important;
+  margin: 0 !important;
+}
+
+/* Quitar los estilos de lista vertical que añadimos antes */
+.places-list { display: none !important; }
