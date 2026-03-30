@@ -3697,3 +3697,18 @@ a:hover {
   width: 82% !important;
   scroll-snap-align: center !important;
 }
+
+
+
+/* ── CENTRADO CORRECTO — scroll-padding ──────────────────────── */
+.places-carousel {
+  scroll-snap-type: x mandatory !important;
+  scroll-padding-inline: 9% !important;
+  padding-inline: 9% !important;
+}
+
+.places-carousel .place-card {
+  scroll-snap-align: center !important;
+  flex: 0 0 82% !important;
+  width: 82% !important;
+}
