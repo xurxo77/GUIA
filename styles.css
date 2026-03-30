@@ -3683,3 +3683,17 @@ a:hover {
 
 /* Quitar los estilos de lista vertical que añadimos antes */
 .places-list { display: none !important; }
+
+
+
+/* ── CENTRADO DE TARJETAS EN EL CARRUSEL ─────────────────────── */
+.places-carousel {
+  scroll-snap-type: x mandatory !important;
+  padding: 12px 9% 20px !important; /* padding lateral = (100% - 82%) / 2 */
+}
+
+.places-carousel .place-card {
+  flex: 0 0 82% !important;
+  width: 82% !important;
+  scroll-snap-align: center !important;
+}
