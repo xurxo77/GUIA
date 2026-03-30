@@ -914,7 +914,7 @@ const ui = {
         </div>
       `;
 
-      html += '<div class="province-content"><div class="places-list">';
+      html += '<div class="province-content"><div class="horizontal-scroll places-carousel">';
 
       lugaresBloque.forEach(lugar => {
         globalIndex++;
