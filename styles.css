@@ -3637,3 +3637,21 @@ a:hover {
 #lugares .province-box {
   flex-shrink: 0;
 }
+
+
+
+/* ── LISTA DE LUGARES (vertical, no carrusel) ─────────────────── */
+.places-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px 20px;
+}
+
+.places-list .place-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  scroll-snap-align: none !important;
+  margin: 0 !important;
+}
