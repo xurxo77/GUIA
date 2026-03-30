@@ -3608,3 +3608,32 @@ a:hover {
   padding: 0 14px !important;
   flex-shrink: 0 !important;
 }
+
+
+
+/* ── ESPACIADO SECCIONES ─────────────────────────────────────── */
+
+/* Más espacio entre título y primer elemento */
+#recomendaciones .section-header,
+#lugares .section-header {
+  margin-bottom: 20px !important;
+}
+
+/* Padding superior generoso al entrar en la sección */
+#recomendaciones.active-screen,
+#lugares.active-screen {
+  padding-top: 28px !important;
+}
+
+/* Las cajas de recomendaciones llenan mejor el espacio */
+#recomendaciones .recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Las cajas se expanden para aprovechar la pantalla */
+#recomendaciones .province-box,
+#lugares .province-box {
+  flex-shrink: 0;
+}
