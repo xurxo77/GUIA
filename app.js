@@ -87,7 +87,7 @@ const curiosidades = [
 
 // Lugares (array completo - mantén todos tus lugares aquí)
 const lugares = [
-  { 
+{ 
     id: 1, 
     nombre: "Santiago de Compostela", 
     bloque: "acoruna", 
@@ -96,17 +96,36 @@ const lugares = [
     imagen: "img/santiago.jpg", 
     lat: 42.8800, 
     lng: -8.5450, 
+    
     porQueVenir: "Santiago es el corazón cultural de Galicia. Más que una ciudad monumental, es un lugar vivido: piedra, historia y ambiente constante. Es el final del Camino, pero también un sitio al que siempre apetece volver.", 
     momentoPerfecto: "A cualquier hora, pero especialmente al atardecer, cuando la luz cae sobre la piedra y la ciudad se vuelve más tranquila. Con lluvia también tiene su encanto.", 
-    imprescindibles: ["<strong>Catedral de Santiago</strong>", "<strong>Plaza del Obradoiro</strong>", "<strong>Casco histórico:</strong> perderse es obligatorio.", "<strong>Mercado de Abastos</strong>"], 
+    
+    imprescindibles: [
+      "<strong>Catedral de Santiago</strong>", 
+      "<strong>Plaza del Obradoiro</strong>", 
+      "<strong>Casco histórico:</strong> perderse es obligatorio.",
+      "<strong>Mercado de Abastos</strong>"
+    ], 
+    
     comer: "Pulpo, empanada, marisco y producto gallego en general. Zonas recomendadas: Rúa do Franco y Rúa de San Pedro.", 
     tomar: "Vino gallego (albariño, ribeiro) o cerveza (Estrella Galicia).",
+    
     secreto: "Además de perderse por el casco histórico, si tienes tiempo merece mucho la pena salir un poco del centro y recorrer los paseos fluviales del río Sar. Es un sitio muy local, tranquilo y diferente, ideal si ya has visto lo principal y te quedas varios días.", 
-    masTiempo: ["<strong>Noia</strong>", "<strong>Padrón</strong>", "<strong>Excursiones en tren:</strong> a A Coruña o Vigo (rápidas y cómodas, con llegada directa al centro)."], 
-    advertencias: ["Mucho turismo en temporada alta.", "Lluvia frecuente.", "Precios más altos en el centro."],
-    miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."
-  },
-  { 
+    
+    masTiempo: [
+      "<strong>Noia</strong>",
+      "<strong>Padrón</strong>",
+      "<strong>Excursiones en tren:</strong> a A Coruña o Vigo (rápidas y cómodas, con llegada directa al centro)."
+    ], 
+    
+    advertencias: [
+      "Mucho turismo en temporada alta.",
+      "Lluvia frecuente.",
+      "Precios más altos en el centro."
+    ],
+    
+    miOpinion: "Santiago es, en el fondo, una aldea grande. Probablemente la aldea más grande de Europa. Es pequeña, pero tiene ese aire de capital que la hace especial. Es una ciudad de piedra, con siglos de historia, muy viva y siempre con gente. Estudiantil, dinámica y acogedora. Y lo mejor: por muchas veces que pasees por ella, siempre acabas descubriendo algo nuevo."},  
+{ 
     id: 2, 
     nombre: "A Coruña", 
     bloque: "acoruna", 
@@ -115,21 +134,171 @@ const lugares = [
     imagen: "img/acoruna.jpg", 
     lat: 43.3700, 
     lng: -8.4000, 
-    porQueVenir: "A Coruña combina ciudad y mar como pocas. Rascacielos frente a playas, historia en cada esquina y un paseo marítimo que es de los más largos de Europa. Ciudad viva, siempre con gente en movimiento, mercados, cafés y tiendas. Conocida como la \"Ciudad de Cristal\", destaca por sus galerías acristaladas de la Marina, diseñadas para captar luz y calor, formando uno de los conjuntos acristalados más extensos del mundo.", 
+    
+    porQueVenir: "A Coruña combina ciudad y mar como pocas. Rascacielos frente a playas, historia en cada esquina y un paseo marítimo que es de los más largos de Europa. Ciudad viva, siempre con gente en movimiento, mercados, cafés y tiendas. Conocida como la \"Ciudad de Cristal\", destaca por sus galerías acristaladas de la Marina, diseñadas para captar luz y calor, formando uno de los conjuntos acristalados más extensos del mundo. Además, hay un toque de rivalidad con otras ciudades gallegas, especialmente Vigo y Santiago, que se percibe tanto en lo cultural como en lo deportivo (Dépor vs. Celta) y en debates sobre calidad de vida.", 
+    
     momentoPerfecto: "Por la mañana en el casco histórico para ver la Plaza de María Pita y la Torre de Hércules, o al atardecer para pasear por el paseo marítimo y disfrutar de la luz sobre el Atlántico.", 
-    imprescindibles: ["<strong>Torre de Hércules:</strong> faro romano en funcionamiento más antiguo del mundo, Patrimonio de la Humanidad.", "<strong>Plaza de María Pita:</strong> centro histórico con bares y ambiente constante.", "<strong>Casco viejo:</strong> calles empedradas, plazas escondidas y esencia local.", "<strong>Paseo marítimo:</strong> el más largo de Europa, ideal para caminatas atlánticas.", "<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos."], 
-    comer: "Marisco, pescado fresco y tapas gallegas. Zonas recomendadas: Zona de Vinos (Calles Galera, Barrera y Estrella), Ciudad Vieja y Plaza de María Pita, Monte de San Pedro, Cuatro Caminos y Ensanche, Matogrande.", 
+    
+    imprescindibles: [
+      "<strong>Torre de Hércules:</strong> faro romano en funcionamiento más antiguo del mundo, Patrimonio de la Humanidad.",
+      "<strong>Plaza de María Pita:</strong> centro histórico con bares y ambiente constante.",
+      "<strong>Casco viejo:</strong> calles empedradas, plazas escondidas y esencia local.",
+      "<strong>Paseo marítimo:</strong> el más largo de Europa, ideal para caminatas atlánticas.",
+      "<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos."
+    ], 
+    
+    comer: "Marisco, pescado fresco y tapas gallegas.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Zona de Vinos (Calles Galera, Barrera y Estrella):</strong> tapeo por excelencia.<br>• <strong>Ciudad Vieja y Plaza de María Pita:</strong> mesones tradicionales y restaurantes de producto de alta calidad.<br>• <strong>Monte de San Pedro:</strong> comer con vistas panorámicas de la ciudad y el Atlántico.<br>• <strong>Cuatro Caminos y Ensanche:</strong> zonas más comerciales y residenciales con oferta variada.<br>• <strong>Matogrande:</strong> centro de negocios, opciones modernas y rápidas.", 
+    
     tomar: "Estrella Galicia, albariño o ribeiro según acompañamiento.",
+    
     secreto: "<strong>Paseo marítimo hasta Orzán y Riazor:</strong> kilómetros de costa urbana que pocos turistas aprovechan del todo.<br><br><strong>Miradores del Monte de San Pedro:</strong> vistas panorámicas increíbles y jardines poco conocidos.", 
-    masTiempo: ["<strong>Excursión rápida a Betanzos:</strong> villa medieval cercana.", "<strong>Costa da Morte:</strong> paisaje salvaje y natural."], 
-    planLluvia: ["<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos.", "<strong>Museo de las Ciencias:</strong> exposiciones interactivas y aprendizaje para todas las edades.", "<strong>Aquarium Finisterrae:</strong> vida marina y experiencias atlánticas sin mojarse."],
-    advertencias: ["Ciudad húmeda y ventosa, sobre todo en invierno.", "Aparcar en el centro puede ser un reto.", "Playas urbanas con oleaje: precaución."],
-    miOpinion: "A Coruña es energía pura: ciudad activa, atlántica y viva, con un carácter señorial muy marcado. Mezcla perfecta de ciudad y playa, historia y modernidad. Sus galerías acristaladas, la Torre de Hércules y su paseo marítimo la convierten en única."
-  },
-  // ... (resto de tus lugares) ...
-  { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
-  { id: 4, nombre: "Cedeira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 2, imagen: "img/cedeira.jpg", lat: 43.6667, lng: -8.0500, porQueVenir: "Playa de Magdalena y puerto pesquero.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de Magdalena", "Puerto", "Monte da Sartá"], comer: "Marisco.", tomar: "Vino blanco.", secreto: "Senda costera.", masTiempo: "Paseo al faro.", advertencias: "Mar peligroso." },
-  // ... continúa con todos tus lugares ...
+    
+    masTiempo: [
+      "<strong>Excursión rápida a Betanzos:</strong> villa medieval cercana.",
+      "<strong>Costa da Morte:</strong> paisaje salvaje y natural."
+    ], 
+    
+    planLluvia: [
+      "<strong>Museo de Bellas Artes y Domus:</strong> historia y ciencia al alcance de todos.",
+      "<strong>Museo de las Ciencias:</strong> exposiciones interactivas y aprendizaje para todas las edades.",
+      "<strong>Aquarium Finisterrae:</strong> vida marina y experiencias atlánticas sin mojarse."
+    ],
+    
+    advertencias: [
+      "Ciudad húmeda y ventosa, sobre todo en invierno.",
+      "Aparcar en el centro puede ser un reto.",
+      "Playas urbanas con oleaje: precaución."
+    ],
+    
+    miOpinion: "A Coruña es energía pura: ciudad activa, atlántica y viva, con un carácter señorial muy marcado. Mezcla perfecta de ciudad y playa, historia y modernidad. Sus galerías acristaladas, la Torre de Hércules y su paseo marítimo la convierten en única. La zona del puerto es fantástica para pasear y descubrir la vida local. Y si te quedas sin planes, o eres fanático de la Estrella Galicia, visitar su museo merece la pena. Cada esquina tiene algo que descubrir, y pese a la rivalidad cultural con Vigo o Santiago, nadie duda de su carácter especial como capital atlántica gallega."
+  },  { id: 3, nombre: "Betanzos", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/betanzos.jpg", lat: 43.2833, lng: -8.2167, porQueVenir: "Villa medieval con casco histórico.", momentoPerfecto: "Mañana.", imprescindibles: ["Plaza Mayor", "Iglesia de Santa María", "Murallas"], comer: "Tortilla de Betanzos.", tomar: "Vino de la tierra.", secreto: "Jardines del Pasatiempo.", masTiempo: "Paseo por el río.", advertencias: "Fuertes pendientes." },
+  { id: 4, nombre: "Cedeira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 2, imagen: "img/cedeira.jpg", lat: 43.6667, lng: -8.0500, porQueVenir: "Playa de Magdalena y puerto pesquero.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de Magdalena", "Puerto", "Monte da Sartá"], comer: "Marisco.", tomar: "Vino blanco.", secreto: "Senda costera.", masTiempo: "Paseo al faro.", advertencias: "Mar peligroso." },
+  { id: 5, nombre: "Ortigueira", bloque: "acoruna", categorias: ["costa", "naturaleza"], horas: 3, imagen: "img/ortigueira.jpg", lat: 43.6333, lng: -7.8500, porQueVenir: "Playa de Ortigueira, una de las mejores.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de Ortigueira", "Cabo Ortegal", "Puerto"], comer: "Marisco.", tomar: "Sidra.", secreto: "Estaca de Bares.", masTiempo: "Cabo Ortegal.", advertencias: "Marea alta cubre la playa." },
+  { id: 6, nombre: "Estaca de Bares", bloque: "acoruna", categorias: ["magicos", "costa"], horas: 2, imagen: "img/estacadebares.jpg", lat: 43.7833, lng: -7.6833, porQueVenir: "Punto más al norte de España.", momentoPerfecto: "Atardecer.", imprescindibles: ["Faro", "Mirador", "Paseo hasta el faro"], comer: "En Ortigueira.", tomar: "Lo que lleves.", secreto: "Amanecer.", masTiempo: "Ortigueira.", advertencias: "Viento muy fuerte." },
+  { id: 7, nombre: "Costa da Morte", bloque: "acoruna", categorias: ["magicos", "naturaleza", "costa"], horas: 6, imagen: "img/costadamorte.jpg", lat: 43.0000, lng: -9.0000, porQueVenir: "Tramo de costa con naufragios y faros.", momentoPerfecto: "Otoño o invierno.", imprescindibles: ["Faro de Fisterra", "Muxía", "Camariñas"], comer: "Pulpo.", tomar: "Albariño.", secreto: "Playa de Traba.", masTiempo: "Ruta completa.", advertencias: "Mar siempre peligroso." },
+  { id: 8, nombre: "Fragas do Eume", bloque: "acoruna", categorias: ["naturaleza"], horas: 4, imagen: "img/eume.jpg", lat: 43.4167, lng: -8.0667, porQueVenir: "Bosque atlántico mejor conservado.", momentoPerfecto: "Primavera.", imprescindibles: ["Monasterio de Caaveiro", "Ruta del río", "Miradores"], comer: "Picnic.", tomar: "Agua.", secreto: "Ruta nocturna guiada.", masTiempo: "Monfero.", advertencias: "Cierres por lluvia." },
+  { id: 9, nombre: "Monte Pindo", bloque: "acoruna", categorias: ["naturaleza", "magicos"], horas: 3, imagen: "img/pindo.jpg", lat: 42.9000, lng: -9.1000, porQueVenir: "Monte sagrado, granito rosa.", momentoPerfecto: "Día despejado.", imprescindibles: ["Cumbre", "Leyendas", "Vistas"], comer: "En Fisterra.", tomar: "Agua.", secreto: "Petroglifos.", masTiempo: "Fisterra.", advertencias: "Roca resbaladiza." },
+  { id: 10, nombre: "Cascada del Ézaro", bloque: "acoruna", categorias: ["naturaleza", "costa"], horas: 1, imagen: "img/ezaro.jpg", lat: 42.8667, lng: -9.1167, porQueVenir: "Única cascada que cae al mar.", momentoPerfecto: "Tras lluvias.", imprescindibles: ["Mirador", "Playa", "Faro"], comer: "En Fisterra.", tomar: "Agua.", secreto: "Noche con luna.", masTiempo: "Fisterra.", advertencias: "Menos agua en verano." },
+  { id: 11, nombre: "Padrón", bloque: "acoruna", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/padron.jpg", lat: 42.7333, lng: -8.6500, porQueVenir: "Cuna del peregrino.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Iria Flavia", "Fonte do Carme", "Pedrón"], comer: "Pimientos de Padrón.", tomar: "Vino.", secreto: "Casa de Rosalía.", masTiempo: "Paseo del río.", advertencias: "Pican algunos." },
+  { id: 12, nombre: "San Andrés de Teixido", bloque: "acoruna", categorias: ["magicos"], horas: 3, imagen: "img/teixido.jpg", lat: 43.6333, lng: -8.2500, porQueVenir: "Santuario donde van los que no van en vida.", momentoPerfecto: "Peregrinación.", imprescindibles: ["Santuario", "Ruta", "Vistas"], comer: "Lo que lleves.", tomar: "Agua.", secreto: "Amanecer.", masTiempo: "Cedeira.", advertencias: "Carretera estrecha." },
+  { id: 13, nombre: "Muros", bloque: "acoruna", categorias: ["pueblos"], horas: 2, imagen: "img/muros.jpg", lat: 42.7667, lng: -9.0500, porQueVenir: "Puerto pesquero con quintas indias.", momentoPerfecto: "Mañana.", imprescindibles: ["Puerto", "Quintas", "Playa"], comer: "Pescado fresco.", tomar: "Vino.", secreto: "Ruta de las Quintas.", masTiempo: "Noia.", advertencias: "Aparcar difícil." },
+  { id: 14, nombre: "Noia", bloque: "acoruna", categorias: ["pueblos"], horas: 2, imagen: "img/noia.jpg", lat: 42.7833, lng: -8.8833, porQueVenir: "Puerto fluvial con casco histórico.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Puerto", "Casco histórico", "Ría"], comer: "Marisco.", tomar: "Vino.", secreto: "Sendero.", masTiempo: "Muros.", advertencias: "Nada especial." },
+  { id: 15, nombre: "Ferrol", bloque: "acoruna", categorias: ["ciudades", "patrimonio"], horas: 3, imagen: "img/ferrol.jpg", lat: 43.4833, lng: -8.2333, porQueVenir: "Ciudad naval ilustrada.", momentoPerfecto: "Mañana.", imprescindibles: ["Arsenales", "Castillo de San Felipe", "Barrio de la Magdalena"], comer: "Marisco.", tomar: "Estrella Galicia.", secreto: "Cabo Prior.", masTiempo: "Cedeira.", advertencias: "Lluvia frecuente." },
+  { id: 16, nombre: "Lugo", bloque: "lugo", categorias: ["ciudades", "patrimonio"], horas: 3, imagen: "img/lugo.jpg", lat: 43.0100, lng: -7.5600, porQueVenir: "Muralla romana mejor conservada.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Muralla", "Catedral", "Casco histórico"], comer: "Pulpo.", tomar: "Cerveza.", secreto: "Paseo nocturno.", masTiempo: "Termas romanas.", advertencias: "Ciudad tranquila." },
+  { id: 17, nombre: "Viveiro", bloque: "lugo", categorias: ["villas", "costa"], horas: 3, imagen: "img/viveiro.jpg", lat: 43.6500, lng: -7.6000, porQueVenir: "Villa marinera medieval.", momentoPerfecto: "Verano.", imprescindibles: ["Puerto", "Casco histórico", "Playa de Covas"], comer: "Marisco.", tomar: "Sidra.", secreto: "Fiestas del Carmen.", masTiempo: "Playa de Covas.", advertencias: "Lleno en verano." },
+  { id: 18, nombre: "Mondoñedo", bloque: "lugo", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/mondonedo.jpg", lat: 43.4667, lng: -7.4500, porQueVenir: "Antigua capital del reino de Galicia.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Catedral", "Casco histórico", "Miradores"], comer: "Empanada.", tomar: "Vino.", secreto: "Festival de la Cocina.", masTiempo: "Senda ecológica.", advertencias: "Lluvia frecuente." },
+  { id: 19, nombre: "Ribadeo", bloque: "lugo", categorias: ["costa"], horas: 4, imagen: "img/ribadeo.jpg", lat: 43.5333, lng: -7.0333, porQueVenir: "Villa marinera y playa de las Catedrales.", momentoPerfecto: "Marea baja.", imprescindibles: ["Playa de las Catedrales", "Torre de los Moreno", "Paseo marítimo"], comer: "Marisco.", tomar: "Sidra.", secreto: "Faro de la Isla Pancha.", masTiempo: "Mondoñedo.", advertencias: "Reserva en Catedrales." },
+  { id: 20, nombre: "Serra dos Ancares", bloque: "lugo", categorias: ["naturaleza"], horas: 5, imagen: "img/ancares.jpg", lat: 42.7833, lng: -7.2000, porQueVenir: "Montaña, pallozas, sosiego.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Pallozas", "Rutas", "Vistas"], comer: "Cocina tradicional.", tomar: "Agua.", secreto: "Cascada secreta.", masTiempo: "Ruta completa.", advertencias: "Carreteras de montaña." },
+  { id: 21, nombre: "Chantada", bloque: "lugo", categorias: ["patrimonio"], horas: 2, imagen: "img/chantada.jpg", lat: 42.6167, lng: -7.7667, porQueVenir: "Villa con tradición vinícola.", momentoPerfecto: "Otoño.", imprescindibles: ["Casco histórico", "Bodegas", "Paisajes"], comer: "Vino y queso.", tomar: "Mencía.", secreto: "Rutas del vino.", masTiempo: "Carballeira.", advertencias: "Calor en verano." },
+  { id: 22, nombre: "Ourense", bloque: "ourense", categorias: ["ciudades", "termalismo"], horas: 3, imagen: "img/ourense.jpg", lat: 42.3350, lng: -7.8640, porQueVenir: "Termas romanas, casco histórico.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Puente romano", "Termas", "Casco viejo"], comer: "Pulpo.", tomar: "Mencía.", secreto: "Termas libres.", masTiempo: "Ribeira Sacra.", advertencias: "Calor en verano." },
+  { id: 23, nombre: "Allariz", bloque: "ourense", categorias: ["villas", "termalismo"], horas: 2, imagen: "img/allariz.jpg", lat: 42.1833, lng: -7.8000, porQueVenir: "Villa medieval peatonal.", momentoPerfecto: "Tarde.", imprescindibles: ["Casco histórico", "Río Arnoia", "Artesanía"], comer: "Cocina gallega.", tomar: "Vino.", secreto: "Ruta del Arnoia.", masTiempo: "Playa fluvial.", advertencias: "Nada." },
+  { id: 24, nombre: "Ribadavia", bloque: "ourense", categorias: ["villas", "patrimonio"], horas: 2, imagen: "img/ribadavia.jpg", lat: 42.2833, lng: -8.1500, porQueVenir: "Capital del vino y judería.", momentoPerfecto: "Fiesta del vino.", imprescindibles: ["Judería", "Casco histórico", "Bodegas"], comer: "Vino y tapas.", tomar: "Mencía.", secreto: "Fiesta del vino.", masTiempo: "Riberas del Miño.", advertencias: "Fiestas en agosto." },
+  { id: 25, nombre: "Monforte de Lemos", bloque: "ourense", categorias: ["patrimonio"], horas: 3, imagen: "img/monforte.jpg", lat: 42.5167, lng: -7.5167, porQueVenir: "Colegiata y torre del homenaje.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Colexiata", "Torre da Homenaxe", "Huerta"], comer: "Pulpo.", tomar: "Mencía.", secreto: "Vistas desde la torre.", masTiempo: "Ribeira Sacra.", advertencias: "Cuesta arriba." },
+  { id: 26, nombre: "Castro Caldelas", bloque: "ourense", categorias: ["patrimonio"], horas: 2, imagen: "img/castro.jpg", lat: 42.3581, lng: -7.4649, porQueVenir: "Castillo medieval y vistas.", momentoPerfecto: "Mañana.", imprescindibles: ["Castillo", "Pueblo", "Miradores"], comer: "Cocina tradicional.", tomar: "Mencía.", secreto: "Atardecer.", masTiempo: "Cañón del Sil.", advertencias: "Carretera curvas." },
+  { id: 27, nombre: "Cañón del Sil", bloque: "ourense", categorias: ["naturaleza"], horas: 5, imagen: "img/sil.jpg", lat: 42.4167, lng: -7.7500, porQueVenir: "Cañones más espectaculares.", momentoPerfecto: "Primavera y otoño.", imprescindibles: ["Catamarán", "Miradores", "Monasterios"], comer: "Adegas.", tomar: "Mencía.", secreto: "Sendero de los Monjes.", masTiempo: "Castro Caldelas.", advertencias: "Carreteras estrechas." },
+  { id: 28, nombre: "Ribeira Sacra", bloque: "ourense", categorias: ["magicos", "naturaleza", "patrimonio"], horas: 6, imagen: "img/ribeira.jpg", lat: 42.4500, lng: -7.5500, porQueVenir: "Tierra de monjes y milagros.", momentoPerfecto: "Cualquier momento.", imprescindibles: ["Monasterios", "Cañones", "Catamarán"], comer: "Mencía.", tomar: "Godello.", secreto: "Monasterio de San Pedro de Rocas.", masTiempo: "Varios días.", advertencias: "Carreteras de montaña." },
+{ 
+    id: 29, 
+    nombre: "Vigo", 
+    bloque: "pontevedra", 
+    categorias: ["ciudades", "costa"], 
+    horas: 4, 
+    imagen: "img/vigo.jpg", 
+    lat: 42.2406, 
+    lng: -8.7207, 
+    
+    porQueVenir: "Vigo es una ciudad dinámica y abierta al Atlántico, famosa por su puerto pesquero, su ría y su proximidad a playas espectaculares. Combina zonas señoriales y barrios históricos con parques, miradores y una gastronomía reconocida, especialmente en marisco y pescado fresco. Además, es un punto estratégico cercano a las Islas Cíes y a Portugal, lo que le da un valor añadido.", 
+    
+    momentoPerfecto: "Por la mañana para recorrer el casco histórico y los miradores, o al atardecer para disfrutar de la ría y de los atardeceres sobre las Islas Cíes.", 
+    
+    imprescindibles: [
+      "<strong>Casco Vello:</strong> calles estrechas, plazas y ambiente tradicional.",
+      "<strong>Puerto y Ría de Vigo:</strong> paseos marítimos y actividad portuaria, corazón de la ciudad.",
+      "<strong>Islas Cíes:</strong> parque natural, playas de arena blanca y aguas cristalinas (accesibles en barco).",
+      "<strong>Parque de Castrelos:</strong> jardines históricos y espacios verdes para pasear.",
+      "<strong>Miradores:</strong> O Castro y Monte Alba, con vistas panorámicas de la ciudad y la ría."
+    ], 
+    
+    comer: "Marisco, pescado fresco, ostras, tapas y torta de nata.<br><br><strong>Zonas recomendadas:</strong><br>• <strong>Casco Vello:</strong> tradición y ambiente local.<br>• <strong>Puerto y Paseo Marítimo:</strong> restaurantes con vistas a la ría y la actividad portuaria.<br>• <strong>Bouzas y Coia:</strong> barrios tranquilos con oferta gastronómica cercana a playas.<br>• <strong>Príncipe y centro comercial:</strong> zonas modernas con bares de tapas y locales de moda.", 
+    
+    tomar: "Vinos gallegos (albariño, ribeiro) y cervezas locales; ambiente animado en los bares del centro y la zona portuaria.",
+    
+    secreto: "<strong>Paseo de la Playa de Samil:</strong> kilómetros de costa urbana con parques, pistas deportivas y vistas a las Cíes.<br><br><strong>Miradores de O Castro y Monte Alba:</strong> panorámicas espectaculares de la ciudad y la ría.<br><br><strong>Rutas por barrios menos turísticos:</strong> como Bouzas y Coia, para conocer el auténtico ambiente local.", 
+    
+    masTiempo: [
+      "<strong>Excursión rápida a las Islas Cíes:</strong> playas vírgenes y senderos naturales.",
+      "<strong>Ruta por la Ría de Vigo:</strong> ferry o paseo en barco para conocer la ciudad desde el mar."
+    ], 
+    
+    planLluvia: [
+      "<strong>Museo del Mar de Galicia:</strong> historia marítima y vida atlántica.",
+      "<strong>Museo Quiñones de León:</strong> arte, historia y jardines cubiertos.",
+      "<strong>Centros comerciales:</strong> o paseos por el casco histórico cubierto."
+    ],
+    
+    advertencias: [
+      "Ciudad con muchas cuestas y desniveles; prepárate para caminar.",
+      "Aparcar en el centro puede ser difícil.",
+      "Algunas playas son urbanas, precaución con el oleaje."
+    ],
+    
+    miOpinion: "Vigo es una ciudad vibrante y llena de energía, hasta en el tráfico. Combina su carácter portuario con zonas señoriales, parques, miradores y playas de primer nivel. Tiene ese microclima propio de las Rías Baixas, y si vienes en invierno no te pierdas sus famosas luces de Navidad: son tan espectaculares que merece la pena traerse gafas de sol para contemplarlas.<br><br>El puerto y el paseo marítimo son fantásticos para pasear y empaparse del ambiente local. Vigo destaca por su ocio nocturno activo y una oferta cultural de primer nivel. Además, su cercanía a las Islas Cíes y a Portugal añade un valor extra. La ría de Vigo es preciosa, y las vistas del puente de Rande o del Lazareto de San Simón son simplemente impresionantes. Si eres amante del marisco y la vida atlántica, Vigo es un destino que no puedes perderte."
+  },  { id: 30, nombre: "Pontevedra", bloque: "pontevedra", categorias: ["ciudades"], horas: 3, imagen: "img/pontevedra.jpg", lat: 42.4333, lng: -8.6333, porQueVenir: "Ciudad amable con el peatón.", momentoPerfecto: "Tarde para cenar.", imprescindibles: ["Plaza da Ferrería", "Peregrina", "Callejear sin mapa"], comer: "Tabernas en calles estrechas.", tomar: "Vino de la casa.", secreto: "Convento de San Francisco.", masTiempo: "Paseo a la ría.", advertencias: "Muy segura." },
+  { id: 31, nombre: "Tui", bloque: "pontevedra", categorias: ["villas", "patrimonio"], horas: 3, imagen: "img/tui.jpg", lat: 42.0500, lng: -8.6333, porQueVenir: "Ciudad episcopal, frontera con Portugal.", momentoPerfecto: "Tarde.", imprescindibles: ["Catedral", "Casco histórico", "Mirador del Miño"], comer: "Marisco.", tomar: "Albariño.", secreto: "Paseo hasta Portugal.", masTiempo: "Valença.", advertencias: "Lluvia frecuente." },
+  { id: 32, nombre: "Cambados", bloque: "pontevedra", categorias: ["villas"], horas: 3, imagen: "img/cambados.jpg", lat: 42.5167, lng: -8.8167, porQueVenir: "Capital del Albariño.", momentoPerfecto: "Fiesta del Albariño.", imprescindibles: ["Pazo de Fefiñáns", "Casco histórico", "Bodegas"], comer: "Marisco.", tomar: "Albariño.", secreto: "Playa de la Lajinha.", masTiempo: "Playa fluvial.", advertencias: "Agosto lleno." },
+  { id: 33, nombre: "Baiona", bloque: "pontevedra", categorias: ["pueblos", "costa"], horas: 3, imagen: "img/baiona.jpg", lat: 42.1167, lng: -8.8500, porQueVenir: "Primer puerto en recibir la noticia del Nuevo Mundo.", momentoPerfecto: "Verano.", imprescindibles: ["Fortaleza", "Puerto", "Playa"], comer: "Marisco.", tomar: "Albariño.", secreto: "Arribada.", masTiempo: "Islas Cíes.", advertencias: "Lleno en verano." },
+  { id: 34, nombre: "Combarro", bloque: "pontevedra", categorias: ["pueblos"], horas: 2, imagen: "img/combarro.jpg", lat: 42.3833, lng: -8.7167, porQueVenir: "Hórreos sobre el mar.", momentoPerfecto: "Atardecer.", imprescindibles: ["Hórreos", "Paseo marítimo", "Puerto"], comer: "Marisco.", tomar: "Albariño.", secreto: "Noche.", masTiempo: "Poio.", advertencias: "Muy turístico." },
+  { id: 35, nombre: "O Grove", bloque: "pontevedra", categorias: ["costa"], horas: 4, imagen: "img/ogrove.jpg", lat: 42.3881, lng: -8.8833, porQueVenir: "Paraíso del marisco.", momentoPerfecto: "Verano.", imprescindibles: ["Playa de la Lanzada", "Marisquerías", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "La Toxa.", masTiempo: "Isla de Ons.", advertencias: "Muy concurrido." },
+  { id: 36, nombre: "A Illa de Arousa", bloque: "pontevedra", categorias: ["costa"], horas: 3, imagen: "img/arousa.jpg", lat: 42.5573, lng: -8.8618, porQueVenir: "Isla con playas salvajes.", momentoPerfecto: "Verano.", imprescindibles: ["Faro", "Playas", "Paseo"], comer: "Marisco.", tomar: "Albariño.", secreto: "Carretera del faro.", masTiempo: "O Grove.", advertencias: "Puente de dos sentidos." },
+  { id: 37, nombre: "A Guarda", bloque: "pontevedra", categorias: ["magicos", "patrimonio"], horas: 3, imagen: "img/aguarda.jpg", lat: 41.9000, lng: -8.8667, porQueVenir: "Citania de Santa Trega.", momentoPerfecto: "Atardecer.", imprescindibles: ["Citania", "Faro", "Monte Trega"], comer: "Marisco.", tomar: "Albariño.", secreto: "Portugal.", masTiempo: "Tui.", advertencias: "Viento." },
+{ id: 38, nombre: "Cíes y Ons", bloque: "pontevedra", categorias: ["naturaleza", "costa"], horas: 6, imagen: "img/ciesyons.jpg", lat: 42.2244, lng: -8.9031, porQueVenir: "Dos archipiélagos protegidos.", momentoPerfecto: "Junio o septiembre.", imprescindibles: ["Playa de Rodas", "Monte Faro", "Playa de Melide"], comer: "Lleva comida.", tomar: "Agua.", secreto: "Playa de Figueiras.", masTiempo: "Camping en Cíes.", advertencias: "Reserva obligatoria." },
+  
+{ 
+    id: 39, 
+    nombre: "Fisterra y alrededores", 
+    bloque: "acoruna", 
+    categorias: ["costa", "magicos", "naturaleza"], 
+    horas: 5, 
+    imagen: "img/fisterra.jpg", 
+    lat: 42.9049, 
+    lng: -9.2625, 
+    
+    porQueVenir: "Finisterre es el punto más al oeste de la península ibérica: frente a ti, solo hay mar… y América. Aquí los paisajes son de película: acantilados, playas salvajes y un faro que marca “el fin del mundo”. La zona está llena de historias ligadas al mar y a lo mágico, y es perfecta para quien busca naturaleza y leyenda.", 
+    momentoPerfecto: "Mañana o tarde con buen tiempo. Consulta siempre la previsión meteorológica: si hay niebla, no verás ni el mar aunque lo tengas justo delante.", 
+    
+    imprescindibles: [
+      "<strong>Faro de Finisterre:</strong> icono del fin del mundo, sobre los acantilados.", 
+      "<strong>Playas y acantilados:</strong> vistas espectaculares del Atlántico abierto.", 
+      "<strong>Hórreos de Carnota y Lira:</strong> antiguos graneros típicos de Galicia, los más grandes, fascinantes y poco conocidos."
+    ], 
+    
+    comer: "Marisco y pescado fresco de la Costa da Morte. Sencillo, auténtico y con productos locales.", 
+    tomar: "Vino gallego o cerveza local (Estrella Galicia), según prefieras.",
+    
+    playasYAlrededores: [
+      "<strong>Playa de Langosteira:</strong> La más extensa y familiar, con aguas tranquilas, servicios y posibilidades de deportes acuáticos.",
+      "<strong>Playa de Mar de Fóra:</strong> Salvaje y abierta al Atlántico, ideal para pasear y disfrutar de puestas de sol, aunque el baño es peligroso por las corrientes.",
+      "<strong>Playa de O Rostro:</strong> Gran playa natural y espectacular, rodeada de dunas y vegetación; baño arriesgado, perfecta para pasear.",
+      "<strong>Playa de Lariño:</strong> Arena dorada y oleaje potente en un entorno espectacular.",
+      "<strong>Playa de Arnela:</strong> Pequeña y tranquila, rodeada de acantilados, ideal para desconectar en un entorno natural.",
+      "<strong>Hórreos de Carnota y Lira:</strong> Una joya patrimonial impresionante para ver y fotografiar muy cerca de la costa."
+    ],
+    
+    secreto: "El pueblo en sí es pequeño; lo verdaderamente impresionante está en los alrededores: acantilados, playas, hórreos y el faro. Si tienes tiempo, perderse por los caminos costeros es un descubrimiento inolvidable.", 
+    
+    masTiempo: [
+      "Explorar la Costa da Morte hacia Camariñas o Muxía.",
+      "Senderos por los acantilados y rutas cercanas."
+    ], 
+    
+    advertencias: [
+      "Clima cambiante, niebla frecuente.",
+      "Corrientes fuertes en playas abiertas.",
+      "Pueblo pequeño, no esperes vida urbana intensa."
+    ],
+    
+    miOpinion: "Finisterre merece la pena sobre todo por sus alrededores: el faro, las playas, los hórreos y el mar abierto. El pueblo no impresiona por sí mismo, pero la sensación de estar “al final del mundo” es única. Paisajes que quitan el aliento, historias de mar y leyenda, y playas que parecen secretas: un lugar para quienes buscan naturaleza y magia en estado puro."
+  }
 ];
 
 // ── UTILIDADES ─────────────────────────────────────────────────
@@ -745,7 +914,7 @@ const ui = {
         </div>
       `;
 
-      html += '<div class="province-content"><div class="horizontal-scroll places-carousel">';
+      html += '<div class="province-content"><div class="places-list">';
 
       lugaresBloque.forEach(lugar => {
         globalIndex++;
