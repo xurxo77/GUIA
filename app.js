@@ -1337,15 +1337,23 @@ const ui = {
 
     const wasExpanded = element.classList.contains('expanded');
 
-    // Cerrar todos los demás province-box del mismo contenedor
+    // Cerrar todos los demás province-box y resetear su scroll al inicio
     const container = element.closest('section') || document.body;
     container.querySelectorAll('.province-box.expanded').forEach(el => {
-      if (el.id !== id) el.classList.remove('expanded');
+      if (el.id !== id) {
+        el.classList.remove('expanded');
+        // Resetear scroll horizontal al primer elemento
+        const scroll = el.querySelector('.horizontal-scroll');
+        if (scroll) scroll.scrollLeft = 0;
+      }
     });
 
     if (!wasExpanded) {
+      // Resetear al primer elemento antes de abrir
+      const scroll = element.querySelector('.horizontal-scroll');
+      if (scroll) scroll.scrollLeft = 0;
+
       element.classList.add('expanded');
-      // Scroll dentro del contenedor fijo de la sección
       setTimeout(() => {
         const section = element.closest('#recomendaciones, #lugares');
         if (section) {
@@ -1355,6 +1363,9 @@ const ui = {
       }, 300);
     } else {
       element.classList.remove('expanded');
+      // Resetear al cerrar también
+      const scroll = element.querySelector('.horizontal-scroll');
+      if (scroll) scroll.scrollLeft = 0;
     }
 
     utils.haptic('light');
