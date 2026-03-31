@@ -866,6 +866,7 @@ const ui = {
 
   renderRecommendations: () => {
     const htmlAntes = `
+            <div class="rec-card">
               <img src="img/rec_chaqueta.jpg" class="rec-card-img" alt="Chaqueta" onerror="this.style.display='none'">
               <h4>🧥 Trae una prenda de abrigo. Siempre.</h4>
               <p style="margin-bottom: 8px !important;">Aunque vengas en agosto y veas sol en la previsión, en Galicia <strong>refresca al caer la tarde</strong>, sobre todo cerca del mar.</p>
@@ -921,6 +922,7 @@ const ui = {
             </div>
 `;
     const htmlComer = `
+            <div class="rec-card">
               <img src="img/rec_pan.jpg" class="rec-card-img" alt="Pan" onerror="this.style.display='none'">
               <h4>🥖 El pan importa. Mucho.</h4>
               <p style="margin-bottom: 6px !important;">No es un simple acompañamiento. En serio: <strong>si el pan falla, desconfía.</strong></p>
@@ -991,6 +993,7 @@ const ui = {
         </div>
 `;
     const htmlBeber = `
+            <div class="rec-card">
               <img src="img/rec_albarino.jpg" class="rec-card-img" alt="Albariño" onerror="this.style.display='none'">
               <h4>🍇 Albariño: fácil de entender, difícil de olvidar</h4>
               <p style="margin-bottom: 12px !important;">Fresco, aromático y muy agradecido. Se cultiva en las Rías Baixas, donde el clima atlántico le da ese punto ácido y salino.</p>
@@ -1063,6 +1066,7 @@ const ui = {
         </div>
 `;
     const htmlDisfrutar = `
+            <div class="rec-card">
               <img src="img/rec_distancias.jpg" class="rec-card-img" alt="Distancias" onerror="this.style.display='none'">
               <h4>🗺️ No midas en kilómetros, mide en tiempo</h4>
               <p style="margin-bottom: 12px !important;">Las distancias engañan.</p>
