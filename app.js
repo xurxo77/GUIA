@@ -1342,17 +1342,15 @@ const ui = {
     container.querySelectorAll('.province-box.expanded').forEach(el => {
       if (el.id !== id) {
         el.classList.remove('expanded');
-        // Resetear scroll horizontal al primer elemento
-        const scroll = el.querySelector('.horizontal-scroll');
-        if (scroll) scroll.scrollLeft = 0;
+        // Resetear scroll cuando la animación de cierre ya ha terminado (invisible)
+        setTimeout(() => {
+          const scroll = el.querySelector('.horizontal-scroll');
+          if (scroll) scroll.scrollLeft = 0;
+        }, 450);
       }
     });
 
     if (!wasExpanded) {
-      // Resetear al primer elemento antes de abrir
-      const scroll = element.querySelector('.horizontal-scroll');
-      if (scroll) scroll.scrollLeft = 0;
-
       element.classList.add('expanded');
       setTimeout(() => {
         const section = element.closest('#recomendaciones, #lugares');
@@ -1363,9 +1361,11 @@ const ui = {
       }, 300);
     } else {
       element.classList.remove('expanded');
-      // Resetear al cerrar también
-      const scroll = element.querySelector('.horizontal-scroll');
-      if (scroll) scroll.scrollLeft = 0;
+      // Resetear cuando ya está cerrado y el usuario no lo ve
+      setTimeout(() => {
+        const scroll = element.querySelector('.horizontal-scroll');
+        if (scroll) scroll.scrollLeft = 0;
+      }, 450);
     }
 
     utils.haptic('light');
