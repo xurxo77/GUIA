@@ -865,19 +865,330 @@ const ui = {
   },
 
   renderRecommendations: () => {
-    const categorias = { antes: 'rec-antes', comer: 'rec-comer', beber: 'rec-beber', disfrutar: 'rec-disfrutar' };
-    Object.entries(categorias).forEach(([key, id]) => {
-      const scroll = document.querySelector(`#${id} .horizontal-scroll`);
-      if (!scroll || !recomendaciones[key]) return;
-      scroll.innerHTML = recomendaciones[key].map(card => `
-        <div class="rec-card">
-          <img src="${card.img}" class="rec-card-img" alt="${card.alt}" loading="lazy" onerror="this.style.display='none'">
-          <h4>${card.titulo}</h4>
-          <p>${card.cuerpo}</p>
+    const htmlAntes = `
+              <img src="img/rec_chaqueta.jpg" class="rec-card-img" alt="Chaqueta" onerror="this.style.display='none'">
+              <h4>🧥 Trae una prenda de abrigo. Siempre.</h4>
+              <p style="margin-bottom: 8px !important;">Aunque vengas en agosto y veas sol en la previsión, en Galicia <strong>refresca al caer la tarde</strong>, sobre todo cerca del mar.</p>
+              <p>No es drama, pero se agradece no acabar comprando una sudadera de emergencia.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_lluvia.jpg" class="rec-card-img" alt="Lluvia" onerror="this.style.display='none'">
+              <h4>🌦️ La lluvia no avisa.</h4>
+              <p style="margin-bottom: 8px !important;">No es que llueva todo el día; es peor (o mejor): <strong>puede llover cinco minutos, parar, salir el sol… y repetir</strong>. Incluso te puede pillar justo cuando te pones el bañador.</p>
+              <p>Un chubasquero ligero suele ser mejor idea que un paraguas. Y ojo, en verano también hay días de tiempo espectacular.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_clima.jpg" class="rec-card-img" alt="Clima" onerror="this.style.display='none'">
+              <h4>🌫️ El clima cambia en horas.</h4>
+              <p style="margin-bottom: 8px !important;">Puedes salir con cielo despejado y encontrarte niebla cerrada en la costa en media hora. <strong>Galicia no tiene un clima: tiene varios a la vez.</strong></p>
+              <p>Si vas a la playa, consulta la meteorología (viento, niebla, mar) porque puede estar perfecto tierra adentro y torcerse en la costa.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_hambre.jpg" class="rec-card-img" alt="Hambre" onerror="this.style.display='none'">
+              <h4>🍽️ Ven con hambre.</h4>
+              <p style="margin-bottom: 8px !important;">Las raciones no son simbólicas. <strong>Aquí se come en serio</strong>, y repetir no está mal visto.</p>
+              <p>En invierno, además, los platos son especialmente contundentes.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_planes.jpg" class="rec-card-img" alt="Planes" onerror="this.style.display='none'">
+              <h4>🧭 No planifiques demasiado.</h4>
+              <p style="margin-bottom: 8px !important;">Galicia no encaja bien con horarios rígidos. Muchas veces lo mejor aparece sin buscarlo.</p>
+              <p><strong>Deja hueco para improvisar:</strong> suele ser ahí donde aciertas.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_idioma.jpg" class="rec-card-img" alt="Idioma" onerror="this.style.display='none'">
+              <h4>🗣️ El gallego existe (y se usa).</h4>
+              <p style="margin-bottom: 8px !important;">Escucharás palabras distintas, y es parte del viaje. <strong>Es nuestra identidad y nuestra lengua…</strong> y si quieres, también puede ser un poco la tuya.</p>
+              <p>Decir “boas” o “grazas” suma puntos.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_preguntar.jpg" class="rec-card-img" alt="Preguntar" onerror="this.style.display='none'">
+              <h4>❓ Pregunta sin miedo.</h4>
+              <p style="margin-bottom: 8px !important;">La gente puede parecer seca al principio, pero <strong>si preguntas, te ayudan</strong>. Y muchas veces, mejor que cualquier app.</p>
+              <p>Prepárate, eso sí, para respuestas tipo: “depende”, “puede ser”… ayudamos, pero a nuestra manera.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_reservas.jpg" class="rec-card-img" alt="Reservas" onerror="this.style.display='none'">
+              <h4>📅 Ojo con las reservas.</h4>
+              <p style="margin-bottom: 8px !important;">En sitios conocidos o en verano, <strong>reserva</strong>. Donde menos te lo esperas, se llena.</p>
+              <p>Algunos lugares muy demandados <strong>requieren antelación</strong>: Islas Cíes y Ons, el Pórtico de la Gloria o la Playa de las Catedrales.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_gallegos.jpg" class="rec-card-img" alt="Gallegos" onerror="this.style.display='none'">
+              <h4>🧍 Los gallegos no somos bordes, somos prudentes.</h4>
+              <p style="margin-bottom: 8px !important;">No esperes entusiasmo inmediato. Aquí <strong>primero se observa, luego se confía.</strong></p>
+              <p>Pero cuando entras, entras de verdad.</p>
+            </div>
+`;
+    const htmlComer = `
+              <img src="img/rec_pan.jpg" class="rec-card-img" alt="Pan" onerror="this.style.display='none'">
+              <h4>🥖 El pan importa. Mucho.</h4>
+              <p style="margin-bottom: 6px !important;">No es un simple acompañamiento. En serio: <strong>si el pan falla, desconfía.</strong></p>
+              <p style="margin-bottom: 4px !important;">Top 3:</p>
+              <ul style="font-size: 0.85rem; line-height: 1.4; color: #555; list-style-type: disc; padding-left: 20px; margin: 0 0 8px 0;">
+                <li><strong>Pan de Cea:</strong> el tradicional, horno de leña.</li>
+                <li><strong>Pan de Carral:</strong> “molete” con moño.</li>
+                <li><strong>Pan de Neda:</strong> corteza gruesa y durabilidad asegurada.</li>
+                <li><strong>Pan de O Porriño:</strong> famoso por sus bollas.</li>
+              </ul>
+              <p>💡 <strong>Consejo:</strong> buen pan puedes encontrarlo en casi cualquier rincón de Galicia.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_queso.jpg" class="rec-card-img" alt="Queso" onerror="this.style.display='none'">
+              <h4>🧀 Quesos con carácter</h4>
+              <p style="margin-bottom: 8px !important;">Entra en cualquier taberna con buena pinta y pide una tabla de quesos gallegos.</p>
+              <p>Desde el cremoso hasta el ahumado: <strong>prueba sin prejuicios</strong>, algunos sorprenden mucho.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_empanada.jpg" class="rec-card-img" alt="Empanada" onerror="this.style.display='none'">
+              <h4>🥟 Empanada: simple en apariencia, seria en ejecución</h4>
+              <p style="margin-bottom: 8px !important;">Clásicas: <strong>bonito, bacalao con pasas o zamburiñas</strong>, pero también hay versiones con cualquier producto local. La masa varía según la zona.</p>
+              <p>Ideal para un picnic improvisado o como sustituto del bocadillo.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_pulpo.jpg" class="rec-card-img" alt="Pulpo" onerror="this.style.display='none'">
+              <h4>🐙 Pulpo: menos espectáculo, más respeto</h4>
+              <p style="margin-bottom: 8px !important;">Solo necesita sal, aceite y pimentón. <strong>Si está duro… no vuelvas.</strong> Para garantías, busca una buena pulpeira.</p>
+              <p>El <strong>pulpo á feira</strong> es la opción clásica y casi siempre la mejor.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_raxo.jpg" class="rec-card-img" alt="Raxo" onerror="this.style.display='none'">
+              <h4>🐖 Raxo y zorza: el cerdo bien tratado</h4>
+              <p style="margin-bottom: 8px !important;">Platos sencillos y sabrosos, <strong>raciones estrella</strong> de las tabernas gallegas.</p>
+              <p>Perfectos para compartir o como plato único.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_pimientos.jpg" class="rec-card-img" alt="Pimientos" onerror="this.style.display='none'">
+              <h4>🌶️ Pimientos: una ruleta</h4>
+              <p style="margin-bottom: 8px !important;">“Unos pican, otros no”. Los auténticos pimientos de Padrón <strong>se cultivan en Herbón</strong>.</p>
+              <p>No todos los que se encuentran fuera de Galicia son reales. Aprovecha mientras estás aquí.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_pescado.jpg" class="rec-card-img" alt="Pescados" onerror="this.style.display='none'">
+              <h4>🐟 Pescados: Galicia habla claro</h4>
+              <p style="margin-bottom: 8px !important;">Merluza, rodaballo, lubina… <strong>frescos y sin adornos innecesarios.</strong></p>
+              <p>A la brasa, en caldeirada o directo de la ría: sencillo y delicioso.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_lacon.jpg" class="rec-card-img" alt="Lacón" onerror="this.style.display='none'">
+              <h4>🥬 Lacón con grelos: contundente</h4>
+              <p style="margin-bottom: 8px !important;">No es ligero, pero <strong>es Galicia en plato</strong>.</p>
+              <p>Plato de temporada: si aparece en la carta, pídelo sin dudar.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_ternera.jpg" class="rec-card-img" alt="Ternera" onerror="this.style.display='none'">
+              <h4>🥩 Ternera Gallega: otra liga</h4>
+              <p style="margin-bottom: 8px !important;"><strong>Carne con sabor real.</strong></p>
+              <p>Poco más que decir: prepárate para disfrutar… y para abrir la cartera si quieres lo mejor.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_mariscada.jpg" class="rec-card-img" alt="Marisco" onerror="this.style.display='none'">
+              <h4>🦐 Marisco: cuando es bueno, se nota</h4>
+              <p style="margin-bottom: 8px !important;">Y cuando no, también. No todo vale: <strong>busca locales con producto fresco y buena rotación.</strong></p>
+              <p>Para una experiencia de verdad, calcula <strong>no menos de 70 € por persona</strong>. La tarjeta es casi obligatoria, pero cada bocado lo vale.</p>
+            </div>
+          </div>
         </div>
-      `).join('');
+`;
+    const htmlBeber = `
+              <img src="img/rec_albarino.jpg" class="rec-card-img" alt="Albariño" onerror="this.style.display='none'">
+              <h4>🍇 Albariño: fácil de entender, difícil de olvidar</h4>
+              <p style="margin-bottom: 12px !important;">Fresco, aromático y muy agradecido. Se cultiva en las Rías Baixas, donde el clima atlántico le da ese punto ácido y salino.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> comida al mediodía, días de calor.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, pescado, arroces.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> frío, pero no helado.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_ribeiro.jpg" class="rec-card-img" alt="Ribeiro" onerror="this.style.display='none'">
+              <h4>🍷 Ribeiro: el clásico que vuelve</h4>
+              <p style="margin-bottom: 12px !important;">Histórico y con personalidad. Fue uno de los vinos más exportados en la Edad Media. Hoy vuelve con fuerza.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> comidas largas, sin prisa.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cocina tradicional, pulpo, carnes suaves.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> déjalo abrirse un poco, gana mucho.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_godello.jpg" class="rec-card-img" alt="Godello" onerror="this.style.display='none'">
+              <h4>🍾 Godello: un paso más</h4>
+              <p style="margin-bottom: 12px !important;">Más estructura y profundidad. Recuperado hace relativamente poco, ahora juega en primera división.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> cenas, cuando quieres algo más serio.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> pescados potentes, carnes blancas.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> temperatura media, no demasiado frío.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_mencia.jpg" class="rec-card-img" alt="Mencía" onerror="this.style.display='none'">
+              <h4>🍷 Mencía: el tinto gallego</h4>
+              <p style="margin-bottom: 12px !important;">Ligero, afrutado, muy bebible. Especialmente en Ribeira Sacra.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> tarde-noche, tapeo o cena informal.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> raxo, zorza, embutidos.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> ligeramente fresco, incluso en verano.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_barrantes.jpg" class="rec-card-img" alt="Barrantes" onerror="this.style.display='none'">
+              <h4>🍶 Barrantes: el raro</h4>
+              <p style="margin-bottom: 12px !important;">Turbio, ácido, muy local. Vino de casa, sin filtros.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> taberna, sin postureo.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> marisco, empanada.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin pensar demasiado, se bebe y ya.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_licores.jpg" class="rec-card-img" alt="Licores" onerror="this.style.display='none'">
+              <h4>🥃 Licores: cuidado que engañan</h4>
+              <p style="margin-bottom: 12px !important;">De hierbas o de café, a partir de aguardiente tradicional.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> después de comer.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> sobremesa, conversación larga.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> despacio… aunque no lo parezca.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_queimada.jpg" class="rec-card-img" alt="Queimada" onerror="this.style.display='none'">
+              <h4>🔥 Queimada: no es solo beber</h4>
+              <p style="margin-bottom: 12px !important;">Ritual con fuego y “conxuro” incluido. Tradición pura.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> de noche.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> grupo, ambiente, ganas de alargar.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> sin prisas. Es experiencia, no solo bebida.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_estrella.jpg" class="rec-card-img" alt="Estrella Galicia" onerror="this.style.display='none'">
+              <h4>🍺 Estrella Galicia: juega en casa</h4>
+              <p style="margin-bottom: 12px !important;">Clásica, constante, parte del día a día desde 1906.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> siempre.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Con qué:</strong> cualquier tapa, cualquier momento.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Cómo:</strong> bien tirada y fría. No tiene más misterio.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_brindis.jpg" class="rec-card-img" alt="Brindis" onerror="this.style.display='none'">
+              <h4>💡 Clave general:</h4>
+              <p style="margin-bottom: 12px !important;">En Galicia no se bebe rápido. Se bebe acompañando, conversando y comiendo. Si tienes prisa, te estás perdiendo la mitad.</p>
+            </div>
+          </div>
+        </div>
+`;
+    const htmlDisfrutar = `
+              <img src="img/rec_distancias.jpg" class="rec-card-img" alt="Distancias" onerror="this.style.display='none'">
+              <h4>🗺️ No midas en kilómetros, mide en tiempo</h4>
+              <p style="margin-bottom: 12px !important;">Las distancias engañan.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> 50 km pueden ser 1 hora o más.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> querer ver demasiado en un día.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_coche.jpg" class="rec-card-img" alt="Coche" onerror="this.style.display='none'">
+              <h4>🚗 Sin coche, te pierdes Galicia</h4>
+              <p style="margin-bottom: 12px !important;">El transporte público no llega a todo.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> alquila coche si quieres libertad.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Ganancia:</strong> acceso a sitios que no salen en ninguna guía.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_gps.jpg" class="rec-card-img" alt="GPS" onerror="this.style.display='none'">
+              <h4>📍 El GPS no siempre tiene razón</h4>
+              <p style="margin-bottom: 12px !important;">Te puede meter por carreteras estrechas o caminos raros.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si dudas, no sigas a ciegas.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Mejor opción:</strong> parar y preguntar.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_mirador.jpg" class="rec-card-img" alt="Mirador" onerror="this.style.display='none'">
+              <h4>📸 Si ves un mirador, párate</h4>
+              <p style="margin-bottom: 12px !important;">No todos salen en Google.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si hay hueco para parar, para.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> muchas veces, lo mejor del día.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_mar_impone.jpg" class="rec-card-img" alt="Mar" onerror="this.style.display='none'">
+              <h4>🌊 El mar aquí impone</h4>
+              <p style="margin-bottom: 12px !important;">Especialmente en costa abierta.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> respeta las olas y las corrientes.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Error típico:</strong> confiarse en playas salvajes.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Aviso:</strong> esto es el Atlántico. No es una broma.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_playas.jpg" class="rec-card-img" alt="Playas" onerror="this.style.display='none'">
+              <h4>🏖️ No todas las playas son iguales</h4>
+              <p style="margin-bottom: 12px !important;">Ría ≠ océano.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Rías:</strong> más tranquilas, familiares.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Abiertas:</strong> más espectaculares, pero más exigentes.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_mareas.jpg" class="rec-card-img" alt="Mareas" onerror="this.style.display='none'">
+              <h4>🌗 Mira las mareas antes de ir</h4>
+              <p style="margin-bottom: 12px !important;">Cambian completamente el paisaje.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> consulta mareas si vas a calas o playas largas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Ejemplo:</strong> puedes quedarte sin arena… o sin salida. Incluso sin coche.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Prueba:</strong> busca “Galicia coche marea”. Vas a flipar.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_barco.jpg" class="rec-card-img" alt="Barco" onerror="this.style.display='none'">
+              <h4>⛴️ Cruza la ría en barco si puedes</h4>
+              <p style="margin-bottom: 12px !important;">Algunas rías permiten cruzar en transporte público marítimo, como en Ferrol o Vigo.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> no es solo transporte, es parte del viaje.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Experiencia:</strong> ver la costa desde el agua cambia completamente la perspectiva.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Ejemplo:</strong> la línea Moaña–Vigo es rápida, barata y muy recomendable.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_chiringuitos.jpg" class="rec-card-img" alt="Chiringuitos" onerror="this.style.display='none'">
+              <h4>🍻 Aquí chiringuitos, pocos</h4>
+              <p style="margin-bottom: 12px !important;">No esperes servicios en todas las playas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> muchas están prácticamente vírgenes.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> ven preparado. Y sí, a nosotros nos gusta así.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_interior.jpg" class="rec-card-img" alt="Interior" onerror="this.style.display='none'">
+              <h4>🌿 El interior es otra Galicia</h4>
+              <p style="margin-bottom: 12px !important;">Ríos, bosques, fervenzas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> no te quedes solo en la costa.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Premio:</strong> menos gente, más autenticidad.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_rias.jpg" class="rec-card-img" alt="Rías" onerror="this.style.display='none'">
+              <h4>🌊 Las rías lo explican todo</h4>
+              <p style="margin-bottom: 12px !important;">Paisaje, comida, clima.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Regla:</strong> si entiendes las rías, entiendes la mitad de Galicia.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_islas.jpg" class="rec-card-img" alt="Islas" onerror="this.style.display='none'">
+              <h4>🏝️ Las islas cambian el ritmo</h4>
+              <p style="margin-bottom: 12px !important;">Cíes, Ons… otra velocidad.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> planifica con antelación.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Consejo:</strong> si vas, recórrelas. Merece la pena.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_caminar.jpg" class="rec-card-img" alt="Caminar" onerror="this.style.display='none'">
+              <h4>🥾 Caminar es parte del viaje</h4>
+              <p style="margin-bottom: 12px !important;">Galicia no se disfruta solo en coche.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> baja, camina, explora.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Resultado:</strong> lo que no ve todo el mundo.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_fiesta.jpg" class="rec-card-img" alt="Fiesta" onerror="this.style.display='none'">
+              <h4>🎉 Si hay fiesta, quédate</h4>
+              <p style="margin-bottom: 12px !important;">Da igual cuál sea.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> si te coincide una, no la esquives.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Realidad:</strong> es Galicia en estado puro.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Pista:</strong> aquí hay más fiestas que días. Si quieres curiosear, mira: <a href="https://festigaleiros.com/" target="_blank" style="color: var(--accent-sea); font-weight: 600; text-decoration: none;">https://festigaleiros.com/</a></p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_magia.jpg" class="rec-card-img" alt="Magia" onerror="this.style.display='none'">
+              <h4>🌫️ Galicia también es mágica</h4>
+              <p style="margin-bottom: 12px !important;">No todo es paisaje.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Regla:</strong> escucha y pregunta.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Extra:</strong> mouras, mouros, trasgos, meigas, la Santa Compaña… hay más historias que kilómetros.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> la magia, la muerte, el mar y el misterio forman parte de lo que somos.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/rec_clavefinal.jpg" class="rec-card-img" alt="Clave final" onerror="this.style.display='none'">
+              <h4>💡 Clave final:</h4>
+              <p style="margin-bottom: 0 !important;">Disfruta de todo, cuida el entorno, sé buena gente… <strong>y vuelve.</strong></p>
+            </div>
+`;
+    const map = {
+      'rec-antes': htmlAntes,
+      'rec-comer': htmlComer,
+      'rec-beber': htmlBeber,
+      'rec-disfrutar': htmlDisfrutar
+    };
+    Object.entries(map).forEach(([id, html]) => {
+      const scroll = document.querySelector(`#${id} .horizontal-scroll`);
+      if (scroll) scroll.innerHTML = html;
     });
   },
+
 
   renderPlaces: () => {
     const container = ui.elements.placesContainer;
