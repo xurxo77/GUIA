@@ -3790,3 +3790,20 @@ a:hover {
   color: var(--fg-muted) !important;
   padding-left: 18px !important;
 }
+
+
+
+/* ── SNAP MAGNÉTICO EN CARRUSELES ────────────────────────────── */
+#recomendaciones .horizontal-scroll,
+.places-carousel {
+  scroll-snap-type: x mandatory !important;
+  -webkit-scroll-snap-type: x mandatory !important;
+  scroll-behavior: smooth !important;
+  overscroll-behavior-x: contain !important;
+}
+
+#recomendaciones .rec-card,
+.places-carousel .place-card {
+  scroll-snap-align: center !important;
+  scroll-snap-stop: always !important;
+}
