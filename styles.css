@@ -4326,3 +4326,68 @@ a:hover {
   background: rgba(255,255,255,0.82) !important;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
 }
+
+
+
+/* ── RESET HERO — IMAGEN MÁS PRESENTE, WIDGET DISCRETO ─────── */
+
+/* Imagen de Santiago más visible */
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(255,251,254,0.45) 0%,
+      rgba(255,251,254,0.65) 60%,
+      rgba(255,251,254,0.92) 100%),
+    url('img/santiago.jpg') center center / cover no-repeat !important;
+  filter: saturate(0.75) brightness(1.0) !important;
+}
+
+/* Hero vuelve a estar centrado */
+#hero.active-screen {
+  justify-content: flex-start !important;
+  padding-top: 32px !important;
+}
+
+/* Widget del tiempo: pequeño, horizontal, discreto */
+.hero-weather-block {
+  margin-top: 16px !important;
+  width: 100% !important;
+}
+
+.hero-weather-widget {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  padding: 0 12px !important;
+}
+
+.weather-city {
+  background: rgba(255,255,255,0.55) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  box-shadow: none !important;
+  padding: 6px 10px !important;
+  min-width: 56px !important;
+}
+
+.weather-icon { font-size: 1rem !important; }
+.weather-temp { font-size: 0.82rem !important; }
+.weather-name { font-size: 0.58rem !important; }
+
+/* Espacio para el mapa del usuario (lo pondrán debajo del widget) */
+.hero-user-map {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+.hero-user-map img,
+.hero-user-map svg {
+  width: 70%;
+  max-width: 240px;
+  height: auto;
+}
