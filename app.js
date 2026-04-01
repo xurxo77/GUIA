@@ -869,21 +869,22 @@ const ui = {
     if (!widget) return;
 
     const cities = [
-      { name: 'Santiago',  lat: 42.88, lng: -8.54 },
-      { name: 'A Coruña',  lat: 43.37, lng: -8.40 },
-      { name: 'Vigo',      lat: 42.24, lng: -8.72 },
-      { name: 'Lugo',      lat: 43.01, lng: -7.56 },
-      { name: 'Ourense',   lat: 42.34, lng: -7.86 }
+      { name: 'A Coruña',   lat: 43.37, lng: -8.40 },
+      { name: 'Santiago',   lat: 42.88, lng: -8.54 },
+      { name: 'Lugo',       lat: 43.01, lng: -7.56 },
+      { name: 'Ourense',    lat: 42.34, lng: -7.86 },
+      { name: 'Pontevedra', lat: 42.43, lng: -8.65 },
+      { name: 'Vigo',       lat: 42.24, lng: -8.72 }
     ];
 
     const weatherIcon = (code) => {
-      if (code === 0)                          return '☀️';
-      if (code <= 3)                           return '🌤️';
-      if (code <= 48)                          return '🌫️';
-      if (code <= 55)                          return '🌦️';
-      if (code <= 65)                          return '🌧️';
-      if (code <= 77)                          return '🌨️';
-      if (code <= 82)                          return '🌦️';
+      if (code === 0)  return '☀️';
+      if (code <= 3)   return '🌤️';
+      if (code <= 48)  return '🌫️';
+      if (code <= 55)  return '🌦️';
+      if (code <= 65)  return '🌧️';
+      if (code <= 77)  return '🌨️';
+      if (code <= 82)  return '🌦️';
       return '⛈️';
     };
 
@@ -892,11 +893,7 @@ const ui = {
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lng}&current=temperature_2m,weather_code&timezone=auto`;
         const res  = await fetch(url);
         const data = await res.json();
-        return {
-          name: c.name,
-          temp: Math.round(data.current.temperature_2m),
-          code: data.current.weather_code
-        };
+        return { name: c.name, temp: Math.round(data.current.temperature_2m), code: data.current.weather_code };
       }));
 
       widget.innerHTML = results.map(r => `
@@ -907,7 +904,7 @@ const ui = {
         </div>
       `).join('');
     } catch (e) {
-      widget.innerHTML = '<div class="weather-loading">Sin conexión</div>';
+      widget.innerHTML = '<span style="font-size:0.72rem;color:var(--fg-muted)">Sin conexión</span>';
     }
   },
 
