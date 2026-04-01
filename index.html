@@ -148,33 +148,38 @@
   <!-- Contenido Principal -->
   <main class="main-content" id="mainContent">
     
-    <!-- Hero — solo imagen + textos -->
+    <!-- Hero -->
     <header id="hero" class="hero app-screen active-screen">
-      <div class="hero-bg-overlay"></div>
-      <div class="hero-top fade-in visible">
-        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-          <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
-          <circle cx="32" cy="32" r="20"/>
-          <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
-          <circle cx="32" cy="32" r="4"/>
-        </svg>
-      </div>
-      <div class="hero-center">
-        <h1 class="hero-title">
-          <span class="hero-letter" style="--i:0">G</span><span class="hero-letter" style="--i:1">a</span><span class="hero-letter" style="--i:2">l</span><span class="hero-letter" style="--i:3">i</span><span class="hero-letter" style="--i:4">c</span><span class="hero-letter" style="--i:5">i</span><span class="hero-letter" style="--i:6">a</span>
-        </h1>
-        <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
-        <p class="hero-authors fade-in visible delay-2" style="text-align:center;">Hecha por Xurxo & Raquel</p>
-      </div>
-    </header>
 
-    <!-- Widget del tiempo — fuera del hero, en zona blanca -->
-    <div class="hero-weather-block fade-in visible delay-2">
-      <div class="weather-label">Tiempo en Galicia</div>
-      <div class="hero-weather-widget" id="heroWeather">
-        <div class="weather-loading">Cargando...</div>
+      <!-- Zona imagen: fondo + textos -->
+      <div class="hero-image-zone">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-top fade-in visible">
+          <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
+            <circle cx="32" cy="32" r="20"/>
+            <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
+            <circle cx="32" cy="32" r="4"/>
+          </svg>
+        </div>
+        <div class="hero-center">
+          <h1 class="hero-title">
+            <span class="hero-letter" style="--i:0">G</span><span class="hero-letter" style="--i:1">a</span><span class="hero-letter" style="--i:2">l</span><span class="hero-letter" style="--i:3">i</span><span class="hero-letter" style="--i:4">c</span><span class="hero-letter" style="--i:5">i</span><span class="hero-letter" style="--i:6">a</span>
+          </h1>
+          <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
+          <p class="hero-authors fade-in visible delay-2" style="text-align:center;">Hecha por Xurxo & Raquel</p>
+        </div>
       </div>
-    </div>
+
+      <!-- Zona blanca: widget del tiempo -->
+      <div class="hero-weather-block fade-in visible delay-2">
+        <div class="weather-label">Tiempo en Galicia</div>
+        <div class="hero-weather-widget" id="heroWeather">
+          <div class="weather-loading">Cargando...</div>
+        </div>
+      </div>
+
+    </header>
 
     <!-- Recomendaciones -->
     <section id="recomendaciones" class="app-screen recommendations-section">
