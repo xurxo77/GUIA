@@ -4391,3 +4391,93 @@ a:hover {
   max-width: 240px;
   height: auto;
 }
+
+
+
+/* ── HERO DEFINITIVO ─────────────────────────────────────────── */
+
+/* La imagen solo cubre la parte superior (título + tagline + autores) */
+.hero-bg-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 60% !important;
+  bottom: auto !important;
+  background:
+    linear-gradient(to bottom,
+      rgba(255,251,254,0.35) 0%,
+      rgba(255,251,254,0.55) 70%,
+      rgba(255,251,254,1.0) 100%),
+    url('img/santiago.jpg') center top / cover no-repeat !important;
+  filter: saturate(0.8) brightness(1.0) !important;
+}
+
+/* Hero: columna, todo desde arriba */
+#hero.active-screen {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 36px 24px 24px !important;
+}
+
+/* Título, tagline y autores encima de la imagen */
+#hero .hero-top,
+#hero .hero-center {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Widget del tiempo: zona limpia abajo, sin imagen */
+.hero-weather-block {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 28px !important;
+  width: 100% !important;
+  background: transparent !important;
+}
+
+.hero-weather-widget {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+  padding: 0 8px !important;
+}
+
+.weather-city {
+  background: rgba(26,82,118,0.07) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(26,82,118,0.12) !important;
+  border-radius: var(--r-full) !important;
+  box-shadow: none !important;
+  padding: 5px 10px !important;
+  min-width: 52px !important;
+  flex-direction: row !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+
+.weather-icon { font-size: 0.9rem !important; }
+.weather-temp {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-sea) !important;
+}
+.weather-name {
+  display: none !important; /* Solo icono + temp, sin nombre */
+}
+
+/* Etiqueta encima del widget */
+.weather-label {
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  opacity: 0.6;
+  margin-bottom: 6px;
+}
