@@ -4552,3 +4552,38 @@ a:hover {
   color: var(--fg-muted) !important;
   font-weight: 500 !important;
 }
+
+
+/* ── TEXTO HERO MÁS LEGIBLE ─────────────────────────────────── */
+.hero-letter {
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.7),
+    0 4px 20px rgba(0,0,0,0.4) !important;
+}
+
+.hero-title {
+  color: #ffffff !important;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.7),
+    0 4px 20px rgba(0,0,0,0.4) !important;
+}
+
+.hero-subtitle {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow:
+    0 1px 6px rgba(0,0,0,0.65),
+    0 3px 12px rgba(0,0,0,0.35) !important;
+}
+
+.hero-authors {
+  color: rgba(255,255,255,0.95) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.55) !important;
+}
+
+.hero-top svg {
+  stroke: #ffffff !important;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55)) !important;
+}
