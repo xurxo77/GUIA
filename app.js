@@ -864,6 +864,53 @@ const ui = {
     };
   },
 
+  loadHeroWeather: async () => {
+    const widget = document.getElementById('heroWeather');
+    if (!widget) return;
+
+    const cities = [
+      { name: 'Santiago',  lat: 42.88, lng: -8.54 },
+      { name: 'A Coruña',  lat: 43.37, lng: -8.40 },
+      { name: 'Vigo',      lat: 42.24, lng: -8.72 },
+      { name: 'Lugo',      lat: 43.01, lng: -7.56 },
+      { name: 'Ourense',   lat: 42.34, lng: -7.86 }
+    ];
+
+    const weatherIcon = (code) => {
+      if (code === 0)                          return '☀️';
+      if (code <= 3)                           return '🌤️';
+      if (code <= 48)                          return '🌫️';
+      if (code <= 55)                          return '🌦️';
+      if (code <= 65)                          return '🌧️';
+      if (code <= 77)                          return '🌨️';
+      if (code <= 82)                          return '🌦️';
+      return '⛈️';
+    };
+
+    try {
+      const results = await Promise.all(cities.map(async c => {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lng}&current=temperature_2m,weather_code&timezone=auto`;
+        const res  = await fetch(url);
+        const data = await res.json();
+        return {
+          name: c.name,
+          temp: Math.round(data.current.temperature_2m),
+          code: data.current.weather_code
+        };
+      }));
+
+      widget.innerHTML = results.map(r => `
+        <div class="weather-city">
+          <span class="weather-icon">${weatherIcon(r.code)}</span>
+          <span class="weather-temp">${r.temp}°</span>
+          <span class="weather-name">${r.name}</span>
+        </div>
+      `).join('');
+    } catch (e) {
+      widget.innerHTML = '<div class="weather-loading">Sin conexión</div>';
+    }
+  },
+
   renderRecommendations: () => {
     const htmlAntes = `
             <div class="rec-card">
@@ -1955,6 +2002,7 @@ const app = {
     navigationManager.init();
     ui.renderFavoritesSection();
     ui.updateSelectionUI();
+    ui.loadHeroWeather();
     
     // Configurar eventos globales
     window.addEventListener('online', () => {
