@@ -4645,3 +4645,28 @@ a:hover {
   width: 100% !important;
   max-width: 360px !important;
 }
+
+
+
+/* ── WIDGET MÁS ARRIBA ───────────────────────────────────────── */
+.hero-weather-block {
+  margin-top: 12px !important;
+}
+
+
+
+/* ── FADE MÁS SUAVE + WIDGET MÁS ABAJO ─────────────────────── */
+.hero-bg-overlay {
+  height: 52% !important;
+  background:
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.0) 0%,
+      rgba(255,255,255,0.0) 40%,
+      rgba(255,255,255,0.6) 75%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 30% / cover no-repeat !important;
+}
+
+.hero-weather-block {
+  margin-top: 56px !important;
+}
