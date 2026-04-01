@@ -1873,6 +1873,67 @@ const navigationManager = {
   }
 };
 
+// ── WIDGET DEL TIEMPO ─────────────────────────────────────────
+
+const weatherManager = {
+  cities: [
+    { name: 'A Coruña',    lat: 43.37, lng: -8.40 },
+    { name: 'Santiago',    lat: 42.88, lng: -8.54 },
+    { name: 'Lugo',        lat: 43.01, lng: -7.56 },
+    { name: 'Ourense',     lat: 42.34, lng: -7.86 },
+    { name: 'Pontevedra',  lat: 42.43, lng: -8.64 },
+    { name: 'Vigo',        lat: 42.24, lng: -8.72 }
+  ],
+
+  codeToEmoji: (code) => {
+    if (code === 0) return '☀️';
+    if (code <= 2)  return '⛅';
+    if (code <= 3)  return '☁️';
+    if (code <= 48) return '🌫️';
+    if (code <= 57) return '🌦️';
+    if (code <= 67) return '🌧️';
+    if (code <= 77) return '🌨️';
+    if (code <= 82) return '🌧️';
+    if (code <= 86) return '❄️';
+    return '⛈️';
+  },
+
+  load: async () => {
+    const container = document.getElementById('weatherCities');
+    if (!container) return;
+
+    try {
+      const lats  = weatherManager.cities.map(c => c.lat).join(',');
+      const lngs  = weatherManager.cities.map(c => c.lng).join(',');
+      const url   = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lngs}&current_weather=true&temperature_unit=celsius&timezone=Europe%2FMadrid`;
+      const res   = await fetch(url);
+      const data  = await res.json();
+
+      const results = Array.isArray(data) ? data : [data];
+      let html = '';
+
+      weatherManager.cities.forEach((city, i) => {
+        const w    = results[i]?.current_weather;
+        if (!w) return;
+        const icon = weatherManager.codeToEmoji(w.weathercode);
+        const temp = Math.round(w.temperature);
+        html += `
+          <div class="weather-city-row">
+            <span class="weather-city-name">${city.name}</span>
+            <div class="weather-city-right">
+              <span class="weather-city-icon">${icon}</span>
+              <span class="weather-city-temp">${temp}°</span>
+            </div>
+          </div>`;
+      });
+
+      container.innerHTML = html || '<span style="font-size:0.78rem;color:var(--fg-muted)">Sin datos disponibles</span>';
+    } catch (e) {
+      container.innerHTML = '<span style="font-size:0.78rem;color:var(--fg-muted)">Sin conexión</span>';
+    }
+  }
+};
+
 // ── INICIALIZACIÓN PRINCIPAL ──────────────────────────────────
 
 const app = {
@@ -1908,6 +1969,9 @@ const app = {
 
     state.appInitialized = true;
     console.log('✅ App lista');
+
+    // Cargar tiempo en el hero
+    weatherManager.load();
   }
 };
 
