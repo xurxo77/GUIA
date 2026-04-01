@@ -1481,8 +1481,33 @@ const ui = {
 
   updateFavoriteButton: (id) => {
     const btn = document.querySelector(`.fav-btn[data-id="${id}"]`);
-    if (btn) {
-      btn.classList.toggle('active', favoritesManager.isFavorite(id));
+    if (!btn) return;
+    const isNowFav = favoritesManager.isFavorite(id);
+    btn.classList.toggle('active', isNowFav);
+
+    if (isNowFav) {
+      // Animación burst
+      btn.classList.remove('burst');
+      void btn.offsetWidth;
+      btn.classList.add('burst');
+      setTimeout(() => btn.classList.remove('burst'), 500);
+
+      // Partículas
+      const angles = [0, 45, 90, 135, 180, 225, 270, 315];
+      angles.forEach(angle => {
+        const p = document.createElement('span');
+        p.className = 'fav-particle';
+        const rad = angle * Math.PI / 180;
+        const dist = 20 + Math.random() * 10;
+        p.style.setProperty('--tx', `${Math.cos(rad) * dist}px`);
+        p.style.setProperty('--ty', `${Math.sin(rad) * dist}px`);
+        p.style.left = '50%';
+        p.style.top  = '50%';
+        p.style.marginLeft = '-3px';
+        p.style.marginTop  = '-3px';
+        btn.appendChild(p);
+        setTimeout(() => p.remove(), 550);
+      });
     }
   },
 
