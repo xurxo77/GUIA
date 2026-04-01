@@ -1234,7 +1234,43 @@ const ui = {
     };
     Object.entries(map).forEach(([id, html]) => {
       const scroll = document.querySelector(`#${id} .horizontal-scroll`);
-      if (scroll) scroll.innerHTML = html;
+      if (!scroll) return;
+      scroll.innerHTML = html;
+
+      // Swipe hint
+      const existing = scroll.parentNode.querySelector('.swipe-hint');
+      if (!existing) {
+        const hint = document.createElement('div');
+        hint.className = 'swipe-hint';
+        hint.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg> desliza para ver más`;
+        scroll.parentNode.insertBefore(hint, scroll.nextSibling);
+      }
+
+      // Leer más en cada tarjeta
+      scroll.querySelectorAll('.rec-card').forEach(card => {
+        const img  = card.querySelector('img');
+        const h4   = card.querySelector('h4');
+        const body = [...card.children].filter(el => el !== img && el !== h4);
+        if (!body.length) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'rec-card-body';
+        body.forEach(el => wrapper.appendChild(el));
+
+        const btn = document.createElement('button');
+        btn.className = 'rec-card-toggle';
+        btn.innerHTML = `Leer más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+        btn.addEventListener('click', () => {
+          const open = wrapper.classList.toggle('visible');
+          btn.classList.toggle('open', open);
+          btn.innerHTML = open
+            ? `Leer menos <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`
+            : `Leer más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+        });
+
+        card.appendChild(wrapper);
+        card.appendChild(btn);
+      });
     });
   },
 
@@ -1401,6 +1437,14 @@ const ui = {
         if (section) {
           const top = element.offsetTop - 70;
           section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+        // Animación de hint en la primera tarjeta
+        const firstCard = element.querySelector('.rec-card');
+        if (firstCard) {
+          firstCard.classList.remove('rec-scroll-hint');
+          void firstCard.offsetWidth; // reflow para reiniciar animación
+          firstCard.classList.add('rec-scroll-hint');
+          setTimeout(() => firstCard.classList.remove('rec-scroll-hint'), 1200);
         }
       }, 300);
     } else {
