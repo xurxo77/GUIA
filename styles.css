@@ -4920,3 +4920,101 @@ a:hover {
 #hero { max-height: 260px !important; min-height: 220px !important; }
 .hero-bg-overlay { filter: saturate(0.85) brightness(1.1) !important; }
 .hero-weather-block { padding-top: 12px !important; }
+
+
+
+/* ================================================================
+   HERO — RESET TOTAL Y DEFINITIVO
+   ================================================================ */
+#hero {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 32px 20px 28px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.hero-bg-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.28) 0%,
+      rgba(0,0,0,0.18) 60%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 25% / cover no-repeat !important;
+  filter: saturate(0.9) brightness(1.05) !important;
+  z-index: 0 !important;
+}
+
+#hero .hero-top,
+#hero .hero-center {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+#hero .hero-top svg { stroke: #fff !important; }
+#hero .hero-letter  { color: #fff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.55) !important; }
+#hero .hero-title   { color: #fff !important; text-shadow: 0 2px 10px rgba(0,0,0,0.55) !important; }
+#hero .hero-subtitle{ color: rgba(255,255,255,0.95) !important; font-weight: 600 !important; text-shadow: 0 1px 6px rgba(0,0,0,0.5) !important; }
+#hero .hero-authors { color: rgba(255,255,255,0.90) !important; font-weight: 600 !important; text-shadow: 0 1px 5px rgba(0,0,0,0.45) !important; }
+
+/* Widget: fuera del hero en zona blanca */
+.hero-weather-block {
+  position: relative !important;
+  z-index: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 16px 16px 8px !important;
+  margin: 0 !important;
+  background: #fff !important;
+}
+
+.weather-label {
+  font-size: 0.60rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: var(--fg-muted) !important;
+  margin-bottom: 8px !important;
+  text-shadow: none !important;
+}
+
+.hero-weather-widget {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  max-width: 360px !important;
+}
+
+.weather-city {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 4px !important;
+  background: rgba(26,82,118,0.07) !important;
+  border: 1px solid rgba(26,82,118,0.14) !important;
+  border-radius: 999px !important;
+  padding: 5px 10px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.weather-icon { font-size: 0.85rem !important; }
+.weather-temp { font-size: 0.78rem !important; font-weight: 700 !important; color: var(--accent-sea) !important; text-shadow: none !important; }
+.weather-name { font-size: 0.60rem !important; color: var(--fg-muted) !important; display: inline !important; text-shadow: none !important; }
