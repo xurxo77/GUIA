@@ -148,7 +148,7 @@
   <!-- Contenido Principal -->
   <main class="main-content" id="mainContent">
     
-    <!-- Hero -->
+    <!-- Hero — solo imagen + textos -->
     <header id="hero" class="hero app-screen active-screen">
       <div class="hero-bg-overlay"></div>
       <div class="hero-top fade-in visible">
@@ -166,14 +166,15 @@
         <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
         <p class="hero-authors fade-in visible delay-2" style="text-align:center;">Hecha por Xurxo & Raquel</p>
       </div>
-
-      <div class="hero-weather-block fade-in visible delay-2">
-        <div class="weather-label">Tiempo en Galicia</div>
-        <div class="hero-weather-widget" id="heroWeather">
-          <div class="weather-loading">Cargando...</div>
-        </div>
-      </div>
     </header>
+
+    <!-- Widget del tiempo — fuera del hero, en zona blanca -->
+    <div class="hero-weather-block fade-in visible delay-2">
+      <div class="weather-label">Tiempo en Galicia</div>
+      <div class="hero-weather-widget" id="heroWeather">
+        <div class="weather-loading">Cargando...</div>
+      </div>
+    </div>
 
     <!-- Recomendaciones -->
     <section id="recomendaciones" class="app-screen recommendations-section">
