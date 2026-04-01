@@ -3807,3 +3807,14 @@ a:hover {
   scroll-snap-align: center !important;
   scroll-snap-stop: always !important;
 }
+
+
+
+/* ── TARJETAS DE LUGAR — ALTURA INDEPENDIENTE EN EL CARRUSEL ─── */
+.places-carousel {
+  align-items: flex-start !important;
+}
+.places-carousel .place-card {
+  align-self: flex-start !important;
+  height: auto !important;
+}
