@@ -4215,3 +4215,79 @@ a:hover {
   animation: spin 0.8s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+
+
+/* ── HERO WEATHER BLOCK ──────────────────────────────────────── */
+.hero-weather-block {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Widget del tiempo */
+.hero-weather-widget {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.weather-loading {
+  font-size: 0.78rem;
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
+.weather-city {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--r-xl);
+  padding: 8px 12px;
+  min-width: 64px;
+  transition: transform 0.2s var(--ease-std);
+}
+.weather-city:active { transform: scale(0.95); }
+
+.weather-icon { font-size: 1.3rem; line-height: 1; }
+.weather-temp {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-sea);
+  line-height: 1;
+}
+.weather-name {
+  font-size: 0.62rem;
+  color: var(--fg-muted);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Mapa decorativo */
+.hero-map-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.hero-map-svg {
+  width: 85%;
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(26,82,118,0.2));
+}
