@@ -4762,3 +4762,66 @@ a:hover {
       rgba(255,255,255,1.0) 100%),
     url('img/santiago.jpg') center 30% / cover no-repeat !important;
 }
+
+
+
+/* ── WIDGET DENTRO DE LA IMAGEN, SIN LÍNEA ───────────────────── */
+.hero-weather-block {
+  margin-top: 24px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.weather-label {
+  color: rgba(255,255,255,0.85) !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4) !important;
+}
+
+.weather-city {
+  background: rgba(255,255,255,0.25) !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.weather-temp {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+}
+
+.weather-name {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* Quitar línea divisoria */
+#hero::after,
+#hero .hero-divider,
+.hero-bottom-border {
+  display: none !important;
+}
+
+
+
+/* ── QUITAR LÍNEA + WIDGET SOBRE LA IMAGEN ───────────────────── */
+#hero {
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+/* La imagen ahora cubre hasta donde está el widget */
+.hero-bg-overlay {
+  height: 75% !important;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.45) 0%,
+      rgba(0,0,0,0.20) 45%,
+      rgba(255,255,255,0.55) 72%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 30% / cover no-repeat !important;
+}
+
+/* Widget más arriba, sobre la imagen */
+.hero-weather-block {
+  margin-top: 16px !important;
+}
