@@ -3818,3 +3818,13 @@ a:hover {
   align-self: flex-start !important;
   height: auto !important;
 }
+
+
+
+/* ── PRIMERA Y ÚLTIMA TARJETA CENTRADAS ─────────────────────── */
+.places-carousel .place-card:first-child {
+  margin-left: 4% !important;
+}
+.places-carousel .place-card:last-child {
+  margin-right: 4% !important;
+}
