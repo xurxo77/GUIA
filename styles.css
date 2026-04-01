@@ -4481,3 +4481,74 @@ a:hover {
   opacity: 0.6;
   margin-bottom: 6px;
 }
+
+
+
+/* ── HERO FINAL — IMAGEN CORTA, TEXTO LEGIBLE, TIEMPO PEQUEÑO ── */
+
+/* Imagen solo en el tercio superior */
+.hero-bg-overlay {
+  height: 42% !important;
+  background:
+    linear-gradient(to bottom,
+      rgba(10,30,50,0.35) 0%,
+      rgba(10,30,50,0.25) 50%,
+      rgba(255,251,254,1.0) 100%),
+    url('img/santiago.jpg') center 30% / cover no-repeat !important;
+  filter: saturate(0.85) !important;
+}
+
+/* Título más legible sobre la imagen */
+.hero-title { color: #ffffff !important; text-shadow: 0 2px 12px rgba(0,0,0,0.5) !important; }
+.hero-subtitle { color: rgba(255,255,255,0.92) !important; text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important; }
+.hero-authors { color: rgba(255,255,255,0.80) !important; text-shadow: 0 1px 4px rgba(0,0,0,0.35) !important; }
+.hero-top svg { stroke: white !important; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.35)) !important; }
+
+/* Hero compacto */
+#hero.active-screen {
+  padding: 28px 20px 16px !important;
+  gap: 0 !important;
+}
+
+/* Widget del tiempo: fila de píldoras pequeñas */
+.hero-weather-block { margin-top: 20px !important; }
+
+.weather-label {
+  font-size: 0.58rem !important;
+  margin-bottom: 5px !important;
+  color: var(--fg-muted) !important;
+}
+
+.hero-weather-widget {
+  gap: 5px !important;
+  padding: 0 4px !important;
+}
+
+.weather-city {
+  flex-direction: row !important;
+  padding: 4px 8px !important;
+  gap: 3px !important;
+  min-width: auto !important;
+  border-radius: var(--r-full) !important;
+  background: rgba(26,82,118,0.08) !important;
+  border: 1px solid rgba(26,82,118,0.14) !important;
+}
+
+.weather-icon { font-size: 0.78rem !important; }
+.weather-temp { font-size: 0.75rem !important; font-weight: 700 !important; color: var(--accent-sea) !important; }
+.weather-name { display: none !important; }
+
+/* Letras de las letras animadas también en blanco sobre imagen */
+.hero-letter { color: #ffffff !important; text-shadow: 0 2px 12px rgba(0,0,0,0.5) !important; }
+
+/* Quitar mapa si quedó */
+.hero-map-container, .hero-user-map { display: none !important; }
+
+
+/* Nombre ciudad visible pero tiny */
+.weather-name {
+  display: inline !important;
+  font-size: 0.58rem !important;
+  color: var(--fg-muted) !important;
+  font-weight: 500 !important;
+}
