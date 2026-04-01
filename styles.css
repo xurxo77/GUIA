@@ -4915,3 +4915,8 @@ a:hover {
 .weather-icon { font-size: 0.85rem !important; }
 .weather-temp { font-size: 0.78rem !important; font-weight: 700 !important; color: var(--accent-sea) !important; }
 .weather-name { font-size: 0.60rem !important; color: var(--fg-muted) !important; display: inline !important; }
+
+
+#hero { max-height: 260px !important; min-height: 220px !important; }
+.hero-bg-overlay { filter: saturate(0.85) brightness(1.1) !important; }
+.hero-weather-block { padding-top: 12px !important; }
