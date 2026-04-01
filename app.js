@@ -984,6 +984,60 @@ const ui = {
               <p>Poco más que decir: prepárate para disfrutar… y para abrir la cartera si quieres lo mejor.</p>
             </div>
             <div class="rec-card">
+              <h4>🍷 Furanchos: comer como un local</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Casas particulares que venden su vino acompañado de comida casera sencilla.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Sobre todo Rías Baixas, zonas rurales y alrededores de pueblos.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Temporada concreta según producción de vino.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Autenticidad total: sin carta, sin postureo, comida de verdad y ambiente de siempre.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Qué pedir:</strong> Vino de la casa, tortilla, chorizo, zorza... lo que haya ese día.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Recomendación:</strong> Si ves un cartel "Furancho" y no eres muy tiquismiquis, entra sin dudar. No esperes un restaurante al uso y, desde luego, lleva efectivo: no hay otra forma de pagar.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🔥 El churrasco: religión en Galicia</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Carne a la parrilla (normalmente cerdo o ternera) hecha al fuego, en tiras largas y con su punto de grasa.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Origen:</strong> Llegó desde Latinoamérica y se popularizó en Galicia en los años 70, con parrilladas pioneras en la zona de Lalín.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Parrilladas y casas particulares.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Sabor a brasa, raciones abundantes y ambiente de mesa larga, ruido y cero prisas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Qué pedir:</strong> Churrasco mixto, criollos, patatas y ensalada. Y vino o cerveza.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Recomendación:</strong> Ven con hambre y sin prisas. No esperes cocina "fina": esto va de brasas y disfrutar. Si hay humo y gente alrededor de una parrilla, vas bien.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🍷 Furanchos: comer como un local</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Casas particulares que venden su vino acompañado de comida casera sencilla.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Dónde:</strong> Sobre todo Rías Baixas, zonas rurales y alrededores de pueblos.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Cuándo:</strong> Temporada concreta según producción de vino.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Lo que mola:</strong> Autenticidad total: sin carta, sin postureo, comida de verdad y ambiente de siempre.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Qué pedir:</strong> Vino de la casa, tortilla, chorizo, zorza... lo que haya ese día.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Recomendación:</strong> Si ves un cartel "Furancho" y quieres una experiencia gastronómica real, entra sin dudar. No esperes restaurante al uso y lleva efectivo: no hay otra forma de pagar.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🔥 El churrasco: religión en Galicia</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Carne a la parrilla (normalmente cerdo o ternera) hecha al fuego, en tiras largas y con su punto de grasa.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Origen:</strong> Llegó desde Latinoamérica y se popularizó en Galicia en los años 70, con parrilladas pioneras en la zona de Lalín.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Dónde:</strong> Parrilladas y casas particulares. <strong>Cuándo:</strong> Todo el año, especialmente en verano y fiestas.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Lo que mola:</strong> Sabor a brasa, raciones abundantes y ambiente de mesa larga, ruido y cero prisas.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Qué pedir:</strong> Churrasco mixto, criollos, patatas y ensalada. Y vino o cerveza.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Recomendación:</strong> Ven con hambre y sin prisas. Si hay humo y gente alrededor de una parrilla, vas bien.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🍷 Furanchos: comer como un local</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Casas particulares que venden su vino acompañado de comida casera sencilla.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Sobre todo Rías Baixas, zonas rurales y alrededores de pueblos.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Temporada concreta según producción de vino.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Autenticidad total: sin carta, sin postureo, comida de verdad y ambiente de siempre.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Qué pedir:</strong> Vino de la casa, tortilla, chorizo, zorza... lo que haya ese día.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Recomendación:</strong> Si ves un cartel "Furancho" y no eres muy tiquismiquis, entra sin dudar. No esperes un restaurante al uso y, desde luego, lleva efectivo: no hay otra forma de pagar.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🔥 El churrasco: religión en Galicia</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Carne a la parrilla (normalmente cerdo o ternera) hecha al fuego, en tiras largas y con su punto de grasa.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Origen:</strong> Llegó desde Latinoamérica y se popularizó en Galicia en los años 70, con parrilladas pioneras en la zona de Lalín.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Parrilladas y casas particulares. <strong>Cuándo:</strong> Todo el año, especialmente en verano y en fiestas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Sabor a brasa, raciones abundantes y ambiente de mesa larga, ruido y cero prisas.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Qué pedir:</strong> Churrasco mixto, criollos, patatas y ensalada. Y vino o cerveza.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> Ven con hambre y sin prisas. No esperes cocina "fina": esto va de brasas y disfrutar. Si hay humo y gente alrededor de una parrilla, vas bien.</p>
+            </div>
+            <div class="rec-card">
               <img src="img/rec_mariscada.jpg" class="rec-card-img" alt="Marisco" onerror="this.style.display='none'">
               <h4>🦐 Marisco: cuando es bueno, se nota</h4>
               <p style="margin-bottom: 8px !important;">Y cuando no, también. No todo vale: <strong>busca locales con producto fresco y buena rotación.</strong></p>
@@ -1176,9 +1230,66 @@ const ui = {
               <p style="margin-bottom: 0 !important;">👉 <strong>Clave:</strong> la magia, la muerte, el mar y el misterio forman parte de lo que somos.</p>
             </div>
             <div class="rec-card">
+              <h4>⛵ Las traiñeiras: el mar también se vive compitiendo</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Regatas de embarcaciones tradicionales a remo, con equipos locales y mucha historia.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Toda la costa gallega, especialmente Rías Baixas y Rías Altas. Puertos y villas marineras.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Verano (julio–septiembre), coincidiendo con ligas y fiestas locales.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Ambiente, rivalidad entre pueblos, sonido de los remos y todo muy cerca del agua.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Plan perfecto:</strong> Ver la regata desde el puerto y luego comer o tomar algo por la zona.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Detalle extra:</strong> El timonel de la tripulación vencedora recoge una bandera, que es el premio, y la tiene que ondear.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> No mirar el calendario y pensar que hay regata cualquier día. Si coincide, no lo dudes. No es algo preparado para el visitante: es tradición real, y se nota.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🐚 Mariscadoras: As fillas da ría</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Mujeres que trabajan el marisqueo a pie, recogiendo almejas, berberechos y otros mariscos.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Rías y zonas intermareales de toda Galicia.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Depende de la marea: bajamar = trabajo en la arena.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Trabajo duro, tradición y relación directa con el mar.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Plan perfecto:</strong> Paseo por la ría → verlas trabajar → comer marisco después.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> Pensar que es algo "turístico". Es trabajo real. Respeta distancias. Después de verlo, el marisco sabe distinto.</p>
+            </div>
+            <div class="rec-card">
+              <h4>⛵ Las traiñeiras: el mar también se vive compitiendo</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Regatas de embarcaciones tradicionales a remo, con equipos locales y mucha historia.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Dónde:</strong> Toda la costa gallega, especialmente Rías Baixas y Rías Altas. Puertos y villas marineras.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Cuándo:</strong> Verano (julio–septiembre), coincidiendo con ligas y fiestas locales.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Lo que mola:</strong> Ambiente, rivalidad entre pueblos, sonido de los remos y todo muy cerca del agua.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Plan perfecto:</strong> Ver la regata desde el puerto y luego comer o tomar algo por la zona.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Detalle extra:</strong> El timonel de la tripulación vencedora recoge una bandera, que es el premio, y la tiene que ondear.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> No mirar el calendario. Si coincide, no lo dudes. No es algo preparado para el visitante: es tradición real, y se nota.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🐚 Mariscadoras: As fillas da ría</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Mujeres que trabajan el marisqueo a pie, recogiendo almejas, berberechos y otros mariscos.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Dónde:</strong> Rías y zonas intermareales de toda Galicia.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Cuándo:</strong> Depende de la marea: bajamar = trabajo en la arena.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Lo que mola:</strong> Trabajo duro, tradición y relación directa con el mar.</p>
+              <p style="margin-bottom: 6px !important;"><strong>Plan perfecto:</strong> Paseo por la ría → verlas trabajar → comer marisco después.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> Pensar que es algo "turístico". Es trabajo real. Respeta distancias. Después de verlo, el marisco sabe distinto.</p>
+            </div>
+            <div class="rec-card">
               <img src="img/rec_clavefinal.jpg" class="rec-card-img" alt="Clave final" onerror="this.style.display='none'">
               <h4>💡 Clave final:</h4>
               <p style="margin-bottom: 0 !important;">Disfruta de todo, cuida el entorno, sé buena gente… <strong>y vuelve.</strong></p>
+            </div>
+            <div class="rec-card">
+              <h4>⛵ Las traiñeiras: el mar también se vive compitiendo</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Regatas de embarcaciones tradicionales a remo, con equipos locales y mucha historia.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Toda la costa gallega, especialmente Rías Baixas y Rías Altas. Puertos y villas marineras.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Verano (julio–septiembre), coincidiendo con ligas y fiestas locales.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Ambiente, rivalidad entre pueblos, sonido de los remos y todo muy cerca del agua.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Plan perfecto:</strong> Ver la regata desde el puerto y luego comer o tomar algo por la zona.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Detalle extra:</strong> El timonel de la tripulación vencedora recoge una bandera, que es el premio, y la tiene que ondear.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> No mirar el calendario y pensar que hay regata cualquier día. Si coincide, no lo dudes. No es algo preparado para el visitante: es tradición real, y se nota.</p>
+            </div>
+            <div class="rec-card">
+              <h4>🐚 Mariscadoras: As fillas da ría</h4>
+              <p style="margin-bottom: 6px !important;"><strong>Qué es:</strong> Mujeres que trabajan el marisqueo a pie, recogiendo almejas, berberechos y otros mariscos.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Dónde:</strong> Rías y zonas intermareales de toda Galicia.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Cuándo:</strong> Depende de la marea: bajamar = trabajo en la arena.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Lo que mola:</strong> Trabajo duro, tradición y relación directa con el mar.</p>
+              <p style="margin-bottom: 4px !important;">👉 <strong>Plan perfecto:</strong> Paseo por la ría → verlas trabajar → comer marisco después.</p>
+              <p style="margin-bottom: 0 !important;">👉 <strong>Error típico:</strong> Pensar que es algo "turístico". Es trabajo real. Respeta distancias. Después de verlo, el marisco sabe distinto.</p>
             </div>
 `;
     const map = {
@@ -1192,7 +1303,6 @@ const ui = {
       if (scroll) scroll.innerHTML = html;
     });
   },
-
 
   renderPlaces: () => {
     const container = ui.elements.placesContainer;
