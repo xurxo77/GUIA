@@ -4587,3 +4587,61 @@ a:hover {
   stroke: #ffffff !important;
   filter: drop-shadow(0 1px 6px rgba(0,0,0,0.55)) !important;
 }
+
+
+
+/* ── HERO: FADE BLANCO + WIDGET CENTRADO ─────────────────────── */
+
+/* Fade hacia blanco, no negro */
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.15) 0%,
+      rgba(255,255,255,0.45) 65%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 30% / cover no-repeat !important;
+  filter: saturate(0.85) brightness(1.0) !important;
+}
+
+/* Texto oscuro para que se lea sobre fade blanco */
+.hero-letter {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.8), 0 2px 12px rgba(255,255,255,0.6) !important;
+}
+.hero-title {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.8) !important;
+}
+.hero-subtitle {
+  color: #1a3a4a !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 6px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.7) !important;
+}
+.hero-authors {
+  color: #2c5364 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.9) !important;
+}
+.hero-top svg {
+  stroke: var(--accent-sea) !important;
+  filter: drop-shadow(0 1px 4px rgba(255,255,255,0.8)) !important;
+}
+
+/* Widget centrado con más separación de la imagen */
+.hero-weather-block {
+  margin-top: 36px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.weather-label {
+  margin-bottom: 8px !important;
+}
+
+.hero-weather-widget {
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 360px !important;
+}
