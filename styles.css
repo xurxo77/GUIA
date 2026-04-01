@@ -4291,3 +4291,38 @@ a:hover {
   height: auto;
   filter: drop-shadow(0 2px 8px rgba(26,82,118,0.2));
 }
+
+
+
+/* ── HERO FONDO MÁS SUTIL ───────────────────────────────────── */
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(255,251,254,0.82) 0%,
+      rgba(255,251,254,0.88) 50%,
+      rgba(255,251,254,0.97) 100%),
+    url('img/santiago.jpg') center center / cover no-repeat !important;
+  filter: saturate(0.5) brightness(1.1) !important;
+}
+
+/* ── HERO LAYOUT — WEATHER + MAPA BIEN POSICIONADOS ─────────── */
+#hero.active-screen {
+  justify-content: flex-start !important;
+  padding-top: 40px !important;
+}
+
+.hero-weather-block {
+  margin-top: 20px !important;
+  padding-bottom: 8px !important;
+}
+
+.hero-map-container {
+  opacity: 0.08 !important;
+  margin-top: -20px !important;
+}
+
+/* Widget del tiempo más compacto */
+.weather-city {
+  background: rgba(255,255,255,0.82) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06) !important;
+}
