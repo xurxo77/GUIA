@@ -4740,3 +4740,14 @@ a:hover {
 
 
 .hero-bg-overlay { height: 60% !important; }
+
+
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.45) 0%,
+      rgba(0,0,0,0.25) 50%,
+      rgba(255,255,255,0.7) 85%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 30% / cover no-repeat !important;
+}
