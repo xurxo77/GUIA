@@ -5145,3 +5145,55 @@ a:hover {
 .weather-icon { font-size: 0.85rem !important; }
 .weather-temp { font-size: 0.78rem !important; font-weight: 700 !important; color: var(--accent-sea) !important; text-shadow: none !important; }
 .weather-name { font-size: 0.60rem !important; color: var(--fg-muted) !important; display: inline !important; text-shadow: none !important; }
+
+
+
+/* ── CORRECCIÓN FINAL HERO ───────────────────────────────────── */
+
+/* Imagen con overlay oscuro para que todo se lea bien */
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.50) 0%,
+      rgba(0,0,0,0.40) 60%,
+      rgba(0,0,0,0.10) 100%),
+    url('img/santiago.jpg') center 25% / cover no-repeat !important;
+  filter: saturate(0.8) brightness(0.95) !important;
+}
+
+/* Título "Galicia" en azul corporativo */
+.hero-image-zone .hero-letter,
+.hero-image-zone .hero-title {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6) !important;
+}
+
+/* Tagline y autores en blanco */
+.hero-image-zone .hero-subtitle {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6) !important;
+}
+.hero-image-zone .hero-authors {
+  color: rgba(255,255,255,0.90) !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.55) !important;
+}
+.hero-image-zone .hero-top svg {
+  stroke: #ffffff !important;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.5)) !important;
+}
+
+/* Widget sin fondo */
+.hero-weather-block {
+  background: transparent !important;
+}
+.weather-city {
+  background: rgba(255,255,255,0.18) !important;
+  border: 1px solid rgba(255,255,255,0.35) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+.weather-temp { color: #ffffff !important; }
+.weather-name { color: rgba(255,255,255,0.80) !important; }
+.weather-label { color: rgba(255,255,255,0.70) !important; }
