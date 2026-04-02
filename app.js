@@ -576,7 +576,7 @@ const mapManager = {
 
   showPopup: (lugar, latlng, mapInstance) => {
     const isSelected = state.selectedPlaces.includes(lugar.id);
-    const btnText = isSelected ? '❌ Quitar' : '➕ Añadir';
+    const btnText = isSelected ? '❌ Quitar' : '✚ Añadir';
     const btnColor = isSelected ? '#B3261E' : '#1a5276';
 
     const popupHtml = `
@@ -1800,8 +1800,11 @@ const ui = {
     const totalHours = routeManager.getTotalHours();
     
     if (ui.elements.mapSelectionCount) {
-      ui.elements.mapSelectionCount.textContent = `${state.selectedPlaces.length} seleccionados`;
+      ui.elements.mapSelectionCount.textContent = `${state.selectedPlaces.length} seleccionado${state.selectedPlaces.length !== 1 ? 's' : ''}`;
     }
+    // Buscar también en el DOM en tiempo real por si no estaba cacheado
+    const countEl = document.getElementById('mapSelectionCount');
+    if (countEl) countEl.textContent = `${state.selectedPlaces.length} seleccionado${state.selectedPlaces.length !== 1 ? 's' : ''}`;
     
     if (ui.elements.mapSelectionTime) {
       ui.elements.mapSelectionTime.textContent = `${totalHours}h`;
