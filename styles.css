@@ -5483,3 +5483,98 @@ html, body {
 #generador.active-screen {
   animation: none !important;
 }
+
+
+
+/* ── SPLASH MINIMALISTA ──────────────────────────────────────── */
+.splash-screen {
+  background: #ffffff !important;
+  padding: 40px 32px !important;
+}
+
+.splash-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+
+.splash-icon {
+  margin-bottom: 16px !important;
+  animation: none !important;
+}
+
+.splash-icon svg {
+  width: 40px !important;
+  height: 40px !important;
+  stroke: var(--accent-sea) !important;
+  filter: none !important;
+}
+
+.splash-title {
+  font-size: 2.6rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-sea) !important;
+  margin-bottom: 40px !important;
+  text-shadow: none !important;
+}
+
+.splash-subtitle { display: none !important; }
+.splash-footer   { display: none !important; }
+.password-toggle { display: none !important; }
+.btn-shine       { display: none !important; }
+
+.splash-form {
+  width: 100% !important;
+  max-width: 280px !important;
+  gap: 12px !important;
+  animation: none !important;
+}
+
+.input-wrapper {
+  position: relative !important;
+}
+
+.splash-input {
+  width: 100% !important;
+  padding: 14px 18px !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--r-xl) !important;
+  font-size: 1rem !important;
+  text-align: center !important;
+  letter-spacing: 0.15em !important;
+  background: #f8f8f8 !important;
+  box-shadow: none !important;
+  color: var(--fg-ink) !important;
+}
+
+.splash-input:focus {
+  border-color: var(--accent-sea) !important;
+  background: #fff !important;
+  box-shadow: 0 0 0 3px rgba(26,82,118,0.1) !important;
+  transform: none !important;
+}
+
+.splash-btn {
+  width: 100% !important;
+  padding: 14px !important;
+  background: var(--accent-sea) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--r-xl) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  transition: opacity 0.15s !important;
+}
+
+.splash-btn:active { opacity: 0.8 !important; transform: none !important; }
+.splash-btn:hover  { background: var(--accent-sea) !important; box-shadow: none !important; transform: none !important; }
+
+.splash-error {
+  font-size: 0.82rem !important;
+  min-height: 1.2em !important;
+  color: var(--accent-red) !important;
+  text-align: center !important;
+}
