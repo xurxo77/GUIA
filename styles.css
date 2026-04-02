@@ -5323,3 +5323,48 @@ a:hover {
   color: #fff !important;
   text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
 }
+
+
+
+/* ── FONDO BLANCO EN TODAS LAS SECCIONES (tapa el hero) ──────── */
+#recomendaciones,
+#lugares,
+#generador {
+  background: #ffffff !important;
+}
+
+/* ── HERO: OVERLAY MUY SUAVE PARA QUE LUZCA EL AZUL ─────────── */
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.25) 0%,
+      rgba(255,255,255,0.20) 50%,
+      rgba(255,255,255,1.00) 100%),
+    url('img/santiago.jpg') center 25% / cover no-repeat !important;
+  filter: saturate(0.9) brightness(1.05) !important;
+}
+
+/* Título azul corporativo con sombra blanca para destacar */
+.hero-image-zone .hero-letter,
+.hero-image-zone .hero-title {
+  color: #1a5276 !important;
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.9),
+    0 2px 6px rgba(255,255,255,0.8) !important;
+}
+
+/* Tagline blanco */
+.hero-image-zone .hero-subtitle {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6) !important;
+}
+
+/* Autores azul corporativo */
+.hero-image-zone .hero-authors {
+  color: #1a5276 !important;
+  font-weight: 700 !important;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.9),
+    0 1px 4px rgba(255,255,255,0.8) !important;
+}
