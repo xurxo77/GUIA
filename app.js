@@ -1976,6 +1976,15 @@ const navigationManager = {
     const toScreen   = document.getElementById(targetId);
 
     if (fromScreen && toScreen) {
+      // Cerrar todos los acordeones abiertos al salir de una sección
+      fromScreen.querySelectorAll('.province-box.expanded').forEach(el => {
+        el.classList.remove('expanded');
+        setTimeout(() => {
+          const scroll = el.querySelector('.horizontal-scroll');
+          if (scroll) scroll.scrollLeft = 0;
+        }, 350);
+      });
+
       fromScreen.classList.remove('active-screen');
       toScreen.classList.add('active-screen');
 
