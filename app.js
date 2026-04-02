@@ -1274,7 +1274,97 @@ const ui = {
       'rec-antes': htmlAntes,
       'rec-comer': htmlComer,
       'rec-beber': htmlBeber,
-      'rec-disfrutar': htmlDisfrutar
+      'rec-disfrutar': htmlDisfrutar,
+      'rec-curiosidades': `
+            <div class="rec-card">
+              <img src="img/cur_compostela.jpg" class="rec-card-img" alt="Santiago" onerror="this.style.display='none'">
+              <h4>🗺️ La diáspora gallega</h4>
+              <p>Más de 2 millones de gallegos emigraron entre finales del XIX y el XX, sobre todo a Argentina, Cuba y Uruguay.</p>
+              <p>👉 Hoy hay casi tantos descendientes fuera como gallegos en Galicia.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_rias.jpg" class="rec-card-img" alt="Rías" onerror="this.style.display='none'">
+              <h4>⚡ Potencia energética</h4>
+              <p>Galicia generó más de 23.000 GWh en 2024, en gran parte con energías limpias.</p>
+              <p>👉 El 40% sobrante se exportó a otras partes de España y Europa.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_morrina.jpg" class="rec-card-img" alt="Galicia antigua" onerror="this.style.display='none'">
+              <h4>👑 Uno de los primeros reinos de Europa</h4>
+              <p>Tras la caída de Roma, en el siglo V, Galicia se consolidó como el Reino de los Suevos.</p>
+              <p>👉 Uno de los primeros reinos establecidos en toda Europa occidental.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_gaiteiros.jpg" class="rec-card-img" alt="Cultura celta" onerror="this.style.display='none'">
+              <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Raíces celtas</h4>
+              <p>Los castros de piedra, la música con gaitas y muchas tradiciones y leyendas reflejan la herencia celta que aún late en Galicia.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_finisterre.jpg" class="rec-card-img" alt="Fisterra" onerror="this.style.display='none'">
+              <h4>🌊 El fin del mundo para los romanos</h4>
+              <p>Al llegar a Fisterra, las legiones romanas creían que el mar hervía y no había nada más allá.</p>
+              <p>👉 Hoy es el final épico para muchos peregrinos del Camino.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_camino.jpg" class="rec-card-img" alt="Camino" onerror="this.style.display='none'">
+              <h4>🇮🇪 El vínculo con Irlanda</h4>
+              <p>Un texto medieval irlandés cuenta cómo Breogán levantó una torre en Galicia desde la que sus descendientes vieron Irlanda.</p>
+              <p>👉 La tradición sitúa esa torre en la actual Torre de Hércules.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_horreos.jpg" class="rec-card-img" alt="Ourense termal" onerror="this.style.display='none'">
+              <h4>♨️ Capital termal de Europa</h4>
+              <p>Solo Budapest supera a Ourense en volumen de aguas termales. En As Burgas el agua sale a más de 60ºC.</p>
+              <p>👉 Puedes bañarte gratis en pozas naturales del Miño, en pleno invierno.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_vino.jpg" class="rec-card-img" alt="Gallego y portugués" onerror="this.style.display='none'">
+              <h4>🇵🇹 Gallego y portugués: el mismo origen</h4>
+              <p>Durante la Edad Media, el galaico-portugués era la lengua de la poesía en toda la Península Ibérica.</p>
+              <p>👉 Si hablas gallego, puedes entenderte casi a la perfección con alguien en Portugal o Brasil.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_horreos.jpg" class="rec-card-img" alt="Hórreos" onerror="this.style.display='none'">
+              <h4>🏛️ Más de 30.000 hórreos</h4>
+              <p>Diseñados para guardar el grano lejos de la humedad y los roedores.</p>
+              <p>👉 El hórreo de Carnota mide casi 35 metros. ¡Más grande que muchas casas!</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_santacompaña.jpg" class="rec-card-img" alt="Santa Compaña" onerror="this.style.display='none'">
+              <h4>👻 La Santa Compaña</h4>
+              <p>La leyenda más famosa de Galicia: una procesión de almas en pena que vagan de noche.</p>
+              <p>👉 Dicen que huele a cera quemada a su paso. No les mires si no quieres unirte.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_glaciacion.jpg" class="rec-card-img" alt="Glaciación" onerror="this.style.display='none'">
+              <h4>🧊 Refugio de la glaciación</h4>
+              <p>Mientras Europa quedaba congelada, el clima suave de Galicia permitió sobrevivir a muchísimas especies.</p>
+              <p>👉 Esta tierra fue un auténtico santuario de vida.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_eucaliptos.jpg" class="rec-card-img" alt="Eucaliptos" onerror="this.style.display='none'">
+              <h4>🌿 El «verde gallego» no es natural</h4>
+              <p>Gran parte del paisaje está ocupado por eucaliptos, una especie introducida que desplaza al bosque autóctono.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_gaiteiros.jpg" class="rec-card-img" alt="Gaiteiros" onerror="this.style.display='none'">
+              <h4>🎵 Los gaiteiros, músicos del pueblo</h4>
+              <p>Durante siglos recorrieron aldeas tocando en romerías, marcando el ritmo de bodas y procesiones.</p>
+              <p>👉 Hoy son símbolo absoluto de la cultura gallega.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_marinos.jpg" class="rec-card-img" alt="Marinos" onerror="this.style.display='none'">
+              <h4>⚓ Marinos clave en la expansión española</h4>
+              <p>Los gallegos formaron parte de grandes expediciones marítimas, curtidos por el duro Atlántico.</p>
+              <p>👉 Galicia ha vivido siempre de cara al mar.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_rosalia.jpg" class="rec-card-img" alt="Rosalía" onerror="this.style.display='none'">
+              <h4>📖 Rosalía de Castro</h4>
+              <p>En el siglo XIX fue una de las primeras autoras en escribir en gallego, dignificando la lengua y reflejando la morriña.</p>
+              <p>👉 Su obra marcó el inicio del Rexurdimento cultural gallego.</p>
+            </div>
+      `
     };
     Object.entries(map).forEach(([id, html]) => {
       const scroll = document.querySelector(`#${id} .horizontal-scroll`);
@@ -2032,9 +2122,6 @@ function handleLogin(e) {
     ui.cacheElements();
     app.init();
 
-    // 3. Mostrar ¿Sabías que? encima (ya no bloquea la inicialización)
-    ui.showSabiasQue(() => {});
-
   } else {
     input.classList.add('error');
     error.textContent = 'Contraseña incorrecta';
@@ -2063,9 +2150,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Inicializar INMEDIATAMENTE
       ui.cacheElements();
       app.init();
-
-      // ¿Sabías que? encima, no bloquea
-      ui.showSabiasQue(() => {});
     }
   }, 100);
 });
