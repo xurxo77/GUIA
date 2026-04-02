@@ -521,19 +521,17 @@ const mapManager = {
       state.mainMap = L.map('map', {
         center: CONFIG.MAP_CENTER,
         zoom: CONFIG.MAP_ZOOM_DEFAULT,
-        dragging: true,
-        touchZoom: true,
-        scrollWheelZoom: 'center',
-        doubleClickZoom: true,
-        boxZoom: true,
-        keyboard: true,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
         zoomControl: false,
-        fadeAnimation: !utils.prefersReducedMotion(),
+        fadeAnimation: false,
         markerZoomAnimation: false,
         attributionControl: false
       });
-
-      L.control.zoom({ position: 'bottomright' }).addTo(state.mainMap);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -547,7 +545,6 @@ const mapManager = {
         mapManager.addMarker(lugar, index);
       });
 
-      // Forzar recálculo de tamaño y centrado correcto en Galicia
       setTimeout(() => {
         state.mainMap.invalidateSize();
         state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
@@ -638,7 +635,7 @@ const mapManager = {
       if (!state.fsMap) {
         state.fsMap = L.map('mapFullscreenMap', {
           center: CONFIG.MAP_CENTER,
-          zoom: 9,
+          zoom: CONFIG.MAP_ZOOM_DEFAULT,
           zoomControl: true,
           attributionControl: false
         });
