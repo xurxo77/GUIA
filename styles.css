@@ -5578,3 +5578,33 @@ html, body {
   color: var(--accent-red) !important;
   text-align: center !important;
 }
+
+
+
+/* ── ACORDEÓN CURIOSIDADES ───────────────────────────────────── */
+:root {
+  --cur-color: #5b3fa0;
+  --cur-on:    #3b2270;
+  --cur-gradient: linear-gradient(135deg, #ede8f8 0%, #e0d8f5 100%);
+}
+
+#rec-curiosidades { background: var(--cur-gradient); }
+#rec-curiosidades .bloque-nombre    { color: var(--cur-on); }
+#rec-curiosidades .bloque-subtitulo { color: var(--cur-color); }
+#rec-curiosidades .province-arrow   { background: rgba(91,63,160,0.12); }
+#rec-curiosidades .province-arrow svg { stroke: var(--cur-color); }
+#rec-curiosidades.expanded .province-arrow { background: var(--cur-color); }
+#rec-curiosidades.expanded .province-arrow svg { stroke: white; }
+
+
+
+/* ── ACORDEÓN CURIOSIDADES ───────────────────────────────────── */
+#rec-curiosidades {
+  background: linear-gradient(135deg, #f0e6ff 0%, #e8d5ff 100%);
+}
+#rec-curiosidades .bloque-nombre    { color: #5b2d8e; }
+#rec-curiosidades .bloque-subtitulo { color: #7c3aed; }
+#rec-curiosidades .province-arrow   { background: rgba(91,45,142,0.12); }
+#rec-curiosidades .province-arrow svg { stroke: #5b2d8e; }
+#rec-curiosidades.expanded .province-arrow { background: #5b2d8e; }
+#rec-curiosidades.expanded .province-arrow svg { stroke: white; }
