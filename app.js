@@ -449,9 +449,16 @@ const geoManager = {
   request: () => {
     return new Promise((resolve, reject) => {
       if (!navigator.geolocation) {
-        reject(new Error('Geolocalización no soportada'));
+        ui.updateGeoUI(false, 'Tu dispositivo no soporta geolocalización');
+        reject(new Error('No soportado'));
         return;
       }
+
+      // Feedback inmediato mientras carga
+      const btn = ui.elements.geoBtn;
+      const status = ui.elements.geoStatus;
+      if (btn) { btn.textContent = '...'; btn.disabled = true; }
+      if (status) status.textContent = 'Obteniendo ubicación...';
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -461,18 +468,25 @@ const geoManager = {
             accuracy: position.coords.accuracy,
             timestamp: position.timestamp
           };
-          
+
           localStorage.setItem('galicia_lat', state.userLocation.lat);
           localStorage.setItem('galicia_lng', state.userLocation.lng);
-          
-          mapManager.showUserLocation();
+
+          // Mostrar en el mapa si ya está iniciado
+          if (state.mainMap) mapManager.showUserLocation();
+          if (state.fsMap)   mapManager.showUserLocation();
+
           ui.updateGeoUI(true);
           utils.haptic('success');
-          
           resolve(state.userLocation);
         },
         (error) => {
-          ui.updateGeoUI(false, error.message);
+          const msgs = {
+            1: 'Permiso denegado. Actívalo en ajustes del navegador.',
+            2: 'No se pudo obtener la ubicación.',
+            3: 'Tiempo de espera agotado. Inténtalo de nuevo.'
+          };
+          ui.updateGeoUI(false, msgs[error.code] || 'Error al obtener ubicación');
           reject(error);
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
@@ -496,7 +510,7 @@ const geoManager = {
   checkSaved: () => {
     const lat = localStorage.getItem('galicia_lat');
     const lng = localStorage.getItem('galicia_lng');
-    
+
     if (lat && lng) {
       state.userLocation = {
         lat: parseFloat(lat),
@@ -505,6 +519,7 @@ const geoManager = {
         timestamp: Date.now()
       };
       ui.updateGeoUI(true);
+      // El marcador se añadirá cuando el mapa esté listo
       return true;
     }
     return false;
@@ -604,19 +619,24 @@ const mapManager = {
   },
 
   showUserLocation: () => {
-    if (!state.mainMap || !state.userLocation) return;
+    if (!state.userLocation) return;
 
-    if (state.userMarker) {
-      state.mainMap.removeLayer(state.userMarker);
-    }
+    const addToMap = (map) => {
+      if (!map) return;
+      if (state.userMarker) {
+        try { map.removeLayer(state.userMarker); } catch(e) {}
+      }
+      state.userMarker = L.marker([state.userLocation.lat, state.userLocation.lng], {
+        icon: L.divIcon({
+          className: 'user-location-marker',
+          iconSize: [16, 16],
+          iconAnchor: [8, 8]
+        })
+      }).addTo(map);
+    };
 
-    state.userMarker = L.marker([state.userLocation.lat, state.userLocation.lng], {
-      icon: L.divIcon({
-        className: 'user-location-marker',
-        iconSize: [16, 16],
-        iconAnchor: [8, 8]
-      })
-    }).addTo(state.mainMap);
+    addToMap(state.mainMap);
+    addToMap(state.fsMap);
   },
 
   hideUserLocation: () => {
