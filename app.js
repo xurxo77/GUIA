@@ -489,7 +489,7 @@ const geoManager = {
           ui.updateGeoUI(false, msgs[error.code] || 'Error al obtener ubicación');
           reject(error);
         },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+        { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 }
       );
     });
   },
