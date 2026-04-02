@@ -1573,8 +1573,7 @@ const ui = {
       setTimeout(() => {
         const section = element.closest('#recomendaciones, #lugares');
         if (section) {
-          const top = element.offsetTop - 70;
-          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          section.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
         }
         const firstCard = element.querySelector('.rec-card');
         if (firstCard) {
