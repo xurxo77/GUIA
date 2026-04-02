@@ -1876,8 +1876,6 @@ const navigationManager = {
     if (targetId === state.currentSection) return;
 
     const fromId = state.currentSection;
-    const fromIndex = navigationManager.currentIndex;
-    const direction = targetIndex > fromIndex ? 'forward' : 'backward';
 
     // Actualizar botones
     document.querySelectorAll('.menu-item').forEach((item, idx) => {
@@ -1888,28 +1886,22 @@ const navigationManager = {
     const toScreen   = document.getElementById(targetId);
 
     if (fromScreen && toScreen) {
-      // Mostrar destino inmediatamente detrás (sin animación aún)
-      toScreen.style.display = 'block';
-      toScreen.style.zIndex  = '20';
-      toScreen.style.transform = `translateX(${direction === 'forward' ? '100%' : '-100%'})`;
-      toScreen.style.transition = 'none';
+      // 1. Ocultar origen inmediatamente
+      fromScreen.classList.remove('active-screen');
 
-      // Forzar reflow
+      // 2. Preparar destino: visible pero transparente
+      toScreen.style.opacity = '0';
+      toScreen.classList.add('active-screen');
+
+      // 3. Forzar reflow y hacer fade in
       void toScreen.offsetWidth;
+      toScreen.style.transition = 'opacity 0.22s ease';
+      toScreen.style.opacity = '1';
 
-      // Animar entrada de la pantalla destino
-      toScreen.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1)';
-      toScreen.style.transform  = 'translateX(0)';
-
-      // Después de la animación, limpiar estilos y activar clases
+      // 4. Limpiar estilos inline tras la animación
       setTimeout(() => {
-        // Ocultar pantalla origen
-        fromScreen.classList.remove('active-screen');
-        fromScreen.style.cssText = '';
-
-        // Activar pantalla destino limpiamente
-        toScreen.style.cssText = '';
-        toScreen.classList.add('active-screen');
+        toScreen.style.transition = '';
+        toScreen.style.opacity = '';
 
         if (targetId === 'generador' && state.mainMap) {
           setTimeout(() => {
@@ -1917,7 +1909,7 @@ const navigationManager = {
             state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
           }, 100);
         }
-      }, 290);
+      }, 230);
     }
 
     state.currentSection = targetId;
