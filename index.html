@@ -38,6 +38,24 @@
   <!-- Estilos propios -->
   <link rel="stylesheet" href="styles.css">
   
+  <!-- Service Worker — registro inline para que no dependa del app.js cacheado -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      // Cuando el SW nuevo toma el control, recargar una sola vez
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!sessionStorage.getItem('sw_updated')) {
+          sessionStorage.setItem('sw_updated', '1');
+          location.reload();
+        }
+      });
+      // Limpiar flag tras la recarga para que futuras actualizaciones también funcionen
+      if (sessionStorage.getItem('sw_updated')) {
+        sessionStorage.removeItem('sw_updated');
+      }
+    }
+  </script>
+  
   <!-- Skip link para accesibilidad -->
   <style>
     .skip-link {
