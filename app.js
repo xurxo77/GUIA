@@ -1982,6 +1982,14 @@ const navigationManager = {
         setTimeout(() => {
           const scroll = el.querySelector('.horizontal-scroll');
           if (scroll) scroll.scrollLeft = 0;
+          // Resetear los "Leer más"
+          el.querySelectorAll('.rec-card-body.visible').forEach(body => {
+            body.classList.remove('visible');
+          });
+          el.querySelectorAll('.rec-card-toggle.open').forEach(btn => {
+            btn.classList.remove('open');
+            btn.innerHTML = `Leer más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+          });
         }, 350);
       });
 
