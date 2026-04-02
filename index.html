@@ -85,7 +85,7 @@
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
       <div class="splash-icon">
-        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <path d="M32 4 L32 12 M32 52 L32 60 M4 32 L12 32 M52 32 L60 32"/>
           <circle cx="32" cy="32" r="20"/>
           <path d="M32 16 Q44 24 44 32 Q44 40 32 48 Q20 40 20 32 Q20 24 32 16"/>
@@ -93,37 +93,22 @@
         </svg>
       </div>
       <h1 class="splash-title">Galicia</h1>
-      <p class="splash-subtitle">Guía para amigos</p>
-      
+
       <form class="splash-form" id="splashForm">
         <div class="input-wrapper">
-          <input 
-            type="password" 
-            class="splash-input" 
-            id="passwordInput" 
-            placeholder="Introduce la contraseña" 
+          <input
+            type="password"
+            class="splash-input"
+            id="passwordInput"
+            placeholder="Contraseña"
             autocomplete="off"
             aria-label="Contraseña de acceso"
             required
           >
-          <button type="button" class="password-toggle" id="passwordToggle" aria-label="Mostrar contraseña">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </button>
         </div>
         <p class="splash-error" id="splashError" role="alert" aria-live="polite"></p>
-        <button type="submit" class="splash-btn ripple-host">
-          <span>Entrar</span>
-          <div class="btn-shine"></div>
-        </button>
+        <button type="submit" class="splash-btn">Entrar</button>
       </form>
-      
-      <div class="splash-footer">
-        <p class="splash-footer-text">Esta guía ha sido creada con cariño, exclusivamente para amigos.</p>
-        <p class="splash-footer-note">La contraseña se actualiza cada año.</p>
-      </div>
     </div>
   </div>
 
