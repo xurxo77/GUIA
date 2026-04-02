@@ -1277,25 +1277,25 @@ const ui = {
       'rec-disfrutar': htmlDisfrutar,
       'rec-curiosidades': `
             <div class="rec-card">
-              <img src="img/cur_compostela.jpg" class="rec-card-img" alt="Santiago" onerror="this.style.display='none'">
+              <img src="img/cur_diaspora.jpg" class="rec-card-img" alt="Diáspora gallega" onerror="this.style.display='none'">
               <h4>🗺️ La diáspora gallega</h4>
               <p>Más de 2 millones de gallegos emigraron entre finales del XIX y el XX, sobre todo a Argentina, Cuba y Uruguay.</p>
               <p>👉 Hoy hay casi tantos descendientes fuera como gallegos en Galicia.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_rias.jpg" class="rec-card-img" alt="Rías" onerror="this.style.display='none'">
+              <img src="img/cur_energia.jpg" class="rec-card-img" alt="Energía" onerror="this.style.display='none'">
               <h4>⚡ Potencia energética</h4>
               <p>Galicia generó más de 23.000 GWh en 2024, en gran parte con energías limpias.</p>
               <p>👉 El 40% sobrante se exportó a otras partes de España y Europa.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_morrina.jpg" class="rec-card-img" alt="Galicia antigua" onerror="this.style.display='none'">
+              <img src="img/cur_suevos.jpg" class="rec-card-img" alt="Reino Suevo" onerror="this.style.display='none'">
               <h4>👑 Uno de los primeros reinos de Europa</h4>
               <p>Tras la caída de Roma, en el siglo V, Galicia se consolidó como el Reino de los Suevos.</p>
               <p>👉 Uno de los primeros reinos establecidos en toda Europa occidental.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_gaiteiros.jpg" class="rec-card-img" alt="Cultura celta" onerror="this.style.display='none'">
+              <img src="img/cur_celtas.jpg" class="rec-card-img" alt="Raíces celtas" onerror="this.style.display='none'">
               <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Raíces celtas</h4>
               <p>Los castros de piedra, la música con gaitas y muchas tradiciones y leyendas reflejan la herencia celta que aún late en Galicia.</p>
             </div>
@@ -1306,19 +1306,19 @@ const ui = {
               <p>👉 Hoy es el final épico para muchos peregrinos del Camino.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_camino.jpg" class="rec-card-img" alt="Camino" onerror="this.style.display='none'">
+              <img src="img/cur_torre.jpg" class="rec-card-img" alt="Torre de Hércules" onerror="this.style.display='none'">
               <h4>🇮🇪 El vínculo con Irlanda</h4>
               <p>Un texto medieval irlandés cuenta cómo Breogán levantó una torre en Galicia desde la que sus descendientes vieron Irlanda.</p>
               <p>👉 La tradición sitúa esa torre en la actual Torre de Hércules.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_horreos.jpg" class="rec-card-img" alt="Ourense termal" onerror="this.style.display='none'">
+              <img src="img/cur_termal.jpg" class="rec-card-img" alt="Termas de Ourense" onerror="this.style.display='none'">
               <h4>♨️ Capital termal de Europa</h4>
               <p>Solo Budapest supera a Ourense en volumen de aguas termales. En As Burgas el agua sale a más de 60ºC.</p>
               <p>👉 Puedes bañarte gratis en pozas naturales del Miño, en pleno invierno.</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_vino.jpg" class="rec-card-img" alt="Gallego y portugués" onerror="this.style.display='none'">
+              <img src="img/cur_idioma.jpg" class="rec-card-img" alt="Gallego y portugués" onerror="this.style.display='none'">
               <h4>🇵🇹 Gallego y portugués: el mismo origen</h4>
               <p>Durante la Edad Media, el galaico-portugués era la lengua de la poesía en toda la Península Ibérica.</p>
               <p>👉 Si hablas gallego, puedes entenderte casi a la perfección con alguien en Portugal o Brasil.</p>
@@ -1330,7 +1330,7 @@ const ui = {
               <p>👉 El hórreo de Carnota mide casi 35 metros. ¡Más grande que muchas casas!</p>
             </div>
             <div class="rec-card">
-              <img src="img/cur_santacompaña.jpg" class="rec-card-img" alt="Santa Compaña" onerror="this.style.display='none'">
+              <img src="img/cur_santacompana.jpg" class="rec-card-img" alt="Santa Compaña" onerror="this.style.display='none'">
               <h4>👻 La Santa Compaña</h4>
               <p>La leyenda más famosa de Galicia: una procesión de almas en pena que vagan de noche.</p>
               <p>👉 Dicen que huele a cera quemada a su paso. No les mires si no quieres unirte.</p>
