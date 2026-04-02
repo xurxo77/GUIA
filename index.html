@@ -330,11 +330,11 @@
         <h2 class="section-title">Tu ruta</h2>
       </div>
       <div class="generator-box fade-in" style="margin-top:20px">
-        <p style="font-size:0.88rem; color:var(--fg-muted); margin-bottom:12px;">Toca los números en el mapa para armar tu ruta 👇</p>
+        <p style="font-size:0.88rem; color:var(--fg-muted); margin-bottom:12px;">Expande el mapa y toca los números para armar tu ruta.</p>
         <div class="map-section">
-          <div class="map-container-wrapper">
-            <div id="map" class="map-container" role="application" aria-label="Mapa interactivo de Galicia"></div>
-            <button class="map-expand-btn ripple-host" onclick="openFullscreenMap()" aria-label="Expandir mapa a pantalla completa">
+          <div class="map-container-wrapper" onclick="openFullscreenMap()">
+            <div id="map" class="map-container" role="application" aria-label="Mapa de Galicia — toca para expandir"></div>
+            <button class="map-expand-btn ripple-host" onclick="event.stopPropagation(); openFullscreenMap()" aria-label="Expandir mapa a pantalla completa">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
                 <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
               </svg>
