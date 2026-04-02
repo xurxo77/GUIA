@@ -1886,35 +1886,19 @@ const navigationManager = {
     const toScreen   = document.getElementById(targetId);
 
     if (fromScreen && toScreen) {
-      // 1. Ocultar origen inmediatamente
       fromScreen.classList.remove('active-screen');
-
-      // 2. Preparar destino: visible pero transparente
-      toScreen.style.opacity = '0';
       toScreen.classList.add('active-screen');
 
-      // 3. Forzar reflow y hacer fade in
-      void toScreen.offsetWidth;
-      toScreen.style.transition = 'opacity 0.22s ease';
-      toScreen.style.opacity = '1';
-
-      // 4. Limpiar estilos inline tras la animación
-      setTimeout(() => {
-        toScreen.style.transition = '';
-        toScreen.style.opacity = '';
-
-        if (targetId === 'generador' && state.mainMap) {
-          setTimeout(() => {
-            state.mainMap.invalidateSize();
-            state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
-          }, 100);
-        }
-      }, 230);
+      if (targetId === 'generador' && state.mainMap) {
+        setTimeout(() => {
+          state.mainMap.invalidateSize();
+          state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
+        }, 100);
+      }
     }
 
     state.currentSection = targetId;
     navigationManager.currentIndex = targetIndex;
-
     utils.haptic('light');
   }
 };
