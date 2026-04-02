@@ -1556,10 +1556,14 @@ const ui = {
     container.querySelectorAll('.province-box.expanded').forEach(el => {
       if (el.id !== id) {
         el.classList.remove('expanded');
-        // Resetear scroll cuando la animación de cierre ya ha terminado (invisible)
         setTimeout(() => {
           const scroll = el.querySelector('.horizontal-scroll');
           if (scroll) scroll.scrollLeft = 0;
+          el.querySelectorAll('.rec-card-body.visible').forEach(b => b.classList.remove('visible'));
+          el.querySelectorAll('.rec-card-toggle.open').forEach(btn => {
+            btn.classList.remove('open');
+            btn.innerHTML = `Leer más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+          });
         }, 450);
       }
     });
@@ -1572,21 +1576,24 @@ const ui = {
           const top = element.offsetTop - 70;
           section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         }
-        // Animación de hint en la primera tarjeta
         const firstCard = element.querySelector('.rec-card');
         if (firstCard) {
           firstCard.classList.remove('rec-scroll-hint');
-          void firstCard.offsetWidth; // reflow para reiniciar animación
+          void firstCard.offsetWidth;
           firstCard.classList.add('rec-scroll-hint');
           setTimeout(() => firstCard.classList.remove('rec-scroll-hint'), 1200);
         }
       }, 300);
     } else {
       element.classList.remove('expanded');
-      // Resetear cuando ya está cerrado y el usuario no lo ve
       setTimeout(() => {
         const scroll = element.querySelector('.horizontal-scroll');
         if (scroll) scroll.scrollLeft = 0;
+        element.querySelectorAll('.rec-card-body.visible').forEach(b => b.classList.remove('visible'));
+        element.querySelectorAll('.rec-card-toggle.open').forEach(btn => {
+          btn.classList.remove('open');
+          btn.innerHTML = `Leer más <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>`;
+        });
       }, 450);
     }
 
