@@ -41,7 +41,7 @@
   <!-- Service Worker — registro inline para que no dependa del app.js cacheado -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register('/GUIA/sw.js').catch(() => {});
       // Cuando el SW nuevo toma el control, recargar una sola vez
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         if (!sessionStorage.getItem('sw_updated')) {
@@ -172,6 +172,12 @@
           <p class="hero-subtitle fade-in visible delay-2">Guía para amigos que quieren descubrirla con calma</p>
           <p class="hero-authors fade-in visible delay-2" style="text-align:center;">Hecha por Xurxo & Raquel</p>
         </div>
+      </div>
+
+      <!-- Hint instalación iOS -->
+      <div class="ios-install-hint" id="iosInstallHint" style="display:none;">
+        <span>📲 Instala la app: pulsa <strong>Compartir</strong> → <strong>Añadir a inicio</strong></span>
+        <button onclick="document.getElementById('iosInstallHint').style.display='none'; localStorage.setItem('ios_hint_dismissed','1');">✕</button>
       </div>
 
       <!-- Zona blanca: widget del tiempo -->
