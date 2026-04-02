@@ -5651,3 +5651,23 @@ html, body {
   height: 18px !important;
   stroke: var(--accent-sea) !important;
 }
+
+
+
+/* ── SELECTED-RING — COLOR QUE DESTACA ───────────────────────── */
+.custom-marker.selected-ring {
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 0 0 6px #f0c040,
+    0 0 12px rgba(240,192,64,0.6) !important;
+  animation: selectedPulse 2s infinite !important;
+}
+
+@keyframes selectedPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #f0c040, 0 0 12px rgba(240,192,64,0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 8px #f0c040, 0 0 20px rgba(240,192,64,0.8);
+  }
+}
