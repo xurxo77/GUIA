@@ -5284,3 +5284,15 @@ a:hover {
 .weather-icon { font-size: 0.85rem !important; }
 .weather-temp { font-size: 0.78rem !important; font-weight: 700 !important; color: var(--accent-sea) !important; text-shadow: none !important; }
 .weather-name { font-size: 0.60rem !important; color: var(--fg-muted) !important; display: inline !important; text-shadow: none !important; }
+
+
+.hero-image-zone .hero-letter,
+.hero-image-zone .hero-title {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 2px 10px rgba(255,255,255,0.5), 0 1px 4px rgba(255,255,255,0.4) !important;
+}
+.hero-image-zone .hero-authors {
+  color: var(--accent-sea) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 6px rgba(255,255,255,0.5) !important;
+}
