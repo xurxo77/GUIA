@@ -5296,3 +5296,30 @@ a:hover {
   font-weight: 700 !important;
   text-shadow: 0 1px 6px rgba(255,255,255,0.5) !important;
 }
+
+
+.hero-bg-overlay {
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,0.10) 55%,
+      rgba(255,255,255,1.0) 100%),
+    url('img/santiago.jpg') center 25% / cover no-repeat !important;
+  filter: saturate(0.85) brightness(1.1) !important;
+}
+
+.hero-image-zone .hero-letter,
+.hero-image-zone .hero-title {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 2px 8px rgba(255,255,255,0.7), 0 1px 3px rgba(255,255,255,0.5) !important;
+}
+
+.hero-image-zone .hero-authors {
+  color: var(--accent-sea) !important;
+  text-shadow: 0 1px 6px rgba(255,255,255,0.7) !important;
+}
+
+.hero-image-zone .hero-subtitle {
+  color: #fff !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
+}
