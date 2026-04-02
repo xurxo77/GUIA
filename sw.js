@@ -26,21 +26,16 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Activación: Limpieza de caches antiguas
+// Activación: Limpieza de TODOS los caches antiguos
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activando...');
-  
+  console.log('[SW] Activando v3...');
+
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((name) => {
-            return name.startsWith('galicia-') && 
-                   name !== STATIC_CACHE && 
-                   name !== IMAGE_CACHE &&
-                   name !== DYNAMIC_CACHE;
-          })
-          .map((name) => {
+          .filter(name => name !== STATIC_CACHE && name !== IMAGE_CACHE && name !== DYNAMIC_CACHE)
+          .map(name => {
             console.log('[SW] Eliminando cache antigua:', name);
             return caches.delete(name);
           })
