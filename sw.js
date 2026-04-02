@@ -1,8 +1,8 @@
 // sw.js - Service Worker para Galicia Guide PWA
-const CACHE_NAME = 'galicia-guide-v2-2025';
-const STATIC_CACHE = 'galicia-static-v2';
-const IMAGE_CACHE = 'galicia-images-v2';
-const DYNAMIC_CACHE = 'galicia-dynamic-v2';
+const CACHE_NAME = 'galicia-guide-v3-2026';
+const STATIC_CACHE = 'galicia-static-v3';
+const IMAGE_CACHE = 'galicia-images-v3';
+const DYNAMIC_CACHE = 'galicia-dynamic-v3';
 
 // Assets críticos para precache
 const PRECACHE_ASSETS = [
