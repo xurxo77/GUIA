@@ -5463,3 +5463,14 @@ html, body {
   background: #ffffff !important;
   z-index: 2 !important;
 }
+
+
+
+/* ── BOTONES DEL MENÚ — MISMOS ESTILOS QUE LOS ANCHORS ──────── */
+.floating-toolbar button.menu-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
