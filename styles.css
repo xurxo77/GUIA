@@ -5416,3 +5416,28 @@ a:hover {
 .screen-enter-left {
   background: #ffffff !important;
 }
+
+
+
+/* ── TRANSICIONES LIMPIAS — SIN FLASH ───────────────────────── */
+
+/* Desactivar todas las animaciones de entrada/salida CSS anteriores */
+.screen-enter-right,
+.screen-enter-left,
+.screen-exit-left,
+.screen-exit-right {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* Todas las secciones con fondo blanco sólido — nunca transparentes */
+#recomendaciones,
+#lugares,
+#generador {
+  background: #ffffff !important;
+  z-index: 20 !important;
+}
+
+#hero {
+  z-index: 5 !important;
+}
