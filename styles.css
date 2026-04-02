@@ -5441,3 +5441,25 @@ a:hover {
 #hero {
   z-index: 5 !important;
 }
+
+
+
+/* ── FONDO SÓLIDO EN MAIN CONTENT — NUNCA SE VE EL FONDO ────── */
+html, body {
+  background: #ffffff !important;
+}
+
+#mainContent {
+  background: #ffffff !important;
+}
+
+#hero {
+  z-index: 1 !important;
+}
+
+#recomendaciones,
+#lugares,
+#generador {
+  background: #ffffff !important;
+  z-index: 2 !important;
+}
