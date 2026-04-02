@@ -5368,3 +5368,51 @@ a:hover {
     0 0 10px rgba(255,255,255,0.9),
     0 1px 4px rgba(255,255,255,0.8) !important;
 }
+
+
+
+/* ── TEXTO AZUL — MÁXIMA ESPECIFICIDAD ──────────────────────── */
+#hero .hero-image-zone .hero-letter,
+#hero .hero-image-zone .hero-title,
+#hero .hero-title .hero-letter {
+  color: #1a5276 !important;
+  text-shadow: 0 0 16px rgba(255,255,255,1), 0 0 8px rgba(255,255,255,0.9) !important;
+}
+
+#hero .hero-image-zone .hero-authors,
+#hero .hero-authors {
+  color: #1a5276 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 12px rgba(255,255,255,1), 0 0 6px rgba(255,255,255,0.9) !important;
+}
+
+#hero .hero-image-zone .hero-subtitle,
+#hero .hero-subtitle {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+/* ── SIN FLASH EN TRANSICIONES ──────────────────────────────── */
+#recomendaciones,
+#lugares,
+#generador {
+  background: #ffffff !important;
+  z-index: 10 !important;
+}
+
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  z-index: 10 !important;
+}
+
+#hero {
+  z-index: 5 !important;
+}
+
+/* Pantalla entrante ya tiene fondo blanco antes de animar */
+.screen-enter-right,
+.screen-enter-left {
+  background: #ffffff !important;
+}
