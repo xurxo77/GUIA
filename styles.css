@@ -5474,3 +5474,12 @@ html, body {
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
 }
+
+
+
+/* ── CAUSA RAÍZ DEL FLASH — ELIMINAR ANIMACIÓN DE ACTIVE-SCREEN */
+#recomendaciones.active-screen,
+#lugares.active-screen,
+#generador.active-screen {
+  animation: none !important;
+}
