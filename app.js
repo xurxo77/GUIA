@@ -2230,3 +2230,51 @@ window.resetAuth = () => {
 
 // Log inicial
 console.log('Galicia Guide v' + CONFIG.VERSION + ' cargado. Usa resetAuth() para limpiar sesión.');
+
+
+// ── INSTALACIÓN PWA ───────────────────────────────────────────
+
+let deferredInstallPrompt = null;
+
+// Capturar el evento antes de que el navegador lo muestre por su cuenta
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+
+  // Mostrar el banner solo si el usuario no lo ha descartado antes
+  if (!localStorage.getItem('pwa_install_dismissed')) {
+    const banner = document.getElementById('installBanner');
+    if (banner) banner.style.display = 'flex';
+  }
+});
+
+// Botón Instalar
+document.getElementById('installBtn')?.addEventListener('click', async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  const { outcome } = await deferredInstallPrompt.userChoice;
+  if (outcome === 'accepted') {
+    document.getElementById('installBanner').style.display = 'none';
+  }
+  deferredInstallPrompt = null;
+});
+
+// Botón Cerrar
+document.getElementById('installClose')?.addEventListener('click', () => {
+  document.getElementById('installBanner').style.display = 'none';
+  localStorage.setItem('pwa_install_dismissed', '1');
+});
+
+// Cuando ya está instalada, ocultar el banner
+window.addEventListener('appinstalled', () => {
+  document.getElementById('installBanner').style.display = 'none';
+  deferredInstallPrompt = null;
+});
+
+// Hint de instalación para iOS (no soporta beforeinstallprompt)
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+if (isIOS && !isStandalone && !localStorage.getItem('ios_hint_dismissed')) {
+  const hint = document.getElementById('iosInstallHint');
+  if (hint) setTimeout(() => hint.style.display = 'flex', 2000);
+}
