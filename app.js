@@ -1884,34 +1884,44 @@ const navigationManager = {
       item.classList.toggle('active', idx === targetIndex);
     });
 
-    // Animar transición
     const fromScreen = document.getElementById(fromId);
-    const toScreen = document.getElementById(targetId);
+    const toScreen   = document.getElementById(targetId);
 
     if (fromScreen && toScreen) {
-      fromScreen.classList.add(direction === 'forward' ? 'screen-exit-left' : 'screen-exit-right');
-      
+      // Mostrar destino inmediatamente detrás (sin animación aún)
+      toScreen.style.display = 'block';
+      toScreen.style.zIndex  = '20';
+      toScreen.style.transform = `translateX(${direction === 'forward' ? '100%' : '-100%'})`;
+      toScreen.style.transition = 'none';
+
+      // Forzar reflow
+      void toScreen.offsetWidth;
+
+      // Animar entrada de la pantalla destino
+      toScreen.style.transition = 'transform 0.28s cubic-bezier(0.4,0,0.2,1)';
+      toScreen.style.transform  = 'translateX(0)';
+
+      // Después de la animación, limpiar estilos y activar clases
       setTimeout(() => {
-        fromScreen.classList.remove('active-screen', 'screen-exit-left', 'screen-exit-right');
-        toScreen.classList.add('active-screen', direction === 'forward' ? 'screen-enter-right' : 'screen-enter-left');
-        
-        setTimeout(() => {
-          toScreen.classList.remove('screen-enter-right', 'screen-enter-left');
-        }, 360);
-      }, 200);
+        // Ocultar pantalla origen
+        fromScreen.classList.remove('active-screen');
+        fromScreen.style.cssText = '';
+
+        // Activar pantalla destino limpiamente
+        toScreen.style.cssText = '';
+        toScreen.classList.add('active-screen');
+
+        if (targetId === 'generador' && state.mainMap) {
+          setTimeout(() => {
+            state.mainMap.invalidateSize();
+            state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
+          }, 100);
+        }
+      }, 290);
     }
 
     state.currentSection = targetId;
     navigationManager.currentIndex = targetIndex;
-
-    window.scrollTo(0, 0);
-
-    if (targetId === 'generador' && state.mainMap) {
-      setTimeout(() => {
-        state.mainMap.invalidateSize();
-        state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
-      }, 300);
-    }
 
     utils.haptic('light');
   }
