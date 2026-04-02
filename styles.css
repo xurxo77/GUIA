@@ -5608,3 +5608,46 @@ html, body {
 #rec-curiosidades .province-arrow svg { stroke: #5b2d8e; }
 #rec-curiosidades.expanded .province-arrow { background: #5b2d8e; }
 #rec-curiosidades.expanded .province-arrow svg { stroke: white; }
+
+
+
+/* ── MAPA ESTÁTICO EN MINIATURA ──────────────────────────────── */
+.map-container-wrapper {
+  position: relative !important;
+  border-radius: var(--r-xl) !important;
+  overflow: hidden !important;
+  box-shadow: var(--elev-2) !important;
+  cursor: pointer !important;
+}
+
+/* Overlay invisible para capturar el toque y abrir fullscreen */
+.map-container-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 400;
+  cursor: pointer;
+}
+
+.map-expand-btn {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  z-index: 500 !important;
+  background: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: var(--elev-2) !important;
+  cursor: pointer !important;
+}
+
+.map-expand-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: var(--accent-sea) !important;
+}
