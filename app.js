@@ -2017,34 +2017,28 @@ function handleLogin(e) {
   const value = input.value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   if (value === CONFIG.PASSWORD || value === 'caamanho' || value === 'caamano') {
-    // ÉXITO: Guardar auth y mostrar app
     authManager.set(true);
-    
     error.textContent = '';
     input.classList.remove('error');
 
     const splash = document.getElementById('splashScreen');
-    const main = document.getElementById('mainContent');
+    const main   = document.getElementById('mainContent');
 
+    // 1. Mostrar contenido
     splash.classList.add('hidden');
     main.classList.add('visible');
 
-    // Mostrar "¿Sabías que?" y luego iniciar app
-    setTimeout(() => {
-      ui.showSabiasQue(() => {
-        app.init();
-      });
-    }, 300);
+    // 2. Inicializar app INMEDIATAMENTE — navegación lista antes de ¿Sabías que?
+    ui.cacheElements();
+    app.init();
+
+    // 3. Mostrar ¿Sabías que? encima (ya no bloquea la inicialización)
+    ui.showSabiasQue(() => {});
 
   } else {
-    // ERROR: Mostrar feedback
     input.classList.add('error');
     error.textContent = 'Contraseña incorrecta';
-
-    setTimeout(() => {
-      input.classList.remove('error');
-    }, 400);
-
+    setTimeout(() => input.classList.remove('error'), 400);
     input.value = '';
     input.focus();
   }
@@ -2060,28 +2054,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Verificar si ya está autenticado
   setTimeout(() => {
     if (authManager.check()) {
-      // Ya autenticado: mostrar "¿Sabías que?" directamente
       const splash = document.getElementById('splashScreen');
-      const main = document.getElementById('mainContent');
+      const main   = document.getElementById('mainContent');
 
-      // Ocultar temporalmente para mostrar "¿Sabías que?"
-      splash.style.visibility = 'hidden';
-      main.style.visibility = 'hidden';
+      splash.classList.add('hidden');
+      main.classList.add('visible');
 
+      // Inicializar INMEDIATAMENTE
       ui.cacheElements();
-      
-      ui.showSabiasQue(() => {
-        // Restaurar visibilidad y mostrar app
-        splash.style.visibility = '';
-        main.style.visibility = '';
-        
-        splash.classList.add('hidden');
-        main.classList.add('visible');
-        
-        app.init();
-      });
+      app.init();
+
+      // ¿Sabías que? encima, no bloquea
+      ui.showSabiasQue(() => {});
     }
-    // Si no está autenticado, el formulario está listo
   }, 100);
 });
 
