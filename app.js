@@ -67,6 +67,218 @@ async function loadData() {
     console.error('[data] Error cargando data.json:', e);
   }
 }
+// ── UTILIDADES ───────────────────────────────────────────────
+
+const utils = {
+  debounce: (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
+  },
+
+  throttle: (fn, limit) => {
+    let inThrottle;
+    return (...args) => {
+      if (!inThrottle) {
+        fn.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  },
+
+  sanitizeHTML: (str) => {
+    const temp = document.createElement('div');
+    temp.textContent = str;
+    return temp.innerHTML;
+  },
+
+  formatTime: (hours) => {
+    if (hours < 1) return `${Math.round(hours * 60)} min`;
+    if (hours === 1) return '1h';
+    return `${hours}h`;
+  },
+
+  isTouch: () => window.matchMedia('(pointer: coarse)').matches,
+
+  prefersReducedMotion: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+
+  haptic: (type = 'light') => {
+    if ('vibrate' in navigator) {
+      const patterns = { light: 10, medium: 20, heavy: 30, success: [10, 50, 10], error: [30, 100, 30] };
+      navigator.vibrate(patterns[type] || patterns.light);
+    }
+  },
+
+  showToast: (message, duration = 3000) => {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    container.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('visible'));
+    setTimeout(() => {
+      toast.classList.remove('visible');
+      setTimeout(() => toast.remove(), 300);
+    }, duration);
+  },
+
+  detectSwipe: (element, callbacks) => {
+    let startX, startY, endX, endY;
+    const threshold = 50;
+    element.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    element.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      endY = e.changedTouches[0].clientY;
+      const diffX = endX - startX;
+      const diffY = endY - startY;
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (Math.abs(diffX) > threshold) {
+          diffX > 0 ? callbacks.onSwipeRight?.() : callbacks.onSwipeLeft?.();
+        }
+      } else {
+        if (Math.abs(diffY) > threshold) {
+          diffY > 0 ? callbacks.onSwipeDown?.() : callbacks.onSwipeUp?.();
+        }
+      }
+    }, { passive: true });
+  }
+};
+
+// ── GESTIÓN DE AUTENTICACIÓN ──────────────────────────────────
+
+const authManager = {
+  check: () => localStorage.getItem('galicia_auth') === 'true',
+
+  set: (value) => {
+    if (value) {
+      localStorage.setItem('galicia_auth', 'true');
+      localStorage.setItem('galicia_auth_time', Date.now().toString());
+    } else {
+      localStorage.removeItem('galicia_auth');
+      localStorage.removeItem('galicia_auth_time');
+    }
+  }
+};
+
+// ── GESTIÓN DE FAVORITOS ──────────────────────────────────────
+
+const favoritesManager = {
+  load: () => {
+    try {
+      const saved = localStorage.getItem('galicia_favorites');
+      state.favorites = saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      state.favorites = [];
+    }
+  },
+
+  save: () => {
+    localStorage.setItem('galicia_favorites', JSON.stringify(state.favorites));
+  },
+
+  toggle: (id) => {
+    const idx = state.favorites.indexOf(id);
+    if (idx > -1) {
+      state.favorites.splice(idx, 1);
+    } else {
+      state.favorites.push(id);
+    }
+    favoritesManager.save();
+    ui.updateFavBtn(id);
+    ui.renderFavoritesSection();
+    utils.haptic('light');
+  },
+
+  remove: (id) => {
+    state.favorites = state.favorites.filter(f => f !== id);
+    favoritesManager.save();
+    ui.renderFavoritesSection();
+  },
+
+  isFavorite: (id) => state.favorites.includes(id)
+};
+
+// ── GESTIÓN DE GEOLOCALIZACIÓN ────────────────────────────────
+
+const geoManager = {
+  request: () => {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        ui.updateGeoUI(false, 'Tu dispositivo no soporta geolocalización');
+        reject(new Error('No soportado'));
+        return;
+      }
+      const btn = ui.elements.geoBtn;
+      const status = ui.elements.geoStatus;
+      if (btn) { btn.textContent = '...'; btn.disabled = true; }
+      if (status) status.textContent = 'Obteniendo ubicación...';
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          state.userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            accuracy: position.coords.accuracy,
+            timestamp: position.timestamp
+          };
+          localStorage.setItem('galicia_lat', state.userLocation.lat);
+          localStorage.setItem('galicia_lng', state.userLocation.lng);
+          if (state.mainMap) mapManager.showUserLocation();
+          if (state.fsMap)   mapManager.showUserLocation();
+          ui.updateGeoUI(true);
+          utils.haptic('success');
+          resolve(state.userLocation);
+        },
+        (error) => {
+          const msgs = {
+            1: 'Permiso denegado. Actívalo en ajustes del navegador.',
+            2: 'No se pudo obtener la ubicación.',
+            3: 'Tiempo de espera agotado. Inténtalo de nuevo.'
+          };
+          ui.updateGeoUI(false, msgs[error.code] || 'Error al obtener ubicación');
+          reject(error);
+        },
+        { enableHighAccuracy: false, timeout: 15000, maximumAge: 300000 }
+      );
+    });
+  },
+
+  toggle: () => {
+    if (state.userLocation) {
+      state.userLocation = null;
+      mapManager.hideUserLocation();
+      localStorage.removeItem('galicia_lat');
+      localStorage.removeItem('galicia_lng');
+      ui.updateGeoUI(false);
+      utils.haptic('light');
+    } else {
+      geoManager.request();
+    }
+  },
+
+  checkSaved: () => {
+    const lat = localStorage.getItem('galicia_lat');
+    const lng = localStorage.getItem('galicia_lng');
+    if (lat && lng) {
+      state.userLocation = {
+        lat: parseFloat(lat),
+        lng: parseFloat(lng),
+        accuracy: 0,
+        timestamp: Date.now()
+      };
+      ui.updateGeoUI(true);
+      return true;
+    }
+    return false;
+  }
+};
 
 
 const ui = {
@@ -1226,6 +1438,311 @@ const ui = {
     }, { passive: true });
 
     animationId = requestAnimationFrame(animate);
+  }
+};
+
+// ── GESTIÓN DE MAPAS ─────────────────────────────────────────
+
+const mapManager = {
+  init: () => {
+    if (state.mainMap) return;
+    setTimeout(() => {
+      state.mainMap = L.map('map', {
+        center: CONFIG.MAP_CENTER,
+        zoom: CONFIG.MAP_ZOOM_DEFAULT,
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        zoomControl: false,
+        fadeAnimation: false,
+        markerZoomAnimation: false,
+        attributionControl: false
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        updateWhenIdle: true,
+        updateWhenZooming: false,
+        keepBuffer: 2
+      }).addTo(state.mainMap);
+
+      lugares.forEach((lugar, index) => {
+        if (!lugar.lat || !lugar.lng) return;
+        mapManager.addMarker(lugar, index);
+      });
+
+      setTimeout(() => {
+        state.mainMap.invalidateSize();
+        state.mainMap.setView(CONFIG.MAP_CENTER, CONFIG.MAP_ZOOM_DEFAULT);
+      }, 200);
+
+      if (state.userLocation) mapManager.showUserLocation();
+    }, 100);
+  },
+
+  addMarker: (lugar, index) => {
+    const isSelected = state.selectedPlaces.includes(lugar.id);
+    const marker = L.marker([lugar.lat, lugar.lng], {
+      icon: L.divIcon({
+        className: `custom-marker ${lugar.bloque} ${isSelected ? 'selected-ring' : ''}`,
+        html: `<span>${index + 1}</span>`,
+        iconSize: [48, 48],
+        iconAnchor: [24, 24]
+      })
+    }).addTo(state.mainMap);
+    state.markers[lugar.id] = marker;
+  },
+
+  showPopup: (lugar, latlng, mapInstance) => {
+    const isSelected = state.selectedPlaces.includes(lugar.id);
+    const btnText = isSelected ? '❌ Quitar' : '✚ Añadir';
+    const btnColor = isSelected ? '#B3261E' : '#1a5276';
+    const popupHtml = `
+      <div style="text-align:center; min-width:160px; font-family:sans-serif;">
+        <img src="${lugar.imagen}" style="width:100%;height:90px;object-fit:cover;border-radius:8px;margin-bottom:10px;" onerror="this.style.display='none'">
+        <div style="font-weight:700;font-size:1rem;margin-bottom:6px;">${utils.sanitizeHTML(lugar.nombre)}</div>
+        <div style="font-size:0.8rem;color:#666;margin-bottom:12px;">${lugar.horas}h</div>
+        <button onclick="routeManager.togglePlace(${lugar.id}); mapManager.refreshPopup(this, ${lugar.id});"
+                style="background:${btnColor};color:white;border:none;padding:10px 16px;border-radius:12px;font-weight:600;cursor:pointer;width:100%;font-size:0.9rem;">
+          ${btnText}
+        </button>
+      </div>
+    `;
+    L.popup({ closeButton: false, offset: [0, -10] })
+      .setLatLng(latlng)
+      .setContent(popupHtml)
+      .openOn(mapInstance);
+  },
+
+  refreshPopup: (btn, id) => {
+    const isSelected = state.selectedPlaces.includes(id);
+    btn.textContent = isSelected ? '❌ Quitar' : '✚ Añadir';
+    btn.style.background = isSelected ? '#B3261E' : '#1a5276';
+  },
+
+  showUserLocation: () => {
+    if (!state.userLocation) return;
+    const addToMap = (map) => {
+      if (!map) return;
+      if (state.userMarker) {
+        try { map.removeLayer(state.userMarker); } catch(e) {}
+      }
+      state.userMarker = L.marker([state.userLocation.lat, state.userLocation.lng], {
+        icon: L.divIcon({
+          className: 'user-location-marker',
+          iconSize: [16, 16],
+          iconAnchor: [8, 8]
+        })
+      }).addTo(map);
+    };
+    addToMap(state.mainMap);
+    addToMap(state.fsMap);
+  },
+
+  hideUserLocation: () => {
+    if (state.userMarker) {
+      state.mainMap?.removeLayer(state.userMarker);
+      state.userMarker = null;
+    }
+  },
+
+  openFullscreen: () => {
+    const container = document.getElementById('mapFullscreen');
+    container.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      if (!state.fsMap) {
+        state.fsMap = L.map('mapFullscreenMap', {
+          center: CONFIG.MAP_CENTER,
+          zoom: CONFIG.MAP_ZOOM_DEFAULT,
+          zoomControl: true,
+          attributionControl: false
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(state.fsMap);
+
+        lugares.forEach((lugar, index) => {
+          if (!lugar.lat || !lugar.lng) return;
+          const isSelected = state.selectedPlaces.includes(lugar.id);
+          const marker = L.marker([lugar.lat, lugar.lng], {
+            icon: L.divIcon({
+              className: `custom-marker touchable ${lugar.bloque} ${isSelected ? 'selected-ring' : ''}`,
+              html: `<span>${index + 1}</span>`,
+              iconSize: [48, 48],
+              iconAnchor: [24, 24]
+            })
+          }).addTo(state.fsMap);
+          marker.on('click', (e) => { mapManager.showPopup(lugar, e.latlng, state.fsMap); });
+          state.fullscreenMarkers[lugar.id] = marker;
+        });
+      } else {
+        lugares.forEach(lugar => {
+          const marker = state.fullscreenMarkers[lugar.id];
+          if (marker) {
+            const element = marker.getElement();
+            if (element) element.classList.toggle('selected-ring', state.selectedPlaces.includes(lugar.id));
+          }
+        });
+        state.fsMap.invalidateSize();
+      }
+
+      if (state.userLocation) mapManager.showUserLocation();
+      ui.updateFullscreenUI();
+    }, 150);
+  },
+
+  closeFullscreen: () => {
+    const container = document.getElementById('mapFullscreen');
+    container.classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
+  scrollToFooter: () => {
+    document.getElementById('mapFullscreenFooter')?.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+// ── GESTIÓN DE RUTAS ──────────────────────────────────────────
+
+const routeManager = {
+  save: () => {
+    localStorage.setItem('galicia_selected_places', JSON.stringify(state.selectedPlaces));
+    localStorage.setItem('galicia_place_days', JSON.stringify(state.placeDays));
+  },
+
+  load: () => {
+    try {
+      const saved = localStorage.getItem('galicia_selected_places');
+      if (saved) state.selectedPlaces = JSON.parse(saved) || [];
+      const savedDays = localStorage.getItem('galicia_place_days');
+      if (savedDays) state.placeDays = JSON.parse(savedDays) || {};
+    } catch (e) {
+      state.selectedPlaces = [];
+      state.placeDays = {};
+    }
+  },
+
+  setDay: (id, day) => {
+    if (!state.placeDays) state.placeDays = {};
+    state.placeDays[id] = day;
+    routeManager.save();
+    ui.updateSelectionUI();
+  },
+
+  togglePlace: (id) => {
+    const index = state.selectedPlaces.indexOf(id);
+    if (index > -1) {
+      state.selectedPlaces.splice(index, 1);
+      if (state.placeDays) delete state.placeDays[id];
+      utils.haptic('light');
+    } else {
+      state.selectedPlaces.push(id);
+      utils.haptic('medium');
+    }
+    routeManager.save();
+    ui.updateSelectionUI();
+
+    const marker = state.markers[id];
+    if (marker) {
+      const element = marker.getElement();
+      if (element) element.classList.toggle('selected-ring', index === -1);
+    }
+    const fsMarker = state.fullscreenMarkers[id];
+    if (fsMarker) {
+      const element = fsMarker.getElement();
+      if (element) element.classList.toggle('selected-ring', index === -1);
+    }
+    return index === -1;
+  },
+
+  clear: () => {
+    state.selectedPlaces = [];
+    state.placeDays = {};
+    routeManager.save();
+    ui.updateSelectionUI();
+    Object.keys(state.markers).forEach(id => {
+      const marker = state.markers[id];
+      if (marker) {
+        const element = marker.getElement();
+        if (element) element.classList.remove('selected-ring');
+      }
+    });
+    ui.updateFullscreenUI();
+    utils.haptic('light');
+  },
+
+  generateItinerary: () => {
+    if (state.selectedPlaces.length === 0) {
+      alert('Selecciona al menos un lugar en el mapa.');
+      return;
+    }
+    const waypoints = [];
+    if (state.userLocation) waypoints.push(`${state.userLocation.lat},${state.userLocation.lng}`);
+    state.selectedPlaces.forEach(id => {
+      const lugar = lugares.find(l => l.id === id);
+      if (lugar?.lat && lugar?.lng) waypoints.push(`${lugar.lat},${lugar.lng}`);
+    });
+    if (waypoints.length === 0) { alert('No se encontraron coordenadas válidas.'); return; }
+    window.open(`https://www.google.com/maps/dir/${waypoints.join('/')}`, '_blank');
+  },
+
+  share: () => {
+    if (state.selectedPlaces.length === 0) {
+      alert('Añade lugares a tu ruta antes de compartirla.');
+      return;
+    }
+    const totalHoras = routeManager.getTotalHours();
+    const byDay = {};
+    state.selectedPlaces.forEach(id => {
+      const day = (state.placeDays || {})[id] || 1;
+      if (!byDay[day]) byDay[day] = [];
+      byDay[day].push(id);
+    });
+    const days = Object.keys(byDay).map(Number).sort((a,b) => a - b);
+    let bloques = '';
+    days.forEach(day => {
+      const dayHours = byDay[day].reduce((sum, id) => {
+        const l = lugares.find(x => x.id === id);
+        return sum + (l?.horas || 0);
+      }, 0);
+      bloques += `\n📅 Día ${day} (${dayHours}h)\n`;
+      byDay[day].forEach((id, i) => {
+        const lugar = lugares.find(l => l.id === id);
+        if (lugar) bloques += `  ${i + 1}. ${lugar.nombre} (${lugar.horas}h)\n`;
+      });
+    });
+    const texto = `🗺️ Mi ruta por Galicia\n${bloques}\n⏱️ Tiempo total: ${totalHoras}h\n\nCreada con la Guía de Galicia de Xurxo & Raquel 💚`;
+    if (navigator.share) {
+      navigator.share({ title: 'Mi ruta por Galicia', text: texto })
+        .catch(() => routeManager._copyToClipboard(texto));
+    } else {
+      routeManager._copyToClipboard(texto);
+    }
+  },
+
+  _copyToClipboard: (texto) => {
+    navigator.clipboard?.writeText(texto).then(() => {
+      utils.showToast('Ruta copiada al portapapeles 📋');
+    }).catch(() => {
+      const el = document.createElement('textarea');
+      el.value = texto;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      utils.showToast('Ruta copiada al portapapeles 📋');
+    });
+  },
+
+  getTotalHours: () => {
+    return state.selectedPlaces.reduce((sum, id) => {
+      const lugar = lugares.find(l => l.id === id);
+      return sum + (lugar?.horas || 0);
+    }, 0);
   }
 };
 
