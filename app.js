@@ -9,12 +9,18 @@
 const CONFIG = {
   VERSION: '2025.3.28',
   CACHE_NAME: 'galicia-guide-v2',
-  PASSWORD: 'caamaño',
+  // SHA-256 de las variantes aceptadas de la contraseña
+  PASSWORD_HASH: 'bd5297f2d91a34832d9f63afd6474bac3c6496943035bbf0928040ccc234b0e7',
+  HASHES: [
+    'aa784997839ea4c4d5fa486a59f8932f7aade627b20b5627981b012fc5b15c9a',
+    'bd5297f2d91a34832d9f63afd6474bac3c6496943035bbf0928040ccc234b0e7',
+    'b8303a79b90c2b166cb4946dd31f8e9e9ce1be0238c6270d46e3ee1d89584d97'
+  ],
   ANIMATION_DURATION: 350,
   DEBOUNCE_DELAY: 150,
   MAP_ZOOM_DEFAULT: 7,
   MAP_CENTER: [42.6, -8.4],
-  TOTAL_SABIAS_QUE: 4000, // Reducido a 4 segundos
+  TOTAL_SABIAS_QUE: 4000,
   TEXT_FADE_AT: 3500
 };
 
@@ -1919,7 +1925,7 @@ const app = {
 
 // ── FLUJO DE AUTENTICACIÓN ───────────────────────────────────
 
-function handleLogin(e) {
+async function handleLogin(e) {
   e.preventDefault();
   e.stopPropagation();
 
@@ -1927,7 +1933,14 @@ function handleLogin(e) {
   const error = document.getElementById('splashError');
   const value = input.value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-  if (value === CONFIG.PASSWORD || value === 'caamanho' || value === 'caamano') {
+  // Calcular hash SHA-256 de lo que escribió el usuario
+  const encoder = new TextEncoder();
+  const data = encoder.encode(value);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+  if (CONFIG.HASHES.includes(hashHex)) {
     authManager.set(true);
     error.textContent = '';
     input.classList.remove('error');
@@ -2006,20 +2019,6 @@ window.togglePlaceFromPopup = (id) => {
 window.clearSelection = routeManager.clear;
 window.generateItinerary = routeManager.generateItinerary;
 window.shareRoute = routeManager.share;
-
-// Debug: Reset auth
-window.resetAuth = () => {
-  authManager.set(false);
-  localStorage.removeItem('galicia_favorites');
-  localStorage.removeItem('galicia_lat');
-  localStorage.removeItem('galicia_lng');
-  localStorage.removeItem('galicia_last_section');
-  localStorage.removeItem('galicia_selected_places');
-  location.reload();
-};
-
-// Log inicial
-console.log('Galicia Guide v' + CONFIG.VERSION + ' cargado. Usa resetAuth() para limpiar sesión.');
 
 
 // ── INSTALACIÓN PWA ───────────────────────────────────────────
