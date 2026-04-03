@@ -27,6 +27,7 @@ const state = {
   userLocation: null,
   userMarker: null,
   selectedPlaces: [],
+  placeDays: {},
   favorites: [],
   currentSection: 'hero',
   isOnline: navigator.onLine,
@@ -718,24 +719,34 @@ const routeManager = {
   // Guardar selección en localStorage
   save: () => {
     localStorage.setItem('galicia_selected_places', JSON.stringify(state.selectedPlaces));
+    localStorage.setItem('galicia_place_days', JSON.stringify(state.placeDays));
   },
 
   // Restaurar selección guardada
   load: () => {
     try {
       const saved = localStorage.getItem('galicia_selected_places');
-      if (saved) {
-        state.selectedPlaces = JSON.parse(saved) || [];
-      }
+      if (saved) state.selectedPlaces = JSON.parse(saved) || [];
+      const savedDays = localStorage.getItem('galicia_place_days');
+      if (savedDays) state.placeDays = JSON.parse(savedDays) || {};
     } catch (e) {
       state.selectedPlaces = [];
+      state.placeDays = {};
     }
+  },
+
+  setDay: (id, day) => {
+    if (!state.placeDays) state.placeDays = {};
+    state.placeDays[id] = day;
+    routeManager.save();
+    ui.updateSelectionUI();
   },
 
   togglePlace: (id) => {
     const index = state.selectedPlaces.indexOf(id);
     if (index > -1) {
       state.selectedPlaces.splice(index, 1);
+      if (state.placeDays) delete state.placeDays[id];
       utils.haptic('light');
     } else {
       state.selectedPlaces.push(id);
@@ -766,6 +777,7 @@ const routeManager = {
 
   clear: () => {
     state.selectedPlaces = [];
+    state.placeDays = {};
     routeManager.save();
     ui.updateSelectionUI();
     
@@ -816,12 +828,31 @@ const routeManager = {
     }
 
     const totalHoras = routeManager.getTotalHours();
-    const lista = state.selectedPlaces.map((id, i) => {
-      const lugar = lugares.find(l => l.id === id);
-      return lugar ? `${i + 1}. ${lugar.nombre} (${lugar.horas}h)` : null;
-    }).filter(Boolean).join('\n');
 
-    const texto = `🗺️ Mi ruta por Galicia\n\n${lista}\n\n⏱️ Tiempo total: ${totalHoras}h\n\nCreada con la Guía de Galicia de Xurxo & Raquel 💚`;
+    // Agrupar por días
+    const byDay = {};
+    state.selectedPlaces.forEach(id => {
+      const day = (state.placeDays || {})[id] || 1;
+      if (!byDay[day]) byDay[day] = [];
+      byDay[day].push(id);
+    });
+
+    const days = Object.keys(byDay).map(Number).sort((a,b) => a - b);
+    let bloques = '';
+
+    days.forEach(day => {
+      const dayHours = byDay[day].reduce((sum, id) => {
+        const l = lugares.find(x => x.id === id);
+        return sum + (l?.horas || 0);
+      }, 0);
+      bloques += `\n📅 Día ${day} (${dayHours}h)\n`;
+      byDay[day].forEach((id, i) => {
+        const lugar = lugares.find(l => l.id === id);
+        if (lugar) bloques += `  ${i + 1}. ${lugar.nombre} (${lugar.horas}h)\n`;
+      });
+    });
+
+    const texto = `🗺️ Mi ruta por Galicia\n${bloques}\n⏱️ Tiempo total: ${totalHoras}h\n\nCreada con la Guía de Galicia de Xurxo & Raquel 💚`;
 
     if (navigator.share) {
       navigator.share({ title: 'Mi ruta por Galicia', text: texto })
@@ -1799,33 +1830,72 @@ const ui = {
       return;
     }
 
-    let html = '<div class="selection-list">';
-    
+    // Calcular número máximo de días asignados
+    const maxDay = Math.max(...Object.values(state.placeDays || {}), 1);
+
+    // Agrupar lugares por día
+    const byDay = {};
     state.selectedPlaces.forEach(id => {
-      const lugar = lugares.find(l => l.id === id);
-      if (!lugar) return;
+      const day = (state.placeDays || {})[id] || 1;
+      if (!byDay[day]) byDay[day] = [];
+      byDay[day].push(id);
+    });
+    const days = Object.keys(byDay).map(Number).sort((a,b) => a - b);
+
+    let html = '';
+
+    days.forEach(day => {
+      const dayHours = byDay[day].reduce((sum, id) => {
+        const l = lugares.find(x => x.id === id);
+        return sum + (l?.horas || 0);
+      }, 0);
 
       html += `
-        <div class="selection-item">
-          <img src="${lugar.imagen}" class="selection-item-img" loading="lazy"
-               onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop'" 
-               alt="${utils.sanitizeHTML(lugar.nombre)}">
-          <div class="selection-item-info">
-            <div class="selection-item-name">${utils.sanitizeHTML(lugar.nombre)}</div>
-            <div class="selection-item-time">${lugar.horas}h</div>
+        <div class="day-group">
+          <div class="day-group-header">
+            <span class="day-badge">Día ${day}</span>
+            <span class="day-hours">${dayHours}h</span>
           </div>
-          <button class="selection-item-remove" onclick="routeManager.togglePlace(${lugar.id})" aria-label="Quitar de la ruta">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
       `;
+
+      byDay[day].forEach(id => {
+        const lugar = lugares.find(l => l.id === id);
+        if (!lugar) return;
+        const currentDay = (state.placeDays || {})[id] || 1;
+
+        // Generar opciones de días (hasta maxDay + 1 para poder añadir día nuevo)
+        let dayOptions = '';
+        for (let d = 1; d <= maxDay + 1; d++) {
+          dayOptions += `<option value="${d}" ${d === currentDay ? 'selected' : ''}>Día ${d}</option>`;
+        }
+
+        html += `
+          <div class="selection-item">
+            <img src="${lugar.imagen}" class="selection-item-img" loading="lazy"
+                 onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=300&fit=crop'"
+                 alt="${utils.sanitizeHTML(lugar.nombre)}">
+            <div class="selection-item-info">
+              <div class="selection-item-name">${utils.sanitizeHTML(lugar.nombre)}</div>
+              <div class="selection-item-meta">
+                <span class="selection-item-time">⏱ ${lugar.horas}h</span>
+                <select class="day-select" onchange="routeManager.setDay(${lugar.id}, parseInt(this.value))">
+                  ${dayOptions}
+                </select>
+              </div>
+            </div>
+            <button class="selection-item-remove" onclick="routeManager.togglePlace(${lugar.id})" aria-label="Quitar de la ruta">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
     });
 
-    html += '</div>';
-    
     html += `
       <div class="action-buttons">
         <button class="btn-primary" onclick="routeManager.generateItinerary()">
