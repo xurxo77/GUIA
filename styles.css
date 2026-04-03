@@ -5699,3 +5699,36 @@ html, body {
   padding: 4px;
   flex-shrink: 0;
 }
+
+
+
+/* ── BOTÓN COMPARTIR RUTA ────────────────────────────────────── */
+.btn-share {
+  width: 100%;
+  padding: 14px 16px;
+  background: #f0f7ff;
+  color: var(--accent-sea);
+  border: 1.5px solid var(--accent-sea);
+  border-radius: var(--r-xl);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+
+.btn-share svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent-sea);
+  flex-shrink: 0;
+}
+
+.btn-share:active {
+  background: #dceeff;
+  transform: scale(0.98);
+}
