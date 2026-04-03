@@ -1419,16 +1419,16 @@ function handleLogin(e) {
     error.textContent = '';
     input.classList.remove('error');
 
-    const splash = document.getElementById('splashScreen');
-    const main   = document.getElementById('mainContent');
+    // Feedback mientras carga el JSON
+    const btn = document.querySelector('.splash-btn');
+    if (btn) { btn.textContent = '...'; btn.disabled = true; }
 
-    // 1. Mostrar contenido
-    splash.classList.add('hidden');
-    main.classList.add('visible');
-
-    // 2. Inicializar app INMEDIATAMENTE — navegación lista antes de ¿Sabías que?
-    ui.cacheElements();
-    app.init();
+    app.init().then(() => {
+      const splash = document.getElementById('splashScreen');
+      const main   = document.getElementById('mainContent');
+      splash.classList.add('hidden');
+      main.classList.add('visible');
+    });
 
   } else {
     input.classList.add('error');
@@ -1449,15 +1449,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Verificar si ya está autenticado
   setTimeout(() => {
     if (authManager.check()) {
-      const splash = document.getElementById('splashScreen');
-      const main   = document.getElementById('mainContent');
-
-      splash.classList.add('hidden');
-      main.classList.add('visible');
-
-      // Inicializar INMEDIATAMENTE
-      ui.cacheElements();
-      app.init();
+      app.init().then(() => {
+        const splash = document.getElementById('splashScreen');
+        const main   = document.getElementById('mainContent');
+        splash.classList.add('hidden');
+        main.classList.add('visible');
+      });
     }
   }, 100);
 });
