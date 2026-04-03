@@ -5732,3 +5732,71 @@ html, body {
   background: #dceeff;
   transform: scale(0.98);
 }
+
+
+
+/* ── GRUPOS DE DÍAS EN LA SELECCIÓN ─────────────────────────── */
+.day-group {
+  margin-bottom: 16px;
+}
+
+.day-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+
+.day-badge {
+  background: var(--accent-sea);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--r-full);
+  letter-spacing: 0.03em;
+}
+
+.day-hours {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  font-weight: 500;
+}
+
+.selection-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.selection-item-time {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.day-select {
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent-sea);
+  background: #f0f7ff;
+  border: 1px solid #bcd8f5;
+  border-radius: 20px;
+  padding: 3px 8px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a5276' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  padding-right: 22px;
+}
+
+.day-select:focus {
+  border-color: var(--accent-sea);
+  box-shadow: 0 0 0 2px rgba(26,82,118,0.1);
+}
