@@ -1370,37 +1370,33 @@ const app = {
 
     console.log('🌊 Cargando datos...');
     await loadData();
-    console.log('🌊 Inicializando Galicia Guide...');
-    
-    ui.cacheElements();
-    favoritesManager.load();
-    routeManager.load();
-    geoManager.checkSaved();
-    
-    ui.renderRecommendations();
-    ui.renderPlaces();
-    mapManager.init();
-    navigationManager.init();
-    ui.renderFavoritesSection();
-    ui.updateSelectionUI();
-    ui.loadHeroWeather();
-    
-    // Configurar eventos globales
-    window.addEventListener('online', () => {
-      state.isOnline = true;
-      console.log('Conexión restaurada');
-    });
+    console.log(`🌊 Datos listos — ${lugares.length} lugares, iniciando app...`);
 
-    window.addEventListener('offline', () => {
-      state.isOnline = false;
-      console.log('Sin conexión');
-    });
+    try {
+      ui.cacheElements();
+      favoritesManager.load();
+      routeManager.load();
+      geoManager.checkSaved();
+      
+      ui.renderRecommendations();
+      ui.renderPlaces();
+      mapManager.init();
+      navigationManager.init();
+      ui.renderFavoritesSection();
+      ui.updateSelectionUI();
+      ui.loadHeroWeather();
+      
+      window.addEventListener('online',  () => { state.isOnline = true; });
+      window.addEventListener('offline', () => { state.isOnline = false; });
 
-    state.appInitialized = true;
-    console.log('✅ App lista');
+      state.appInitialized = true;
+      console.log('✅ App lista');
 
-    // Cargar tiempo en el hero
-    weatherManager.load();
+      weatherManager.load();
+    } catch (err) {
+      console.error('❌ Error en app.init():', err);
+      throw err; // Re-lanzar para que el .catch() del login lo capture
+    }
   }
 };
 
@@ -1419,16 +1415,24 @@ function handleLogin(e) {
     error.textContent = '';
     input.classList.remove('error');
 
-    // Feedback mientras carga el JSON
     const btn = document.querySelector('.splash-btn');
     if (btn) { btn.textContent = '...'; btn.disabled = true; }
 
-    app.init().then(() => {
-      const splash = document.getElementById('splashScreen');
-      const main   = document.getElementById('mainContent');
-      splash.classList.add('hidden');
-      main.classList.add('visible');
-    });
+    const splash = document.getElementById('splashScreen');
+    const main   = document.getElementById('mainContent');
+
+    app.init()
+      .then(() => {
+        splash.classList.add('hidden');
+        main.classList.add('visible');
+      })
+      .catch(err => {
+        console.error('Error en app.init():', err);
+        // Mostrar la app igualmente aunque haya fallado algo
+        splash.classList.add('hidden');
+        main.classList.add('visible');
+        if (btn) { btn.textContent = 'Entrar'; btn.disabled = false; }
+      });
 
   } else {
     input.classList.add('error');
@@ -1449,12 +1453,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Verificar si ya está autenticado
   setTimeout(() => {
     if (authManager.check()) {
-      app.init().then(() => {
-        const splash = document.getElementById('splashScreen');
-        const main   = document.getElementById('mainContent');
-        splash.classList.add('hidden');
-        main.classList.add('visible');
-      });
+      const splash = document.getElementById('splashScreen');
+      const main   = document.getElementById('mainContent');
+
+      app.init()
+        .then(() => {
+          splash.classList.add('hidden');
+          main.classList.add('visible');
+        })
+        .catch(err => {
+          console.error('Error en app.init() (auth guardada):', err);
+          splash.classList.add('hidden');
+          main.classList.add('visible');
+        });
     }
   }, 100);
 });
