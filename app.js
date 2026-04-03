@@ -715,6 +715,23 @@ const mapManager = {
 // ── GESTIÓN DE RUTAS ──────────────────────────────────────────
 
 const routeManager = {
+  // Guardar selección en localStorage
+  save: () => {
+    localStorage.setItem('galicia_selected_places', JSON.stringify(state.selectedPlaces));
+  },
+
+  // Restaurar selección guardada
+  load: () => {
+    try {
+      const saved = localStorage.getItem('galicia_selected_places');
+      if (saved) {
+        state.selectedPlaces = JSON.parse(saved) || [];
+      }
+    } catch (e) {
+      state.selectedPlaces = [];
+    }
+  },
+
   togglePlace: (id) => {
     const index = state.selectedPlaces.indexOf(id);
     if (index > -1) {
@@ -725,6 +742,7 @@ const routeManager = {
       utils.haptic('medium');
     }
 
+    routeManager.save();
     ui.updateSelectionUI();
     
     const marker = state.markers[id];
@@ -748,15 +766,14 @@ const routeManager = {
 
   clear: () => {
     state.selectedPlaces = [];
+    routeManager.save();
     ui.updateSelectionUI();
     
     Object.keys(state.markers).forEach(id => {
       const marker = state.markers[id];
       if (marker) {
         const element = marker.getElement();
-        if (element) {
-          element.classList.remove('selected-ring');
-        }
+        if (element) element.classList.remove('selected-ring');
       }
     });
     
@@ -790,6 +807,43 @@ const routeManager = {
 
     const url = `https://www.google.com/maps/dir/${waypoints.join('/')}`;
     window.open(url, '_blank');
+  },
+
+  share: () => {
+    if (state.selectedPlaces.length === 0) {
+      alert('Añade lugares a tu ruta antes de compartirla.');
+      return;
+    }
+
+    const totalHoras = routeManager.getTotalHours();
+    const lista = state.selectedPlaces.map((id, i) => {
+      const lugar = lugares.find(l => l.id === id);
+      return lugar ? `${i + 1}. ${lugar.nombre} (${lugar.horas}h)` : null;
+    }).filter(Boolean).join('\n');
+
+    const texto = `🗺️ Mi ruta por Galicia\n\n${lista}\n\n⏱️ Tiempo total: ${totalHoras}h\n\nCreada con la Guía de Galicia de Xurxo & Raquel 💚`;
+
+    if (navigator.share) {
+      navigator.share({ title: 'Mi ruta por Galicia', text: texto })
+        .catch(() => routeManager._copyToClipboard(texto));
+    } else {
+      routeManager._copyToClipboard(texto);
+    }
+  },
+
+  _copyToClipboard: (texto) => {
+    navigator.clipboard?.writeText(texto).then(() => {
+      utils.showToast('Ruta copiada al portapapeles 📋');
+    }).catch(() => {
+      // Fallback para navegadores sin clipboard API
+      const el = document.createElement('textarea');
+      el.value = texto;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      utils.showToast('Ruta copiada al portapapeles 📋');
+    });
   },
 
   getTotalHours: () => {
@@ -1778,7 +1832,15 @@ const ui = {
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
             <polygon points="3 11 22 2 13 21 11 13 3 11"/>
           </svg>
-          Crear ruta en Google Maps
+          Abrir en Google Maps
+        </button>
+        <button class="btn-share" onclick="routeManager.share()">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Compartir ruta
         </button>
         <button class="btn-secondary" onclick="routeManager.clear()">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
@@ -2111,6 +2173,7 @@ const app = {
     
     ui.cacheElements();
     favoritesManager.load();
+    routeManager.load();
     geoManager.checkSaved();
     
     ui.renderRecommendations();
@@ -2216,6 +2279,7 @@ window.togglePlaceFromPopup = (id) => {
 };
 window.clearSelection = routeManager.clear;
 window.generateItinerary = routeManager.generateItinerary;
+window.shareRoute = routeManager.share;
 
 // Debug: Reset auth
 window.resetAuth = () => {
