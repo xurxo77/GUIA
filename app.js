@@ -405,7 +405,12 @@ const ui = {
               <img src="img/rec_reservas.jpg" class="rec-card-img" alt="Reservas" onerror="this.style.display='none'">
               <h4>📅 Ojo con las reservas.</h4>
               <p style="margin-bottom: 8px !important;">En sitios conocidos o en verano, <strong>reserva</strong>. Donde menos te lo esperas, se llena.</p>
-              <p>Algunos lugares muy demandados <strong>requieren antelación</strong>: Islas Cíes y Ons, el Pórtico de la Gloria o la Playa de las Catedrales.</p>
+              <p style="margin-bottom: 8px !important;">Algunos lugares muy demandados <strong>requieren antelación</strong>:</p>
+              <ul style="margin: 0; padding-left: 20px;">
+                <li><a href="https://autorizacionillasatlanticas.xunta.gal" target="_blank" rel="noopener">Islas Cíes y Ons</a></li>
+                <li><a href="https://visitas.catedraldesantiago.es/portico-de-la-gloria/" target="_blank" rel="noopener">Pórtico de la Gloria</a></li>
+                <li><a href="https://ascatedrais.xunta.gal" target="_blank" rel="noopener">Playa de las Catedrales</a></li>
+              </ul>
             </div>
             <div class="rec-card">
               <img src="img/rec_gallegos.jpg" class="rec-card-img" alt="Gallegos" onerror="this.style.display='none'">
