@@ -193,6 +193,17 @@ a:hover {
   overscroll-behavior-y: contain;
 }
 
+/* Scroll snap suave en la sección de lugares */
+#lugares {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 16px;
+}
+
+#lugares .place-card {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
 /* Scrollbar personalizada y moderna */
 #hero::-webkit-scrollbar,
 #recomendaciones::-webkit-scrollbar,
