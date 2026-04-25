@@ -1053,6 +1053,15 @@ const ui = {
     const card = document.getElementById(id);
     if (!card) return;
 
+    const willExpand = !card.classList.contains('expanded');
+
+    // Si vamos a abrir uno, cerrar todos los demás primero
+    if (willExpand) {
+      document.querySelectorAll('.place-card.expanded').forEach(other => {
+        if (other.id !== id) other.classList.remove('expanded');
+      });
+    }
+
     const isExpanded = card.classList.toggle('expanded');
 
     if (isExpanded) {
