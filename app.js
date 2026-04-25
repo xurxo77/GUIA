@@ -964,7 +964,6 @@ const ui = {
 
     container.innerHTML = html;
     ui.initAnimations();
-    ui.initCarouselListeners();
   },
 
   renderInfoBlock: (icon, title, text) => {
@@ -1054,45 +1053,20 @@ const ui = {
     const card = document.getElementById(id);
     if (!card) return;
 
-    const carousel = card.closest('.places-carousel');
-    const isExpanded = card.classList.contains('expanded');
+    const isExpanded = card.classList.toggle('expanded');
 
-    // Cerrar todas las demás tarjetas del mismo carrusel
-    if (carousel) {
-      carousel.querySelectorAll('.place-card.expanded').forEach(c => {
-        if (c.id !== id) c.classList.remove('expanded');
-      });
-    }
-
-    // Toggle esta tarjeta
-    card.classList.toggle('expanded', !isExpanded);
-
-    if (!isExpanded) {
-      // Al abrir: scroll para que la tarjeta sea visible
+    if (isExpanded) {
       setTimeout(() => {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-      }, 50);
+        const section = card.closest('#lugares');
+        if (section) {
+          const top = card.offsetTop - 70;
+          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+      }, 150);
       utils.haptic('medium');
     } else {
       utils.haptic('light');
     }
-  },
-
-  // Añadir listeners de scroll lateral a los carruseles para cerrar acordeones
-  initCarouselListeners: () => {
-    document.querySelectorAll('.places-carousel').forEach(carousel => {
-      if (carousel._scrollListenerAdded) return;
-      carousel._scrollListenerAdded = true;
-      let scrollTimer;
-      carousel.addEventListener('scroll', () => {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-          carousel.querySelectorAll('.place-card.expanded').forEach(c => {
-            c.classList.remove('expanded');
-          });
-        }, 150);
-      }, { passive: true });
-    });
   },
 
   updateFavoriteButton: (id) => {
