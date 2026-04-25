@@ -3537,6 +3537,124 @@ a:hover {
 }
 
 /* 2. BUSCADOR DE LUGARES — el SVG hereda tamaño enorme, fijar */
+/* ── TARJETA DE BIENVENIDA "Por dónde empezar" ──────────────── */
+.welcome-card {
+  background: linear-gradient(135deg, #1a5276 0%, #2980b9 100%);
+  color: white;
+  border-radius: var(--r-xl);
+  padding: 20px 20px 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--elev-2);
+  position: relative;
+  overflow: hidden;
+}
+.welcome-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.welcome-card.dismissed {
+  display: none;
+}
+.welcome-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.welcome-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+.welcome-card-close {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast);
+}
+.welcome-card-close:hover,
+.welcome-card-close:active {
+  background: rgba(255,255,255,0.3);
+}
+.welcome-card-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 14px;
+  opacity: 0.95;
+}
+.welcome-card-body strong {
+  font-weight: 700;
+}
+.welcome-card-cta {
+  background: white;
+  color: #1a5276;
+  border: none;
+  padding: 9px 18px;
+  border-radius: var(--r-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--duration-fast);
+}
+.welcome-card-cta:active {
+  transform: scale(0.96);
+}
+
+/* ── FILTROS DE VISITA ──────────────────────────────────────── */
+.visit-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+}
+.visit-filters::-webkit-scrollbar {
+  display: none;
+}
+.filter-chip {
+  flex-shrink: 0;
+  background: white;
+  border: 1.5px solid var(--border);
+  color: var(--fg);
+  padding: 7px 14px;
+  border-radius: var(--r-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--duration-fast);
+}
+.filter-chip:hover {
+  border-color: #1a5276;
+}
+.filter-chip.active {
+  background: #1a5276;
+  color: white;
+  border-color: #1a5276;
+  font-weight: 600;
+}
+
 .search-wrapper {
   margin-bottom: 16px;
 }

@@ -1042,29 +1042,50 @@ const ui = {
     `;
   },
 
-  filterPlaces: (query) => {
-    const q = (query || '').trim().toLowerCase()
+  // IDs de lugares por tipo de visita
+  visitFilters: {
+    esencial: [1, 2, 7, 39, 38, 30, 34, 32, 28, 22],     // Imprescindibles (10)
+    finde:    [1, 2, 11, 7, 39],                          // Fin de semana base Santiago (5)
+    semana:   [1, 2, 7, 39, 38, 30, 34, 32, 28, 22, 4, 19, 23, 27, 29, 33] // Una semana (16)
+  },
+
+  currentVisitFilter: 'all',
+
+  filterPlaces: () => {
+    const input = document.getElementById('placeSearch');
+    const q = (input?.value || '').trim().toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const visitFilter = ui.currentVisitFilter;
+    const allowedIds = visitFilter === 'all'
+      ? null
+      : new Set(ui.visitFilters[visitFilter] || []);
 
     const cards = document.querySelectorAll('#placesContainer .place-card');
     const provBoxes = document.querySelectorAll('#placesContainer .province-box');
 
-    if (!q) {
-      // Buscador vacío → restaurar todo
+    if (!q && !allowedIds) {
+      // Sin filtro de texto ni de visita → restaurar todo
       cards.forEach(c => c.style.display = '');
       provBoxes.forEach(p => p.style.display = '');
       return;
     }
 
-    // Filtrar tarjetas
+    // Filtrar tarjetas por ambos criterios
     cards.forEach(card => {
       const id = parseInt(card.id.replace('place-', ''));
       const lugar = lugares.find(l => l.id === id);
       if (!lugar) return;
+
+      // Filtro por categoría de visita
+      const matchVisit = !allowedIds || allowedIds.has(id);
+
+      // Filtro por texto
       const nombre = lugar.nombre.toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      const match = nombre.includes(q);
-      card.style.display = match ? '' : 'none';
+      const matchText = !q || nombre.includes(q);
+
+      card.style.display = (matchVisit && matchText) ? '' : 'none';
     });
 
     // Ocultar provincias sin coincidencias y abrir las que sí
@@ -1074,12 +1095,19 @@ const ui = {
         box.style.display = 'none';
       } else {
         box.style.display = '';
-        // Auto-expandir provincias con resultados
         if (!box.classList.contains('expanded')) {
           box.classList.add('expanded');
         }
       }
     });
+  },
+
+  setVisitFilter: (filter) => {
+    ui.currentVisitFilter = filter;
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.classList.toggle('active', chip.dataset.filter === filter);
+    });
+    ui.filterPlaces();
   },
 
   toggleProvincia: (id) => {
@@ -2010,10 +2038,48 @@ const app = {
       const placeSearch = document.getElementById('placeSearch');
       if (placeSearch) {
         const debouncedFilter = utils.debounce(
-          (value) => ui.filterPlaces(value),
+          () => ui.filterPlaces(),
           150
         );
-        placeSearch.addEventListener('input', (e) => debouncedFilter(e.target.value));
+        placeSearch.addEventListener('input', () => debouncedFilter());
+      }
+
+      // Conectar filtros de visita
+      document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const filter = chip.dataset.filter;
+          ui.setVisitFilter(filter);
+          // Resetear scroll de la sección al inicio al cambiar filtro
+          const section = document.getElementById('lugares');
+          if (section) section.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // Welcome card: cerrar y CTA
+      const welcomeCard  = document.getElementById('welcomeCard');
+      const welcomeClose = document.getElementById('welcomeCardClose');
+      const welcomeCta   = document.getElementById('welcomeCardCta');
+
+      // Restaurar estado de la welcome card
+      if (welcomeCard && localStorage.getItem('galicia_welcome_dismissed') === 'true') {
+        welcomeCard.classList.add('dismissed');
+      }
+
+      if (welcomeClose) {
+        welcomeClose.addEventListener('click', () => {
+          welcomeCard.classList.add('dismissed');
+          localStorage.setItem('galicia_welcome_dismissed', 'true');
+        });
+      }
+
+      if (welcomeCta) {
+        welcomeCta.addEventListener('click', () => {
+          ui.setVisitFilter('esencial');
+          welcomeCard.classList.add('dismissed');
+          localStorage.setItem('galicia_welcome_dismissed', 'true');
+          const section = document.getElementById('lugares');
+          if (section) section.scrollTo({ top: 0, behavior: 'smooth' });
+        });
       }
       
       window.addEventListener('online',  () => { state.isOnline = true; });
