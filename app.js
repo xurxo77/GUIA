@@ -999,6 +999,46 @@ const ui = {
     `;
   },
 
+  filterPlaces: (query) => {
+    const q = (query || '').trim().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const cards = document.querySelectorAll('#placesContainer .place-card');
+    const provBoxes = document.querySelectorAll('#placesContainer .province-box');
+
+    if (!q) {
+      // Buscador vacío → restaurar todo
+      cards.forEach(c => c.style.display = '');
+      provBoxes.forEach(p => p.style.display = '');
+      return;
+    }
+
+    // Filtrar tarjetas
+    cards.forEach(card => {
+      const id = parseInt(card.id.replace('place-', ''));
+      const lugar = lugares.find(l => l.id === id);
+      if (!lugar) return;
+      const nombre = lugar.nombre.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const match = nombre.includes(q);
+      card.style.display = match ? '' : 'none';
+    });
+
+    // Ocultar provincias sin coincidencias y abrir las que sí
+    provBoxes.forEach(box => {
+      const visibles = box.querySelectorAll('.place-card:not([style*="none"])');
+      if (visibles.length === 0) {
+        box.style.display = 'none';
+      } else {
+        box.style.display = '';
+        // Auto-expandir provincias con resultados
+        if (!box.classList.contains('expanded')) {
+          box.classList.add('expanded');
+        }
+      }
+    });
+  },
+
   toggleProvincia: (id) => {
     const element = document.getElementById(id);
     if (!element) return;
@@ -1922,6 +1962,16 @@ const app = {
       ui.renderFavoritesSection();
       ui.updateSelectionUI();
       ui.loadHeroWeather();
+
+      // Conectar el buscador de lugares
+      const placeSearch = document.getElementById('placeSearch');
+      if (placeSearch) {
+        const debouncedFilter = utils.debounce(
+          (value) => ui.filterPlaces(value),
+          150
+        );
+        placeSearch.addEventListener('input', (e) => debouncedFilter(e.target.value));
+      }
       
       window.addEventListener('online',  () => { state.isOnline = true; });
       window.addEventListener('offline', () => { state.isOnline = false; });
