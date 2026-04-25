@@ -154,18 +154,26 @@
       "imagen": "img/betanzos.jpg",
       "lat": 43.2833,
       "lng": -8.2167,
-      "porQueVenir": "Villa medieval con casco histórico.",
-      "momentoPerfecto": "Mañana.",
+      "porQueVenir": "Betanzos es una de las villas medievales mejor conservadas de Galicia. Sus calles empedradas, sus iglesias góticas y su plaza mayor esconden siglos de historia sin el alboroto turístico de otras ciudades. Es un sitio para pasear despacio y dejarse sorprender.",
+      "momentoPerfecto": "Mañana de cualquier día, cuando la villa está tranquila y puedes recorrer el casco histórico casi en soledad. En agosto, la Festa do Globo ilumina el cielo con miles de globos de papel.",
       "imprescindibles": [
-        "Plaza Mayor",
-        "Iglesia de Santa María",
-        "Murallas"
+        "<strong>Iglesia de San Francisco:</strong> joya del gótico gallego con sepulcros medievales.",
+        "<strong>Iglesia de Santa María do Azougue:</strong> otra maravilla gótica en el corazón del casco histórico.",
+        "<strong>Plaza de García Hermanos:</strong> el centro neurálgico de la villa, rodeada de soportales.",
+        "<strong>Jardines del Pasatiempo:</strong> parque histórico excéntrico y único del siglo XIX."
       ],
-      "comer": "Tortilla de Betanzos.",
-      "tomar": "Vino de la tierra.",
-      "secreto": "Jardines del Pasatiempo.",
-      "masTiempo": "Paseo por el río.",
-      "advertencias": "Fuertes pendientes."
+      "comer": "La tortilla de Betanzos es famosa en toda Galicia: jugosa, poco cuajada y con cebolla pochada. Pruébala en cualquier bar del centro. También hay buena tapa de pulpo y empanada.",
+      "tomar": "Vino de la tierra o ribeiro. Los bares de la plaza mayor son el sitio clásico.",
+      "secreto": "Los Jardines del Pasatiempo son un lugar absolutamente singular: un parque decimonónico lleno de esculturas, relieves, figuras mitológicas y referencias a la historia universal, construido por un emigrante retornado de Cuba. No hay nada igual en Galicia.",
+      "masTiempo": [
+        "<strong>A Coruña:</strong> a 25 km, perfecta combinación de día.",
+        "<strong>Pontedeume:</strong> otra villa medieval con castillo en la ría del Eume."
+      ],
+      "advertencias": [
+        "Pueblo pequeño, la oferta gastronómica es limitada.",
+        "Los jardines del Pasatiempo están en proceso de restauración."
+      ],
+      "miOpinion": "Betanzos es de esas villas que te dan una lección de lo bien que puede conservarse el patrimonio cuando no hay turismo masivo encima. Las iglesias góticas son extraordinarias, y los Jardines del Pasatiempo son un espectáculo entre la rareza y la genialidad. Si vienes a A Coruña, vale mucho la pena desviarse media hora para conocerla."
     },
     {
       "id": 4,
@@ -175,22 +183,30 @@
         "costa",
         "naturaleza"
       ],
-      "horas": 2,
+      "horas": 3,
       "imagen": "img/cedeira.jpg",
       "lat": 43.6667,
       "lng": -8.05,
-      "porQueVenir": "Playa de Magdalena y puerto pesquero.",
-      "momentoPerfecto": "Verano.",
+      "porQueVenir": "Cedeira es uno de los rincones más auténticos de las Rías Altas. Una ría tranquila, un pueblo marinero vivo y una de las mejores playas de Galicia, A Magdalena, hacen de este lugar un destino que seduce a quien lo conoce y al que siempre se quiere volver.",
+      "momentoPerfecto": "Verano, pero evitando agosto si puedes. La playa de A Magdalena es perfecta por la mañana temprano. El atardecer desde el puerto, con los barcos y la ría al fondo, es de los más bonitos de la costa gallega.",
       "imprescindibles": [
-        "Playa de Magdalena",
-        "Puerto",
-        "Monte da Sartá"
+        "<strong>Playa de A Magdalena:</strong> playa urbana protegida dentro de la ría, ideal para familias.",
+        "<strong>Puerto pesquero:</strong> actividad marinera real, hórreos y ambiente local.",
+        "<strong>Senda costera hacia el faro:</strong> camino por los cantiles con vistas espectaculares a la ría.",
+        "<strong>Monte da Sartal:</strong> mirador natural sobre toda la ría."
       ],
-      "comer": "Marisco.",
-      "tomar": "Vino blanco.",
-      "secreto": "Senda costera.",
-      "masTiempo": "Paseo al faro.",
-      "advertencias": "Mar peligroso."
+      "comer": "Marisco fresco del puerto, merluza a la gallega y empanada. El puerto y sus inmediaciones tienen buenas opciones sencillas y auténticas.",
+      "tomar": "Albariño o vino blanco gallego. En verano hay buena oferta de terrazas.",
+      "secreto": "Desde el faro, con marea baja, se puede acceder a playas prácticamente vírgenes en el interior de la ría que son desconocidas para casi todos los visitantes. Y la senda costera hacia Loiba esconde uno de los miradores más fotografiados de Galicia: el banco más bonito del mundo.",
+      "masTiempo": [
+        "<strong>Playa de Loiba:</strong> acantilados espectaculares y el famoso banco mirador.",
+        "<strong>Ortigueira:</strong> a pocos kilómetros, con festival de música celta en julio."
+      ],
+      "advertencias": [
+        "En agosto hay mucha gente en la playa de A Magdalena.",
+        "El mar en la costa exterior puede ser peligroso."
+      ],
+      "miOpinion": "Cedeira tiene algo que pocas villas gallegas conservan: su autenticidad. No es un lugar «para turistas», es un sitio donde la gente vive del mar y al que el turismo llega, pero no lo devora. La playa de A Magdalena, protegida dentro de la ría, es una pasada — tranquila, familiar y bonita. Y si tienes tiempo, la senda costera hacia Loiba es de obligado cumplimiento."
     },
     {
       "id": 5,
@@ -198,99 +214,139 @@
       "bloque": "acoruna",
       "categorias": [
         "costa",
-        "naturaleza"
+        "naturaleza",
+        "magicos"
       ],
       "horas": 3,
       "imagen": "img/ortigueira.jpg",
       "lat": 43.6333,
       "lng": -7.85,
-      "porQueVenir": "Playa de Ortigueira, una de las mejores.",
-      "momentoPerfecto": "Marea baja.",
+      "porQueVenir": "Ortigueira es conocida por su festival de música celta, uno de los más importantes de Europa, pero es mucho más que eso. La ría, los acantilados de Loiba y el ambiente marinero de sus aldeas la convierten en uno de los rincones más especiales del norte de Galicia.",
+      "momentoPerfecto": "Julio, durante el Festival de Ortigueira, para vivir la celebración celta más importante de la Península. Fuera de temporada, cualquier día sin multitudes.",
       "imprescindibles": [
-        "Playa de Ortigueira",
-        "Cabo Ortegal",
-        "Puerto"
+        "<strong>Acantilados de Loiba:</strong> vistas impresionantes con el banco más fotografiado de Galicia.",
+        "<strong>Ría de Ortigueira:</strong> espacio natural protegido con aves acuáticas y paisaje único.",
+        "<strong>Festival de Ortigueira:</strong> música celta internacional en julio.",
+        "<strong>Puerto de Cariño:</strong> pueblo marinero auténtico al pie del cabo Ortegal."
       ],
-      "comer": "Marisco.",
-      "tomar": "Sidra.",
-      "secreto": "Estaca de Bares.",
-      "masTiempo": "Cabo Ortegal.",
-      "advertencias": "Marea alta cubre la playa."
+      "comer": "Marisco local, empanada y cocido gallego en los restaurantes del puerto. Sencillo y bueno.",
+      "tomar": "Vino blanco o sidra. En festival, ambiente de verbena y bebida popular.",
+      "secreto": "Los acantilados de Loiba, al norte del municipio, superan los 100 metros de altura en algunos tramos. El banco mirador instalado en el borde del cantil ofrece una panorámica del litoral que es absolutamente surrealista. Muy pocos turistas llegan hasta aquí.",
+      "masTiempo": [
+        "<strong>Cabo Ortegal:</strong> uno de los cabos más majestuosos de la Península.",
+        "<strong>Cedeira:</strong> a pocos kilómetros, con la playa de A Magdalena."
+      ],
+      "advertencias": [
+        "En julio durante el festival hay mucha gente y se llena todo.",
+        "Los acantilados son impresionantes pero requieren precaución."
+      ],
+      "miOpinion": "Ortigueira es uno de esos lugares que sorprenden. La ría es enorme y tranquila, los acantilados de Loiba son de los más espectaculares de Galicia, y en julio el festival convierte al pueblo en una fiesta que merece vivirse al menos una vez. Si buscas naturaleza sin masificación y algo de magia céltica, este es tu sitio."
     },
     {
       "id": 6,
       "nombre": "Estaca de Bares",
       "bloque": "acoruna",
       "categorias": [
-        "magicos",
-        "costa"
+        "naturaleza",
+        "costa",
+        "magicos"
       ],
       "horas": 2,
-      "imagen": "img/estacadebares.jpg",
+      "imagen": "img/estacabares.jpg",
       "lat": 43.7833,
       "lng": -7.6833,
-      "porQueVenir": "Punto más al norte de España.",
-      "momentoPerfecto": "Atardecer.",
+      "porQueVenir": "El punto más al norte de la Península Ibérica. Aquí el Atlántico y el Cantábrico se encuentran, el viento arrecia sin piedad y el faro vigila un horizonte donde el mundo parece acabarse. Un lugar para sentir la magnitud del océano.",
+      "momentoPerfecto": "Cualquier época, pero con tiempo despejado para ver el horizonte. Los días de tormenta tienen su propio espectáculo, aunque el acceso puede ser complicado. Al atardecer la luz es especial.",
       "imprescindibles": [
-        "Faro",
-        "Mirador",
-        "Paseo hasta el faro"
+        "<strong>Faro de Bares:</strong> el faro construido en 1850 en el punto más septentrional peninsular.",
+        "<strong>Semáforo de Bares:</strong> antigua instalación militar americana abandonada, con vistas formidables.",
+        "<strong>Puerto de Bares:</strong> uno de los puertos más bonitos y auténticos de la costa gallega.",
+        "<strong>Estación ornitológica:</strong> lugar de paso clave para la migración de aves atlánticas."
       ],
-      "comer": "En Ortigueira.",
-      "tomar": "Lo que lleves.",
-      "secreto": "Amanecer.",
-      "masTiempo": "Ortigueira.",
-      "advertencias": "Viento muy fuerte."
+      "comer": "La oferta es limitada. El puerto de Bares tiene algún bar con marisco fresco. Mejor venir preparado o combinar con una parada en Ortigueira o Cedeira.",
+      "tomar": "Lo que encuentres en el bar del puerto. Es parte de la experiencia.",
+      "secreto": "La isla Coelleira, frente al cabo, esconde un monasterio benedictino medieval y leyendas de templarios. Y la antigua base militar americana — abandonada desde 1991 — transmite una atmósfera entre melancólica y perturbadora que pocos saben que existe aquí.",
+      "masTiempo": [
+        "<strong>Porto de Espasante:</strong> pequeño puerto de pesca a pocos kilómetros.",
+        "<strong>Ortigueira:</strong> para comer bien y completar el día."
+      ],
+      "advertencias": [
+        "El viento puede ser muy fuerte, ten cuidado cerca del faro.",
+        "La carretera de acceso es estrecha y con curvas.",
+        "Muy poca oferta de servicios en la zona."
+      ],
+      "miOpinion": "Estaca de Bares es de esos lugares que te hacen sentir insignificante de la mejor manera. Estás en el punto más al norte de España, el viento no para, el horizonte es infinito y la sensación de estar en el fin del mundo es real. El semáforo militar abandonado añade un punto misterioso que no esperabas. Vale mucho la pena si te pilla de camino por la costa norte."
     },
     {
       "id": 7,
       "nombre": "Costa da Morte",
       "bloque": "acoruna",
       "categorias": [
-        "magicos",
+        "costa",
         "naturaleza",
-        "costa"
+        "magicos"
       ],
       "horas": 6,
       "imagen": "img/costadamorte.jpg",
       "lat": 43,
       "lng": -9,
-      "porQueVenir": "Tramo de costa con naufragios y faros.",
-      "momentoPerfecto": "Otoño o invierno.",
+      "porQueVenir": "La Costa da Morte es el tramo más salvaje y cinematográfico de toda la costa atlántica española. Acantilados de vértigo, playas sin fin, faros solitarios y una historia cargada de naufragios hacen de este territorio un lugar único en Europa. El nombre lo inventaron los tabloides ingleses en el siglo XIX, y se quedó para siempre.",
+      "momentoPerfecto": "Cualquier época del año, pero en otoño e invierno la naturaleza se desata y el paisaje alcanza una dimensión dramática que no tiene comparación. En verano las playas como Carnota son perfectas y el Camino dos Faros es precioso.",
       "imprescindibles": [
-        "Faro de Fisterra",
-        "Muxía",
-        "Camariñas"
+        "<strong>Cabo Vilán y su faro:</strong> uno de los faros más fotogénicos de toda Europa, en Camariñas.",
+        "<strong>Playa de Carnota:</strong> la playa más larga de Galicia, virgen y de arena fina.",
+        "<strong>Dolmen de Dombate:</strong> la catedral del megalitismo gallego, en Cabana de Bergantiños.",
+        "<strong>Camariñas:</strong> encaje de bolillos, percebe de O Roncudo y ambiente marinero.",
+        "<strong>Fisterra:</strong> el fin del mundo romano, con faro y acantilados épicos."
       ],
-      "comer": "Pulpo.",
-      "tomar": "Albariño.",
-      "secreto": "Playa de Traba.",
-      "masTiempo": "Ruta completa.",
-      "advertencias": "Mar siempre peligroso."
+      "comer": "Percebe de O Roncudo (considerado el mejor del mundo), pulpo de Camariñas, centolla de Lira, longueirón enterrado en la arena de Fisterra. La lonja de Corcubión y la de Fisterra son referencia.",
+      "tomar": "Vino blanco gallego y albariño. En Camariñas y Corcubión hay buenas tabernas marineras.",
+      "secreto": "Costa da Morte fue certificada en 2023 como Destino Turístico Starlight — tiene la menor contaminación lumínica de toda la costa española y portuguesa. Es uno de los mejores lugares de Europa para ver la Vía Láctea. Además, durante dos meses al año se puede ver la última puesta de sol de la Europa continental.",
+      "masTiempo": [
+        "<strong>O Camiño dos Faros:</strong> ruta de 200 km que conecta los faros emblemáticos de toda la costa.",
+        "<strong>Muxía:</strong> santuario de Nosa Señora da Barca y la Pedra de Abalar.",
+        "<strong>Ruta dos Naufragios de Camariñas:</strong> historia marinera y hundimientos famosos."
+      ],
+      "advertencias": [
+        "Es un territorio extenso: planifica bien los desplazamientos.",
+        "El tiempo cambia rápido; lleva siempre ropa de abrigo.",
+        "Las corrientes en playas abiertas son peligrosas."
+      ],
+      "miOpinion": "La Costa da Morte es el Galicia más Galicia posible. Tierra de mar bravo, gente que vive del océano y paisajes que no se parecen a nada de lo que has visto antes. Cuando llegas a Cabo Vilán o a la playa de Carnota, entiendes por qué esta tierra tiene ese nombre. No es un destino para quien busca comodidades — es para quien quiere sentir algo de verdad."
     },
     {
       "id": 8,
       "nombre": "Fragas do Eume",
       "bloque": "acoruna",
       "categorias": [
-        "naturaleza"
+        "naturaleza",
+        "patrimonio"
       ],
       "horas": 4,
-      "imagen": "img/eume.jpg",
+      "imagen": "img/fragasdoeume.jpg",
       "lat": 43.4167,
       "lng": -8.0667,
-      "porQueVenir": "Bosque atlántico mejor conservado.",
-      "momentoPerfecto": "Primavera.",
+      "porQueVenir": "Las Fragas do Eume son el bosque atlántico mejor conservado de Europa. Un bosque de ribera ancestral donde los helechos gigantes, los robles centenarios y el río Eume crean un ambiente que parece sacado de un cuento. Es la naturaleza gallega en estado puro.",
+      "momentoPerfecto": "Primavera y otoño, cuando la vegetación está en su máximo esplendor y los colores son espectaculares. En verano también es precioso, pero hay más gente. Los días de lluvia tienen su magia especial.",
       "imprescindibles": [
-        "Monasterio de Caaveiro",
-        "Ruta del río",
-        "Miradores"
+        "<strong>Sendero fluvial del río Eume:</strong> el camino más bonito del parque, junto al río.",
+        "<strong>Monasterio de Caaveiro:</strong> monasterio románico del siglo X en pleno corazón del bosque.",
+        "<strong>Los helechos gigantes:</strong> en primavera alcanzan alturas increíbles y crean paisajes de otro mundo.",
+        "<strong>Embalse del Eume:</strong> el punto de entrada al parque, con vistas panorámicas."
       ],
-      "comer": "Picnic.",
-      "tomar": "Agua.",
-      "secreto": "Ruta nocturna guiada.",
-      "masTiempo": "Monfero.",
-      "advertencias": "Cierres por lluvia."
+      "comer": "En el parque no hay oferta. La villa de Pontedeume, en la desembocadura del Eume, tiene buenos restaurantes de marisco y cocina gallega tradicional.",
+      "tomar": "Lleva agua para el sendero. En Pontedeume encontrarás todo lo que necesitas.",
+      "secreto": "El sendero hasta el monasterio de Caaveiro (unos 8 km de ida y vuelta) es uno de los paseos más bonitos de Galicia. El monasterio en ruinas, rodeado de bosque en una confluencia de ríos, tiene una atmósfera que no te esperas encontrar tan cerca de A Coruña.",
+      "masTiempo": [
+        "<strong>Pontedeume:</strong> villa medieval con castillo en la desembocadura del Eume.",
+        "<strong>Betanzos:</strong> a pocos kilómetros, con su casco histórico gótico."
+      ],
+      "advertencias": [
+        "El acceso al parque es limitado — consulta la web del parque antes de ir.",
+        "Los senderos pueden estar embarrados tras la lluvia.",
+        "No hay servicios dentro del parque, lleva comida y agua."
+      ],
+      "miOpinion": "Las Fragas do Eume son uno de esos lugares que te dejan sin palabras. Entras en el bosque y la ciudad desaparece. El sonido del río, los helechos que te superan en altura, la luz filtrándose entre los robles... y al fondo, el monasterio de Caaveiro emergiendo entre la vegetación. Es el bosque gallego más puro que existe y está a media hora de A Coruña."
     },
     {
       "id": 9,
@@ -301,21 +357,30 @@
         "magicos"
       ],
       "horas": 3,
-      "imagen": "img/pindo.jpg",
+      "imagen": "img/montepindo.jpg",
       "lat": 42.9,
       "lng": -9.1,
-      "porQueVenir": "Monte sagrado, granito rosa.",
-      "momentoPerfecto": "Día despejado.",
+      "porQueVenir": "El Monte Pindo es el Olimpo Celta: un coloso de granito a más de 600 metros con formaciones rocosas únicas que los celtas consideraban morada de los dioses. Hoy sigue siendo un lugar cargado de misterio, leyendas druídicas y vistas espectaculares sobre la Costa da Morte.",
+      "momentoPerfecto": "Mañana temprano con cielo despejado para las vistas. En primavera el monte se cubre de colores y la vegetación está en su mejor momento. Evita los días de niebla si quieres disfrutar el panorama.",
       "imprescindibles": [
-        "Cumbre",
-        "Leyendas",
-        "Vistas"
+        "<strong>La cima:</strong> formaciones graníticas únicas con vistas al océano y a la playa de Carnota.",
+        "<strong>Playa de Carnota:</strong> la más larga de Galicia al pie del monte.",
+        "<strong>Ruta circular:</strong> senderos bien marcados con diferentes niveles de dificultad.",
+        "<strong>Cova da Xoana:</strong> cueva legendaria donde habitaba una moura según la tradición celta."
       ],
-      "comer": "En Fisterra.",
-      "tomar": "Agua.",
-      "secreto": "Petroglifos.",
-      "masTiempo": "Fisterra.",
-      "advertencias": "Roca resbaladiza."
+      "comer": "En Carnota hay buenos restaurantes con vistas al mar. Specialidad local: el hórreo de Carnota (el más largo de Galicia) merece la foto y la parada.",
+      "tomar": "Lleva agua para la ruta. En Carnota tienes opciones de restauración.",
+      "secreto": "Las formaciones rocosas de la cima tienen nombres propios según la tradición local: los 'juegos de dioses' tallados por la erosión llevan siglos inspirando leyendas. La Cova da casa da Xoana, donde se decía que habitaba una moura, sigue siendo un lugar con una atmósfera especial.",
+      "masTiempo": [
+        "<strong>Playa de Carnota:</strong> perfecta para baño si hace buen tiempo.",
+        "<strong>Hórreo de Carnota:</strong> el más largo de Galicia, a los pies del monte."
+      ],
+      "advertencias": [
+        "La subida requiere condición física mínima.",
+        "El viento puede ser muy fuerte en la cima.",
+        "Lleva calzado adecuado para el monte."
+      ],
+      "miOpinion": "El Monte Pindo es de esos lugares que no esperas encontrar tan cerca del mar. Subes entre rocas graníticas que parecen esculpidas por manos gigantes, llegas a la cima y de repente tienes la playa de Carnota a tus pies y el Atlántico hasta el horizonte. La combinación de paisaje marino y montañoso es brutal. Y la carga mitológica del lugar hace que todo tenga un sabor diferente."
     },
     {
       "id": 10,
@@ -323,24 +388,32 @@
       "bloque": "acoruna",
       "categorias": [
         "naturaleza",
-        "costa"
+        "magicos"
       ],
       "horas": 1,
       "imagen": "img/ezaro.jpg",
       "lat": 42.8667,
       "lng": -9.1167,
-      "porQueVenir": "Única cascada que cae al mar.",
-      "momentoPerfecto": "Tras lluvias.",
+      "porQueVenir": "La Fervenza do Ézaro es la única cascada de Europa occidental que desemboca directamente en el mar. El río Xallas cae desde más de 100 metros directamente sobre las rocas del Atlántico. Un espectáculo natural que no tiene comparación en todo el continente.",
+      "momentoPerfecto": "Con lluvia o tras un período lluvioso, cuando el caudal es máximo y la caída es impresionante. Los viernes en verano suelen abrir las compuertas del embalse para un espectáculo de caudal completo — consulta el horario antes.",
       "imprescindibles": [
-        "Mirador",
-        "Playa",
-        "Faro"
+        "<strong>La cascada desde abajo:</strong> la vista desde la playa y las rocas, con el agua cayendo al mar.",
+        "<strong>Mirador de O Ézaro:</strong> vistas panorámicas sobre la fervenza y la costa.",
+        "<strong>Kayak al pie de la cascada:</strong> la experiencia más emocionante — puedes alquilar kayaks y acercarte al pie de la caída."
       ],
-      "comer": "En Fisterra.",
-      "tomar": "Agua.",
-      "secreto": "Noche con luna.",
-      "masTiempo": "Fisterra.",
-      "advertencias": "Menos agua en verano."
+      "comer": "En el pueblo del Ézaro hay algún bar. Para comer bien, Carnota o Cee están a pocos kilómetros.",
+      "tomar": "Hay una pequeña cafetería con terraza con vistas. Para lo demás, Cee.",
+      "secreto": "La experiencia en kayak al pie de la cascada es absolutamente única en Europa. Puedes acercarte hasta donde el agua cae al mar y sentir la fuerza del río sobre ti. Hay empresas locales que organizan la actividad.",
+      "masTiempo": [
+        "<strong>Playa de Carnota:</strong> a pocos kilómetros, la más larga de Galicia.",
+        "<strong>Corcubión:</strong> villa marinera con centro histórico-artístico declarado."
+      ],
+      "advertencias": [
+        "En época de sequía el caudal puede ser muy bajo.",
+        "Las rocas cerca de la cascada son resbaladizas.",
+        "El acceso en kayak requiere reserva previa."
+      ],
+      "miOpinion": "La Fervenza do Ézaro es un lugar que te deja sin palabras, sobre todo si has podido ver las compuertas abiertas o si el río baja con fuerza. Ver una cascada cayendo directamente al mar, sin que haya playa ni tierra de por medio, es algo que no encuentras en ningún otro sitio de Europa. Breve visita, pero impacto enorme."
     },
     {
       "id": 11,
@@ -348,96 +421,134 @@
       "bloque": "acoruna",
       "categorias": [
         "villas",
-        "patrimonio"
+        "patrimonio",
+        "magicos"
       ],
       "horas": 2,
       "imagen": "img/padron.jpg",
       "lat": 42.7333,
       "lng": -8.65,
-      "porQueVenir": "Cuna del peregrino.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Padrón es la cuna de los pimientos más famosos de España y la tierra de Rosalía de Castro, la escritora que dio voz a Galicia. Una villa con alma literaria, con el Camino de Santiago pasando por su centro y una historia ligada al Apóstol que va más allá de Compostela.",
+      "momentoPerfecto": "Cualquier época, pero en agosto celebra la Festa do Pemento — los pimientos de Padrón son los protagonistas y hay ambiente por todo el pueblo.",
       "imprescindibles": [
-        "Iria Flavia",
-        "Fonte do Carme",
-        "Pedrón"
+        "<strong>Casa-Museo de Rosalía de Castro:</strong> la casa natal de la poeta gallega, conservada tal como la conoció.",
+        "<strong>Pimientos de Padrón:</strong> comerlos fritos con sal gorda es obligatorio.",
+        "<strong>Iglesia de Santiago:</strong> donde según la tradición se amarró la barca que traía el cuerpo del Apóstol.",
+        "<strong>El Padrón:</strong> la piedra ('pedrón') romana a la que se ató la barca, en el interior de la iglesia."
       ],
-      "comer": "Pimientos de Padrón.",
-      "tomar": "Vino.",
-      "secreto": "Casa de Rosalía.",
-      "masTiempo": "Paseo del río.",
-      "advertencias": "Pican algunos."
+      "comer": "Los pimientos de Padrón fritos son el plato icónico. Acompañados de empanada y pulpo en cualquier bar del centro.",
+      "tomar": "Ribeiro, el vino de las Rías Baixas más antiguo, marida perfectamente con los pimientos.",
+      "secreto": "El jardín botánico de la casa de Rosalía es uno de los más bonitos y tranquilos de Galicia. Y muy pocos saben que el Padrón romano que da nombre a la villa está en el interior de la iglesia de Santiago — puedes tocarlo.",
+      "masTiempo": [
+        "<strong>Santiago de Compostela:</strong> a 25 km, perfecta como etapa del Camino.",
+        "<strong>Noia:</strong> villa medieval a pocos kilómetros."
+      ],
+      "advertencias": [
+        "Los pimientos de Padrón: 'uns pican e outros non' — hay que arriesgarse.",
+        "Pueblo pequeño, no esperes gran vida nocturna."
+      ],
+      "miOpinion": "Padrón tiene una dimensión literaria y gastronómica que no corresponde a su tamaño. La casa de Rosalía es emocionante para cualquier amante de la cultura gallega, y los pimientos fritos con sal gorda son una de esas cosas sencillas que están perfectas. Un par de horas bien aprovechadas y muy fácil de combinar con Santiago."
     },
     {
       "id": 12,
       "nombre": "San Andrés de Teixido",
       "bloque": "acoruna",
       "categorias": [
-        "magicos"
+        "magicos",
+        "naturaleza",
+        "patrimonio"
       ],
       "horas": 3,
       "imagen": "img/teixido.jpg",
       "lat": 43.6333,
       "lng": -8.25,
-      "porQueVenir": "Santuario donde van los que no van en vida.",
-      "momentoPerfecto": "Peregrinación.",
+      "porQueVenir": "San Andrés de Teixido es probablemente el lugar más mágico de Galicia. Un santuario en el borde del acantilado, accesible por una carretera de vértigo, al que la tradición dice que hay que ir al menos una vez en la vida — vivo o muerto. La leyenda dice que quien no va de vivo, va de muerto convertido en reptil o insecto.",
+      "momentoPerfecto": "Fuera de verano para verlo tranquilo. El camino de A Capelada, que llega al santuario a pie por los acantilados, es uno de los más impresionantes de Galicia.",
       "imprescindibles": [
-        "Santuario",
-        "Ruta",
-        "Vistas"
+        "<strong>El santuario:</strong> pequeña ermita blanca en el borde del mundo, con el océano 400 metros más abajo.",
+        "<strong>Las ofrendas de pan:</strong> figuras de pan (flores, animales, personas) que los devotos llevan al santo.",
+        "<strong>Los acantilados de A Capelada:</strong> los más altos de la Península Ibérica continental.",
+        "<strong>Camino de acceso:</strong> la carretera y el sendero que llegan al santuario son parte de la experiencia."
       ],
-      "comer": "Lo que lleves.",
-      "tomar": "Agua.",
-      "secreto": "Amanecer.",
-      "masTiempo": "Cedeira.",
-      "advertencias": "Carretera estrecha."
+      "comer": "Hay una pequeña aldea con algún bar y tienda de recuerdos. Para comer bien, Cedeira está a pocos kilómetros.",
+      "tomar": "El agua de la fuente del santuario es sagrada para los peregrinos.",
+      "secreto": "Los acantilados de A Capelada, que rodean el santuario, superan los 600 metros en algunos puntos — son los más altos de la Península Ibérica continental. Verlos desde el borde es una experiencia que quita el aliento.",
+      "masTiempo": [
+        "<strong>Cedeira:</strong> muy cerca, playa de A Magdalena y ambiente marinero.",
+        "<strong>Cabo Ortegal:</strong> el cabo más majestuoso de la costa gallega."
+      ],
+      "advertencias": [
+        "La carretera de acceso es estrecha y con curvas cerradas.",
+        "Mucho viento en los acantilados — precaución.",
+        "En verano hay peregrinación masiva."
+      ],
+      "miOpinion": "San Andrés de Teixido es uno de los lugares que hacen diferente a Galicia del resto del mundo. La combinación de fe popular, leyenda, paisaje extremo y tradición crea algo que no se puede explicar bien con palabras. Cuando llegas al santuario y ves el océano 400 metros más abajo y la niebla entrando por los cantiles, entiendes por qué la gente viene aquí de vivo para no tener que volver de muerto."
     },
     {
       "id": 13,
       "nombre": "Muros",
       "bloque": "acoruna",
       "categorias": [
-        "pueblos"
+        "villas",
+        "costa"
       ],
       "horas": 2,
       "imagen": "img/muros.jpg",
       "lat": 42.7667,
       "lng": -9.05,
-      "porQueVenir": "Puerto pesquero con quintas indias.",
-      "momentoPerfecto": "Mañana.",
+      "porQueVenir": "Muros es una de las villas marineras más bonitas de Galicia. Frente a Noia al otro lado de la ría, su casco histórico con soportales medievales, su puerto pesquero activo y sus playas cercanas la convierten en uno de los secretos mejor guardados de la Costa da Morte.",
+      "momentoPerfecto": "Verano, pero cualquier época sirve para disfrutar del casco histórico y el paseo marítimo. La ría de Muros-Noia tiene unos atardeceres increíbles.",
       "imprescindibles": [
-        "Puerto",
-        "Quintas",
-        "Playa"
+        "<strong>Casco histórico con soportales:</strong> uno de los conjuntos medievales mejor conservados de la ría.",
+        "<strong>Puerto pesquero:</strong> activo y auténtico, con barcos y actividad marinera real.",
+        "<strong>Paseo marítimo:</strong> con vistas a la ría y a los montes de Noia al fondo.",
+        "<strong>Playa de San Francisco:</strong> urbana y tranquila, dentro de la ría."
       ],
-      "comer": "Pescado fresco.",
-      "tomar": "Vino.",
-      "secreto": "Ruta de las Quintas.",
-      "masTiempo": "Noia.",
-      "advertencias": "Aparcar difícil."
+      "comer": "Marisco fresco de la ría, merluza y pescados locales. Los restaurantes del puerto son la mejor apuesta.",
+      "tomar": "Albariño de las Rías Baixas. En el paseo marítimo hay buenas terrazas.",
+      "secreto": "La ría de Muros-Noia es una de las rías menos masificadas de Galicia y tiene unas playas de arena blanca en su interior que muy poca gente conoce. La playa de Area Basta o la de Louro son ejemplos de esa costa interior tranquila que merece explorarse.",
+      "masTiempo": [
+        "<strong>Noia:</strong> al otro lado de la ría, con su iglesia gótica y cementerio medieval.",
+        "<strong>Monte Louro:</strong> mirador natural impresionante sobre toda la ría."
+      ],
+      "advertencias": [
+        "La guía de playas de La Voz de Galicia da fe de la calidad del litoral pero las corrientes en las playas exteriores son fuertes.",
+        "Aparcar en el casco histórico puede ser difícil en verano."
+      ],
+      "miOpinion": "Muros es de esas villas que te dan una bofetada de realidad gallega en el buen sentido. El casco histórico con sus soportales medievales, el puerto con los barcos, el paseo y la ría al fondo: todo encaja. No tiene el turismo de Combarro o Cambados, y eso es su mayor virtud."
     },
     {
       "id": 14,
       "nombre": "Noia",
       "bloque": "acoruna",
       "categorias": [
-        "pueblos"
+        "villas",
+        "patrimonio"
       ],
       "horas": 2,
       "imagen": "img/noia.jpg",
       "lat": 42.7833,
       "lng": -8.8833,
-      "porQueVenir": "Puerto fluvial con casco histórico.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Noia presume de tener el conjunto medieval mejor conservado de las Rías Baixas, con su iglesia gótica de Santa María a Nova y su fascinante cementerio con lápidas medievales cubiertas de gremios y símbolos que llevan siglos esperando ser descifrados.",
+      "momentoPerfecto": "Cualquier época. La iglesia y el cementerio son la visita principal y funcionan en cualquier estación. En verano combina bien con las playas de la ría.",
       "imprescindibles": [
-        "Puerto",
-        "Casco histórico",
-        "Ría"
+        "<strong>Iglesia de Santa María a Nova:</strong> gótica, del siglo XIV, con uno de los rosetones más bellos de Galicia.",
+        "<strong>Cementerio medieval:</strong> cientos de laudas funerarias con emblemas de gremios, única colección de este tipo en el mundo.",
+        "<strong>Casco histórico:</strong> plazas medievales, soportales y arquitectura civil bien conservada.",
+        "<strong>Puerto y ría:</strong> ambiente marinero con vistas a la ría de Muros-Noia."
       ],
-      "comer": "Marisco.",
-      "tomar": "Vino.",
-      "secreto": "Sendero.",
-      "masTiempo": "Muros.",
-      "advertencias": "Nada especial."
+      "comer": "Marisco, empanada y cocina gallega de la ría. El centro tiene buenas tabernas tradicionales.",
+      "tomar": "Vino blanco de la zona. Los bares de la plaza tienen buena oferta.",
+      "secreto": "Las laudas medievales del cementerio de Santa María a Nova son únicas en el mundo: más de 700 lápidas con emblemas de gremios —zapateros, sastres, carpinteros— que constituyen el mayor archivo gremial de piedra conocido. Un tesoro que muy pocos visitantes valoran en su justa medida.",
+      "masTiempo": [
+        "<strong>Muros:</strong> al otro lado de la ría, perfecta parada de camino.",
+        "<strong>Padrón:</strong> tierra de Rosalía y los pimientos, a pocos kilómetros."
+      ],
+      "advertencias": [
+        "El cementerio tiene horario limitado.",
+        "Pueblo tranquilo, poca vida nocturna."
+      ],
+      "miOpinion": "Noia sorprende porque no te esperas encontrar algo tan singular en un pueblo de su tamaño. El cementerio medieval con las laudas de los gremios es un tesoro histórico absolutamente único en el mundo — y está aquí, en Galicia, casi sin carteles explicativos. Si te interesa la historia medieval, es una parada obligatoria."
     },
     {
       "id": 15,
@@ -451,18 +562,26 @@
       "imagen": "img/ferrol.jpg",
       "lat": 43.4833,
       "lng": -8.2333,
-      "porQueVenir": "Ciudad naval ilustrada.",
-      "momentoPerfecto": "Mañana.",
+      "porQueVenir": "Ferrol es la ciudad de Franco, sí, pero también la ciudad del Arsenal naval más importante de España, de una ría espectacular, de playas bravas y de un modernismo arquitectónico sorprendente. Una ciudad industrial con un alma marinera profunda que la hace diferente al resto de Galicia.",
+      "momentoPerfecto": "Cualquier época. El Arsenal y el casco histórico son la visita principal. La ría es preciosa al atardecer.",
       "imprescindibles": [
-        "Arsenales",
-        "Castillo de San Felipe",
-        "Barrio de la Magdalena"
+        "<strong>Arsenal de Ferrol:</strong> uno de los arsenales navales más importantes de Europa del siglo XVIII.",
+        "<strong>Ciudad vieja y barrio de la Magdalena:</strong> trazado urbanístico ilustrado del siglo XVIII, único en España.",
+        "<strong>Ría de Ferrol:</strong> una de las rías más cerradas de Galicia, con un paisaje de ría interior espectacular.",
+        "<strong>Playa de Doniños:</strong> playa atlántica de surf, espectacular y sin masificación."
       ],
-      "comer": "Marisco.",
-      "tomar": "Estrella Galicia.",
-      "secreto": "Cabo Prior.",
-      "masTiempo": "Cedeira.",
-      "advertencias": "Lluvia frecuente."
+      "comer": "Marisco de la ría, empanada y guisos marineros. El barrio de la Magdalena tiene buenos restaurantes.",
+      "tomar": "Estrella Galicia, el vino de la tierra. Ambiente de bar marinero en el centro.",
+      "secreto": "El barrio de la Magdalena es el único conjunto urbano ilustrado del siglo XVIII que se conserva completo en España. Su trazado en cuadrícula regular —inusual en Galicia— y sus edificios uniformes de tres plantas lo convierten en una rareza arquitectónica que casi nadie conoce.",
+      "masTiempo": [
+        "<strong>Cedeira:</strong> a 45 km, playa de A Magdalena.",
+        "<strong>Betanzos:</strong> villa medieval a 30 km."
+      ],
+      "advertencias": [
+        "Ciudad con un pasado industrial pesado que ha dejado huella.",
+        "Algunas zonas del centro están en proceso de regeneración."
+      ],
+      "miOpinion": "Ferrol no tiene la fama que merece. El barrio de la Magdalena es una joya urbanística absolutamente única, el Arsenal es impresionante y la ría tiene una belleza tranquila muy particular. Y si te gusta el surf, la playa de Doniños es de las mejores del norte de Galicia. Una ciudad que sorprende a quien llega con los ojos abiertos."
     },
     {
       "id": 16,
@@ -470,24 +589,33 @@
       "bloque": "lugo",
       "categorias": [
         "ciudades",
-        "patrimonio"
+        "patrimonio",
+        "termalismo"
       ],
       "horas": 3,
       "imagen": "img/lugo.jpg",
       "lat": 43.01,
       "lng": -7.56,
-      "porQueVenir": "Muralla romana mejor conservada.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Lugo tiene la muralla romana mejor conservada del mundo. Dos kilómetros de muralla del siglo II que aún rodean completamente el casco histórico, Patrimonio de la Humanidad, y que se pueden recorrer por arriba. Dentro hay plazas porticadas, catedral románica y una vida urbana que no ha perdido su carácter.",
+      "momentoPerfecto": "Cualquier época. La muralla y el centro histórico son para todo el año. En verano el paseo de la muralla al atardecer es especial. En Semana Santa o en el Arde Lucus (junio) el ambiente es extraordinario.",
       "imprescindibles": [
-        "Muralla",
-        "Catedral",
-        "Casco histórico"
+        "<strong>Muralla romana:</strong> 2 km de muralla intacta del siglo II, Patrimonio de la Humanidad, recorrible por arriba.",
+        "<strong>Catedral de Santa María:</strong> románica, con elementos góticos y barrocos, en el corazón del casco.",
+        "<strong>Praza Maior:</strong> porticada, animada y perfecta para tomar un café o una tapa.",
+        "<strong>Termas Romanas del Miño:</strong> en el río, restos de las termas que los romanos aprovecharon."
       ],
-      "comer": "Pulpo.",
-      "tomar": "Cerveza.",
-      "secreto": "Paseo nocturno.",
-      "masTiempo": "Termas romanas.",
-      "advertencias": "Ciudad tranquila."
+      "comer": "Pulpo a feira, cachelos, carne de vaca gallega y tapas de tortilla. La zona de la Praza Maior y alrededores tiene excelente oferta gastronómica.",
+      "tomar": "Ribeiro, mencía o la cerveza local. El ambiente de bares en el casco antiguo es magnífico.",
+      "secreto": "Se puede salir de la ciudad por cualquiera de las 10 puertas de la muralla. Pero lo que pocos turistas hacen es subir al adarve y recorrerla entera — son 2 km de paseo por encima de la ciudad, con vistas al casco histórico y a los tejados medievales. Una perspectiva única.",
+      "masTiempo": [
+        "<strong>Arde Lucus:</strong> recreación histórica romana en junio, una de las más espectaculares de España.",
+        "<strong>Os Ancares:</strong> a una hora, naturaleza salvaje y pallozas."
+      ],
+      "advertencias": [
+        "Llueve bastante, lleva paraguas.",
+        "Algunos tramos de la muralla pueden estar cerrados por restauración."
+      ],
+      "miOpinion": "La muralla de Lugo es un regalo de los romanos que 2000 años después sigue intacto. Recorrerla por arriba, con el casco histórico a un lado y los campos al otro, es una de las experiencias más singulares de toda Galicia. Y el pulpo de Lugo, con patatas cocidas y pimentón, es la mejor versión que vas a encontrar."
     },
     {
       "id": 17,
@@ -501,18 +629,26 @@
       "imagen": "img/viveiro.jpg",
       "lat": 43.65,
       "lng": -7.6,
-      "porQueVenir": "Villa marinera medieval.",
-      "momentoPerfecto": "Verano.",
+      "porQueVenir": "Viveiro es la capital de las Rías Altas luguesas: una villa medieval con murallas, casco histórico bien conservado, playas espectaculares en los alrededores y uno de los carnavales más famosos de Galicia. La ría es tranquila y bonita, y el ambiente es auténtico.",
+      "momentoPerfecto": "Verano para las playas, y Carnaval (febrero-marzo) para la fiesta. El casco histórico vale en cualquier estación.",
       "imprescindibles": [
-        "Puerto",
-        "Casco histórico",
-        "Playa de Covas"
+        "<strong>Casco histórico y murallas:</strong> varios lienzos de muralla medieval conservados y calles empedradas.",
+        "<strong>Puerta de Carlos V:</strong> arco renacentista del siglo XVI, uno de los monumentos más fotogénicos.",
+        "<strong>Playa de Covas:</strong> playa extensa y con buen oleaje, a minutos del centro.",
+        "<strong>Ría de Viveiro:</strong> tranquila y perfecta para pasear por su orilla."
       ],
-      "comer": "Marisco.",
-      "tomar": "Sidra.",
-      "secreto": "Fiestas del Carmen.",
-      "masTiempo": "Playa de Covas.",
-      "advertencias": "Lleno en verano."
+      "comer": "Marisco de la ría, nécora, centollo y pescados frescos. El centro tiene buena oferta.",
+      "tomar": "Vino blanco de Rías Baixas. En Carnaval, el ambiente es de fiesta total.",
+      "secreto": "El Carnaval de Viveiro es uno de los más originales de Galicia: el Entroido Estudiantil reúne miles de personas disfrazadas siguiendo una tradición universitaria que lleva décadas. La noche de Carnaval en el casco histórico es una experiencia que difícilmente se olvida.",
+      "masTiempo": [
+        "<strong>Playa de Area:</strong> una de las mejores de la costa lucense.",
+        "<strong>Mondoñedo:</strong> ciudad episcopal medieval a pocos kilómetros al interior."
+      ],
+      "advertencias": [
+        "En verano y Carnaval hay mucha gente.",
+        "Las playas exteriores tienen oleaje, precaución con niños."
+      ],
+      "miOpinion": "Viveiro tiene esa combinación perfecta de villa histórica y destino costero que hace que sea difícil aburrirse aquí. El casco histórico es genuino, las playas son buenas y el Carnaval es una fiesta desbordante. Si tienes oportunidad de coincidir con él, no te lo pienses."
     },
     {
       "id": 18,
@@ -520,96 +656,140 @@
       "bloque": "lugo",
       "categorias": [
         "villas",
-        "patrimonio"
+        "patrimonio",
+        "magicos"
       ],
       "horas": 2,
       "imagen": "img/mondonedo.jpg",
       "lat": 43.4667,
       "lng": -7.45,
-      "porQueVenir": "Antigua capital del reino de Galicia.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Mondoñedo es probablemente la ciudad más desconocida y más sorprendente de Galicia. Una antigua sede episcopal con catedral románica, plazas porticadas y un ambiente que parece suspendido en el tiempo. Es tranquila, hermosa y prácticamente sin turismo.",
+      "momentoPerfecto": "Cualquier época. En octubre celebra la Feria del Queso, y en agosto las fiestas patronales con los famosos caballos de madera. El centro histórico es para todo el año.",
       "imprescindibles": [
-        "Catedral",
-        "Casco histórico",
-        "Miradores"
+        "<strong>Catedral de Mondoñedo:</strong> románica del siglo XIII con añadidos góticos, joya del arte medieval gallego.",
+        "<strong>Praza da Catedral:</strong> porticada y serena, una de las plazas más bonitas de Galicia.",
+        "<strong>Museo Catedralicio:</strong> con obras de arte sacro de gran valor.",
+        "<strong>El ermitaño:</strong> la famosa figura del ermitaño que aparece en la portada de la catedral."
       ],
-      "comer": "Empanada.",
-      "tomar": "Vino.",
-      "secreto": "Festival de la Cocina.",
-      "masTiempo": "Senda ecológica.",
-      "advertencias": "Lluvia frecuente."
+      "comer": "Productos locales: el Mondoñedo tiene quesos, empanadas y bollería artesana propios. Los pasteles de Mondoñedo son famosos en toda Galicia.",
+      "tomar": "Café con los pasteles locales en una de las pastelerías históricas del centro.",
+      "secreto": "Los 'caballos de madera' de Mondoñedo son una tradición única: figuras de caballos articulados que se pasean por las fiestas de As San Lucas en octubre. Son uno de esos elementos de cultura popular que solo existen aquí.",
+      "masTiempo": [
+        "<strong>Viveiro:</strong> a 30 km, ría y casco histórico.",
+        "<strong>Ribadeo:</strong> a 50 km, con las famosas playas de las Catedrales."
+      ],
+      "advertencias": [
+        "Pueblo pequeño, la oferta gastronómica es limitada aunque genuina.",
+        "Muchos servicios cierran los lunes."
+      ],
+      "miOpinion": "Mondoñedo es un secreto que Galicia guarda celosamente. Una ciudad episcopal medieval que no ha cedido al turismo de masas y que por eso mantiene un ambiente y una autenticidad que es difícil de encontrar. La catedral y la plaza son de las más bonitas de la comunidad. Si viajas por la costa lucense, merece mucho la pena desviarse al interior."
     },
     {
       "id": 19,
       "nombre": "Ribadeo",
       "bloque": "lugo",
       "categorias": [
-        "costa"
+        "costa",
+        "naturaleza",
+        "villas"
       ],
       "horas": 4,
       "imagen": "img/ribadeo.jpg",
       "lat": 43.5333,
       "lng": -7.0333,
-      "porQueVenir": "Villa marinera y playa de las Catedrales.",
-      "momentoPerfecto": "Marea baja.",
+      "porQueVenir": "Ribadeo es la puerta de Galicia desde Asturias. En su término municipal están las Catedrales, la playa más visitada y fotografiada del litoral gallego: arcos y cuevas esculpidos por el mar que solo se ven con marea baja. Pero la villa en sí tiene también su encanto, con ría, puerto y casco histórico.",
+      "momentoPerfecto": "Con marea baja — imprescindible consultarla antes. En verano hay que reservar el aparcamiento con antelación porque la playa colapsa. Fuera de temporada alta es mucho más tranquila y igual de bonita.",
       "imprescindibles": [
-        "Playa de las Catedrales",
-        "Torre de los Moreno",
-        "Paseo marítimo"
+        "<strong>Playa de As Catedrais:</strong> los arcos de roca más impresionantes de la costa gallega — solo accesibles con marea baja.",
+        "<strong>Ribadeo casco histórico:</strong> con la Torre de los Moreno, modernismo gallego del siglo XX.",
+        "<strong>Ría de Ribadeo:</strong> la frontera natural con Asturias, con vistas al puente y a los montes asturianos.",
+        "<strong>Playa de Rochas Brancas:</strong> pequeña y escondida, solo accesible con marea baja."
       ],
-      "comer": "Marisco.",
-      "tomar": "Sidra.",
-      "secreto": "Faro de la Isla Pancha.",
-      "masTiempo": "Mondoñedo.",
-      "advertencias": "Reserva en Catedrales."
+      "comer": "Marisco de la ría, percebes, merluza y cocina marinera. El puerto tiene buenos restaurantes.",
+      "tomar": "Vino blanco gallego. Las terrazas con vistas a la ría son perfectas.",
+      "secreto": "As Catedrais son gratuitas y espectaculares, pero lo que pocos saben es que con marea alta completamente sube, los arcos desaparecen bajo el agua. El timing es todo. Además, la playa de Rochas Brancas, a pocos kilómetros, es casi desconocida y extraordinariamente bonita.",
+      "masTiempo": [
+        "<strong>Foz:</strong> bonita villa a pocos km con su ría y playas.",
+        "<strong>Mondoñedo:</strong> ciudad episcopal medieval al interior."
+      ],
+      "planLluvia": [
+        "<strong>Torre de los Moreno:</strong> modernismo indiano del siglo XX, única en Galicia.",
+        "<strong>Mercado de Ribadeo:</strong> producto local y ambiente auténtico."
+      ],
+      "advertencias": [
+        "As Catedrais: solo accesibles con marea baja — consulta el horario antes.",
+        "En julio y agosto hay que reservar acceso online obligatoriamente.",
+        "El aparcamiento en temporada alta es un caos."
+      ],
+      "miOpinion": "As Catedrais son espectaculares, punto. Pero hay que ir con la marea correcta y, si es posible, fuera de agosto. Ver esos arcos de roca con el sol de la tarde y casi nadie alrededor es uno de esos momentos que se quedan grabados. Ribadeo el pueblo también tiene su encanto, especialmente si te da por curiosear la arquitectura modernista indiana."
     },
     {
       "id": 20,
       "nombre": "Serra dos Ancares",
       "bloque": "lugo",
       "categorias": [
-        "naturaleza"
+        "naturaleza",
+        "patrimonio",
+        "magicos"
       ],
       "horas": 5,
       "imagen": "img/ancares.jpg",
       "lat": 42.7833,
       "lng": -7.2,
-      "porQueVenir": "Montaña, pallozas, sosiego.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Los Ancares son el último rincón verdaderamente salvaje de Galicia: montañas que superan los 1900 metros, bosques de robles y abedules, ríos de trucha y, sobre todo, las pallozas — las casas circulares de piedra y paja prerromanas donde la gente vivió hasta hace pocas décadas. Un viaje al pasado.",
+      "momentoPerfecto": "Primavera y otoño para el paisaje. En invierno nieva y la experiencia es única pero el acceso puede ser difícil. El verano es ideal para senderismo.",
       "imprescindibles": [
-        "Pallozas",
-        "Rutas",
-        "Vistas"
+        "<strong>Pallozas de Piornedo:</strong> el conjunto de pallozas prerromanas mejor conservado de Galicia.",
+        "<strong>Pico Mustallar:</strong> el punto más alto de Galicia (1934 m), con vistas a León, Asturias y toda la sierra.",
+        "<strong>Bosques de caducifolias:</strong> robles, castaños y abedules que en otoño crean paisajes de colores increíbles.",
+        "<strong>Río Navia:</strong> uno de los ríos más limpios de la Península, ideal para pesca de trucha."
       ],
-      "comer": "Cocina tradicional.",
-      "tomar": "Agua.",
-      "secreto": "Cascada secreta.",
-      "masTiempo": "Ruta completa.",
-      "advertencias": "Carreteras de montaña."
+      "comer": "Cocido gallego de montaña, cecina, trucha del río y productos de la matanza. Los restaurantes de Becerreá y Pedrafita son la referencia.",
+      "tomar": "Aguardiente de hierbas, los mejores licores artesanos de Galicia se hacen en esta zona.",
+      "secreto": "Las pallozas de Piornedo están habitadas por personas mayores hasta hace 30-40 años. Algunas familias conservan los aperos y objetos de uso diario que puedes ver en visitas guiadas. Es un salto al neolítico en pleno siglo XXI.",
+      "masTiempo": [
+        "<strong>Parque Natural Rías Altas:</strong> contrastes naturales espectaculares.",
+        "<strong>El Bierzo (León):</strong> las Médulas romanas están a una hora."
+      ],
+      "advertencias": [
+        "Las carreteras son estrechas y con curvas cerradas.",
+        "En invierno puede haber nieve y las pistas pueden cerrarse.",
+        "Lleva calzado adecuado para el monte."
+      ],
+      "miOpinion": "Los Ancares son Galicia sin filtros: montaña, bosque, frío, silencio y pallozas donde la gente vivió durante milenios sin cambiar nada. Llegar a Piornedo y ver esas casas circulares de piedra y paja entre la niebla es algo que no tiene comparación. Si buscas naturaleza extrema y cultura ancestral, este es el destino."
     },
     {
       "id": 21,
       "nombre": "Chantada",
       "bloque": "lugo",
       "categorias": [
-        "patrimonio"
+        "villas",
+        "naturaleza"
       ],
       "horas": 2,
       "imagen": "img/chantada.jpg",
       "lat": 42.6167,
       "lng": -7.7667,
-      "porQueVenir": "Villa con tradición vinícola.",
-      "momentoPerfecto": "Otoño.",
+      "porQueVenir": "Chantada es la puerta a la Ribeira Sacra desde el norte. Una pequeña ciudad tranquila en el límite entre Lugo y Ourense, rodeada de viñedos en ladera, con el cañón del Miño abriéndose a sus pies y una arquitectura rural que no se ha tocado desde hace siglos.",
+      "momentoPerfecto": "Otoño, durante la vendimia, cuando los viñedos en terrazas son un espectáculo de colores. Primavera también es muy bonita.",
       "imprescindibles": [
-        "Casco histórico",
-        "Bodegas",
-        "Paisajes"
+        "<strong>Mirador do Cañón del Miño:</strong> vistas espectaculares sobre el río y los viñedos en terrazas.",
+        "<strong>Viñedos en ladera:</strong> el paisaje vitivinícola más dramático de toda la Ribeira Sacra.",
+        "<strong>Monasterio de Asma:</strong> románico del siglo XII en el centro de la villa.",
+        "<strong>Feria del Albariño de la Ribeira Sacra:</strong> en agosto, degustación de vinos locales."
       ],
-      "comer": "Vino y queso.",
-      "tomar": "Mencía.",
-      "secreto": "Rutas del vino.",
-      "masTiempo": "Carballeira.",
-      "advertencias": "Calor en verano."
+      "comer": "Vino mencía de la Ribeira Sacra, trucha del río, ternera gallega y empanada. Los restaurantes con vistas al cañón son la mejor opción.",
+      "tomar": "Mencía de la Ribeira Sacra — el vino más interesante que produce Galicia después del albariño.",
+      "secreto": "Los miradores sobre el cañón del Miño en los alrededores de Chantada, especialmente al atardecer con los viñedos en terrazas bañados por la luz dorada, son de las vistas más impresionantes de toda la Ribeira Sacra. Menos conocidos que los de Ourense pero igualmente espectaculares.",
+      "masTiempo": [
+        "<strong>Ribeira Sacra:</strong> cañones, monasterios y viñedos.",
+        "<strong>Monforte de Lemos:</strong> a media hora, con el parador y el colegio de los jesuitas."
+      ],
+      "advertencias": [
+        "Pueblo pequeño con oferta limitada.",
+        "Los miradores requieren coche para acceder."
+      ],
+      "miOpinion": "Chantada no es un destino en sí mismo, pero es una base perfecta para explorar la Ribeira Sacra desde el norte y tiene ese encanto de la Galicia interior sin turistificar. Los miradores sobre el cañón al atardecer compensan el desvío."
     },
     {
       "id": 22,
@@ -617,24 +797,41 @@
       "bloque": "ourense",
       "categorias": [
         "ciudades",
+        "patrimonio",
         "termalismo"
       ],
       "horas": 3,
       "imagen": "img/ourense.jpg",
       "lat": 42.335,
       "lng": -7.864,
-      "porQueVenir": "Termas romanas, casco histórico.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Ourense sorprende a casi todo el que viene sin haberla visitado. Es la segunda ciudad de Europa con más fuentes termales después de Budapest, pero su casco histórico medieval, la catedral con el Pórtico del Paraíso policromado y la Praza Maior animada hacen que las termas sean solo una de sus muchas razones para venir.",
+      "momentoPerfecto": "Cualquier época, pero en invierno la experiencia termal tiene otro nivel: bañarte al aire libre en agua a más de 37°C con el ambiente frío es incomparable. El casco histórico es para todo el año.",
       "imprescindibles": [
-        "Puente romano",
-        "Termas",
-        "Casco viejo"
+        "<strong>Catedral de San Martiño:</strong> románica del XII-XIII con el Pórtico del Paraíso (policromado), la Capilla del Santo Cristo y el Altar Mayor.",
+        "<strong>As Burgas:</strong> manantiales termales en pleno centro, brotan a 64°C ininterrumpidamente desde hace más de 2000 años.",
+        "<strong>Praza Maior:</strong> el corazón de la ciudad, con el Ayuntamiento de 1888 y terrazas animadas.",
+        "<strong>Iglesia de Santa María Nai:</strong> la primera iglesia cristiana de Ourense, con su gran escalinata.",
+        "<strong>Ruta Termal del Miño:</strong> 6 km de pozas termales gratuitas y de pago al aire libre junto al río."
       ],
-      "comer": "Pulpo.",
-      "tomar": "Mencía.",
-      "secreto": "Termas libres.",
-      "masTiempo": "Ribeira Sacra.",
-      "advertencias": "Calor en verano."
+      "comer": "Pulpo a feira, cachelos, rabadas (rabo de toro), patacos y cocido gallego. El casco histórico tiene excelente oferta de tapas.",
+      "tomar": "Ribeiro — el vino de Ourense, ligero y refrescante, en cualquier bar del centro.",
+      "secreto": "En la catedral, a los pies de los pilares, hay juegos de mesa labrados en granito que los fieles usaban durante las largas ceremonias medievales. El fervedoiro de As Burgas —un pequeño estanque donde el agua burbujea como si hirviera— es otro secreto que muchos visitantes pasan por alto. Y el primer domingo de cada mes hay un mercado de antigüedades en la Praza Maior.",
+      "masTiempo": [
+        "<strong>Termas de Outariz:</strong> instalaciones termolúdicas de estilo japonés Onsen, junto al río Miño.",
+        "<strong>Tren de las Termas:</strong> sale de la Praza Maior y recorre los espacios termales del Miño.",
+        "<strong>Castro de Santomé:</strong> castro prerromano visitable con vistas a la ciudad.",
+        "<strong>Allariz:</strong> a 25 km, una de las villas más bonitas de Galicia."
+      ],
+      "planLluvia": [
+        "<strong>Museo Arqueológico Provincial:</strong> en la Praza Maior, con piezas de todas las épocas.",
+        "<strong>Claustro franciscano del siglo XIV:</strong> gótico gallego con 63 arcos apuntados.",
+        "<strong>Centro de Interpretación As Burgas:</strong> historia del termalismo ourensano."
+      ],
+      "advertencias": [
+        "Las pozas gratuitas del Miño pueden estar concurridas en verano.",
+        "La Ceremonia del Desplante (Domingo de Resurrección) corta el tráfico — infórmate si visitas en Semana Santa."
+      ],
+      "miOpinion": "Ourense es de esas ciudades que tardan en revelarse pero que, una vez que te dan, no te sueltan. El casco histórico es magnífico y la catedral es de las mejores de Galicia. Pero lo más especial es la combinación de historia y termalismo: bañarte gratis en el Miño, de noche, con el Puente del Milenio iluminado al fondo, es algo que solo puedes hacer aquí. Una ciudad que merece mucho más reconocimiento del que tiene."
     },
     {
       "id": 23,
@@ -642,24 +839,33 @@
       "bloque": "ourense",
       "categorias": [
         "villas",
-        "termalismo"
+        "patrimonio",
+        "naturaleza"
       ],
       "horas": 2,
       "imagen": "img/allariz.jpg",
       "lat": 42.1833,
       "lng": -7.8,
-      "porQueVenir": "Villa medieval peatonal.",
-      "momentoPerfecto": "Tarde.",
+      "porQueVenir": "Allariz ganó el Premio Europeo de Urbanismo por su proceso de rehabilitación urbana. Hoy es uno de los pueblos más bonitos de España: un centro histórico medieval perfectamente restaurado, con molinos en el río, hórreos, plazas de piedra y un ambiente que recuerda a cómo era Galicia hace siglos.",
+      "momentoPerfecto": "Cualquier época. En Carnaval tiene uno de los más originales de Galicia, y en junio la Festa do Boi es la fiesta patronal más colorida de la provincia.",
       "imprescindibles": [
-        "Casco histórico",
-        "Río Arnoia",
-        "Artesanía"
+        "<strong>Casco histórico medieval:</strong> calles empedradas, plazas de piedra y arquitectura popular restaurada.",
+        "<strong>Río Arnoia:</strong> paseo fluvial con molinos medievales, hórreos y puentes de piedra.",
+        "<strong>Mercado artesanal:</strong> talleres de artesanos trabajando en vivo, únicos en la zona.",
+        "<strong>Iglesia de Santiago:</strong> románica, con portada esculpida de gran calidad."
       ],
-      "comer": "Cocina gallega.",
-      "tomar": "Vino.",
-      "secreto": "Ruta del Arnoia.",
-      "masTiempo": "Playa fluvial.",
-      "advertencias": "Nada."
+      "comer": "Cocina tradicional ourensana: caldo gallego, lacón con grelos, cocido. Los restaurantes del casco histórico son de los mejores de la provincia.",
+      "tomar": "Ribeiro o mencía. Los bares de la plaza mayor son el ambiente clásico.",
+      "secreto": "El proceso de restauración de Allariz en los años 90 es un modelo de cómo rehabilitar un centro histórico sin perder el alma del lugar. No solo restauraron edificios: recuperaron oficios, artesanía y vida. Los talleres de artesanos en funcionamiento son únicos en toda Galicia.",
+      "masTiempo": [
+        "<strong>Ourense:</strong> a 25 km, las termas y el casco histórico.",
+        "<strong>Ribadavia:</strong> a 30 km, con el barrio judío y los vinos de Ribeiro."
+      ],
+      "advertencias": [
+        "Pueblo pequeño, oferta limitada fuera del centro histórico.",
+        "En temporada alta puede haber bastante turismo de fin de semana."
+      ],
+      "miOpinion": "Allariz es el ejemplo de lo que puede conseguir una buena política de rehabilitación urbana. Entrás al casco histórico y parece que el tiempo se ha detenido, pero de una manera viva — con talleres funcionando, gente en las plazas y el río corriendo entre los molinos. Es de esos pueblos que te alegran el día sin que sepas exactamente por qué."
     },
     {
       "id": 24,
@@ -673,116 +879,164 @@
       "imagen": "img/ribadavia.jpg",
       "lat": 42.2833,
       "lng": -8.15,
-      "porQueVenir": "Capital del vino y judería.",
-      "momentoPerfecto": "Fiesta del vino.",
+      "porQueVenir": "Ribadavia fue la capital del reino de Galicia en la Edad Media y tiene el barrio judío mejor conservado de toda la comunidad. Junto al Miño, rodeada de viñedos de Ribeiro, esta villa tiene una historia y un patrimonio que pocas de su tamaño pueden igualar.",
+      "momentoPerfecto": "Cualquier época, pero en octubre durante la Feria de los Vinos del Ribeiro el ambiente es especial. En verano el calor de Ourense se siente aquí también, pero la sombra del casco histórico lo hace más llevadero.",
       "imprescindibles": [
-        "Judería",
-        "Casco histórico",
-        "Bodegas"
+        "<strong>Barrio judío:</strong> el más auténtico de Galicia, con calles medievales y la judería perfectamente conservada.",
+        "<strong>Castillo de los Condes de Ribadavia:</strong> fortaleza medieval del siglo X-XII con vistas sobre el Miño.",
+        "<strong>Praza Maior porticada:</strong> una de las más bonitas de la provincia, con la iglesia de Santiago.",
+        "<strong>Vinos del Ribeiro:</strong> la DO más antigua de Galicia, con bodegas en los alrededores."
       ],
-      "comer": "Vino y tapas.",
-      "tomar": "Mencía.",
-      "secreto": "Fiesta del vino.",
-      "masTiempo": "Riberas del Miño.",
-      "advertencias": "Fiestas en agosto."
+      "comer": "Marisco del Miño (angula, lamprea en temporada), trucha y el cocido gallego. En la Praza Maior hay buenos bares de tapas.",
+      "tomar": "Ribeiro — el vino local, blanco y ligero, perfecto para tapear. Es la cuna de esta denominación.",
+      "secreto": "La judería de Ribadavia es de las pocas comunidades judías medievales que se conservan en Galicia. Hay familias con apellidos judíos que llevan generaciones aquí — algunos descendientes de conversos que nunca se fueron.",
+      "masTiempo": [
+        "<strong>Allariz:</strong> a 30 km, una de las villas más bonitas de España.",
+        "<strong>Bodegas de Ribeiro:</strong> visitas y degustaciones en los alrededores."
+      ],
+      "advertencias": [
+        "Pueblo pequeño con oferta limitada.",
+        "Las bodegas requieren reserva para las visitas."
+      ],
+      "miOpinion": "Ribadavia es una lección de historia en pequeño formato. El barrio judío, el castillo, los vinos del Ribeiro y la Praza Maior hacen de este pueblo una visita que merece más atención de la que recibe. Y si consigues lamprea en temporada (febrero-abril), pruébala: es uno de los platos más singulares de toda Galicia."
     },
     {
       "id": 25,
       "nombre": "Monforte de Lemos",
       "bloque": "ourense",
       "categorias": [
+        "villas",
         "patrimonio"
       ],
       "horas": 3,
       "imagen": "img/monforte.jpg",
       "lat": 42.5167,
       "lng": -7.5167,
-      "porQueVenir": "Colegiata y torre del homenaje.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "Monforte de Lemos es la ciudad del arte: el Colegio de la Compañía de Jesús, con su pinacoteca que incluye obras del Greco y Memling, y el Parador Nacional en el antiguo monasterio de San Vicente del Pino, hacen de esta ciudad media un destino cultural de primer nivel en plena Ribeira Sacra.",
+      "momentoPerfecto": "Cualquier época. El casco histórico y la pinacoteca funcionan todo el año. En otoño la Ribeira Sacra de alrededor está en su máximo esplendor.",
       "imprescindibles": [
-        "Colexiata",
-        "Torre da Homenaxe",
-        "Huerta"
+        "<strong>Colegio de la Compañía de Jesús:</strong> barroco del siglo XVII con pinacoteca que incluye El Greco, Memling y otros maestros.",
+        "<strong>Parador de San Vicente del Pino:</strong> antiguo monasterio benedictino del siglo X reconvertido en hotel de lujo, con vistas a toda la ciudad.",
+        "<strong>Torre del Homenaje:</strong> lo que queda del castillo medieval de los Condes de Lemos.",
+        "<strong>Casco histórico:</strong> palacios, iglesias y casas blasonadas de los siglos XVI-XVIII."
       ],
-      "comer": "Pulpo.",
-      "tomar": "Mencía.",
-      "secreto": "Vistas desde la torre.",
-      "masTiempo": "Ribeira Sacra.",
-      "advertencias": "Cuesta arriba."
+      "comer": "Ternera gallega, lamprea en temporada, trucha del Sil y vinos de la Ribeira Sacra. Los restaurantes cerca del parador son la mejor opción.",
+      "tomar": "Mencía de la Ribeira Sacra — aquí es donde el vino alcanza su máxima expresión.",
+      "secreto": "La pinacoteca del Colegio del Cardenal tiene obras del Greco y del flamenco Hans Memling que serían la pieza estrella de cualquier museo metropolitano. Están aquí, en Monforte, con poca gente y sin colas. Es uno de los tesoros artísticos más infrautilizados de España.",
+      "masTiempo": [
+        "<strong>Cañón del Sil:</strong> a media hora, el paisaje más espectacular de la Ribeira Sacra.",
+        "<strong>Castro Caldelas:</strong> castillo medieval en un promontorio con vistas al embalse."
+      ],
+      "advertencias": [
+        "El colegio y su pinacoteca tienen horarios limitados — consulta antes.",
+        "El parador es caro pero el café en su terraza con vistas es accesible."
+      ],
+      "miOpinion": "Monforte de Lemos es la ciudad que me parece más subestimada de toda Galicia. Tiene un El Greco y un Memling escondidos en un colegio barroco que casi nadie conoce, un parador espectacular en un monasterio medieval y el mejor mencía que puedes probar a pocos metros. Es el sitio perfecto como base para explorar la Ribeira Sacra."
     },
     {
       "id": 26,
       "nombre": "Castro Caldelas",
       "bloque": "ourense",
       "categorias": [
-        "patrimonio"
+        "villas",
+        "patrimonio",
+        "naturaleza"
       ],
       "horas": 2,
-      "imagen": "img/castro.jpg",
+      "imagen": "img/castrocaldelas.jpg",
       "lat": 42.3581,
       "lng": -7.4649,
-      "porQueVenir": "Castillo medieval y vistas.",
-      "momentoPerfecto": "Mañana.",
+      "porQueVenir": "Castro Caldelas es un pueblo medieval encaramado en un promontorio, con un castillo del siglo XIV que domina el embalse de Velle y los viñedos de la Ribeira Sacra. Desde aquí se tiene una de las mejores vistas de toda la comarca.",
+      "momentoPerfecto": "Otoño, cuando los viñedos en terrazas cambian de color y el paisaje del embalse es extraordinario. Cualquier época del año tiene su encanto.",
       "imprescindibles": [
-        "Castillo",
-        "Pueblo",
-        "Miradores"
+        "<strong>Castillo de Castro Caldelas:</strong> fortaleza medieval del siglo XIV perfectamente conservada.",
+        "<strong>Mirador sobre el embalse:</strong> vistas panorámicas sobre el embalse de Velle y los viñedos en terrazas.",
+        "<strong>Casco histórico:</strong> callescalles empedradas medievales y casas de piedra con escudos.",
+        "<strong>Iglesia de Santa María:</strong> románica, en el centro del pueblo."
       ],
-      "comer": "Cocina tradicional.",
-      "tomar": "Mencía.",
-      "secreto": "Atardecer.",
-      "masTiempo": "Cañón del Sil.",
-      "advertencias": "Carretera curvas."
+      "comer": "Cocina de montaña: cabrito, cordero, trucha y vinos de la Ribeira Sacra. Los restaurantes del pueblo son sencillos pero con buena materia prima.",
+      "tomar": "Mencía de la Ribeira Sacra. En otoño puedes coincidir con la vendimia.",
+      "secreto": "El castillo tiene una torre del homenaje desde la que se ven simultáneamente los cañones del Sil y el Miño, los viñedos en terrazas y el embalse. Es uno de los panoramas más completos de la Ribeira Sacra, y casi nadie llega hasta aquí.",
+      "masTiempo": [
+        "<strong>Cañón del Sil:</strong> el paisaje más espectacular de la Ribeira Sacra.",
+        "<strong>Monforte de Lemos:</strong> a 40 km, con El Greco y el parador."
+      ],
+      "advertencias": [
+        "Pueblo muy pequeño, la oferta gastronómica es mínima.",
+        "Las carreteras de acceso son estrechas."
+      ],
+      "miOpinion": "Castro Caldelas es un secreto de la Ribeira Sacra que merece descubrirse. El castillo, el pueblo medieval y las vistas sobre el embalse y los viñedos componen una postal que pocas veces se ve. Si visitas la Ribeira Sacra, inclúyelo en el recorrido."
     },
     {
       "id": 27,
       "nombre": "Cañón del Sil",
       "bloque": "ourense",
       "categorias": [
-        "naturaleza"
+        "naturaleza",
+        "patrimonio",
+        "magicos"
       ],
       "horas": 5,
-      "imagen": "img/sil.jpg",
+      "imagen": "img/canondelSil.jpg",
       "lat": 42.4167,
       "lng": -7.75,
-      "porQueVenir": "Cañones más espectaculares.",
-      "momentoPerfecto": "Primavera y otoño.",
+      "porQueVenir": "El Cañón del Sil es uno de los paisajes más espectaculares de la Península Ibérica: paredes de roca de 500 metros de altura con viñedos en terrazas colgadas sobre el río, accesibles solo en barco o por senderos de vértigo. La mejor manera de verlo es desde el catamarán.",
+      "momentoPerfecto": "Otoño, cuando los viñedos cambian a rojo y amarillo y el contraste con el granito y el río es extraordinario. Primavera también es muy bonita. Evita agosto si puedes: hay mucha gente.",
       "imprescindibles": [
-        "Catamarán",
-        "Miradores",
-        "Monasterios"
+        "<strong>Crucero en catamarán por el Sil:</strong> la mejor forma de ver los viñedos en terrazas y las paredes del cañón.",
+        "<strong>Mirador de Castro Caldelas:</strong> vistas panorámicas sobre el cañón.",
+        "<strong>Monasterio de Santo Estevo de Ribas de Sil:</strong> románico del siglo XII convertido en Parador, en lo alto del cañón.",
+        "<strong>Viñedos en terrazas:</strong> algunos tienen pendientes del 70%, cultivados a mano."
       ],
-      "comer": "Adegas.",
-      "tomar": "Mencía.",
-      "secreto": "Sendero de los Monjes.",
-      "masTiempo": "Castro Caldelas.",
-      "advertencias": "Carreteras estrechas."
+      "comer": "Trucha, ternera gallega y vinos de mencía de la Ribeira Sacra con denominación de origen propia.",
+      "tomar": "Mencía del Sil — el mejor vino tinto de Galicia, con una complejidad que pocos esperan.",
+      "secreto": "Los cruceros del catamarán incluyen degustación de mencía a bordo mientras navegas entre las paredes del cañón. Es una de las mejores experiencias enoturísticas de España. Reserva con antelación en temporada.",
+      "masTiempo": [
+        "<strong>Monasterio de Santo Estevo:</strong> románico impresionante, hoy Parador.",
+        "<strong>Castro Caldelas:</strong> castillo medieval con vistas al cañón."
+      ],
+      "advertencias": [
+        "El catamarán hay que reservarlo con antelación en temporada alta.",
+        "Los senderos de acceso a los viñedos son difíciles y sin señalización turística.",
+        "Sin coche es difícil moverse por la zona."
+      ],
+      "miOpinion": "El Cañón del Sil es uno de esos paisajes que te dejan sin palabras y que ponen en su sitio cualquier prejuicio que puedas tener sobre Galicia. Eso no es verde y húmedo: son 500 metros de granito con viñedos colgados y un río turquesa abajo. El catamarán con mencía a bordo es una de las mejores horas que puedes pasar en Galicia."
     },
     {
       "id": 28,
       "nombre": "Ribeira Sacra",
       "bloque": "ourense",
       "categorias": [
-        "magicos",
         "naturaleza",
-        "patrimonio"
+        "patrimonio",
+        "magicos"
       ],
       "horas": 6,
-      "imagen": "img/ribeira.jpg",
+      "imagen": "img/ribeirasacra.jpg",
       "lat": 42.45,
       "lng": -7.55,
-      "porQueVenir": "Tierra de monjes y milagros.",
-      "momentoPerfecto": "Cualquier momento.",
+      "porQueVenir": "La Ribeira Sacra es una de las grandes sorpresas de Galicia: una comarca donde los ríos Miño y Sil abren cañones de 500 metros con viñedos en terrazas prehistóricas y monasterios románicos colgados sobre el agua. Vino, naturaleza y espiritualidad en un paisaje sin comparación.",
+      "momentoPerfecto": "Otoño para la vendimia y los colores, primavera para las flores. El verano es también muy bueno pero con más gente. En invierno tiene una serenidad especial.",
       "imprescindibles": [
-        "Monasterios",
-        "Cañones",
-        "Catamarán"
+        "<strong>Crucero por el Sil:</strong> los cañones desde el agua, con viñedos en terrazas a 500 metros.",
+        "<strong>Monasterio de Santa Cristina de Ribas de Sil:</strong> románico del XII, uno de los mejores de Galicia.",
+        "<strong>Monasterio de Santo Estevo de Ribas de Sil:</strong> románico, hoy Parador, con claustros del XII-XVI.",
+        "<strong>Viñedos heroicos:</strong> con pendientes de hasta el 80%, cultivados a mano desde la época romana."
       ],
-      "comer": "Mencía.",
-      "tomar": "Godello.",
-      "secreto": "Monasterio de San Pedro de Rocas.",
-      "masTiempo": "Varios días.",
-      "advertencias": "Carreteras de montaña."
+      "comer": "Mencía de la Ribeira Sacra, trucha del Sil, ternera gallega de montaña y queso de tetilla. Las bodegas ofrecen maridajes directamente en los viñedos.",
+      "tomar": "Mencía — tinto complejo y elegante que es la joya enológica de Galicia. Las bodegas más reputadas son Rectoral de Amandi, Algueira y Dominio do Bibei.",
+      "secreto": "La Ribeira Sacra fue zona de monasterios benedictinos y cistercienses desde el siglo VI. Los monjes cultivaron los viñedos en terrazas para autoabastecerse — y esos mismos viñedos, con las mismas técnicas, siguen produciendo uno de los mejores vinos de España.",
+      "masTiempo": [
+        "<strong>Enoturismo:</strong> rutas de bodegas con cata y visita a los viñedos en terrazas.",
+        "<strong>Senderismo por los cañones:</strong> rutas de varios días por los caminos de los monjes.",
+        "<strong>Chantada:</strong> mirador sobre el Miño con viñedos."
+      ],
+      "advertencias": [
+        "Zona extensa — planifica bien los desplazamientos.",
+        "Sin coche propio es muy difícil moverse.",
+        "Las bodegas requieren reserva para visitas."
+      ],
+      "miOpinion": "La Ribeira Sacra es la joya escondida de Galicia. Hay un momento en el crucero por el Sil — cuando las paredes del cañón te envuelven, los viñedos cuelgan sobre el agua y el silencio solo lo rompe el motor del barco — en que entiendes por qué esta tierra se llama Sagrada. Ven aquí si quieres ver Galicia en su estado más original."
     },
     {
       "id": 29,
@@ -829,24 +1083,39 @@
       "nombre": "Pontevedra",
       "bloque": "pontevedra",
       "categorias": [
-        "ciudades"
+        "ciudades",
+        "patrimonio"
       ],
       "horas": 3,
       "imagen": "img/pontevedra.jpg",
       "lat": 42.4333,
       "lng": -8.6333,
-      "porQueVenir": "Ciudad amable con el peatón.",
-      "momentoPerfecto": "Tarde para cenar.",
+      "porQueVenir": "Pontevedra es el experimento urbano más exitoso de España: una ciudad que eliminó casi por completo el tráfico del centro hace 20 años y se convirtió en ejemplo mundial de urbanismo peatonal. El resultado es un casco histórico vivo, lleno de gente a cualquier hora, con plazas porticadas, galerías acristaladas y una calidad de vida que se nota en cada esquina.",
+      "momentoPerfecto": "Cualquier época del año. El centro peatonal funciona perfectamente en todas las estaciones. El río Lérez al atardecer es especialmente bonito.",
       "imprescindibles": [
-        "Plaza da Ferrería",
-        "Peregrina",
-        "Callejear sin mapa"
+        "<strong>Iglesia de la Peregrina:</strong> capilla barroca del siglo XVIII con planta en forma de vieira y fachada curva única.",
+        "<strong>Plaza de la Leña, Ferrería y Santa María:</strong> las tres plazas porticadas que componen el corazón del casco histórico.",
+        "<strong>Basílica de Santa María la Mayor:</strong> fachada plateresca del siglo XVI, una de las más ricas de Galicia.",
+        "<strong>Ruinas de la iglesia de Santo Domingo:</strong> plaza de España, con capiteles medievales únicos.",
+        "<strong>Paseo por el río Lérez:</strong> puentes históricos (Puente del Burgo, Puente de los Tirantes) y zonas verdes."
       ],
-      "comer": "Tabernas en calles estrechas.",
-      "tomar": "Vino de la casa.",
-      "secreto": "Convento de San Francisco.",
-      "masTiempo": "Paseo a la ría.",
-      "advertencias": "Muy segura."
+      "comer": "Raciones abundantes y producto gallego de calidad. Recomendados: Eirado da Leña (grupo Nove), Taberna de Félix, Casa Fidel O Pulpeiro (pulpo), restaurante Savoy (vistas desde la planta superior), Badiana tapas.",
+      "tomar": "Albariño de las Rías Baixas. Las plazas del casco histórico tienen terrazas perfectas.",
+      "secreto": "El Centro de Interpretación de las Torres Arcebispais (CITA) ofrece un recorrido audiovisual interactivo por la historia de Pontevedra que muy pocos turistas conocen. Y la Plaza de Abastos, el mercado municipal, tiene un espacio gastronómico donde preparan el producto que eliges en el propio puesto.",
+      "masTiempo": [
+        "<strong>Combarro:</strong> a 8 km, el pueblo de los hórreos sobre el mar.",
+        "<strong>Free tours:</strong> hay varias empresas con visitas guiadas gratuitas por el casco histórico.",
+        "<strong>Isla de Tambo:</strong> crucero desde Combarro rodeando la isla con visión submarina y degustación."
+      ],
+      "planLluvia": [
+        "<strong>Museo Provincial de Pontevedra:</strong> con programas interactivos y exposiciones temporales.",
+        "<strong>CITA:</strong> recorrido audiovisual por la historia de la ciudad."
+      ],
+      "advertencias": [
+        "Centro completamente peatonal — deja el coche en los aparcamientos de los bordes.",
+        "En verano el centro puede estar muy concurrido."
+      ],
+      "miOpinion": "Pontevedra me parece la ciudad más agradable de Galicia para pasear. Sin coches en el centro, las plazas porticadas cobran vida de una manera que no ves en ningún otro sitio. La Peregrina, las plazas, el mercado, el Lérez... todo encaja. Y tiene esa dimensión humana de ciudad que no abruma pero que siempre tiene algo que ofrecer."
     },
     {
       "id": 31,
@@ -860,164 +1129,234 @@
       "imagen": "img/tui.jpg",
       "lat": 42.05,
       "lng": -8.6333,
-      "porQueVenir": "Ciudad episcopal, frontera con Portugal.",
-      "momentoPerfecto": "Tarde.",
+      "porQueVenir": "Tui es la ciudad gallega más al sur, justo en la frontera con Portugal. Su catedral-fortaleza del siglo XII domina el Miño, con Valença do Minho al otro lado. El puente internacional de hierro de Eiffel la une a Portugal, y el Camino Portugués pasa por su casco histórico empedrado.",
+      "momentoPerfecto": "Cualquier época. Desde el puente de Eiffel al atardecer, con el Miño y las dos ciudades al fondo, la vista es extraordinaria. En verano el ambiente binacional es muy animado.",
       "imprescindibles": [
-        "Catedral",
-        "Casco histórico",
-        "Mirador del Miño"
+        "<strong>Catedral de Tui:</strong> fortaleza-catedral del siglo XII, una de las más singulares de Galicia.",
+        "<strong>Puente Internacional Tui-Valença:</strong> el puente de hierro diseñado por Gustave Eiffel sobre el Miño.",
+        "<strong>Casco histórico:</strong> empedrado, con casas medievales y el ambiente del Camino Portugués.",
+        "<strong>Valença do Minho:</strong> ciudad amurallada portuguesa al otro lado del puente, visita imprescindible."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Paseo hasta Portugal.",
-      "masTiempo": "Valença.",
-      "advertencias": "Lluvia frecuente."
+      "comer": "Marisco del Miño, lamprea en temporada (febrero-abril) y cocina tradicional gallega. Los restaurantes con terraza sobre el río son los mejores.",
+      "tomar": "Vino verde portugués o albariño gallego. La frontera es porosa en lo gastronómico.",
+      "secreto": "La lamprea del Miño en temporada (febrero a abril) es un manjar que lleva siglos en las mesas de Tui y que cada vez cuesta más encontrar. Es extraña, antigua y deliciosa — si te la ofrecen, pruébala sin dudar.",
+      "masTiempo": [
+        "<strong>Valença do Minho:</strong> la ciudad amurallada portuguesa al otro lado del puente merece media jornada.",
+        "<strong>A Guarda:</strong> a 30 km, con el Monte Santa Tecla y el castro celta más grande del noroeste."
+      ],
+      "advertencias": [
+        "Los fines de semana hay mucho turismo de compras desde Portugal.",
+        "La catedral puede estar cerrada en algunos horarios."
+      ],
+      "miOpinion": "Tui tiene algo que pocas ciudades gallegas tienen: un vecino de altura al otro lado del río. Cruzar el puente de Eiffel a pie, entrar en la ciudadela amurallada de Valença y volver con queso, vino verde y algún producto portugués es uno de esos planes sencillos y redondos que hacen memorable un día."
     },
     {
       "id": 32,
       "nombre": "Cambados",
       "bloque": "pontevedra",
       "categorias": [
-        "villas"
+        "villas",
+        "patrimonio"
       ],
       "horas": 3,
       "imagen": "img/cambados.jpg",
       "lat": 42.5167,
       "lng": -8.8167,
-      "porQueVenir": "Capital del Albariño.",
-      "momentoPerfecto": "Fiesta del Albariño.",
+      "porQueVenir": "Cambados es la capital del albariño. Su casco histórico, declarado Conjunto Histórico-Artístico, es uno de los más elegantes de las Rías Baixas: el Pazo de Fefiñanes, las ruinas de Santa Mariña do Dozo y las calles empedradas componen un escenario de piedra y viñedos que tiene muy pocos equivalentes en Galicia.",
+      "momentoPerfecto": "Finales de julio-principios de agosto, durante la Festa do Albariño — la feria de vinos más importante de Galicia, con degustaciones, música y ambiente en el pazo. Fuera de temporada, el centro es tranquilo y precioso.",
       "imprescindibles": [
-        "Pazo de Fefiñáns",
-        "Casco histórico",
-        "Bodegas"
+        "<strong>Pazo de Fefiñanes:</strong> bodega visitable en un impresionante pazo del siglo XVII, con degustación de albariño.",
+        "<strong>Ruinas de Santa Mariña do Dozo:</strong> iglesia románica-gótica en ruinas dentro del casco histórico.",
+        "<strong>Casco histórico:</strong> calles empedradas, el Parador y la torre de San Sadurniño.",
+        "<strong>Mirador da Pastora:</strong> subiendo al Monte de la Pastora, vistas sobre la Ría de Arousa y los viñedos."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Playa de la Lajinha.",
-      "masTiempo": "Playa fluvial.",
-      "advertencias": "Agosto lleno."
+      "comer": "Marisco de la ría, ostras, almejas y berberechos. Para comer bien: los restaurantes del centro. Para beber: el albariño aquí es imbatible.",
+      "tomar": "Albariño de la DO Rías Baixas — Cambados es su capital indiscutible. Bodegas como Martín Códax (con terraza sobre los viñedos), Pazo Baión o Pazo de Rubianes ofrecen visitas y catas.",
+      "secreto": "La Festa do Albariño a principios de agosto incluye degustaciones en el propio Pazo de Fefiñanes, con los viñedos al fondo. Es una de las fiestas más elegantes y auténticas de toda Galicia — sin demasiado turismo y con producto de calidad como protagonista.",
+      "masTiempo": [
+        "<strong>Martín Códax:</strong> bodega visitabile con terraza sobre viñedos y el mar de fondo, con conciertos ocasionales.",
+        "<strong>Pazo de Rubianes:</strong> pazo señorial de 1411 con jardín de excelencia internacional y la Ruta de la Camelia.",
+        "<strong>O Grove:</strong> a 15 km, puerto pesquero y bateas de mejillón."
+      ],
+      "advertencias": [
+        "En agosto durante la Festa do Albariño hay mucha gente.",
+        "Las bodegas requieren reserva para las visitas."
+      ],
+      "miOpinion": "Cambados es elegante sin pretenderlo. El Pazo de Fefiñanes, las ruinas de Santa Mariña al fondo, las calles empedradas y el albariño en cada mesa: todo encaja. Si puedes coincidir con la Festa do Albariño, date el capricho — es una de las fiestas más bien hechas de Galicia. Y una visita a Martín Códax con esa terraza sobre los viñedos y el mar es difícil de superar."
     },
     {
       "id": 33,
       "nombre": "Baiona",
       "bloque": "pontevedra",
       "categorias": [
-        "pueblos",
+        "villas",
+        "patrimonio",
         "costa"
       ],
       "horas": 3,
       "imagen": "img/baiona.jpg",
       "lat": 42.1167,
       "lng": -8.85,
-      "porQueVenir": "Primer puerto en recibir la noticia del Nuevo Mundo.",
-      "momentoPerfecto": "Verano.",
+      "porQueVenir": "Baiona fue la primera ciudad de Europa en recibir la noticia del descubrimiento de América, cuando la carabela Pinta llegó a su puerto en 1493. Hoy combina un casco histórico bien conservado, el Castillo de Monte Real (Parador) y unas playas tranquilas en una de las zonas más protegidas de las Rías Baixas.",
+      "momentoPerfecto": "Cualquier época. En verano las playas son perfectas y el ambiente del puerto es animado. En invierno el castillo y el paseo marítimo tienen un encanto especial.",
       "imprescindibles": [
-        "Fortaleza",
-        "Puerto",
-        "Playa"
+        "<strong>Castillo de Monte Real:</strong> fortaleza medieval reconvertida en Parador, con paseo por las murallas y vistas a las Cíes.",
+        "<strong>Puerto y casco histórico:</strong> calles empedradas, ambiente marinero auténtico.",
+        "<strong>Réplica de la Pinta:</strong> en el puerto, la carabela en la que llegó la noticia de América.",
+        "<strong>Playas de A Ladeira y Santa Marta:</strong> protegidas por el monte, aguas tranquilas y arenas finas."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Arribada.",
-      "masTiempo": "Islas Cíes.",
-      "advertencias": "Lleno en verano."
+      "comer": "Marisco fresco, merluza y pulpo. La zona del puerto tiene buenos restaurantes. Playa de la Concheira para comer con vistas.",
+      "tomar": "Albariño de la DO Rías Baixas. Las terrazas del puerto son perfectas.",
+      "secreto": "El paseo por las murallas del Castillo de Monte Real — accesible aunque no te alojes en el Parador — da unas vistas sobre la bahía de Baiona y las Islas Cíes que muy poca gente conoce. Es gratuito y espectacular.",
+      "masTiempo": [
+        "<strong>Islas Cíes:</strong> en barco desde Vigo o Baiona, el parque natural atlántico.",
+        "<strong>A Guarda:</strong> a 20 km, con el Monte Santa Tecla."
+      ],
+      "advertencias": [
+        "En verano el tráfico y el aparcamiento son complicados.",
+        "Las playas pueden tener corrientes en los extremos."
+      ],
+      "miOpinion": "Baiona tiene esa combinación de historia, castillo y mar que hacen de ella una de las villas más completas de las Rías Baixas. El paseo por las murallas del castillo con las Cíes al fondo es simplemente magnífico. Y la historia de la Pinta llegando aquí con la noticia de América añade una dimensión que pocas villas gallegas pueden igualar."
     },
     {
       "id": 34,
       "nombre": "Combarro",
       "bloque": "pontevedra",
       "categorias": [
-        "pueblos"
+        "pueblos",
+        "patrimonio"
       ],
       "horas": 2,
       "imagen": "img/combarro.jpg",
       "lat": 42.3833,
       "lng": -8.7167,
-      "porQueVenir": "Hórreos sobre el mar.",
-      "momentoPerfecto": "Atardecer.",
+      "porQueVenir": "Combarro es el pueblo de los hórreos sobre el mar. Sus calles empedradas, los cruceiros en cada esquina y los hórreos colgados literalmente sobre la ría de Pontevedra forman uno de los conjuntos etnográficos más únicos y fotogénicos de toda Galicia.",
+      "momentoPerfecto": "Mañana temprano o tarde, cuando los grupos de turistas son menos numerosos. En invierno el pueblo casi para sí solo. La marea alta con los hórreos reflejados en el agua es la imagen más buscada.",
       "imprescindibles": [
-        "Hórreos",
-        "Paseo marítimo",
-        "Puerto"
+        "<strong>Hórreos sobre la ría:</strong> los graneros de piedra colgados sobre el agua, únicos en Galicia.",
+        "<strong>Calles empedradas:</strong> el trazado medieval del pueblo se conserva intacto.",
+        "<strong>Cruceiros:</strong> hay decenas de cruces de piedra por todo el pueblo.",
+        "<strong>Paseo marítimo:</strong> con vistas a la ría de Pontevedra y la Isla de Tambo."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Noche.",
-      "masTiempo": "Poio.",
-      "advertencias": "Muy turístico."
+      "comer": "Marisco de la ría y empanada. Recomendados: O Bocoi (famosa por su empanada de millo, arroz con pulpo y milhojas), Tinta Negra, Restaurante Ancla (solo con reserva, producto del día).",
+      "tomar": "Albariño. Las terrazas con vistas a la ría son perfectas para una copa al atardecer.",
+      "secreto": "Desde Combarro opera la empresa Catamaranes Combarro, con rutas marítimas alrededor de la Isla de Tambo y las bateas de la ría de Pontevedra, con visión submarina y degustación a bordo. Es uno de los mejores planes de la zona.",
+      "masTiempo": [
+        "<strong>Pontevedra:</strong> a 8 km, el mejor casco histórico peatonal de Galicia.",
+        "<strong>Sanxenxo:</strong> a 15 km, las mejores playas de las Rías Baixas."
+      ],
+      "advertencias": [
+        "En verano puede estar masificado.",
+        "Aparcar es complicado — hay aparcamientos fuera del pueblo."
+      ],
+      "miOpinion": "Combarro es pequeño, turístico y en verano hay cola para hacer la foto de los hórreos sobre el mar. Pero eso no quita que el conjunto sea genuinamente único y precioso. Vale la pena ir de mañana temprano o en temporada baja para verlo sin multitudes. Y O Bocoi, para cenar, es uno de mis favoritos de toda la ría."
     },
     {
       "id": 35,
       "nombre": "O Grove",
       "bloque": "pontevedra",
       "categorias": [
-        "costa"
+        "costa",
+        "naturaleza",
+        "pueblos"
       ],
       "horas": 4,
       "imagen": "img/ogrove.jpg",
       "lat": 42.3881,
       "lng": -8.8833,
-      "porQueVenir": "Paraíso del marisco.",
-      "momentoPerfecto": "Verano.",
+      "porQueVenir": "O Grove es el pueblo más auténtico de las Rías Baixas: un puerto pesquero real donde la gente vive del mar todo el año, con una lonja activa, bateas de mejillón a la vista y una gastronomía marinera que no tiene parangón. La Festa do Marisco en octubre es la mejor feria gastronómica de Galicia.",
+      "momentoPerfecto": "Octubre durante la Festa do Marisco. En verano la Illa da Toxa y la Playa de A Lanzada son perfectas. Cualquier época para el marisco.",
       "imprescindibles": [
-        "Playa de la Lanzada",
-        "Marisquerías",
-        "Paseo"
+        "<strong>Puerto pesquero y lonja:</strong> el corazón de O Grove, con visitas guiadas a la lonja disponibles.",
+        "<strong>Bateas de mejillón:</strong> cruceros para ver las bateas con fondo panorámico y degustación a bordo.",
+        "<strong>Illa da Toxa:</strong> isla unida por un puente, con la Capilla de las Conchas y el Club Termal.",
+        "<strong>Playa de A Lanzada:</strong> entre O Grove y Sanxenxo, una de las playas más largas y bonitas de Galicia."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "La Toxa.",
-      "masTiempo": "Isla de Ons.",
-      "advertencias": "Muy concurrido."
+      "comer": "El marisco aquí es la razón de ser: D'Berto (una de las mejores marisquerías de España), O Almacén do Avó (mejillones en escabeche casero, tosta de tetilla con pulpo, en un antiguo almacén con techos altos), Tapería Morriña, Restaurante La Posada (frente al puente de la Toja).",
+      "tomar": "Albariño de la DO Rías Baixas. Los furanchos de la zona sirven el vino de la casa con hoja de laurel en la puerta.",
+      "secreto": "Las bateas de mejillón esconden un mundo fascinante bajo las plataformas de madera. Los cruceros con fondo panorámico permiten ver las cuerdas cargadas de mejillones bajo el agua — algo que los niños disfrutan especialmente. Desde O Grove también hay salidas a la Isla de Sálvora, una de las islas más desconocidas del Parque Nacional Atlántico.",
+      "masTiempo": [
+        "<strong>Aquario de O Grove:</strong> en Punta Moreiras, 22 acuarios con flora y fauna gallega.",
+        "<strong>Pasarela Pedras Negras:</strong> sendero costero sobre pasarelas de madera entre calas de aguas cristalinas.",
+        "<strong>Monte Siradella:</strong> punto más alto de la península de O Grove, con miradores panorámicos."
+      ],
+      "planLluvia": [
+        "<strong>Aquario de O Grove:</strong> talleres interesantes para niños.",
+        "<strong>Museo da Salgadeiras de Moreiras:</strong> tradición pesquera y de salazón."
+      ],
+      "advertencias": [
+        "En verano y durante la Festa do Marisco hay mucha gente.",
+        "D'Berto y otros restaurantes top requieren reserva con días de antelación."
+      ],
+      "miOpinion": "O Grove es el antídoto perfecto contra el turismo artificioso. Aquí la gente vive del mar de verdad, y eso se nota en todo: en el producto, en los precios, en el ambiente. D'Berto es legendario con razón, y O Almacén do Avó es de esos descubrimientos que quieres contarle a todo el mundo. Y la Festa do Marisco en octubre es simplemente la mejor fiesta gastronómica de Galicia."
     },
     {
       "id": 36,
       "nombre": "A Illa de Arousa",
       "bloque": "pontevedra",
       "categorias": [
-        "costa"
+        "costa",
+        "naturaleza",
+        "pueblos"
       ],
       "horas": 3,
-      "imagen": "img/arousa.jpg",
+      "imagen": "img/ailladearousa.jpg",
       "lat": 42.5573,
       "lng": -8.8618,
-      "porQueVenir": "Isla con playas salvajes.",
-      "momentoPerfecto": "Verano.",
+      "porQueVenir": "A Illa de Arousa es el único municipio insular de Galicia, conectado por un puente con la Península. Rodeada de bateas de mejillón y ostras, con playas tranquilas y un ambiente marinero genuino, es uno de los destinos más especiales de las Rías Baixas para quien busca autenticidad.",
+      "momentoPerfecto": "Verano para las playas y el marisco. Fuera de temporada la isla tiene un ambiente tranquilo y auténtico que muchos viajeros prefieren.",
       "imprescindibles": [
-        "Faro",
-        "Playas",
-        "Paseo"
+        "<strong>Playas del noroeste:</strong> con vistas a las Ons y a la ría, algunas de las más tranquilas y bonitas.",
+        "<strong>Puerto y lonja:</strong> actividad marinera real, bateas a la vista desde el paseo.",
+        "<strong>Mirador da Punta Cabalo:</strong> vistas sobre toda la ría de Arousa.",
+        "<strong>Centro de marisqueo:</strong> visitas guiadas sobre la cultura de la batea y el marisco gallego."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Carretera del faro.",
-      "masTiempo": "O Grove.",
-      "advertencias": "Puente de dos sentidos."
+      "comer": "Ostras, mejillones, almejas y marisco de la propia ría. Los restaurantes del puerto son sencillos y con producto de primerísima calidad.",
+      "tomar": "Albariño de la DO Rías Baixas. En la isla hay bodegas pequeñas con vinos locales.",
+      "secreto": "Las ostras de A Illa son de las mejores de Galicia — hay productores locales que venden directamente. Y algunos restaurantes te preparan el marisco que acabas de ver sacar de la batea minutos antes. Esa frescura no tiene precio.",
+      "masTiempo": [
+        "<strong>Cambados:</strong> a 20 km, capital del albariño.",
+        "<strong>O Grove:</strong> a 25 km, con la mejor marisquería de Galicia."
+      ],
+      "advertencias": [
+        "En verano el acceso por el puente puede congestionarse.",
+        "La oferta turística es más limitada que en otras zonas."
+      ],
+      "miOpinion": "A Illa de Arousa es uno de esos rincones de Galicia que solo conocen los que saben buscar. Sin masificación, con las bateas a la vista, el marisco más fresco posible y un ambiente que te hace sentir que estás en el Galicia real. Si te gusta el marisco y buscas autenticidad, añádela al recorrido."
     },
     {
       "id": 37,
       "nombre": "A Guarda",
       "bloque": "pontevedra",
       "categorias": [
-        "magicos",
-        "patrimonio"
+        "costa",
+        "patrimonio",
+        "naturaleza"
       ],
       "horas": 3,
       "imagen": "img/aguarda.jpg",
       "lat": 41.9,
       "lng": -8.8667,
-      "porQueVenir": "Citania de Santa Trega.",
-      "momentoPerfecto": "Atardecer.",
+      "porQueVenir": "A Guarda es el último pueblo gallego antes de Portugal. En lo alto del Monte Santa Tecla tiene el castro celta más grande del noroeste peninsular, con más de 100 cabañas circulares excavadas. Abajo, el Miño desemboca en el Atlántico ante Caminha portuguesa, en uno de los paisajes de estuario más hermosos de la Península.",
+      "momentoPerfecto": "Cualquier época. El castro de Santa Tecla se visita bien en cualquier estación. En verano la combinación de monte y playa es perfecta.",
       "imprescindibles": [
-        "Citania",
-        "Faro",
-        "Monte Trega"
+        "<strong>Castro de Santa Tecla:</strong> el castro celta mejor conservado del noroeste, con más de 100 cabañas visibles.",
+        "<strong>Monte Santa Tecla:</strong> mirador sobre la desembocadura del Miño, Portugal y el Atlántico.",
+        "<strong>Puerto pesquero:</strong> uno de los más activos de Galicia, con lonja y ambiente marinero.",
+        "<strong>Caminha (Portugal):</strong> la ciudad amurallada al otro lado del Miño, accesible en barco o por el puente."
       ],
-      "comer": "Marisco.",
-      "tomar": "Albariño.",
-      "secreto": "Portugal.",
-      "masTiempo": "Tui.",
-      "advertencias": "Viento."
+      "comer": "Marisco y percebe de la desembocadura del Miño, con producto de calidad excepcional. La zona del puerto tiene buenos restaurantes de cocina marinera.",
+      "tomar": "Albariño y vinho verde — en la frontera, ambos tienen igual legitimidad.",
+      "secreto": "El castro de Santa Tecla tiene, además de las cabañas circulares, una de las vistas más dramáticas de todo el litoral gallego: el Miño abriéndose al Atlántico, Portugal al otro lado, y el océano hasta donde alcanza la vista. Es una de las panorámicas más emocionantes de Galicia.",
+      "masTiempo": [
+        "<strong>Tui:</strong> a 30 km, con el puente de Eiffel y Valença amurallada.",
+        "<strong>Islas Cíes:</strong> en barco desde Baiona o Vigo."
+      ],
+      "advertencias": [
+        "La subida al monte puede ser exigente para personas con movilidad reducida.",
+        "El barco a Caminha tiene horario limitado."
+      ],
+      "miOpinion": "A Guarda tiene algo que pocos esperan: un castro celta enorme en la cima del monte, con vistas sobre la desembocadura del Miño y Portugal al otro lado. Es el fin literal de Galicia — el último pueblo antes de la frontera — y tiene esa carga de lugar de encuentro y despedida que lo hace especial."
     },
     {
       "id": 38,
@@ -1028,21 +1367,30 @@
         "costa"
       ],
       "horas": 6,
-      "imagen": "img/ciesyons.jpg",
+      "imagen": "img/cies.jpg",
       "lat": 42.2244,
       "lng": -8.9031,
-      "porQueVenir": "Dos archipiélagos protegidos.",
-      "momentoPerfecto": "Junio o septiembre.",
+      "porQueVenir": "Las Islas Cíes son el Paraíso — así las llamó el propio Julius Caesar. Forman parte del Parque Nacional Marítimo-Terrestre de las Islas Atlánticas junto con Ons. Playas de arena blanca y aguas turquesa que parecen del Caribe, en el Atlántico gallego. La playa de Rodas fue elegida la mejor playa del mundo por The Guardian.",
+      "momentoPerfecto": "Junio, septiembre o principios de octubre para evitar el verano masificado. Las islas tienen aforo limitado y hay que reservar el barco con mucha antelación en julio-agosto.",
       "imprescindibles": [
-        "Playa de Rodas",
-        "Monte Faro",
-        "Playa de Melide"
+        "<strong>Playa de Rodas (Cíes):</strong> la famosa playa de arena blanca y aguas turquesa entre las dos islas.",
+        "<strong>Mirador del Faro de Cíes:</strong> subida de unos 40 minutos con vistas sobre las tres islas y la ría de Vigo.",
+        "<strong>Playa de Figueiras (Isla de Ons):</strong> la más bonita de Ons, con aguas cristalinas y sin masificación.",
+        "<strong>Grutas de Ons:</strong> cuevas marinas en la costa occidental, accesibles solo en barco."
       ],
-      "comer": "Lleva comida.",
-      "tomar": "Agua.",
-      "secreto": "Playa de Figueiras.",
-      "masTiempo": "Camping en Cíes.",
-      "advertencias": "Reserva obligatoria."
+      "comer": "Hay un restaurante en las Cíes y algún servicio básico en Ons. Lo mejor es llevar picnic para las Cíes; en Ons hay algunas casas con comida tradicional.",
+      "tomar": "Lleva agua. En el restaurante de las Cíes sirven marisco local, pero hay que reservar.",
+      "secreto": "La cara oeste de las Cíes (el lado del Atlántico abierto) es completamente diferente a la cara este protegida. Acantilados, oleaje salvaje y colonias de gaviotas. Muy poca gente hace el sendero hasta allí. Y la Isla de Ons es mucho menos visitada que las Cíes y tiene un encanto más salvaje y auténtico.",
+      "masTiempo": [
+        "<strong>Isla de Sálvora:</strong> la menos visitada del parque nacional, accesible desde O Grove.",
+        "<strong>Isla de Cortegada:</strong> la más pequeña, con bosque de laurisilva único."
+      ],
+      "advertencias": [
+        "Aforo limitado: reserva el barco con semanas de antelación en verano.",
+        "No se puede pernoctar salvo en el camping de las Cíes con reserva previa.",
+        "En días de viento el barco puede no salir."
+      ],
+      "miOpinion": "Las Cíes son lo más parecido al Caribe que vas a encontrar en el Atlántico norte europeo. Y ese contraste — aguas turquesa, arenas blancas, y el viento del Atlántico en la cara — es lo que las hace únicas. Ons es más rústica y menos fotogénica pero tiene una personalidad más salvaje que a muchos nos gusta más. Si solo puedes ir a una: Cíes. Si puedes ir a las dos: mejor."
     },
     {
       "id": 39,
