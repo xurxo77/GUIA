@@ -969,6 +969,49 @@ const ui = {
 
     container.innerHTML = html;
     ui.initAnimations();
+    ui.initCarouselScrollSync();
+  },
+
+  // Cuando deslizas horizontalmente entre lugares, alinea la tarjeta visible
+  // al inicio de la sección vertical para que no aparezca cortada
+  initCarouselScrollSync: () => {
+    const carousels = document.querySelectorAll('#placesContainer .places-carousel');
+    const section   = document.getElementById('lugares');
+    if (!section) return;
+
+    carousels.forEach(carousel => {
+      let scrollTimeout;
+      let lastVisibleId = null;
+
+      carousel.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        // Esperar a que el scroll horizontal termine antes de reposicionar
+        scrollTimeout = setTimeout(() => {
+          const carouselRect = carousel.getBoundingClientRect();
+          const center = carouselRect.left + carouselRect.width / 2;
+          const cards  = carousel.querySelectorAll('.place-card');
+          let visible  = null;
+          let minDist  = Infinity;
+
+          cards.forEach(card => {
+            const r = card.getBoundingClientRect();
+            const cardCenter = r.left + r.width / 2;
+            const dist = Math.abs(cardCenter - center);
+            if (dist < minDist) { minDist = dist; visible = card; }
+          });
+
+          if (visible && visible.id !== lastVisibleId) {
+            lastVisibleId = visible.id;
+            // Solo reposicionar si la tarjeta visible no está bien alineada arriba
+            const cardTop = visible.getBoundingClientRect().top;
+            if (cardTop < 50 || cardTop > 150) {
+              const targetTop = visible.offsetTop - 70;
+              section.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+            }
+          }
+        }, 120);
+      }, { passive: true });
+    });
   },
 
   renderInfoBlock: (icon, title, text) => {
