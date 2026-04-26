@@ -1138,8 +1138,11 @@ const ui = {
       setTimeout(() => {
         const section = element.closest('#recomendaciones, #lugares');
         if (section) {
-          const top = element.offsetTop - 70;
-          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+          // Cálculo robusto: posición relativa real entre elemento y sección
+          const elementRect = element.getBoundingClientRect();
+          const sectionRect = section.getBoundingClientRect();
+          const offset = elementRect.top - sectionRect.top + section.scrollTop - 16;
+          section.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
         }
         const firstCard = element.querySelector('.rec-card');
         if (firstCard) {
@@ -1181,13 +1184,16 @@ const ui = {
     const isExpanded = card.classList.toggle('expanded');
 
     if (isExpanded) {
+      // Esperar a que termine la transición de expansión antes de scrollear
       setTimeout(() => {
         const section = card.closest('#lugares');
-        if (section) {
-          const top = card.offsetTop - 70;
-          section.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        }
-      }, 150);
+        if (!section) return;
+        // Cálculo robusto con getBoundingClientRect
+        const cardRect = card.getBoundingClientRect();
+        const sectionRect = section.getBoundingClientRect();
+        const offset = cardRect.top - sectionRect.top + section.scrollTop - 16;
+        section.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
+      }, 350);
       utils.haptic('medium');
     } else {
       utils.haptic('light');
