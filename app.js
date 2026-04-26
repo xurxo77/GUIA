@@ -2054,33 +2054,6 @@ const app = {
           if (section) section.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
-
-      // Welcome card: cerrar y CTA
-      const welcomeCard  = document.getElementById('welcomeCard');
-      const welcomeClose = document.getElementById('welcomeCardClose');
-      const welcomeCta   = document.getElementById('welcomeCardCta');
-
-      // Restaurar estado de la welcome card
-      if (welcomeCard && localStorage.getItem('galicia_welcome_dismissed') === 'true') {
-        welcomeCard.classList.add('dismissed');
-      }
-
-      if (welcomeClose) {
-        welcomeClose.addEventListener('click', () => {
-          welcomeCard.classList.add('dismissed');
-          localStorage.setItem('galicia_welcome_dismissed', 'true');
-        });
-      }
-
-      if (welcomeCta) {
-        welcomeCta.addEventListener('click', () => {
-          ui.setVisitFilter('esencial');
-          welcomeCard.classList.add('dismissed');
-          localStorage.setItem('galicia_welcome_dismissed', 'true');
-          const section = document.getElementById('lugares');
-          if (section) section.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      }
       
       window.addEventListener('online',  () => { state.isOnline = true; });
       window.addEventListener('offline', () => { state.isOnline = false; });
