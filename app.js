@@ -972,8 +972,8 @@ const ui = {
     ui.initCarouselScrollSync();
   },
 
-  // Cuando deslizas horizontalmente entre lugares, alinea la tarjeta visible
-  // al inicio de la sección vertical para que no aparezca cortada
+  // Cuando deslizas horizontalmente entre lugares, mantener la provincia
+  // alineada arriba para que la tarjeta visible no aparezca cortada
   initCarouselScrollSync: () => {
     const carousels = document.querySelectorAll('#placesContainer .places-carousel');
     const section   = document.getElementById('lugares');
@@ -981,35 +981,24 @@ const ui = {
 
     carousels.forEach(carousel => {
       let scrollTimeout;
-      let lastVisibleId = null;
+      const provinceBox = carousel.closest('.province-box');
+      if (!provinceBox) return;
 
       carousel.addEventListener('scroll', () => {
         clearTimeout(scrollTimeout);
-        // Esperar a que el scroll horizontal termine antes de reposicionar
         scrollTimeout = setTimeout(() => {
-          const carouselRect = carousel.getBoundingClientRect();
-          const center = carouselRect.left + carouselRect.width / 2;
-          const cards  = carousel.querySelectorAll('.place-card');
-          let visible  = null;
-          let minDist  = Infinity;
+          // Comprobar si la provincia está alineada arriba en la sección
+          const boxRect = provinceBox.getBoundingClientRect();
+          const sectionRect = section.getBoundingClientRect();
+          const relativeTop = boxRect.top - sectionRect.top;
 
-          cards.forEach(card => {
-            const r = card.getBoundingClientRect();
-            const cardCenter = r.left + r.width / 2;
-            const dist = Math.abs(cardCenter - center);
-            if (dist < minDist) { minDist = dist; visible = card; }
-          });
-
-          if (visible && visible.id !== lastVisibleId) {
-            lastVisibleId = visible.id;
-            // Solo reposicionar si la tarjeta visible no está bien alineada arriba
-            const cardTop = visible.getBoundingClientRect().top;
-            if (cardTop < 50 || cardTop > 150) {
-              const targetTop = visible.offsetTop - 70;
-              section.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
-            }
+          // Solo reposicionar si la provincia se ha movido fuera de su sitio
+          // (margen amplio para no luchar con el scroll del usuario)
+          if (relativeTop < -100 || relativeTop > 100) {
+            const targetTop = provinceBox.offsetTop - 16;
+            section.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
           }
-        }, 120);
+        }, 200);
       }, { passive: true });
     });
   },
