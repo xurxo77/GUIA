@@ -738,9 +738,9 @@ const ui = {
             </div>
             <div class="rec-card">
               <img src="img/cur_energia.jpg" class="rec-card-img" alt="Energía" onerror="this.style.display='none'">
-              <h4>⚡ Potencia energética</h4>
-              <p>Galicia generó más de 23.000 GWh en 2024, en gran parte con energías limpias.</p>
-              <p>👉 El 40% sobrante se exportó a otras partes de España y Europa.</p>
+              <h4>⚡ Potencia renovable europea</h4>
+              <p>Con más de 1.000 ríos y un viento atlántico constante, en 2024 Galicia generó más de 23.000 GWh de electricidad, y casi el 85% procedió de fuentes renovables (hidráulica y eólica).</p>
+              <p>👉 Eso la sitúa entre las tres comunidades autónomas con mayor cuota de energía verde de España.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_suevos.jpg" class="rec-card-img" alt="Reino Suevo" onerror="this.style.display='none'">
@@ -750,8 +750,8 @@ const ui = {
             </div>
             <div class="rec-card">
               <img src="img/cur_celtas.jpg" class="rec-card-img" alt="Raíces celtas" onerror="this.style.display='none'">
-              <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Raíces celtas</h4>
-              <p>Los castros de piedra, la música con gaitas y muchas tradiciones y leyendas reflejan la herencia celta que aún late en Galicia.</p>
+              <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Cultura castreña y celta</h4>
+              <p>Los castros prerromanos repartidos por todo el territorio, la toponimia heredada (Lugo procede del dios celta Lugus, A Coruña fue Brigantia), las divinidades documentadas en epigrafía romana y figuras del folklore como las <em>mouras</em> son la herencia tangible de los pueblos galaicos prerromanos.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_finisterre.jpg" class="rec-card-img" alt="Fisterra" onerror="this.style.display='none'">
@@ -762,8 +762,8 @@ const ui = {
             <div class="rec-card">
               <img src="img/cur_torre.jpg" class="rec-card-img" alt="Torre de Hércules" onerror="this.style.display='none'">
               <h4>🇮🇪 El vínculo con Irlanda</h4>
-              <p>Un texto medieval irlandés cuenta cómo Breogán levantó una torre en Galicia desde la que sus descendientes vieron Irlanda.</p>
-              <p>👉 La tradición sitúa esa torre en la actual Torre de Hércules.</p>
+              <p>El <em>Lebor Gabála Érenn</em>, texto medieval irlandés del siglo XI («Libro de las invasiones de Irlanda»), cuenta cómo Breogán levantó una gran torre en Galicia desde la que su hijo Ith avistó Irlanda. La tradición identifica esa torre con la actual Torre de Hércules.</p>
+              <p>👉 Y lo más curioso: la ciencia da la razón al mito. Estudios genéticos de Bryan Sykes (Oxford) y Stephen Oppenheimer demostraron que gran parte del ADN masculino de Irlanda procede del noroeste ibérico. El haplogrupo R1b, mayoritario en Galicia, supera el 90% en zonas de Irlanda y Gales.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_termal.jpg" class="rec-card-img" alt="Termas de Ourense" onerror="this.style.display='none'">
@@ -779,9 +779,9 @@ const ui = {
             </div>
             <div class="rec-card">
               <img src="img/cur_horreos.jpg" class="rec-card-img" alt="Hórreos" onerror="this.style.display='none'">
-              <h4>🏛️ Más de 30.000 hórreos</h4>
-              <p>Diseñados para guardar el grano lejos de la humedad y los roedores.</p>
-              <p>👉 El hórreo de Carnota mide casi 35 metros. ¡Más grande que muchas casas!</p>
+              <h4>🏛️ Los hórreos, despensas mágicas</h4>
+              <p>Decenas de miles repartidos por toda la comunidad, diseñados para guardar el grano lejos de la humedad y los roedores.</p>
+              <p>👉 El más grande del mundo está en Galicia: el <em>Hórreo do Araño</em> (Rianxo), con sus 37 metros de longitud, supera incluso al célebre hórreo de Carnota.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_santacompana.jpg" class="rec-card-img" alt="Santa Compaña" onerror="this.style.display='none'">
@@ -817,6 +817,36 @@ const ui = {
               <h4>📖 Rosalía de Castro</h4>
               <p>En el siglo XIX fue una de las primeras autoras en escribir en gallego, dignificando la lengua y reflejando la morriña.</p>
               <p>👉 Su obra marcó el inicio del Rexurdimento cultural gallego.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_castros.jpg" class="rec-card-img" alt="Castros" onerror="this.style.display='none'">
+              <h4>🏰 Tierra de castros</h4>
+              <p>Hubo más de 5.000 poblados fortificados. La cultura castreña dominó el noroeste peninsular desde la Edad del Hierro hasta la llegada de los romanos.</p>
+              <p>👉 Mi top 3 imprescindible: <em>Castro de Baroña</em> (Porto do Son, sobre una península batida por el Atlántico), <em>Castro de Santa Trega</em> (A Guarda, 20 hectáreas con vistas a la desembocadura del Miño) y <em>Castro de Viladonga</em> (Castro de Rei, el mejor museizado de Galicia).</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_percebes.jpg" class="rec-card-img" alt="Percebes" onerror="this.style.display='none'">
+              <h4>🦀 El percebe de O Roncudo</h4>
+              <p>Considerado el mejor del mundo. Crece pegado a las rocas batidas por el oleaje más violento del Atlántico, en el cabo de O Roncudo (Costa da Morte).</p>
+              <p>👉 Es uno de los oficios más peligrosos del mundo: cada año mueren percebeiros arrastrados por las olas. En el mismo cabo hay cruces blancas en homenaje a los caídos.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_himno.jpg" class="rec-card-img" alt="Himno gallego" onerror="this.style.display='none'">
+              <h4>🎶 El himno gallego habla de Breogán</h4>
+              <p><em>Os Pinos</em>, compuesto por Pondal y musicado por Veiga, llama a Galicia <em>«fogar de Breogán»</em> (hogar de Breogán), recuperando al rey mítico fundador de Brigantia.</p>
+              <p>👉 Cuando se canta en partidos o grandes celebraciones, miles de gallegos invocan, sin saberlo, una leyenda celta del siglo XI.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_pulpo.jpg" class="rec-card-img" alt="Pulpo a feira" onerror="this.style.display='none'">
+              <h4>🐙 El pulpo a feira no es de la costa</h4>
+              <p>Aunque parezca paradójico, este plato icónico nació tierra adentro: las arrieras maragatas traían el pulpo seco desde el Cantábrico hasta las ferias de ganado de Lugo, y allí se popularizó la receta con cachelos y pimentón.</p>
+              <p>👉 Las pulperías más famosas del mundo están en <em>Melide</em> (Camino de Santiago) y <em>O Carballiño</em> (Ourense), ambas a decenas de kilómetros del mar.</p>
+            </div>
+            <div class="rec-card">
+              <img src="img/cur_vikingos.jpg" class="rec-card-img" alt="Vikingos en Catoira" onerror="this.style.display='none'">
+              <h4>⚔️ Catoira y los vikingos</h4>
+              <p>Las Torres do Oeste fueron levantadas en el siglo IX para defender Compostela de los ataques nórdicos. Desde 1960, el pueblo celebra una Romería Vikinga con desembarco simulado.</p>
+              <p>👉 Es Fiesta de Interés Turístico Internacional. Sí, los vikingos atacaron Galicia varias veces — y los gallegos no lo han olvidado.</p>
             </div>
       `
     };
