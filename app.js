@@ -733,120 +733,137 @@ const ui = {
             <div class="rec-card">
               <img src="img/cur_diaspora.jpg" class="rec-card-img" alt="Diáspora gallega" onerror="this.style.display='none'">
               <h4>🗺️ La diáspora gallega</h4>
-              <p>Más de 2 millones de gallegos emigraron entre finales del XIX y el XX, sobre todo a Argentina, Cuba y Uruguay.</p>
-              <p>👉 Hoy hay casi tantos descendientes fuera como gallegos en Galicia.</p>
+              <p>Más de <strong>2 millones de gallegos</strong> emigraron entre finales del XIX y el XX, sobre todo a Argentina, Cuba y Uruguay.</p>
+              <p>👉 Hoy hay <strong>casi tantos descendientes fuera</strong> como gallegos en Galicia.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_energia.jpg" class="rec-card-img" alt="Energía" onerror="this.style.display='none'">
               <h4>⚡ Potencia renovable europea</h4>
-              <p>Con más de 1.000 ríos y un viento atlántico constante, en 2024 Galicia generó más de 23.000 GWh de electricidad, y casi el 85% procedió de fuentes renovables (hidráulica y eólica).</p>
-              <p>👉 Eso la sitúa entre las tres comunidades autónomas con mayor cuota de energía verde de España.</p>
+              <p>Con más de <strong>1.000 ríos</strong> y un viento atlántico constante, en 2024 Galicia generó más de <strong>23.000 GWh</strong> de electricidad.</p>
+              <p>👉 Casi el <strong>85% procedió de fuentes renovables</strong> (hidráulica y eólica), situándola entre las tres comunidades con mayor cuota de energía verde de España.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_suevos.jpg" class="rec-card-img" alt="Reino Suevo" onerror="this.style.display='none'">
               <h4>👑 Uno de los primeros reinos de Europa</h4>
-              <p>Tras la caída de Roma, en el siglo V, Galicia se consolidó como el Reino de los Suevos.</p>
+              <p>Tras la caída de Roma, en el <strong>siglo V</strong>, Galicia se consolidó como el <strong>Reino de los Suevos</strong>.</p>
               <p>👉 Uno de los primeros reinos establecidos en toda Europa occidental.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_celtas.jpg" class="rec-card-img" alt="Raíces celtas" onerror="this.style.display='none'">
               <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Cultura castreña y celta</h4>
-              <p>Los castros prerromanos repartidos por todo el territorio, la toponimia heredada (Lugo procede del dios celta Lugus, A Coruña fue Brigantia), las divinidades documentadas en epigrafía romana y figuras del folklore como las <em>mouras</em> son la herencia tangible de los pueblos galaicos prerromanos.</p>
+              <p>La herencia tangible de los pueblos galaicos prerromanos sigue viva en cuatro huellas concretas:</p>
+              <ul>
+                <li>Los <strong>castros prerromanos</strong> repartidos por todo el territorio.</li>
+                <li>La <strong>toponimia heredada</strong>: Lugo procede del dios celta <em>Lugus</em>, A Coruña fue <em>Brigantia</em>.</li>
+                <li>Las <strong>divinidades documentadas</strong> en la epigrafía romana.</li>
+                <li>Figuras del folklore como las <em>mouras</em>.</li>
+              </ul>
             </div>
             <div class="rec-card">
               <img src="img/cur_finisterre.jpg" class="rec-card-img" alt="Fisterra" onerror="this.style.display='none'">
               <h4>🌊 El fin del mundo para los romanos</h4>
-              <p>Al llegar a Fisterra, las legiones romanas creían que el mar hervía y no había nada más allá.</p>
-              <p>👉 Hoy es el final épico para muchos peregrinos del Camino.</p>
+              <p>Al llegar a <strong>Fisterra</strong>, las legiones romanas creían que el mar hervía y no había nada más allá.</p>
+              <p>👉 Hoy es el <strong>final épico</strong> para muchos peregrinos del Camino.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_torre.jpg" class="rec-card-img" alt="Torre de Hércules" onerror="this.style.display='none'">
               <h4>🇮🇪 El vínculo con Irlanda</h4>
-              <p>El <em>Lebor Gabála Érenn</em>, texto medieval irlandés del siglo XI («Libro de las invasiones de Irlanda»), cuenta cómo Breogán levantó una gran torre en Galicia desde la que su hijo Ith avistó Irlanda. La tradición identifica esa torre con la actual Torre de Hércules.</p>
-              <p>👉 Y lo más curioso: la ciencia da la razón al mito. Estudios genéticos de Bryan Sykes (Oxford) y Stephen Oppenheimer demostraron que gran parte del ADN masculino de Irlanda procede del noroeste ibérico. El haplogrupo R1b, mayoritario en Galicia, supera el 90% en zonas de Irlanda y Gales.</p>
+              <p>El <em>Lebor Gabála Érenn</em>, texto medieval irlandés del <strong>siglo XI</strong>, cuenta cómo <strong>Breogán</strong> levantó una gran torre en Galicia desde la que su hijo Ith avistó Irlanda.</p>
+              <p>La tradición identifica esa torre con la actual <strong>Torre de Hércules</strong>.</p>
+              <p>👉 Y lo más curioso: <strong>la ciencia da la razón al mito</strong>. Estudios genéticos de Bryan Sykes (Oxford) y Stephen Oppenheimer demostraron que gran parte del ADN masculino de Irlanda procede del noroeste ibérico. El haplogrupo <strong>R1b</strong>, mayoritario en Galicia, supera el <strong>90% en zonas de Irlanda y Gales</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_termal.jpg" class="rec-card-img" alt="Termas de Ourense" onerror="this.style.display='none'">
               <h4>♨️ Capital termal de Europa</h4>
-              <p>Solo Budapest supera a Ourense en volumen de aguas termales. En As Burgas el agua sale a más de 60ºC.</p>
-              <p>👉 Puedes bañarte gratis en pozas naturales del Miño, en pleno invierno.</p>
+              <p>Solo <strong>Budapest</strong> supera a <strong>Ourense</strong> en volumen de aguas termales. En <em>As Burgas</em> el agua sale a más de <strong>60ºC</strong>.</p>
+              <p>👉 Puedes <strong>bañarte gratis</strong> en pozas naturales del Miño, en pleno invierno.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_idioma.jpg" class="rec-card-img" alt="Gallego y portugués" onerror="this.style.display='none'">
               <h4>🇵🇹 Gallego y portugués: el mismo origen</h4>
-              <p>Durante la Edad Media, el galaico-portugués era la lengua de la poesía en toda la Península Ibérica.</p>
-              <p>👉 Si hablas gallego, puedes entenderte casi a la perfección con alguien en Portugal o Brasil.</p>
+              <p>Durante la Edad Media, el <strong>galaico-portugués</strong> era la lengua de la poesía en toda la Península Ibérica.</p>
+              <p>👉 Si hablas gallego, puedes entenderte casi a la perfección con alguien en <strong>Portugal o Brasil</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_horreos.jpg" class="rec-card-img" alt="Hórreos" onerror="this.style.display='none'">
               <h4>🏛️ Los hórreos, despensas mágicas</h4>
-              <p>Decenas de miles repartidos por toda la comunidad, diseñados para guardar el grano lejos de la humedad y los roedores.</p>
-              <p>👉 El más grande del mundo está en Galicia: el <em>Hórreo do Araño</em> (Rianxo), con sus 37 metros de longitud, supera incluso al célebre hórreo de Carnota.</p>
+              <p><strong>Decenas de miles</strong> repartidos por toda la comunidad, diseñados para guardar el grano lejos de la humedad y los roedores.</p>
+              <p>👉 El más grande del mundo está en Galicia: el <em>Hórreo do Araño</em> (<strong>Rianxo</strong>), con sus <strong>37 metros</strong> de longitud, supera incluso al célebre hórreo de Carnota.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_santacompana.jpg" class="rec-card-img" alt="Santa Compaña" onerror="this.style.display='none'">
               <h4>👻 La Santa Compaña</h4>
-              <p>La leyenda más famosa de Galicia: una procesión de almas en pena que vagan de noche.</p>
-              <p>👉 Dicen que huele a cera quemada a su paso. No les mires si no quieres unirte.</p>
+              <p>La leyenda más famosa de Galicia: una <strong>procesión de almas en pena</strong> que vagan de noche.</p>
+              <p>👉 Dicen que huele a <strong>cera quemada</strong> a su paso. <em>No les mires si no quieres unirte.</em></p>
             </div>
             <div class="rec-card">
               <img src="img/cur_glaciacion.jpg" class="rec-card-img" alt="Glaciación" onerror="this.style.display='none'">
               <h4>🧊 Refugio de la glaciación</h4>
-              <p>Mientras Europa quedaba congelada, el clima suave de Galicia permitió sobrevivir a muchísimas especies.</p>
-              <p>👉 Esta tierra fue un auténtico santuario de vida.</p>
+              <p>Mientras Europa quedaba congelada, el <strong>clima suave de Galicia</strong> permitió sobrevivir a muchísimas especies.</p>
+              <p>👉 Esta tierra fue un auténtico <strong>santuario de vida</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_eucaliptos.jpg" class="rec-card-img" alt="Eucaliptos" onerror="this.style.display='none'">
               <h4>🌿 El «verde gallego» no es natural</h4>
-              <p>Gran parte del paisaje está ocupado por eucaliptos, una especie introducida que desplaza al bosque autóctono.</p>
+              <p>Gran parte del paisaje está ocupado por <strong>eucaliptos</strong>, una especie introducida que desplaza al bosque autóctono.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_gaiteiros.jpg" class="rec-card-img" alt="Gaiteiros" onerror="this.style.display='none'">
               <h4>🎵 Los gaiteiros, músicos del pueblo</h4>
-              <p>Durante siglos recorrieron aldeas tocando en romerías, marcando el ritmo de bodas y procesiones.</p>
-              <p>👉 Hoy son símbolo absoluto de la cultura gallega.</p>
+              <p>Durante <strong>siglos</strong> recorrieron aldeas tocando en romerías, marcando el ritmo de bodas y procesiones.</p>
+              <p>👉 Hoy son <strong>símbolo absoluto</strong> de la cultura gallega.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_marinos.jpg" class="rec-card-img" alt="Marinos" onerror="this.style.display='none'">
               <h4>⚓ Marinos clave en la expansión española</h4>
-              <p>Los gallegos formaron parte de grandes expediciones marítimas, curtidos por el duro Atlántico.</p>
-              <p>👉 Galicia ha vivido siempre de cara al mar.</p>
+              <p>Los gallegos formaron parte de <strong>grandes expediciones marítimas</strong>, curtidos por el duro Atlántico.</p>
+              <p>👉 Galicia ha vivido <strong>siempre de cara al mar</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_rosalia.jpg" class="rec-card-img" alt="Rosalía" onerror="this.style.display='none'">
               <h4>📖 Rosalía de Castro</h4>
-              <p>En el siglo XIX fue una de las primeras autoras en escribir en gallego, dignificando la lengua y reflejando la morriña.</p>
-              <p>👉 Su obra marcó el inicio del Rexurdimento cultural gallego.</p>
+              <p>En el <strong>siglo XIX</strong> fue una de las primeras autoras en escribir en gallego, dignificando la lengua y reflejando la <em>morriña</em>.</p>
+              <p>👉 Su obra marcó el inicio del <strong>Rexurdimento</strong> cultural gallego.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_castros.jpg" class="rec-card-img" alt="Castros" onerror="this.style.display='none'">
               <h4>🏰 Tierra de castros</h4>
-              <p>Hubo más de 5.000 poblados fortificados. La cultura castreña dominó el noroeste peninsular desde la Edad del Hierro hasta la llegada de los romanos.</p>
-              <p>👉 Mi top 3 imprescindible: <em>Castro de Baroña</em> (Porto do Son, sobre una península batida por el Atlántico), <em>Castro de Santa Trega</em> (A Guarda, 20 hectáreas con vistas a la desembocadura del Miño) y <em>Castro de Viladonga</em> (Castro de Rei, el mejor museizado de Galicia).</p>
+              <p>Hubo <strong>más de 5.000 poblados fortificados</strong>. La cultura castreña dominó el noroeste peninsular desde la Edad del Hierro hasta la llegada de los romanos.</p>
+              <p>👉 <strong>Mi top 3 imprescindible:</strong></p>
+              <ul>
+                <li><em>Castro de Baroña</em> (Porto do Son): sobre una <strong>península batida por el Atlántico</strong>.</li>
+                <li><em>Castro de Santa Trega</em> (A Guarda): <strong>20 hectáreas</strong> con vistas a la desembocadura del Miño.</li>
+                <li><em>Castro de Viladonga</em> (Castro de Rei): <strong>el mejor museizado</strong> de Galicia.</li>
+              </ul>
             </div>
             <div class="rec-card">
               <img src="img/cur_percebes.jpg" class="rec-card-img" alt="Percebes" onerror="this.style.display='none'">
               <h4>🦀 El percebe de O Roncudo</h4>
-              <p>Considerado el mejor del mundo. Crece pegado a las rocas batidas por el oleaje más violento del Atlántico, en el cabo de O Roncudo (Costa da Morte).</p>
-              <p>👉 Es uno de los oficios más peligrosos del mundo: cada año mueren percebeiros arrastrados por las olas. En el mismo cabo hay cruces blancas en homenaje a los caídos.</p>
+              <p>Considerado <strong>el mejor del mundo</strong>. Crece pegado a las rocas batidas por el oleaje más violento del Atlántico, en el cabo de <strong>O Roncudo</strong> (Costa da Morte).</p>
+              <p>👉 Es <strong>uno de los oficios más peligrosos del mundo</strong>: cada año mueren percebeiros arrastrados por las olas. En el mismo cabo hay <strong>cruces blancas</strong> en homenaje a los caídos.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_himno.jpg" class="rec-card-img" alt="Himno gallego" onerror="this.style.display='none'">
               <h4>🎶 El himno gallego habla de Breogán</h4>
               <p><em>Os Pinos</em>, compuesto por Pondal y musicado por Veiga, llama a Galicia <em>«fogar de Breogán»</em> (hogar de Breogán), recuperando al rey mítico fundador de Brigantia.</p>
-              <p>👉 Cuando se canta en partidos o grandes celebraciones, miles de gallegos invocan, sin saberlo, una leyenda celta del siglo XI.</p>
+              <p>👉 Cuando se canta en partidos o grandes celebraciones, miles de gallegos invocan, sin saberlo, una <strong>leyenda celta del siglo XI</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_pulpo.jpg" class="rec-card-img" alt="Pulpo a feira" onerror="this.style.display='none'">
               <h4>🐙 El pulpo a feira no es de la costa</h4>
-              <p>Aunque parezca paradójico, este plato icónico nació tierra adentro: las arrieras maragatas traían el pulpo seco desde el Cantábrico hasta las ferias de ganado de Lugo, y allí se popularizó la receta con cachelos y pimentón.</p>
-              <p>👉 Las pulperías más famosas del mundo están en <em>Melide</em> (Camino de Santiago) y <em>O Carballiño</em> (Ourense), ambas a decenas de kilómetros del mar.</p>
+              <p>Aunque parezca paradójico, este plato icónico <strong>nació tierra adentro</strong>: las arrieras maragatas traían el pulpo seco desde el Cantábrico hasta las ferias de ganado de Lugo, y allí se popularizó la receta con cachelos y pimentón.</p>
+              <p>👉 Las <strong>pulperías más famosas</strong> del mundo están en:</p>
+              <ul>
+                <li><em>Melide</em> (Camino de Santiago).</li>
+                <li><em>O Carballiño</em> (Ourense).</li>
+              </ul>
+              <p>Ambas a <strong>decenas de kilómetros del mar</strong>.</p>
             </div>
             <div class="rec-card">
               <img src="img/cur_vikingos.jpg" class="rec-card-img" alt="Vikingos en Catoira" onerror="this.style.display='none'">
               <h4>⚔️ Catoira y los vikingos</h4>
-              <p>Las Torres do Oeste fueron levantadas en el siglo IX para defender Compostela de los ataques nórdicos. Desde 1960, el pueblo celebra una Romería Vikinga con desembarco simulado.</p>
-              <p>👉 Es Fiesta de Interés Turístico Internacional. Sí, los vikingos atacaron Galicia varias veces — y los gallegos no lo han olvidado.</p>
+              <p>Las <em>Torres do Oeste</em> fueron levantadas en el <strong>siglo IX</strong> para defender Compostela de los ataques nórdicos. Desde 1960, el pueblo celebra una <strong>Romería Vikinga</strong> con desembarco simulado.</p>
+              <p>👉 Es <strong>Fiesta de Interés Turístico Internacional</strong>. Sí, los vikingos atacaron Galicia varias veces — y los gallegos no lo han olvidado.</p>
             </div>
       `
     };

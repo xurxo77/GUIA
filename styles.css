@@ -3815,16 +3815,40 @@ a:hover {
 
 #recomendaciones .rec-card p {
   font-size: 0.88rem !important;
-  line-height: 1.5 !important;
+  line-height: 1.55 !important;
   color: var(--fg-muted) !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 10px !important;
   white-space: normal !important;
+}
+
+#recomendaciones .rec-card p + p {
+  margin-top: 6px !important;
 }
 
 #recomendaciones .rec-card ul {
   font-size: 0.88rem !important;
+  line-height: 1.5 !important;
   color: var(--fg-muted) !important;
-  padding-left: 18px !important;
+  padding-left: 20px !important;
+  margin: 6px 0 10px 0 !important;
+}
+
+#recomendaciones .rec-card ul li {
+  margin-bottom: 6px !important;
+}
+
+#recomendaciones .rec-card ul li:last-child {
+  margin-bottom: 0 !important;
+}
+
+#recomendaciones .rec-card strong {
+  color: var(--fg-ink) !important;
+  font-weight: 600 !important;
+}
+
+#recomendaciones .rec-card em {
+  font-style: italic !important;
+  color: #1a5276 !important;
 }
 
 
