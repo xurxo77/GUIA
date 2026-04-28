@@ -291,33 +291,180 @@
         "naturaleza",
         "magicos"
       ],
-      "horas": 6,
+      "horas": 1,
       "imagen": "img/costadamorte.jpg",
       "lat": 43,
       "lng": -9,
-      "porQueVenir": "La Costa da Morte es el tramo más salvaje y cinematográfico de toda la costa atlántica española. Acantilados de vértigo, playas sin fin, faros solitarios y una historia cargada de naufragios hacen de este territorio un lugar único en Europa. El nombre lo inventaron los tabloides ingleses en el siglo XIX, y se quedó para siempre.",
-      "momentoPerfecto": "Cualquier época del año, pero en otoño e invierno la naturaleza se desata y el paisaje alcanza una dimensión dramática que no tiene comparación. En verano las playas como Carnota son perfectas y el Camino dos Faros es precioso.",
+      "porQueVenir": "La Costa da Morte no es un destino concreto: es un territorio. El tramo más salvaje y cinematográfico de la costa atlántica española, con acantilados de vértigo, playas sin fin, faros solitarios y una historia cargada de naufragios. El nombre lo inventaron los tabloides ingleses en el siglo XIX por la cantidad de barcos que se hundían en sus aguas, y se quedó para siempre.",
+      "momentoPerfecto": "Cualquier época del año, pero en otoño e invierno la naturaleza se desata y el paisaje alcanza una dimensión dramática que no tiene comparación. En verano las playas son perfectas y el Camiño dos Faros es precioso de recorrer.",
       "imprescindibles": [
-        "<strong>Cabo Vilán y su faro:</strong> uno de los faros más fotogénicos de toda Europa, en Camariñas.",
+        "<strong>Lugares clave con ficha propia en la app:</strong> Muxía, Camariñas, Laxe, Corcubión, Fisterra y alrededores, Monte Pindo y Cascada del Ézaro.",
         "<strong>Playa de Carnota:</strong> la playa más larga de Galicia, virgen y de arena fina.",
-        "<strong>Dolmen de Dombate:</strong> la catedral del megalitismo gallego, en Cabana de Bergantiños.",
-        "<strong>Camariñas:</strong> encaje de bolillos, percebe de O Roncudo y ambiente marinero.",
-        "<strong>Fisterra:</strong> el fin del mundo romano, con faro y acantilados épicos."
+        "<strong>O Camiño dos Faros:</strong> ruta de 200 km que conecta Malpica con Fisterra a través de los faros emblemáticos.",
+        "<strong>Cabo Roncudo:</strong> donde crece el mejor percebe del mundo, con cruces blancas en homenaje a los percebeiros caídos."
       ],
-      "comer": "Percebe de O Roncudo (considerado el mejor del mundo), pulpo de Camariñas, centolla de Lira, longueirón enterrado en la arena de Fisterra. La lonja de Corcubión y la de Fisterra son referencia.",
-      "tomar": "Vino blanco gallego y albariño. En Camariñas y Corcubión hay buenas tabernas marineras.",
-      "secreto": "Costa da Morte fue certificada en 2023 como Destino Turístico Starlight — tiene la menor contaminación lumínica de toda la costa española y portuguesa. Es uno de los mejores lugares de Europa para ver la Vía Láctea. Además, durante dos meses al año se puede ver la última puesta de sol de la Europa continental.",
+      "comer": "Percebe de O Roncudo, pulpo de Camariñas, centolla de Lira, longueirón enterrado en la arena de Fisterra. Las lonjas de Corcubión, Fisterra y Camariñas son la referencia para producto fresco.",
+      "tomar": "Vino blanco gallego y albariño. Las tabernas marineras de Muxía, Camariñas y Corcubión son las mejores para acompañar percebes y mariscos.",
+      "secreto": "Costa da Morte fue certificada en 2023 como Destino Turístico Starlight — tiene la menor contaminación lumínica de toda la costa española y portuguesa. Es uno de los mejores lugares de Europa para ver la Vía Láctea. Durante dos meses al año (24 marzo-23 abril y 18 agosto-19 septiembre) se puede ver aquí la última puesta de sol de la Europa continental.",
       "masTiempo": [
-        "<strong>O Camiño dos Faros:</strong> ruta de 200 km que conecta los faros emblemáticos de toda la costa.",
-        "<strong>Muxía:</strong> santuario de Nosa Señora da Barca y la Pedra de Abalar.",
-        "<strong>Ruta dos Naufragios de Camariñas:</strong> historia marinera y hundimientos famosos."
+        "<strong>Camiño de Santiago Fisterra-Muxía:</strong> la prolongación del Camino hasta el fin del mundo y el santuario de la Virxe da Barca.",
+        "<strong>Mercado Medieval de Corcubión:</strong> uno de los más auténticos de Galicia.",
+        "<strong>Astroturismo:</strong> visitas guiadas para observación astronómica en megalitos como el Dolmen da Pedra Moura o Arca da Piosa."
       ],
       "advertencias": [
-        "Es un territorio extenso: planifica bien los desplazamientos.",
-        "El tiempo cambia rápido; lleva siempre ropa de abrigo.",
-        "Las corrientes en playas abiertas son peligrosas."
+        "Es un territorio extenso: planifica bien los desplazamientos por carretera secundaria.",
+        "El tiempo cambia rápido; lleva siempre ropa de abrigo aunque sea verano.",
+        "Las corrientes en playas abiertas pueden ser peligrosas."
       ],
-      "miOpinion": "La Costa da Morte es el Galicia más Galicia posible. Tierra de mar bravo, gente que vive del océano y paisajes que no se parecen a nada de lo que has visto antes. Cuando llegas a Cabo Vilán o a la playa de Carnota, entiendes por qué esta tierra tiene ese nombre. No es un destino para quien busca comodidades — es para quien quiere sentir algo de verdad."
+      "miOpinion": "La Costa da Morte es la Galicia más Galicia posible. Tierra de mar bravo, gente que vive del océano y paisajes que no se parecen a nada de lo que has visto antes. Es tan extensa y diversa que en la app he separado los lugares más importantes en sus propias fichas: empieza por esta visión general y luego entra en Muxía, Camariñas, Laxe, Corcubión y Fisterra para descubrir cada rincón."
+    },
+    {
+      "id": 40,
+      "nombre": "Muxía",
+      "bloque": "acoruna",
+      "categorias": [
+        "costa",
+        "magicos",
+        "patrimonio"
+      ],
+      "horas": 3,
+      "imagen": "img/muxia.jpg",
+      "lat": 43.1083,
+      "lng": -9.2167,
+      "porQueVenir": "Muxía es uno de los lugares más mágicos y espirituales de toda Galicia. El santuario de la Virxe da Barca, situado al borde del mar sobre las rocas, es el final alternativo del Camino de Santiago — y para muchos peregrinos, el más emocionante. Las piedras sagradas que rodean la ermita y la furia del Atlántico golpeando los acantilados crean una atmósfera única.",
+      "momentoPerfecto": "Cualquier época, pero los días de tormenta tienen una dimensión casi sobrenatural. El atardecer desde el santuario, con el sol cayendo en el océano, es una de las mejores experiencias de la costa gallega.",
+      "imprescindibles": [
+        "<strong>Santuario de Nosa Señora da Barca:</strong> ermita al borde del Atlántico, escenario clave del fin del Camino.",
+        "<strong>Pedra de Abalar:</strong> roca de 9 metros que se balancea cuando te subes a ella, emitiendo un sonido grave.",
+        "<strong>Pedra dos Cadrís:</strong> la leyenda dice que pasar por debajo nueve veces cura los dolores de espalda.",
+        "<strong>Cabo Touriñán:</strong> punto más occidental de la España peninsular, faro espectacular.",
+        "<strong>Puerto y casco histórico:</strong> ambiente marinero auténtico, con secaderos de congrio."
+      ],
+      "comer": "Pescado fresco del Atlántico, sobre todo congrio (Muxía es famosa por sus secaderos de este pescado). Los restaurantes del puerto y del paseo marítimo son la mejor opción.",
+      "tomar": "Vino blanco gallego y albariño en cualquier taberna del puerto. Café con vistas al mar tras visitar el santuario.",
+      "secreto": "Las rocas mágicas que rodean la ermita son parte de una leyenda preciosa: cuentan que la Virgen llegó a Muxía en una barca de piedra para ayudar al apóstol Santiago. La barca se rompió al llegar, y sus restos son las piedras que ves hoy: la vela (Pedra de Abalar), el timón (Pedra dos Cadrís) y el casco (Pedra dos Namorados, donde las parejas piden deseos).",
+      "masTiempo": [
+        "<strong>Camariñas:</strong> a 30 km, encaje de bolillos y faro de Cabo Vilán.",
+        "<strong>Cabo Touriñán:</strong> a 20 km, el punto más occidental peninsular con uno de los mejores atardeceres.",
+        "<strong>Fisterra:</strong> a 30 km, completar la peregrinación al fin del mundo."
+      ],
+      "advertencias": [
+        "El santuario está en una zona muy expuesta al viento — extrema precaución cerca del agua los días de tormenta.",
+        "El parking junto al santuario se llena en temporada alta.",
+        "Pueblo pequeño, oferta gastronómica limitada en invierno."
+      ],
+      "miOpinion": "Muxía es uno de mis lugares favoritos de Galicia. Tiene esa combinación de espiritualidad, naturaleza salvaje y leyenda que solo se da aquí. Cuando estás junto al santuario y ves las olas reventar contra las rocas, entiendes por qué este lugar lleva siglos siendo destino de peregrinaciones. Mucha gente prefiere Muxía a Fisterra como final del Camino — y razones no le faltan."
+    },
+    {
+      "id": 41,
+      "nombre": "Camariñas",
+      "bloque": "acoruna",
+      "categorias": [
+        "costa",
+        "patrimonio",
+        "naturaleza"
+      ],
+      "horas": 3,
+      "imagen": "img/camarinas.jpg",
+      "lat": 43.1267,
+      "lng": -9.1833,
+      "porQueVenir": "Camariñas es la villa del encaje de bolillos y de uno de los faros más fotogénicos de Europa: Cabo Vilán. Un pueblo marinero auténtico, con tradición artesana viva, una ría tranquila y, justo a la salida, los acantilados más espectaculares de la Costa da Morte.",
+      "momentoPerfecto": "Cualquier época. La Mostra do Encaixe a principios de abril es la fiesta más singular del pueblo. En verano la ría es perfecta para baño tranquilo. Los atardeceres desde Cabo Vilán son míticos.",
+      "imprescindibles": [
+        "<strong>Faro de Cabo Vilán:</strong> uno de los faros más bellos de Europa, sobre acantilados de vértigo. Centro de interpretación dentro.",
+        "<strong>Encaixe de Camariñas:</strong> tradición artesanal del encaje de bolillos. Puedes ver a las palilleiras trabajando en vivo en la calle.",
+        "<strong>Cementerio dos Ingleses:</strong> en memoria de los marineros del HMS Serpent, naufragado en 1890. Lugar sobrecogedor.",
+        "<strong>Ruta dos Naufragios:</strong> sendero litoral con paneles que cuentan los hundimientos más famosos.",
+        "<strong>Casco histórico:</strong> calles empedradas con tiendas de encaje y ambiente marinero."
+      ],
+      "comer": "Pulpo de Camariñas (con denominación propia, considerado de los mejores de Galicia), centollo, percebe de O Roncudo. El puerto tiene buenos restaurantes con producto fresco diario de la lonja.",
+      "tomar": "Albariño y vino blanco gallego en las tabernas del puerto.",
+      "secreto": "El encaje de Camariñas tiene marca registrada y se vende en todo el mundo, pero pocas turistas saben que pueden comprar directamente a las palilleiras en sus casas-taller. Pregunta en la oficina de turismo, te indican cuáles están abiertas. Compras una pieza única hecha a mano por una mujer del pueblo, sin intermediarios.",
+      "masTiempo": [
+        "<strong>Muxía:</strong> a 30 km, santuario de la Virxe da Barca y piedras mágicas.",
+        "<strong>Cabo Vilán al atardecer:</strong> uno de los mejores planes de toda Galicia.",
+        "<strong>Penedos de Pasarela e Traba:</strong> formaciones rocosas únicas, lugar mágico cargado de leyendas."
+      ],
+      "advertencias": [
+        "Cabo Vilán es muy ventoso — precaución en el borde de los acantilados.",
+        "El Cementerio dos Ingleses está aislado, aparcamiento limitado.",
+        "Las palilleiras no trabajan en horario fijo — pregunta en turismo."
+      ],
+      "miOpinion": "Camariñas es de los pueblos más auténticos de toda la costa gallega. La combinación de tradición artesana viva, faro espectacular y memoria de los naufragios la hace única. Y el pulpo de Camariñas es, en mi opinión, el mejor de Galicia — más sabroso y carnoso que el de las pulperías del interior."
+    },
+    {
+      "id": 42,
+      "nombre": "Laxe",
+      "bloque": "acoruna",
+      "categorias": [
+        "costa",
+        "patrimonio",
+        "naturaleza"
+      ],
+      "horas": 3,
+      "imagen": "img/laxe.jpg",
+      "lat": 43.225,
+      "lng": -9.0078,
+      "porQueVenir": "Laxe es la villa playera de la Costa da Morte, con un casco histórico bonito, una ría tranquila y muy cerca el Dolmen de Dombate — la 'catedral del megalitismo gallego'. Toda la zona de Cabana de Bergantiños y Laxe concentra el patrimonio prehistórico más importante de Galicia.",
+      "momentoPerfecto": "Verano para las playas (Soesto y Laxe son espectaculares), primavera y otoño para el dolmen y los miradores. La Festa do Naufraxio en agosto es uno de los homenajes marineros más bonitos del norte de Galicia.",
+      "imprescindibles": [
+        "<strong>Dolmen de Dombate:</strong> 'catedral del megalitismo gallego', con corredor que se alinea con el primer rayo de sol del solsticio de invierno. Tiene centro de interpretación.",
+        "<strong>Castro de Borneiro:</strong> castro celta perfectamente conservado, en un entorno mágico.",
+        "<strong>Playa de Soesto:</strong> una de las playas más bellas y salvajes de Galicia, con surf y arena dorada.",
+        "<strong>Faro de Laxe:</strong> mirador sobre la ría con vistas a Cabo Vilán al fondo.",
+        "<strong>Casco histórico:</strong> iglesia gótica de Santa María, paseo marítimo, ambiente marinero."
+      ],
+      "comer": "Pescado fresco de la ría, marisco y empanada. La zona de la lonja y el puerto es la mejor opción. Pregunta por el congrio — Laxe es zona de buenos secaderos.",
+      "tomar": "Albariño en las terrazas del paseo marítimo. Las puestas de sol desde aquí son espectaculares.",
+      "secreto": "El Dolmen de Dombate es uno de los megalitos más estudiados del mundo y se puede visitar el interior con guía. Pero lo que casi nadie sabe es que en el solsticio de invierno (21 de diciembre) el primer rayo de sol del año entra exactamente por su corredor e ilumina la cámara. Hay visitas especiales esa madrugada — un acontecimiento mágico.",
+      "masTiempo": [
+        "<strong>Monte Branco de Ponteceso:</strong> a 15 km, mirador espectacular sobre la ría de Corme e Laxe.",
+        "<strong>Camariñas:</strong> a 25 km, encaje y Cabo Vilán.",
+        "<strong>Refugio de Verdes:</strong> bosque autóctono de robles, lugar verde y exuberante."
+      ],
+      "advertencias": [
+        "El Dolmen de Dombate tiene horarios y requiere visita guiada.",
+        "Las playas atlánticas tienen oleaje fuerte — precaución con niños.",
+        "El Castro de Borneiro está en un camino rural, GPS recomendado."
+      ],
+      "miOpinion": "Laxe es la base perfecta para descubrir el patrimonio megalítico de la Costa da Morte. El Dolmen de Dombate es absolutamente impresionante — entrar en su cámara con 6.000 años de historia te deja sin palabras. Y la playa de Soesto, a pocos kilómetros, es de las más bonitas que he visto. Combinación ganadora."
+    },
+    {
+      "id": 43,
+      "nombre": "Corcubión",
+      "bloque": "acoruna",
+      "categorias": [
+        "villas",
+        "patrimonio",
+        "costa"
+      ],
+      "horas": 2,
+      "imagen": "img/corcubion.jpg",
+      "lat": 42.9444,
+      "lng": -9.1942,
+      "porQueVenir": "Corcubión es uno de los conjuntos histórico-artísticos más bonitos de la Costa da Morte. Una villa marinera medieval con casco histórico declarado Bien de Interés Cultural, ría tranquila enfrente y un Mercado Medieval en agosto que es de los más auténticos de Galicia. Justo antes de llegar a Fisterra.",
+      "momentoPerfecto": "Cualquier época para el casco histórico. Mediados de agosto durante el Mercado Medieval, el ambiente es extraordinario: locales y visitantes vestidos de época, talleres artesanos y música medieval por las calles.",
+      "imprescindibles": [
+        "<strong>Casco histórico:</strong> calles empedradas, casas blasonadas, plazas con encanto. Patrimonio Histórico-Artístico desde 1984.",
+        "<strong>Iglesia de San Marcos:</strong> gótica del siglo XV, una de las más singulares del litoral gallego.",
+        "<strong>Pazo de los Condes de Altamira:</strong> uno de los pazos urbanos mejor conservados.",
+        "<strong>Mercado Medieval (mediados de agosto):</strong> uno de los más auténticos de Galicia, declarado Festa de Interés Turístico de Galicia.",
+        "<strong>Praia da Cova:</strong> playa pequeña y tranquila junto al casco histórico."
+      ],
+      "comer": "Marisco de la ría y pescado fresco. La lonja de Corcubión es de las más activas de la zona, y los restaurantes del puerto trabajan con producto del día. Bogavante y centollo de excelente calidad.",
+      "tomar": "Vino blanco gallego y albariño en las tabernas del casco histórico. Café con vistas a la ría desde el paseo marítimo.",
+      "secreto": "Antiguamente Corcubión fue un puerto ballenero importante — los gallegos cazaban ballenas en estas aguas hasta principios del siglo XX. Quedan vestigios de aquella época que se pueden conocer en visitas guiadas, y el ambiente del casco histórico tiene mucho de aquellos tiempos. La factoría ballenera de Caneliñas, en Cee a pocos kilómetros, es visitable.",
+      "masTiempo": [
+        "<strong>Cee:</strong> al lado, con la ría compartida y la factoría ballenera de Caneliñas.",
+        "<strong>Fisterra y alrededores:</strong> a 12 km, el fin del mundo.",
+        "<strong>Cascada del Ézaro:</strong> a 20 km, la única de Europa que cae directamente al mar."
+      ],
+      "advertencias": [
+        "El Mercado Medieval (agosto) atrae mucha gente — reserva alojamiento con antelación.",
+        "Aparcar en el casco histórico es complicado, hay zona azul.",
+        "Pueblo pequeño, oferta nocturna limitada."
+      ],
+      "miOpinion": "Corcubión es la parada que mucha gente se salta de camino a Fisterra, y es un error. Tiene uno de los cascos históricos más bonitos de la Costa da Morte, con un ambiente que recuerda a otra época. Si puedes coincidir con el Mercado Medieval en agosto, no te lo pienses — es una de las mejores fiestas de la zona."
     },
     {
       "id": 8,
