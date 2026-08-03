@@ -54,6 +54,7 @@ let categorias = [];
 let curiosidades = [];
 let lugares = [];
 let recomendaciones = {};
+let restaurantes = [];
 
 async function loadData() {
   try {
@@ -68,7 +69,8 @@ async function loadData() {
     curiosidades    = data.curiosidades    || [];
     lugares         = data.lugares         || [];
     recomendaciones = data.recomendaciones || {};
-    console.log(`[data] Cargados: ${lugares.length} lugares, ${curiosidades.length} curiosidades`);
+    restaurantes    = data.restaurantes    || [];
+    console.log(`[data] Cargados: ${lugares.length} lugares, ${curiosidades.length} curiosidades, ${restaurantes.length} restaurantes`);
   } catch (e) {
     console.error('[data] Error cargando data.json:', e);
   }
@@ -355,6 +357,53 @@ const ui = {
     } catch (e) {
       widget.innerHTML = '<span style="font-size:0.72rem;color:var(--fg-muted)">Sin conexión</span>';
     }
+  },
+
+  // Genera el HTML de "A mesa e barra" agrupando por localidad
+  buildMesaEBarraHTML: () => {
+    if (!restaurantes || restaurantes.length === 0) {
+      return `
+            <div class="rec-card">
+              <h4>🍴 Próximamente</h4>
+              <p>Estamos recopilando nuestros sitios favoritos. Vuelve pronto.</p>
+            </div>
+      `;
+    }
+
+    // Agrupar por localidad
+    const grupos = {};
+    restaurantes.forEach(r => {
+      const loc = r.localidad || 'Sin localidad';
+      if (!grupos[loc]) grupos[loc] = [];
+      grupos[loc].push(r);
+    });
+
+    // Ordenar localidades alfabéticamente
+    const localidades = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
+
+    let html = '';
+    localidades.forEach(localidad => {
+      const sitios = grupos[localidad];
+      html += `
+            <div class="rec-card">
+              <h4>📍 ${utils.sanitizeHTML(localidad)}</h4>
+              <ul class="mesabarra-list">
+      `;
+      sitios.forEach(r => {
+        const nombre = utils.sanitizeHTML(r.nombre);
+        if (r.maps) {
+          html += `<li><a href="${r.maps}" target="_blank" rel="noopener">${nombre}</a></li>`;
+        } else {
+          html += `<li>${nombre}</li>`;
+        }
+      });
+      html += `
+              </ul>
+            </div>
+      `;
+    });
+
+    return html;
   },
 
   renderRecommendations: () => {
@@ -729,6 +778,7 @@ const ui = {
       'rec-comer': htmlComer,
       'rec-beber': htmlBeber,
       'rec-disfrutar': htmlDisfrutar,
+      'rec-mesabarra': ui.buildMesaEBarraHTML(),
       'rec-curiosidades': `
             <div class="rec-card">
               <img src="img/cur_diaspora.jpg" class="rec-card-img" alt="Diáspora gallega" onerror="this.style.display='none'">
@@ -1001,6 +1051,7 @@ const ui = {
                 ${lugar.planLluvia ? (Array.isArray(lugar.planLluvia) ? ui.renderListBlock('☔', 'PLAN PARA DÍA DE LLUVIA', lugar.planLluvia) : ui.renderInfoBlock('☔', 'PLAN PARA DÍA DE LLUVIA', lugar.planLluvia)) : ''}
                 ${Array.isArray(lugar.advertencias) ? ui.renderListBlock('⚠️', 'ADVERTENCIAS', lugar.advertencias) : ui.renderInfoBlock('⚠️', 'ADVERTENCIAS', lugar.advertencias)}
                 ${ui.renderInfoBlock('❤️', 'MI OPINIÓN', lugar.miOpinion)}
+                ${ui.renderMesaEBarraForPlace(lugar.id)}
                 
                 <button class="btn-primary" onclick="routeManager.togglePlace(${lugar.id})" style="width:100%; margin-top:16px;">
                   ${state.selectedPlaces.includes(lugar.id) ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta'}
@@ -1059,6 +1110,34 @@ const ui = {
           <span class="info-title">${title}</span>
         </div>
         <p class="info-text">${text}</p>
+      </div>
+    `;
+  },
+
+  // Renderiza el bloque "A mesa e barra" en la ficha de un lugar concreto
+  renderMesaEBarraForPlace: (lugarId) => {
+    if (!restaurantes || restaurantes.length === 0) return '';
+    const sitios = restaurantes.filter(r => r.lugarId === lugarId);
+    if (sitios.length === 0) return '';
+
+    let items = '';
+    sitios.forEach(r => {
+      const nombre = utils.sanitizeHTML(r.nombre);
+      const loc = r.localidad ? ` <span class="mesabarra-loc">(${utils.sanitizeHTML(r.localidad)})</span>` : '';
+      if (r.maps) {
+        items += `<li><a href="${r.maps}" target="_blank" rel="noopener">${nombre}</a>${loc}</li>`;
+      } else {
+        items += `<li>${nombre}${loc}</li>`;
+      }
+    });
+
+    return `
+      <div class="info-block">
+        <div class="info-header">
+          <span class="info-icon">🍴</span>
+          <span class="info-title">A MESA E BARRA</span>
+        </div>
+        <ul class="mesabarra-list">${items}</ul>
       </div>
     `;
   },
