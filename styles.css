@@ -5646,6 +5646,50 @@ html, body {
   --cur-color: #5b3fa0;
   --cur-on:    #3b2270;
   --cur-gradient: linear-gradient(135deg, #ede8f8 0%, #e0d8f5 100%);
+
+  --mesa-color: #a04a1f;
+  --mesa-on:    #6d2f10;
+  --mesa-gradient: linear-gradient(135deg, #fbe9dc 0%, #f5d6b8 100%);
+}
+
+/* ── ACORDEÓN A MESA E BARRA ──────────────────────────────── */
+#rec-mesabarra { background: var(--mesa-gradient); }
+#rec-mesabarra .bloque-nombre    { color: var(--mesa-on); }
+#rec-mesabarra .bloque-subtitulo { color: var(--mesa-color); }
+#rec-mesabarra .province-arrow   { background: rgba(160,74,31,0.12); }
+#rec-mesabarra .province-arrow svg { stroke: var(--mesa-color); }
+#rec-mesabarra.expanded          { box-shadow: 0 8px 24px rgba(160,74,31,0.2); }
+#rec-mesabarra.expanded .province-arrow { background: var(--mesa-color); }
+#rec-mesabarra.expanded .province-arrow svg { stroke: white; }
+
+/* Lista de sitios (dentro de tarjetas y en fichas de lugares) */
+.mesabarra-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+}
+.mesabarra-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.mesabarra-list li:last-child {
+  border-bottom: none;
+}
+.mesabarra-list a {
+  color: var(--mesa-on, #6d2f10);
+  text-decoration: none;
+  font-weight: 600;
+}
+.mesabarra-list a:hover,
+.mesabarra-list a:active {
+  text-decoration: underline;
+}
+.mesabarra-loc {
+  color: var(--fg-muted);
+  font-size: 0.85em;
+  font-weight: 400;
 }
 
 #rec-curiosidades { background: var(--cur-gradient); }
