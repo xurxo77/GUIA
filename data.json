@@ -1843,6 +1843,7 @@
       "localidad": "Ponteceso",
       "lugarId": 7,
       "imagen": "img/mesa/balares.jpg",
+      "nota": "Terraza espectacular sobre la ría de Corme e Laxe.",
       "maps": "https://maps.google.com/?q=Restaurante+Hotel+Balares+Ponteceso"
     },
     {
@@ -1850,6 +1851,7 @@
       "localidad": "O Porto do Barqueiro",
       "lugarId": 6,
       "imagen": "img/mesa/sobreposta.jpg",
+      "nota": "Terraza con vistas al Cantábrico.",
       "maps": "https://maps.google.com/?q=Restaurante+A+Sobreposta+Porto+do+Barqueiro"
     },
     {
@@ -1857,6 +1859,7 @@
       "localidad": "Porto de Bares",
       "lugarId": 6,
       "imagen": "img/mesa/mullermarina.jpg",
+      "nota": "Chiringuito llevado por 8 mujeres del pueblo. Marisco recién capturado.",
       "maps": "https://maps.google.com/?q=A+Muller+Marina+Porto+de+Bares"
     },
     {
@@ -1864,6 +1867,7 @@
       "localidad": "Ortigueira",
       "lugarId": 5,
       "imagen": "img/mesa/casarodrigo.jpg",
+      "nota": "Restaurante, pizzería y tienda rural. Muy familiar.",
       "maps": "https://maps.google.com/?q=Casa+Rodrigo+Ortigueira"
     },
     {
@@ -1871,6 +1875,7 @@
       "localidad": "A Illa de Arousa",
       "lugarId": 36,
       "imagen": "img/mesa/saratoga.jpg",
+      "nota": "Para mí, el mejor pulpo de Galicia. Y con vistas.",
       "maps": "https://maps.google.com/?q=Cafe+Bar+Saratoga+Illa+de+Arousa"
     },
     {
@@ -1878,6 +1883,7 @@
       "localidad": "A Illa de Arousa (Praia de Sualaxe)",
       "lugarId": 36,
       "imagen": "img/mesa/ofaro.jpg",
+      "nota": "Al final de la ruta al Faro de Punta Cabalo. Playa y puesta de sol.",
       "maps": "https://maps.google.com/?q=Chiringuito+O+Faro+Illa+de+Arousa"
     },
     {
@@ -1885,6 +1891,7 @@
       "localidad": "Limodre (Fene)",
       "lugarId": 15,
       "imagen": "img/mesa/oemigrante.jpg",
+      "nota": "Icono desde hace 50 años. Marisco de calle, raciones enormes.",
       "maps": "https://maps.google.com/?q=O+Emigrante+Limodre+Fene"
     }
   ]
