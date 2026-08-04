@@ -5662,6 +5662,97 @@ html, body {
 #rec-mesabarra.expanded .province-arrow { background: var(--mesa-color); }
 #rec-mesabarra.expanded .province-arrow svg { stroke: white; }
 
+/* Tarjeta CTA final "Ver todos en el mapa" */
+.mesabarra-map-cta {
+  background: linear-gradient(135deg, var(--mesa-color, #a04a1f) 0%, #8a3d19 100%);
+  color: white;
+}
+.mesabarra-map-cta h4 {
+  color: white !important;
+}
+.mesabarra-map-cta p {
+  color: rgba(255,255,255,0.9) !important;
+  font-size: 0.9rem;
+  margin-bottom: 14px !important;
+}
+.mesabarra-map-btn {
+  background: white;
+  color: var(--mesa-on, #6d2f10);
+  border: none;
+  padding: 11px 18px;
+  border-radius: var(--r-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: transform var(--duration-fast);
+}
+.mesabarra-map-btn:active {
+  transform: scale(0.97);
+}
+
+/* Botón "Ver en el mapa" dentro de las fichas de lugar */
+.mesabarra-mini-map-btn {
+  background: var(--mesa-color, #a04a1f);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--r-full);
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  width: 100%;
+  transition: transform var(--duration-fast);
+}
+.mesabarra-mini-map-btn:active {
+  transform: scale(0.97);
+}
+
+/* Mapa fullscreen dedicado */
+.mesabarra-fullscreen {
+  z-index: 3000;
+}
+.mesabarra-fullscreen .map-fullscreen-title {
+  color: var(--mesa-on, #6d2f10);
+}
+.mesabarra-fullscreen-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.95);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 0;
+}
+
+/* Marcador de restaurante en el mapa */
+.mesabarra-marker {
+  background: none !important;
+  border: none !important;
+}
+.mesabarra-marker-inner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--mesa-color, #a04a1f);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+  border: 3px solid white;
+  transition: transform var(--duration-fast);
+}
+.mesabarra-marker:hover .mesabarra-marker-inner {
+  transform: scale(1.15);
+}
+
 /* Tarjeta de introducción de "A mesa e barra" */
 .mesabarra-intro {
   background: linear-gradient(135deg, rgba(160,74,31,0.08) 0%, rgba(160,74,31,0.03) 100%);
