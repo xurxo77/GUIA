@@ -1844,6 +1844,8 @@
       "lugarId": 7,
       "imagen": "img/mesa/balares.jpg",
       "nota": "Terraza espectacular sobre la ría de Corme e Laxe.",
+      "lat": 43.2158,
+      "lng": -8.9053,
       "maps": "https://maps.google.com/?q=Restaurante+Hotel+Balares+Ponteceso"
     },
     {
@@ -1852,6 +1854,8 @@
       "lugarId": 6,
       "imagen": "img/mesa/sobreposta.jpg",
       "nota": "Terraza con vistas al Cantábrico.",
+      "lat": 43.7414,
+      "lng": -7.6858,
       "maps": "https://maps.google.com/?q=Restaurante+A+Sobreposta+Porto+do+Barqueiro"
     },
     {
@@ -1860,6 +1864,8 @@
       "lugarId": 6,
       "imagen": "img/mesa/mullermarina.jpg",
       "nota": "Chiringuito llevado por 8 mujeres del pueblo. Marisco recién capturado.",
+      "lat": 43.7524,
+      "lng": -7.6910,
       "maps": "https://maps.google.com/?q=A+Muller+Marina+Porto+de+Bares"
     },
     {
@@ -1868,6 +1874,8 @@
       "lugarId": 5,
       "imagen": "img/mesa/casarodrigo.jpg",
       "nota": "Restaurante, pizzería y tienda rural. Muy familiar.",
+      "lat": 43.6853,
+      "lng": -7.8497,
       "maps": "https://maps.google.com/?q=Casa+Rodrigo+Ortigueira"
     },
     {
@@ -1876,6 +1884,8 @@
       "lugarId": 36,
       "imagen": "img/mesa/saratoga.jpg",
       "nota": "Para mí, el mejor pulpo de Galicia. Y con vistas.",
+      "lat": 42.5615,
+      "lng": -8.8646,
       "maps": "https://maps.google.com/?q=Cafe+Bar+Saratoga+Illa+de+Arousa"
     },
     {
@@ -1884,6 +1894,8 @@
       "lugarId": 36,
       "imagen": "img/mesa/ofaro.jpg",
       "nota": "Al final de la ruta al Faro de Punta Cabalo. Playa y puesta de sol.",
+      "lat": 42.5786,
+      "lng": -8.8791,
       "maps": "https://maps.google.com/?q=Chiringuito+O+Faro+Illa+de+Arousa"
     },
     {
@@ -1892,6 +1904,8 @@
       "lugarId": 15,
       "imagen": "img/mesa/oemigrante.jpg",
       "nota": "Icono desde hace 50 años. Marisco de calle, raciones enormes.",
+      "lat": 43.4676,
+      "lng": -8.1877,
       "maps": "https://maps.google.com/?q=O+Emigrante+Limodre+Fene"
     }
   ]
