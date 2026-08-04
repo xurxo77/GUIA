@@ -1907,6 +1907,16 @@
       "lat": 43.4676,
       "lng": -8.1877,
       "maps": "https://maps.google.com/?q=O+Emigrante+Limodre+Fene"
+    },
+    {
+      "nombre": "O Fogar do Santiso",
+      "localidad": "Trasellas, Luou (Teo)",
+      "lugarId": 1,
+      "imagen": "img/mesa/fogarsantiso.jpg",
+      "nota": "Enxebre. Jueves de noche, queimada. Sitio para visitar una vez.",
+      "lat": 42.797,
+      "lng": -8.541,
+      "maps": "https://maps.google.com/?q=O+Fogar+do+Santiso+Teo"
     }
   ]
 }
