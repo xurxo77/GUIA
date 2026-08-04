@@ -301,6 +301,19 @@
             </div>
           </div>
           <div class="province-content">
+            <div class="mesabarra-inline-map-wrapper">
+              <div id="mesabarraInlineMap" class="mesabarra-inline-map"></div>
+              <button class="mesabarra-inline-locate" onclick="mapManager.locateMesabarra()" aria-label="Mi ubicación" title="Mi ubicación">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <circle cx="12" cy="12" r="3"/>
+                  <line x1="12" y1="2" x2="12" y2="5"/>
+                  <line x1="12" y1="19" x2="12" y2="22"/>
+                  <line x1="2" y1="12" x2="5" y2="12"/>
+                  <line x1="19" y1="12" x2="22" y2="12"/>
+                </svg>
+              </button>
+            </div>
             <div class="horizontal-scroll" role="region" aria-label="Restaurantes, chiringuitos y bares recomendados">
               <!-- Cards generadas por JS -->
             </div>
@@ -466,21 +479,6 @@
       <div class="map-selection-places" id="mapSelectionPlaces"></div>
       <p class="map-fullscreen-hint">Toca un punto para añadirlo o quitarlo. Haz zoom para ver mejor.</p>
     </div>
-  </div>
-
-  <!-- Mapa Fullscreen A mesa e barra -->
-  <div class="map-fullscreen mesabarra-fullscreen" id="mesabarraFullscreen">
-    <div class="map-fullscreen-header">
-      <span class="map-fullscreen-title">🍴 A mesa e barra</span>
-      <button class="map-fullscreen-close ripple-host" onclick="closeMesabarraMap()" aria-label="Cerrar mapa">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-    <div id="mesabarraFullscreenMap" class="map-fullscreen-map"></div>
-    <p class="map-fullscreen-hint mesabarra-fullscreen-hint">Toca un punto para ver detalles.</p>
   </div>
 
   <!-- Toast notifications -->
