@@ -359,7 +359,7 @@ const ui = {
     }
   },
 
-  // Genera el HTML de "A mesa e barra" agrupando por localidad
+  // Genera el HTML de "A mesa e barra": una tarjeta por restaurante
   buildMesaEBarraHTML: () => {
     if (!restaurantes || restaurantes.length === 0) {
       return `
@@ -370,35 +370,28 @@ const ui = {
       `;
     }
 
-    // Agrupar por localidad
-    const grupos = {};
-    restaurantes.forEach(r => {
-      const loc = r.localidad || 'Sin localidad';
-      if (!grupos[loc]) grupos[loc] = [];
-      grupos[loc].push(r);
-    });
-
-    // Ordenar localidades alfabéticamente
-    const localidades = Object.keys(grupos).sort((a, b) => a.localeCompare(b, 'es'));
+    // Ordenar por localidad para que aparezcan agrupados naturalmente
+    const sorted = [...restaurantes].sort((a, b) =>
+      (a.localidad || '').localeCompare(b.localidad || '', 'es')
+    );
 
     let html = '';
-    localidades.forEach(localidad => {
-      const sitios = grupos[localidad];
+    sorted.forEach(r => {
+      const nombre = utils.sanitizeHTML(r.nombre);
+      const localidad = r.localidad ? utils.sanitizeHTML(r.localidad) : '';
+      const imgTag = r.imagen
+        ? `<img src="${r.imagen}" class="rec-card-img" alt="${nombre}" onerror="this.style.display='none'">`
+        : '';
+      const mapsBtn = r.maps
+        ? `<a href="${r.maps}" target="_blank" rel="noopener" class="mesabarra-btn">📍 Ver en el mapa</a>`
+        : '';
+
       html += `
-            <div class="rec-card">
-              <h4>📍 ${utils.sanitizeHTML(localidad)}</h4>
-              <ul class="mesabarra-list">
-      `;
-      sitios.forEach(r => {
-        const nombre = utils.sanitizeHTML(r.nombre);
-        if (r.maps) {
-          html += `<li><a href="${r.maps}" target="_blank" rel="noopener">${nombre}</a></li>`;
-        } else {
-          html += `<li>${nombre}</li>`;
-        }
-      });
-      html += `
-              </ul>
+            <div class="rec-card mesabarra-card">
+              ${imgTag}
+              <h4>${nombre}</h4>
+              ${localidad ? `<p class="mesabarra-loc-p">📍 ${localidad}</p>` : ''}
+              ${mapsBtn}
             </div>
       `;
     });
@@ -1123,11 +1116,23 @@ const ui = {
     let items = '';
     sitios.forEach(r => {
       const nombre = utils.sanitizeHTML(r.nombre);
-      const loc = r.localidad ? ` <span class="mesabarra-loc">(${utils.sanitizeHTML(r.localidad)})</span>` : '';
+      const loc = r.localidad ? `<span class="mesabarra-mini-loc">${utils.sanitizeHTML(r.localidad)}</span>` : '';
+      const imgTag = r.imagen
+        ? `<img src="${r.imagen}" class="mesabarra-mini-img" alt="${nombre}" onerror="this.style.display='none'">`
+        : '<div class="mesabarra-mini-img mesabarra-mini-img-placeholder">🍴</div>';
+
+      const inner = `
+        ${imgTag}
+        <div class="mesabarra-mini-info">
+          <div class="mesabarra-mini-name">${nombre}</div>
+          ${loc}
+        </div>
+      `;
+
       if (r.maps) {
-        items += `<li><a href="${r.maps}" target="_blank" rel="noopener">${nombre}</a>${loc}</li>`;
+        items += `<a href="${r.maps}" target="_blank" rel="noopener" class="mesabarra-mini-card">${inner}</a>`;
       } else {
-        items += `<li>${nombre}${loc}</li>`;
+        items += `<div class="mesabarra-mini-card">${inner}</div>`;
       }
     });
 
@@ -1137,7 +1142,7 @@ const ui = {
           <span class="info-icon">🍴</span>
           <span class="info-title">A MESA E BARRA</span>
         </div>
-        <ul class="mesabarra-list">${items}</ul>
+        <div class="mesabarra-mini-grid">${items}</div>
       </div>
     `;
   },
