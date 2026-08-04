@@ -5662,6 +5662,37 @@ html, body {
 #rec-mesabarra.expanded .province-arrow { background: var(--mesa-color); }
 #rec-mesabarra.expanded .province-arrow svg { stroke: white; }
 
+/* Tarjeta de introducción de "A mesa e barra" */
+.mesabarra-intro {
+  background: linear-gradient(135deg, rgba(160,74,31,0.08) 0%, rgba(160,74,31,0.03) 100%);
+  border: 1px solid rgba(160,74,31,0.15);
+}
+.mesabarra-intro h4 {
+  color: var(--mesa-on, #6d2f10);
+}
+.mesabarra-intro p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Nota corta debajo del nombre en tarjeta grande */
+.mesabarra-nota {
+  font-size: 0.88rem !important;
+  color: var(--mesa-on, #6d2f10) !important;
+  font-style: italic;
+  line-height: 1.45 !important;
+  margin-bottom: 10px !important;
+}
+
+/* Nota corta debajo del nombre en mini-tarjeta */
+.mesabarra-mini-nota {
+  color: var(--mesa-on, #6d2f10);
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  margin: 2px 0 4px 0;
+}
+
 /* Tarjeta grande en Recomendaciones (con foto) */
 .mesabarra-card {
   display: flex;
