@@ -406,6 +406,18 @@ const ui = {
       `;
     });
 
+    // Contar sitios con coordenadas para el botón final
+    const conCoords = sorted.filter(r => r.lat && r.lng).length;
+    if (conCoords > 0) {
+      html += `
+            <div class="rec-card mesabarra-map-cta">
+              <h4>🗺️ Ver todos en el mapa</h4>
+              <p>Explora nuestros ${conCoords} sitios sobre el mapa de Galicia.</p>
+              <button class="mesabarra-map-btn" onclick="openMesabarraMap()">🗺️ Abrir mapa</button>
+            </div>
+      `;
+    }
+
     return html;
   },
 
@@ -1148,6 +1160,12 @@ const ui = {
       }
     });
 
+    // Solo mostrar botón de mapa si hay al menos un sitio con coordenadas
+    const conCoords = sitios.filter(r => r.lat && r.lng).length;
+    const mapaBtn = conCoords > 0
+      ? `<button class="mesabarra-mini-map-btn" onclick="openMesabarraMap(${lugarId})">🗺️ Ver en el mapa</button>`
+      : '';
+
     return `
       <div class="info-block">
         <div class="info-header">
@@ -1155,6 +1173,7 @@ const ui = {
           <span class="info-title">A MESA E BARRA</span>
         </div>
         <div class="mesabarra-mini-grid">${items}</div>
+        ${mapaBtn}
       </div>
     `;
   },
@@ -1870,6 +1889,105 @@ const mapManager = {
     document.body.style.overflow = '';
   },
 
+  // ── MAPA A MESA E BARRA ────────────────────────────────────
+  // filterLugarId: si se pasa, solo muestra los sitios de ese lugar
+  openMesabarra: (filterLugarId) => {
+    const container = document.getElementById('mesabarraFullscreen');
+    if (!container) return;
+    container.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      // Determinar qué sitios mostrar
+      const sitios = (restaurantes || []).filter(r => r.lat && r.lng)
+        .filter(r => filterLugarId ? r.lugarId === filterLugarId : true);
+
+      if (sitios.length === 0) {
+        return;
+      }
+
+      // Calcular centro y zoom en función de los sitios
+      let center = CONFIG.MAP_CENTER;
+      let zoom = CONFIG.MAP_ZOOM_DEFAULT;
+
+      if (sitios.length === 1) {
+        center = [sitios[0].lat, sitios[0].lng];
+        zoom = 14;
+      } else {
+        const lats = sitios.map(r => r.lat);
+        const lngs = sitios.map(r => r.lng);
+        center = [(Math.min(...lats) + Math.max(...lats)) / 2,
+                  (Math.min(...lngs) + Math.max(...lngs)) / 2];
+      }
+
+      // Crear o reiniciar el mapa
+      if (state.mesabarraMap) {
+        try { state.mesabarraMap.remove(); } catch (e) {}
+        state.mesabarraMap = null;
+      }
+
+      state.mesabarraMap = L.map('mesabarraFullscreenMap', {
+        center: center,
+        zoom: zoom,
+        zoomControl: true,
+        attributionControl: false
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 })
+        .addTo(state.mesabarraMap);
+
+      // Añadir marcadores
+      const bounds = [];
+      sitios.forEach(r => {
+        const marker = L.marker([r.lat, r.lng], {
+          icon: L.divIcon({
+            className: 'mesabarra-marker',
+            html: `<div class="mesabarra-marker-inner">🍴</div>`,
+            iconSize: [44, 44],
+            iconAnchor: [22, 22]
+          })
+        }).addTo(state.mesabarraMap);
+
+        const nombre = utils.sanitizeHTML(r.nombre);
+        const nota = r.nota ? utils.sanitizeHTML(r.nota) : '';
+        const loc = r.localidad ? utils.sanitizeHTML(r.localidad) : '';
+        const img = r.imagen
+          ? `<img src="${r.imagen}" style="width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:10px;" onerror="this.style.display='none'">`
+          : '';
+        const btn = r.maps
+          ? `<a href="${r.maps}" target="_blank" rel="noopener" style="display:inline-block;background:#a04a1f;color:white;padding:9px 14px;border-radius:20px;text-decoration:none;font-weight:600;font-size:0.85rem;margin-top:8px;">📍 Ver en el mapa</a>`
+          : '';
+
+        const popupHtml = `
+          <div style="min-width:200px;max-width:240px;font-family:sans-serif;">
+            ${img}
+            <div style="font-weight:700;font-size:1rem;color:#6d2f10;margin-bottom:4px;">${nombre}</div>
+            ${nota ? `<div style="font-style:italic;font-size:0.85rem;color:#6d2f10;margin-bottom:6px;line-height:1.35;">${nota}</div>` : ''}
+            ${loc ? `<div style="font-size:0.8rem;color:#666;margin-bottom:4px;">📍 ${loc}</div>` : ''}
+            ${btn}
+          </div>
+        `;
+
+        marker.bindPopup(popupHtml, { closeButton: true, offset: [0, -8], maxWidth: 260 });
+        bounds.push([r.lat, r.lng]);
+      });
+
+      // Ajustar zoom para que se vean todos los sitios
+      if (bounds.length > 1) {
+        state.mesabarraMap.fitBounds(bounds, { padding: [50, 50], maxZoom: 12 });
+      }
+
+      state.mesabarraMap.invalidateSize();
+    }, 150);
+  },
+
+  closeMesabarra: () => {
+    const container = document.getElementById('mesabarraFullscreen');
+    if (!container) return;
+    container.classList.remove('active');
+    document.body.style.overflow = '';
+  },
+
   scrollToFooter: () => {
     document.getElementById('mapFullscreenFooter')?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -2293,6 +2411,8 @@ window.toggleFavorite = favoritesManager.toggle;
 window.removeFavorite = favoritesManager.remove;
 window.openFullscreenMap = mapManager.openFullscreen;
 window.closeFullscreenMap = mapManager.closeFullscreen;
+window.openMesabarraMap = (lugarId) => mapManager.openMesabarra(lugarId);
+window.closeMesabarraMap = mapManager.closeMesabarra;
 window.toggleGeolocation = geoManager.toggle;
 window.scrollToMapFooter = mapManager.scrollToFooter;
 window.togglePlaceSelection = routeManager.togglePlace;
