@@ -1842,42 +1842,49 @@
       "nombre": "Restaurante Hotel Balarés",
       "localidad": "Ponteceso",
       "lugarId": 7,
+      "imagen": "img/mesa/balares.jpg",
       "maps": "https://maps.google.com/?q=Restaurante+Hotel+Balares+Ponteceso"
     },
     {
       "nombre": "Restaurante A Sobreposta",
       "localidad": "O Porto do Barqueiro",
       "lugarId": 6,
+      "imagen": "img/mesa/sobreposta.jpg",
       "maps": "https://maps.google.com/?q=Restaurante+A+Sobreposta+Porto+do+Barqueiro"
     },
     {
       "nombre": "A Muller Mariña",
       "localidad": "Porto de Bares",
       "lugarId": 6,
+      "imagen": "img/mesa/mullermarina.jpg",
       "maps": "https://maps.google.com/?q=A+Muller+Marina+Porto+de+Bares"
     },
     {
       "nombre": "Casa Rodrigo",
       "localidad": "Ortigueira",
       "lugarId": 5,
+      "imagen": "img/mesa/casarodrigo.jpg",
       "maps": "https://maps.google.com/?q=Casa+Rodrigo+Ortigueira"
     },
     {
       "nombre": "Café Bar Saratoga",
       "localidad": "A Illa de Arousa",
       "lugarId": 36,
+      "imagen": "img/mesa/saratoga.jpg",
       "maps": "https://maps.google.com/?q=Cafe+Bar+Saratoga+Illa+de+Arousa"
     },
     {
       "nombre": "Chiringuito O Faro",
       "localidad": "A Illa de Arousa (Praia de Sualaxe)",
       "lugarId": 36,
+      "imagen": "img/mesa/ofaro.jpg",
       "maps": "https://maps.google.com/?q=Chiringuito+O+Faro+Illa+de+Arousa"
     },
     {
       "nombre": "O Emigrante",
       "localidad": "Limodre (Fene)",
       "lugarId": 15,
+      "imagen": "img/mesa/oemigrante.jpg",
       "maps": "https://maps.google.com/?q=O+Emigrante+Limodre+Fene"
     }
   ]
