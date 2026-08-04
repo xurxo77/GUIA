@@ -361,11 +361,19 @@ const ui = {
 
   // Genera el HTML de "A mesa e barra": una tarjeta por restaurante
   buildMesaEBarraHTML: () => {
+    // Tarjeta de introducción — siempre visible
+    const introHtml = `
+            <div class="rec-card mesabarra-intro">
+              <h4>🍴 Nuestros sitios</h4>
+              <p>No es una guía más: son rincones probados por nosotros o recomendados por gente de confianza. Nuestra ruta alternativa.</p>
+            </div>
+    `;
+
     if (!restaurantes || restaurantes.length === 0) {
-      return `
+      return introHtml + `
             <div class="rec-card">
-              <h4>🍴 Próximamente</h4>
-              <p>Estamos recopilando nuestros sitios favoritos. Vuelve pronto.</p>
+              <h4>Próximamente</h4>
+              <p>Seguimos recopilando. Vuelve pronto.</p>
             </div>
       `;
     }
@@ -375,10 +383,11 @@ const ui = {
       (a.localidad || '').localeCompare(b.localidad || '', 'es')
     );
 
-    let html = '';
+    let html = introHtml;
     sorted.forEach(r => {
       const nombre = utils.sanitizeHTML(r.nombre);
       const localidad = r.localidad ? utils.sanitizeHTML(r.localidad) : '';
+      const nota = r.nota ? utils.sanitizeHTML(r.nota) : '';
       const imgTag = r.imagen
         ? `<img src="${r.imagen}" class="rec-card-img" alt="${nombre}" onerror="this.style.display='none'">`
         : '';
@@ -390,6 +399,7 @@ const ui = {
             <div class="rec-card mesabarra-card">
               ${imgTag}
               <h4>${nombre}</h4>
+              ${nota ? `<p class="mesabarra-nota">${nota}</p>` : ''}
               ${localidad ? `<p class="mesabarra-loc-p">📍 ${localidad}</p>` : ''}
               ${mapsBtn}
             </div>
@@ -1116,6 +1126,7 @@ const ui = {
     let items = '';
     sitios.forEach(r => {
       const nombre = utils.sanitizeHTML(r.nombre);
+      const nota = r.nota ? `<div class="mesabarra-mini-nota">${utils.sanitizeHTML(r.nota)}</div>` : '';
       const loc = r.localidad ? `<span class="mesabarra-mini-loc">${utils.sanitizeHTML(r.localidad)}</span>` : '';
       const imgTag = r.imagen
         ? `<img src="${r.imagen}" class="mesabarra-mini-img" alt="${nombre}" onerror="this.style.display='none'">`
@@ -1125,6 +1136,7 @@ const ui = {
         ${imgTag}
         <div class="mesabarra-mini-info">
           <div class="mesabarra-mini-name">${nombre}</div>
+          ${nota}
           ${loc}
         </div>
       `;
