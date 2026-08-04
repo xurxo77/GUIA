@@ -1917,6 +1917,16 @@
       "lat": 42.797,
       "lng": -8.541,
       "maps": "https://maps.google.com/?q=O+Fogar+do+Santiso+Teo"
+    },
+    {
+      "nombre": "Mesón O Bo Padal",
+      "localidad": "Montecuruto (Ferrol)",
+      "lugarId": 15,
+      "imagen": "img/mesa/bopadal.jpg",
+      "nota": "Generosidad en las raciones, ambiente casero y trato del personal.",
+      "lat": 43.4900,
+      "lng": -8.2400,
+      "maps": "https://maps.google.com/?q=Meson+O+Bo+Padal+Ferrol"
     }
   ]
 }
