@@ -359,54 +359,14 @@ const ui = {
     }
   },
 
-  // Genera el HTML de "A mesa e barra": una tarjeta por restaurante
+  // La sección "A mesa e barra" solo muestra el mapa (declarado en HTML).
+  // Devolvemos únicamente una pequeña intro que aparece encima del mapa.
   buildMesaEBarraHTML: () => {
-    // Tarjeta de introducción — siempre visible
-    const introHtml = `
-            <div class="rec-card mesabarra-intro">
-              <h4>🍴 Nuestros sitios</h4>
-              <p>No es una guía más: son rincones probados por nosotros o recomendados por gente de confianza. Nuestra ruta alternativa.</p>
+    return `
+            <div class="mesabarra-intro-mini">
+              <p><strong>🍴 Nuestros sitios.</strong> Rincones probados o recomendados por gente de confianza. Nuestra ruta alternativa.</p>
             </div>
     `;
-
-    if (!restaurantes || restaurantes.length === 0) {
-      return introHtml + `
-            <div class="rec-card">
-              <h4>Próximamente</h4>
-              <p>Seguimos recopilando. Vuelve pronto.</p>
-            </div>
-      `;
-    }
-
-    // Ordenar por localidad para que aparezcan agrupados naturalmente
-    const sorted = [...restaurantes].sort((a, b) =>
-      (a.localidad || '').localeCompare(b.localidad || '', 'es')
-    );
-
-    let html = introHtml;
-    sorted.forEach(r => {
-      const nombre = utils.sanitizeHTML(r.nombre);
-      const localidad = r.localidad ? utils.sanitizeHTML(r.localidad) : '';
-      const nota = r.nota ? utils.sanitizeHTML(r.nota) : '';
-      const imgTag = r.imagen
-        ? `<img src="${r.imagen}" class="rec-card-img" alt="${nombre}" onerror="this.style.display='none'">`
-        : '';
-      const mapsBtn = r.maps
-        ? `<a href="${r.maps}" target="_blank" rel="noopener" class="mesabarra-btn">📍 Ver en el mapa</a>`
-        : '';
-
-      html += `
-            <div class="rec-card mesabarra-card">
-              ${imgTag}
-              <h4>${nombre}</h4>
-              ${nota ? `<p class="mesabarra-nota">${nota}</p>` : ''}
-              ${localidad ? `<p class="mesabarra-loc-p">📍 ${localidad}</p>` : ''}
-              ${mapsBtn}
-            </div>
-      `;
-    });
-
-    return html;
   },
 
   renderRecommendations: () => {
@@ -925,7 +885,8 @@ const ui = {
       if (!scroll) return;
       scroll.innerHTML = html;
 
-      // Swipe hint
+      // Swipe hint (no aplica en mesabarra: no es un carrusel)
+      if (id === 'rec-mesabarra') return;
       const existing = scroll.parentNode.querySelector('.swipe-hint');
       if (!existing) {
         const hint = document.createElement('div');
@@ -1054,7 +1015,6 @@ const ui = {
                 ${lugar.planLluvia ? (Array.isArray(lugar.planLluvia) ? ui.renderListBlock('☔', 'PLAN PARA DÍA DE LLUVIA', lugar.planLluvia) : ui.renderInfoBlock('☔', 'PLAN PARA DÍA DE LLUVIA', lugar.planLluvia)) : ''}
                 ${Array.isArray(lugar.advertencias) ? ui.renderListBlock('⚠️', 'ADVERTENCIAS', lugar.advertencias) : ui.renderInfoBlock('⚠️', 'ADVERTENCIAS', lugar.advertencias)}
                 ${ui.renderInfoBlock('❤️', 'MI OPINIÓN', lugar.miOpinion)}
-                ${ui.renderMesaEBarraForPlace(lugar.id)}
                 
                 <button class="btn-primary" onclick="routeManager.togglePlace(${lugar.id})" style="width:100%; margin-top:16px;">
                   ${state.selectedPlaces.includes(lugar.id) ? '❌ Quitar de la ruta' : '➕ Añadir a la ruta'}
