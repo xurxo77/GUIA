@@ -5662,7 +5662,86 @@ html, body {
 #rec-mesabarra.expanded .province-arrow { background: var(--mesa-color); }
 #rec-mesabarra.expanded .province-arrow svg { stroke: white; }
 
-/* Lista de sitios (dentro de tarjetas y en fichas de lugares) */
+/* Tarjeta grande en Recomendaciones (con foto) */
+.mesabarra-card {
+  display: flex;
+  flex-direction: column;
+}
+.mesabarra-loc-p {
+  color: var(--fg-muted) !important;
+  font-size: 0.88rem !important;
+  margin-bottom: 12px !important;
+}
+.mesabarra-btn {
+  display: inline-block;
+  background: var(--mesa-color, #a04a1f);
+  color: white !important;
+  padding: 9px 14px;
+  border-radius: var(--r-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  margin-top: auto;
+  transition: transform var(--duration-fast);
+}
+.mesabarra-btn:active {
+  transform: scale(0.97);
+}
+
+/* Mini-tarjetas dentro de las fichas de lugar */
+.mesabarra-mini-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+.mesabarra-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(160,74,31,0.05);
+  border: 1px solid rgba(160,74,31,0.15);
+  border-radius: var(--r-md, 12px);
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--duration-fast);
+}
+.mesabarra-mini-card:hover,
+.mesabarra-mini-card:active {
+  background: rgba(160,74,31,0.1);
+}
+.mesabarra-mini-img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-md, 10px);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.mesabarra-mini-img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(160,74,31,0.15);
+  font-size: 1.5rem;
+}
+.mesabarra-mini-info {
+  flex: 1;
+  min-width: 0;
+}
+.mesabarra-mini-name {
+  font-weight: 600;
+  color: var(--mesa-on, #6d2f10);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.mesabarra-mini-loc {
+  display: block;
+  color: var(--fg-muted);
+  font-size: 0.82rem;
+}
+
+/* Lista simple (fallback si no hay foto) */
 .mesabarra-list {
   list-style: none;
   padding: 0;
